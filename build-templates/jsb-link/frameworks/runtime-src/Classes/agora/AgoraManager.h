@@ -1,21 +1,18 @@
 #ifndef __AGORA_MANAGER_H__
 #define __AGORA_MANAGER_H__
 
-// #include "AgentManager.h"
-
-class AgoraManager
-{
+class AgoraManager {
 public:
-  static AgoraManager *getInstance();
-  static void purge();
+    static AgoraManager *getInstance();
 
-  void registerJSBCallback();
+    void registerJSBCallback();
 
 private:
-  AgoraManager();
-  virtual ~AgoraManager();
+    AgoraManager();
 
-  static AgoraManager *_pInstance;
+    virtual ~AgoraManager();
+
+    static AgoraManager *_pInstance;
 };
 
 #endif

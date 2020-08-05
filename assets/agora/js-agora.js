@@ -3,8 +3,14 @@
     agora.startTime = null;
     if ((typeof agoraCreator) !== "undefined") {
         if (agora.agoraCreatorInst == null) agora.agoraCreatorInst = new agoraCreator();
-        agora.init = function (appid) {
-            agora.agoraCreatorInst.initialize(appid);
+        agora.init = function (appid, areaCode = -1) {
+            agora.agoraCreatorInst.initialize(appid, areaCode);
+            agora.agoraCreatorInst.onWarning = function (warn, msg) {
+                agora.emit('warning', warn, msg);
+            };
+            agora.agoraCreatorInst.onError = function (err, msg) {
+                agora.emit('error', err, msg);
+            };
             agora.agoraCreatorInst.onJoinChannelSuccess = function (channel, uid, elapsed) {
                 agora.startTime = new Date();
                 cc.log('Agora(Native platform) service start using time : ' + agora.startTime.toString());
@@ -13,18 +19,6 @@
             agora.agoraCreatorInst.onRejoinChannelSuccess = function (channel, uid, elapsed) {
                 agora.emit('rejoin-channel-success', channel, uid, elapsed);
             };
-            agora.agoraCreatorInst.onWarning = function (warn, msg) {
-                agora.emit('warning', warn, msg);
-            };
-            agora.agoraCreatorInst.onError = function (err, msg) {
-                agora.emit('error', err, msg);
-            };
-            agora.agoraCreatorInst.onAudioQuality = function (uid, quality, delay, lost) {
-                agora.emit('audio-quality', uid, quality, delay, lost);
-            };
-            agora.agoraCreatorInst.onAudioVolumeIndication = function (speakers, speakerNumber, totalVolume) {
-                agora.emit('audio-volume-indication', speakers, speakerNumber, totalVolume);
-            };
             agora.agoraCreatorInst.onLeaveChannel = function (stat) {
                 var endTime = new Date();
                 cc.log('Agora(Native platform) service stop use time : ' + endTime.toString());
@@ -32,8 +26,8 @@
                 cc.log('Agora(Native platform) service used time(s) ： ' + Math.floor(usedTime / 1000));
                 agora.emit('leave-channel', stat);
             };
-            agora.agoraCreatorInst.onNetworkQuality = function (uid, txQuality, rxQuality) {
-                agora.emit('network-quality', uid, txQuality, rxQuality);
+            agora.agoraCreatorInst.onClientRoleChanged = function (oldRole, newRole) {
+                agora.emit('client-role-changed', oldRole, newRole);
             };
             agora.agoraCreatorInst.onUserJoined = function (uid, elapsed) {
                 agora.emit('user-joined', uid, elapsed);
@@ -41,26 +35,32 @@
             agora.agoraCreatorInst.onUserOffline = function (uid, reason) {
                 agora.emit('user-offline', uid, reason);
             };
-            agora.agoraCreatorInst.onUserMuteAudio = function (uid, muted) {
-                agora.emit('user-mute-audio', uid, muted);
-            };
-            agora.agoraCreatorInst.onAudioRoutingChanged = function (routing) {
-                agora.emit('audio-routing-changed', routing);
+            agora.agoraCreatorInst.onConnectionInterrupted = function () {
+                agora.emit('connection-interrupted');
             };
             agora.agoraCreatorInst.onConnectionLost = function () {
                 agora.emit('connection-lost');
             };
-            agora.agoraCreatorInst.onConnectionInterrupted = function () {
-                agora.emit('connection-interrupted');
+            agora.agoraCreatorInst.onConnectionBanned = function () {
+                agora.emit('connection-banned');
             };
             agora.agoraCreatorInst.onRequestToken = function () {
                 agora.emit('request-token');
             };
-            agora.agoraCreatorInst.onConnectionBanned = function () {
-                agora.emit('connection-banned');
+            agora.agoraCreatorInst.onAudioQuality = function (uid, quality, delay, lost) {
+                agora.emit('audio-quality', uid, quality, delay, lost);
             };
-            agora.agoraCreatorInst.onClientRoleChanged = function (oldRole, newRole) {
-                agora.emit('client-role-changed', oldRole, newRole);
+            agora.agoraCreatorInst.onNetworkQuality = function (uid, txQuality, rxQuality) {
+                agora.emit('network-quality', uid, txQuality, rxQuality);
+            };
+            agora.agoraCreatorInst.onAudioVolumeIndication = function (speakers, speakerNumber, totalVolume) {
+                agora.emit('audio-volume-indication', speakers, speakerNumber, totalVolume);
+            };
+            agora.agoraCreatorInst.onUserMuteAudio = function (uid, muted) {
+                agora.emit('user-mute-audio', uid, muted);
+            };
+            agora.agoraCreatorInst.onAudioRouteChanged = function (routing) {
+                agora.emit('audio-routing-changed', routing);
             };
         };
         agora.setChannelProfile = function (profile) {
@@ -93,8 +93,8 @@
         agora.muteRemoteAudioStream = function (uid, mute) {
             return agora.agoraCreatorInst.muteRemoteAudioStream(uid, mute);
         };
-        agora.enableAudioVolumeIndication = function (interval, smooth) {
-            return agora.agoraCreatorInst.enableAudioVolumeIndication(interval, smooth);
+        agora.enableAudioVolumeIndication = function (interval, smooth, report_vad) {
+            return agora.agoraCreatorInst.enableAudioVolumeIndication(interval, smooth, report_vad);
         };
         agora.adjustRecordingSignalVolume = function (volume) {
             return agora.agoraCreatorInst.adjustRecordingSignalVolume(volume);
@@ -102,10 +102,10 @@
         agora.adjustPlaybackSignalVolume = function (volume) {
             return agora.agoraCreatorInst.adjustPlaybackSignalVolume(volume);
         };
-        agora.setDefaultAudioRouteToSpeakerphone = function (bVal) { //？
+        agora.setDefaultAudioRouteToSpeakerphone = function (bVal) {
             agora.agoraCreatorInst.setDefaultAudioRouteToSpeakerphone(bVal);
         };
-        agora.setParameters = function (profile) { //？
+        agora.setParameters = function (profile) {
             agora.agoraCreatorInst.setParameters(profile);
         };
         agora.getVersion = function () {
@@ -126,7 +126,7 @@
             mode: "live",
             codec: "h264"
         });
-        agora.init = function (appid) {
+        agora.init = function (appid, areaCode = -1) {
             // initialize an array to manage remote streams
             // local stream is accessed via agora.stream
             agora.remoteStreams = [];
@@ -279,7 +279,7 @@
                 }
             })
         };
-        agora.enableAudioVolumeIndication = function (interval, smooth) {
+        agora.enableAudioVolumeIndication = function (interval, smooth, report_vad) {
             agora.client.enableAudioVolumeIndicator();
         };
         agora.adjustRecordingSignalVolume = function (volume) {
@@ -305,24 +305,24 @@
         };
     }
     if (((typeof agoraCreator) === "undefined") && ((typeof AgoraRTC) === "undefined")) {
-        agora.init = function (appid) {};
-        agora.setChannelProfile = function (profile) {};
-        agora.setClientRole = function (role) {};
-        agora.joinChannel = function (token, channelId, info, uid) {};
-        agora.leaveChannel = function () {};
-        agora.enableAudio = function () {};
-        agora.disableAudio = function () {};
-        agora.muteLocalAudioStream = function (mute) {};
-        agora.enableLocalAudio = function (enabled) {};
-        agora.muteAllRemoteAudioStreams = function (mute) {};
-        agora.muteRemoteAudioStream = function (uid, mute) {};
-        agora.enableAudioVolumeIndication = function (interval, smooth) {};
-        agora.adjustRecordingSignalVolume = function (volume) {};
-        agora.adjustPlaybackSignalVolume = function (volume) {};
-        agora.setDefaultAudioRouteToSpeakerphone = function (bVal) {};
-        agora.setParameters = function (profile) {};
-        agora.getVersion = function () {};
-        agora.setLogFile = function (filePath) {};
-        agora.setLogFilter = function (filter) {};
+        agora.init = function (appid, areaCode = -1) { };
+        agora.setChannelProfile = function (profile) { };
+        agora.setClientRole = function (role) { };
+        agora.joinChannel = function (token, channelId, info, uid) { };
+        agora.leaveChannel = function () { };
+        agora.enableAudio = function () { };
+        agora.disableAudio = function () { };
+        agora.muteLocalAudioStream = function (mute) { };
+        agora.enableLocalAudio = function (enabled) { };
+        agora.muteAllRemoteAudioStreams = function (mute) { };
+        agora.muteRemoteAudioStream = function (uid, mute) { };
+        agora.enableAudioVolumeIndication = function (interval, smooth, report_vad) { };
+        agora.adjustRecordingSignalVolume = function (volume) { };
+        agora.adjustPlaybackSignalVolume = function (volume) { };
+        agora.setDefaultAudioRouteToSpeakerphone = function (bVal) { };
+        agora.setParameters = function (profile) { };
+        agora.getVersion = function () { };
+        agora.setLogFile = function (filePath) { };
+        agora.setLogFilter = function (filter) { };
     }
 })();

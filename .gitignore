@@ -1,4 +1,5 @@
-include/
+.idea/
+.vscode/
 *.jar
 *.so
 *.mk
