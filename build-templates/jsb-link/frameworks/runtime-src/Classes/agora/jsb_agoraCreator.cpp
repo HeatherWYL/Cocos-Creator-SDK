@@ -245,6 +245,7 @@ CagoraCreatorJsWrapper::~CagoraCreatorJsWrapper() = default;
 
 void CagoraCreatorJsWrapper::onJoinChannelSuccess(const char *channel, uid_t uid, int elapsed) {
     CCLOG("[Agora]:onJoinChannelSuccess %s, %u, %d", channel, uid, elapsed);
+
     std::string channelName = channel;
 
     Application::getInstance()->getScheduler()->performFunctionInCocosThread([=]() {
@@ -266,6 +267,8 @@ void CagoraCreatorJsWrapper::onJoinChannelSuccess(const char *channel, uid_t uid
 void CagoraCreatorJsWrapper::onLeaveChannel(const RtcStats &stats) {
     CCLOG("[Agora]:onLeaveChannel %d, %d", stats.txBytes, stats.rxBytes);
 
+    RtcStats rtcStats = stats;
+
     Application::getInstance()->getScheduler()->performFunctionInCocosThread([=]() {
         se::Value func;
         if (_refObj->getProperty("onLeaveChannel", &func)) {
@@ -274,17 +277,27 @@ void CagoraCreatorJsWrapper::onLeaveChannel(const RtcStats &stats) {
 
             se::ValueArray args;
             se::HandleObject obj(se::Object::createPlainObject());
-            obj->setProperty("duration", se::Value(stats.duration));
-            obj->setProperty("txBytes", se::Value(stats.txBytes));
-            obj->setProperty("rxBytes", se::Value(stats.rxBytes));
-            obj->setProperty("txKBitRate", se::Value(stats.txKBitRate));
-            obj->setProperty("rxKBitRate", se::Value(stats.rxKBitRate));
-            obj->setProperty("txAudioKBitRate", se::Value(stats.txAudioKBitRate));
-            obj->setProperty("rxAudioKBitRate", se::Value(stats.rxAudioKBitRate));
-            obj->setProperty("cpuTotalUsage", se::Value(stats.cpuTotalUsage));
-            obj->setProperty("cpuAppUsage", se::Value(stats.cpuAppUsage));
-            obj->setProperty("lastmileDelay", se::Value(stats.lastmileDelay));
-            obj->setProperty("userCount", se::Value(stats.userCount));
+            obj->setProperty("duration", se::Value(rtcStats.duration));
+            obj->setProperty("txBytes", se::Value(rtcStats.txBytes));
+            obj->setProperty("rxBytes", se::Value(rtcStats.rxBytes));
+            obj->setProperty("txAudioBytes", se::Value(rtcStats.txAudioBytes));
+            obj->setProperty("rxAudioBytes", se::Value(rtcStats.rxAudioBytes));
+            obj->setProperty("txKBitRate", se::Value(rtcStats.txKBitRate));
+            obj->setProperty("rxKBitRate", se::Value(rtcStats.rxKBitRate));
+            obj->setProperty("txAudioKBitRate", se::Value(rtcStats.txAudioKBitRate));
+            obj->setProperty("rxAudioKBitRate", se::Value(rtcStats.rxAudioKBitRate));
+            obj->setProperty("cpuTotalUsage", se::Value(rtcStats.cpuTotalUsage));
+            obj->setProperty("cpuAppUsage", se::Value(rtcStats.cpuAppUsage));
+            obj->setProperty("lastmileDelay", se::Value(rtcStats.lastmileDelay));
+            obj->setProperty("txPacketLossRate", se::Value(rtcStats.txPacketLossRate));
+            obj->setProperty("rxPacketLossRate", se::Value(rtcStats.rxPacketLossRate));
+            obj->setProperty("userCount", se::Value(rtcStats.userCount));
+            obj->setProperty("cpuAppUsage", se::Value(rtcStats.cpuAppUsage));
+            obj->setProperty("cpuTotalUsage", se::Value(rtcStats.cpuTotalUsage));
+            obj->setProperty("gatewayRtt", se::Value(rtcStats.gatewayRtt));
+            obj->setProperty("memoryAppUsageRatio", se::Value(rtcStats.memoryAppUsageRatio));
+            obj->setProperty("memoryTotalUsageRatio", se::Value(rtcStats.memoryTotalUsageRatio));
+            obj->setProperty("memoryAppUsageInKbytes", se::Value(rtcStats.memoryAppUsageInKbytes));
             args.push_back(se::Value(obj));
 
             func.toObject()->call(args, _refObj);
@@ -295,6 +308,7 @@ void CagoraCreatorJsWrapper::onLeaveChannel(const RtcStats &stats) {
 void
 CagoraCreatorJsWrapper::onRejoinChannelSuccess(const char *channel, uid_t uid, int elapsed) {
     CCLOG("[Agora]:onRejoinChannelSuccess %s, %u, %d", channel, uid, elapsed);
+
     std::string channelName = channel;
 
     Application::getInstance()->getScheduler()->performFunctionInCocosThread([=]() {
@@ -315,6 +329,7 @@ CagoraCreatorJsWrapper::onRejoinChannelSuccess(const char *channel, uid_t uid, i
 
 void CagoraCreatorJsWrapper::onWarning(int warn, const char *msg) {
     CCLOG("[Agora]:onWarning %d, %s", warn, msg);
+
     std::string strMsg = msg ?: "";
 
     Application::getInstance()->getScheduler()->performFunctionInCocosThread([=]() {
@@ -334,6 +349,7 @@ void CagoraCreatorJsWrapper::onWarning(int warn, const char *msg) {
 
 void CagoraCreatorJsWrapper::onError(int err, const char *msg) {
     CCLOG("[Agora]:onError %d, %s", err, msg);
+
     std::string strMsg = msg ?: "";
 
     Application::getInstance()->getScheduler()->performFunctionInCocosThread([=]() {
@@ -375,6 +391,7 @@ void CagoraCreatorJsWrapper::onAudioQuality(uid_t uid, int quality, unsigned sho
 void CagoraCreatorJsWrapper::onAudioVolumeIndication(const AudioVolumeInfo *speakers,
                                                      unsigned int speakerNumber, int totalVolume) {
     CCLOG("[Agora]:onAudioVolumeIndication %d, %d", speakerNumber, totalVolume);
+
     if (!speakerNumber) return;
 
     AudioVolumeInfo speakersArr[MAX_NUM] = {0,};
@@ -392,6 +409,7 @@ void CagoraCreatorJsWrapper::onAudioVolumeIndication(const AudioVolumeInfo *spea
                 se::HandleObject obj(se::Object::createPlainObject());
                 obj->setProperty("uid", se::Value(speakersArr[i].uid));
                 obj->setProperty("volume", se::Value(speakersArr[i].volume));
+                obj->setProperty("vad", se::Value(speakersArr[i].vad));
 
                 arr->setArrayElement(i, se::Value(obj));
             }
@@ -407,6 +425,8 @@ void CagoraCreatorJsWrapper::onAudioVolumeIndication(const AudioVolumeInfo *spea
 void CagoraCreatorJsWrapper::onRtcStats(const RtcStats &stats) {
     CCLOG("[Agora]:onRtcStats %d, %d", stats.txBytes, stats.rxBytes);
 
+    RtcStats rtcStats = stats;
+
     Application::getInstance()->getScheduler()->performFunctionInCocosThread([=]() {
         se::Value func;
         if (_refObj->getProperty("onRtcStats", &func)) {
@@ -415,17 +435,27 @@ void CagoraCreatorJsWrapper::onRtcStats(const RtcStats &stats) {
 
             se::ValueArray args;
             se::HandleObject obj(se::Object::createPlainObject());
-            obj->setProperty("duration", se::Value(stats.duration));
-            obj->setProperty("txBytes", se::Value(stats.txBytes));
-            obj->setProperty("rxBytes", se::Value(stats.rxBytes));
-            obj->setProperty("txKBitRate", se::Value(stats.txKBitRate));
-            obj->setProperty("rxKBitRate", se::Value(stats.rxKBitRate));
-            obj->setProperty("txAudioKBitRate", se::Value(stats.txAudioKBitRate));
-            obj->setProperty("rxAudioKBitRate", se::Value(stats.rxAudioKBitRate));
-            obj->setProperty("cpuTotalUsage", se::Value(stats.cpuTotalUsage));
-            obj->setProperty("cpuAppUsage", se::Value(stats.cpuAppUsage));
-            obj->setProperty("lastmileDelay", se::Value(stats.lastmileDelay));
-            obj->setProperty("userCount", se::Value(stats.userCount));
+            obj->setProperty("duration", se::Value(rtcStats.duration));
+            obj->setProperty("txBytes", se::Value(rtcStats.txBytes));
+            obj->setProperty("rxBytes", se::Value(rtcStats.rxBytes));
+            obj->setProperty("txAudioBytes", se::Value(rtcStats.txAudioBytes));
+            obj->setProperty("rxAudioBytes", se::Value(rtcStats.rxAudioBytes));
+            obj->setProperty("txKBitRate", se::Value(rtcStats.txKBitRate));
+            obj->setProperty("rxKBitRate", se::Value(rtcStats.rxKBitRate));
+            obj->setProperty("txAudioKBitRate", se::Value(rtcStats.txAudioKBitRate));
+            obj->setProperty("rxAudioKBitRate", se::Value(rtcStats.rxAudioKBitRate));
+            obj->setProperty("cpuTotalUsage", se::Value(rtcStats.cpuTotalUsage));
+            obj->setProperty("cpuAppUsage", se::Value(rtcStats.cpuAppUsage));
+            obj->setProperty("lastmileDelay", se::Value(rtcStats.lastmileDelay));
+            obj->setProperty("txPacketLossRate", se::Value(rtcStats.txPacketLossRate));
+            obj->setProperty("rxPacketLossRate", se::Value(rtcStats.rxPacketLossRate));
+            obj->setProperty("userCount", se::Value(rtcStats.userCount));
+            obj->setProperty("cpuAppUsage", se::Value(rtcStats.cpuAppUsage));
+            obj->setProperty("cpuTotalUsage", se::Value(rtcStats.cpuTotalUsage));
+            obj->setProperty("gatewayRtt", se::Value(rtcStats.gatewayRtt));
+            obj->setProperty("memoryAppUsageRatio", se::Value(rtcStats.memoryAppUsageRatio));
+            obj->setProperty("memoryTotalUsageRatio", se::Value(rtcStats.memoryTotalUsageRatio));
+            obj->setProperty("memoryAppUsageInKbytes", se::Value(rtcStats.memoryAppUsageInKbytes));
             args.push_back(se::Value(obj));
 
             func.toObject()->call(args, _refObj);
@@ -436,7 +466,9 @@ void CagoraCreatorJsWrapper::onRtcStats(const RtcStats &stats) {
 void CagoraCreatorJsWrapper::onAudioDeviceStateChanged(const char *deviceId, int deviceType,
                                                        int deviceState) {
     CCLOG("[Agora]:onAudioDeviceStateChanged %s, %d", deviceId, deviceType);
+
     if (!deviceId) return;
+
     std::string strDeviceId = deviceId;
 
     Application::getInstance()->getScheduler()->performFunctionInCocosThread([=]() {
@@ -2540,7 +2572,8 @@ static bool js_cocos2dx_extension_agoraCreator_constructor(se::State &s) {
 }
 
 SE_BIND_CTOR(js_cocos2dx_extension_agoraCreator_constructor, js_cocos2dx_agoraCreator_class,
-             js_agoraCreator_finalize)
+        js_agoraCreator_finalize
+)
 
 bool js_register_cocos2dx_extension_agoraCreator(se::Object *obj) {
     CCLOG("[Agora] js_register_cocos2dx_extension_agoraCreator");
