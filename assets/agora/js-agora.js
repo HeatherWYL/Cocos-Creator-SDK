@@ -136,7 +136,7 @@
                     var speakers = [];
                     var sumVolume = 0;
                     evt.attr.forEach(function (volume, index) {
-                        speakers.push({ uid: volume.uid, volume: volume.level });
+                        speakers.push({uid: volume.uid, volume: volume.level});
                         sumVolume += volume.level;
                     });
                     agora.emit('audio-volume-indication', speakers, speakers.length, sumVolume / speakers.length);
@@ -305,24 +305,43 @@
         };
     }
     if (((typeof agoraCreator) === "undefined") && ((typeof AgoraRTC) === "undefined")) {
-        agora.init = function (appid, areaCode = -1) { };
-        agora.setChannelProfile = function (profile) { };
-        agora.setClientRole = function (role) { };
-        agora.joinChannel = function (token, channelId, info, uid) { };
-        agora.leaveChannel = function () { };
-        agora.enableAudio = function () { };
-        agora.disableAudio = function () { };
-        agora.muteLocalAudioStream = function (mute) { };
-        agora.enableLocalAudio = function (enabled) { };
-        agora.muteAllRemoteAudioStreams = function (mute) { };
-        agora.muteRemoteAudioStream = function (uid, mute) { };
-        agora.enableAudioVolumeIndication = function (interval, smooth, report_vad) { };
-        agora.adjustRecordingSignalVolume = function (volume) { };
-        agora.adjustPlaybackSignalVolume = function (volume) { };
-        agora.setDefaultAudioRouteToSpeakerphone = function (bVal) { };
-        agora.setParameters = function (profile) { };
-        agora.getVersion = function () { };
-        agora.setLogFile = function (filePath) { };
-        agora.setLogFilter = function (filter) { };
+        agora.init = function (appid, areaCode = -1) {
+        };
+        agora.setChannelProfile = function (profile) {
+        };
+        agora.setClientRole = function (role) {
+        };
+        agora.joinChannel = function (token, channelId, info, uid) {
+        };
+        agora.leaveChannel = function () {
+        };
+        agora.enableAudio = function () {
+        };
+        agora.disableAudio = function () {
+        };
+        agora.muteLocalAudioStream = function (mute) {
+        };
+        agora.enableLocalAudio = function (enabled) {
+        };
+        agora.muteAllRemoteAudioStreams = function (mute) {
+        };
+        agora.muteRemoteAudioStream = function (uid, mute) {
+        };
+        agora.enableAudioVolumeIndication = function (interval, smooth, report_vad) {
+        };
+        agora.adjustRecordingSignalVolume = function (volume) {
+        };
+        agora.adjustPlaybackSignalVolume = function (volume) {
+        };
+        agora.setDefaultAudioRouteToSpeakerphone = function (bVal) {
+        };
+        agora.setParameters = function (profile) {
+        };
+        agora.getVersion = function () {
+        };
+        agora.setLogFile = function (filePath) {
+        };
+        agora.setLogFilter = function (filter) {
+        };
     }
 })();

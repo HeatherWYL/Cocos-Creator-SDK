@@ -43,17 +43,18 @@
 #define MAX_NUM 17
 
 #if defined(__APPLE__)
-#include <AgoraAudioKit/IAgoraRtcEngine.h>
+
+#include <AgoraRtcKit/IAgoraRtcEngine.h>
+#include "IAgoraRtcEngine2.h"
+
 #elif defined(__ANDROID__)
 
 #include "IAgoraRtcEngine.h"
 #include "IAgoraRtcEngine2.h"
-// #include "../../../../../AgoraAuidoSDK/libs/Android/include/IAgoraRtcEngine.h"
 #include <android/log.h>
 
 #define LOG_TAG "android-debug"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
-#else
 
 #endif
 
@@ -377,7 +378,7 @@ void CagoraCreatorJsWrapper::onAudioVolumeIndication(const AudioVolumeInfo *spea
     if (!speakerNumber) return;
 
     AudioVolumeInfo speakersArr[MAX_NUM] = {0,};
-    memcpy(speakersArr, speakers, speakerNumber);
+    memcpy(speakersArr, speakers, speakerNumber * sizeof(AudioVolumeInfo));
 
     Application::getInstance()->getScheduler()->performFunctionInCocosThread([=]() {
         se::Value func;
@@ -2662,4 +2663,4 @@ bool register_jsb_agoraCreator(se::Object *obj) {
     return js_register_cocos2dx_extension_agoraCreator(obj);
 }
 
-#endif 
+#endif
