@@ -287,14 +287,19 @@ var agora;
             event.emit('localVideoStateChanged', LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_STOPPED, LOCAL_VIDEO_STREAM_ERROR.LOCAL_VIDEO_STREAM_ERROR_OK);
         });
         client.on('stream-added', function (evt) {
+            client.subscribe(evt.stream);
+            remoteStreams.set(evt.stream.getId(), evt.stream);
             event.emit('remoteAudioStateChanged', evt.stream.getId(), REMOTE_AUDIO_STATE.REMOTE_AUDIO_STATE_STARTING, REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_INTERNAL, 0);
             event.emit('remoteVideoStateChanged', evt.stream.getId(), REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STARTING, REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_INTERNAL, 0);
         });
         client.on('stream-removed', function (evt) {
+            client.unsubscribe(evt.stream);
+            remoteStreams.delete(evt.stream.getId());
             event.emit('remoteAudioStateChanged', evt.stream.getId(), REMOTE_AUDIO_STATE.REMOTE_AUDIO_STATE_STOPPED, REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_INTERNAL, 0);
             event.emit('remoteVideoStateChanged', evt.stream.getId(), REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STOPPED, REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_INTERNAL, 0);
         });
         client.on('stream-subscribed', function (evt) {
+            evt.stream.play('Cocos2dGameContainer');
             event.emit('audioSubscribeStateChanged', undefined, evt.stream.getId(), STREAM_SUBSCRIBE_STATE.SUB_STATE_IDLE, STREAM_SUBSCRIBE_STATE.SUB_STATE_SUBSCRIBED, 0);
             event.emit('videoSubscribeStateChanged', undefined, evt.stream.getId(), STREAM_SUBSCRIBE_STATE.SUB_STATE_IDLE, STREAM_SUBSCRIBE_STATE.SUB_STATE_SUBSCRIBED, 0);
         });
