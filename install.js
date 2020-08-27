@@ -139,7 +139,7 @@ module.exports = {
 
   praseHTML() {
     const agoraHtml = `
-<script src="https://cdn.agora.io/sdk/web/AgoraRTCSDK-3.1.2.js" charset="utf-8"></script>
+<script src="https://cdn.agora.io/sdk/release/AgoraRTCSDK-3.1.2.js" charset="utf-8"></script>
 `;
     projHelper.insertScriptToIndexHTML(agoraHtml);
   },
@@ -190,7 +190,7 @@ module.exports = {
 #=========Agora import segment==========
 ifeq ($(USE_AGORA), 1)
 LOCAL_MODULE := agora-rtc
-LOCAL_SRC_FILES := $(LOCAL_PATH)/agora/$(TARGET_ARCH_ABI)/libagora-rtc-sdk-jni.so
+LOCAL_SRC_FILES := $(LOCAL_PATH)/agora/$(TARGET_ARCH_ABI)/libagora-rtc-sdk.so
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/agora/include
 include $(PREBUILT_SHARED_LIBRARY)
 endif
@@ -200,10 +200,25 @@ endif
 #======================================
 #==========Agora use segment===========
 ifeq ($(USE_AGORA),1)
-LOCAL_SRC_FILES += ../../Classes/agora/AgoraManager.cpp \\
-        ../../Classes/agora/jsb_agoraCreator.cpp
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../Classes/agora \\
-        $(LOCAL_PATH)/agora/include
+#traverse all the directory and subdirectory
+define walk
+  $(wildcard $(1)) $(foreach e, $(wildcard $(1)/*), $(call walk, $(e)))
+endef
+
+#find all the file recursively under jni/
+
+ALLFILES = $(call walk, $(LOCAL_PATH)/../../Classes/agora)
+FILE_LIST := $(filter %.cpp, $(ALLFILES))
+
+LOCAL_SRC_FILES += $(FILE_LIST:$(LOCAL_PATH)/%=%)
+LOCAL_C_INCLUDES += ../../Classes/agora \\
+        ../../Classes/agora/callback \\
+        ../../Classes/agora/common \\
+        ../../Classes/agora/include \\
+        ../../Classes/agora/observer \\
+        ../../Classes/agora/rtcChannel \\
+        ../../Classes/agora/rtcEngine \\
+        ../../Classes/agora/test
 LOCAL_SHARED_LIBRARIES := agora-rtc
 endif
 #======================================
@@ -211,10 +226,25 @@ endif
 #======================================
 #==========Agora use segment===========
 ifeq ($(USE_AGORA),1)
-LOCAL_SRC_FILES += ../../../Classes/agora/AgoraManager.cpp \\
-        ../../../Classes/agora/jsb_agoraCreator.cpp
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../Classes/agora \\
-        $(LOCAL_PATH)/agora/include
+#traverse all the directory and subdirectory
+define walk
+  $(wildcard $(1)) $(foreach e, $(wildcard $(1)/*), $(call walk, $(e)))
+endef
+
+#find all the file recursively under jni/
+
+ALLFILES = $(call walk, $(LOCAL_PATH)/../../Classes/agora)
+FILE_LIST := $(filter %.cpp, $(ALLFILES))
+
+LOCAL_SRC_FILES += $(FILE_LIST:$(LOCAL_PATH)/%=%)
+LOCAL_C_INCLUDES += ../../../Classes/agora \\
+        ../../../Classes/agora/callback \\
+        ../../../Classes/agora/common \\
+        ../../../Classes/agora/include \\
+        ../../../Classes/agora/observer \\
+        ../../../Classes/agora/rtcChannel \\
+        ../../../Classes/agora/rtcEngine \\
+        ../../../Classes/agora/test
 LOCAL_SHARED_LIBRARIES := agora-rtc
 endif
 #======================================
@@ -262,7 +292,15 @@ dependencies {
     let targetName = `${options.projectName}-mobile`;
     projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/ios/agora/include"');
     projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora"');
-    projHelper.iOS.addFrameworkToTarget("ios/agora/AgoraAudioKit.framework", targetName);
+    projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/callback"');
+    projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/common"');
+    projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/include"');
+    projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/observer"');
+    projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/rtcChannel"');
+    projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/rtcEngine"');
+    projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/test"');
+    projHelper.iOS.addFrameworkToTarget("ios/agora/AgoraRtcCryptoLoader.framework", targetName);
+    projHelper.iOS.addFrameworkToTarget("ios/agora/AgoraRtcKit.framework", targetName);
     projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/CFNetwork.framework", targetName);
     projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/CoreMedia.framework", targetName);
     projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/CoreVideo.framework", targetName);
@@ -270,8 +308,18 @@ dependencies {
     projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/SystemConfiguration.framework", targetName);
     projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/VideoToolbox.framework", targetName);
     projHelper.iOS.addFrameworkToTarget("/usr/lib/libresolv.9.tbd", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/callback/rtcChannnelCallback/RtcChannelEventHandler.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/callback/rtcEngineCallback/RtcEngineEventHandler.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/deviceManager/audioDeviceManager/AudioPlaybackDeviceManager.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/deviceManager/audioDeviceManager/AudioRecordingDeviceManager.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/deviceManager/videoDeviceManager/VideoDeviceManager.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/observer/metadata/metadata_observer.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/rtcChannel/RtcChannelBridge.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/rtcEngine/RtcEngineBridge.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/jsb_agoraCreator.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/AgoraManager.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/Extensions.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/test/LogJson.cpp", "Classes", targetName);
     params.requireTips = "请求麦克风权限";
     let infoStr = `<dict>
 	<key>NSMicrophoneUsageDescription</key>

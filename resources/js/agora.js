@@ -1,8 +1,15 @@
 var agora;
 (function (agora) {
-    var bridge = new agoraCreator();
+    var isWeb = typeof AgoraRTC !== 'undefined';
     var event = new cc.EventTarget();
-    function initEvent() {
+    var bridge;
+    var client;
+    var localStream;
+    var remoteStreams = new Map();
+    if (!isWeb) {
+        bridge = new agoraCreator();
+    }
+    function initNativeEvent() {
         bridge.onWarning = function (warn, msg) {
             event.emit('warning', warn, msg);
         };
@@ -97,10 +104,10 @@ var agora;
             event.emit('videoPublishStateChanged', channel, oldState, newState, elapseSinceLastState);
         };
         bridge.onAudioSubscribeStateChanged = function (channel, uid, oldState, newState, elapseSinceLastState) {
-            event.emit('audioSubscribeStateChanged', channel, oldState, newState, elapseSinceLastState);
+            event.emit('audioSubscribeStateChanged', channel, uid, oldState, newState, elapseSinceLastState);
         };
         bridge.onVideoSubscribeStateChanged = function (channel, uid, oldState, newState, elapseSinceLastState) {
-            event.emit('videoSubscribeStateChanged', channel, oldState, newState, elapseSinceLastState);
+            event.emit('videoSubscribeStateChanged', channel, uid, oldState, newState, elapseSinceLastState);
         };
         bridge.onAudioVolumeIndication = function (speakers, speakerNumber, totalVolume) {
             event.emit('audio-volume-indication', speakers, speakerNumber, totalVolume);
@@ -262,6 +269,163 @@ var agora;
             event.emit('userInfoUpdated', uid, info);
         };
     }
+    function initWebEvent() {
+        client.on('first-audio-frame-decode', function (evt) {
+            event.emit('firstRemoteAudioDecoded', evt.stream.getId(), 0);
+        });
+        client.on('first-video-frame-decode', function (evt) {
+            evt.stream.getStats(function (stats) {
+                event.emit('firstRemoteVideoDecoded', evt.stream.getId(), stats.videoReceiveResolutionWidth, stats.videoReceiveResolutionHeight, 0);
+            });
+        });
+        client.on('stream-published', function (evt) {
+            event.emit('firstLocalAudioFramePublished', 0);
+            event.emit('firstLocalVideoFramePublished', 0);
+        });
+        client.on('stream-unpublished', function (evt) {
+            event.emit('localAudioStateChanged', LOCAL_AUDIO_STREAM_STATE.LOCAL_AUDIO_STREAM_STATE_STOPPED, LOCAL_AUDIO_STREAM_ERROR.LOCAL_AUDIO_STREAM_ERROR_OK);
+            event.emit('localVideoStateChanged', LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_STOPPED, LOCAL_VIDEO_STREAM_ERROR.LOCAL_VIDEO_STREAM_ERROR_OK);
+        });
+        client.on('stream-added', function (evt) {
+            event.emit('remoteAudioStateChanged', evt.stream.getId(), REMOTE_AUDIO_STATE.REMOTE_AUDIO_STATE_STARTING, REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_INTERNAL, 0);
+            event.emit('remoteVideoStateChanged', evt.stream.getId(), REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STARTING, REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_INTERNAL, 0);
+        });
+        client.on('stream-removed', function (evt) {
+            event.emit('remoteAudioStateChanged', evt.stream.getId(), REMOTE_AUDIO_STATE.REMOTE_AUDIO_STATE_STOPPED, REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_INTERNAL, 0);
+            event.emit('remoteVideoStateChanged', evt.stream.getId(), REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STOPPED, REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_INTERNAL, 0);
+        });
+        client.on('stream-subscribed', function (evt) {
+            event.emit('audioSubscribeStateChanged', undefined, evt.stream.getId(), STREAM_SUBSCRIBE_STATE.SUB_STATE_IDLE, STREAM_SUBSCRIBE_STATE.SUB_STATE_SUBSCRIBED, 0);
+            event.emit('videoSubscribeStateChanged', undefined, evt.stream.getId(), STREAM_SUBSCRIBE_STATE.SUB_STATE_IDLE, STREAM_SUBSCRIBE_STATE.SUB_STATE_SUBSCRIBED, 0);
+        });
+        client.on('peer-online', function (evt) {
+            event.emit('user-joined', evt.uid, 0);
+            event.emit('userJoined', evt.uid, 0);
+        });
+        client.on('peer-leave', function (evt) {
+            event.emit('user-offline', evt.uid, evt.reason, 0);
+            event.emit('userOffline', evt.uid, evt.reason, 0);
+        });
+        client.on('mute-audio', function (evt) {
+            event.emit('user-mute-audio', evt.uid, true);
+            event.emit('userMuteAudio', evt.uid, true);
+        });
+        client.on('unmute-audio', function (evt) {
+            event.emit('user-mute-audio', evt.uid, false);
+            event.emit('userMuteAudio', evt.uid, false);
+        });
+        client.on('mute-video', function (evt) {
+            event.emit('userMuteVideo', evt.uid, true);
+        });
+        client.on('unmute-video', function (evt) {
+            event.emit('userMuteVideo', evt.uid, false);
+        });
+        client.on('crypt-error', function (evt) {
+        });
+        client.on('client-banned', function (evt) {
+            event.emit('connection-banned');
+            event.emit('connectionBanned');
+        });
+        client.on('active-speaker', function (evt) {
+            event.emit('activeSpeaker', evt.uid);
+        });
+        client.on('volume-indicator', function (evt) {
+            var speakers = [];
+            var sumVolume = 0;
+            evt.attr.forEach(function (_a, index) {
+                var uid = _a.uid, level = _a.level;
+                speakers.push({ uid: uid, volume: level });
+                sumVolume += level;
+            });
+            event.emit('audio-volume-indication', speakers, speakers.length, sumVolume / speakers.length);
+            event.emit('audioVolumeIndication', speakers, speakers.length, sumVolume / speakers.length);
+        });
+        client.on('liveStreamingStarted', function (evt) {
+            event.emit('rtmpStreamingStateChanged', evt.url, RTMP_STREAM_PUBLISH_STATE.RTMP_STREAM_PUBLISH_STATE_RUNNING, null);
+        });
+        client.on('liveStreamingFailed', function (evt) {
+            event.emit('rtmpStreamingStateChanged', evt.url, RTMP_STREAM_PUBLISH_STATE.RTMP_STREAM_PUBLISH_STATE_FAILURE, null);
+        });
+        client.on('liveStreamingStopped', function (evt) {
+            event.emit('rtmpStreamingStateChanged', evt.url, RTMP_STREAM_PUBLISH_STATE.RTMP_STREAM_PUBLISH_STATE_IDLE, null);
+        });
+        client.on('liveTranscodingUpdated', function (evt) {
+            event.emit('transcodingUpdated');
+        });
+        client.on('streamInjectedStatus', function (evt) {
+            event.emit('streamInjectedStatus', evt.url, evt.uid, evt.status);
+        });
+        client.on('onTokenPrivilegeWillExpire', function (evt) {
+            event.emit('tokenPrivilegeWillExpire');
+        });
+        client.on('onTokenPrivilegeDidExpire', function (evt) {
+        });
+        client.on('error', function (evt) {
+            event.emit('error', ERROR_CODE_TYPE.ERR_FAILED, evt.reason);
+        });
+        client.on('network-type-changed', function (evt) {
+            event.emit('networkTypeChanged', evt.networkType);
+        });
+        client.on('recording-device-changed', function (evt) {
+            event.emit('recordingDeviceChanged', evt.state, evt.device);
+        });
+        client.on('playout-device-changed', function (evt) {
+            event.emit('playoutDeviceChanged', evt.state, evt.device);
+        });
+        client.on('camera-changed', function (evt) {
+        });
+        client.on('stream-type-changed', function (evt) {
+        });
+        client.on('connection-state-change', function (evt) {
+            var state = {
+                'DISCONNECTED': CONNECTION_STATE_TYPE.CONNECTION_STATE_DISCONNECTED,
+                'CONNECTING': CONNECTION_STATE_TYPE.CONNECTION_STATE_CONNECTING,
+                'CONNECTED': CONNECTION_STATE_TYPE.CONNECTION_STATE_CONNECTED,
+                'DISCONNECTING': undefined,
+            };
+            if (state[evt.curState] !== undefined) {
+                event.emit('connectionStateChanged', state[evt.curState], null);
+            }
+        });
+        client.on('stream-reconnect-start', function (evt) {
+        });
+        client.on('stream-reconnect-end', function (evt) {
+        });
+        client.on('client-role-changed', function (evt) {
+            event.emit('client-role-changed', null, evt.role);
+            event.emit('clientRoleChanged', null, evt.role);
+        });
+        client.on('reconnect', function () {
+            event.emit('connectionStateChanged', CONNECTION_STATE_TYPE.CONNECTION_STATE_RECONNECTING, null);
+        });
+        client.on('connected', function () {
+            event.emit('connectionStateChanged', CONNECTION_STATE_TYPE.CONNECTION_STATE_CONNECTED, null);
+        });
+        client.on('network-quality', function (stats) {
+            event.emit('networkQuality', 0, stats.uplinkNetworkQuality, stats.downlinkNetworkQuality);
+        });
+        client.on('stream-fallback', function (evt) {
+            event.emit('remoteSubscribeFallbackToAudioOnly', evt.uid, evt.attr === 1);
+        });
+        client.on('stream-updated', function (evt) {
+            // TODO
+        });
+        client.on('exception', function (evt) {
+            event.emit('warning', evt.code, evt.msg);
+        });
+        client.on('enable-local-video', function (evt) {
+            event.emit('userEnableVideo', evt.uid, true);
+        });
+        client.on('disable-local-video', function (evt) {
+            event.emit('userEnableVideo', evt.uid, false);
+        });
+        client.on('channel-media-relay-event', function (evt) {
+            event.emit('channelMediaRelayEvent', evt.code);
+        });
+        client.on('channel-media-relay-state', function (evt) {
+            event.emit('channelMediaRelayStateChanged', evt.state, evt.code);
+        });
+    }
     function callNativeMethod(apiType, param) {
         if (param === void 0) { param = {}; }
         return bridge.callNativeMethod(apiType, JSON.stringify(param));
@@ -275,8 +439,30 @@ var agora;
     }
     agora.init = init;
     function initWithAreaCode(appId, areaCode) {
-        initEvent();
-        callNativeMethod(API_TYPE.INITIALIZE, { appId: appId, areaCode: areaCode });
+        var _a;
+        if (isWeb) {
+            var areas = (_a = {},
+                _a[AREA_CODE.AREA_CODE_CN] = AgoraRTC.AREAS.CHINA,
+                _a[AREA_CODE.AREA_CODE_NA] = AgoraRTC.AREAS.NORTH_AMERICA,
+                _a[AREA_CODE.AREA_CODE_EUR] = AgoraRTC.AREAS.EUROPE,
+                _a[AREA_CODE.AREA_CODE_AS] = AgoraRTC.AREAS.ASIA,
+                _a[AREA_CODE.AREA_CODE_JAPAN] = AgoraRTC.AREAS.JAPAN,
+                _a[AREA_CODE.AREA_CODE_INDIA] = AgoraRTC.AREAS.INDIA,
+                _a[AREA_CODE.AREA_CODE_GLOBAL] = AgoraRTC.AREAS.GLOBAL,
+                _a);
+            var config = {
+                codec: 'h264',
+                mode: 'live',
+                areaCode: [areas[areaCode]]
+            };
+            client = AgoraRTC.createClient(config);
+            initWebEvent();
+            client.init(appId);
+        }
+        else {
+            initNativeEvent();
+            callNativeMethod(API_TYPE.INITIALIZE, { appId: appId, areaCode: areaCode });
+        }
     }
     agora.initWithAreaCode = initWithAreaCode;
     function on(type, callback, target, useCapture) {
@@ -306,6 +492,9 @@ var agora;
      *  - -7(ERR_NOT_INITIALIZED): The SDK is not initialized.
      */
     function setChannelProfile(profile) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_CHANNEL_PROFILE, { profile: profile });
     }
     agora.setChannelProfile = setChannelProfile;
@@ -330,6 +519,14 @@ var agora;
      *  - -7(ERR_NOT_INITIALIZED): The SDK is not initialized.
      */
     function setClientRole(role) {
+        if (isWeb) {
+            var roles = new Map([
+                [CLIENT_ROLE_TYPE.CLIENT_ROLE_AUDIENCE, 'audience'],
+                [CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER, 'host'],
+            ]);
+            client.setClientRole(roles.get(role));
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.SET_CLIENT_ROLE, { role: role });
     }
     agora.setClientRole = setClientRole;
@@ -373,6 +570,19 @@ var agora;
     function joinChannel(token, channelId, info, uid) {
         if (info === void 0) { info = ''; }
         if (uid === void 0) { uid = 0; }
+        if (isWeb) {
+            client.join(token, channelId, uid, function (uid) {
+                var spec = { streamID: uid, audio: true, video: true, screen: false };
+                localStream = AgoraRTC.createStream(spec);
+                localStream.init(function () {
+                    localStream.play('Cocos2dGameContainer');
+                    client.publish(localStream);
+                });
+                event.emit('join-channel-success', channelId, uid, 0);
+                event.emit('joinChannelSuccess', channelId, uid, 0);
+            });
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.JOIN_CHANNEL, { token: token, channelId: channelId, info: info, uid: uid });
     }
     agora.joinChannel = joinChannel;
@@ -418,6 +628,9 @@ var agora;
      *  - -113(ERR_NOT_IN_CHANNEL): The user is not in the channel.
      */
     function switchChannel(token, channelId) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SWITCH_CHANNEL, { token: token, channelId: channelId });
     }
     agora.switchChannel = switchChannel;
@@ -445,6 +658,13 @@ var agora;
      - -7(ERR_NOT_INITIALIZED): The SDK is not initialized.
      */
     function leaveChannel() {
+        if (isWeb) {
+            client.leave(function () {
+                event.emit('leave-channel', null);
+                event.emit('leaveChannel', null);
+            });
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.LEAVE_CHANNEL);
     }
     agora.leaveChannel = leaveChannel;
@@ -467,6 +687,10 @@ var agora;
      - -7(ERR_NOT_INITIALIZED): The SDK is not initialized.
      */
     function renewToken(token) {
+        if (isWeb) {
+            client.renewToken(token);
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.RE_NEW_TOKEN, { token: token });
     }
     agora.renewToken = renewToken;
@@ -502,6 +726,9 @@ var agora;
      - < 0: Failure.
      */
     function registerLocalUserAccount(appId, userAccount) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.REGISTER_LOCAL_USER_ACCOUNT, { appId: appId, userAccount: userAccount });
     }
     agora.registerLocalUserAccount = registerLocalUserAccount;
@@ -539,6 +766,19 @@ var agora;
      - #ERR_REFUSED (-5)
      */
     function joinChannelWithUserAccount(token, channelId, userAccount) {
+        if (isWeb) {
+            client.join(token, channelId, userAccount, function (uid) {
+                var spec = { streamID: uid, audio: true, video: true, screen: false };
+                localStream = AgoraRTC.createStream(spec);
+                localStream.init(function () {
+                    localStream.play('Cocos2dGameContainer');
+                    client.publish(localStream);
+                });
+                event.emit('join-channel-success', channelId, uid, 0);
+                event.emit('joinChannelSuccess', channelId, uid, 0);
+            });
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.JOIN_CHANNEL_WITH_USER_ACCOUNT, { token: token, channelId: channelId, userAccount: userAccount });
     }
     agora.joinChannelWithUserAccount = joinChannelWithUserAccount;
@@ -560,6 +800,9 @@ var agora;
      - < 0: Failure.
      */
     function getUserInfoByUserAccount(userAccount) {
+        if (isWeb) {
+            return null;
+        }
         return callNativeMethod(API_TYPE.GET_USER_INFO_BY_USER_ACCOUNT, { userAccount: userAccount });
     }
     agora.getUserInfoByUserAccount = getUserInfoByUserAccount;
@@ -581,6 +824,9 @@ var agora;
      - < 0: Failure.
      */
     function getUserInfoByUid(uid) {
+        if (isWeb) {
+            return null;
+        }
         return callNativeMethod(API_TYPE.GET_USER_INFO_BY_UID, { uid: uid });
     }
     agora.getUserInfoByUid = getUserInfoByUid;
@@ -601,6 +847,9 @@ var agora;
      - < 0: Failure.
      */
     function startEchoTest(intervalInSeconds) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         if (intervalInSeconds === undefined) {
             return callNativeMethod(API_TYPE.START_ECHO_TEST);
         }
@@ -614,6 +863,9 @@ var agora;
      - < 0: Failure.
      */
     function stopEchoTest() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.STOP_ECHO_TEST);
     }
     agora.stopEchoTest = stopEchoTest;
@@ -635,6 +887,9 @@ var agora;
      - < 0: Failure.
      */
     function enableVideo() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ENABLE_VIDEO);
     }
     agora.enableVideo = enableVideo;
@@ -656,6 +911,9 @@ var agora;
      - < 0: Failure.
      */
     function disableVideo() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.DISABLE_VIDEO);
     }
     agora.disableVideo = disableVideo;
@@ -681,6 +939,58 @@ var agora;
      - < 0: Failure.
      */
     function setVideoProfile(profile, swapWidthAndHeight) {
+        var _a;
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                var profiles = (_a = {},
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_120P] = '120p_1',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_120P_3] = '120p_3',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_180P] = '180p_1',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_180P_3] = '180p_3',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_180P_4] = '180p_4',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_240P] = '240p_1',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_240P_3] = '240p_3',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_240P_4] = '240p_4',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_360P] = '360p_1',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_360P_3] = '360p_3',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_360P_4] = '360p_4',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_360P_6] = '360p_6',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_360P_7] = '360p_7',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_360P_8] = '360p_8',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_360P_9] = '360p_9',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_360P_10] = '360p_10',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_360P_11] = '360p_11',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_480P] = '480p_1',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_480P_3] = '480p_3',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_480P_4] = '480p_4',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_480P_6] = '480p_6',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_480P_8] = '480p_8',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_480P_9] = '480p_9',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_480P_10] = '480p_10',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_720P] = '720p_1',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_720P_3] = '720p_3',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_720P_5] = '720p_5',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_720P_6] = '720p_6',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P] = '1080p_1',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P_3] = '1080p_3',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1080P_5] = '1080p_5',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1440P] = '1440p_1',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_1440P_2] = '1440p_2',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_4K] = '4K_1',
+                    _a[VIDEO_PROFILE_TYPE.VIDEO_PROFILE_LANDSCAPE_4K_3] = '4K_3',
+                    _a);
+                if (profiles[profile] === undefined) {
+                    return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+                }
+                else {
+                    localStream.setVideoProfile(profiles[profile]);
+                    return ERROR_CODE_TYPE.ERR_OK;
+                }
+            }
+        }
         return callNativeMethod(API_TYPE.SET_VIDEO_PROFILE, { profile: profile, swapWidthAndHeight: swapWidthAndHeight });
     }
     agora.setVideoProfile = setVideoProfile;
@@ -698,6 +1008,20 @@ var agora;
      - < 0: Failure.
      */
     function setVideoEncoderConfiguration(config) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                var configuration = {
+                    resolution: { width: config.dimensions.width, height: config.dimensions.height },
+                    frameRate: { max: config.frameRate, min: config.minFrameRate },
+                    bitrate: { max: config.bitrate, min: config.minBitrate }
+                };
+                localStream.setVideoEncoderConfiguration(configuration);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethod(API_TYPE.SET_VIDEO_ENCODER_CONFIGURATION, { config: config });
     }
     agora.setVideoEncoderConfiguration = setVideoEncoderConfiguration;
@@ -718,6 +1042,9 @@ var agora;
      - < 0: Failure.
      */
     function setCameraCapturerConfiguration(config) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_CAMERA_CAPTURER_CONFIGURATION, { config: config });
     }
     agora.setCameraCapturerConfiguration = setCameraCapturerConfiguration;
@@ -735,6 +1062,9 @@ var agora;
      - < 0: Failure.
      */
     function startPreview() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.START_PREVIEW);
     }
     agora.startPreview = startPreview;
@@ -752,6 +1082,9 @@ var agora;
      - < 0: Failure.
      */
     function setRemoteUserPriority(uid, userPriority) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_REMOTE_USER_PRIORITY, { uid: uid, userPriority: userPriority });
     }
     agora.setRemoteUserPriority = setRemoteUserPriority;
@@ -762,6 +1095,9 @@ var agora;
      - < 0: Failure.
      */
     function stopPreview() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.STOP_PREVIEW);
     }
     agora.stopPreview = stopPreview;
@@ -782,6 +1118,9 @@ var agora;
      - < 0: Failure.
      */
     function enableAudio() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ENABLE_AUDIO);
     }
     agora.enableAudio = enableAudio;
@@ -810,6 +1149,20 @@ var agora;
      - < 0: Failure.
      */
     function enableLocalAudio(enabled) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                if (enabled) {
+                    localStream.enableAudio();
+                }
+                else {
+                    localStream.disableAudio();
+                }
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethod(API_TYPE.ENABLE_LOCAL_AUDIO, { enabled: enabled });
     }
     agora.enableLocalAudio = enableLocalAudio;
@@ -824,6 +1177,9 @@ var agora;
      - < 0: Failure.
      */
     function disableAudio() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.DISABLE_AUDIO);
     }
     agora.disableAudio = disableAudio;
@@ -845,6 +1201,28 @@ var agora;
      - < 0: Failure.
      */
     function setAudioProfile(profile, scenario) {
+        var _a;
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                var profiles = (_a = {},
+                    _a[AUDIO_PROFILE_TYPE.AUDIO_PROFILE_SPEECH_STANDARD] = 'speech_standard',
+                    _a[AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_STANDARD] = 'music_standard',
+                    _a[AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_STANDARD_STEREO] = 'standard_stereo',
+                    _a[AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_HIGH_QUALITY] = 'high_quality',
+                    _a[AUDIO_PROFILE_TYPE.AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO] = 'high_quality_stereo',
+                    _a);
+                if (profiles[profile] === undefined) {
+                    return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+                }
+                else {
+                    localStream.setAudioProfile(profiles[profile]);
+                    return ERROR_CODE_TYPE.ERR_OK;
+                }
+            }
+        }
         return callNativeMethod(API_TYPE.SET_AUDIO_PROFILE, { profile: profile, scenario: scenario });
     }
     agora.setAudioProfile = setAudioProfile;
@@ -864,6 +1242,20 @@ var agora;
      - < 0: Failure.
      */
     function muteLocalAudioStream(mute) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                if (mute) {
+                    localStream.muteAudio();
+                }
+                else {
+                    localStream.unmuteAudio();
+                }
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethod(API_TYPE.MUTE_LOCAL_AUDIO_STREAM, { mute: mute });
     }
     agora.muteLocalAudioStream = muteLocalAudioStream;
@@ -878,6 +1270,9 @@ var agora;
      - < 0: Failure.
      */
     function muteAllRemoteAudioStreams(mute) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.MUTE_ALL_REMOTE_AUDIO_STREAMS, { mute: mute });
     }
     agora.muteAllRemoteAudioStreams = muteAllRemoteAudioStreams;
@@ -899,6 +1294,9 @@ var agora;
      - < 0: Failure.
      */
     function setDefaultMuteAllRemoteAudioStreams(mute) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_DEFAULT_MUTE_ALL_REMOTE_AUDIO_STREAMS, { mute: mute });
     }
     agora.setDefaultMuteAllRemoteAudioStreams = setDefaultMuteAllRemoteAudioStreams;
@@ -921,6 +1319,9 @@ var agora;
      - < 0: Failure.
      */
     function adjustUserPlaybackSignalVolume(uid, volume) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ADJUST_USER_PLAYBACK_SIGNAL_VOLUME, { uid: uid, volume: volume });
     }
     agora.adjustUserPlaybackSignalVolume = adjustUserPlaybackSignalVolume;
@@ -939,6 +1340,21 @@ var agora;
 
      */
     function muteRemoteAudioStream(userId, mute) {
+        if (isWeb) {
+            var stream = remoteStreams.get(userId);
+            if (stream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                if (mute) {
+                    stream.muteAudio();
+                }
+                else {
+                    stream.unmuteAudio();
+                }
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethod(API_TYPE.MUTE_REMOTE_AUDIO_STREAM, { userId: userId, mute: mute });
     }
     agora.muteRemoteAudioStream = muteRemoteAudioStream;
@@ -959,6 +1375,20 @@ var agora;
      - < 0: Failure.
      */
     function muteLocalVideoStream(mute) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                if (mute) {
+                    localStream.muteVideo();
+                }
+                else {
+                    localStream.unmuteVideo();
+                }
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethod(API_TYPE.MUTE_LOCAL_VIDEO_STREAM, { mute: mute });
     }
     agora.muteLocalVideoStream = muteLocalVideoStream;
@@ -981,6 +1411,20 @@ var agora;
      - < 0: Failure.
      */
     function enableLocalVideo(enabled) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                if (enabled) {
+                    localStream.enableVideo();
+                }
+                else {
+                    localStream.disableVideo();
+                }
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethod(API_TYPE.ENABLE_LOCAL_VIDEO, { enabled: enabled });
     }
     agora.enableLocalVideo = enableLocalVideo;
@@ -995,6 +1439,9 @@ var agora;
      - < 0: Failure.
      */
     function muteAllRemoteVideoStreams(mute) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.MUTE_ALL_REMOTE_VIDEO_STREAMS, { mute: mute });
     }
     agora.muteAllRemoteVideoStreams = muteAllRemoteVideoStreams;
@@ -1013,6 +1460,9 @@ var agora;
      - < 0: Failure.
      */
     function setDefaultMuteAllRemoteVideoStreams(mute) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_DEFAULT_MUTE_ALL_REMOTE_VIDEO_STREAMS, { mute: mute });
     }
     agora.setDefaultMuteAllRemoteVideoStreams = setDefaultMuteAllRemoteVideoStreams;
@@ -1030,6 +1480,21 @@ var agora;
      - < 0: Failure.
      */
     function muteRemoteVideoStream(userId, mute) {
+        if (isWeb) {
+            var stream = remoteStreams.get(userId);
+            if (stream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                if (mute) {
+                    stream.muteVideo();
+                }
+                else {
+                    stream.unmuteVideo();
+                }
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethod(API_TYPE.MUTE_REMOTE_VIDEO_STREAM, { userId: userId, mute: mute });
     }
     agora.muteRemoteVideoStream = muteRemoteVideoStream;
@@ -1055,6 +1520,16 @@ var agora;
      - < 0: Failure.
      */
     function setRemoteVideoStreamType(userId, streamType) {
+        if (isWeb) {
+            var stream = remoteStreams.get(userId);
+            if (stream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                client.setRemoteVideoStreamType(stream, streamType);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethod(API_TYPE.SET_REMOTE_VIDEO_STREAM_TYPE, { userId: userId, streamType: streamType });
     }
     agora.setRemoteVideoStreamType = setRemoteVideoStreamType;
@@ -1079,6 +1554,9 @@ var agora;
      - < 0: Failure.
      */
     function setRemoteDefaultVideoStreamType(streamType) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_REMOTE_DEFAULT_VIDEO_STREAM_TYPE, { streamType: streamType });
     }
     agora.setRemoteDefaultVideoStreamType = setRemoteDefaultVideoStreamType;
@@ -1099,6 +1577,10 @@ var agora;
      - < 0: Failure.
      */
     function enableAudioVolumeIndication(interval, smooth, report_vad) {
+        if (isWeb) {
+            client.enableAudioVolumeIndicator();
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.ENABLE_AUDIO_VOLUME_INDICATION, { interval: interval, smooth: smooth, report_vad: report_vad });
     }
     agora.enableAudioVolumeIndication = enableAudioVolumeIndication;
@@ -1127,6 +1609,9 @@ var agora;
      * - < 0: Failure.
      */
     function startAudioRecording(filePath, quality, sampleRate) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         if (sampleRate === undefined) {
             return callNativeMethod(API_TYPE.START_AUDIO_RECORDING, { filePath: filePath, quality: quality });
         }
@@ -1142,6 +1627,9 @@ var agora;
      - < 0: Failure.
      */
     function stopAudioRecording() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.STOP_AUDIO_RECORDING);
     }
     agora.stopAudioRecording = stopAudioRecording;
@@ -1174,6 +1662,15 @@ var agora;
      - < 0: Failure.
      */
     function startAudioMixing(filePath, loopback, replace, cycle) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.startAudioMixing({ filePath: filePath, cycle: cycle, loop: loopback, playTime: 0, replace: replace });
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.START_AUDIO_MIXING, {
             filePath: filePath,
             loopback: loopback,
@@ -1191,6 +1688,15 @@ var agora;
      - < 0: Failure.
      */
     function stopAudioMixing() {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.stopAudioMixing();
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.STOP_AUDIO_MIXING);
     }
     agora.stopAudioMixing = stopAudioMixing;
@@ -1203,6 +1709,15 @@ var agora;
      - < 0: Failure.
      */
     function pauseAudioMixing() {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.pauseAudioMixing();
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.PAUSE_AUDIO_MIXING);
     }
     agora.pauseAudioMixing = pauseAudioMixing;
@@ -1215,6 +1730,15 @@ var agora;
      - < 0: Failure.
      */
     function resumeAudioMixing() {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.resumeAudioMixing();
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.RESUME_AUDIO_MIXING);
     }
     agora.resumeAudioMixing = resumeAudioMixing;
@@ -1239,6 +1763,9 @@ var agora;
      - < 0: Failure.
      */
     function setHighQualityAudioParameters(fullband, stereo, fullBitrate) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_HIGH_QUALITY_AUDIO_PARAMETERS, {
             fullband: fullband,
             stereo: stereo,
@@ -1259,6 +1786,15 @@ var agora;
      - < 0: Failure.
      */
     function adjustAudioMixingVolume(volume) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.adjustAudioMixingVolume(volume);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_VOLUME, { volume: volume });
     }
     agora.adjustAudioMixingVolume = adjustAudioMixingVolume;
@@ -1273,6 +1809,9 @@ var agora;
      - < 0: Failure.
      */
     function adjustAudioMixingPlayoutVolume(volume) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_PLAYOUT_VOLUME, { volume: volume });
     }
     agora.adjustAudioMixingPlayoutVolume = adjustAudioMixingPlayoutVolume;
@@ -1287,6 +1826,9 @@ var agora;
      - < 0: Failure.
      */
     function getAudioMixingPlayoutVolume() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.GET_AUDIO_MIXING_PLAYOUT_VOLUME);
     }
     agora.getAudioMixingPlayoutVolume = getAudioMixingPlayoutVolume;
@@ -1301,6 +1843,9 @@ var agora;
      - < 0: Failure.
      */
     function adjustAudioMixingPublishVolume(volume) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_PUBLISH_VOLUME, { volume: volume });
     }
     agora.adjustAudioMixingPublishVolume = adjustAudioMixingPublishVolume;
@@ -1315,6 +1860,9 @@ var agora;
      - < 0: Failure.
      */
     function getAudioMixingPublishVolume() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.GET_AUDIO_MIXING_PUBLISH_VOLUME);
     }
     agora.getAudioMixingPublishVolume = getAudioMixingPublishVolume;
@@ -1327,6 +1875,14 @@ var agora;
      - < 0: Failure.
      */
     function getAudioMixingDuration() {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                return localStream.getAudioMixingDuration();
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.GET_AUDIO_MIXING_DURATION);
     }
     agora.getAudioMixingDuration = getAudioMixingDuration;
@@ -1339,6 +1895,14 @@ var agora;
      - < 0: Failure.
      */
     function getAudioMixingCurrentPosition() {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                return localStream.getAudioMixingCurrentPosition();
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.GET_AUDIO_MIXING_CURRENT_POSITION);
     }
     agora.getAudioMixingCurrentPosition = getAudioMixingCurrentPosition;
@@ -1351,6 +1915,15 @@ var agora;
      - < 0: Failure.
      */
     function setAudioMixingPosition(pos) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.setAudioMixingPosition(pos);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_AUDIO_MIXING_POSITION, { pos: pos });
     }
     agora.setAudioMixingPosition = setAudioMixingPosition;
@@ -1372,6 +1945,9 @@ var agora;
      * - < 0: Failure.
      */
     function setAudioMixingPitch(pitch) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_AUDIO_MIXING_PITCH, { pitch: pitch });
     }
     agora.setAudioMixingPitch = setAudioMixingPitch;
@@ -1385,6 +1961,14 @@ var agora;
      - < 0: Failure.
      */
     function getEffectsVolume() {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                return localStream.getEffectsVolume()[0].volume;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.GET_EFFECTS_VOLUME);
     }
     agora.getEffectsVolume = getEffectsVolume;
@@ -1397,6 +1981,15 @@ var agora;
      - < 0: Failure.
      */
     function setEffectsVolume(volume) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.setEffectsVolume(volume);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_EFFECTS_VOLUME, { volume: volume });
     }
     agora.setEffectsVolume = setEffectsVolume;
@@ -1410,6 +2003,15 @@ var agora;
      - < 0: Failure.
      */
     function setVolumeOfEffect(soundId, volume) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.setVolumeOfEffect(soundId, volume);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_VOLUME_OF_EFFECT, { soundId: soundId, volume: volume });
     }
     agora.setVolumeOfEffect = setVolumeOfEffect;
@@ -1431,6 +2033,9 @@ var agora;
      * - < 0: Failure.
      */
     function enableFaceDetection(enable) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ENABLE_FACE_DETECTION, { enable: enable });
     }
     agora.enableFaceDetection = enableFaceDetection;
@@ -1466,6 +2071,15 @@ var agora;
      - < 0: Failure.
      */
     function playEffect(soundId, filePath, loopCount, pitch, pan, gain, publish) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.playEffect({ soundId: soundId, filePath: filePath, cycle: loopCount });
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.PLAY_EFFECT, {
             soundId: soundId,
             filePath: filePath,
@@ -1486,6 +2100,15 @@ var agora;
      - < 0: Failure.
      */
     function stopEffect(soundId) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.stopEffect(soundId);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.STOP_EFFECT, { soundId: soundId });
     }
     agora.stopEffect = stopEffect;
@@ -1496,6 +2119,15 @@ var agora;
      - < 0: Failure.
      */
     function stopAllEffects() {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.stopAllEffects();
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.STOP_ALL_EFFECTS);
     }
     agora.stopAllEffects = stopAllEffects;
@@ -1515,6 +2147,15 @@ var agora;
      - < 0: Failure.
      */
     function preloadEffect(soundId, filePath) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.playEffect({ filePath: filePath, soundId: soundId });
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.PRE_LOAD_EFFECT, { soundId: soundId, filePath: filePath });
     }
     agora.preloadEffect = preloadEffect;
@@ -1526,6 +2167,15 @@ var agora;
      - < 0: Failure.
      */
     function unloadEffect(soundId) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.unloadEffect(soundId);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.UN_LOAD_EFFECT, { soundId: soundId });
     }
     agora.unloadEffect = unloadEffect;
@@ -1537,6 +2187,15 @@ var agora;
      - < 0: Failure.
      */
     function pauseEffect(soundId) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.pauseEffect(soundId);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.PAUSE_EFFECT, { soundId: soundId });
     }
     agora.pauseEffect = pauseEffect;
@@ -1547,6 +2206,15 @@ var agora;
      - < 0: Failure.
      */
     function pauseAllEffects() {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.pauseAllEffects();
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.PAUSE_ALL_EFFECTS);
     }
     agora.pauseAllEffects = pauseAllEffects;
@@ -1558,6 +2226,15 @@ var agora;
      - < 0: Failure.
      */
     function resumeEffect(soundId) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.resumeEffect(soundId);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.RESUME_EFFECT, { soundId: soundId });
     }
     agora.resumeEffect = resumeEffect;
@@ -1568,6 +2245,15 @@ var agora;
      - < 0: Failure.
      */
     function resumeAllEffects() {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.resumeAllEffects();
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.RESUME_ALL_EFFECTS);
     }
     agora.resumeAllEffects = resumeAllEffects;
@@ -1584,6 +2270,9 @@ var agora;
      - < 0: Failure.
      */
     function enableSoundPositionIndication(enabled) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ENABLE_SOUND_POSITION_INDICATION, { enabled: enabled });
     }
     agora.enableSoundPositionIndication = enableSoundPositionIndication;
@@ -1607,6 +2296,9 @@ var agora;
      - < 0: Failure.
      */
     function setRemoteVoicePosition(uid, pan, gain) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_REMOTE_VOICE_POSITIONN, { uid: uid, pan: pan, gain: gain });
     }
     agora.setRemoteVoicePosition = setRemoteVoicePosition;
@@ -1618,6 +2310,9 @@ var agora;
      - < 0: Failure.
      */
     function setLocalVoicePitch(pitch) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_CHANGER, { pitch: pitch });
     }
     agora.setLocalVoicePitch = setLocalVoicePitch;
@@ -1631,6 +2326,9 @@ var agora;
      - < 0: Failure.
      */
     function setLocalVoiceEqualization(bandFrequency, bandGain) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_EQUALIZATION, {
             bandFrequency: bandFrequency,
             bandGain: bandGain
@@ -1649,6 +2347,9 @@ var agora;
      - < 0: Failure.
      */
     function setLocalVoiceReverb(reverbKey, value) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_REVERB, { reverbKey: reverbKey, value: value });
     }
     agora.setLocalVoiceReverb = setLocalVoiceReverb;
@@ -1679,6 +2380,9 @@ var agora;
      - < 0: Failure. Check if the enumeration is properly set.
      */
     function setLocalVoiceChanger(voiceChanger) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_CHANGER, { voiceChanger: voiceChanger });
     }
     agora.setLocalVoiceChanger = setLocalVoiceChanger;
@@ -1704,6 +2408,9 @@ var agora;
      - < 0: Failure.
      */
     function setLocalVoiceReverbPreset(reverbPreset) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_REVERB_PRESET, { reverbPreset: reverbPreset });
     }
     agora.setLocalVoiceReverbPreset = setLocalVoiceReverbPreset;
@@ -1726,6 +2433,9 @@ var agora;
      * - < 0: Failure.
      */
     function setLogFile(filePath) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_LOG_FILE, { filePath: filePath });
     }
     agora.setLogFile = setLogFile;
@@ -1745,6 +2455,23 @@ var agora;
      - < 0: Failure.
      */
     function setLogFilter(filter) {
+        var _a;
+        if (isWeb) {
+            var levels = (_a = {},
+                _a[LOG_FILTER_TYPE.LOG_FILTER_DEBUG] = 0,
+                _a[LOG_FILTER_TYPE.LOG_FILTER_INFO] = 1,
+                _a[LOG_FILTER_TYPE.LOG_FILTER_WARN] = 2,
+                _a[LOG_FILTER_TYPE.LOG_FILTER_ERROR] = 3,
+                _a[LOG_FILTER_TYPE.LOG_FILTER_OFF] = 4,
+                _a);
+            if (levels[filter] === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+            }
+            else {
+                AgoraRTC.Logger.setLogLevel(levels[filter]);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethod(API_TYPE.SET_LOG_FILTER, { filter: filter });
     }
     agora.setLogFilter = setLogFilter;
@@ -1765,6 +2492,9 @@ var agora;
      * - < 0: Failure.
      */
     function setLogFileSize(fileSizeInKBytes) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_LOG_FILE_SIZE, { fileSizeInKBytes: fileSizeInKBytes });
     }
     agora.setLogFileSize = setLogFileSize;
@@ -1786,6 +2516,9 @@ var agora;
      - < 0: Failure.
      */
     function setLocalRenderMode(renderMode, mirrorMode) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         if (mirrorMode === undefined) {
             return callNativeMethod(API_TYPE.SET_LOCAL_RENDER_MODE, { renderMode: renderMode });
         }
@@ -1812,6 +2545,9 @@ var agora;
      - < 0: Failure.
      */
     function setRemoteRenderMode(userId, renderMode, mirrorMode) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         if (mirrorMode === undefined) {
             return callNativeMethod(API_TYPE.SET_REMOTE_RENDER_MODE, { userId: userId, renderMode: renderMode });
         }
@@ -1836,6 +2572,9 @@ var agora;
      - < 0: Failure.
      */
     function setLocalVideoMirrorMode(mirrorMode) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_LOCAL_VIDEO_MIRROR_MODE, { mirrorMode: mirrorMode });
     }
     agora.setLocalVideoMirrorMode = setLocalVideoMirrorMode;
@@ -1848,6 +2587,15 @@ var agora;
      - false: Single-stream mode.
      */
     function enableDualStreamMode(enabled) {
+        if (isWeb) {
+            if (enabled) {
+                client.enableDualStream();
+            }
+            else {
+                client.disableDualStream();
+            }
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.ENABLE_DUAL_STREAM_MODE, { enabled: enabled });
     }
     agora.enableDualStreamMode = enableDualStreamMode;
@@ -1866,6 +2614,9 @@ var agora;
      - < 0: Failure.
      */
     function setExternalAudioSource(enabled, sampleRate, channels) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_EXTERNAL_AUDIO_SOURCE, {
             enabled: enabled,
             sampleRate: sampleRate,
@@ -1898,6 +2649,9 @@ var agora;
      * - < 0: Failure.
      */
     function setExternalAudioSink(enabled, sampleRate, channels) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_EXTERNAL_AUDIO_SINK, {
             enabled: enabled,
             sampleRate: sampleRate,
@@ -1923,6 +2677,9 @@ var agora;
      - < 0: Failure.
      */
     function setRecordingAudioFrameParameters(sampleRate, channel, mode, samplesPerCall) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_RECORDING_AUDIO_FRAME_PARAMETERS, {
             sampleRate: sampleRate,
             channel: channel,
@@ -1948,6 +2705,9 @@ var agora;
      - < 0: Failure.
      */
     function setPlaybackAudioFrameParameters(sampleRate, channel, mode, samplesPerCall) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_PLAYBACK_AUDIO_FRAME_PARAMETERS, {
             sampleRate: sampleRate,
             channel: channel,
@@ -1969,6 +2729,9 @@ var agora;
      - < 0: Failure.
      */
     function setMixedAudioFrameParameters(sampleRate, samplesPerCall) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_MIXED_AUDIO_FRAME_PARAMETERS, {
             sampleRate: sampleRate,
             samplesPerCall: samplesPerCall
@@ -1990,6 +2753,9 @@ var agora;
      - < 0: Failure.
      */
     function adjustRecordingSignalVolume(volume) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ADJUST_RECORDING_SIGNAL_VOLUME, { volume: volume });
     }
     agora.adjustRecordingSignalVolume = adjustRecordingSignalVolume;
@@ -2011,6 +2777,9 @@ var agora;
      - < 0: Failure.
      */
     function adjustPlaybackSignalVolume(volume) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ADJUST_PLAYBACK_SIGNAL_VOLUME, { volume: volume });
     }
     agora.adjustPlaybackSignalVolume = adjustPlaybackSignalVolume;
@@ -2031,6 +2800,9 @@ var agora;
      - < 0: Failure.
      */
     function enableWebSdkInteroperability(enabled) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ENABLE_WEB_SDK_INTEROPER_ABILITY, { enabled: enabled });
     }
     agora.enableWebSdkInteroperability = enableWebSdkInteroperability;
@@ -2047,6 +2819,9 @@ var agora;
      - < 0: Failure.
      */
     function setVideoQualityParameters(preferFrameRateOverImageQuality) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_VIDEO_QUALITY_PARAMETERS, { preferFrameRateOverImageQuality: preferFrameRateOverImageQuality });
     }
     agora.setVideoQualityParameters = setVideoQualityParameters;
@@ -2070,6 +2845,9 @@ var agora;
      - < 0: Failure.
      */
     function setLocalPublishFallbackOption(option) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_LOCAL_PUBLISH_FALLBACK_OPTION, { option: option });
     }
     agora.setLocalPublishFallbackOption = setLocalPublishFallbackOption;
@@ -2087,6 +2865,9 @@ var agora;
      - < 0: Failure.
      */
     function setRemoteSubscribeFallbackOption(option) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_REMOTE_SUBSCRIBE_FALLBACK_OPTION, { option: option });
     }
     agora.setRemoteSubscribeFallbackOption = setRemoteSubscribeFallbackOption;
@@ -2103,6 +2884,9 @@ var agora;
      - < 0: Failure.
      */
     function switchCamera(direction) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         if (direction === undefined) {
             return callNativeMethod(API_TYPE.SWITCH_CAMERA);
         }
@@ -2137,6 +2921,9 @@ var agora;
      - < 0: Failure.
      */
     function setDefaultAudioRouteToSpeakerphone(defaultToSpeaker) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_DEFAULT_AUDIO_ROUTE_SPEAKER_PHONE, { defaultToSpeaker: defaultToSpeaker });
     }
     agora.setDefaultAudioRouteToSpeakerphone = setDefaultAudioRouteToSpeakerphone;
@@ -2161,6 +2948,9 @@ var agora;
      - < 0: Failure.
      */
     function setEnableSpeakerphone(speakerOn) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_ENABLE_SPEAKER_PHONE, { speakerOn: speakerOn });
     }
     agora.setEnableSpeakerphone = setEnableSpeakerphone;
@@ -2174,6 +2964,9 @@ var agora;
      - < 0: Failure.
      */
     function enableInEarMonitoring(enabled) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ENABLE_IN_EAR_MONITORING, { enabled: enabled });
     }
     agora.enableInEarMonitoring = enableInEarMonitoring;
@@ -2188,6 +2981,9 @@ var agora;
      - < 0: Failure.
      */
     function setInEarMonitoringVolume(volume) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_IN_EAR_MONITORING_VOLUME, { volume: volume });
     }
     agora.setInEarMonitoringVolume = setInEarMonitoringVolume;
@@ -2200,6 +2996,9 @@ var agora;
      - < 0: Failure.
      */
     function isSpeakerphoneEnabled() {
+        if (isWeb) {
+            return false;
+        }
         return callNativeMethod(API_TYPE.IS_SPEAKER_PHONE_ENABLED);
     }
     agora.isSpeakerphoneEnabled = isSpeakerphoneEnabled;
@@ -2216,6 +3015,9 @@ var agora;
      - < 0: Failure.
      */
     function getCallId() {
+        if (isWeb) {
+            return null;
+        }
         return callNativeMethod(API_TYPE.GET_CALL_ID);
     }
     agora.getCallId = getCallId;
@@ -2230,6 +3032,9 @@ var agora;
      - < 0: Failure.
      */
     function rate(callId, rating, description) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.RATE, { callId: callId, rating: rating, description: description });
     }
     agora.rate = rate;
@@ -2244,6 +3049,9 @@ var agora;
 
      */
     function complain(callId, description) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.COMPLAIN, { callId: callId, description: description });
     }
     agora.complain = complain;
@@ -2253,6 +3061,9 @@ var agora;
      @return The version of the current SDK in the string format. For example, 2.3.1.
      */
     function getVersion() {
+        if (isWeb) {
+            return AgoraRTC.VERSION;
+        }
         return callNativeMethod(API_TYPE.GET_VERSION);
     }
     agora.getVersion = getVersion;
@@ -2276,6 +3087,9 @@ var agora;
      - < 0: Failure.
      */
     function enableLastmileTest() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ENABLE_LAST_MILE_TEST);
     }
     agora.enableLastmileTest = enableLastmileTest;
@@ -2286,6 +3100,9 @@ var agora;
      - < 0: Failure.
      */
     function disableLastmileTest() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.DISABLE_LAST_MILE_TEST);
     }
     agora.disableLastmileTest = disableLastmileTest;
@@ -2310,11 +3127,17 @@ var agora;
      - < 0: Failure.
      */
     function startLastmileProbeTest(config) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.START_ECHO_TEST_2, { config: config });
     }
     agora.startLastmileProbeTest = startLastmileProbeTest;
     /** Stops the last-mile network probe test. */
     function stopLastmileProbeTest() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.STOP_LAST_MILE_PROBE_TEST);
     }
     agora.stopLastmileProbeTest = stopLastmileProbeTest;
@@ -2325,6 +3148,9 @@ var agora;
      @return #WARN_CODE_TYPE or #ERROR_CODE_TYPE.
      */
     function getErrorDescription(code) {
+        if (isWeb) {
+            return null;
+        }
         return callNativeMethod(API_TYPE.GET_ERROR_DESCRIPTION, { code: code });
     }
     agora.getErrorDescription = getErrorDescription;
@@ -2347,6 +3173,10 @@ var agora;
      - < 0: Failure.
      */
     function setEncryptionSecret(secret) {
+        if (isWeb) {
+            client.setEncryptionSecret(secret);
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.SET_ENCRYPTION_SECTRT, { secret: secret });
     }
     agora.setEncryptionSecret = setEncryptionSecret;
@@ -2373,6 +3203,10 @@ var agora;
      - < 0: Failure.
      */
     function setEncryptionMode(encryptionMode) {
+        if (isWeb) {
+            client.setEncryptionMode(encryptionMode);
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.SET_ENCRYPTION_MODE, { encryptionMode: encryptionMode });
     }
     agora.setEncryptionMode = setEncryptionMode;
@@ -2401,6 +3235,9 @@ var agora;
      *  - -7(ERR_NOT_INITIALIZED): The SDK is not initialized. Initialize the `IRtcEngine` instance before calling this method.
      */
     function enableEncryption(enabled, config) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ENABLE_ENCRYPTION, { enabled: enabled, config: config });
     }
     agora.enableEncryption = enableEncryption;
@@ -2420,6 +3257,9 @@ var agora;
      - < 0: Failure.
      */
     function registerPacketObserver(observer) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.REGISTER_PACKET_OBSERVER, { observer: observer });
     }
     agora.registerPacketObserver = registerPacketObserver;
@@ -2442,6 +3282,9 @@ var agora;
      - < 0: Failure.
      */
     function createDataStream(streamId, reliable, ordered) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.CREATE_DATA_STREAM, { streamId: streamId, reliable: reliable, ordered: ordered });
     }
     agora.createDataStream = createDataStream;
@@ -2467,6 +3310,9 @@ var agora;
      - < 0: Failure.
      */
     function sendStreamMessage(streamId, data, length) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SEND_STREAM_MESSAGE, { streamId: streamId, data: data, length: length });
     }
     agora.sendStreamMessage = sendStreamMessage;
@@ -2493,6 +3339,9 @@ var agora;
      - #ERR_NOT_INITIALIZED (7): You have not initialized the RTC engine when publishing the stream.
      */
     function addPublishStreamUrl(url, transcodingEnabled) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ADD_PUBLISH_STREAM_URL, { url: url, transcodingEnabled: transcodingEnabled });
     }
     agora.addPublishStreamUrl = addPublishStreamUrl;
@@ -2513,6 +3362,9 @@ var agora;
      - < 0: Failure.
      */
     function removePublishStreamUrl(url) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.REMOVE_PUBLISH_STREAM_URL, { url: url });
     }
     agora.removePublishStreamUrl = removePublishStreamUrl;
@@ -2532,6 +3384,26 @@ var agora;
      - < 0: Failure.
      */
     function setLiveTranscoding(transcoding) {
+        if (isWeb) {
+            var coding = {
+                audioBitrate: transcoding.audioBitrate,
+                audioChannels: transcoding.audioChannels,
+                audioSampleRate: transcoding.audioSampleRate,
+                backgroundColor: transcoding.backgroundColor,
+                height: transcoding.height,
+                images: [transcoding.watermark],
+                lowLatency: transcoding.lowLatency,
+                transcodingUsers: transcoding.transcodingUsers,
+                userCount: transcoding.userCount,
+                videoBitrate: transcoding.videoBitrate,
+                videoCodecProfile: transcoding.videoCodecProfile,
+                videoFramerate: transcoding.videoFramerate,
+                videoGop: transcoding.videoGop,
+                width: transcoding.width,
+            };
+            client.setLiveTranscoding(coding);
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.SET_LIVE_TRANSCODING, { transcoding: transcoding });
     }
     agora.setLiveTranscoding = setLiveTranscoding;
@@ -2561,6 +3433,9 @@ var agora;
      - < 0: Failure.
      */
     function addVideoWatermark(watermarkUrl, options) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.ADD_VIDEO_WATER_MARK_2, { watermarkUrl: watermarkUrl, options: options });
     }
     agora.addVideoWatermark = addVideoWatermark;
@@ -2571,6 +3446,9 @@ var agora;
      - < 0: Failure.
      */
     function clearVideoWatermarks() {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.CLEAR_VIDEO_WATER_MARKS);
     }
     agora.clearVideoWatermarks = clearVideoWatermarks;
@@ -2588,6 +3466,15 @@ var agora;
      @param options Sets the image enhancement option. See BeautyOptions.
      */
     function setBeautyEffectOptions(enabled, options) {
+        if (isWeb) {
+            if (localStream === undefined) {
+                return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED;
+            }
+            else {
+                localStream.setBeautyEffectOptions(enabled, options);
+                return ERROR_CODE_TYPE.ERR_OK;
+            }
+        }
         return callNativeMethod(API_TYPE.SET_BEAUTY_EFFECT_OPTIONS, { enabled: enabled, options: options });
     }
     agora.setBeautyEffectOptions = setBeautyEffectOptions;
@@ -2622,6 +3509,10 @@ var agora;
      - #ERR_NOT_INITIALIZED (7): The SDK is not initialized. Ensure that the IRtcEngine object is initialized before calling this method.
      */
     function addInjectStreamUrl(url, config) {
+        if (isWeb) {
+            client.addInjectStreamUrl(url, config);
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.ADD_INJECT_STREAM_URL, { url: url, config: config });
     }
     agora.addInjectStreamUrl = addInjectStreamUrl;
@@ -2666,6 +3557,17 @@ var agora;
      * - < 0: Failure.
      */
     function startChannelMediaRelay(configuration) {
+        if (isWeb) {
+            // @ts-ignore
+            var config_1 = new AgoraRTC.ChannelMediaRelayConfiguration();
+            config_1.setSrcChannelInfo(configuration.srcInfo);
+            configuration.destInfos.map(function (value) {
+                config_1.setDestChannelInfo(value.channelName, value);
+            });
+            client.startChannelMediaRelay(config_1, function () {
+            });
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.START_CHANNEL_MEDIA_RELAY, { configuration: configuration });
     }
     agora.startChannelMediaRelay = startChannelMediaRelay;
@@ -2693,6 +3595,17 @@ var agora;
      * - < 0: Failure.
      */
     function updateChannelMediaRelay(configuration) {
+        if (isWeb) {
+            // @ts-ignore
+            var config_2 = new AgoraRTC.ChannelMediaRelayConfiguration();
+            config_2.setSrcChannelInfo(configuration.srcInfo);
+            configuration.destInfos.map(function (value) {
+                config_2.setDestChannelInfo(value.channelName, value);
+            });
+            client.updateChannelMediaRelay(config_2, function () {
+            });
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.UPDATE_CHANNEL_MEDIA_RELAY, { configuration: configuration });
     }
     agora.updateChannelMediaRelay = updateChannelMediaRelay;
@@ -2721,6 +3634,11 @@ var agora;
      * - < 0: Failure.
      */
     function stopChannelMediaRelay() {
+        if (isWeb) {
+            client.stopChannelMediaRelay(function () {
+            });
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.STOP_CHANNEL_MEDIA_RELAY);
     }
     agora.stopChannelMediaRelay = stopChannelMediaRelay;
@@ -2737,6 +3655,10 @@ var agora;
      - < 0: Failure.
      */
     function removeInjectStreamUrl(url) {
+        if (isWeb) {
+            client.removeInjectStreamUrl(url);
+            return ERROR_CODE_TYPE.ERR_OK;
+        }
         return callNativeMethod(API_TYPE.REMOVE_INJECT_STREAM_URL, { url: url });
     }
     agora.removeInjectStreamUrl = removeInjectStreamUrl;
@@ -2748,6 +3670,9 @@ var agora;
      * To try out this function, contact [support@agora.io](mailto:support@agora.io) and discuss the format of customized messages with us.
      */
     function sendCustomReportMessage(id, category, event, label, value) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SEND_CUSTOM_REPORT_MESSAGE, { id: id, category: category, event: event, label: label, value: value });
     }
     agora.sendCustomReportMessage = sendCustomReportMessage;
@@ -2756,6 +3681,15 @@ var agora;
      @return #CONNECTION_STATE_TYPE.
      */
     function getConnectionState() {
+        if (isWeb) {
+            var state = {
+                'DISCONNECTED': CONNECTION_STATE_TYPE.CONNECTION_STATE_DISCONNECTED,
+                'CONNECTING': CONNECTION_STATE_TYPE.CONNECTION_STATE_CONNECTING,
+                'CONNECTED': CONNECTION_STATE_TYPE.CONNECTION_STATE_CONNECTED,
+                'DISCONNECTING': undefined,
+            };
+            return state[client.getConnectionState()];
+        }
         return callNativeMethod(API_TYPE.GET_CONNECTION_STATE);
     }
     agora.getConnectionState = getConnectionState;
@@ -2776,6 +3710,9 @@ var agora;
      - < 0: Failure.
      */
     function registerMediaMetadataObserver(observer, type) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.REGISTER_MEDIA_META_DATA_OBSERVER, { observer: observer, type: type });
     }
     agora.registerMediaMetadataObserver = registerMediaMetadataObserver;
@@ -2790,6 +3727,9 @@ var agora;
      - < 0: Failure.
      */
     function setParameters(parameters) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
         return callNativeMethod(API_TYPE.SET_PARAMETERS, { parameters: parameters });
     }
     agora.setParameters = setParameters;
