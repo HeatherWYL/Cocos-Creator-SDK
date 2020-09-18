@@ -11,261 +11,545 @@ var agora;
     }
     function initNativeEvent() {
         bridge.onWarning = function (warn, msg) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onWarning', JSON.stringify({ warn: warn, msg: msg }));
+            }
             event.emit('warning', warn, msg);
         };
         bridge.onError = function (err, msg) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onError', JSON.stringify({ err: err, msg: msg }));
+            }
             event.emit('error', err, msg);
         };
         bridge.onJoinChannelSuccess = function (channel, uid, elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onJoinChannelSuccess', JSON.stringify({ channel: channel, uid: uid, elapsed: elapsed }));
+            }
             event.emit('join-channel-success', channel, uid, elapsed);
             event.emit('joinChannelSuccess', channel, uid, elapsed);
         };
         bridge.onRejoinChannelSuccess = function (channel, uid, elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRejoinChannelSuccess', JSON.stringify({ channel: channel, uid: uid, elapsed: elapsed }));
+            }
             event.emit('rejoin-channel-success', channel, uid, elapsed);
             event.emit('rejoinChannelSuccess', channel, uid, elapsed);
         };
         bridge.onLeaveChannel = function (stats) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onLeaveChannel', JSON.stringify({ stats: stats }));
+            }
             event.emit('leave-channel', stats);
             event.emit('leaveChannel', stats);
         };
         bridge.onClientRoleChanged = function (oldRole, newRole) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onClientRoleChanged', JSON.stringify({ oldRole: oldRole, newRole: newRole }));
+            }
             event.emit('client-role-changed', oldRole, newRole);
             event.emit('clientRoleChanged', oldRole, newRole);
         };
         bridge.onUserJoined = function (uid, elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onUserJoined', JSON.stringify({ uid: uid, elapsed: elapsed }));
+            }
             event.emit('user-joined', uid, elapsed);
             event.emit('userJoined', uid, elapsed);
         };
         bridge.onUserOffline = function (uid, reason) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onUserOffline', JSON.stringify({ uid: uid, reason: reason }));
+            }
             event.emit('user-offline', uid, reason);
             event.emit('userOffline', uid, reason);
         };
         bridge.onLastmileQuality = function (quality) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onLastmileQuality', JSON.stringify({ quality: quality }));
+            }
             event.emit('lastmileQuality', quality);
         };
         bridge.onLastmileProbeResult = function (result) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onLastmileProbeResult', JSON.stringify(result));
+            }
             event.emit('lastmileProbeResult', result);
         };
         bridge.onConnectionInterrupted = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onConnectionInterrupted', JSON.stringify({}));
+            }
             event.emit('connection-interrupted');
             event.emit('connectionInterrupted');
         };
         bridge.onConnectionLost = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onConnectionLost', JSON.stringify({}));
+            }
             event.emit('connection-lost');
             event.emit('connectionLost');
         };
         bridge.onConnectionBanned = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onConnectionBanned', JSON.stringify({}));
+            }
             event.emit('connection-banned');
             event.emit('connectionBanned');
         };
         bridge.onApiCallExecuted = function (err, api, result) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onApiCallExecuted', JSON.stringify({ err: err, api: api, result: result }));
+            }
             event.emit('apiCallExecuted', err, api, result);
         };
         bridge.onRequestToken = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRequestToken', JSON.stringify({}));
+            }
             event.emit('request-token');
             event.emit('requestToken');
         };
         bridge.onTokenPrivilegeWillExpire = function (token) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onTokenPrivilegeWillExpire', JSON.stringify({ token: token }));
+            }
             event.emit('tokenPrivilegeWillExpire', token);
         };
         bridge.onAudioQuality = function (uid, quality, delay, lost) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onAudioQuality', JSON.stringify({ uid: uid, quality: quality, delay: delay, lost: lost }));
+            }
             event.emit('audio-quality', uid, quality, delay, lost);
             event.emit('audioQuality', uid, quality, delay, lost);
         };
         bridge.onRtcStats = function (stats) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRtcStats', JSON.stringify({ stats: stats }));
+            }
             event.emit('rtcStats', stats);
         };
         bridge.onNetworkQuality = function (uid, txQuality, rxQuality) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onNetworkQuality', JSON.stringify({ uid: uid, txQuality: txQuality, rxQuality: rxQuality }));
+            }
             event.emit('network-quality', uid, txQuality, rxQuality);
             event.emit('networkQuality', uid, txQuality, rxQuality);
         };
         bridge.onLocalVideoStats = function (stats) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onLocalVideoStats', JSON.stringify({ stats: stats }));
+            }
             event.emit('localVideoStats', stats);
         };
         bridge.onRemoteVideoStats = function (stats) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRemoteVideoStats', JSON.stringify({ stats: stats }));
+            }
             event.emit('remoteVideoStats', stats);
         };
         bridge.onLocalAudioStats = function (stats) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onLocalAudioStats', JSON.stringify({ stats: stats }));
+            }
             event.emit('localAudioStats', stats);
         };
         bridge.onRemoteAudioStats = function (stats) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRemoteAudioStats', JSON.stringify({ stats: stats }));
+            }
             event.emit('remoteAudioStats', stats);
         };
         bridge.onLocalAudioStateChanged = function (state, error) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onLocalAudioStateChanged', JSON.stringify({ state: state, error: error }));
+            }
             event.emit('localAudioStateChanged', state, error);
         };
         bridge.onRemoteAudioStateChanged = function (uid, state, reason, elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRemoteAudioStateChanged', JSON.stringify({ uid: uid, state: state, reason: reason, elapsed: elapsed }));
+            }
             event.emit('remoteAudioStateChanged', uid, state, reason, elapsed);
         };
         bridge.onAudioPublishStateChanged = function (channel, oldState, newState, elapseSinceLastState) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onAudioPublishStateChanged', JSON.stringify({
+                    channel: channel,
+                    oldState: oldState,
+                    newState: newState,
+                    elapseSinceLastState: elapseSinceLastState
+                }));
+            }
             event.emit('audioPublishStateChanged', channel, oldState, newState, elapseSinceLastState);
         };
         bridge.onVideoPublishStateChanged = function (channel, oldState, newState, elapseSinceLastState) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onVideoPublishStateChanged', JSON.stringify({
+                    channel: channel,
+                    oldState: oldState,
+                    newState: newState,
+                    elapseSinceLastState: elapseSinceLastState
+                }));
+            }
             event.emit('videoPublishStateChanged', channel, oldState, newState, elapseSinceLastState);
         };
         bridge.onAudioSubscribeStateChanged = function (channel, uid, oldState, newState, elapseSinceLastState) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onAudioSubscribeStateChanged', JSON.stringify({
+                    channel: channel,
+                    oldState: oldState,
+                    newState: newState,
+                    elapseSinceLastState: elapseSinceLastState
+                }));
+            }
             event.emit('audioSubscribeStateChanged', channel, uid, oldState, newState, elapseSinceLastState);
         };
         bridge.onVideoSubscribeStateChanged = function (channel, uid, oldState, newState, elapseSinceLastState) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onVideoSubscribeStateChanged', JSON.stringify({
+                    channel: channel,
+                    oldState: oldState,
+                    newState: newState,
+                    elapseSinceLastState: elapseSinceLastState
+                }));
+            }
             event.emit('videoSubscribeStateChanged', channel, uid, oldState, newState, elapseSinceLastState);
         };
         bridge.onAudioVolumeIndication = function (speakers, speakerNumber, totalVolume) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onAudioVolumeIndication', JSON.stringify({
+                    speakers: speakers,
+                    speakerNumber: speakerNumber,
+                    totalVolume: totalVolume
+                }));
+            }
             event.emit('audio-volume-indication', speakers, speakerNumber, totalVolume);
             event.emit('audioVolumeIndication', speakers, speakerNumber, totalVolume);
         };
         bridge.onActiveSpeaker = function (uid) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onActiveSpeaker', JSON.stringify({ uid: uid }));
+            }
             event.emit('activeSpeaker', uid);
         };
         bridge.onVideoStopped = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onVideoStopped', JSON.stringify({}));
+            }
             event.emit('videoStopped');
         };
         bridge.onFirstLocalVideoFrame = function (width, height, elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onFirstLocalVideoFrame', JSON.stringify({ width: width, height: height, elapsed: elapsed }));
+            }
             event.emit('firstLocalVideoFrame', width, height, elapsed);
         };
         bridge.onFirstLocalVideoFramePublished = function (elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onFirstLocalVideoFramePublished', JSON.stringify({ elapsed: elapsed }));
+            }
             event.emit('firstLocalVideoFramePublished', elapsed);
         };
         bridge.onFirstRemoteVideoDecoded = function (uid, width, height, elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onFirstRemoteVideoDecoded', JSON.stringify({ uid: uid, width: width, height: height, elapsed: elapsed }));
+            }
             event.emit('firstRemoteVideoDecoded', uid, width, height, elapsed);
         };
         bridge.onFirstRemoteVideoFrame = function (uid, width, height, elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onFirstRemoteVideoFrame', JSON.stringify({ uid: uid, width: width, height: height, elapsed: elapsed }));
+            }
             event.emit('firstRemoteVideoFrame', uid, width, height, elapsed);
         };
         bridge.onUserMuteAudio = function (uid, muted) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onUserMuteAudio', JSON.stringify({ uid: uid, muted: muted }));
+            }
             event.emit('user-mute-audio', uid, muted);
             event.emit('userMuteAudio', uid, muted);
         };
         bridge.onUserMuteVideo = function (uid, muted) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onUserMuteVideo', JSON.stringify({ uid: uid, muted: muted }));
+            }
             event.emit('userMuteVideo', uid, muted);
         };
         bridge.onUserEnableVideo = function (uid, enabled) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onUserEnableVideo', JSON.stringify({ uid: uid, enabled: enabled }));
+            }
             event.emit('userEnableVideo', uid, enabled);
         };
         bridge.onAudioDeviceStateChanged = function (deviceId, deviceType, deviceState) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onAudioDeviceStateChanged', JSON.stringify({
+                    deviceId: deviceId,
+                    deviceType: deviceType,
+                    deviceState: deviceState
+                }));
+            }
             event.emit('audioDeviceStateChanged', deviceId, deviceType, deviceState);
         };
         bridge.onAudioDeviceVolumeChanged = function (deviceType, volume, muted) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onAudioDeviceVolumeChanged', JSON.stringify({ deviceType: deviceType, volume: volume, muted: muted }));
+            }
             event.emit('audioDeviceVolumeChanged', deviceType, volume, muted);
         };
         bridge.onCameraReady = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onCameraReady', JSON.stringify({}));
+            }
             event.emit('cameraReady');
         };
         bridge.onCameraFocusAreaChanged = function (x, y, width, height) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onCameraFocusAreaChanged', JSON.stringify({ x: x, y: y, width: width, height: height }));
+            }
             event.emit('cameraFocusAreaChanged', x, y, width, height);
         };
         bridge.onFacePositionChanged = function (imageWidth, imageHeight, vecRectangle, vecDistance, numFaces) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onFacePositionChanged', JSON.stringify({
+                    imageWidth: imageWidth,
+                    imageHeight: imageHeight,
+                    vecRectangle: vecRectangle,
+                    vecDistance: vecDistance,
+                    numFaces: numFaces
+                }));
+            }
             event.emit('facePositionChanged', imageWidth, imageHeight, vecRectangle, vecDistance, numFaces);
         };
         bridge.onCameraExposureAreaChanged = function (x, y, width, height) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onCameraExposureAreaChanged', JSON.stringify({ x: x, y: y, width: width, height: height }));
+            }
             event.emit('cameraExposureAreaChanged', x, y, width, height);
         };
         bridge.onAudioMixingFinished = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onAudioMixingFinished', JSON.stringify({}));
+            }
             event.emit('audioMixingFinished');
         };
         bridge.onAudioMixingStateChanged = function (state, errorCode) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onAudioMixingStateChanged', JSON.stringify({ state: state, errorCode: errorCode }));
+            }
             event.emit('audioMixingStateChanged', state, errorCode);
         };
         bridge.onRemoteAudioMixingBegin = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRemoteAudioMixingBegin', JSON.stringify({}));
+            }
             event.emit('remoteAudioMixingBegin');
         };
         bridge.onRemoteAudioMixingEnd = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRemoteAudioMixingEnd', JSON.stringify({}));
+            }
             event.emit('remoteAudioMixingEnd');
         };
         bridge.onAudioEffectFinished = function (soundId) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onAudioEffectFinished', JSON.stringify({ soundId: soundId }));
+            }
             event.emit('audioEffectFinished', soundId);
         };
         bridge.onFirstRemoteAudioDecoded = function (uid, elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onFirstRemoteAudioDecoded', JSON.stringify({ uid: uid, elapsed: elapsed }));
+            }
             event.emit('firstRemoteAudioDecoded', uid, elapsed);
         };
         bridge.onVideoDeviceStateChanged = function (deviceId, deviceType, deviceState) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onVideoDeviceStateChanged', JSON.stringify({
+                    deviceId: deviceId,
+                    deviceType: deviceType,
+                    deviceState: deviceState
+                }));
+            }
             event.emit('videoDeviceStateChanged', deviceId, deviceType, deviceState);
         };
         bridge.onLocalVideoStateChanged = function (localVideoState, error) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onLocalVideoStateChanged', JSON.stringify({ localVideoState: localVideoState, error: error }));
+            }
             event.emit('localVideoStateChanged', localVideoState, error);
         };
         bridge.onVideoSizeChanged = function (uid, width, height, rotation) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onVideoSizeChanged', JSON.stringify({ uid: uid, width: width, height: height, rotation: rotation }));
+            }
             event.emit('videoSizeChanged', uid, width, height, rotation);
         };
         bridge.onRemoteVideoStateChanged = function (uid, state, reason, elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRemoteVideoStateChanged', JSON.stringify({ uid: uid, state: state, reason: reason, elapsed: elapsed }));
+            }
             event.emit('remoteVideoStateChanged', uid, state, reason, elapsed);
         };
         bridge.onUserEnableLocalVideo = function (uid, enabled) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onUserEnableLocalVideo', JSON.stringify({ uid: uid, enabled: enabled }));
+            }
             event.emit('userEnableLocalVideo', uid, enabled);
         };
         bridge.onStreamMessage = function (uid, streamId, data, length) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onStreamMessage', JSON.stringify({ uid: uid, streamId: streamId, data: data, length: length }));
+            }
             event.emit('streamMessage', uid, streamId, data, length);
         };
         bridge.onStreamMessageError = function (uid, streamId, code, missed, cached) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onStreamMessageError', JSON.stringify({ uid: uid, streamId: streamId, code: code, missed: missed, cached: cached }));
+            }
             event.emit('streamMessageError', uid, streamId, code, missed, cached);
         };
         bridge.onMediaEngineLoadSuccess = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onMediaEngineLoadSuccess', JSON.stringify({}));
+            }
             event.emit('mediaEngineLoadSuccess');
         };
         bridge.onMediaEngineStartCallSuccess = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onMediaEngineStartCallSuccess', JSON.stringify({}));
+            }
             event.emit('mediaEngineStartCallSuccess');
         };
         bridge.onChannelMediaRelayStateChanged = function (state, code) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onChannelMediaRelayStateChanged', JSON.stringify({ state: state, code: code }));
+            }
             event.emit('channelMediaRelayStateChanged', state, code);
         };
         bridge.onChannelMediaRelayEvent = function (code) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onChannelMediaRelayEvent', JSON.stringify({ code: code }));
+            }
             event.emit('channelMediaRelayEvent', code);
         };
         bridge.onFirstLocalAudioFrame = function (elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onFirstLocalAudioFrame', JSON.stringify({ elapsed: elapsed }));
+            }
             event.emit('firstLocalAudioFrame', elapsed);
         };
         bridge.onFirstLocalAudioFramePublished = function (elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onFirstLocalAudioFramePublished', JSON.stringify({ elapsed: elapsed }));
+            }
             event.emit('firstLocalAudioFramePublished', elapsed);
         };
         bridge.onFirstRemoteAudioFrame = function (uid, elapsed) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onFirstRemoteAudioFrame', JSON.stringify({ uid: uid, elapsed: elapsed }));
+            }
             event.emit('firstRemoteAudioFrame', uid, elapsed);
         };
         bridge.onRtmpStreamingStateChanged = function (url, state, errCode) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRtmpStreamingStateChanged', JSON.stringify({ url: url, state: state, errCode: errCode }));
+            }
             event.emit('rtmpStreamingStateChanged', url, state, errCode);
         };
         bridge.onRtmpStreamingEvent = function (url, eventCode) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRtmpStreamingEvent', JSON.stringify({ url: url, eventCode: eventCode }));
+            }
             event.emit('rtmpStreamingEvent', url, eventCode);
         };
         bridge.onStreamPublished = function (url, error) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onStreamPublished', JSON.stringify({ url: url, error: error }));
+            }
             event.emit('streamPublished', url, error);
         };
         bridge.onStreamUnpublished = function (url) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onStreamUnpublished', JSON.stringify({ url: url }));
+            }
             event.emit('streamUnpublished', url);
         };
         bridge.onTranscodingUpdated = function () {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onTranscodingUpdated', JSON.stringify({}));
+            }
             event.emit('transcodingUpdated');
         };
         bridge.onStreamInjectedStatus = function (url, uid, status) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onStreamInjectedStatus', JSON.stringify({ url: url, uid: uid, status: status }));
+            }
             event.emit('streamInjectedStatus', url, uid, status);
         };
         bridge.onAudioRouteChanged = function (routing) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onAudioRouteChanged', JSON.stringify({ routing: routing }));
+            }
             event.emit('audio-routing-changed', routing);
             event.emit('audioRouteChanged', routing);
         };
         bridge.onLocalPublishFallbackToAudioOnly = function (isFallbackOrRecover) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onLocalPublishFallbackToAudioOnly', JSON.stringify({ isFallbackOrRecover: isFallbackOrRecover }));
+            }
             event.emit('localPublishFallbackToAudioOnly', isFallbackOrRecover);
         };
         bridge.onRemoteSubscribeFallbackToAudioOnly = function (uid, isFallbackOrRecover) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRemoteSubscribeFallbackToAudioOnly', JSON.stringify({
+                    uid: uid,
+                    isFallbackOrRecover: isFallbackOrRecover
+                }));
+            }
             event.emit('remoteSubscribeFallbackToAudioOnly', uid, isFallbackOrRecover);
         };
         bridge.onRemoteAudioTransportStats = function (uid, delay, lost, rxKBitRate) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRemoteAudioTransportStats', JSON.stringify({ uid: uid, delay: delay, lost: lost, rxKBitRate: rxKBitRate }));
+            }
             event.emit('remoteAudioTransportStats', uid, delay, lost, rxKBitRate);
         };
         bridge.onRemoteVideoTransportStats = function (uid, delay, lost, rxKBitRate) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onRemoteVideoTransportStats', JSON.stringify({ uid: uid, delay: delay, lost: lost, rxKBitRate: rxKBitRate }));
+            }
             event.emit('remoteVideoTransportStats', uid, delay, lost, rxKBitRate);
         };
         bridge.onMicrophoneEnabled = function (enabled) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onMicrophoneEnabled', JSON.stringify({ enabled: enabled }));
+            }
             event.emit('microphoneEnabled', enabled);
         };
         bridge.onConnectionStateChanged = function (state, reason) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onConnectionStateChanged', JSON.stringify({ state: state, reason: reason }));
+            }
             event.emit('connectionStateChanged', state, reason);
         };
         bridge.onNetworkTypeChanged = function (type) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onNetworkTypeChanged', JSON.stringify({ type: type }));
+            }
             event.emit('networkTypeChanged', type);
         };
         bridge.onLocalUserRegistered = function (uid, userAccount) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onLocalUserRegistered', JSON.stringify({ uid: uid, userAccount: userAccount }));
+            }
             event.emit('localUserRegistered', uid, userAccount);
         };
         bridge.onUserInfoUpdated = function (uid, info) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onUserInfoUpdated', JSON.stringify({ uid: uid, info: info }));
+            }
             event.emit('userInfoUpdated', uid, info);
         };
     }
@@ -3738,6 +4022,9 @@ var agora;
         return callNativeMethod(API_TYPE.SET_PARAMETERS, { parameters: parameters });
     }
     agora.setParameters = setParameters;
+    /**
+     * @internal
+     */
     var API_TYPE;
     (function (API_TYPE) {
         API_TYPE[API_TYPE["INITIALIZE"] = 0] = "INITIALIZE";
@@ -3861,6 +4148,9 @@ var agora;
         API_TYPE[API_TYPE["ENABLE_ENCRYPTION"] = 157] = "ENABLE_ENCRYPTION";
         API_TYPE[API_TYPE["SEND_CUSTOM_REPORT_MESSAGE"] = 158] = "SEND_CUSTOM_REPORT_MESSAGE";
     })(API_TYPE || (API_TYPE = {}));
+    /**
+     * @internal
+     */
     var API_TYPE_AUDIO_EFFECT;
     (function (API_TYPE_AUDIO_EFFECT) {
         API_TYPE_AUDIO_EFFECT[API_TYPE_AUDIO_EFFECT["START_AUDIO_MIXING"] = 45] = "START_AUDIO_MIXING";

@@ -4,66 +4,61 @@
 
 #pragma once
 
-#include "../../include/IAgoraRtcEngine.h"
 #include "../../common/IBridgeCommon.h"
+#include "../../include/IAgoraRtcEngine.h"
 #include "../IAudioDeviceManagerBridge.h"
 
-namespace agora
-{
-    namespace common
-    {
-        class AudioPlaybackDeviceManager : public IAudioDeviceManagerBridge
-                {
-        private:
-            rtc::AAudioDeviceManager *audioDeviceManager = nullptr;
-            rtc::IAudioDeviceCollection *audioDeviceCollection = nullptr;
+namespace agora {
+namespace common {
+class AudioPlaybackDeviceManager : public IAudioDeviceManagerBridge {
+private:
+  rtc::AAudioDeviceManager *audioDeviceManager = nullptr;
+  rtc::IAudioDeviceCollection *audioDeviceCollection = nullptr;
 
-        public:
+public:
+  AudioPlaybackDeviceManager(rtc::IRtcEngine *mRtcEngine, ERROR_CODE &ret);
 
-            AudioPlaybackDeviceManager(rtc::IRtcEngine *mRtcEngine, ERROR_CODE& ret);
+  virtual ~AudioPlaybackDeviceManager();
 
-            virtual ~AudioPlaybackDeviceManager();
+  virtual int callApi(API_TYPE_DEVICE_MANAGER apiType,
+                      const std::string &parameters) override;
 
-            virtual int
-            callApi(API_TYPE_DEVICE_MANAGER apiType, const std::string& parameters) override;
+  virtual int callApi(API_TYPE_DEVICE_MANAGER apiType,
+                      const std::string &parameters, void *&ptr) override;
 
-            virtual int
-            callApi(API_TYPE_DEVICE_MANAGER apiType, const std::string& parameters, void*& ptr) override;
+  virtual int callApi(API_TYPE_DEVICE_MANAGER apiType,
+                      const std::string &parameters, void *&ptr,
+                      void *&ptr2) override;
 
-            virtual int
-            callApi(API_TYPE_DEVICE_MANAGER apiType, const std::string& parameters, void*& ptr, void*&ptr2) override;
+  virtual void release() override;
 
-            virtual void
-            release() override;
+  int getCount();
 
+  int getDevice(int index, char deviceName[rtc::MAX_DEVICE_ID_LENGTH],
+                char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
 
-            int getCount();
+  int getCurrentDevice(char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
 
-            int getDevice(int index, char deviceName[rtc::MAX_DEVICE_ID_LENGTH], char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
+  int getCurrentDeviceInfo(char deviceId[rtc::MAX_DEVICE_ID_LENGTH],
+                           char deviceName[rtc::MAX_DEVICE_ID_LENGTH]);
 
-            int getCurrentDevice(char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
+  int setDevice(const char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
 
-            int getCurrentDeviceInfo(char deviceId[rtc::MAX_DEVICE_ID_LENGTH], char deviceName[rtc::MAX_DEVICE_ID_LENGTH]);
+  int setDeviceVolume(int volume);
 
-            int setDevice(const char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
+  int getDeviceVolume(int *volume);
 
-            int setDeviceVolume(int volume);
+  int setDeviceMute(bool mute);
 
-            int getDeviceVolume(int *volume);
+  int getDeviceMute(bool *mute);
 
-            int setDeviceMute(bool mute);
+  int startDeviceTest(const char *testAudioFilePath);
 
-            int getDeviceMute(bool *mute);
+  int stopDeviceTest();
 
-            int startDeviceTest(const char *testAudioFilePath);
+  int startAudioDeviceLoopbackTest(int indicationInterval);
 
-            int stopDeviceTest();
-
-            int startAudioDeviceLoopbackTest(int indicationInterval);
-
-            int stopAudioDeviceLoopbackTest();
-        };
-    }
-}
-
-
+  int stopAudioDeviceLoopbackTest();
+};
+} // namespace common
+} // namespace agora

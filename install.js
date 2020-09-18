@@ -64,6 +64,18 @@ module.exports = {
     projHelper = new ProjHelper(options);
     projHelper.Android.addUsesPermission = addUsesPermission;
     projHelper.Android.androidPath = path.join(options.dest, `frameworks/runtime-src/proj.android-studio`);
+    projHelper.iOS._addFrameworkToTarget =  function (frameworkPath, target, embed) {
+      let targetIOS = this._searchTarget(target);
+      if (targetIOS) {
+        this.project.addFramework(frameworkPath, {
+          customFramework: true,
+          target: this._searchTarget(target),
+          embed: embed
+        });
+      }
+      utils.printLog(`add framework "${frameworkPath} to iOS project`);
+      this.savePBXProjectConfig();
+    };
 
     // 在此处完成构建项目服务 sdk 的集成
     // Todo...
@@ -299,8 +311,8 @@ dependencies {
     projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/rtcChannel"');
     projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/rtcEngine"');
     projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/test"');
-    projHelper.iOS.addFrameworkToTarget("ios/agora/AgoraRtcCryptoLoader.framework", targetName);
-    projHelper.iOS.addFrameworkToTarget("ios/agora/AgoraRtcKit.framework", targetName);
+    projHelper.iOS._addFrameworkToTarget("ios/agora/AgoraRtcCryptoLoader.framework", targetName, true);
+    projHelper.iOS._addFrameworkToTarget("ios/agora/AgoraRtcKit.framework", targetName, true);
     projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/CFNetwork.framework", targetName);
     projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/CoreMedia.framework", targetName);
     projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/CoreVideo.framework", targetName);
@@ -319,6 +331,8 @@ dependencies {
     projHelper.iOS.addSourceFileToProject("agora/jsb_agoraCreator.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/AgoraManager.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/Extensions.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/test/ApiTester.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/test/EventTester.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/test/LogJson.cpp", "Classes", targetName);
     params.requireTips = "请求麦克风权限";
     let infoStr = `<dict>

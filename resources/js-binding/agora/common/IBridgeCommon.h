@@ -30,6 +30,11 @@ namespace agora {
                 return ret; \
             } \
 
+#define CHECK_PARSE_DOCUMENT_CHAR(doc) \
+			if(doc.HasParseError()) { \
+				return "-102"; \
+			} \
+
 #define CHECK_RET_ERROR_NULL(ret) \
             if (ret < 0) { \
                 return; \
@@ -160,7 +165,9 @@ namespace agora {
 			PUSH_AUDIO_FRAME_2 = 153,
 			PULL_AUDIO_FRAME = 154,
 			SET_EXTERN_VIDEO_SOURCE = 155,
-			PUSH_VIDEO_FRAME = 156
+			PUSH_VIDEO_FRAME = 156,
+			ENABLE_ENCRYPTION = 157,
+			SEND_CUSTOM_REPORT_MESSAGE = 158,
 		};
 
 		enum API_TYPE_AUDIO_EFFECT

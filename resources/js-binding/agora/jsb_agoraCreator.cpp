@@ -5,11 +5,15 @@
 
 #include "jsb_agoraCreator.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT ||                                \
+     CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID ||                              \
+     CC_TARGET_PLATFORM == CC_PLATFORM_IOS ||                                  \
+     CC_TARGET_PLATFORM == CC_PLATFORM_MAC ||                                  \
+     CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 
+#include <cstdarg>
 #include <cstddef>
 #include <cstdio>
-#include <cstdarg>
 #include <cstring>
 #include <string>
 #include <vector>
@@ -17,8 +21,8 @@
 #include "base/CCScheduler.h"
 #include "cocos2d.h"
 #include "platform/CCApplication.h"
-#include "scripting/js-bindings/manual/jsb_global.h"
 #include "scripting/js-bindings/manual/jsb_conversions.hpp"
+#include "scripting/js-bindings/manual/jsb_global.h"
 
 #if defined(_WIN32)
 #define WIN32_LEAN_AND_MEAN
@@ -40,255 +44,385 @@
 #define AGORA_CALL
 #endif
 
+#include "./callback/rtcEngineCallback/RtcEngineEventHandler.h"
+#include "./rtcEngine/RtcEngineBridge.h"
+#include "./test/ApiTester.h"
+#include "./test/EventTester.h"
+#include "Extensions.h"
 #include "IAgoraRtcEngine.h"
 #include "IAgoraRtcEngine2.h"
-#include "Extensions.h"
-#include "./rtcEngine/RtcEngineBridge.h"
-#include "./callback/rtcEngineCallback/RtcEngineEventHandler.h"
 
 using namespace cocos2d;
 using namespace agora::rtc;
 using namespace agora::common;
 
-RtcEngineEventHandler* rtcEngineEventHandler;
-EngineEventHandler* eventHandler;
+RtcEngineEventHandler *rtcEngineEventHandler;
+EngineEventHandler *eventHandler;
 
-se::Class* js_cocos2dx_agoraCreator_class = nullptr;
+se::Class *js_cocos2dx_agoraCreator_class = nullptr;
 
-static bool
-js_cocos2dx_extension_agoraCreator_finalize(se::State& s)
-{
-	auto* cobj = (RtcEngineBridge*)s.nativeThisObject();
-	if (cobj)
-	{
-		cobj->release();
-	}
+static bool js_cocos2dx_extension_agoraCreator_finalize(se::State &s) {
+  auto *cobj = (RtcEngineBridge *)s.nativeThisObject();
+  if (cobj) {
+    cobj->release();
+  }
 
-	if (eventHandler)
-	{
-		delete eventHandler;
-		eventHandler = nullptr;
-	}
+  if (eventHandler) {
+    delete eventHandler;
+    eventHandler = nullptr;
+  }
 
-	if (rtcEngineEventHandler)
-	{
-		delete rtcEngineEventHandler;
-		rtcEngineEventHandler = nullptr;
-	}
+  if (rtcEngineEventHandler) {
+    delete rtcEngineEventHandler;
+    rtcEngineEventHandler = nullptr;
+  }
 
-	return true;
+  return true;
 }
 
 SE_BIND_FINALIZE_FUNC(js_cocos2dx_extension_agoraCreator_finalize)
 
-static bool
-js_cocos2dx_extension_agoraCreator_constructor(se::State& s)
-{
-	se::Object* obj = s.thisObject();
+static bool js_cocos2dx_extension_agoraCreator_constructor(se::State &s) {
+  se::Object *obj = s.thisObject();
 
-	if (!eventHandler)
-	{
-		// link the native object with the javascript object
-		eventHandler = new EngineEventHandler(obj);
-	}
+  if (!eventHandler) {
+    // link the native object with the javascript object
+    eventHandler = new EngineEventHandler(obj);
+  }
 
-	if (!rtcEngineEventHandler)
-	{
-		rtcEngineEventHandler = new RtcEngineEventHandler(eventHandler);
-	}
+  if (!rtcEngineEventHandler) {
+    rtcEngineEventHandler = new RtcEngineEventHandler(eventHandler);
+  }
 
-	auto* mAgoraEngine = new RtcEngineBridge();
-	mAgoraEngine->initEventHandler(rtcEngineEventHandler);
+  auto *mAgoraEngine = new RtcEngineBridge();
+  mAgoraEngine->initEventHandler(rtcEngineEventHandler);
 
-	if (obj)
-	{
-		obj->setPrivateData(mAgoraEngine);
-		se::Value func;
-		if (obj->getProperty("_ctor", &func))
-		{
-			func.toObject()->call(se::EmptyValueArray, obj);
-		}
-	}
+  if (obj) {
+    obj->setPrivateData(mAgoraEngine);
+    se::Value func;
+    if (obj->getProperty("_ctor", &func)) {
+      func.toObject()->call(se::EmptyValueArray, obj);
+    }
+  }
 
-	return true;
+  return true;
 }
 
-SE_BIND_CTOR(js_cocos2dx_extension_agoraCreator_constructor, js_cocos2dx_agoraCreator_class,
-	js_cocos2dx_extension_agoraCreator_finalize)
+SE_BIND_CTOR(js_cocos2dx_extension_agoraCreator_constructor,
+             js_cocos2dx_agoraCreator_class,
+             js_cocos2dx_extension_agoraCreator_finalize)
 
-static bool
-js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State& s)
-{
-	auto* cobj = (RtcEngineBridge*)s.nativeThisObject();
-	SE_PRECONDITION2(cobj, false,
-		"js_cocos2dx_extension_agoraCreator_callNativeMethod: Invalid Native Object");
+static bool js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State &s) {
+  auto *cobj = (RtcEngineBridge *)s.nativeThisObject();
+  SE_PRECONDITION2(cobj, false,
+                   "js_cocos2dx_extension_agoraCreator_callNativeMethod: "
+                   "Invalid Native Object");
 
-	const auto& args = s.args();
-	size_t argc = args.size();
-	CC_UNUSED bool ok = true;
-	if (argc == 2)
-	{
-		int api;
-		ok &= seval_to_int32(args[0], &api);
+  const auto &args = s.args();
+  size_t argc = args.size();
+  CC_UNUSED bool ok = true;
+  if (argc == 2) {
+    int api;
+    ok &= seval_to_int32(args[0], &api);
 
-		std::string parameters;
-		ok &= seval_to_std_string(args[1], &parameters);
+    std::string parameters;
+    ok &= seval_to_std_string(args[1], &parameters);
 
-		switch ((API_TYPE)api)
-		{
-		case GET_VERSION:
-		case GET_ERROR_DESCRIPTION:
-		case GET_CALL_ID:
-		{
-			const char* res = cobj->callApi_str((API_TYPE)api, parameters);
+    switch ((API_TYPE)api) {
+    case GET_VERSION:
+    case GET_ERROR_DESCRIPTION:
+    case GET_CALL_ID: {
+      const char *res = cobj->callApi_str((API_TYPE)api, parameters);
 
-			s.rval() = toSeValue(res);
-		}
-			break;
+      s.rval() = toSeValue(res);
+    } break;
 
-		case GET_USER_INFO_BY_USER_ACCOUNT:
-		case GET_USER_INFO_BY_UID:
-		{
-			auto* p = new UserInfo;
-			cobj->callApi((API_TYPE)api, parameters, reinterpret_cast<void*&>(p));
+    case GET_USER_INFO_BY_USER_ACCOUNT:
+    case GET_USER_INFO_BY_UID: {
+      auto *p = new UserInfo;
+      cobj->callApi((API_TYPE)api, parameters, reinterpret_cast<void *&>(p));
 
-			s.rval() = toSeValue(*p);
+      s.rval() = toSeValue(*p);
 
-			delete p;
-		}
-			break;
+      delete p;
+    } break;
 
-		case CREATE_DATA_STREAM:
-		{
-			auto* p = new int;
+    case CREATE_DATA_STREAM: {
+      auto *p = new int;
 
-			cobj->callApi((API_TYPE)api, parameters, reinterpret_cast<void*&>(p));
+      cobj->callApi((API_TYPE)api, parameters, reinterpret_cast<void *&>(p));
 
-			s.rval() = toSeValue(*p);
-		}
-			break;
+      s.rval() = toSeValue(*p);
+    } break;
 
-		case SEND_STREAM_MESSAGE:
-		{
-		}
-			break;
+    case SEND_STREAM_MESSAGE: {
+    } break;
 
-		case SET_UP_LOCAL_VIDEO:
-		{
-		}
-			break;
+    case SET_UP_LOCAL_VIDEO: {
+    } break;
 
-		case SET_UP_REMOTE_VIDEO:
-		{
+    case SET_UP_REMOTE_VIDEO: {
 
-		}
-			break;
+    } break;
 
-		case REGISTER_PACKET_OBSERVER:
-		{
-			// TODO
-		}
-			break;
+    case REGISTER_PACKET_OBSERVER: {
+      // TODO
+    } break;
 
-		case SEND_METADATA:
-		{
+    case SEND_METADATA: {
 
-		}
-			break;
+    } break;
 
-		case SET_MAX_META_SIZE:
-		{
+    case SET_MAX_META_SIZE: {
 
-		}
-			break;
+    } break;
 
-		case REGISTER_MEDIA_META_DATA_OBSERVER:
-		{
+    case REGISTER_MEDIA_META_DATA_OBSERVER: {
 
-		}
-			break;
+    } break;
 
-		default:
-		{
-			int ret = cobj->callApi((API_TYPE)api, parameters);
-			int32_to_seval(ret, &s.rval());
-		}
-			break;
-		}
+    default: {
+      int ret = cobj->callApi((API_TYPE)api, parameters);
+      int32_to_seval(ret, &s.rval());
+    } break;
+    }
 
-		SE_PRECONDITION2(ok,
-			false,
-			"js_cocos2dx_extension_agoraCreator_callNativeMethod: Error processing arguments");
-		return true;
-	}
+    SE_PRECONDITION2(ok, false,
+                     "js_cocos2dx_extension_agoraCreator_callNativeMethod: "
+                     "Error processing arguments");
+    return true;
+  }
 
-	SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc, 0);
-	return false;
+  SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc,
+                  0);
+  return false;
 }
 
 SE_BIND_FUNC(js_cocos2dx_extension_agoraCreator_callNativeMethod)
 
 static bool
-js_cocos2dx_extension_agoraCreator_callNativeMethodAudioEffect(se::State& s)
-{
-	auto* cobj = (RtcEngineBridge*)s.nativeThisObject();
-	SE_PRECONDITION2(cobj, false,
-		"js_cocos2dx_extension_agoraCreator_callNativeMethodAudioEffect: Invalid Native Object");
+js_cocos2dx_extension_agoraCreator_callNativeMethodAudioEffect(se::State &s) {
+  auto *cobj = (RtcEngineBridge *)s.nativeThisObject();
+  SE_PRECONDITION2(cobj, false,
+                   "js_cocos2dx_extension_agoraCreator_"
+                   "callNativeMethodAudioEffect: Invalid Native Object");
 
-	const auto& args = s.args();
-	size_t argc = args.size();
-	CC_UNUSED bool ok = true;
-	if (argc == 2)
-	{
-		int api;
-		ok &= seval_to_int32(args[0], &api);
+  const auto &args = s.args();
+  size_t argc = args.size();
+  CC_UNUSED bool ok = true;
+  if (argc == 2) {
+    int api;
+    ok &= seval_to_int32(args[0], &api);
 
-		std::string parameters;
-		ok &= seval_to_std_string(args[1], &parameters);
+    std::string parameters;
+    ok &= seval_to_std_string(args[1], &parameters);
 
-		int ret = cobj->callApi_audioEffect((API_TYPE_AUDIO_EFFECT)api, parameters);
-		int32_to_seval(ret, &s.rval());
+    int ret = cobj->callApi_audioEffect((API_TYPE_AUDIO_EFFECT)api, parameters);
+    int32_to_seval(ret, &s.rval());
 
-		SE_PRECONDITION2(ok,
-			false,
-			"js_cocos2dx_extension_agoraCreator_callNativeMethodAudioEffect: Error processing arguments");
-		return true;
-	}
+    SE_PRECONDITION2(ok, false,
+                     "js_cocos2dx_extension_agoraCreator_"
+                     "callNativeMethodAudioEffect: Error processing arguments");
+    return true;
+  }
 
-	SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc, 0);
-	return false;
+  SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc,
+                  0);
+  return false;
 }
 
 SE_BIND_FUNC(js_cocos2dx_extension_agoraCreator_callNativeMethodAudioEffect)
 
-bool
-js_register_cocos2dx_extension_agoraCreator(se::Object* obj)
-{
-	CCLOG("[Agora] js_register_cocos2dx_extension_agoraCreator");
+#ifdef AGORO_ENABLE_TEST
 
-	auto cls = se::Class::create("agoraCreator", obj, nullptr,
-		_SE(js_cocos2dx_extension_agoraCreator_constructor));
+class TestHandler : public APICaseHandler {
+public:
+  void handleAPICase(int apiType, const char *paramter) override {
+    CCLOG("[Agora] js_cocos2dx_extension_agoraCreator_startTest %d %s", apiType,
+          paramter);
+    std::string params = paramter;
+    eventHandler->functionCall("handleAPICase", apiType, params);
+  }
+};
 
-	cls->defineFunction("callNativeMethod",
-		_SE(js_cocos2dx_extension_agoraCreator_callNativeMethod));
+static bool js_cocos2dx_extension_agoraCreator_beginApiTest(se::State &s) {
+  const auto &args = s.args();
+  size_t argc = args.size();
+  CC_UNUSED bool ok = true;
+  if (argc == 1) {
+    std::string path;
+    ok &= seval_to_std_string(args[0], &path);
 
-	cls->defineFunction("callNativeMethodAudioEffect",
-		_SE(js_cocos2dx_extension_agoraCreator_callNativeMethodAudioEffect));
+    TestHandler handler;
+    BeginApiTest(path.c_str(), &handler);
 
-	cls->defineFinalizeFunction(_SE(js_cocos2dx_extension_agoraCreator_finalize));
-	cls->install();
+    SE_PRECONDITION2(ok, false,
+                     "js_cocos2dx_extension_agoraCreator_beginApiTest: Error "
+                     "processing arguments");
+    return true;
+  }
 
-	js_cocos2dx_agoraCreator_class = cls;
-
-	se::ScriptEngine::getInstance()->clearException();
-	return true;
+  SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc,
+                  0);
+  return false;
 }
 
-bool
-register_jsb_agoraCreator(se::Object* obj)
-{
-	CCLOG("[Agora] register_jsb_agoraCreator");
-	return js_register_cocos2dx_extension_agoraCreator(obj);
+SE_BIND_FUNC(js_cocos2dx_extension_agoraCreator_beginApiTest)
+
+static bool
+js_cocos2dx_extension_agoraCreator_compareAndDumpApiTestResult(se::State &s) {
+  const auto &args = s.args();
+  size_t argc = args.size();
+  CC_UNUSED bool ok = true;
+  if (argc == 2) {
+    std::string casePath;
+    ok &= seval_to_std_string(args[0], &casePath);
+
+    std::string dumpPath;
+    ok &= seval_to_std_string(args[1], &dumpPath);
+
+    CompareAndDumpApiTestResult(casePath.c_str(), dumpPath.c_str(), nullptr);
+
+    SE_PRECONDITION2(ok, false,
+                     "js_cocos2dx_extension_agoraCreator_"
+                     "compareAndDumpApiTestResult: Error processing arguments");
+    return true;
+  }
+
+  SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc,
+                  0);
+  return false;
+}
+
+SE_BIND_FUNC(js_cocos2dx_extension_agoraCreator_compareAndDumpApiTestResult)
+
+static bool
+js_cocos2dx_extension_agoraCreator_beginRtcEngineEventTest(se::State &s) {
+  const auto &args = s.args();
+  size_t argc = args.size();
+  CC_UNUSED bool ok = true;
+  if (argc == 1) {
+    std::string path;
+    ok &= seval_to_std_string(args[0], &path);
+
+    BeginRtcEngineEventTest(path.c_str(), rtcEngineEventHandler);
+
+    SE_PRECONDITION2(ok, false,
+                     "js_cocos2dx_extension_agoraCreator_"
+                     "beginRtcEngineEventTest: Error processing arguments");
+    return true;
+  }
+
+  SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc,
+                  0);
+  return false;
+}
+
+SE_BIND_FUNC(js_cocos2dx_extension_agoraCreator_beginRtcEngineEventTest)
+
+static bool
+js_cocos2dx_extension_agoraCreator_compareAndDumpRtcEngineEventTestResult(
+    se::State &s) {
+  const auto &args = s.args();
+  size_t argc = args.size();
+  CC_UNUSED bool ok = true;
+  if (argc == 2) {
+    std::string casePath;
+    ok &= seval_to_std_string(args[0], &casePath);
+
+    std::string dumpPath;
+    ok &= seval_to_std_string(args[1], &dumpPath);
+
+    CompareAndDumpRtcEngineEventTestResult(casePath.c_str(), dumpPath.c_str(),
+                                           nullptr);
+
+    SE_PRECONDITION2(
+        ok, false,
+        "js_cocos2dx_extension_agoraCreator_"
+        "compareAndDumpRtcEngineEventTestResult: Error processing arguments");
+    return true;
+  }
+
+  SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc,
+                  0);
+  return false;
+}
+
+SE_BIND_FUNC(
+    js_cocos2dx_extension_agoraCreator_compareAndDumpRtcEngineEventTestResult)
+
+static bool
+js_cocos2dx_extension_agoraCreator_logEngineEventCase(se::State &s) {
+  const auto &args = s.args();
+  size_t argc = args.size();
+  CC_UNUSED bool ok = true;
+  if (argc == 2) {
+    std::string event;
+    ok &= seval_to_std_string(args[0], &event);
+
+    std::string parameter;
+    ok &= seval_to_std_string(args[1], &parameter);
+
+    LogEngineEventCase(event.c_str(), parameter.c_str());
+
+    SE_PRECONDITION2(ok, false,
+                     "js_cocos2dx_extension_agoraCreator_"
+                     "logEngineEventCase: Error processing arguments");
+    return true;
+  }
+
+  SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc,
+                  0);
+  return false;
+}
+
+SE_BIND_FUNC(js_cocos2dx_extension_agoraCreator_logEngineEventCase)
+
+#endif
+
+bool js_register_cocos2dx_extension_agoraCreator(se::Object *obj) {
+  CCLOG("[Agora] js_register_cocos2dx_extension_agoraCreator");
+
+  auto cls =
+      se::Class::create("agoraCreator", obj, nullptr,
+                        _SE(js_cocos2dx_extension_agoraCreator_constructor));
+
+  cls->defineFunction("callNativeMethod",
+                      _SE(js_cocos2dx_extension_agoraCreator_callNativeMethod));
+
+  cls->defineFunction(
+      "callNativeMethodAudioEffect",
+      _SE(js_cocos2dx_extension_agoraCreator_callNativeMethodAudioEffect));
+
+#ifdef AGORO_ENABLE_TEST
+  cls->defineFunction("beginApiTest",
+                      _SE(js_cocos2dx_extension_agoraCreator_beginApiTest));
+  cls->defineFunction(
+      "beginRtcEngineEventTest",
+      _SE(js_cocos2dx_extension_agoraCreator_beginRtcEngineEventTest));
+  cls->defineFunction(
+      "compareAndDumpApiTestResult",
+      _SE(js_cocos2dx_extension_agoraCreator_compareAndDumpApiTestResult));
+  cls->defineFunction(
+      "compareAndDumpRtcEngineEventTestResult",
+      _SE(js_cocos2dx_extension_agoraCreator_compareAndDumpRtcEngineEventTestResult));
+  cls->defineFunction(
+      "logEngineEventCase",
+      _SE(js_cocos2dx_extension_agoraCreator_logEngineEventCase));
+#endif
+
+  cls->defineFinalizeFunction(_SE(js_cocos2dx_extension_agoraCreator_finalize));
+  cls->install();
+
+  js_cocos2dx_agoraCreator_class = cls;
+
+  se::ScriptEngine::getInstance()->clearException();
+  return true;
+}
+
+bool register_jsb_agoraCreator(se::Object *obj) {
+  CCLOG("[Agora] register_jsb_agoraCreator");
+  return js_register_cocos2dx_extension_agoraCreator(obj);
 }
 
 #endif

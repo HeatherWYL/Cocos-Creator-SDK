@@ -1,21 +1,18 @@
 #ifndef __AGORA_MANAGER_H__
 #define __AGORA_MANAGER_H__
 
-class AgoraManager
-{
+class AgoraManager {
 public:
-	static AgoraManager*
-	getInstance();
+  static AgoraManager *getInstance();
 
-	static void
-	registerJSBCallback();
+  static void registerJSBCallback();
 
 private:
-	AgoraManager();
+  AgoraManager();
 
-	virtual ~AgoraManager();
+  virtual ~AgoraManager();
 
-	static AgoraManager* _pInstance;
+  static AgoraManager *_pInstance;
 };
 
 #endif

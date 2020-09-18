@@ -9,7 +9,11 @@
 
 #include "base/ccConfig.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT ||                                \
+     CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID ||                              \
+     CC_TARGET_PLATFORM == CC_PLATFORM_IOS ||                                  \
+     CC_TARGET_PLATFORM == CC_PLATFORM_MAC ||                                  \
+     CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 
 #include "cocos/scripting/js-bindings/jswrapper/SeApi.h"
 
@@ -19,6 +23,9 @@ bool js_register_cocos2dx_extension_agoraCreator(se::Object *obj);
 
 bool register_jsb_agoraCreator(se::Object *obj);
 
-#endif //#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#endif //#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT || CC_TARGET_PLATFORM ==
+       // CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS ||
+       // CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM ==
+       // CC_PLATFORM_WIN32)
 
 #endif /* jsb_Agora_h */
