@@ -63,8 +63,8 @@ int VideoDeviceManager::callApi(API_TYPE_DEVICE_MANAGER apiType,
     ret = setDevice(reinterpret_cast<char *>(ptr));
   } break;
 
-  case API_TYPE_DEVICE_MANAGER::GET_DEVICE: {
-    ret = getDevice(reinterpret_cast<char *>(ptr));
+  case API_TYPE_DEVICE_MANAGER::GET_CURRENT_DEVICE_INFO: {
+    ret = getCurrentDevice(reinterpret_cast<char *>(ptr));
   } break;
 
   case API_TYPE_DEVICE_MANAGER::STOP_DEVICE_TEST: {
@@ -87,12 +87,12 @@ int VideoDeviceManager::callApi(API_TYPE_DEVICE_MANAGER apiType,
   CHECK_PARSE_DOCUMENT(document, ret)
 
   switch (apiType) {
-  case API_TYPE_DEVICE_MANAGER::GET_CURRENT_DEVICE_INFO: {
+  case API_TYPE_DEVICE_MANAGER::GET_DEVICE: {
     int index;
     get_parameter_int(document, "index", index, ret);
     CHECK_RET_ERROR(ret)
-    ret = getCurrentDevice(index, reinterpret_cast<char *>(ptr),
-                           reinterpret_cast<char *>(ptr2));
+    ret = getDevice(index, reinterpret_cast<char *>(ptr),
+                    reinterpret_cast<char *>(ptr2));
   } break;
 
   default:
@@ -107,6 +107,10 @@ int VideoDeviceManager::startDeviceTest(rtc::view_t hwnd) {
     return (*videoDeviceManager)->startDeviceTest(hwnd);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
+}
+
+int VideoDeviceManager::startDeviceTest(uint64_t hwnd) {
+  return startDeviceTest((rtc::view_t)hwnd);
 }
 
 int VideoDeviceManager::stopDeviceTest() {
@@ -124,17 +128,25 @@ int VideoDeviceManager::setDevice(
   return ERROR_CODE::ERROR_NO_DEVICE;
 }
 
-int VideoDeviceManager::getDevice(char deviceId[rtc::MAX_DEVICE_ID_LENGTH]) {
+int VideoDeviceManager::getCurrentDevice(
+    char deviceId[rtc::MAX_DEVICE_ID_LENGTH]) {
   if (videoDeviceManager && videoDeviceManager->get()) {
     return (*videoDeviceManager)->getDevice(deviceId);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;
 }
 
-int VideoDeviceManager::getCurrentDevice(
-    int index, char deviceName[rtc::MAX_DEVICE_ID_LENGTH],
-    char deviceId[rtc::MAX_DEVICE_ID_LENGTH]) {
-  if (videoDeviceManager && videoDeviceManager->get()) {
+int VideoDeviceManager::getDeviceCount() {
+  if (videoDeviceCollection) {
+    return videoDeviceCollection->getCount();
+  }
+  return 0;
+}
+
+int VideoDeviceManager::getDevice(int index,
+                                  char deviceName[rtc::MAX_DEVICE_ID_LENGTH],
+                                  char deviceId[rtc::MAX_DEVICE_ID_LENGTH]) {
+  if (videoDeviceCollection) {
     return videoDeviceCollection->getDevice(index, deviceName, deviceId);
   }
   return ERROR_CODE::ERROR_NO_DEVICE;

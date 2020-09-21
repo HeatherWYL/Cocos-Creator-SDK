@@ -36,7 +36,7 @@ public:
   virtual int callApi(API_TYPE apiType, const std::string &parameters) override;
 
   virtual int callApi(API_TYPE apiType, const std::string &parameters,
-                      void *&ptr) override;
+                      void *ptr) override;
 
   virtual const char *callApi_str(API_TYPE apiType,
                                   const std::string &parameters) override;
@@ -46,7 +46,7 @@ public:
 
   virtual void release(bool sync = false) override;
 
-  virtual IRtcChannelBridge *createChannel(const char *channelId) override;
+  virtual RtcChannelBridge *createChannel(const char *channelId) override;
 
   virtual IAudioDeviceManagerBridge *
   createAudioDeviceManager(DEVICE_TYPE device_type,
@@ -54,6 +54,13 @@ public:
 
   virtual IVideoDeviceManagerBridge *
   createVideoDeviceManager(ERROR_CODE &error_code) override;
+
+  VideoDeviceManager *createVideoDeviceManager(int *errorCode);
+
+  AudioPlaybackDeviceManager *createAudioPlaybackDeviceManager(int *errorCode);
+
+  AudioRecordingDeviceManager *
+  createAudioRecordingDeviceManager(int *errorCode);
 
   int initialize(const char *appId, void *context, unsigned int areaCode);
 

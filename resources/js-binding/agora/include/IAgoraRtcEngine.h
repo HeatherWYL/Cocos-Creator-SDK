@@ -2688,31 +2688,31 @@ enum AREA_CODE {
     /**
      * Mainland China.
      */
-    AREA_CODE_CN = (1 << 0),
+    AREA_CODE_CN = 0x00000001,
     /**
      * North America.
      */
-    AREA_CODE_NA = (1 << 1),
+    AREA_CODE_NA = 0x00000002,
     /**
      * Europe.
      */
-    AREA_CODE_EUR = (1 << 2),
+    AREA_CODE_EU = 0x00000004,
     /**
      * Asia, excluding Mainland China.
      */
-    AREA_CODE_AS = (1 << 3),
+    AREA_CODE_AS = 0x00000008,
     /**
      * Japan.
      */
-    AREA_CODE_JAPAN = (1 << 4),
+    AREA_CODE_JP = 0x00000010,
     /**
      * India.
      */
-    AREA_CODE_INDIA = (1 << 5),
+    AREA_CODE_IN = 0x00000020,
     /**
      * (Default) Global.
      */
-    AREA_CODE_GLOBAL = (0xFFFFFFFF)
+    AREA_CODE_GLOB = 0xFFFFFFFF
 };
 
 enum ENCRYPTION_CONFIG {
@@ -4647,7 +4647,7 @@ struct RtcEngineContext
     :eventHandler(NULL)
     ,appId(NULL)
     ,context(NULL)
-    ,areaCode(rtc::AREA_CODE_GLOBAL)
+    ,areaCode(rtc::AREA_CODE_GLOB)
     {}
 };
 
@@ -6480,6 +6480,7 @@ public:
      @param direction Sets the camera to be used:
      - CAMERA_DIRECTION.CAMERA_REAR: Use the rear camera.
      - CAMERA_DIRECTION.CAMERA_FRONT: Use the front camera.
+
      @return
      - 0: Success.
      - < 0: Failure.

@@ -30,7 +30,7 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters) {
     get_parameter_string(document, "appId", appId, ret);
     CHECK_RET_ERROR(ret)
 
-    unsigned int areaCode = AREA_CODE::AREA_CODE_GLOBAL;
+    unsigned int areaCode = AREA_CODE::AREA_CODE_GLOB;
     get_parameter_uint(document, "areaCode", areaCode, ret);
     CHECK_RET_ERROR(ret)
 
@@ -1692,7 +1692,7 @@ const char *RtcEngineBridge::callApi_str(API_TYPE apiType,
 }
 
 int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters,
-                             void *&ptr) {
+                             void *ptr) {
   int ret = ERROR_CODE::ERROR_OK;
   Document document;
   document.Parse(parameters.c_str());
@@ -2519,7 +2519,7 @@ int RtcEngineBridge::stopScreenCapture() {
 }
 #endif
 
-IRtcChannelBridge *RtcEngineBridge::createChannel(const char *channelId) {
+RtcChannelBridge *RtcEngineBridge::createChannel(const char *channelId) {
   return new RtcChannelBridge(mRtcEngine, channelId);
 }
 
@@ -2536,6 +2536,29 @@ RtcEngineBridge::createAudioDeviceManager(DEVICE_TYPE device_type,
   default:
     return nullptr;
   }
+}
+
+VideoDeviceManager *RtcEngineBridge::createVideoDeviceManager(int *errorCode) {
+  ERROR_CODE code;
+  auto p = new VideoDeviceManager(mRtcEngine, code);
+  *errorCode = code;
+  return p;
+}
+
+AudioPlaybackDeviceManager *
+RtcEngineBridge::createAudioPlaybackDeviceManager(int *errorCode) {
+  ERROR_CODE code;
+  auto p = new AudioPlaybackDeviceManager(mRtcEngine, code);
+  *errorCode = code;
+  return p;
+}
+
+AudioRecordingDeviceManager *
+RtcEngineBridge::createAudioRecordingDeviceManager(int *errorCode) {
+  ERROR_CODE code;
+  auto p = new AudioRecordingDeviceManager(mRtcEngine, code);
+  *errorCode = code;
+  return p;
 }
 
 IVideoDeviceManagerBridge *
@@ -2630,7 +2653,7 @@ int RtcEngineBridge::createDataStream(int *streamId, bool reliable,
 
 int RtcEngineBridge::sendStreamMessage(int streamId, const char *data,
                                        size_t length) {
-  LOG_JSON(SEND_STREAM_MESSAGE, "streamId", streamId, "length",
+  LOG_JSON(SEND_STREAM_MESSAGE, "streamId", streamId, "data", data, "length",
            (uint64_t)length);
   return mRtcEngine->sendStreamMessage(streamId, data, length);
 }

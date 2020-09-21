@@ -118,6 +118,8 @@ public:
   int sendMetadata(rtc::IMetadataObserver::Metadata *metadata);
 
   int setMaxMetadataSize(int size);
+
+  rtc::IChannel *getChannel();
 };
 } // namespace common
 } // namespace agora

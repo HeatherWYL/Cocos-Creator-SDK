@@ -954,14 +954,14 @@ declare namespace agora {
      * - The position of the human face in the local video.
      * - The distance between the human face and the device screen.
      *
-     * @param enable Determines whether to enable the face detection function for the local user:
+     * @param enabled Determines whether to enable the face detection function for the local user:
      * - true: Enable face detection.
      * - false: (Default) Disable face detection.
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
-    function enableFaceDetection(enable: boolean): number;
+    function enableFaceDetection(enabled: boolean): number;
     /** Plays a specified local or online audio effect file.
 
      This method allows you to set the loop count, pitch, pan, and gain of the audio effect file, as well as whether the remote user can hear the audio effect.
@@ -1791,7 +1791,7 @@ declare namespace agora {
          - 0: Success.
      - < 0: Failure.
      */
-    function sendStreamMessage(streamId: number, data: string, length: number): number;
+    function sendStreamMessage(streamId: number, data: Uint8Array, length: number): number;
     /** Publishes the local stream to a specified CDN live RTMP address.  (CDN live only.)
 
      The SDK returns the result of this method call in the \ref IRtcEngineEventHandler::onStreamPublished "onStreamPublished" callback.
@@ -2042,6 +2042,8 @@ declare namespace agora {
      @return #CONNECTION_STATE_TYPE.
      */
     function getConnectionState(): CONNECTION_STATE_TYPE;
+    function sendMetadata({ uid, size, buffer, timeStampMs }: Metadata): any;
+    function setMaxMetadataSize(size: number): any;
     /** Registers the metadata observer.
 
      Registers the metadata observer. You need to implement the IMetadataObserver class and specify the metadata type in this method. A successful call of this method triggers the \ref agora::rtc::IMetadataObserver::getMaxMetadataSize "getMaxMetadataSize" callback.
@@ -2058,7 +2060,7 @@ declare namespace agora {
          - 0: Success.
      - < 0: Failure.
      */
-    function registerMediaMetadataObserver(observer: any, type: METADATA_TYPE): number;
+    function registerMediaMetadataObserver(type: METADATA_TYPE): number;
     /** Provides technical preview functionalities or special customizations by configuring the SDK with JSON options.
 
      The JSON options are not public by default. Agora is working on making commonly used JSON options public in a standard way.
@@ -4959,5 +4961,23 @@ declare namespace agora {
          */
         autoSubscribeVideo: boolean;
         constructor(autoSubscribeAudio?: boolean, autoSubscribeVideo?: boolean);
+    }
+    class Metadata {
+        /** The User ID.
+
+         - For the receiver: the ID of the user who sent the metadata.
+         - For the sender: ignore it.
+         */
+        uid: number;
+        /** Buffer size of the sent or received Metadata.
+         */
+        size: number;
+        /** Buffer address of the sent or received Metadata.
+         */
+        buffer: Uint8Array;
+        /** Time statmp of the frame following the metadata.
+         */
+        timeStampMs: number;
+        constructor(uid: number, size: number, buffer: Uint8Array, timeStampMs: number);
     }
 }

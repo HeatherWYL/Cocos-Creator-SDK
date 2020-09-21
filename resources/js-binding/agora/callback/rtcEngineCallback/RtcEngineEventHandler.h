@@ -14,28 +14,28 @@ public:
 
   virtual ~RtcEngineEventHandler();
 
-  void onJoinChannelSuccess(const char *channel, rtc::uid_t userId,
+  void onJoinChannelSuccess(const char *channel, rtc::uid_t uid,
                             int elapsed) override;
 
   void onLeaveChannel(const rtc::RtcStats &stats) override;
 
-  void onRejoinChannelSuccess(const char *channel, rtc::uid_t userId,
+  void onRejoinChannelSuccess(const char *channel, rtc::uid_t uid,
                               int elapsed) override;
 
-  void onUserJoined(rtc::uid_t userId, int elapsed) override;
+  void onUserJoined(rtc::uid_t uid, int elapsed) override;
 
   void onClientRoleChanged(rtc::CLIENT_ROLE_TYPE oldRole,
                            rtc::CLIENT_ROLE_TYPE newRole) override;
 
-  void onUserOffline(rtc::uid_t userId,
+  void onUserOffline(rtc::uid_t uid,
                      rtc::USER_OFFLINE_REASON_TYPE reason) override;
 
-  void onUserMuteAudio(rtc::uid_t userId, bool muted) override;
+  void onUserMuteAudio(rtc::uid_t uid, bool muted) override;
 
-  void onFirstRemoteVideoDecoded(rtc::uid_t userId, int width, int height,
+  void onFirstRemoteVideoDecoded(rtc::uid_t uid, int width, int height,
                                  int elapsed) override;
 
-  void onUserMuteVideo(rtc::uid_t userId, bool muted) override;
+  void onUserMuteVideo(rtc::uid_t uid, bool muted) override;
 
   void onAudioRouteChanged(rtc::AUDIO_ROUTE_TYPE routing) override;
 
@@ -55,14 +55,14 @@ public:
 
   void onAudioMixingFinished() override;
 
-  void onVideoSizeChanged(rtc::uid_t userId, int width, int height,
+  void onVideoSizeChanged(rtc::uid_t uid, int width, int height,
                           int rotation) override;
 
   void onConnectionInterrupted() override;
 
   void onMicrophoneEnabled(bool enabled) override;
 
-  void onAudioQuality(rtc::uid_t userId, int quality, unsigned short delay,
+  void onAudioQuality(rtc::uid_t uid, int quality, unsigned short delay,
                       unsigned short lost) override;
 
   void onRemoteVideoTransportStats(rtc::uid_t uid, unsigned short delay,
@@ -73,7 +73,7 @@ public:
                                    unsigned short lost,
                                    unsigned short rxKBitRate) override;
 
-  void onStreamInjectedStatus(const char *url, rtc::uid_t userId,
+  void onStreamInjectedStatus(const char *url, rtc::uid_t uid,
                               int status) override;
 
   void onTranscodingUpdated() override;
@@ -85,9 +85,9 @@ public:
   void onAudioDeviceVolumeChanged(rtc::MEDIA_DEVICE_TYPE deviceType, int volume,
                                   bool muted) override;
 
-  void onActiveSpeaker(rtc::uid_t userId) override;
+  void onActiveSpeaker(rtc::uid_t uid) override;
 
-  void onFirstRemoteAudioFrame(rtc::uid_t userId, int elapsed) override;
+  void onFirstRemoteAudioFrame(rtc::uid_t uid, int elapsed) override;
 
   void onFirstLocalAudioFrame(int elapsed) override;
 
@@ -95,10 +95,10 @@ public:
 
   void onMediaEngineLoadSuccess() override;
 
-  void onStreamMessageError(rtc::uid_t userId, int streamId, int code,
-                            int missed, int cached) override;
+  void onStreamMessageError(rtc::uid_t uid, int streamId, int code, int missed,
+                            int cached) override;
 
-  void onStreamMessage(rtc::uid_t userId, int streamId, const char *data,
+  void onStreamMessage(rtc::uid_t uid, int streamId, const char *data,
                        size_t length) override;
 
   void onConnectionBanned() override;

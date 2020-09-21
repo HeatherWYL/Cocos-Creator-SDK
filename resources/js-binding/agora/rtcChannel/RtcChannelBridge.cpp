@@ -842,5 +842,7 @@ void RtcChannelBridge::release() {
   channel = nullptr;
   delete this;
 }
+
+rtc::IChannel *RtcChannelBridge::getChannel() { return channel; }
 } // namespace common
 } // namespace agora

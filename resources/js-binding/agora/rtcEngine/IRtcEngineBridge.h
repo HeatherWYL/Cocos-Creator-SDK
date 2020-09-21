@@ -22,7 +22,7 @@ public:
                                   const std::string &parameters) = 0;
 
   virtual int callApi(API_TYPE apiType, const std::string &parameters,
-                      void *&ptr) = 0;
+                      void *ptr) = 0;
 
   virtual int callApi_audioEffect(API_TYPE_AUDIO_EFFECT apiType,
                                   const std::string &parameters) = 0;

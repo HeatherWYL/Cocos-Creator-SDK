@@ -37,25 +37,24 @@ void RtcChannelEventHandler::onChannelError(IChannel *rtcChannel, int err,
 }
 
 void RtcChannelEventHandler::onJoinChannelSuccess(IChannel *rtcChannel,
-                                                  rtc::uid_t userId,
-                                                  int elapsed) {
+                                                  rtc::uid_t uid, int elapsed) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
   mEventHandler->functionCall<rtc::uid_t, int>("onJoinChannelSuccess",
-                                               channelId, userId, elapsed);
+                                               channelId, uid, elapsed);
 }
 
 void RtcChannelEventHandler::onRejoinChannelSuccess(IChannel *rtcChannel,
-                                                    rtc::uid_t userId,
+                                                    rtc::uid_t uid,
                                                     int elapsed) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
   mEventHandler->functionCall<rtc::uid_t, int>("onRejoinChannelSuccess",
-                                               channelId, userId, elapsed);
+                                               channelId, uid, elapsed);
 }
 
 void RtcChannelEventHandler::onLeaveChannel(IChannel *rtcChannel,
@@ -78,25 +77,24 @@ void RtcChannelEventHandler::onClientRoleChanged(IChannel *rtcChannel,
                                         oldRole, newRole);
 }
 
-void RtcChannelEventHandler::onUserJoined(IChannel *rtcChannel,
-                                          rtc::uid_t userId, int elapsed) {
+void RtcChannelEventHandler::onUserJoined(IChannel *rtcChannel, rtc::uid_t uid,
+                                          int elapsed) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
-  mEventHandler->functionCall<rtc::uid_t, int>("onUserJoined", channelId,
-                                               userId, elapsed);
+  mEventHandler->functionCall<rtc::uid_t, int>("onUserJoined", channelId, uid,
+                                               elapsed);
 }
 
-void RtcChannelEventHandler::onUserOffline(IChannel *rtcChannel,
-                                           rtc::uid_t userId,
+void RtcChannelEventHandler::onUserOffline(IChannel *rtcChannel, rtc::uid_t uid,
                                            USER_OFFLINE_REASON_TYPE reason) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
-  mEventHandler->functionCall<rtc::uid_t, int>("onUserOffline", channelId,
-                                               userId, reason);
+  mEventHandler->functionCall<rtc::uid_t, int>("onUserOffline", channelId, uid,
+                                               reason);
 }
 
 void RtcChannelEventHandler::onConnectionLost(IChannel *rtcChannel) {
@@ -136,14 +134,14 @@ void RtcChannelEventHandler::onRtcStats(IChannel *rtcChannel,
 }
 
 void RtcChannelEventHandler::onNetworkQuality(IChannel *rtcChannel,
-                                              rtc::uid_t userId, int txQuality,
+                                              rtc::uid_t uid, int txQuality,
                                               int rxQuality) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
   mEventHandler->functionCall<rtc::uid_t, int, int>(
-      "onNetworkQuality", channelId, userId, txQuality, rxQuality);
+      "onNetworkQuality", channelId, uid, txQuality, rxQuality);
 }
 
 void RtcChannelEventHandler::onRemoteVideoStats(IChannel *rtcChannel,
@@ -165,49 +163,49 @@ void RtcChannelEventHandler::onRemoteAudioStats(IChannel *rtcChannel,
 }
 
 void RtcChannelEventHandler::onRemoteAudioStateChanged(
-    IChannel *rtcChannel, rtc::uid_t userId, REMOTE_AUDIO_STATE state,
+    IChannel *rtcChannel, rtc::uid_t uid, REMOTE_AUDIO_STATE state,
     REMOTE_AUDIO_STATE_REASON reason, int elapsed) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
   mEventHandler->functionCall<rtc::uid_t, int, int, int>(
-      "onRemoteAudioStateChanged", channelId, userId, state, reason, elapsed);
+      "onRemoteAudioStateChanged", channelId, uid, state, reason, elapsed);
 }
 
 void RtcChannelEventHandler::onActiveSpeaker(IChannel *rtcChannel,
-                                             rtc::uid_t userId) {
+                                             rtc::uid_t uid) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
-  mEventHandler->functionCall<rtc::uid_t>("onActiveSpeaker", channelId, userId);
+  mEventHandler->functionCall<rtc::uid_t>("onActiveSpeaker", channelId, uid);
 }
 
 void RtcChannelEventHandler::onVideoSizeChanged(IChannel *rtcChannel,
-                                                rtc::uid_t userId, int width,
+                                                rtc::uid_t uid, int width,
                                                 int height, int rotation) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
   mEventHandler->functionCall<rtc::uid_t, int, int, int>(
-      "onVideoSizeChanged", channelId, userId, width, height, rotation);
+      "onVideoSizeChanged", channelId, uid, width, height, rotation);
 }
 
 void RtcChannelEventHandler::onRemoteVideoStateChanged(
-    IChannel *rtcChannel, rtc::uid_t userId, REMOTE_VIDEO_STATE state,
+    IChannel *rtcChannel, rtc::uid_t uid, REMOTE_VIDEO_STATE state,
     REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
   mEventHandler->functionCall<rtc::uid_t, int, int, int>(
-      "onRemoteVideoStateChanged", channelId, userId, state, reason, elapsed);
+      "onRemoteVideoStateChanged", channelId, uid, state, reason, elapsed);
 }
 
 void RtcChannelEventHandler::onStreamMessage(IChannel *rtcChannel,
-                                             rtc::uid_t userId, int streamId,
+                                             rtc::uid_t uid, int streamId,
                                              const char *data, size_t length) {
   if (!mEventHandler)
     return;
@@ -215,20 +213,19 @@ void RtcChannelEventHandler::onStreamMessage(IChannel *rtcChannel,
   std::string channelId = rtcChannel->channelId();
   std::string dataStr = data ? data : "";
   mEventHandler->functionCall<rtc::uid_t, int, std::string, size_t>(
-      "onStreamMessage", channelId, userId, streamId, dataStr, length);
+      "onStreamMessage", channelId, uid, streamId, dataStr, length);
 }
 
 void RtcChannelEventHandler::onStreamMessageError(IChannel *rtcChannel,
-                                                  rtc::uid_t userId,
-                                                  int streamId, int code,
-                                                  int missed, int cached) {
+                                                  rtc::uid_t uid, int streamId,
+                                                  int code, int missed,
+                                                  int cached) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
   mEventHandler->functionCall<rtc::uid_t, int, int, int, int>(
-      "onStreamMessageError", channelId, userId, streamId, code, missed,
-      cached);
+      "onStreamMessageError", channelId, uid, streamId, code, missed, cached);
 }
 
 void RtcChannelEventHandler::onChannelMediaRelayStateChanged(
@@ -273,7 +270,7 @@ void RtcChannelEventHandler::onTranscodingUpdated(IChannel *rtcChannel) {
 
 void RtcChannelEventHandler::onStreamInjectedStatus(IChannel *rtcChannel,
                                                     const char *url,
-                                                    rtc::uid_t userId,
+                                                    rtc::uid_t uid,
                                                     int status) {
   if (!mEventHandler)
     return;
@@ -281,7 +278,7 @@ void RtcChannelEventHandler::onStreamInjectedStatus(IChannel *rtcChannel,
   std::string channelId = rtcChannel->channelId();
   std::string urlStr = url ? url : "";
   mEventHandler->functionCall<std::string, rtc::uid_t, int>(
-      "onStreamInjectedStatus", channelId, urlStr, userId, status);
+      "onStreamInjectedStatus", channelId, urlStr, uid, status);
 }
 
 void RtcChannelEventHandler::onLocalPublishFallbackToAudioOnly(
@@ -295,13 +292,13 @@ void RtcChannelEventHandler::onLocalPublishFallbackToAudioOnly(
 }
 
 void RtcChannelEventHandler::onRemoteSubscribeFallbackToAudioOnly(
-    IChannel *rtcChannel, rtc::uid_t userId, bool isFallbackOrRecover) {
+    IChannel *rtcChannel, rtc::uid_t uid, bool isFallbackOrRecover) {
   if (!mEventHandler)
     return;
 
   std::string channelId = rtcChannel->channelId();
   mEventHandler->functionCall<rtc::uid_t, bool>(
-      "onRemoteSubscribeFallbackToAudioOnly", channelId, userId,
+      "onRemoteSubscribeFallbackToAudioOnly", channelId, uid,
       isFallbackOrRecover);
 }
 

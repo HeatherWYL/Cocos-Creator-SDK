@@ -213,7 +213,7 @@ public:
         });
   }
 
-  void functionCall(std::string callbackName, const rtc::RtcStats rtcstats) {
+  void functionCall(std::string callbackName, const rtc::RtcStats &stats) {
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {
@@ -223,7 +223,7 @@ public:
             se::AutoHandleScope hs;
 
             se::ValueArray args;
-            args.push_back(toSeValue(rtcstats));
+            args.push_back(toSeValue(stats));
 
             func.toObject()->call(args, _refObj);
           }
@@ -254,7 +254,7 @@ public:
   }
 
   void functionCall(std::string callbackName,
-                    const rtc::LastmileProbeResult lastmileProbeResult) {
+                    const rtc::LastmileProbeResult &lastmileProbeResult) {
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {
@@ -272,7 +272,7 @@ public:
   }
 
   void functionCall(std::string callbackName,
-                    const rtc::LocalVideoStats stats) {
+                    const rtc::LocalVideoStats &stats) {
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {
@@ -290,7 +290,7 @@ public:
   }
 
   void functionCall(std::string callbackName,
-                    const rtc::RemoteVideoStats stats) {
+                    const rtc::RemoteVideoStats &stats) {
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {
@@ -308,7 +308,7 @@ public:
   }
 
   void functionCall(std::string callbackName,
-                    const rtc::RemoteAudioStats stats) {
+                    const rtc::RemoteAudioStats &stats) {
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {
@@ -326,7 +326,7 @@ public:
   }
 
   void functionCall(std::string callbackName, uid_t uid,
-                    const rtc::UserInfo info) {
+                    const rtc::UserInfo &info) {
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {
@@ -345,7 +345,7 @@ public:
   }
 
   void functionCall(std::string callbackName,
-                    const rtc::LocalAudioStats stats) {
+                    const rtc::LocalAudioStats &stats) {
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {
@@ -363,7 +363,7 @@ public:
   }
 
   void functionCall(std::string callbackName, int imageWidth, int imageHeight,
-                    rtc::Rectangle *vecRectangle, int *vecDistance,
+                    const rtc::Rectangle *vecRectangle, const int *vecDistance,
                     int numFaces) {
     se::Value vecRectangleValue = toSeValue(vecRectangle, numFaces);
     se::Value vecDistanceValue = se::Value(*vecDistance);
@@ -382,6 +382,47 @@ public:
             args.push_back(vecRectangleValue);
             args.push_back(vecDistanceValue);
             args.push_back(se::Value(numFaces));
+
+            func.toObject()->call(args, _refObj);
+          }
+        });
+  }
+
+  void functionCall(std::string callbackName, uid_t uid, int streamId,
+                    const char *data, size_t length) {
+    se::Value dataValue = toSeValue(data, length);
+
+    cocos2d::Application::getInstance()
+        ->getScheduler()
+        ->performFunctionInCocosThread([=]() {
+          se::Value func;
+          if (_refObj->getProperty(callbackName.c_str(), &func)) {
+            se::ScriptEngine::getInstance()->clearException();
+            se::AutoHandleScope hs;
+
+            se::ValueArray args;
+            args.push_back(se::Value(uid));
+            args.push_back(se::Value(streamId));
+            args.push_back(dataValue);
+            args.push_back(se::Value(length));
+
+            func.toObject()->call(args, _refObj);
+          }
+        });
+  }
+
+  void functionCall(std::string callbackName,
+                    const rtc::IMetadataObserver::Metadata &metadata) {
+    cocos2d::Application::getInstance()
+        ->getScheduler()
+        ->performFunctionInCocosThread([=]() {
+          se::Value func;
+          if (_refObj->getProperty(callbackName.c_str(), &func)) {
+            se::ScriptEngine::getInstance()->clearException();
+            se::AutoHandleScope hs;
+
+            se::ValueArray args;
+            args.push_back(toSeValue(metadata));
 
             func.toObject()->call(args, _refObj);
           }

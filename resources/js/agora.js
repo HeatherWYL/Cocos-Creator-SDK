@@ -72,7 +72,7 @@ var agora;
         };
         bridge.onLastmileProbeResult = function (result) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLastmileProbeResult', JSON.stringify(result));
+                bridge.logEngineEventCase('onLastmileProbeResult', JSON.stringify({ result: result }));
             }
             event.emit('lastmileProbeResult', result);
         };
@@ -400,7 +400,12 @@ var agora;
         };
         bridge.onStreamMessage = function (uid, streamId, data, length) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onStreamMessage', JSON.stringify({ uid: uid, streamId: streamId, data: data, length: length }));
+                bridge.logEngineEventCase('onStreamMessage', JSON.stringify({
+                    uid: uid,
+                    streamId: streamId,
+                    data: String.fromCharCode.apply(null, data),
+                    length: length
+                }));
             }
             event.emit('streamMessage', uid, streamId, data, length);
         };
@@ -551,6 +556,18 @@ var agora;
                 bridge.logEngineEventCase('onUserInfoUpdated', JSON.stringify({ uid: uid, info: info }));
             }
             event.emit('userInfoUpdated', uid, info);
+        };
+        bridge.onMetadataReceived = function (_a) {
+            var uid = _a.uid, size = _a.size, buffer = _a.buffer, timeStampMs = _a.timeStampMs;
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onMetadataReceived', JSON.stringify({
+                    uid: uid,
+                    size: size,
+                    buffer: String.fromCharCode.apply(null, buffer),
+                    timeStampMs: timeStampMs
+                }));
+            }
+            event.emit('metadataReceived', { uid: uid, size: size, buffer: buffer, timeStampMs: timeStampMs });
         };
     }
     function initWebEvent() {
@@ -715,9 +732,9 @@ var agora;
             event.emit('channelMediaRelayStateChanged', evt.state, evt.code);
         });
     }
-    function callNativeMethod(apiType, param) {
+    function callNativeMethod(apiType, param, extra) {
         if (param === void 0) { param = {}; }
-        return bridge.callNativeMethod(apiType, JSON.stringify(param));
+        return bridge.callNativeMethod(apiType, JSON.stringify(param), extra);
     }
     function callNativeMethodAudioEffect(apiType, param) {
         if (param === void 0) { param = {}; }
@@ -2314,18 +2331,18 @@ var agora;
      * - The position of the human face in the local video.
      * - The distance between the human face and the device screen.
      *
-     * @param enable Determines whether to enable the face detection function for the local user:
+     * @param enabled Determines whether to enable the face detection function for the local user:
      * - true: Enable face detection.
      * - false: (Default) Disable face detection.
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
-    function enableFaceDetection(enable) {
+    function enableFaceDetection(enabled) {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
         }
-        return callNativeMethod(API_TYPE.ENABLE_FACE_DETECTION, { enable: enable });
+        return callNativeMethod(API_TYPE.ENABLE_FACE_DETECTION, { enabled: enabled });
     }
     agora.enableFaceDetection = enableFaceDetection;
     /** Plays a specified local or online audio effect file.
@@ -3419,7 +3436,7 @@ var agora;
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
         }
-        return callNativeMethod(API_TYPE.START_ECHO_TEST_2, { config: config });
+        return callNativeMethod(API_TYPE.START_LAST_MILE_PROBE_TEST, { config: config });
     }
     agora.startLastmileProbeTest = startLastmileProbeTest;
     /** Stops the last-mile network probe test. */
@@ -3602,7 +3619,7 @@ var agora;
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
         }
-        return callNativeMethod(API_TYPE.SEND_STREAM_MESSAGE, { streamId: streamId, data: data, length: length });
+        return callNativeMethod(API_TYPE.SEND_STREAM_MESSAGE, { streamId: streamId, length: length }, data);
     }
     agora.sendStreamMessage = sendStreamMessage;
     /** Publishes the local stream to a specified CDN live RTMP address.  (CDN live only.)
@@ -3982,6 +3999,21 @@ var agora;
         return callNativeMethod(API_TYPE.GET_CONNECTION_STATE);
     }
     agora.getConnectionState = getConnectionState;
+    function sendMetadata(_a) {
+        var uid = _a.uid, size = _a.size, buffer = _a.buffer, timeStampMs = _a.timeStampMs;
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
+        return callNativeMethod(API_TYPE.SEND_METADATA, { uid: uid, size: size, timeStampMs: timeStampMs }, buffer);
+    }
+    agora.sendMetadata = sendMetadata;
+    function setMaxMetadataSize(size) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
+        }
+        return callNativeMethod(API_TYPE.SET_MAX_META_SIZE, { size: size });
+    }
+    agora.setMaxMetadataSize = setMaxMetadataSize;
     /** Registers the metadata observer.
 
      Registers the metadata observer. You need to implement the IMetadataObserver class and specify the metadata type in this method. A successful call of this method triggers the \ref agora::rtc::IMetadataObserver::getMaxMetadataSize "getMaxMetadataSize" callback.
@@ -3998,11 +4030,11 @@ var agora;
          - 0: Success.
      - < 0: Failure.
      */
-    function registerMediaMetadataObserver(observer, type) {
+    function registerMediaMetadataObserver(type) {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED;
         }
-        return callNativeMethod(API_TYPE.REGISTER_MEDIA_META_DATA_OBSERVER, { observer: observer, type: type });
+        return callNativeMethod(API_TYPE.REGISTER_MEDIA_META_DATA_OBSERVER, { type: type });
     }
     agora.registerMediaMetadataObserver = registerMediaMetadataObserver;
     /** Provides technical preview functionalities or special customizations by configuring the SDK with JSON options.
@@ -6595,5 +6627,15 @@ var agora;
         return ChannelMediaOptions;
     }());
     agora.ChannelMediaOptions = ChannelMediaOptions;
+    var Metadata = /** @class */ (function () {
+        function Metadata(uid, size, buffer, timeStampMs) {
+            this.uid = uid;
+            this.size = size;
+            this.buffer = buffer;
+            this.timeStampMs = timeStampMs;
+        }
+        return Metadata;
+    }());
+    agora.Metadata = Metadata;
 })(agora || (agora = {}));
 window.agora = agora;

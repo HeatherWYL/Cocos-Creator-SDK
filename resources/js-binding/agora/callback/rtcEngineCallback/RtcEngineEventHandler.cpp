@@ -10,14 +10,13 @@ RtcEngineEventHandler::RtcEngineEventHandler(EngineEventHandler *eventHandler)
 RtcEngineEventHandler::~RtcEngineEventHandler() { mEventHandler = nullptr; }
 
 void RtcEngineEventHandler::onJoinChannelSuccess(const char *channel,
-                                                 rtc::uid_t userId,
-                                                 int elapsed) {
+                                                 rtc::uid_t uid, int elapsed) {
   if (!mEventHandler)
     return;
 
   std::string mChannel = channel ? channel : "";
   mEventHandler->functionCall<std::string, rtc::uid_t, int>(
-      "onJoinChannelSuccess", mChannel, userId, elapsed);
+      "onJoinChannelSuccess", mChannel, uid, elapsed);
 }
 
 void RtcEngineEventHandler::onLeaveChannel(const RtcStats &stats) {
@@ -29,21 +28,21 @@ void RtcEngineEventHandler::onLeaveChannel(const RtcStats &stats) {
 }
 
 void RtcEngineEventHandler::onRejoinChannelSuccess(const char *channel,
-                                                   rtc::uid_t userId,
+                                                   rtc::uid_t uid,
                                                    int elapsed) {
   if (!mEventHandler)
     return;
 
   std::string mChannel = channel ? channel : "";
   mEventHandler->functionCall<std::string, rtc::uid_t, int>(
-      "onRejoinChannelSuccess", mChannel, userId, elapsed);
+      "onRejoinChannelSuccess", mChannel, uid, elapsed);
 }
 
-void RtcEngineEventHandler::onUserJoined(rtc::uid_t userId, int elapsed) {
+void RtcEngineEventHandler::onUserJoined(rtc::uid_t uid, int elapsed) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, int>("onUserJoined", userId, elapsed);
+  mEventHandler->functionCall<rtc::uid_t, int>("onUserJoined", uid, elapsed);
 }
 
 void RtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole,
@@ -55,38 +54,35 @@ void RtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole,
                                         newRole);
 }
 
-void RtcEngineEventHandler::onUserOffline(rtc::uid_t userId,
+void RtcEngineEventHandler::onUserOffline(rtc::uid_t uid,
                                           USER_OFFLINE_REASON_TYPE reason) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, int>("onUserOffline", userId, reason);
+  mEventHandler->functionCall<rtc::uid_t, int>("onUserOffline", uid, reason);
 }
 
-void RtcEngineEventHandler::onUserMuteAudio(rtc::uid_t userId, bool muted) {
+void RtcEngineEventHandler::onUserMuteAudio(rtc::uid_t uid, bool muted) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, bool>("onUserMuteAudio", userId,
-                                                muted);
+  mEventHandler->functionCall<rtc::uid_t, bool>("onUserMuteAudio", uid, muted);
 }
 
-void RtcEngineEventHandler::onFirstRemoteVideoDecoded(rtc::uid_t userId,
-                                                      int width, int height,
-                                                      int elapsed) {
+void RtcEngineEventHandler::onFirstRemoteVideoDecoded(rtc::uid_t uid, int width,
+                                                      int height, int elapsed) {
   if (!mEventHandler)
     return;
 
   mEventHandler->functionCall<rtc::uid_t, int, int, int>(
-      "onFirstRemoteVideoDecoded", userId, width, height, elapsed);
+      "onFirstRemoteVideoDecoded", uid, width, height, elapsed);
 }
 
-void RtcEngineEventHandler::onUserMuteVideo(rtc::uid_t userId, bool muted) {
+void RtcEngineEventHandler::onUserMuteVideo(rtc::uid_t uid, bool muted) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, bool>("onUserMuteVideo", userId,
-                                                muted);
+  mEventHandler->functionCall<rtc::uid_t, bool>("onUserMuteVideo", uid, muted);
 }
 
 void RtcEngineEventHandler::onAudioRouteChanged(AUDIO_ROUTE_TYPE routing) {
@@ -151,13 +147,13 @@ void RtcEngineEventHandler::onAudioMixingFinished() {
   mEventHandler->functionCall("onAudioMixingFinished");
 }
 
-void RtcEngineEventHandler::onVideoSizeChanged(rtc::uid_t userId, int width,
+void RtcEngineEventHandler::onVideoSizeChanged(rtc::uid_t uid, int width,
                                                int height, int rotation) {
   if (!mEventHandler)
     return;
 
   mEventHandler->functionCall<rtc::uid_t, int, int, int>(
-      "onVideoSizeChanged", userId, width, height, rotation);
+      "onVideoSizeChanged", uid, width, height, rotation);
 }
 
 void RtcEngineEventHandler::onConnectionInterrupted() {
@@ -174,13 +170,13 @@ void RtcEngineEventHandler::onMicrophoneEnabled(bool enabled) {
   mEventHandler->functionCall<bool>("onMicrophoneEnabled", enabled);
 }
 
-void RtcEngineEventHandler::onFirstRemoteAudioFrame(rtc::uid_t userId,
+void RtcEngineEventHandler::onFirstRemoteAudioFrame(rtc::uid_t uid,
                                                     int elapsed) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, int>("onFirstRemoteAudioFrame",
-                                               userId, elapsed);
+  mEventHandler->functionCall<rtc::uid_t, int>("onFirstRemoteAudioFrame", uid,
+                                               elapsed);
 }
 
 void RtcEngineEventHandler::onFirstLocalAudioFrame(int elapsed) {
@@ -217,47 +213,46 @@ void RtcEngineEventHandler::onLastmileProbeResult(
   mEventHandler->functionCall("onLastmileProbeResult", mResult);
 }
 
-void RtcEngineEventHandler::onAudioQuality(rtc::uid_t userId, int quality,
+void RtcEngineEventHandler::onAudioQuality(rtc::uid_t uid, int quality,
                                            unsigned short delay,
                                            unsigned short lost) {
   if (!mEventHandler)
     return;
 
   mEventHandler->functionCall<rtc::uid_t, int, unsigned short, unsigned short>(
-      "onAudioQuality", userId, quality, delay, lost);
+      "onAudioQuality", uid, quality, delay, lost);
 }
 
 void RtcEngineEventHandler::onRemoteVideoTransportStats(
-    rtc::uid_t userId, unsigned short delay, unsigned short lost,
+    rtc::uid_t uid, unsigned short delay, unsigned short lost,
     unsigned short rxKBitRate) {
   if (!mEventHandler)
     return;
 
   mEventHandler->functionCall<rtc::uid_t, unsigned short, unsigned short,
                               unsigned short>("onRemoteVideoTransportStats",
-                                              userId, delay, lost, rxKBitRate);
+                                              uid, delay, lost, rxKBitRate);
 }
 
 void RtcEngineEventHandler::onRemoteAudioTransportStats(
-    rtc::uid_t userId, unsigned short delay, unsigned short lost,
+    rtc::uid_t uid, unsigned short delay, unsigned short lost,
     unsigned short rxKBitRate) {
   if (!mEventHandler)
     return;
 
   mEventHandler->functionCall<rtc::uid_t, unsigned short, unsigned short,
                               unsigned short>("onRemoteAudioTransportStats",
-                                              userId, delay, lost, rxKBitRate);
+                                              uid, delay, lost, rxKBitRate);
 }
 
 void RtcEngineEventHandler::onStreamInjectedStatus(const char *url,
-                                                   rtc::uid_t userId,
-                                                   int status) {
+                                                   rtc::uid_t uid, int status) {
   if (!mEventHandler)
     return;
 
   std::string mUrl = url ? url : "";
   mEventHandler->functionCall<std::string, rtc::uid_t, int>(
-      "onStreamInjectedStatus", mUrl, userId, status);
+      "onStreamInjectedStatus", mUrl, uid, status);
 }
 
 void RtcEngineEventHandler::onTranscodingUpdated() {
@@ -293,11 +288,11 @@ void RtcEngineEventHandler::onAudioDeviceVolumeChanged(
                                               deviceType, volume, muted);
 }
 
-void RtcEngineEventHandler::onActiveSpeaker(rtc::uid_t userId) {
+void RtcEngineEventHandler::onActiveSpeaker(rtc::uid_t uid) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t>("onActiveSpeaker", userId);
+  mEventHandler->functionCall<rtc::uid_t>("onActiveSpeaker", uid);
 }
 
 void RtcEngineEventHandler::onMediaEngineStartCallSuccess() {
@@ -314,23 +309,22 @@ void RtcEngineEventHandler::onMediaEngineLoadSuccess() {
   mEventHandler->functionCall("onMediaEngineLoadSuccess");
 }
 
-void RtcEngineEventHandler::onStreamMessageError(rtc::uid_t userId,
-                                                 int streamId, int code,
-                                                 int missed, int cached) {
+void RtcEngineEventHandler::onStreamMessageError(rtc::uid_t uid, int streamId,
+                                                 int code, int missed,
+                                                 int cached) {
   if (!mEventHandler)
     return;
 
   mEventHandler->functionCall<rtc::uid_t, int, int, int, int>(
-      "onStreamMessageError", userId, streamId, code, missed, cached);
+      "onStreamMessageError", uid, streamId, code, missed, cached);
 }
 
-void RtcEngineEventHandler::onStreamMessage(rtc::uid_t userId, int streamId,
+void RtcEngineEventHandler::onStreamMessage(rtc::uid_t uid, int streamId,
                                             const char *data, size_t length) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, int, const char *, size_t>(
-      "onStreamMessage", userId, streamId, data, length);
+  mEventHandler->functionCall("onStreamMessage", uid, streamId, data, length);
 }
 
 void RtcEngineEventHandler::onConnectionBanned() {
@@ -356,12 +350,12 @@ void RtcEngineEventHandler::onTokenPrivilegeWillExpire(const char *token) {
                                            mToken);
 }
 
-void RtcEngineEventHandler::onNetworkQuality(rtc::uid_t userId, int txQuality,
+void RtcEngineEventHandler::onNetworkQuality(rtc::uid_t uid, int txQuality,
                                              int rxQuality) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, int, int>("onNetworkQuality", userId,
+  mEventHandler->functionCall<rtc::uid_t, int, int>("onNetworkQuality", uid,
                                                     txQuality, rxQuality);
 }
 
@@ -406,21 +400,20 @@ void RtcEngineEventHandler::onFirstLocalVideoFrame(int width, int height,
                                              height, elapsed);
 }
 
-void RtcEngineEventHandler::onFirstRemoteVideoFrame(rtc::uid_t userId,
-                                                    int width, int height,
-                                                    int elapsed) {
+void RtcEngineEventHandler::onFirstRemoteVideoFrame(rtc::uid_t uid, int width,
+                                                    int height, int elapsed) {
   if (!mEventHandler)
     return;
 
   mEventHandler->functionCall<rtc::uid_t, int, int, int>(
-      "onFirstRemoteVideoFrame", userId, width, height, elapsed);
+      "onFirstRemoteVideoFrame", uid, width, height, elapsed);
 }
 
-void RtcEngineEventHandler::onUserEnableVideo(rtc::uid_t userId, bool enabled) {
+void RtcEngineEventHandler::onUserEnableVideo(rtc::uid_t uid, bool enabled) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, bool>("onUserEnableVideo", userId,
+  mEventHandler->functionCall<rtc::uid_t, bool>("onUserEnableVideo", uid,
                                                 enabled);
 }
 
@@ -493,22 +486,22 @@ void RtcEngineEventHandler::onVideoDeviceStateChanged(const char *deviceId,
 }
 
 void RtcEngineEventHandler::onRemoteVideoStateChanged(
-    rtc::uid_t userId, REMOTE_VIDEO_STATE state,
-    REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
+    rtc::uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason,
+    int elapsed) {
   if (!mEventHandler)
     return;
 
   mEventHandler->functionCall<rtc::uid_t, int, int, int>(
-      "onRemoteVideoStateChanged", userId, state, reason, elapsed);
+      "onRemoteVideoStateChanged", uid, state, reason, elapsed);
 }
 
-void RtcEngineEventHandler::onUserEnableLocalVideo(rtc::uid_t userId,
+void RtcEngineEventHandler::onUserEnableLocalVideo(rtc::uid_t uid,
                                                    bool enabled) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, bool>("onUserEnableLocalVideo",
-                                                userId, enabled);
+  mEventHandler->functionCall<rtc::uid_t, bool>("onUserEnableLocalVideo", uid,
+                                                enabled);
 }
 
 void RtcEngineEventHandler::onLocalPublishFallbackToAudioOnly(
@@ -521,12 +514,12 @@ void RtcEngineEventHandler::onLocalPublishFallbackToAudioOnly(
 }
 
 void RtcEngineEventHandler::onRemoteSubscribeFallbackToAudioOnly(
-    rtc::uid_t userId, bool isFallbackOrRecover) {
+    rtc::uid_t uid, bool isFallbackOrRecover) {
   if (!mEventHandler)
     return;
 
   mEventHandler->functionCall<rtc::uid_t, bool>(
-      "onRemoteSubscribeFallbackToAudioOnly", userId, isFallbackOrRecover);
+      "onRemoteSubscribeFallbackToAudioOnly", uid, isFallbackOrRecover);
 }
 
 void RtcEngineEventHandler::onConnectionStateChanged(
@@ -547,13 +540,13 @@ void RtcEngineEventHandler::onAudioMixingStateChanged(
                                         errorCode);
 }
 
-void RtcEngineEventHandler::onFirstRemoteAudioDecoded(rtc::uid_t userId,
+void RtcEngineEventHandler::onFirstRemoteAudioDecoded(rtc::uid_t uid,
                                                       int elapsed) {
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, int>("onFirstRemoteAudioDecoded",
-                                               userId, elapsed);
+  mEventHandler->functionCall<rtc::uid_t, int>("onFirstRemoteAudioDecoded", uid,
+                                               elapsed);
 }
 
 void RtcEngineEventHandler::onLocalVideoStateChanged(
@@ -583,23 +576,23 @@ void RtcEngineEventHandler::onNetworkTypeChanged(NETWORK_TYPE type) {
   mEventHandler->functionCall<int>("onNetworkTypeChanged", type);
 }
 
-void RtcEngineEventHandler::onLocalUserRegistered(rtc::uid_t userId,
+void RtcEngineEventHandler::onLocalUserRegistered(rtc::uid_t uid,
                                                   const char *userAccount) {
   if (!mEventHandler)
     return;
 
   std::string mUserAccount = userAccount ? userAccount : "";
   mEventHandler->functionCall<rtc::uid_t, std::string>("onLocalUserRegistered",
-                                                       userId, mUserAccount);
+                                                       uid, mUserAccount);
 }
 
-void RtcEngineEventHandler::onUserInfoUpdated(rtc::uid_t userId,
+void RtcEngineEventHandler::onUserInfoUpdated(rtc::uid_t uid,
                                               const UserInfo &info) {
   if (!mEventHandler)
     return;
 
   const UserInfo mInfo = info;
-  mEventHandler->functionCall("onUserInfoUpdated", userId, mInfo);
+  mEventHandler->functionCall("onUserInfoUpdated", uid, mInfo);
 }
 
 void RtcEngineEventHandler::onLocalAudioStateChanged(
@@ -612,13 +605,13 @@ void RtcEngineEventHandler::onLocalAudioStateChanged(
 }
 
 void RtcEngineEventHandler::onRemoteAudioStateChanged(
-    rtc::uid_t userId, REMOTE_AUDIO_STATE state,
-    REMOTE_AUDIO_STATE_REASON reason, int elapsed) {
+    rtc::uid_t uid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason,
+    int elapsed) {
   if (!mEventHandler)
     return;
 
   mEventHandler->functionCall<rtc::uid_t, int, int, int>(
-      "onRemoteAudioStateChanged", userId, state, reason, elapsed);
+      "onRemoteAudioStateChanged", uid, state, reason, elapsed);
 }
 
 void RtcEngineEventHandler::onChannelMediaRelayStateChanged(

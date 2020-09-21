@@ -5,17 +5,18 @@
 #include "Extensions.h"
 #include "scripting/js-bindings/manual/jsb_conversions.hpp"
 
+namespace agora {
+namespace common {
 using namespace agora::rtc;
 
-se::Value agora::common::toSeValue(int intValue) { return se::Value(intValue); }
-se::Value agora::common::toSeValue(unsigned int uIntValue) {
-  return se::Value(uIntValue);
-}
-se::Value agora::common::toSeValue(const char *strValue) {
-  return se::Value(strValue);
+se::Value toSeValue(const char *byteValue, int length) {
+  se::HandleObject obj(
+      se::Object::createTypedArray(se::Object::TypedArrayType::UINT8,
+                                   const_cast<char *>(byteValue), length));
+  return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(const RtcStats &rtcStats) {
+se::Value toSeValue(const RtcStats &rtcStats) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("duration", se::Value(rtcStats.duration));
   obj->setProperty("txBytes", se::Value(rtcStats.txBytes));
@@ -46,7 +47,7 @@ se::Value agora::common::toSeValue(const RtcStats &rtcStats) {
   return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(const AudioVolumeInfo &audioVolumeInfo) {
+se::Value toSeValue(const AudioVolumeInfo &audioVolumeInfo) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("uid", se::Value(audioVolumeInfo.uid));
   obj->setProperty("volume", se::Value(audioVolumeInfo.volume));
@@ -55,8 +56,7 @@ se::Value agora::common::toSeValue(const AudioVolumeInfo &audioVolumeInfo) {
   return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(const AudioVolumeInfo *audioVolumeInfo,
-                                   int length) {
+se::Value toSeValue(const AudioVolumeInfo *audioVolumeInfo, int length) {
   se::HandleObject obj(se::Object::createArrayObject(length));
   for (int i = 0; i < length; ++i) {
     AudioVolumeInfo info = *(audioVolumeInfo + i);
@@ -65,8 +65,7 @@ se::Value agora::common::toSeValue(const AudioVolumeInfo *audioVolumeInfo,
   return se::Value(obj);
 }
 
-se::Value
-agora::common::toSeValue(const LastmileProbeResult &lastmileProbeResult) {
+se::Value toSeValue(const LastmileProbeResult &lastmileProbeResult) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("state", se::Value(lastmileProbeResult.state));
   obj->setProperty("uplinkReport", toSeValue(lastmileProbeResult.uplinkReport));
@@ -76,8 +75,8 @@ agora::common::toSeValue(const LastmileProbeResult &lastmileProbeResult) {
   return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(
-    const LastmileProbeOneWayResult &lastmileProbeOneWayResult) {
+se::Value
+toSeValue(const LastmileProbeOneWayResult &lastmileProbeOneWayResult) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("packetLossRate",
                    se::Value(lastmileProbeOneWayResult.packetLossRate));
@@ -87,7 +86,7 @@ se::Value agora::common::toSeValue(
   return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(const LocalVideoStats &localVideoStats) {
+se::Value toSeValue(const LocalVideoStats &localVideoStats) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("sentBitrate", se::Value(localVideoStats.sentBitrate));
   obj->setProperty("sentFrameRate", se::Value(localVideoStats.sentFrameRate));
@@ -108,10 +107,14 @@ se::Value agora::common::toSeValue(const LocalVideoStats &localVideoStats) {
   obj->setProperty("encodedFrameCount",
                    se::Value(localVideoStats.encodedFrameCount));
   obj->setProperty("codecType", se::Value(localVideoStats.codecType));
+  obj->setProperty("txPacketLossRate",
+                   se::Value(localVideoStats.txPacketLossRate));
+  obj->setProperty("captureFrameRate",
+                   se::Value(localVideoStats.captureFrameRate));
   return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(const RemoteVideoStats &remoteVideoStats) {
+se::Value toSeValue(const RemoteVideoStats &remoteVideoStats) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("uid", se::Value(remoteVideoStats.uid));
   obj->setProperty("delay", se::Value(remoteVideoStats.delay));
@@ -131,18 +134,22 @@ se::Value agora::common::toSeValue(const RemoteVideoStats &remoteVideoStats) {
   obj->setProperty("frozenRate", se::Value(remoteVideoStats.frozenRate));
   obj->setProperty("totalActiveTime",
                    se::Value(remoteVideoStats.totalActiveTime));
+  obj->setProperty("publishDuration",
+                   se::Value(remoteVideoStats.publishDuration));
   return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(const LocalAudioStats &localAudioStats) {
+se::Value toSeValue(const LocalAudioStats &localAudioStats) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("numChannels", se::Value(localAudioStats.numChannels));
   obj->setProperty("sentSampleRate", se::Value(localAudioStats.sentSampleRate));
   obj->setProperty("sentBitrate", se::Value(localAudioStats.sentBitrate));
+  obj->setProperty("txPacketLossRate",
+                   se::Value(localAudioStats.txPacketLossRate));
   return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(const RemoteAudioStats &remoteAudioStats) {
+se::Value toSeValue(const RemoteAudioStats &remoteAudioStats) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("uid", se::Value(remoteAudioStats.uid));
   obj->setProperty("quality", se::Value(remoteAudioStats.quality));
@@ -161,17 +168,19 @@ se::Value agora::common::toSeValue(const RemoteAudioStats &remoteAudioStats) {
   obj->setProperty("frozenRate", se::Value(remoteAudioStats.frozenRate));
   obj->setProperty("totalActiveTime",
                    se::Value(remoteAudioStats.totalActiveTime));
+  obj->setProperty("publishDuration",
+                   se::Value(remoteAudioStats.publishDuration));
   return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(const UserInfo &userInfo) {
+se::Value toSeValue(const UserInfo &userInfo) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("uid", se::Value(userInfo.uid));
   obj->setProperty("userAccount", se::Value(userInfo.userAccount));
   return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(const Rectangle &rectangle) {
+se::Value toSeValue(const Rectangle &rectangle) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("x", se::Value(rectangle.x));
   obj->setProperty("y", se::Value(rectangle.y));
@@ -180,7 +189,7 @@ se::Value agora::common::toSeValue(const Rectangle &rectangle) {
   return se::Value(obj);
 }
 
-se::Value agora::common::toSeValue(const Rectangle *rectangle, int length) {
+se::Value toSeValue(const Rectangle *rectangle, int length) {
   se::HandleObject obj(se::Object::createArrayObject(length));
   for (int i = 0; i < length; ++i) {
     Rectangle info = *(rectangle + i);
@@ -188,3 +197,19 @@ se::Value agora::common::toSeValue(const Rectangle *rectangle, int length) {
   }
   return se::Value(obj);
 }
+
+se::Value toSeValue(const IMetadataObserver::Metadata &metadata) {
+  se::HandleObject buffer(se::Object::createTypedArray(
+      se::Object::TypedArrayType::UINT8, metadata.buffer, metadata.size));
+  se::Value timeStampMs;
+  longlong_to_seval(metadata.timeStampMs, &timeStampMs);
+
+  se::HandleObject obj(se::Object::createPlainObject());
+  obj->setProperty("uid", se::Value(metadata.uid));
+  obj->setProperty("size", se::Value(metadata.size));
+  obj->setProperty("buffer", se::Value(buffer));
+  obj->setProperty("timeStampMs", timeStampMs);
+  return se::Value(obj);
+}
+} // namespace common
+} // namespace agora

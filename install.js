@@ -64,18 +64,6 @@ module.exports = {
     projHelper = new ProjHelper(options);
     projHelper.Android.addUsesPermission = addUsesPermission;
     projHelper.Android.androidPath = path.join(options.dest, `frameworks/runtime-src/proj.android-studio`);
-    projHelper.iOS._addFrameworkToTarget =  function (frameworkPath, target, embed) {
-      let targetIOS = this._searchTarget(target);
-      if (targetIOS) {
-        this.project.addFramework(frameworkPath, {
-          customFramework: true,
-          target: this._searchTarget(target),
-          embed: embed
-        });
-      }
-      utils.printLog(`add framework "${frameworkPath} to iOS project`);
-      this.savePBXProjectConfig();
-    };
 
     // 在此处完成构建项目服务 sdk 的集成
     // Todo...
@@ -311,15 +299,8 @@ dependencies {
     projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/rtcChannel"');
     projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/rtcEngine"');
     projHelper.iOS.addToHeaderSearchPaths('"$(SRCROOT)/../Classes/agora/test"');
-    projHelper.iOS._addFrameworkToTarget("ios/agora/AgoraRtcCryptoLoader.framework", targetName, true);
-    projHelper.iOS._addFrameworkToTarget("ios/agora/AgoraRtcKit.framework", targetName, true);
-    projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/CFNetwork.framework", targetName);
-    projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/CoreMedia.framework", targetName);
-    projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/CoreVideo.framework", targetName);
-    projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/CoreTelephony.framework", targetName);
-    projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/SystemConfiguration.framework", targetName);
-    projHelper.iOS.addFrameworkToTarget("/System/Library/Frameworks/VideoToolbox.framework", targetName);
-    projHelper.iOS.addFrameworkToTarget("/usr/lib/libresolv.9.tbd", targetName);
+    projHelper.iOS.addFrameworkToTarget("ios/agora/AgoraRtcCryptoLoader.framework", targetName);
+    projHelper.iOS.addFrameworkToTarget("ios/agora/AgoraRtcKit.framework", targetName);
     projHelper.iOS.addSourceFileToProject("agora/callback/rtcChannnelCallback/RtcChannelEventHandler.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/callback/rtcEngineCallback/RtcEngineEventHandler.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/deviceManager/audioDeviceManager/AudioPlaybackDeviceManager.cpp", "Classes", targetName);

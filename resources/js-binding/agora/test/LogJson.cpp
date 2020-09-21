@@ -5,6 +5,7 @@
 #include "../common/rapidjson/stringbuffer.h"
 #include "../common/rapidjson/writer.h"
 #include <fstream>
+#include <sstream>
 #include <stdint.h>
 
 using namespace std;
@@ -301,7 +302,9 @@ Value createValue(const char *t, rapidjson::Document &doc) {
 LogJson::LogJson() { document_.SetArray(); }
 
 void LogJson::log(int apiType) {
-  auto apiTypeString = std::to_string(apiType);
+  std::ostringstream os;
+  os << apiType;
+  string apiTypeString = os.str();
   rapidjson::Value obj(rapidjson::kObjectType);
 
   rapidjson::Value apiObject(rapidjson::kObjectType);

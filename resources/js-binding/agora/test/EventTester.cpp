@@ -148,7 +148,7 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
     Value &param = v["param"];
     if (type == "onJoinChannelSuccess") {
       eventHandler->onJoinChannelSuccess(param["channel"].GetString(),
-                                         param["userId"].GetUint(),
+                                         param["uid"].GetUint(),
                                          param["elapsed"].GetInt());
     } else if (type == "onLeaveChannel") {
       RtcStats stats;
@@ -156,10 +156,10 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
       eventHandler->onLeaveChannel(stats);
     } else if (type == "onRejoinChannelSuccess") {
       eventHandler->onRejoinChannelSuccess(param["channel"].GetString(),
-                                           param["userId"].GetUint(),
+                                           param["uid"].GetUint(),
                                            param["elapsed"].GetInt());
     } else if (type == "onUserJoined") {
-      eventHandler->onUserJoined(param["userId"].GetUint(),
+      eventHandler->onUserJoined(param["uid"].GetUint(),
                                  param["elapsed"].GetInt());
     } else if (type == "onClientRoleChanged") {
       eventHandler->onClientRoleChanged(
@@ -167,17 +167,17 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
           CLIENT_ROLE_TYPE(param["newRole"].GetInt()));
     } else if (type == "onUserOffline") {
       eventHandler->onUserOffline(
-          param["userId"].GetUint(),
+          param["uid"].GetUint(),
           USER_OFFLINE_REASON_TYPE(param["reason"].GetInt()));
     } else if (type == "onUserMuteAudio") {
-      eventHandler->onUserMuteAudio(param["userId"].GetUint(),
+      eventHandler->onUserMuteAudio(param["uid"].GetUint(),
                                     param["muted"].GetBool());
     } else if (type == "onFirstRemoteVideoDecoded") {
       eventHandler->onFirstRemoteVideoDecoded(
-          param["userId"].GetUint(), param["width"].GetInt(),
+          param["uid"].GetUint(), param["width"].GetInt(),
           param["height"].GetInt(), param["elapsed"].GetInt());
     } else if (type == "onUserMuteVideo") {
-      eventHandler->onUserMuteVideo(param["userId"].GetUint(),
+      eventHandler->onUserMuteVideo(param["uid"].GetUint(),
                                     param["muted"].GetBool());
     } else if (type == "onAudioRouteChanged") {
       eventHandler->onAudioRouteChanged(
@@ -213,14 +213,14 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
       eventHandler->onAudioMixingFinished();
     } else if (type == "onVideoSizeChanged") {
       eventHandler->onVideoSizeChanged(
-          param["userId"].GetUint(), param["width"].GetInt(),
+          param["uid"].GetUint(), param["width"].GetInt(),
           param["height"].GetInt(), param["rotation"].GetInt());
     } else if (type == "onConnectionInterrupted") {
       eventHandler->onConnectionInterrupted();
     } else if (type == "onMicrophoneEnabled") {
       eventHandler->onMicrophoneEnabled(param["enabled"].GetBool());
     } else if (type == "onFirstRemoteAudioFrame") {
-      eventHandler->onFirstRemoteAudioFrame(param["userId"].GetUint(),
+      eventHandler->onFirstRemoteAudioFrame(param["uid"].GetUint(),
                                             param["elapsed"].GetInt());
     } else if (type == "onFirstLocalAudioFrame") {
       eventHandler->onFirstLocalAudioFrame(param["elapsed"].GetInt());
@@ -235,23 +235,23 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
       json_to_object(param["result"], result);
       eventHandler->onLastmileProbeResult(result);
     } else if (type == "onAudioQuality") {
-      eventHandler->onAudioQuality(param["userId"].GetUint(),
+      eventHandler->onAudioQuality(param["uid"].GetUint(),
                                    param["quality"].GetInt(),
                                    (unsigned short)param["delay"].GetUint(),
                                    (unsigned short)param["lost"].GetUint());
     } else if (type == "onRemoteVideoTransportStats") {
       eventHandler->onRemoteVideoTransportStats(
-          param["userId"].GetUint(), (unsigned short)param["delay"].GetUint(),
+          param["uid"].GetUint(), (unsigned short)param["delay"].GetUint(),
           (unsigned short)param["lost"].GetUint(),
           (unsigned short)param["rxKBitRate"].GetUint());
     } else if (type == "onRemoteAudioTransportStats") {
       eventHandler->onRemoteAudioTransportStats(
-          param["userId"].GetUint(), (unsigned short)param["delay"].GetUint(),
+          param["uid"].GetUint(), (unsigned short)param["delay"].GetUint(),
           (unsigned short)param["lost"].GetUint(),
           (unsigned short)param["rxKBitRate"].GetUint());
     } else if (type == "onStreamInjectedStatus") {
       eventHandler->onStreamInjectedStatus(param["url"].GetString(),
-                                           param["userId"].GetUint(),
+                                           param["uid"].GetUint(),
                                            param["status"].GetInt());
     } else if (type == "onTranscodingUpdated") {
       eventHandler->onTranscodingUpdated();
@@ -265,19 +265,19 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
           (MEDIA_DEVICE_TYPE)param["deviceType"].GetInt(),
           param["volume"].GetInt(), param["muted"].GetBool());
     } else if (type == "onActiveSpeaker") {
-      eventHandler->onActiveSpeaker(param["userId"].GetUint());
+      eventHandler->onActiveSpeaker(param["uid"].GetUint());
     } else if (type == "onMediaEngineStartCallSuccess") {
       eventHandler->onMediaEngineStartCallSuccess();
     } else if (type == "onMediaEngineLoadSuccess") {
       eventHandler->onMediaEngineLoadSuccess();
     } else if (type == "onStreamMessageError") {
       eventHandler->onStreamMessageError(
-          param["userId"].GetUint(), param["streamId"].GetInt(),
+          param["uid"].GetUint(), param["streamId"].GetInt(),
           param["code"].GetInt(), param["missed"].GetInt(),
           param["cached"].GetInt());
     } else if (type == "onStreamMessage") {
       eventHandler->onStreamMessage(
-          param["userId"].GetUint(), param["streamId"].GetInt(),
+          param["uid"].GetUint(), param["streamId"].GetInt(),
           param["data"].GetString(), (size_t)param["length"].GetUint64());
     } else if (type == "onConnectionBanned") {
       eventHandler->onConnectionBanned();
@@ -286,7 +286,7 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
     } else if (type == "onTokenPrivilegeWillExpire") {
       eventHandler->onTokenPrivilegeWillExpire(param["token"].GetString());
     } else if (type == "onNetworkQuality") {
-      eventHandler->onNetworkQuality(param["userId"].GetUint(),
+      eventHandler->onNetworkQuality(param["uid"].GetUint(),
                                      param["txQuality"].GetInt(),
                                      param["rxQuality"].GetInt());
     } else if (type == "onLocalVideoStats") {
@@ -311,10 +311,10 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
                                            param["elapsed"].GetInt());
     } else if (type == "onFirstRemoteVideoFrame") {
       eventHandler->onFirstRemoteVideoFrame(
-          param["userId"].GetUint(), param["width"].GetInt(),
+          param["uid"].GetUint(), param["width"].GetInt(),
           param["height"].GetInt(), param["elapsed"].GetInt());
     } else if (type == "onUserEnableVideo") {
-      eventHandler->onUserEnableVideo(param["userId"].GetUint(),
+      eventHandler->onUserEnableVideo(param["uid"].GetUint(),
                                       param["enabled"].GetBool());
     } else if (type == "onAudioDeviceStateChanged") {
       eventHandler->onAudioDeviceStateChanged(param["deviceId"].GetString(),
@@ -342,19 +342,18 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
                                               param["deviceState"].GetInt());
     } else if (type == "onRemoteVideoStateChanged") {
       eventHandler->onRemoteVideoStateChanged(
-          param["userId"].GetUint(),
-          (REMOTE_VIDEO_STATE)param["state"].GetInt(),
+          param["uid"].GetUint(), (REMOTE_VIDEO_STATE)param["state"].GetInt(),
           (REMOTE_VIDEO_STATE_REASON)param["reason"].GetInt(),
           param["elapsed"].GetInt());
     } else if (type == "onUserEnableLocalVideo") {
-      eventHandler->onUserEnableLocalVideo(param["userId"].GetUint(),
+      eventHandler->onUserEnableLocalVideo(param["uid"].GetUint(),
                                            param["enabled"].GetBool());
     } else if (type == "onLocalPublishFallbackToAudioOnly") {
       eventHandler->onLocalPublishFallbackToAudioOnly(
           param["isFallbackOrRecover"].GetBool());
     } else if (type == "onRemoteSubscribeFallbackToAudioOnly") {
       eventHandler->onRemoteSubscribeFallbackToAudioOnly(
-          param["userId"].GetUint(), param["isFallbackOrRecover"].GetBool());
+          param["uid"].GetUint(), param["isFallbackOrRecover"].GetBool());
     } else if (type == "onConnectionStateChanged") {
       eventHandler->onConnectionStateChanged(
           (CONNECTION_STATE_TYPE)param["state"].GetInt(),
@@ -364,7 +363,7 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
           (AUDIO_MIXING_STATE_TYPE)param["state"].GetInt(),
           (AUDIO_MIXING_ERROR_TYPE)param["errorCode"].GetInt());
     } else if (type == "onFirstRemoteAudioDecoded") {
-      eventHandler->onFirstRemoteAudioDecoded(param["userId"].GetUint(),
+      eventHandler->onFirstRemoteAudioDecoded(param["uid"].GetUint(),
                                               param["elapsed"].GetInt());
     } else if (type == "onLocalVideoStateChanged") {
       eventHandler->onLocalVideoStateChanged(
@@ -378,20 +377,19 @@ void BeginRtcEngineEventTest(const char *caseFilePath,
     } else if (type == "onNetworkTypeChanged") {
       eventHandler->onNetworkTypeChanged((NETWORK_TYPE)param["type"].GetInt());
     } else if (type == "onLocalUserRegistered") {
-      eventHandler->onLocalUserRegistered(param["userId"].GetUint(),
+      eventHandler->onLocalUserRegistered(param["uid"].GetUint(),
                                           param["userAccount"].GetString());
     } else if (type == "onUserInfoUpdated") {
       UserInfo info;
       json_to_object(param["info"], info);
-      eventHandler->onUserInfoUpdated(param["userId"].GetUint(), info);
+      eventHandler->onUserInfoUpdated(param["uid"].GetUint(), info);
     } else if (type == "onLocalAudioStateChanged") {
       eventHandler->onLocalAudioStateChanged(
           (LOCAL_AUDIO_STREAM_STATE)param["state"].GetInt(),
           (LOCAL_AUDIO_STREAM_ERROR)param["error"].GetInt());
     } else if (type == "onRemoteAudioStateChanged") {
       eventHandler->onRemoteAudioStateChanged(
-          param["userId"].GetUint(),
-          (REMOTE_AUDIO_STATE)param["state"].GetInt(),
+          param["uid"].GetUint(), (REMOTE_AUDIO_STATE)param["state"].GetInt(),
           (REMOTE_AUDIO_STATE_REASON)param["reason"].GetInt(),
           param["elapsed"].GetInt());
     } else if (type == "onChannelMediaRelayStateChanged") {
@@ -462,11 +460,11 @@ void BeginChannelEventTest(const char *caseFilePath,
       eventHandler->onChannelError(rtcChannel, param["err"].GetInt(),
                                    param["msg"].GetString());
     } else if (type == "onJoinChannelSuccess") {
-      eventHandler->onJoinChannelSuccess(rtcChannel, param["userId"].GetUint(),
+      eventHandler->onJoinChannelSuccess(rtcChannel, param["uid"].GetUint(),
                                          param["elapsed"].GetInt());
     } else if (type == "onRejoinChannelSuccess") {
-      eventHandler->onRejoinChannelSuccess(
-          rtcChannel, param["userId"].GetUint(), param["elapsed"].GetInt());
+      eventHandler->onRejoinChannelSuccess(rtcChannel, param["uid"].GetUint(),
+                                           param["elapsed"].GetInt());
     } else if (type == "onLeaveChannel") {
       RtcStats stats;
       json_to_object(param["stats"], stats);
@@ -476,11 +474,11 @@ void BeginChannelEventTest(const char *caseFilePath,
           rtcChannel, (CLIENT_ROLE_TYPE)param["oldRole"].GetInt(),
           (CLIENT_ROLE_TYPE)param["newRole"].GetInt());
     } else if (type == "onUserJoined") {
-      eventHandler->onUserJoined(rtcChannel, param["userId"].GetUint(),
+      eventHandler->onUserJoined(rtcChannel, param["uid"].GetUint(),
                                  param["elapsed"].GetInt());
     } else if (type == "onUserOffline") {
       eventHandler->onUserOffline(
-          rtcChannel, param["userId"].GetUint(),
+          rtcChannel, param["uid"].GetUint(),
           (USER_OFFLINE_REASON_TYPE)param["reason"].GetInt());
     } else if (type == "onConnectionLost") {
       eventHandler->onConnectionLost(rtcChannel);
@@ -494,7 +492,7 @@ void BeginChannelEventTest(const char *caseFilePath,
       json_to_object(param["stats"], stats);
       eventHandler->onRtcStats(rtcChannel, stats);
     } else if (type == "onNetworkQuality") {
-      eventHandler->onNetworkQuality(rtcChannel, param["userId"].GetUint(),
+      eventHandler->onNetworkQuality(rtcChannel, param["uid"].GetUint(),
                                      param["txQuality"].GetInt(),
                                      param["rxQuality"].GetInt());
     } else if (type == "onRemoteVideoStats") {
@@ -507,29 +505,29 @@ void BeginChannelEventTest(const char *caseFilePath,
       eventHandler->onRemoteAudioStats(rtcChannel, stats);
     } else if (type == "onRemoteAudioStateChanged") {
       eventHandler->onRemoteAudioStateChanged(
-          rtcChannel, param["userId"].GetUint(),
+          rtcChannel, param["uid"].GetUint(),
           (REMOTE_AUDIO_STATE)param["state"].GetInt(),
           (REMOTE_AUDIO_STATE_REASON)param["reason"].GetInt(),
           param["elapsed"].GetInt());
     } else if (type == "onActiveSpeaker") {
-      eventHandler->onActiveSpeaker(rtcChannel, param["userId"].GetUint());
+      eventHandler->onActiveSpeaker(rtcChannel, param["uid"].GetUint());
     } else if (type == "onVideoSizeChanged") {
       eventHandler->onVideoSizeChanged(
-          rtcChannel, param["userId"].GetUint(), param["width"].GetInt(),
+          rtcChannel, param["uid"].GetUint(), param["width"].GetInt(),
           param["height"].GetInt(), param["rotation"].GetInt());
     } else if (type == "onRemoteVideoStateChanged") {
       eventHandler->onRemoteVideoStateChanged(
-          rtcChannel, param["userId"].GetUint(),
+          rtcChannel, param["uid"].GetUint(),
           (REMOTE_VIDEO_STATE)param["state"].GetInt(),
           (REMOTE_VIDEO_STATE_REASON)param["reason"].GetInt(),
           param["elapsed"].GetInt());
     } else if (type == "onStreamMessage") {
       eventHandler->onStreamMessage(
-          rtcChannel, param["userId"].GetUint(), param["streamId"].GetInt(),
+          rtcChannel, param["uid"].GetUint(), param["streamId"].GetInt(),
           param["data"].GetString(), param["length"].GetInt());
     } else if (type == "onStreamMessageError") {
       eventHandler->onStreamMessageError(
-          rtcChannel, param["userId"].GetUint(), param["streamId"].GetInt(),
+          rtcChannel, param["uid"].GetUint(), param["streamId"].GetInt(),
           param["code"].GetInt(), param["missed"].GetInt(),
           param["cached"].GetInt());
     } else if (type == "onChannelMediaRelayStateChanged") {
@@ -548,14 +546,14 @@ void BeginChannelEventTest(const char *caseFilePath,
       eventHandler->onTranscodingUpdated(rtcChannel);
     } else if (type == "onStreamInjectedStatus") {
       eventHandler->onStreamInjectedStatus(rtcChannel, param["url"].GetString(),
-                                           param["userId"].GetUint(),
+                                           param["uid"].GetUint(),
                                            param["status"].GetInt());
     } else if (type == "onLocalPublishFallbackToAudioOnly") {
       eventHandler->onLocalPublishFallbackToAudioOnly(
           rtcChannel, param["isFallbackOrRecover"].GetBool());
     } else if (type == "onRemoteSubscribeFallbackToAudioOnly") {
       eventHandler->onRemoteSubscribeFallbackToAudioOnly(
-          rtcChannel, param["userId"].GetUint(),
+          rtcChannel, param["uid"].GetUint(),
           param["isFallbackOrRecover"].GetBool());
     } else if (type == "onConnectionStateChanged") {
       eventHandler->onConnectionStateChanged(

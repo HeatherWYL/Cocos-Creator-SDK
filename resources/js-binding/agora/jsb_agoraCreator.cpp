@@ -56,8 +56,26 @@ using namespace cocos2d;
 using namespace agora::rtc;
 using namespace agora::common;
 
+class CocosMetadataObserver : public IMetadataObserver {
+public:
+  explicit CocosMetadataObserver(EngineEventHandler *EventHandler)
+      : eventHandler(EventHandler) {}
+
+  int getMaxMetadataSize() override { return 0; }
+
+  bool onReadyToSendMetadata(Metadata &metadata) override { return false; }
+
+  void onMetadataReceived(const Metadata &metadata) override {
+    eventHandler->functionCall("onMetadataReceived", metadata);
+  }
+
+private:
+  EngineEventHandler *eventHandler;
+};
+
 RtcEngineEventHandler *rtcEngineEventHandler;
 EngineEventHandler *eventHandler;
+CocosMetadataObserver *observer;
 
 se::Class *js_cocos2dx_agoraCreator_class = nullptr;
 
@@ -65,6 +83,11 @@ static bool js_cocos2dx_extension_agoraCreator_finalize(se::State &s) {
   auto *cobj = (RtcEngineBridge *)s.nativeThisObject();
   if (cobj) {
     cobj->release();
+  }
+
+  if (observer) {
+    delete observer;
+    observer = nullptr;
   }
 
   if (eventHandler) {
@@ -88,6 +111,10 @@ static bool js_cocos2dx_extension_agoraCreator_constructor(se::State &s) {
   if (!eventHandler) {
     // link the native object with the javascript object
     eventHandler = new EngineEventHandler(obj);
+  }
+
+  if (!observer) {
+    observer = new CocosMetadataObserver(eventHandler);
   }
 
   if (!rtcEngineEventHandler) {
@@ -121,7 +148,7 @@ static bool js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State &s) {
   const auto &args = s.args();
   size_t argc = args.size();
   CC_UNUSED bool ok = true;
-  if (argc == 2) {
+  if (argc >= 2) {
     int api;
     ok &= seval_to_int32(args[0], &api);
 
@@ -132,16 +159,15 @@ static bool js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State &s) {
     case GET_VERSION:
     case GET_ERROR_DESCRIPTION:
     case GET_CALL_ID: {
-      const char *res = cobj->callApi_str((API_TYPE)api, parameters);
-
-      s.rval() = toSeValue(res);
+      std::string res = cobj->callApi_str((API_TYPE)api, parameters);
+      s.rval() = se::Value(res);
     } break;
 
     case GET_USER_INFO_BY_USER_ACCOUNT:
     case GET_USER_INFO_BY_UID: {
       auto *p = new UserInfo;
-      cobj->callApi((API_TYPE)api, parameters, reinterpret_cast<void *&>(p));
 
+      cobj->callApi((API_TYPE)api, parameters, p);
       s.rval() = toSeValue(*p);
 
       delete p;
@@ -150,19 +176,28 @@ static bool js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State &s) {
     case CREATE_DATA_STREAM: {
       auto *p = new int;
 
-      cobj->callApi((API_TYPE)api, parameters, reinterpret_cast<void *&>(p));
+      cobj->callApi((API_TYPE)api, parameters, p);
+      s.rval() = se::Value(*p);
 
-      s.rval() = toSeValue(*p);
+      delete p;
     } break;
 
     case SEND_STREAM_MESSAGE: {
+      std::vector<int> bytes;
+      seval_to_std_vector_int(args[2], &bytes);
+      std::string bytesStr(bytes.begin(), bytes.end());
+
+      int res = cobj->callApi((API_TYPE)api, parameters,
+                              const_cast<char *>(bytesStr.c_str()));
+      s.rval() = se::Value(res);
     } break;
 
     case SET_UP_LOCAL_VIDEO: {
+      // TODO
     } break;
 
     case SET_UP_REMOTE_VIDEO: {
-
+      // TODO
     } break;
 
     case REGISTER_PACKET_OBSERVER: {
@@ -170,15 +205,27 @@ static bool js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State &s) {
     } break;
 
     case SEND_METADATA: {
+      std::vector<int> bytes;
+      seval_to_std_vector_int(args[2], &bytes);
+      std::string bytesStr(bytes.begin(), bytes.end());
 
+      int res = cobj->callApi((API_TYPE)api, parameters,
+                              const_cast<char *>(bytesStr.c_str()));
+      s.rval() = se::Value(res);
     } break;
 
     case SET_MAX_META_SIZE: {
+      auto ptr = new int;
 
+      int res = cobj->callApi((API_TYPE)api, parameters, ptr);
+      s.rval() = se::Value(res);
+
+      delete ptr;
     } break;
 
     case REGISTER_MEDIA_META_DATA_OBSERVER: {
-
+      int res = cobj->callApi((API_TYPE)api, parameters, observer);
+      s.rval() = se::Value(res);
     } break;
 
     default: {

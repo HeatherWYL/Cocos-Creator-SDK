@@ -219,25 +219,7 @@ public:
   }
 
   void functionCall(std::string callbackName, std::string channelId,
-                    const rtc::RtcStats rtcstats) {
-    cocos2d::Application::getInstance()
-        ->getScheduler()
-        ->performFunctionInCocosThread([=]() {
-          se::Value func;
-          if (_refObj->getProperty(callbackName.c_str(), &func)) {
-            se::ScriptEngine::getInstance()->clearException();
-            se::AutoHandleScope hs;
-
-            se::ValueArray args;
-            args.push_back(toSeValue(rtcstats));
-
-            func.toObject()->call(args, _refObj);
-          }
-        });
-  }
-
-  void functionCall(std::string callbackName, std::string channelId,
-                    const rtc::RemoteVideoStats stats) {
+                    const rtc::RtcStats &stats) {
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {
@@ -255,7 +237,25 @@ public:
   }
 
   void functionCall(std::string callbackName, std::string channelId,
-                    const rtc::RemoteAudioStats stats) {
+                    const rtc::RemoteVideoStats &stats) {
+    cocos2d::Application::getInstance()
+        ->getScheduler()
+        ->performFunctionInCocosThread([=]() {
+          se::Value func;
+          if (_refObj->getProperty(callbackName.c_str(), &func)) {
+            se::ScriptEngine::getInstance()->clearException();
+            se::AutoHandleScope hs;
+
+            se::ValueArray args;
+            args.push_back(toSeValue(stats));
+
+            func.toObject()->call(args, _refObj);
+          }
+        });
+  }
+
+  void functionCall(std::string callbackName, std::string channelId,
+                    const rtc::RemoteAudioStats &stats) {
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {

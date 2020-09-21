@@ -3,7 +3,7 @@ namespace agora {
     const event = new cc.EventTarget()
 
     declare class agoraCreator {
-        callNativeMethod: (apiType: number, jsonParam?: string) => any
+        callNativeMethod: (apiType: number, jsonParam?: string, extra?: any) => any
 
         callNativeMethodAudioEffect: (apiType: number, jsonParam?: string) => any
 
@@ -799,7 +799,7 @@ namespace agora {
          @param data Pointer to the data received by the local user.
          @param length Length of the data in bytes.
          */
-        onStreamMessage: (uid: number, streamId: number, data: string, length: number) => void
+        onStreamMessage: (uid: number, streamId: number, data: Uint8Array, length: number) => void
 
         /** Occurs when the local user does not receive the data stream from the remote user within five seconds.
 
@@ -1074,6 +1074,12 @@ namespace agora {
          @param info The `UserInfo` object that contains the user ID and user account of the remote user.
          */
         onUserInfoUpdated: (uid: number, info: UserInfo) => void
+
+        /** Occurs when the local user receives the metadata.
+
+         @param metadata The received Metadata.
+         */
+        onMetadataReceived: (metadata: Metadata) => void
     }
 
     let bridge: agoraCreator
@@ -1148,7 +1154,7 @@ namespace agora {
         }
         bridge.onLastmileProbeResult = function (result) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLastmileProbeResult', JSON.stringify(result))
+                bridge.logEngineEventCase('onLastmileProbeResult', JSON.stringify({result}))
             }
             event.emit('lastmileProbeResult', result)
         }
@@ -1476,7 +1482,12 @@ namespace agora {
         }
         bridge.onStreamMessage = function (uid, streamId, data, length) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onStreamMessage', JSON.stringify({uid, streamId, data, length}))
+                bridge.logEngineEventCase('onStreamMessage', JSON.stringify({
+                    uid,
+                    streamId,
+                    data: String.fromCharCode.apply(null, data),
+                    length
+                }))
             }
             event.emit('streamMessage', uid, streamId, data, length)
         }
@@ -1627,6 +1638,17 @@ namespace agora {
                 bridge.logEngineEventCase('onUserInfoUpdated', JSON.stringify({uid, info}))
             }
             event.emit('userInfoUpdated', uid, info)
+        }
+        bridge.onMetadataReceived = function ({uid, size, buffer, timeStampMs}) {
+            if (bridge.logEngineEventCase) {
+                bridge.logEngineEventCase('onMetadataReceived', JSON.stringify({
+                    uid,
+                    size,
+                    buffer: String.fromCharCode.apply(null, buffer),
+                    timeStampMs
+                }))
+            }
+            event.emit('metadataReceived', {uid, size, buffer, timeStampMs})
         }
     }
 
@@ -1795,8 +1817,8 @@ namespace agora {
         })
     }
 
-    function callNativeMethod(apiType: API_TYPE, param: {} = {}): any {
-        return bridge.callNativeMethod(apiType, JSON.stringify(param))
+    function callNativeMethod(apiType: API_TYPE, param: {} = {}, extra?: any): any {
+        return bridge.callNativeMethod(apiType, JSON.stringify(param), extra)
     }
 
     function callNativeMethodAudioEffect(apiType: API_TYPE_AUDIO_EFFECT, param: {} = {}): any {
@@ -3361,18 +3383,18 @@ namespace agora {
      * - The position of the human face in the local video.
      * - The distance between the human face and the device screen.
      *
-     * @param enable Determines whether to enable the face detection function for the local user:
+     * @param enabled Determines whether to enable the face detection function for the local user:
      * - true: Enable face detection.
      * - false: (Default) Disable face detection.
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
-    export function enableFaceDetection(enable: boolean): number {
+    export function enableFaceDetection(enabled: boolean): number {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.ENABLE_FACE_DETECTION, {enable})
+        return callNativeMethod(API_TYPE.ENABLE_FACE_DETECTION, {enabled})
     }
 
     /** Plays a specified local or online audio effect file.
@@ -4454,7 +4476,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.START_ECHO_TEST_2, {config})
+        return callNativeMethod(API_TYPE.START_LAST_MILE_PROBE_TEST, {config})
     }
 
     /** Stops the last-mile network probe test. */
@@ -4633,11 +4655,11 @@ namespace agora {
          - 0: Success.
      - < 0: Failure.
      */
-    export function sendStreamMessage(streamId: number, data: string, length: number): number {
+    export function sendStreamMessage(streamId: number, data: Uint8Array, length: number): number {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SEND_STREAM_MESSAGE, {streamId, data, length})
+        return callNativeMethod(API_TYPE.SEND_STREAM_MESSAGE, {streamId, length}, data)
     }
 
     /** Publishes the local stream to a specified CDN live RTMP address.  (CDN live only.)
@@ -5016,6 +5038,20 @@ namespace agora {
         return callNativeMethod(API_TYPE.GET_CONNECTION_STATE)
     }
 
+    export function sendMetadata({uid, size, buffer, timeStampMs}: Metadata) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
+        }
+        return callNativeMethod(API_TYPE.SEND_METADATA, {uid, size, timeStampMs}, buffer)
+    }
+
+    export function setMaxMetadataSize(size: number) {
+        if (isWeb) {
+            return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
+        }
+        return callNativeMethod(API_TYPE.SET_MAX_META_SIZE, {size})
+    }
+
     /** Registers the metadata observer.
 
      Registers the metadata observer. You need to implement the IMetadataObserver class and specify the metadata type in this method. A successful call of this method triggers the \ref agora::rtc::IMetadataObserver::getMaxMetadataSize "getMaxMetadataSize" callback.
@@ -5032,11 +5068,11 @@ namespace agora {
          - 0: Success.
      - < 0: Failure.
      */
-    export function registerMediaMetadataObserver(observer: any, type: METADATA_TYPE): number {
+    export function registerMediaMetadataObserver(type: METADATA_TYPE): number {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.REGISTER_MEDIA_META_DATA_OBSERVER, {observer, type})
+        return callNativeMethod(API_TYPE.REGISTER_MEDIA_META_DATA_OBSERVER, {type})
     }
 
     /** Provides technical preview functionalities or special customizations by configuring the SDK with JSON options.
@@ -8469,6 +8505,31 @@ namespace agora {
         constructor(autoSubscribeAudio: boolean = true, autoSubscribeVideo: boolean = true) {
             this.autoSubscribeAudio = autoSubscribeAudio
             this.autoSubscribeVideo = autoSubscribeVideo
+        }
+    }
+
+    export class Metadata {
+        /** The User ID.
+
+         - For the receiver: the ID of the user who sent the metadata.
+         - For the sender: ignore it.
+         */
+        uid: number
+        /** Buffer size of the sent or received Metadata.
+         */
+        size: number
+        /** Buffer address of the sent or received Metadata.
+         */
+        buffer: Uint8Array
+        /** Time statmp of the frame following the metadata.
+         */
+        timeStampMs: number
+
+        constructor(uid: number, size: number, buffer: Uint8Array, timeStampMs: number) {
+            this.uid = uid;
+            this.size = size;
+            this.buffer = buffer;
+            this.timeStampMs = timeStampMs;
         }
     }
 }

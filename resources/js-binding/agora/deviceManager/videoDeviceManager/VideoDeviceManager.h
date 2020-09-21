@@ -6,6 +6,7 @@
 #include "../../common/IBridgeCommon.h"
 #include "../../include/IAgoraRtcEngine.h"
 #include "../IVideoDeviceManagerBridge.h"
+#include <stdint.h>
 
 namespace agora {
 namespace common {
@@ -29,14 +30,18 @@ public:
 
   int startDeviceTest(rtc::view_t hwnd);
 
+  int startDeviceTest(uint64_t hwnd);
+
   int stopDeviceTest();
+
+  int getDeviceCount();
 
   int setDevice(const char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
 
-  int getDevice(char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
+  int getCurrentDevice(char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
 
-  int getCurrentDevice(int index, char deviceName[rtc::MAX_DEVICE_ID_LENGTH],
-                       char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
+  int getDevice(int index, char deviceName[rtc::MAX_DEVICE_ID_LENGTH],
+                char deviceId[rtc::MAX_DEVICE_ID_LENGTH]);
 
   virtual void release() override;
 };

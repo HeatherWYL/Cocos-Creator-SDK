@@ -6,192 +6,140 @@
 
 #include <string>
 
+#include "../../common/IBridgeCommon.h"
 #include "../rapidjson/document.h"
 #include "../rapidjson/writer.h"
-#include "../../common/IBridgeCommon.h"
 
-namespace agora
-{
-	namespace common
-	{
-        template <typename T>
-        void
-        get_parameter_int(T& doc, const char* key, int& value, int& ret)
-        {
-            if (doc.HasMember(key))
-            {
-                rapidjson::Value& val = doc[key];
-                if (!val.IsInt())
-                {
-                    ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
-                    return;
-                }
-                value = val.GetInt();
-            }
-            else
-            {
-                ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
-            }
-        }
-
-        template <typename T>
-        void
-        get_parameter_uint(T& doc, const char* key, unsigned int& value, int& ret)
-        {
-            if (doc.HasMember(key))
-            {
-                rapidjson::Value& val = doc[key];
-                if (!val.IsUint())
-                {
-                    ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
-                    return;
-                }
-                value = val.GetUint();
-            }
-            else
-            {
-                ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
-            }
-        }
-
-        template <typename T>
-        void
-        get_parameter_bool(T& doc, const char* key, bool& value, int& ret)
-        {
-            if (doc.HasMember(key))
-            {
-                rapidjson::Value& val = doc[key];
-                if (!val.IsBool())
-                {
-                    ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
-                    return;
-                }
-                value = val.GetBool();
-            }
-            else
-            {
-                ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
-            }
-        }
-
-        template <typename T>
-        void
-        get_parameter_int64(T& doc, const char* key, long long& value, int& ret)
-        {
-            if (doc.HasMember(key))
-            {
-                rapidjson::Value& val = doc[key];
-                if (!val.IsInt64())
-                {
-                    ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
-                    return;
-                }
-                value = val.GetInt64();
-            }
-            else
-            {
-                ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
-            }
-        }
-
-        template <typename T>
-        void
-        get_parameter_float(T& doc, const char* key, float& value, int& ret)
-        {
-            if (doc.HasMember(key))
-            {
-                rapidjson::Value& val = doc[key];
-                if (!val.IsFloat())
-                {
-                    ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
-                    return;
-                }
-                value = val.GetFloat();
-            }
-            else
-            {
-                ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
-            }
-        }
-
-        template <typename T>
-        void
-        get_parameter_double(T& doc, const char* key, double& value, int& ret)
-        {
-            if (doc.HasMember(key))
-            {
-                rapidjson::Value& val = doc[key];
-                if (!val.IsDouble())
-                {
-                    ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
-                    return;
-                }
-                value = val.GetDouble();
-            }
-            else
-            {
-                ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
-            }
-        }
-
-        template <typename T>
-        void
-        get_parameter_string(T& doc, const char* key, std::string& value, int& ret)
-        {
-            if (doc.HasMember(key))
-            {
-                rapidjson::Value& val = doc[key];
-                if (!val.IsString())
-                {
-                    ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
-                    return;
-                }
-                value = val.GetString();
-            }
-            else
-            {
-                ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
-            }
-        }
-
-        template <typename T>
-        void
-        get_parameter_object(T& doc, const char* key, rapidjson::Value& value, int& ret)
-        {
-            if (doc.HasMember(key))
-            {
-                rapidjson::Value& val = doc[key];
-                if (!val.IsObject())
-                {
-                    ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
-                    return;
-                }
-                value = val.GetObject();
-            }
-            else
-            {
-                ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
-            }
-        }
-
-        template <typename T>
-        void
-        get_parameter_array(T& doc, const char* key, rapidjson::Value& value, int& ret)
-        {
-            if (doc.HasMember(key))
-            {
-                rapidjson::Value& val = doc[key];
-                if (!val.IsArray())
-                {
-                    ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
-                    return;
-                }
-                value = val.GetArray();
-            }
-            else
-            {
-                ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
-            }
-        }
-	}
+namespace agora {
+namespace common {
+template <typename T>
+void get_parameter_int(T &doc, const char *key, int &value, int &ret) {
+  if (doc.HasMember(key)) {
+    rapidjson::Value &val = doc[key];
+    if (!val.IsInt()) {
+      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      return;
+    }
+    value = val.GetInt();
+  } else {
+    ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
+  }
 }
+
+template <typename T>
+void get_parameter_uint(T &doc, const char *key, unsigned int &value,
+                        int &ret) {
+  if (doc.HasMember(key)) {
+    rapidjson::Value &val = doc[key];
+    if (!val.IsUint()) {
+      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      return;
+    }
+    value = val.GetUint();
+  } else {
+    ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
+  }
+}
+
+template <typename T>
+void get_parameter_bool(T &doc, const char *key, bool &value, int &ret) {
+  if (doc.HasMember(key)) {
+    rapidjson::Value &val = doc[key];
+    if (!val.IsBool()) {
+      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      return;
+    }
+    value = val.GetBool();
+  } else {
+    ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
+  }
+}
+
+template <typename T>
+void get_parameter_int64(T &doc, const char *key, long long &value, int &ret) {
+  if (doc.HasMember(key)) {
+    rapidjson::Value &val = doc[key];
+    if (!val.IsInt64()) {
+      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      return;
+    }
+    value = val.GetInt64();
+  } else {
+    ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
+  }
+}
+
+template <typename T>
+void get_parameter_float(T &doc, const char *key, float &value, int &ret) {
+  if (doc.HasMember(key)) {
+    rapidjson::Value &val = doc[key];
+    if (!val.IsNumber()) {
+      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      return;
+    }
+    value = val.GetFloat();
+  } else {
+    ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
+  }
+}
+
+template <typename T>
+void get_parameter_double(T &doc, const char *key, double &value, int &ret) {
+  if (doc.HasMember(key)) {
+    rapidjson::Value &val = doc[key];
+    if (!val.IsNumber()) {
+      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      return;
+    }
+    value = val.GetDouble();
+  } else {
+    ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
+  }
+}
+
+template <typename T>
+void get_parameter_string(T &doc, const char *key, std::string &value,
+                          int &ret) {
+  if (doc.HasMember(key)) {
+    rapidjson::Value &val = doc[key];
+    if (!val.IsString()) {
+      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      return;
+    }
+    value = val.GetString();
+  } else {
+    ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
+  }
+}
+
+template <typename T>
+void get_parameter_object(T &doc, const char *key, rapidjson::Value &value,
+                          int &ret) {
+  if (doc.HasMember(key)) {
+    rapidjson::Value &val = doc[key];
+    if (!val.IsObject()) {
+      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      return;
+    }
+    value = val.GetObject();
+  } else {
+    ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
+  }
+}
+
+template <typename T>
+void get_parameter_array(T &doc, const char *key, rapidjson::Value &value,
+                         int &ret) {
+  if (doc.HasMember(key)) {
+    rapidjson::Value &val = doc[key];
+    if (!val.IsArray()) {
+      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      return;
+    }
+    value = val.GetArray();
+  } else {
+    ret = ERROR_CODE::ERROR_NO_CURRENT_PARAMETER;
+  }
+}
+} // namespace common
+} // namespace agora
