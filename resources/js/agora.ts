@@ -1094,67 +1094,67 @@ namespace agora {
     function initNativeEvent() {
         bridge.onWarning = function (warn, msg) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onWarning', JSON.stringify({warn, msg}))
+                bridge.logEngineEventCase('onWarning', JSON.stringify({ warn, msg }))
             }
             event.emit('warning', warn, msg)
         }
         bridge.onError = function (err, msg) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onError', JSON.stringify({err, msg}))
+                bridge.logEngineEventCase('onError', JSON.stringify({ err, msg }))
             }
             event.emit('error', err, msg)
         }
         bridge.onJoinChannelSuccess = function (channel, uid, elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onJoinChannelSuccess', JSON.stringify({channel, uid, elapsed}))
+                bridge.logEngineEventCase('onJoinChannelSuccess', JSON.stringify({ channel, uid, elapsed }))
             }
             event.emit('join-channel-success', channel, uid, elapsed)
             event.emit('joinChannelSuccess', channel, uid, elapsed)
         }
         bridge.onRejoinChannelSuccess = function (channel, uid, elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onRejoinChannelSuccess', JSON.stringify({channel, uid, elapsed}))
+                bridge.logEngineEventCase('onRejoinChannelSuccess', JSON.stringify({ channel, uid, elapsed }))
             }
             event.emit('rejoin-channel-success', channel, uid, elapsed)
             event.emit('rejoinChannelSuccess', channel, uid, elapsed)
         }
         bridge.onLeaveChannel = function (stats) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLeaveChannel', JSON.stringify({stats}))
+                bridge.logEngineEventCase('onLeaveChannel', JSON.stringify({ stats }))
             }
             event.emit('leave-channel', stats)
             event.emit('leaveChannel', stats)
         }
         bridge.onClientRoleChanged = function (oldRole, newRole) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onClientRoleChanged', JSON.stringify({oldRole, newRole}))
+                bridge.logEngineEventCase('onClientRoleChanged', JSON.stringify({ oldRole, newRole }))
             }
             event.emit('client-role-changed', oldRole, newRole)
             event.emit('clientRoleChanged', oldRole, newRole)
         }
         bridge.onUserJoined = function (uid, elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onUserJoined', JSON.stringify({uid, elapsed}))
+                bridge.logEngineEventCase('onUserJoined', JSON.stringify({ uid, elapsed }))
             }
             event.emit('user-joined', uid, elapsed)
             event.emit('userJoined', uid, elapsed)
         }
         bridge.onUserOffline = function (uid, reason) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onUserOffline', JSON.stringify({uid, reason}))
+                bridge.logEngineEventCase('onUserOffline', JSON.stringify({ uid, reason }))
             }
             event.emit('user-offline', uid, reason)
             event.emit('userOffline', uid, reason)
         }
         bridge.onLastmileQuality = function (quality) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLastmileQuality', JSON.stringify({quality}))
+                bridge.logEngineEventCase('onLastmileQuality', JSON.stringify({ quality }))
             }
             event.emit('lastmileQuality', quality)
         }
         bridge.onLastmileProbeResult = function (result) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLastmileProbeResult', JSON.stringify({result}))
+                bridge.logEngineEventCase('onLastmileProbeResult', JSON.stringify({ result }))
             }
             event.emit('lastmileProbeResult', result)
         }
@@ -1181,7 +1181,7 @@ namespace agora {
         }
         bridge.onApiCallExecuted = function (err, api, result) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onApiCallExecuted', JSON.stringify({err, api, result}))
+                bridge.logEngineEventCase('onApiCallExecuted', JSON.stringify({ err, api, result }))
             }
             event.emit('apiCallExecuted', err, api, result)
         }
@@ -1194,63 +1194,63 @@ namespace agora {
         }
         bridge.onTokenPrivilegeWillExpire = function (token) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onTokenPrivilegeWillExpire', JSON.stringify({token}))
+                bridge.logEngineEventCase('onTokenPrivilegeWillExpire', JSON.stringify({ token }))
             }
             event.emit('tokenPrivilegeWillExpire', token)
         }
         bridge.onAudioQuality = function (uid, quality, delay, lost) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onAudioQuality', JSON.stringify({uid, quality, delay, lost}))
+                bridge.logEngineEventCase('onAudioQuality', JSON.stringify({ uid, quality, delay, lost }))
             }
             event.emit('audio-quality', uid, quality, delay, lost)
             event.emit('audioQuality', uid, quality, delay, lost)
         }
         bridge.onRtcStats = function (stats) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onRtcStats', JSON.stringify({stats}))
+                bridge.logEngineEventCase('onRtcStats', JSON.stringify({ stats }))
             }
             event.emit('rtcStats', stats)
         }
         bridge.onNetworkQuality = function (uid, txQuality, rxQuality) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onNetworkQuality', JSON.stringify({uid, txQuality, rxQuality}))
+                bridge.logEngineEventCase('onNetworkQuality', JSON.stringify({ uid, txQuality, rxQuality }))
             }
             event.emit('network-quality', uid, txQuality, rxQuality)
             event.emit('networkQuality', uid, txQuality, rxQuality)
         }
         bridge.onLocalVideoStats = function (stats) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLocalVideoStats', JSON.stringify({stats}))
+                bridge.logEngineEventCase('onLocalVideoStats', JSON.stringify({ stats }))
             }
             event.emit('localVideoStats', stats)
         }
         bridge.onRemoteVideoStats = function (stats) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onRemoteVideoStats', JSON.stringify({stats}))
+                bridge.logEngineEventCase('onRemoteVideoStats', JSON.stringify({ stats }))
             }
             event.emit('remoteVideoStats', stats)
         }
         bridge.onLocalAudioStats = function (stats) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLocalAudioStats', JSON.stringify({stats}))
+                bridge.logEngineEventCase('onLocalAudioStats', JSON.stringify({ stats }))
             }
             event.emit('localAudioStats', stats)
         }
         bridge.onRemoteAudioStats = function (stats) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onRemoteAudioStats', JSON.stringify({stats}))
+                bridge.logEngineEventCase('onRemoteAudioStats', JSON.stringify({ stats }))
             }
             event.emit('remoteAudioStats', stats)
         }
         bridge.onLocalAudioStateChanged = function (state, error) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLocalAudioStateChanged', JSON.stringify({state, error}))
+                bridge.logEngineEventCase('onLocalAudioStateChanged', JSON.stringify({ state, error }))
             }
             event.emit('localAudioStateChanged', state, error)
         }
         bridge.onRemoteAudioStateChanged = function (uid, state, reason, elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onRemoteAudioStateChanged', JSON.stringify({uid, state, reason, elapsed}))
+                bridge.logEngineEventCase('onRemoteAudioStateChanged', JSON.stringify({ uid, state, reason, elapsed }))
             }
             event.emit('remoteAudioStateChanged', uid, state, reason, elapsed)
         }
@@ -1311,7 +1311,7 @@ namespace agora {
         }
         bridge.onActiveSpeaker = function (uid) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onActiveSpeaker', JSON.stringify({uid}))
+                bridge.logEngineEventCase('onActiveSpeaker', JSON.stringify({ uid }))
             }
             event.emit('activeSpeaker', uid)
         }
@@ -1323,44 +1323,44 @@ namespace agora {
         }
         bridge.onFirstLocalVideoFrame = function (width, height, elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onFirstLocalVideoFrame', JSON.stringify({width, height, elapsed}))
+                bridge.logEngineEventCase('onFirstLocalVideoFrame', JSON.stringify({ width, height, elapsed }))
             }
             event.emit('firstLocalVideoFrame', width, height, elapsed)
         }
         bridge.onFirstLocalVideoFramePublished = function (elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onFirstLocalVideoFramePublished', JSON.stringify({elapsed}))
+                bridge.logEngineEventCase('onFirstLocalVideoFramePublished', JSON.stringify({ elapsed }))
             }
             event.emit('firstLocalVideoFramePublished', elapsed)
         }
         bridge.onFirstRemoteVideoDecoded = function (uid, width, height, elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onFirstRemoteVideoDecoded', JSON.stringify({uid, width, height, elapsed}))
+                bridge.logEngineEventCase('onFirstRemoteVideoDecoded', JSON.stringify({ uid, width, height, elapsed }))
             }
             event.emit('firstRemoteVideoDecoded', uid, width, height, elapsed)
         }
         bridge.onFirstRemoteVideoFrame = function (uid, width, height, elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onFirstRemoteVideoFrame', JSON.stringify({uid, width, height, elapsed}))
+                bridge.logEngineEventCase('onFirstRemoteVideoFrame', JSON.stringify({ uid, width, height, elapsed }))
             }
             event.emit('firstRemoteVideoFrame', uid, width, height, elapsed)
         }
         bridge.onUserMuteAudio = function (uid, muted) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onUserMuteAudio', JSON.stringify({uid, muted}))
+                bridge.logEngineEventCase('onUserMuteAudio', JSON.stringify({ uid, muted }))
             }
             event.emit('user-mute-audio', uid, muted)
             event.emit('userMuteAudio', uid, muted)
         }
         bridge.onUserMuteVideo = function (uid, muted) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onUserMuteVideo', JSON.stringify({uid, muted}))
+                bridge.logEngineEventCase('onUserMuteVideo', JSON.stringify({ uid, muted }))
             }
             event.emit('userMuteVideo', uid, muted)
         }
         bridge.onUserEnableVideo = function (uid, enabled) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onUserEnableVideo', JSON.stringify({uid, enabled}))
+                bridge.logEngineEventCase('onUserEnableVideo', JSON.stringify({ uid, enabled }))
             }
             event.emit('userEnableVideo', uid, enabled)
         }
@@ -1376,7 +1376,7 @@ namespace agora {
         }
         bridge.onAudioDeviceVolumeChanged = function (deviceType, volume, muted) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onAudioDeviceVolumeChanged', JSON.stringify({deviceType, volume, muted}))
+                bridge.logEngineEventCase('onAudioDeviceVolumeChanged', JSON.stringify({ deviceType, volume, muted }))
             }
             event.emit('audioDeviceVolumeChanged', deviceType, volume, muted)
         }
@@ -1388,7 +1388,7 @@ namespace agora {
         }
         bridge.onCameraFocusAreaChanged = function (x, y, width, height) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onCameraFocusAreaChanged', JSON.stringify({x, y, width, height}))
+                bridge.logEngineEventCase('onCameraFocusAreaChanged', JSON.stringify({ x, y, width, height }))
             }
             event.emit('cameraFocusAreaChanged', x, y, width, height)
         }
@@ -1406,7 +1406,7 @@ namespace agora {
         }
         bridge.onCameraExposureAreaChanged = function (x, y, width, height) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onCameraExposureAreaChanged', JSON.stringify({x, y, width, height}))
+                bridge.logEngineEventCase('onCameraExposureAreaChanged', JSON.stringify({ x, y, width, height }))
             }
             event.emit('cameraExposureAreaChanged', x, y, width, height)
         }
@@ -1418,7 +1418,7 @@ namespace agora {
         }
         bridge.onAudioMixingStateChanged = function (state, errorCode) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onAudioMixingStateChanged', JSON.stringify({state, errorCode}))
+                bridge.logEngineEventCase('onAudioMixingStateChanged', JSON.stringify({ state, errorCode }))
             }
             event.emit('audioMixingStateChanged', state, errorCode)
         }
@@ -1436,13 +1436,13 @@ namespace agora {
         }
         bridge.onAudioEffectFinished = function (soundId) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onAudioEffectFinished', JSON.stringify({soundId}))
+                bridge.logEngineEventCase('onAudioEffectFinished', JSON.stringify({ soundId }))
             }
             event.emit('audioEffectFinished', soundId)
         }
         bridge.onFirstRemoteAudioDecoded = function (uid, elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onFirstRemoteAudioDecoded', JSON.stringify({uid, elapsed}))
+                bridge.logEngineEventCase('onFirstRemoteAudioDecoded', JSON.stringify({ uid, elapsed }))
             }
             event.emit('firstRemoteAudioDecoded', uid, elapsed)
         }
@@ -1458,25 +1458,25 @@ namespace agora {
         }
         bridge.onLocalVideoStateChanged = function (localVideoState, error) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLocalVideoStateChanged', JSON.stringify({localVideoState, error}))
+                bridge.logEngineEventCase('onLocalVideoStateChanged', JSON.stringify({ localVideoState, error }))
             }
             event.emit('localVideoStateChanged', localVideoState, error)
         }
         bridge.onVideoSizeChanged = function (uid, width, height, rotation) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onVideoSizeChanged', JSON.stringify({uid, width, height, rotation}))
+                bridge.logEngineEventCase('onVideoSizeChanged', JSON.stringify({ uid, width, height, rotation }))
             }
             event.emit('videoSizeChanged', uid, width, height, rotation)
         }
         bridge.onRemoteVideoStateChanged = function (uid, state, reason, elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onRemoteVideoStateChanged', JSON.stringify({uid, state, reason, elapsed}))
+                bridge.logEngineEventCase('onRemoteVideoStateChanged', JSON.stringify({ uid, state, reason, elapsed }))
             }
             event.emit('remoteVideoStateChanged', uid, state, reason, elapsed)
         }
         bridge.onUserEnableLocalVideo = function (uid, enabled) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onUserEnableLocalVideo', JSON.stringify({uid, enabled}))
+                bridge.logEngineEventCase('onUserEnableLocalVideo', JSON.stringify({ uid, enabled }))
             }
             event.emit('userEnableLocalVideo', uid, enabled)
         }
@@ -1493,7 +1493,7 @@ namespace agora {
         }
         bridge.onStreamMessageError = function (uid, streamId, code, missed, cached) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onStreamMessageError', JSON.stringify({uid, streamId, code, missed, cached}))
+                bridge.logEngineEventCase('onStreamMessageError', JSON.stringify({ uid, streamId, code, missed, cached }))
             }
             event.emit('streamMessageError', uid, streamId, code, missed, cached)
         }
@@ -1511,55 +1511,55 @@ namespace agora {
         }
         bridge.onChannelMediaRelayStateChanged = function (state, code) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onChannelMediaRelayStateChanged', JSON.stringify({state, code}))
+                bridge.logEngineEventCase('onChannelMediaRelayStateChanged', JSON.stringify({ state, code }))
             }
             event.emit('channelMediaRelayStateChanged', state, code)
         }
         bridge.onChannelMediaRelayEvent = function (code) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onChannelMediaRelayEvent', JSON.stringify({code}))
+                bridge.logEngineEventCase('onChannelMediaRelayEvent', JSON.stringify({ code }))
             }
             event.emit('channelMediaRelayEvent', code)
         }
         bridge.onFirstLocalAudioFrame = function (elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onFirstLocalAudioFrame', JSON.stringify({elapsed}))
+                bridge.logEngineEventCase('onFirstLocalAudioFrame', JSON.stringify({ elapsed }))
             }
             event.emit('firstLocalAudioFrame', elapsed)
         }
         bridge.onFirstLocalAudioFramePublished = function (elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onFirstLocalAudioFramePublished', JSON.stringify({elapsed}))
+                bridge.logEngineEventCase('onFirstLocalAudioFramePublished', JSON.stringify({ elapsed }))
             }
             event.emit('firstLocalAudioFramePublished', elapsed)
         }
         bridge.onFirstRemoteAudioFrame = function (uid, elapsed) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onFirstRemoteAudioFrame', JSON.stringify({uid, elapsed}))
+                bridge.logEngineEventCase('onFirstRemoteAudioFrame', JSON.stringify({ uid, elapsed }))
             }
             event.emit('firstRemoteAudioFrame', uid, elapsed)
         }
         bridge.onRtmpStreamingStateChanged = function (url, state, errCode) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onRtmpStreamingStateChanged', JSON.stringify({url, state, errCode}))
+                bridge.logEngineEventCase('onRtmpStreamingStateChanged', JSON.stringify({ url, state, errCode }))
             }
             event.emit('rtmpStreamingStateChanged', url, state, errCode)
         }
         bridge.onRtmpStreamingEvent = function (url, eventCode) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onRtmpStreamingEvent', JSON.stringify({url, eventCode}))
+                bridge.logEngineEventCase('onRtmpStreamingEvent', JSON.stringify({ url, eventCode }))
             }
             event.emit('rtmpStreamingEvent', url, eventCode)
         }
         bridge.onStreamPublished = function (url, error) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onStreamPublished', JSON.stringify({url, error}))
+                bridge.logEngineEventCase('onStreamPublished', JSON.stringify({ url, error }))
             }
             event.emit('streamPublished', url, error)
         }
         bridge.onStreamUnpublished = function (url) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onStreamUnpublished', JSON.stringify({url}))
+                bridge.logEngineEventCase('onStreamUnpublished', JSON.stringify({ url }))
             }
             event.emit('streamUnpublished', url)
         }
@@ -1571,20 +1571,20 @@ namespace agora {
         }
         bridge.onStreamInjectedStatus = function (url, uid, status) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onStreamInjectedStatus', JSON.stringify({url, uid, status}))
+                bridge.logEngineEventCase('onStreamInjectedStatus', JSON.stringify({ url, uid, status }))
             }
             event.emit('streamInjectedStatus', url, uid, status)
         }
         bridge.onAudioRouteChanged = function (routing) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onAudioRouteChanged', JSON.stringify({routing}))
+                bridge.logEngineEventCase('onAudioRouteChanged', JSON.stringify({ routing }))
             }
             event.emit('audio-routing-changed', routing)
             event.emit('audioRouteChanged', routing)
         }
         bridge.onLocalPublishFallbackToAudioOnly = function (isFallbackOrRecover) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLocalPublishFallbackToAudioOnly', JSON.stringify({isFallbackOrRecover}))
+                bridge.logEngineEventCase('onLocalPublishFallbackToAudioOnly', JSON.stringify({ isFallbackOrRecover }))
             }
             event.emit('localPublishFallbackToAudioOnly', isFallbackOrRecover)
         }
@@ -1599,47 +1599,47 @@ namespace agora {
         }
         bridge.onRemoteAudioTransportStats = function (uid, delay, lost, rxKBitRate) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onRemoteAudioTransportStats', JSON.stringify({uid, delay, lost, rxKBitRate}))
+                bridge.logEngineEventCase('onRemoteAudioTransportStats', JSON.stringify({ uid, delay, lost, rxKBitRate }))
             }
             event.emit('remoteAudioTransportStats', uid, delay, lost, rxKBitRate)
         }
         bridge.onRemoteVideoTransportStats = function (uid, delay, lost, rxKBitRate) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onRemoteVideoTransportStats', JSON.stringify({uid, delay, lost, rxKBitRate}))
+                bridge.logEngineEventCase('onRemoteVideoTransportStats', JSON.stringify({ uid, delay, lost, rxKBitRate }))
             }
             event.emit('remoteVideoTransportStats', uid, delay, lost, rxKBitRate)
         }
         bridge.onMicrophoneEnabled = function (enabled) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onMicrophoneEnabled', JSON.stringify({enabled}))
+                bridge.logEngineEventCase('onMicrophoneEnabled', JSON.stringify({ enabled }))
             }
             event.emit('microphoneEnabled', enabled)
         }
         bridge.onConnectionStateChanged = function (state, reason) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onConnectionStateChanged', JSON.stringify({state, reason}))
+                bridge.logEngineEventCase('onConnectionStateChanged', JSON.stringify({ state, reason }))
             }
             event.emit('connectionStateChanged', state, reason)
         }
         bridge.onNetworkTypeChanged = function (type) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onNetworkTypeChanged', JSON.stringify({type}))
+                bridge.logEngineEventCase('onNetworkTypeChanged', JSON.stringify({ type }))
             }
             event.emit('networkTypeChanged', type)
         }
         bridge.onLocalUserRegistered = function (uid, userAccount) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onLocalUserRegistered', JSON.stringify({uid, userAccount}))
+                bridge.logEngineEventCase('onLocalUserRegistered', JSON.stringify({ uid, userAccount }))
             }
             event.emit('localUserRegistered', uid, userAccount)
         }
         bridge.onUserInfoUpdated = function (uid, info) {
             if (bridge.logEngineEventCase) {
-                bridge.logEngineEventCase('onUserInfoUpdated', JSON.stringify({uid, info}))
+                bridge.logEngineEventCase('onUserInfoUpdated', JSON.stringify({ uid, info }))
             }
             event.emit('userInfoUpdated', uid, info)
         }
-        bridge.onMetadataReceived = function ({uid, size, buffer, timeStampMs}) {
+        bridge.onMetadataReceived = function ({ uid, size, buffer, timeStampMs }) {
             if (bridge.logEngineEventCase) {
                 bridge.logEngineEventCase('onMetadataReceived', JSON.stringify({
                     uid,
@@ -1648,7 +1648,7 @@ namespace agora {
                     timeStampMs
                 }))
             }
-            event.emit('metadataReceived', {uid, size, buffer, timeStampMs})
+            event.emit('metadataReceived', { uid, size, buffer, timeStampMs })
         }
     }
 
@@ -1723,8 +1723,8 @@ namespace agora {
         client.on('volume-indicator', (evt: { attr: { uid: string, level: number }[] }) => {
             const speakers = []
             let sumVolume = 0
-            evt.attr.forEach(function ({uid, level}, index) {
-                speakers.push({uid, volume: level})
+            evt.attr.forEach(function ({ uid, level }, index) {
+                speakers.push({ uid, volume: level })
                 sumVolume += level
             });
             event.emit('audio-volume-indication', speakers, speakers.length, sumVolume / speakers.length)
@@ -1850,7 +1850,7 @@ namespace agora {
             client.init(appId)
         } else {
             initNativeEvent()
-            callNativeMethod(API_TYPE.INITIALIZE, {appId, areaCode})
+            callNativeMethod(API_TYPE.INITIALIZE, { appId, areaCode })
         }
     }
 
@@ -1884,7 +1884,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_CHANNEL_PROFILE, {profile})
+        return callNativeMethod(API_TYPE.SET_CHANNEL_PROFILE, { profile })
     }
 
     /** Sets the role of the user, such as a host or an audience (default), before joining a channel in the live interactive streaming.
@@ -1916,7 +1916,7 @@ namespace agora {
             client.setClientRole(roles.get(role))
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.SET_CLIENT_ROLE, {role})
+        return callNativeMethod(API_TYPE.SET_CLIENT_ROLE, { role })
     }
 
     /** Joins a channel with the user ID.
@@ -1959,7 +1959,7 @@ namespace agora {
     export function joinChannel(token: string, channelId: string, info: string = '', uid: number = 0): number {
         if (isWeb) {
             client.join(token, channelId, uid, (uid) => {
-                const spec: AgoraRTC.StreamSpec = {streamID: uid, audio: true, video: true, screen: false}
+                const spec: AgoraRTC.StreamSpec = { streamID: uid, audio: true, video: true, screen: false }
                 localStream = AgoraRTC.createStream(spec)
                 localStream.init(() => {
                     localStream.play('Cocos2dGameContainer')
@@ -1971,7 +1971,7 @@ namespace agora {
             })
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.JOIN_CHANNEL, {token, channelId, info, uid})
+        return callNativeMethod(API_TYPE.JOIN_CHANNEL, { token, channelId, info, uid })
     }
 
     /** Switches to a different channel.
@@ -2019,7 +2019,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SWITCH_CHANNEL, {token, channelId})
+        return callNativeMethod(API_TYPE.SWITCH_CHANNEL, { token, channelId })
     }
 
     /** Allows a user to leave a channel, such as hanging up or exiting a call.
@@ -2079,7 +2079,7 @@ namespace agora {
             client.renewToken(token)
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.RE_NEW_TOKEN, {token})
+        return callNativeMethod(API_TYPE.RE_NEW_TOKEN, { token })
     }
 
     /** Registers a user account.
@@ -2117,7 +2117,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.REGISTER_LOCAL_USER_ACCOUNT, {appId, userAccount})
+        return callNativeMethod(API_TYPE.REGISTER_LOCAL_USER_ACCOUNT, { appId, userAccount })
     }
 
     /** Joins the channel with a user account.
@@ -2156,7 +2156,7 @@ namespace agora {
     export function joinChannelWithUserAccount(token: string, channelId: string, userAccount: string): number {
         if (isWeb) {
             client.join(token, channelId, userAccount, (uid) => {
-                const spec: AgoraRTC.StreamSpec = {streamID: uid, audio: true, video: true, screen: false}
+                const spec: AgoraRTC.StreamSpec = { streamID: uid, audio: true, video: true, screen: false }
                 localStream = AgoraRTC.createStream(spec)
                 localStream.init(() => {
                     localStream.play('Cocos2dGameContainer')
@@ -2168,7 +2168,7 @@ namespace agora {
             })
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.JOIN_CHANNEL_WITH_USER_ACCOUNT, {token, channelId, userAccount})
+        return callNativeMethod(API_TYPE.JOIN_CHANNEL_WITH_USER_ACCOUNT, { token, channelId, userAccount })
     }
 
     /** Gets the user information by passing in the user account.
@@ -2192,7 +2192,7 @@ namespace agora {
         if (isWeb) {
             return null
         }
-        return callNativeMethod(API_TYPE.GET_USER_INFO_BY_USER_ACCOUNT, {userAccount})
+        return callNativeMethod(API_TYPE.GET_USER_INFO_BY_USER_ACCOUNT, { userAccount })
     }
 
     /** Gets the user information by passing in the user ID.
@@ -2216,7 +2216,7 @@ namespace agora {
         if (isWeb) {
             return null
         }
-        return callNativeMethod(API_TYPE.GET_USER_INFO_BY_UID, {uid})
+        return callNativeMethod(API_TYPE.GET_USER_INFO_BY_UID, { uid })
     }
 
     /** Starts an audio call test.
@@ -2242,7 +2242,7 @@ namespace agora {
         if (intervalInSeconds === undefined) {
             return callNativeMethod(API_TYPE.START_ECHO_TEST)
         }
-        return callNativeMethod(API_TYPE.START_ECHO_TEST_2, {intervalInSeconds})
+        return callNativeMethod(API_TYPE.START_ECHO_TEST_2, { intervalInSeconds })
     }
 
     /** Stops the audio call test.
@@ -2377,7 +2377,7 @@ namespace agora {
                 }
             }
         }
-        return callNativeMethod(API_TYPE.SET_VIDEO_PROFILE, {profile, swapWidthAndHeight})
+        return callNativeMethod(API_TYPE.SET_VIDEO_PROFILE, { profile, swapWidthAndHeight })
     }
 
     /** Sets the video encoder configuration.
@@ -2399,15 +2399,15 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED
             } else {
                 const configuration: AgoraRTC.VideoEncoderConfiguration = {
-                    resolution: {width: config.dimensions.width, height: config.dimensions.height},
-                    frameRate: {max: config.frameRate, min: config.minFrameRate},
-                    bitrate: {max: config.bitrate, min: config.minBitrate}
+                    resolution: { width: config.dimensions.width, height: config.dimensions.height },
+                    frameRate: { max: config.frameRate, min: config.minFrameRate },
+                    bitrate: { max: config.bitrate, min: config.minBitrate }
                 }
                 localStream.setVideoEncoderConfiguration(configuration)
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethod(API_TYPE.SET_VIDEO_ENCODER_CONFIGURATION, {config})
+        return callNativeMethod(API_TYPE.SET_VIDEO_ENCODER_CONFIGURATION, { config })
     }
 
     /** Sets the camera capture configuration.
@@ -2430,7 +2430,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_CAMERA_CAPTURER_CONFIGURATION, {config})
+        return callNativeMethod(API_TYPE.SET_CAMERA_CAPTURER_CONFIGURATION, { config })
     }
 
     /** Starts the local video preview before joining the channel.
@@ -2470,7 +2470,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_REMOTE_USER_PRIORITY, {uid, userPriority})
+        return callNativeMethod(API_TYPE.SET_REMOTE_USER_PRIORITY, { uid, userPriority })
     }
 
     /** Stops the local video preview and disables video.
@@ -2546,7 +2546,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethod(API_TYPE.ENABLE_LOCAL_AUDIO, {enabled})
+        return callNativeMethod(API_TYPE.ENABLE_LOCAL_AUDIO, { enabled })
     }
 
     /** Disables the audio module.
@@ -2603,7 +2603,7 @@ namespace agora {
                 }
             }
         }
-        return callNativeMethod(API_TYPE.SET_AUDIO_PROFILE, {profile, scenario})
+        return callNativeMethod(API_TYPE.SET_AUDIO_PROFILE, { profile, scenario })
     }
 
     /** Stops/Resumes sending the local audio stream.
@@ -2634,7 +2634,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethod(API_TYPE.MUTE_LOCAL_AUDIO_STREAM, {mute})
+        return callNativeMethod(API_TYPE.MUTE_LOCAL_AUDIO_STREAM, { mute })
     }
 
     /** Stops/Resumes receiving all remote users' audio streams.
@@ -2651,7 +2651,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.MUTE_ALL_REMOTE_AUDIO_STREAMS, {mute})
+        return callNativeMethod(API_TYPE.MUTE_ALL_REMOTE_AUDIO_STREAMS, { mute })
     }
 
     /** Stops/Resumes receiving all remote users' audio streams by default.
@@ -2675,7 +2675,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_DEFAULT_MUTE_ALL_REMOTE_AUDIO_STREAMS, {mute})
+        return callNativeMethod(API_TYPE.SET_DEFAULT_MUTE_ALL_REMOTE_AUDIO_STREAMS, { mute })
     }
 
     /** Adjusts the playback volume of a specified remote user.
@@ -2700,7 +2700,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.ADJUST_USER_PLAYBACK_SIGNAL_VOLUME, {uid, volume})
+        return callNativeMethod(API_TYPE.ADJUST_USER_PLAYBACK_SIGNAL_VOLUME, { uid, volume })
     }
 
     /** Stops/Resumes receiving a specified remote user's audio stream.
@@ -2731,7 +2731,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethod(API_TYPE.MUTE_REMOTE_AUDIO_STREAM, {userId, mute})
+        return callNativeMethod(API_TYPE.MUTE_REMOTE_AUDIO_STREAM, { userId, mute })
     }
 
     /** Stops/Resumes sending the local video stream.
@@ -2763,7 +2763,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethod(API_TYPE.MUTE_LOCAL_VIDEO_STREAM, {mute})
+        return callNativeMethod(API_TYPE.MUTE_LOCAL_VIDEO_STREAM, { mute })
     }
 
     /** Enables/Disables the local video capture.
@@ -2797,7 +2797,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethod(API_TYPE.ENABLE_LOCAL_VIDEO, {enabled})
+        return callNativeMethod(API_TYPE.ENABLE_LOCAL_VIDEO, { enabled })
     }
 
     /** Stops/Resumes receiving all video stream from a specified remote user.
@@ -2814,7 +2814,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.MUTE_ALL_REMOTE_VIDEO_STREAMS, {mute})
+        return callNativeMethod(API_TYPE.MUTE_ALL_REMOTE_VIDEO_STREAMS, { mute })
     }
 
     /** Stops/Resumes receiving all remote users' video streams by default.
@@ -2835,7 +2835,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_DEFAULT_MUTE_ALL_REMOTE_VIDEO_STREAMS, {mute})
+        return callNativeMethod(API_TYPE.SET_DEFAULT_MUTE_ALL_REMOTE_VIDEO_STREAMS, { mute })
     }
 
     /** Stops/Resumes receiving the video stream from a specified remote user.
@@ -2865,7 +2865,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethod(API_TYPE.MUTE_REMOTE_VIDEO_STREAM, {userId, mute})
+        return callNativeMethod(API_TYPE.MUTE_REMOTE_VIDEO_STREAM, { userId, mute })
     }
 
     /** Sets the stream type of the remote video.
@@ -2899,7 +2899,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethod(API_TYPE.SET_REMOTE_VIDEO_STREAM_TYPE, {userId, streamType})
+        return callNativeMethod(API_TYPE.SET_REMOTE_VIDEO_STREAM_TYPE, { userId, streamType })
     }
 
     /** Sets the default stream type of remote videos.
@@ -2926,7 +2926,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_REMOTE_DEFAULT_VIDEO_STREAM_TYPE, {streamType})
+        return callNativeMethod(API_TYPE.SET_REMOTE_DEFAULT_VIDEO_STREAM_TYPE, { streamType })
     }
 
     /** Enables the \ref agora::rtc::IRtcEngineEventHandler::onAudioVolumeIndication "onAudioVolumeIndication" callback at a set time interval to report on which users are speaking and the speakers' volume.
@@ -2950,7 +2950,7 @@ namespace agora {
             client.enableAudioVolumeIndicator()
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.ENABLE_AUDIO_VOLUME_INDICATION, {interval, smooth, report_vad})
+        return callNativeMethod(API_TYPE.ENABLE_AUDIO_VOLUME_INDICATION, { interval, smooth, report_vad })
     }
 
     /** Starts an audio recording on the client.
@@ -2982,9 +2982,9 @@ namespace agora {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
         if (sampleRate === undefined) {
-            return callNativeMethod(API_TYPE.START_AUDIO_RECORDING, {filePath, quality})
+            return callNativeMethod(API_TYPE.START_AUDIO_RECORDING, { filePath, quality })
         }
-        return callNativeMethod(API_TYPE.START_AUDIO_RECORDING2, {filePath, sampleRate, quality})
+        return callNativeMethod(API_TYPE.START_AUDIO_RECORDING2, { filePath, sampleRate, quality })
     }
 
     /** Stops an audio recording on the client.
@@ -3035,7 +3035,7 @@ namespace agora {
             if (localStream === undefined) {
                 return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED
             } else {
-                localStream.startAudioMixing({filePath, cycle, loop: loopback, playTime: 0, replace})
+                localStream.startAudioMixing({ filePath, cycle, loop: loopback, playTime: 0, replace })
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
@@ -3159,7 +3159,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_VOLUME, {volume})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_VOLUME, { volume })
     }
 
     /** Adjusts the audio mixing volume for local playback.
@@ -3176,7 +3176,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_PLAYOUT_VOLUME, {volume})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_PLAYOUT_VOLUME, { volume })
     }
 
     /** Retrieves the audio mixing volume for local playback.
@@ -3210,7 +3210,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_PUBLISH_VOLUME, {volume})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_PUBLISH_VOLUME, { volume })
     }
 
     /** Retrieves the audio mixing volume for publishing.
@@ -3285,7 +3285,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_AUDIO_MIXING_POSITION, {pos})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_AUDIO_MIXING_POSITION, { pos })
     }
 
     /** Sets the pitch of the local music file.
@@ -3309,7 +3309,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_AUDIO_MIXING_PITCH, {pitch})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_AUDIO_MIXING_PITCH, { pitch })
     }
 
     /** Retrieves the volume of the audio effects.
@@ -3349,7 +3349,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_EFFECTS_VOLUME, {volume})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_EFFECTS_VOLUME, { volume })
     }
 
     /** Sets the volume of a specified audio effect.
@@ -3370,7 +3370,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_VOLUME_OF_EFFECT, {soundId, volume})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_VOLUME_OF_EFFECT, { soundId, volume })
     }
 
     /**
@@ -3394,7 +3394,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.ENABLE_FACE_DETECTION, {enabled})
+        return callNativeMethod(API_TYPE.ENABLE_FACE_DETECTION, { enabled })
     }
 
     /** Plays a specified local or online audio effect file.
@@ -3433,7 +3433,7 @@ namespace agora {
             if (localStream === undefined) {
                 return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED
             } else {
-                localStream.playEffect({soundId, filePath, cycle: loopCount})
+                localStream.playEffect({ soundId, filePath, cycle: loopCount })
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
@@ -3465,7 +3465,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.STOP_EFFECT, {soundId})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.STOP_EFFECT, { soundId })
     }
 
     /** Stops playing all audio effects.
@@ -3506,11 +3506,11 @@ namespace agora {
             if (localStream === undefined) {
                 return ERROR_CODE_TYPE.ERR_NOT_INITIALIZED
             } else {
-                localStream.playEffect({filePath, soundId})
+                localStream.playEffect({ filePath, soundId })
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.PRE_LOAD_EFFECT, {soundId, filePath})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.PRE_LOAD_EFFECT, { soundId, filePath })
     }
 
     /** Releases a specified preloaded audio effect from the memory.
@@ -3529,7 +3529,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.UN_LOAD_EFFECT, {soundId})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.UN_LOAD_EFFECT, { soundId })
     }
 
     /** Pauses a specified audio effect.
@@ -3548,7 +3548,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.PAUSE_EFFECT, {soundId})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.PAUSE_EFFECT, { soundId })
     }
 
     /** Pauses all audio effects.
@@ -3585,7 +3585,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.RESUME_EFFECT, {soundId})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.RESUME_EFFECT, { soundId })
     }
 
     /** Resumes playing all audio effects.
@@ -3622,7 +3622,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ENABLE_SOUND_POSITION_INDICATION, {enabled})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.ENABLE_SOUND_POSITION_INDICATION, { enabled })
     }
 
     /** Sets the sound position and gain of a remote user.
@@ -3648,7 +3648,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_REMOTE_VOICE_POSITIONN, {uid, pan, gain})
+        return callNativeMethod(API_TYPE.SET_REMOTE_VOICE_POSITIONN, { uid, pan, gain })
     }
 
     /** Changes the voice pitch of the local speaker.
@@ -3662,7 +3662,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_CHANGER, {pitch})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_CHANGER, { pitch })
     }
 
     /** Sets the local voice equalization effect.
@@ -3699,7 +3699,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_REVERB, {reverbKey, value})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_REVERB, { reverbKey, value })
     }
 
     /** Sets the local voice changer option.
@@ -3732,7 +3732,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_CHANGER, {voiceChanger})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_CHANGER, { voiceChanger })
     }
 
     /** Sets the local voice reverberation option, including the virtual stereo.
@@ -3760,7 +3760,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_REVERB_PRESET, {reverbPreset})
+        return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_REVERB_PRESET, { reverbPreset })
     }
 
     /** Sets the log files that the SDK outputs.
@@ -3785,7 +3785,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_LOG_FILE, {filePath})
+        return callNativeMethod(API_TYPE.SET_LOG_FILE, { filePath })
     }
 
     /** Sets the output log level of the SDK.
@@ -3819,7 +3819,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethod(API_TYPE.SET_LOG_FILTER, {filter})
+        return callNativeMethod(API_TYPE.SET_LOG_FILTER, { filter })
     }
 
     /** Sets the size of a log file that the SDK outputs.
@@ -3842,7 +3842,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_LOG_FILE_SIZE, {fileSizeInKBytes})
+        return callNativeMethod(API_TYPE.SET_LOG_FILE_SIZE, { fileSizeInKBytes })
     }
 
     /** Updates the display mode of the local video view.
@@ -3867,9 +3867,9 @@ namespace agora {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
         if (mirrorMode === undefined) {
-            return callNativeMethod(API_TYPE.SET_LOCAL_RENDER_MODE, {renderMode})
+            return callNativeMethod(API_TYPE.SET_LOCAL_RENDER_MODE, { renderMode })
         }
-        return callNativeMethod(API_TYPE.SET_LOCAL_RENDER_MODE_2, {renderMode, mirrorMode})
+        return callNativeMethod(API_TYPE.SET_LOCAL_RENDER_MODE_2, { renderMode, mirrorMode })
     }
 
     /** Updates the display mode of the video view of a remote user.
@@ -3896,9 +3896,9 @@ namespace agora {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
         if (mirrorMode === undefined) {
-            return callNativeMethod(API_TYPE.SET_REMOTE_RENDER_MODE, {userId, renderMode})
+            return callNativeMethod(API_TYPE.SET_REMOTE_RENDER_MODE, { userId, renderMode })
         }
-        return callNativeMethod(API_TYPE.SET_REMOTE_RENDER_MODE_2, {userId, renderMode, mirrorMode})
+        return callNativeMethod(API_TYPE.SET_REMOTE_RENDER_MODE_2, { userId, renderMode, mirrorMode })
     }
 
     /**
@@ -3922,7 +3922,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_LOCAL_VIDEO_MIRROR_MODE, {mirrorMode})
+        return callNativeMethod(API_TYPE.SET_LOCAL_VIDEO_MIRROR_MODE, { mirrorMode })
     }
 
     /** Sets the stream mode to the single-stream (default) or dual-stream mode. (`LIVE_BROADCASTING` only.)
@@ -3942,7 +3942,7 @@ namespace agora {
             }
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.ENABLE_DUAL_STREAM_MODE, {enabled})
+        return callNativeMethod(API_TYPE.ENABLE_DUAL_STREAM_MODE, { enabled })
     }
 
     /** Sets the external audio source. Please call this method before \ref agora::rtc::IRtcEngine::joinChannel "joinChannel".
@@ -4102,7 +4102,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.ADJUST_RECORDING_SIGNAL_VOLUME, {volume})
+        return callNativeMethod(API_TYPE.ADJUST_RECORDING_SIGNAL_VOLUME, { volume })
     }
 
     /** Adjusts the playback volume of all remote users.
@@ -4126,7 +4126,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.ADJUST_PLAYBACK_SIGNAL_VOLUME, {volume})
+        return callNativeMethod(API_TYPE.ADJUST_PLAYBACK_SIGNAL_VOLUME, { volume })
     }
 
     /**
@@ -4149,7 +4149,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.ENABLE_WEB_SDK_INTEROPER_ABILITY, {enabled})
+        return callNativeMethod(API_TYPE.ENABLE_WEB_SDK_INTEROPER_ABILITY, { enabled })
     }
 
     /** **DEPRECATED** Sets the preferences for the high-quality video. (`LIVE_BROADCASTING` only).
@@ -4168,7 +4168,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_VIDEO_QUALITY_PARAMETERS, {preferFrameRateOverImageQuality})
+        return callNativeMethod(API_TYPE.SET_VIDEO_QUALITY_PARAMETERS, { preferFrameRateOverImageQuality })
     }
 
     /** Sets the fallback option for the published video stream based on the network conditions.
@@ -4194,7 +4194,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_LOCAL_PUBLISH_FALLBACK_OPTION, {option})
+        return callNativeMethod(API_TYPE.SET_LOCAL_PUBLISH_FALLBACK_OPTION, { option })
     }
 
     /** Sets the fallback option for the remotely subscribed video stream based on the network conditions.
@@ -4214,7 +4214,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_REMOTE_SUBSCRIBE_FALLBACK_OPTION, {option})
+        return callNativeMethod(API_TYPE.SET_REMOTE_SUBSCRIBE_FALLBACK_OPTION, { option })
     }
 
     /** Switches between front and rear cameras.
@@ -4236,7 +4236,7 @@ namespace agora {
         if (direction === undefined) {
             return callNativeMethod(API_TYPE.SWITCH_CAMERA)
         }
-        return callNativeMethod(API_TYPE.SWITCH_CAMERA_2, {direction})
+        return callNativeMethod(API_TYPE.SWITCH_CAMERA_2, { direction })
     }
 
     /** Sets the default audio playback route.
@@ -4270,7 +4270,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_DEFAULT_AUDIO_ROUTE_SPEAKER_PHONE, {defaultToSpeaker})
+        return callNativeMethod(API_TYPE.SET_DEFAULT_AUDIO_ROUTE_SPEAKER_PHONE, { defaultToSpeaker })
     }
 
     /** Enables/Disables the audio playback route to the speakerphone.
@@ -4297,7 +4297,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_ENABLE_SPEAKER_PHONE, {speakerOn})
+        return callNativeMethod(API_TYPE.SET_ENABLE_SPEAKER_PHONE, { speakerOn })
     }
 
     /** Enables in-ear monitoring (for Android and iOS only).
@@ -4313,7 +4313,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.ENABLE_IN_EAR_MONITORING, {enabled})
+        return callNativeMethod(API_TYPE.ENABLE_IN_EAR_MONITORING, { enabled })
     }
 
     /** Sets the volume of the in-ear monitor.
@@ -4330,7 +4330,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_IN_EAR_MONITORING_VOLUME, {volume})
+        return callNativeMethod(API_TYPE.SET_IN_EAR_MONITORING_VOLUME, { volume })
     }
 
     /** Checks whether the speakerphone is enabled.
@@ -4381,7 +4381,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.RATE, {callId, rating, description})
+        return callNativeMethod(API_TYPE.RATE, { callId, rating, description })
     }
 
     /** Allows a user to complain about the call quality after a call ends.
@@ -4398,7 +4398,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.COMPLAIN, {callId, description})
+        return callNativeMethod(API_TYPE.COMPLAIN, { callId, description })
     }
 
     /** Retrieves the SDK version number.
@@ -4476,7 +4476,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.START_LAST_MILE_PROBE_TEST, {config})
+        return callNativeMethod(API_TYPE.START_LAST_MILE_PROBE_TEST, { config })
     }
 
     /** Stops the last-mile network probe test. */
@@ -4497,7 +4497,7 @@ namespace agora {
         if (isWeb) {
             return null
         }
-        return callNativeMethod(API_TYPE.GET_ERROR_DESCRIPTION, {code})
+        return callNativeMethod(API_TYPE.GET_ERROR_DESCRIPTION, { code })
     }
 
     /** **DEPRECATED** Enables built-in encryption with an encryption password before users join a channel.
@@ -4523,7 +4523,7 @@ namespace agora {
             client.setEncryptionSecret(secret)
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.SET_ENCRYPTION_SECTRT, {secret})
+        return callNativeMethod(API_TYPE.SET_ENCRYPTION_SECTRT, { secret })
     }
 
     /** **DEPRECATED** Sets the built-in encryption mode.
@@ -4553,7 +4553,7 @@ namespace agora {
             client.setEncryptionMode(encryptionMode)
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.SET_ENCRYPTION_MODE, {encryptionMode})
+        return callNativeMethod(API_TYPE.SET_ENCRYPTION_MODE, { encryptionMode })
     }
 
     /** Enables/Disables the built-in encryption.
@@ -4584,7 +4584,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.ENABLE_ENCRYPTION, {enabled, config})
+        return callNativeMethod(API_TYPE.ENABLE_ENCRYPTION, { enabled, config })
     }
 
     /** Registers a packet observer.
@@ -4606,7 +4606,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.REGISTER_PACKET_OBSERVER, {observer})
+        return callNativeMethod(API_TYPE.REGISTER_PACKET_OBSERVER, { observer })
     }
 
     /** Creates a data stream.
@@ -4631,7 +4631,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.CREATE_DATA_STREAM, {streamId, reliable, ordered})
+        return callNativeMethod(API_TYPE.CREATE_DATA_STREAM, { streamId, reliable, ordered })
     }
 
     /** Sends data stream messages to all users in a channel.
@@ -4659,7 +4659,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SEND_STREAM_MESSAGE, {streamId, length}, data)
+        return callNativeMethod(API_TYPE.SEND_STREAM_MESSAGE, { streamId, length }, data)
     }
 
     /** Publishes the local stream to a specified CDN live RTMP address.  (CDN live only.)
@@ -4688,7 +4688,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.ADD_PUBLISH_STREAM_URL, {url, transcodingEnabled})
+        return callNativeMethod(API_TYPE.ADD_PUBLISH_STREAM_URL, { url, transcodingEnabled })
     }
 
     /** Removes an RTMP stream from the CDN. (CDN live only.)
@@ -4711,7 +4711,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.REMOVE_PUBLISH_STREAM_URL, {url})
+        return callNativeMethod(API_TYPE.REMOVE_PUBLISH_STREAM_URL, { url })
     }
 
     /** Sets the video layout and audio settings for CDN live. (CDN live only.)
@@ -4750,7 +4750,7 @@ namespace agora {
             client.setLiveTranscoding(coding)
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.SET_LIVE_TRANSCODING, {transcoding})
+        return callNativeMethod(API_TYPE.SET_LIVE_TRANSCODING, { transcoding })
     }
 
     /** Adds a watermark image to the local video.
@@ -4782,7 +4782,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.ADD_VIDEO_WATER_MARK_2, {watermarkUrl, options})
+        return callNativeMethod(API_TYPE.ADD_VIDEO_WATER_MARK_2, { watermarkUrl, options })
     }
 
     /** Removes the watermark image from the video stream added by the \ref agora::rtc::IRtcEngine::addVideoWatermark(const char* watermarkUrl, const WatermarkOptions& options) "addVideoWatermark" method.
@@ -4820,7 +4820,7 @@ namespace agora {
                 return ERROR_CODE_TYPE.ERR_OK
             }
         }
-        return callNativeMethod(API_TYPE.SET_BEAUTY_EFFECT_OPTIONS, {enabled, options})
+        return callNativeMethod(API_TYPE.SET_BEAUTY_EFFECT_OPTIONS, { enabled, options })
     }
 
     /** Adds a voice or video stream URL address to the live streaming.
@@ -4858,7 +4858,7 @@ namespace agora {
             client.addInjectStreamUrl(url, config)
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.ADD_INJECT_STREAM_URL, {url, config})
+        return callNativeMethod(API_TYPE.ADD_INJECT_STREAM_URL, { url, config })
     }
 
     /** Starts to relay media streams across channels.
@@ -4913,7 +4913,7 @@ namespace agora {
             })
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.START_CHANNEL_MEDIA_RELAY, {configuration})
+        return callNativeMethod(API_TYPE.START_CHANNEL_MEDIA_RELAY, { configuration })
     }
 
     /** Updates the channels for media stream relay. After a successful
@@ -4951,7 +4951,7 @@ namespace agora {
             })
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.UPDATE_CHANNEL_MEDIA_RELAY, {configuration})
+        return callNativeMethod(API_TYPE.UPDATE_CHANNEL_MEDIA_RELAY, { configuration })
     }
 
     /** Stops the media stream relay.
@@ -5004,7 +5004,7 @@ namespace agora {
             client.removeInjectStreamUrl(url)
             return ERROR_CODE_TYPE.ERR_OK
         }
-        return callNativeMethod(API_TYPE.REMOVE_INJECT_STREAM_URL, {url})
+        return callNativeMethod(API_TYPE.REMOVE_INJECT_STREAM_URL, { url })
     }
 
     /** Agora supports reporting and analyzing customized messages.
@@ -5018,7 +5018,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SEND_CUSTOM_REPORT_MESSAGE, {id, category, event, label, value})
+        return callNativeMethod(API_TYPE.SEND_CUSTOM_REPORT_MESSAGE, { id, category, event, label, value })
     }
 
     /** Gets the current connection state of the SDK.
@@ -5038,18 +5038,18 @@ namespace agora {
         return callNativeMethod(API_TYPE.GET_CONNECTION_STATE)
     }
 
-    export function sendMetadata({uid, size, buffer, timeStampMs}: Metadata) {
+    export function sendMetadata({ uid, size, buffer, timeStampMs }: Metadata) {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SEND_METADATA, {uid, size, timeStampMs}, buffer)
+        return callNativeMethod(API_TYPE.SEND_METADATA, { uid, size, timeStampMs }, buffer)
     }
 
     export function setMaxMetadataSize(size: number) {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_MAX_META_SIZE, {size})
+        return callNativeMethod(API_TYPE.SET_MAX_META_SIZE, { size })
     }
 
     /** Registers the metadata observer.
@@ -5072,7 +5072,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.REGISTER_MEDIA_META_DATA_OBSERVER, {type})
+        return callNativeMethod(API_TYPE.REGISTER_MEDIA_META_DATA_OBSERVER, { type })
     }
 
     /** Provides technical preview functionalities or special customizations by configuring the SDK with JSON options.
@@ -5089,7 +5089,7 @@ namespace agora {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
         }
-        return callNativeMethod(API_TYPE.SET_PARAMETERS, {parameters})
+        return callNativeMethod(API_TYPE.SET_PARAMETERS, { parameters })
     }
 
     /**

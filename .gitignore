@@ -3,3 +3,6 @@
 *.jar
 *.so
 *.framework/
+docs/
+node_modules/
+package-lock.json

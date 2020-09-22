@@ -3,5 +3,9 @@
   "author": "Cocos",
   "email": "yangxin@anysdk.com",
   "upgrade": "适配 Cocos Creator 2.4.x",
-  "upgrade_en": "Adapted to Cocos Creator 2.4.x"
+  "upgrade_en": "Adapted to Cocos Creator 2.4.x",
+  "devDependencies": {
+    "typedoc": "^0.19.2",
+    "typescript": "^4.0.3"
+  }
 }
