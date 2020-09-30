@@ -31,6 +31,7 @@
   - `android/agora`目录存放so文件，`android/lib`存放jar文件
   - `ios/agora`目录存放framework文件
 * 最后可通过Cocos Creator的build来使SDK生效
+* iOS平台，你需要打开XCode工程，并且将我们的framework开启embed，因为它是动态库.
 
 ## 附录
 

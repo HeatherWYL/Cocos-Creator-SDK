@@ -34,6 +34,7 @@ Check the end of document if you want to use App ID with the certificate.
   - `android/agora` fold save the `.so` file，`android/lib` save the `.jar` file.
   - `ios/agora` fold save the `.framework` file
 * Finally, Use Cocos Creator build to make SDK work.
+* On iOS platform, you should open the XCode project, and embed our framework, because it is dynamic library.
 
 ## Sources
 
