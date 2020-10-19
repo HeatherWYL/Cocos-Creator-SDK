@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include "../callback/rtcEngineCallback/RtcEngineEventHandler.h"
 #include "../common/IBridgeCommon.h"
 #include "../deviceManager/IAudioDeviceManagerBridge.h"
 #include "../deviceManager/IVideoDeviceManagerBridge.h"
@@ -15,6 +16,10 @@ public:
   virtual ~IRtcEngineBridge() = default;
 
   virtual int initEventHandler(rtc::IRtcEngineEventHandler *eventHandler) = 0;
+
+  virtual void add_C_EventHandler(CEngineEventHandler *engineEventHandler) = 0;
+
+  virtual void remove_C_EventHandler() = 0;
 
   virtual int callApi(API_TYPE apiType, const std::string &parameters) = 0;
 

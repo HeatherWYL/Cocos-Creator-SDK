@@ -37,6 +37,10 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters) {
     ret = initialize(appId.c_str(), nullptr, areaCode);
   } break;
 
+  case RELEASE: {
+    release(true);
+  } break;
+
   case SET_CHANNEL_PROFILE: {
     int profile;
     get_parameter_int(document, "profile", profile, ret);
@@ -995,7 +999,8 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters) {
                        ret);
     CHECK_RET_ERROR(ret)
 
-    TranscodingUser transcodingUser[transcoding.userCount];
+    TranscodingUser *transcodingUser =
+        new TranscodingUser[transcoding.userCount];
     Value val;
     get_parameter_array(transcodingValue, "transcodingUsers", val, ret);
     CHECK_RET_ERROR(ret);
@@ -1036,6 +1041,7 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters) {
 
     transcoding.backgroundImage = &backGroundImage;
     ret = setLiveTranscoding(transcoding);
+    delete[] transcodingUser;
 
   } break;
 
@@ -1152,9 +1158,9 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters) {
     get_parameter_array(document, "destInfos", destInfos, ret);
     CHECK_RET_ERROR(ret)
 
-    ChannelMediaInfo destChannelMediaInfo[destCount];
-    std::string destChannelName[destCount];
-    std::string destToken[destCount];
+    ChannelMediaInfo *destChannelMediaInfo = new ChannelMediaInfo[destCount];
+    std::string *destChannelName = new std::string[destCount];
+    std::string *destToken = new std::string[destCount];
     json_to_ChannelMediaInfo(destInfos, destChannelMediaInfo, destChannelName,
                              destToken, destCount, ret);
     CHECK_RET_ERROR(ret);
@@ -1164,6 +1170,9 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters) {
     channelMediaRelayConfiguration.destInfos = destChannelMediaInfo;
     channelMediaRelayConfiguration.destCount = destCount;
     ret = startChannelMediaRelay(channelMediaRelayConfiguration);
+    delete[] destChannelMediaInfo;
+    delete[] destChannelName;
+    delete[] destToken;
   } break;
 
   case UPDATE_CHANNEL_MEDIA_RELAY: {
@@ -1187,9 +1196,9 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters) {
     get_parameter_array(document, "destInfos", destInfos, ret);
     CHECK_RET_ERROR(ret)
 
-    ChannelMediaInfo destChannelMediaInfo[destCount];
-    std::string destChannelName[destCount];
-    std::string destToken[destCount];
+    ChannelMediaInfo *destChannelMediaInfo = new ChannelMediaInfo[destCount];
+    std::string *destChannelName = new std::string[destCount];
+    std::string *destToken = new std::string[destCount];
     json_to_ChannelMediaInfo(destInfos, destChannelMediaInfo, destChannelName,
                              destToken, destCount, ret);
     CHECK_RET_ERROR(ret);
@@ -1199,6 +1208,9 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters) {
     channelMediaRelayConfiguration.destInfos = destChannelMediaInfo;
     channelMediaRelayConfiguration.destCount = destCount;
     ret = updateChannelMediaRelay(channelMediaRelayConfiguration);
+    delete[] destChannelMediaInfo;
+    delete[] destChannelName;
+    delete[] destToken;
   } break;
 
   case STOP_CHANNEL_MEDIA_RELAY: {
@@ -1752,7 +1764,8 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters,
 
     VideoCanvas videoCanvas;
     videoCanvas.renderMode = renderMode;
-    strlcpy(videoCanvas.channelId, channelId.c_str(), channelId.length());
+    strncpy(videoCanvas.channelId, channelId.c_str(), MAX_CHANNEL_ID_LENGTH);
+    videoCanvas.channelId[MAX_CHANNEL_ID_LENGTH - 1] = '\0';
     videoCanvas.uid = uid;
     videoCanvas.mirrorMode = VIDEO_MIRROR_MODE_TYPE(mirrorMode);
     videoCanvas.view = reinterpret_cast<view_t>(ptr);
@@ -1779,7 +1792,8 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters,
 
     VideoCanvas videoCanvas;
     videoCanvas.renderMode = renderMode;
-    strlcpy(videoCanvas.channelId, channelId.c_str(), channelId.length());
+    strncpy(videoCanvas.channelId, channelId.c_str(), MAX_CHANNEL_ID_LENGTH);
+    videoCanvas.channelId[MAX_CHANNEL_ID_LENGTH - 1] = '\0';
     videoCanvas.uid = uid;
     videoCanvas.mirrorMode = VIDEO_MIRROR_MODE_TYPE(mirrorMode);
     videoCanvas.view = reinterpret_cast<view_t>(ptr);
@@ -1831,6 +1845,11 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters,
         IMetadataObserver::METADATA_TYPE(type), useSdkDefault);
   } break;
 
+  case REGISTER_VIDEO_FRAME_OBSERVER: {
+    ret = registerVideoFrameObserver(
+        reinterpret_cast<media::IVideoFrameObserver *>(ptr));
+  } break;
+
   default:
     ret = ERROR_CODE::ERROR_INVALID_API_TYPE;
     break;
@@ -1841,6 +1860,22 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters,
 int RtcEngineBridge::initEventHandler(IRtcEngineEventHandler *eventHandler) {
   mRtcEngineEventHandler = eventHandler;
   return ERROR_CODE::ERROR_OK;
+}
+
+void RtcEngineBridge::add_C_EventHandler(
+    CEngineEventHandler *engineEventHandler) {
+  if (!mRtcEngineEventHandler)
+    mRtcEngineEventHandler = new RtcEngineEventHandler();
+
+  static_cast<RtcEngineEventHandler *>(mRtcEngineEventHandler)
+      ->initCallbackEvent(engineEventHandler);
+}
+
+void RtcEngineBridge::remove_C_EventHandler() {
+  if (mRtcEngineEventHandler) {
+    delete (mRtcEngineEventHandler);
+    mRtcEngineEventHandler = nullptr;
+  }
 }
 
 int RtcEngineBridge::getUserInfoByUid(rtc::uid_t uid, UserInfo *userInfo) {
@@ -2484,7 +2519,7 @@ int RtcEngineBridge::startScreenCaptureByWindowId(
     rtc::view_t windowId, const rtc::Rectangle &regionRect,
     const rtc::ScreenCaptureParameters &captureParams) {
   LOG_JSON(START_SCREEN_CAPTURE_BY_WINDOW_ID, windowId, regionRect,
-           captureParams)
+           captureParams);
   return mRtcEngine->startScreenCaptureByWindowId(windowId, regionRect,
                                                   captureParams);
 }
@@ -2508,7 +2543,7 @@ int RtcEngineBridge::updateScreenCaptureRegion(
 }
 
 int RtcEngineBridge::updateScreenCaptureRegion(const rtc::Rect *rect) {
-  LOG_JSON(UPDATE_SCREEN_CAPTURE_REGION, *rect);
+  //        LOG_JSON(UPDATE_SCREEN_CAPTURE_REGION, *rect);
   return mRtcEngine->updateScreenCaptureRegion(rect);
 }
 #endif
@@ -2653,7 +2688,7 @@ int RtcEngineBridge::createDataStream(int *streamId, bool reliable,
 
 int RtcEngineBridge::sendStreamMessage(int streamId, const char *data,
                                        size_t length) {
-  LOG_JSON(SEND_STREAM_MESSAGE, "streamId", streamId, "data", data, "length",
+  LOG_JSON(SEND_STREAM_MESSAGE, "streamId", streamId, "length",
            (uint64_t)length);
   return mRtcEngine->sendStreamMessage(streamId, data, length);
 }
@@ -2840,6 +2875,16 @@ int RtcEngineBridge::sendCustomReportMessage(const char *id,
                                              const char *event,
                                              const char *label, int value) {
   return mRtcEngine->sendCustomReportMessage(id, category, event, label, value);
+}
+
+int RtcEngineBridge::registerVideoFrameObserver(
+    media::IVideoFrameObserver *videoFrameObserver) {
+  agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
+  mediaEngine.queryInterface(mRtcEngine, agora::AGORA_IID_MEDIA_ENGINE);
+  if (mediaEngine)
+    return mediaEngine->registerVideoFrameObserver(videoFrameObserver);
+
+  return ERROR_CODE::ERROR_NO_ENGINE;
 }
 
 CROSS_PLATFORM_EXPORT IRtcEngineBridge *createRtcEngineBridge() {

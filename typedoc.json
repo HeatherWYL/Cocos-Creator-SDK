@@ -1,4 +1,5 @@
 {
-    "mode": "file",
-    "out": "docs/api"
+  "mode": "file",
+  "out": "docs/api",
+  "stripInternal": true
 }

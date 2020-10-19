@@ -81,7 +81,7 @@ void json_to_TranscodingUser(T &object, rtc::TranscodingUser *transcodingUser,
       transcodingUser[i].alpha = value["alpha"].GetDouble();
       transcodingUser[i].audioChannel = value["audioChannel"].GetInt();
     } else {
-      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      ret = ERROR_CODE::ERROR_INVALID_PARAM;
     }
   }
 }
@@ -198,7 +198,7 @@ void json_to_ChannelMediaInfo(T &object,
       channelMediaInfo[0].uid = object["uid"].GetUint();
       return;
     } else {
-      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      ret = ERROR_CODE::ERROR_INVALID_PARAM;
       return;
     }
   }
@@ -213,7 +213,7 @@ void json_to_ChannelMediaInfo(T &object,
       channelMediaInfo[i].token = token[i].c_str();
       channelMediaInfo[i].uid = value["uid"].GetUint();
     } else {
-      ret = ERROR_CODE::ERROR_INVALID_PARAMETER;
+      ret = ERROR_CODE::ERROR_INVALID_PARAM;
       return;
     }
   }

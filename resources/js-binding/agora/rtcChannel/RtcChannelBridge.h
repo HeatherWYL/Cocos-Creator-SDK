@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "../callback/rtcChannnelCallback/RtcChannelEventHandler.h"
 #include "../common/IBridgeCommon.h"
 #include "../common/utils/StructHelper.h"
 #include "../observer/metadata/metadata_observer.h"
@@ -15,6 +16,7 @@ class RtcChannelBridge : public IRtcChannelBridge {
 private:
   rtc::IChannel *channel = nullptr;
   MetadataObserver *metadataObserver = nullptr;
+  rtc::IChannelEventHandler *channelEventHandler = nullptr;
 
 public:
   RtcChannelBridge(rtc::IRtcEngine *iRtcEngine, const char *channelId);
@@ -24,13 +26,18 @@ public:
   virtual int
   initChannelEventHandler(rtc::IChannelEventHandler *eventHandler) override;
 
+  void add_C_ChannelEventHandler(
+      CChannelEngineEventHandler *channelEngineEventHandler) override;
+
+  void remove_C_ChannelEventHandler() override;
+
   virtual int callApi(API_TYPE apiType, const std::string &parameters) override;
 
   virtual const char *callApi_str(API_TYPE apiType,
                                   const std::string &parameters) override;
 
   virtual int callApi(API_TYPE apiType, const std::string &parameters,
-                      void *&ptr) override;
+                      void *ptr) override;
 
   virtual void release() override;
 

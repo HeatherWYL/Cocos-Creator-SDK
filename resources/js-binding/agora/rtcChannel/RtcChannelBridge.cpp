@@ -28,11 +28,32 @@ RtcChannelBridge::~RtcChannelBridge() {
     delete (metadataObserver);
     metadataObserver = nullptr;
   }
+
+  if (channelEventHandler) {
+    delete (channelEventHandler);
+    channelEventHandler = nullptr;
+  }
 }
 
 int RtcChannelBridge::initChannelEventHandler(
     IChannelEventHandler *eventHandler) {
   return channel->setChannelEventHandler(eventHandler);
+}
+
+void RtcChannelBridge::add_C_ChannelEventHandler(
+    CChannelEngineEventHandler *channelEngineEventHandler) {
+  if (!channelEventHandler)
+    channelEventHandler = new RtcChannelEventHandler();
+
+  static_cast<RtcChannelEventHandler *>(channelEventHandler)
+      ->initChannelCallbackEvent(channelEngineEventHandler);
+}
+
+void RtcChannelBridge::remove_C_ChannelEventHandler() {
+  if (channelEventHandler) {
+    delete (channelEventHandler);
+    channelEventHandler = nullptr;
+  }
 }
 
 int RtcChannelBridge::callApi(API_TYPE apiType, const std::string &parameters) {
@@ -326,7 +347,8 @@ int RtcChannelBridge::callApi(API_TYPE apiType, const std::string &parameters) {
                        ret);
     CHECK_RET_ERROR(ret)
 
-    TranscodingUser transcodingUser[transcoding.userCount];
+    TranscodingUser *transcodingUser =
+        new TranscodingUser[transcoding.userCount];
     Value val;
     get_parameter_array(transcodingValue, "transcodingUsers", val, ret);
     CHECK_RET_ERROR(ret);
@@ -367,6 +389,7 @@ int RtcChannelBridge::callApi(API_TYPE apiType, const std::string &parameters) {
 
     transcoding.backgroundImage = &backGroundImage;
     ret = setLiveTranscoding(transcoding);
+    delete[] transcodingUser;
   } break;
 
   case API_TYPE::ADD_INJECT_STREAM_URL: {
@@ -414,9 +437,9 @@ int RtcChannelBridge::callApi(API_TYPE apiType, const std::string &parameters) {
     get_parameter_array(document, "destInfos", destInfos, ret);
     CHECK_RET_ERROR(ret)
 
-    ChannelMediaInfo destChannelMediaInfo[destCount];
-    std::string destChannelName[destCount];
-    std::string destToken[destCount];
+    ChannelMediaInfo *destChannelMediaInfo = new ChannelMediaInfo[destCount];
+    std::string *destChannelName = new std::string[destCount];
+    std::string *destToken = new std::string[destCount];
     json_to_ChannelMediaInfo(destInfos, destChannelMediaInfo, destChannelName,
                              destToken, destCount, ret);
     CHECK_RET_ERROR(ret);
@@ -426,6 +449,9 @@ int RtcChannelBridge::callApi(API_TYPE apiType, const std::string &parameters) {
     channelMediaRelayConfiguration.destInfos = destChannelMediaInfo;
     channelMediaRelayConfiguration.destCount = destCount;
     ret = startChannelMediaRelay(channelMediaRelayConfiguration);
+    delete[] destChannelMediaInfo;
+    delete[] destChannelName;
+    delete[] destToken;
   } break;
 
   case API_TYPE::UPDATE_CHANNEL_MEDIA_RELAY: {
@@ -449,9 +475,9 @@ int RtcChannelBridge::callApi(API_TYPE apiType, const std::string &parameters) {
     get_parameter_array(document, "destInfos", destInfos, ret);
     CHECK_RET_ERROR(ret)
 
-    ChannelMediaInfo destChannelMediaInfo[destCount];
-    std::string destChannelName[destCount];
-    std::string destToken[destCount];
+    ChannelMediaInfo *destChannelMediaInfo = new ChannelMediaInfo[destCount];
+    std::string *destChannelName = new std::string[destCount];
+    std::string *destToken = new std::string[destCount];
     json_to_ChannelMediaInfo(destInfos, destChannelMediaInfo, destChannelName,
                              destToken, destCount, ret);
     CHECK_RET_ERROR(ret);
@@ -461,6 +487,9 @@ int RtcChannelBridge::callApi(API_TYPE apiType, const std::string &parameters) {
     channelMediaRelayConfiguration.destInfos = destChannelMediaInfo;
     channelMediaRelayConfiguration.destCount = destCount;
     ret = updateChannelMediaRelay(channelMediaRelayConfiguration);
+    delete[] destChannelMediaInfo;
+    delete[] destChannelName;
+    delete[] destToken;
   } break;
 
   case API_TYPE::STOP_CHANNEL_MEDIA_RELAY: {
@@ -491,7 +520,7 @@ const char *RtcChannelBridge::callApi_str(API_TYPE apiType,
 }
 
 int RtcChannelBridge::callApi(API_TYPE apiType, const std::string &parameters,
-                              void *&ptr) {
+                              void *ptr) {
   Document document;
   document.Parse(parameters.c_str());
 

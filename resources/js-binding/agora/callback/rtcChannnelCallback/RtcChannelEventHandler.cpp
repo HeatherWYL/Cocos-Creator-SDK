@@ -12,10 +12,75 @@ RtcChannelEventHandler::RtcChannelEventHandler(
     ChannelEventHandler *mEventHandler)
     : mEventHandler(mEventHandler) {}
 
-RtcChannelEventHandler::~RtcChannelEventHandler() { mEventHandler = nullptr; }
+RtcChannelEventHandler::RtcChannelEventHandler() {
+  cChannelEngineEvent = new CChannelEngineEventHandler();
+}
+
+RtcChannelEventHandler::~RtcChannelEventHandler() {
+  mEventHandler = nullptr;
+  if (cChannelEngineEvent) {
+    delete cChannelEngineEvent;
+    cChannelEngineEvent = nullptr;
+  }
+}
+
+void RtcChannelEventHandler::initChannelCallbackEvent(
+    CChannelEngineEventHandler *channelEngineEvent) {
+  cChannelEngineEvent->onWarning = channelEngineEvent->onWarning;
+  cChannelEngineEvent->onError = channelEngineEvent->onError;
+  cChannelEngineEvent->onJoinChannelSuccess =
+      channelEngineEvent->onJoinChannelSuccess;
+  cChannelEngineEvent->onRejoinChannelSuccess =
+      channelEngineEvent->onRejoinChannelSuccess;
+  cChannelEngineEvent->onLeaveChannel = channelEngineEvent->onLeaveChannel;
+  cChannelEngineEvent->onClientRoleChanged =
+      channelEngineEvent->onClientRoleChanged;
+  cChannelEngineEvent->onUserJoined = channelEngineEvent->onUserJoined;
+  cChannelEngineEvent->onUserOffLine = channelEngineEvent->onUserOffLine;
+  cChannelEngineEvent->onConnectionLost = channelEngineEvent->onConnectionLost;
+  cChannelEngineEvent->onRequestToken = channelEngineEvent->onRequestToken;
+  cChannelEngineEvent->onTokenPrivilegeWillExpire =
+      channelEngineEvent->onTokenPrivilegeWillExpire;
+  cChannelEngineEvent->onRtcStats = channelEngineEvent->onRtcStats;
+  cChannelEngineEvent->onNetworkQuality = channelEngineEvent->onNetworkQuality;
+  cChannelEngineEvent->onRemoteVideoStats =
+      channelEngineEvent->onRemoteVideoStats;
+  cChannelEngineEvent->onRemoteAudioStats =
+      channelEngineEvent->onRemoteAudioStats;
+  cChannelEngineEvent->onRemoteAudioStateChanged =
+      channelEngineEvent->onRemoteAudioStateChanged;
+  cChannelEngineEvent->onActiveSpeaker = channelEngineEvent->onActiveSpeaker;
+  cChannelEngineEvent->onVideoSizeChanged =
+      channelEngineEvent->onVideoSizeChanged;
+  cChannelEngineEvent->onRemoteVideoStateChanged =
+      channelEngineEvent->onRemoteVideoStateChanged;
+  cChannelEngineEvent->onStreamMessage = channelEngineEvent->onStreamMessage;
+  cChannelEngineEvent->onStreamMessageError =
+      channelEngineEvent->onStreamMessageError;
+  cChannelEngineEvent->onMediaRelayStateChanged =
+      channelEngineEvent->onMediaRelayStateChanged;
+  cChannelEngineEvent->onMediaRelayEvent =
+      channelEngineEvent->onMediaRelayEvent;
+  cChannelEngineEvent->onRtmpStreamingStateChanged =
+      channelEngineEvent->onRtmpStreamingStateChanged;
+  cChannelEngineEvent->onTranscodingUpdated =
+      channelEngineEvent->onTranscodingUpdated;
+  cChannelEngineEvent->onStreamInjectedStatus =
+      channelEngineEvent->onStreamInjectedStatus;
+  cChannelEngineEvent->onRemoteSubscribeFallbackToAudioOnly =
+      channelEngineEvent->onRemoteSubscribeFallbackToAudioOnly;
+  cChannelEngineEvent->onConnectionStateChanged =
+      channelEngineEvent->onConnectionStateChanged;
+  cChannelEngineEvent->onLocalPublishFallbackToAudioOnly =
+      channelEngineEvent->onLocalPublishFallbackToAudioOnly;
+  cChannelEngineEvent->onTestEnd = channelEngineEvent->onTestEnd;
+}
 
 void RtcChannelEventHandler::onChannelWarning(IChannel *rtcChannel, int warn,
                                               const char *msg) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onWarning)
+    cChannelEngineEvent->onWarning(rtcChannel->channelId(), warn, msg);
+
   if (!mEventHandler)
     return;
 
@@ -27,6 +92,9 @@ void RtcChannelEventHandler::onChannelWarning(IChannel *rtcChannel, int warn,
 
 void RtcChannelEventHandler::onChannelError(IChannel *rtcChannel, int err,
                                             const char *msg) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onError)
+    cChannelEngineEvent->onError(rtcChannel->channelId(), err, msg);
+
   if (!mEventHandler)
     return;
 
@@ -38,6 +106,10 @@ void RtcChannelEventHandler::onChannelError(IChannel *rtcChannel, int err,
 
 void RtcChannelEventHandler::onJoinChannelSuccess(IChannel *rtcChannel,
                                                   rtc::uid_t uid, int elapsed) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onJoinChannelSuccess)
+    cChannelEngineEvent->onJoinChannelSuccess(rtcChannel->channelId(), uid,
+                                              elapsed);
+
   if (!mEventHandler)
     return;
 
@@ -49,6 +121,10 @@ void RtcChannelEventHandler::onJoinChannelSuccess(IChannel *rtcChannel,
 void RtcChannelEventHandler::onRejoinChannelSuccess(IChannel *rtcChannel,
                                                     rtc::uid_t uid,
                                                     int elapsed) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onRejoinChannelSuccess)
+    cChannelEngineEvent->onRejoinChannelSuccess(rtcChannel->channelId(), uid,
+                                                elapsed);
+
   if (!mEventHandler)
     return;
 
@@ -59,6 +135,17 @@ void RtcChannelEventHandler::onRejoinChannelSuccess(IChannel *rtcChannel,
 
 void RtcChannelEventHandler::onLeaveChannel(IChannel *rtcChannel,
                                             const RtcStats &stats) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onLeaveChannel)
+    cChannelEngineEvent->onLeaveChannel(
+        rtcChannel->channelId(), stats.duration, stats.txBytes, stats.rxBytes,
+        stats.txAudioBytes, stats.txVideoBytes, stats.rxAudioBytes,
+        stats.rxVideoBytes, stats.txKBitRate, stats.rxKBitRate,
+        stats.rxAudioKBitRate, stats.txAudioKBitRate, stats.rxVideoKBitRate,
+        stats.txVideoKBitRate, stats.lastmileDelay, stats.txPacketLossRate,
+        stats.rxPacketLossRate, stats.userCount, stats.cpuAppUsage,
+        stats.cpuTotalUsage, stats.gatewayRtt, stats.memoryAppUsageRatio,
+        stats.memoryTotalUsageRatio, stats.memoryAppUsageInKbytes);
+
   if (!mEventHandler)
     return;
 
@@ -69,6 +156,10 @@ void RtcChannelEventHandler::onLeaveChannel(IChannel *rtcChannel,
 void RtcChannelEventHandler::onClientRoleChanged(IChannel *rtcChannel,
                                                  CLIENT_ROLE_TYPE oldRole,
                                                  CLIENT_ROLE_TYPE newRole) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onClientRoleChanged)
+    cChannelEngineEvent->onClientRoleChanged(rtcChannel->channelId(),
+                                             int(oldRole), int(newRole));
+
   if (!mEventHandler)
     return;
 
@@ -79,6 +170,9 @@ void RtcChannelEventHandler::onClientRoleChanged(IChannel *rtcChannel,
 
 void RtcChannelEventHandler::onUserJoined(IChannel *rtcChannel, rtc::uid_t uid,
                                           int elapsed) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onUserJoined)
+    cChannelEngineEvent->onUserJoined(rtcChannel->channelId(), uid, elapsed);
+
   if (!mEventHandler)
     return;
 
@@ -89,6 +183,9 @@ void RtcChannelEventHandler::onUserJoined(IChannel *rtcChannel, rtc::uid_t uid,
 
 void RtcChannelEventHandler::onUserOffline(IChannel *rtcChannel, rtc::uid_t uid,
                                            USER_OFFLINE_REASON_TYPE reason) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onUserOffLine)
+    cChannelEngineEvent->onUserOffLine(rtcChannel->channelId(), uid, reason);
+
   if (!mEventHandler)
     return;
 
@@ -98,6 +195,9 @@ void RtcChannelEventHandler::onUserOffline(IChannel *rtcChannel, rtc::uid_t uid,
 }
 
 void RtcChannelEventHandler::onConnectionLost(IChannel *rtcChannel) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onConnectionLost)
+    cChannelEngineEvent->onConnectionLost(rtcChannel->channelId());
+
   if (!mEventHandler)
     return;
 
@@ -106,6 +206,9 @@ void RtcChannelEventHandler::onConnectionLost(IChannel *rtcChannel) {
 }
 
 void RtcChannelEventHandler::onRequestToken(IChannel *rtcChannel) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onRequestToken)
+    cChannelEngineEvent->onRequestToken(rtcChannel->channelId());
+
   if (!mEventHandler)
     return;
 
@@ -115,6 +218,10 @@ void RtcChannelEventHandler::onRequestToken(IChannel *rtcChannel) {
 
 void RtcChannelEventHandler::onTokenPrivilegeWillExpire(IChannel *rtcChannel,
                                                         const char *token) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onTokenPrivilegeWillExpire)
+    cChannelEngineEvent->onTokenPrivilegeWillExpire(rtcChannel->channelId(),
+                                                    token);
+
   if (!mEventHandler)
     return;
 
@@ -126,6 +233,17 @@ void RtcChannelEventHandler::onTokenPrivilegeWillExpire(IChannel *rtcChannel,
 
 void RtcChannelEventHandler::onRtcStats(IChannel *rtcChannel,
                                         const RtcStats &stats) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onRtcStats)
+    cChannelEngineEvent->onRtcStats(
+        rtcChannel->channelId(), stats.duration, stats.txBytes, stats.rxBytes,
+        stats.txAudioBytes, stats.txVideoBytes, stats.rxAudioBytes,
+        stats.rxVideoBytes, stats.txKBitRate, stats.rxKBitRate,
+        stats.rxAudioKBitRate, stats.txAudioKBitRate, stats.rxVideoKBitRate,
+        stats.txVideoKBitRate, stats.lastmileDelay, stats.txPacketLossRate,
+        stats.rxPacketLossRate, stats.userCount, stats.cpuAppUsage,
+        stats.cpuTotalUsage, stats.gatewayRtt, stats.memoryAppUsageRatio,
+        stats.memoryTotalUsageRatio, stats.memoryAppUsageInKbytes);
+
   if (!mEventHandler)
     return;
 
@@ -136,6 +254,10 @@ void RtcChannelEventHandler::onRtcStats(IChannel *rtcChannel,
 void RtcChannelEventHandler::onNetworkQuality(IChannel *rtcChannel,
                                               rtc::uid_t uid, int txQuality,
                                               int rxQuality) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onNetworkQuality)
+    cChannelEngineEvent->onNetworkQuality(rtcChannel->channelId(), uid,
+                                          txQuality, rxQuality);
+
   if (!mEventHandler)
     return;
 
@@ -146,6 +268,14 @@ void RtcChannelEventHandler::onNetworkQuality(IChannel *rtcChannel,
 
 void RtcChannelEventHandler::onRemoteVideoStats(IChannel *rtcChannel,
                                                 const RemoteVideoStats &stats) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onRemoteVideoStats)
+    cChannelEngineEvent->onRemoteVideoStats(
+        rtcChannel->channelId(), stats.uid, stats.delay, stats.width,
+        stats.height, stats.receivedBitrate, stats.decoderOutputFrameRate,
+        stats.rendererOutputFrameRate, stats.packetLossRate,
+        (int)stats.rxStreamType, stats.totalFrozenTime, stats.frozenRate,
+        stats.totalActiveTime);
+
   if (!mEventHandler)
     return;
 
@@ -155,6 +285,14 @@ void RtcChannelEventHandler::onRemoteVideoStats(IChannel *rtcChannel,
 
 void RtcChannelEventHandler::onRemoteAudioStats(IChannel *rtcChannel,
                                                 const RemoteAudioStats &stats) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onRemoteAudioStats)
+    cChannelEngineEvent->onRemoteAudioStats(
+        rtcChannel->channelId(), stats.uid, stats.quality,
+        stats.networkTransportDelay, stats.jitterBufferDelay,
+        stats.audioLossRate, stats.numChannels, stats.receivedSampleRate,
+        stats.receivedBitrate, stats.totalFrozenTime, stats.frozenRate,
+        stats.totalActiveTime);
+
   if (!mEventHandler)
     return;
 
@@ -165,6 +303,10 @@ void RtcChannelEventHandler::onRemoteAudioStats(IChannel *rtcChannel,
 void RtcChannelEventHandler::onRemoteAudioStateChanged(
     IChannel *rtcChannel, rtc::uid_t uid, REMOTE_AUDIO_STATE state,
     REMOTE_AUDIO_STATE_REASON reason, int elapsed) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onRemoteAudioStateChanged)
+    cChannelEngineEvent->onRemoteAudioStateChanged(
+        rtcChannel->channelId(), uid, int(state), int(reason), elapsed);
+
   if (!mEventHandler)
     return;
 
@@ -175,6 +317,9 @@ void RtcChannelEventHandler::onRemoteAudioStateChanged(
 
 void RtcChannelEventHandler::onActiveSpeaker(IChannel *rtcChannel,
                                              rtc::uid_t uid) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onActiveSpeaker)
+    cChannelEngineEvent->onActiveSpeaker(rtcChannel->channelId(), uid);
+
   if (!mEventHandler)
     return;
 
@@ -185,6 +330,10 @@ void RtcChannelEventHandler::onActiveSpeaker(IChannel *rtcChannel,
 void RtcChannelEventHandler::onVideoSizeChanged(IChannel *rtcChannel,
                                                 rtc::uid_t uid, int width,
                                                 int height, int rotation) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onVideoSizeChanged)
+    cChannelEngineEvent->onVideoSizeChanged(rtcChannel->channelId(), uid, width,
+                                            height, rotation);
+
   if (!mEventHandler)
     return;
 
@@ -196,6 +345,10 @@ void RtcChannelEventHandler::onVideoSizeChanged(IChannel *rtcChannel,
 void RtcChannelEventHandler::onRemoteVideoStateChanged(
     IChannel *rtcChannel, rtc::uid_t uid, REMOTE_VIDEO_STATE state,
     REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onRemoteVideoStateChanged)
+    cChannelEngineEvent->onRemoteVideoStateChanged(
+        rtcChannel->channelId(), uid, int(state), int(reason), elapsed);
+
   if (!mEventHandler)
     return;
 
@@ -207,6 +360,10 @@ void RtcChannelEventHandler::onRemoteVideoStateChanged(
 void RtcChannelEventHandler::onStreamMessage(IChannel *rtcChannel,
                                              rtc::uid_t uid, int streamId,
                                              const char *data, size_t length) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onStreamMessage)
+    cChannelEngineEvent->onStreamMessage(rtcChannel->channelId(), uid, streamId,
+                                         data, length);
+
   if (!mEventHandler)
     return;
 
@@ -220,6 +377,10 @@ void RtcChannelEventHandler::onStreamMessageError(IChannel *rtcChannel,
                                                   rtc::uid_t uid, int streamId,
                                                   int code, int missed,
                                                   int cached) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onStreamMessageError)
+    cChannelEngineEvent->onStreamMessageError(rtcChannel->channelId(), uid,
+                                              streamId, code, missed, cached);
+
   if (!mEventHandler)
     return;
 
@@ -231,6 +392,10 @@ void RtcChannelEventHandler::onStreamMessageError(IChannel *rtcChannel,
 void RtcChannelEventHandler::onChannelMediaRelayStateChanged(
     IChannel *rtcChannel, CHANNEL_MEDIA_RELAY_STATE state,
     CHANNEL_MEDIA_RELAY_ERROR code) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onMediaRelayStateChanged)
+    cChannelEngineEvent->onMediaRelayStateChanged(rtcChannel->channelId(),
+                                                  int(state), int(code));
+
   if (!mEventHandler)
     return;
 
@@ -241,6 +406,9 @@ void RtcChannelEventHandler::onChannelMediaRelayStateChanged(
 
 void RtcChannelEventHandler::onChannelMediaRelayEvent(
     IChannel *rtcChannel, CHANNEL_MEDIA_RELAY_EVENT code) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onMediaRelayEvent)
+    cChannelEngineEvent->onMediaRelayEvent(rtcChannel->channelId(), int(code));
+
   if (!mEventHandler)
     return;
 
@@ -251,6 +419,10 @@ void RtcChannelEventHandler::onChannelMediaRelayEvent(
 void RtcChannelEventHandler::onRtmpStreamingStateChanged(
     IChannel *rtcChannel, const char *url, RTMP_STREAM_PUBLISH_STATE state,
     RTMP_STREAM_PUBLISH_ERROR errCode) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onRtmpStreamingStateChanged)
+    cChannelEngineEvent->onRtmpStreamingStateChanged(
+        rtcChannel->channelId(), url, int(state), int(errCode));
+
   if (!mEventHandler)
     return;
 
@@ -261,6 +433,9 @@ void RtcChannelEventHandler::onRtmpStreamingStateChanged(
 }
 
 void RtcChannelEventHandler::onTranscodingUpdated(IChannel *rtcChannel) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onTranscodingUpdated)
+    cChannelEngineEvent->onTranscodingUpdated(rtcChannel->channelId());
+
   if (!mEventHandler)
     return;
 
@@ -272,6 +447,10 @@ void RtcChannelEventHandler::onStreamInjectedStatus(IChannel *rtcChannel,
                                                     const char *url,
                                                     rtc::uid_t uid,
                                                     int status) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onStreamInjectedStatus)
+    cChannelEngineEvent->onStreamInjectedStatus(rtcChannel->channelId(), url,
+                                                uid, status);
+
   if (!mEventHandler)
     return;
 
@@ -283,6 +462,11 @@ void RtcChannelEventHandler::onStreamInjectedStatus(IChannel *rtcChannel,
 
 void RtcChannelEventHandler::onLocalPublishFallbackToAudioOnly(
     IChannel *rtcChannel, bool isFallbackOrRecover) {
+  if (cChannelEngineEvent &&
+      cChannelEngineEvent->onLocalPublishFallbackToAudioOnly)
+    cChannelEngineEvent->onLocalPublishFallbackToAudioOnly(
+        rtcChannel->channelId(), isFallbackOrRecover);
+
   if (!mEventHandler)
     return;
 
@@ -293,6 +477,11 @@ void RtcChannelEventHandler::onLocalPublishFallbackToAudioOnly(
 
 void RtcChannelEventHandler::onRemoteSubscribeFallbackToAudioOnly(
     IChannel *rtcChannel, rtc::uid_t uid, bool isFallbackOrRecover) {
+  if (cChannelEngineEvent &&
+      cChannelEngineEvent->onRemoteSubscribeFallbackToAudioOnly)
+    cChannelEngineEvent->onRemoteSubscribeFallbackToAudioOnly(
+        rtcChannel->channelId(), uid, isFallbackOrRecover);
+
   if (!mEventHandler)
     return;
 
@@ -305,6 +494,10 @@ void RtcChannelEventHandler::onRemoteSubscribeFallbackToAudioOnly(
 void RtcChannelEventHandler::onConnectionStateChanged(
     IChannel *rtcChannel, CONNECTION_STATE_TYPE state,
     CONNECTION_CHANGED_REASON_TYPE reason) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onConnectionStateChanged)
+    cChannelEngineEvent->onConnectionStateChanged(rtcChannel->channelId(),
+                                                  int(state), int(reason));
+
   if (!mEventHandler)
     return;
 
@@ -314,6 +507,9 @@ void RtcChannelEventHandler::onConnectionStateChanged(
 }
 
 void RtcChannelEventHandler::onTestEnd(IChannel *rtcChannel) {
+  if (cChannelEngineEvent && cChannelEngineEvent->onTestEnd)
+    cChannelEngineEvent->onTestEnd(rtcChannel->channelId());
+
   if (!mEventHandler)
     return;
 

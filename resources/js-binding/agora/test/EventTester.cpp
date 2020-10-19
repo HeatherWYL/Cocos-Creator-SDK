@@ -115,7 +115,7 @@ void json_to_object(Value &v, RemoteAudioStats &stats) {
   stats.publishDuration = v["publishDuration"].GetInt();
 }
 
-void json_to_object(Value &v, Rectangle &rect) {
+void json_to_object(Value &v, agora::rtc::Rectangle &rect) {
   rect.x = v["x"].GetInt();
   rect.y = v["y"].GetInt();
   rect.width = v["width"].GetInt();
