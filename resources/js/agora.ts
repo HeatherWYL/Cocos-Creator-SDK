@@ -243,7 +243,8 @@ namespace agora {
         AUDIO_MIXING_ERROR_OK = 0,
     }
 
-    /** Local video state types
+    /** @ignore
+     * Local video state types
      */
     export enum LOCAL_VIDEO_STREAM_STATE {
         /** 0: Initial state */
@@ -260,7 +261,8 @@ namespace agora {
         LOCAL_VIDEO_STREAM_STATE_FAILED = 3
     }
 
-    /** Local video state error codes
+    /** @ignore
+     * Local video state error codes
      */
     export enum LOCAL_VIDEO_STREAM_ERROR {
         /** 0: The local video is normal. */
@@ -380,7 +382,7 @@ namespace agora {
         RENDER_MODE_FILL = 4,
     }
 
-    /** Video mirror modes. */
+    /** @ignore Video mirror modes. */
     export enum VIDEO_MIRROR_MODE_TYPE {
         /** 0: (Default) The SDK enables the mirror mode. */
         VIDEO_MIRROR_MODE_AUTO = 0,//determined by SDK
@@ -390,7 +392,7 @@ namespace agora {
         VIDEO_MIRROR_MODE_DISABLED = 2,//disable mirror
     }
 
-    /** @deprecated Video profiles. */
+    /** @ignore @deprecated Video profiles. */
     export enum VIDEO_PROFILE_TYPE {
         /** 0: 160 * 120, frame rate 15 fps, bitrate 65 Kbps. */
         VIDEO_PROFILE_LANDSCAPE_120P = 0,
@@ -737,7 +739,7 @@ namespace agora {
         INJECT_STREAM_STATUS_BROKEN = 10,
     }
 
-    /** Remote video stream types. */
+    /** @ignore Remote video stream types. */
     export enum REMOTE_VIDEO_STREAM_TYPE {
         /** 0: High-stream video. */
         REMOTE_VIDEO_STREAM_HIGH = 0,
@@ -774,7 +776,7 @@ namespace agora {
         AUDIO_SAMPLE_RATE_48000 = 48000,
     }
 
-    /** Video codec profile types. */
+    /** @ignore Video codec profile types. */
     export enum VIDEO_CODEC_PROFILE_TYPE {
         /** 66: Baseline video codec profile. Generally used in video calls on mobile phones. */
         VIDEO_CODEC_PROFILE_BASELINE = 66,
@@ -786,7 +788,7 @@ namespace agora {
         VIDEO_CODEC_PROFILE_HIGH = 100,
     }
 
-    /** Video codec types */
+    /** @ignore Video codec types */
     export enum VIDEO_CODEC_TYPE {
         /** Standard VP8 */
         VIDEO_CODEC_VP8 = 1,
@@ -1062,7 +1064,9 @@ namespace agora {
         REMOTE_AUDIO_REASON_REMOTE_OFFLINE = 7,
     }
 
-    /** The state of the remote video. */
+    /** @ignore
+     * The state of the remote video.
+     */
     export enum REMOTE_VIDEO_STATE {
         /** 0: The remote video is in the default state, probably due to
          * [REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED}(3),
@@ -1102,12 +1106,10 @@ namespace agora {
          */
         PUB_STATE_IDLE = 0,
         /** 1: Fails to publish the local stream. Possible reasons:
-         * - The local user calls [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream} or
-         * [muteLocalVideoStream(true)]{@link agora.muteLocalVideoStream} to stop sending local streams.
-         * - The local user calls [disableAudio]{@link agora.disableAudio} or [disableVideo]{@link agora.disableVideo} to
+         * - The local user calls [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream} to stop sending local streams.
+         * - The local user calls [disableAudio]{@link agora.disableAudio} to
          * disable the entire audio or video module.
-         * - The local user calls [enableLocalAudio(false)]{@link agora.enableLocalAudio} or
-         * [enableLocalVideo(false)]{@link agora.enableLocalVideo} to disable the local audio sampling or video capturing.
+         * - The local user calls [enableLocalAudio(false)]{@link agora.enableLocalAudio} to disable the local audio sampling or video capturing.
          * - The role of the local user is `AUDIENCE`.
          */
         PUB_STATE_NO_PUBLISHED = 1,
@@ -1129,7 +1131,7 @@ namespace agora {
          * - The remote user:
          *   - Calls [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream} or
          * [muteLocalVideoStream(true)]{@link agora.muteLocalVideoStream} to stop sending local streams.
-         *   - Calls [disableAudio]{@link agora.disableAudio} or [disableVideo]{@link agora.disableVideo} to disable the
+         *   - Calls [disableAudio]{@link agora.disableAudio} to disable the
          * entire audio or video modules.
          *   - Calls [enableLocalAudio(false)]{@link agora.enableLocalAudio} or [enableLocalVideo(false)]{@link agora.enableLocalVideo}
          * to disable the local audio sampling or video capturing.
@@ -1153,7 +1155,7 @@ namespace agora {
         SUB_STATE_SUBSCRIBED = 3
     }
 
-    /** The reason for the remote video state change. */
+    /** @ignore The reason for the remote video state change. */
     export enum REMOTE_VIDEO_STATE_REASON {
         /** 0: Internal reasons.
          */
@@ -1273,7 +1275,8 @@ namespace agora {
         STREAM_FALLBACK_OPTION_AUDIO_ONLY = 2,
     }
 
-    /** Camera capturer configuration.
+    /** @ignore
+     * Camera capturer configuration.
      */
     export enum CAPTURER_OUTPUT_PREFERENCE {
         /** 0: (Default) self-adapts the camera output parameters to the system performance and network conditions to balance
@@ -1476,6 +1479,9 @@ namespace agora {
         AUDIO_SESSION_OPERATION_RESTRICTION_ALL = 1 << 7,
     }
 
+    /** @ignore
+     * The direction of the camera.
+     */
     export enum CAMERA_DIRECTION {
         /** The rear camera. */
         CAMERA_REAR = 0,
@@ -1596,7 +1602,8 @@ namespace agora {
         RELAY_STATE_FAILURE = 3,
     }
 
-    /** (Recommended) The standard bitrate set in the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} method.
+    /** @ignore
+     * (Recommended) The standard bitrate set in the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} method.
      *
      * In this mode, the bitrates differ between the live interactive streaming and communication profiles:
      * - `COMMUNICATION` profile: The video bitrate is the same as the base bitrate.
@@ -1604,13 +1611,15 @@ namespace agora {
      */
     export const STANDARD_BITRATE = 0
 
-    /** The compatible bitrate set in the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} method.
+    /** @ignore
+     * The compatible bitrate set in the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} method.
      * The bitrate remains the same regardless of the channel profile. If you choose this mode in the `LIVE_BROADCASTING` profile, the
      * video frame rate may be lower than the set value.
      */
     export const COMPATIBLE_BITRATE = -1
 
-    /** Use the default minimum bitrate.
+    /** @ignore
+     * Use the default minimum bitrate.
      */
     export const DEFAULT_MIN_BITRATE = -1
 
@@ -1625,7 +1634,8 @@ namespace agora {
         RTMP_STREAM_LIFE_CYCLE_BIND2OWNER = 2,
     }
 
-    /** Content hints for screen sharing.
+    /** @ignore
+     * Content hints for screen sharing.
      */
     export enum VideoContentHint {
         /** (Default) No content hint.
@@ -2324,8 +2334,9 @@ namespace agora {
         LOG_FILTER_MASK = 0x80f,
     }
 
-    /** Metadata type of the observer.
-     @note We only support video metadata for now.
+    /** @ignore
+     * Metadata type of the observer.
+     * @note We only support video metadata for now.
      */
     export enum METADATA_TYPE {
         /** -1: the metadata type is unknown.
@@ -2336,7 +2347,8 @@ namespace agora {
         VIDEO_METADATA = 0,
     }
 
-    /** The video pixel format.
+    /** @ignore
+     * The video pixel format.
      */
     export enum VIDEO_PIXEL_FORMAT {
         /** 0: The video pixel format is unknown.
@@ -2549,8 +2561,6 @@ namespace agora {
          */
         probeDownlink: boolean
         /** The expected maximum sending bitrate (bps) of the local user. The value ranges between 100000 and 5000000.
-         * We recommend setting this parameter according to the bitrate value set by
-         * [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} .
          */
         expectedUplinkBitrate: number
         /** The expected maximum receiving bitrate (bps) of the local user. The value ranges between 100000 and 5000000. */
@@ -2681,7 +2691,8 @@ namespace agora {
         memoryAppUsageInKbytes: number
     }
 
-    /** Statistics of the local video stream.
+    /** @ignore
+     * Statistics of the local video stream.
      */
     export interface LocalVideoStats {
         /** Bitrate (Kbps) sent in the reported interval, which does not include
@@ -2733,7 +2744,8 @@ namespace agora {
         captureFrameRate: number
     }
 
-    /** Statistics of the remote video stream.
+    /** @ignore
+     * Statistics of the remote video stream.
      */
     export interface RemoteVideoStats {
         /**
@@ -2850,7 +2862,7 @@ namespace agora {
         publishDuration: number
     }
 
-    /** Video dimensions. */
+    /** @ignore Video dimensions. */
     export class VideoDimensions {
         /** Width (pixels) of the video. */
         width: number
@@ -2863,7 +2875,8 @@ namespace agora {
         }
     }
 
-    /** Video encoder configurations.
+    /** @ignore
+     * Video encoder configurations.
      */
     export class VideoEncoderConfiguration {
         /** The video frame dimensions (px) used to specify the video quality and measured by the total number of pixels along a
@@ -2981,7 +2994,8 @@ namespace agora {
         }
     }
 
-    /** The video and audio properties of the user displaying the video in the CDN live. Agora supports a maximum of 17 transcoding
+    /** @ignore
+     * The video and audio properties of the user displaying the video in the CDN live. Agora supports a maximum of 17 transcoding
      * users in a CDN streaming channel.
      */
     export class TranscodingUser {
@@ -3043,7 +3057,8 @@ namespace agora {
         }
     }
 
-    /** Image properties.
+    /** @ignore
+     * Image properties.
      *
      * The properties of the watermark and background images.
      */
@@ -3068,7 +3083,7 @@ namespace agora {
         }
     }
 
-    /** The configuration for advanced features of the RTMP streaming with transcoding.
+    /** @ignore The configuration for advanced features of the RTMP streaming with transcoding.
      */
     export class LiveStreamAdvancedFeature {
         /** The advanced feature for high-quality video with a lower bitrate. */
@@ -3092,7 +3107,8 @@ namespace agora {
         }
     }
 
-    /** A struct for managing CDN live audio/video transcoding settings.
+    /** @ignore
+     * A struct for managing CDN live audio/video transcoding settings.
      */
     export class LiveTranscoding {
         /** The width of the video in pixels. The default value is 360.
@@ -3184,7 +3200,7 @@ namespace agora {
          */
         audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE
 
-        /** Advanced features of the RTMP streaming with transcoding. See LiveStreamAdvancedFeature.
+        /** @ignore Advanced features of the RTMP streaming with transcoding. See LiveStreamAdvancedFeature.
          */
         advancedFeatures: LiveStreamAdvancedFeature
 
@@ -3236,7 +3252,8 @@ namespace agora {
         }
     }
 
-    /** Camera capturer configuration.
+    /** @ignore
+     * Camera capturer configuration.
      */
     export class CameraCapturerConfiguration {
         /** Camera capturer preference settings. See: [CAPTURER_OUTPUT_PREFERENCE]{@link agora.CAPTURER_OUTPUT_PREFERENCE}. */
@@ -3514,7 +3531,8 @@ namespace agora {
         }
     }
 
-    /** Video display settings of the VideoCanvas class.
+    /** @ignore
+     * Video display settings of the VideoCanvas class.
      */
     export class VideoCanvas {
         /** Video display window (view).
@@ -3661,18 +3679,17 @@ namespace agora {
 
     export class Metadata {
         /** The User ID.
-
-         - For the receiver: the ID of the user who sent the metadata.
-         - For the sender: ignore it.
+         * - For the receiver: the ID of the user who sent the metadata.
+         * - For the sender: ignore it.
          */
         uid: number
-        /** Buffer size of the sent or received Metadata.
+        /** Buffer size of the sent or received metadata.
          */
         size: number
-        /** Buffer address of the sent or received Metadata.
+        /** Buffer address of the sent or received metadata.
          */
         buffer: Uint8Array
-        /** Time statmp of the frame following the metadata.
+        /** Timestamp of the frame following the metadata.
          */
         timeStampMs: number
 
@@ -3968,7 +3985,8 @@ declare class AgoraRtcEvents {
          */
         (uid: number, txQuality: agora.QUALITY_TYPE, rxQuality: agora.QUALITY_TYPE) => void
 
-    /** Reports the statistics of the local video stream.
+    /** @ignore
+     * Reports the statistics of the local video stream.
      *
      * The SDK triggers this callback once every two seconds for each
      * user/host. If there are multiple users/hosts in the channel, the SDK
@@ -3985,7 +4003,8 @@ declare class AgoraRtcEvents {
          */
         (stats: agora.LocalVideoStats) => void
 
-    /** Reports the statistics of the video stream from each remote user/host.
+    /** @ignore
+     * Reports the statistics of the video stream from each remote user/host.
      *
      * The SDK triggers this callback once every two seconds for each remote
      * user/host. If a channel includes multiple remote users, the SDK
@@ -4067,7 +4086,7 @@ declare class AgoraRtcEvents {
          */
         (channel: string, oldState: agora.STREAM_PUBLISH_STATE, newState: agora.STREAM_PUBLISH_STATE, elapseSinceLastState: number) => void
 
-    /** Occurs when the video publishing state changes.
+    /** @ignore Occurs when the video publishing state changes.
      *
      * This callback indicates the publishing state change of the local video stream.
      */
@@ -4094,7 +4113,8 @@ declare class AgoraRtcEvents {
          */
         (channel: string, uid: number, oldState: agora.STREAM_SUBSCRIBE_STATE, newState: agora.STREAM_SUBSCRIBE_STATE, elapseSinceLastState: number) => void
 
-    /** Occurs when the audio subscribing state changes.
+    /** @ignore
+     * Occurs when the audio subscribing state changes.
      *
      * This callback indicates the subscribing state change of a remote video stream.
      */
@@ -4170,7 +4190,8 @@ declare class AgoraRtcEvents {
          */
         (uid: number) => void
 
-    /** Occurs when the video stops playing.
+    /** @ignore
+     * Occurs when the video stops playing.
      *
      * @deprecated This method is deprecated. Use `LOCAL_VIDEO_STREAM_STATE_STOPPED(0)` in the
      * [onLocalVideoStateChanged]{@link AgoraRtcEvents.onLocalVideoStateChanged} callback instead.
@@ -4180,7 +4201,8 @@ declare class AgoraRtcEvents {
      */
     onVideoStopped: () => void
 
-    /** Occurs when the first local video frame is displayed/rendered on the local video view.
+    /** @ignore
+     * Occurs when the first local video frame is displayed/rendered on the local video view.
      */
     onFirstLocalVideoFrame:
         /**
@@ -4192,7 +4214,8 @@ declare class AgoraRtcEvents {
          */
         (width: number, height: number, elapsed: number) => void
 
-    /** Occurs when the first video frame is published.
+    /** @ignore
+     * Occurs when the first video frame is published.
      *
      * The SDK triggers this callback under one of the following circumstances:
      * - The local client enables the video module and calls [joinChannel]{@link agora.joinChannel} successfully.
@@ -4207,7 +4230,8 @@ declare class AgoraRtcEvents {
          */
         (elapsed: number) => void
 
-    /** Occurs when the first remote video frame is received and decoded.
+    /** @ignore
+     * Occurs when the first remote video frame is received and decoded.
      *
      * @deprecated This callback is deprecated and replaced by the [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged()}
      * callback with the following parameters:
@@ -4236,7 +4260,8 @@ declare class AgoraRtcEvents {
          */
         (uid: number, width: number, height: number, elapsed: number) => void
 
-    /** Occurs when the first remote video frame is rendered.
+    /** @ignore
+     * Occurs when the first remote video frame is rendered.
      *
      * The SDK triggers this callback when the first frame of the remote video is displayed in the user's video window.
      * The application can retrieve the time elapsed from a user joining the channel until the first video frame is displayed.
@@ -4271,7 +4296,8 @@ declare class AgoraRtcEvents {
          */
         (uid: number, muted: boolean) => void
 
-    /** Occurs when a remote user's video stream playback pauses/resumes.
+    /** @ignore
+     * Occurs when a remote user's video stream playback pauses/resumes.
      *
      * You can also use the [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged()} callback with the following
      * parameters:
@@ -4295,7 +4321,8 @@ declare class AgoraRtcEvents {
          */
         (uid: number, muted: boolean) => void
 
-    /** Occurs when a specific remote user enables/disables the video
+    /** @ignore
+     * Occurs when a specific remote user enables/disables the video
      * module.
      *
      * @deprecated This callback is deprecated and replaced by the
@@ -4327,7 +4354,8 @@ declare class AgoraRtcEvents {
          */
         (uid: number, enabled: boolean) => void
 
-    /** Occurs when the audio device state changes.
+    /** @ignore
+     * Occurs when the audio device state changes.
      *
      * This callback notifies the application that the system's audio device state is changed. For example, a headset is
      * unplugged from the device.
@@ -4340,7 +4368,8 @@ declare class AgoraRtcEvents {
          */
         (deviceId: string, deviceType: agora.MEDIA_DEVICE_TYPE, deviceState: agora.MEDIA_DEVICE_STATE_TYPE) => void
 
-    /** Occurs when the volume of the playback device, microphone, or application changes.
+    /** @ignore
+     * Occurs when the volume of the playback device, microphone, or application changes.
      */
     onAudioDeviceVolumeChanged:
         /**
@@ -4352,7 +4381,8 @@ declare class AgoraRtcEvents {
          */
         (deviceType: agora.MEDIA_DEVICE_TYPE, volume: number, muted: boolean) => void
 
-    /** Occurs when the camera turns on and is ready to capture the video.
+    /** @ignore
+     * Occurs when the camera turns on and is ready to capture the video.
      *
      * @deprecated This method is deprecated. Use
      * [LOCAL_VIDEO_STREAM_STATE_CAPTURING(1)]{@link agora.LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_CAPTURING}
@@ -4362,7 +4392,8 @@ declare class AgoraRtcEvents {
      */
     onCameraReady: () => void
 
-    /** Occurs when the camera focus area changes.
+    /** @ignore
+     * Occurs when the camera focus area changes.
      *
      * The SDK triggers this callback when the local user changes the camera focus position by calling the
      * `setCameraFocusPositionInPreview` method.
@@ -4377,7 +4408,7 @@ declare class AgoraRtcEvents {
          */
         (x: number, y: number, width: number, height: number) => void
 
-    /**
+    /** @ignore
      * Reports the face detection result of the local user. Applies to Android and iOS only.
      *
      * Once you enable face detection by calling [enableFaceDetection]{@link agora.enableFaceDetection} (true), you can get the
@@ -4409,7 +4440,8 @@ declare class AgoraRtcEvents {
          */
         (imageWidth: number, imageHeight: number, vecRectangle: agora.Rectangle[], vecDistance: number[], numFaces: number) => void
 
-    /** Occurs when the camera exposure area changes.
+    /** @ignore
+     * Occurs when the camera exposure area changes.
      *
      * The SDK triggers this callback when the local user changes the camera exposure position by calling the
      * `setCameraExposurePosition` method.
@@ -4494,7 +4526,8 @@ declare class AgoraRtcEvents {
          */
         (uid: number, elapsed: number) => void
 
-    /** Occurs when the video device state changes.
+    /** @ignore
+     * Occurs when the video device state changes.
      *
      * @note On a Windows device with an external camera for video capturing, the video disables once the external camera is
      * unplugged.
@@ -4507,7 +4540,8 @@ declare class AgoraRtcEvents {
          */
         (deviceId: string, deviceType: agora.MEDIA_DEVICE_TYPE, deviceState: agora.MEDIA_DEVICE_STATE_TYPE) => void
 
-    /** Occurs when the local video stream state changes.
+    /** @ignore
+     * Occurs when the local video stream state changes.
      *
      * This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you
      * to troubleshoot issues when exceptions occur.
@@ -4523,7 +4557,8 @@ declare class AgoraRtcEvents {
          */
         (localVideoState: agora.LOCAL_VIDEO_STREAM_STATE, error: agora.LOCAL_VIDEO_STREAM_ERROR) => void
 
-    /** Occurs when the video size or rotation of a specified user changes.
+    /** @ignore
+     * Occurs when the video size or rotation of a specified user changes.
      */
     onVideoSizeChanged:
         /**
@@ -4534,7 +4569,8 @@ declare class AgoraRtcEvents {
          */
         (uid: number, width: number, height: number, rotation: number) => void
 
-    /** Occurs when the remote video state changes.
+    /** @ignore
+     * Occurs when the remote video state changes.
      *
      * @note This callback does not work properly when the number of users (in the `COMMUNICATION` profile) or
      * hosts (in the `LIVE_BROADCASTING` profile) in the channel exceeds 17.
@@ -4550,7 +4586,8 @@ declare class AgoraRtcEvents {
          */
         (uid: number, state: agora.REMOTE_VIDEO_STATE, reason: agora.REMOTE_VIDEO_STATE_REASON, elapsed: number) => void
 
-    /** Occurs when a specified remote user enables/disables the local video
+    /** @ignore
+     * Occurs when a specified remote user enables/disables the local video
      * capturing function.
      *
      * @deprecated This callback is deprecated and replaced by the
@@ -4739,7 +4776,8 @@ declare class AgoraRtcEvents {
          */
         (url: string) => void
 
-    /** Occurs when the publisher's transcoding is updated.
+    /** @ignore
+     * Occurs when the publisher's transcoding is updated.
      *
      * When the `LiveTranscoding` class in the [setLiveTranscoding]{@link agora.setLiveTranscoding} method updates, the SDK
      * triggers the `onTranscodingUpdated` callback to report the update information to the local host.
@@ -4771,7 +4809,8 @@ declare class AgoraRtcEvents {
          */
         (routing: agora.AUDIO_ROUTE_TYPE) => void
 
-    /** Occurs when the published media stream falls back to an audio-only stream due to poor network conditions or switches back
+    /** @ignore
+     * Occurs when the published media stream falls back to an audio-only stream due to poor network conditions or switches back
      * to the video after the network conditions improve.
      *
      * If you call [setLocalPublishFallbackOption]{@link agora.setLocalPublishFallbackOption} and set `option` as
@@ -4790,7 +4829,8 @@ declare class AgoraRtcEvents {
          */
         (isFallbackOrRecover: boolean) => void
 
-    /** Occurs when the remote media stream falls back to audio-only stream
+    /** @ignore
+     * Occurs when the remote media stream falls back to audio-only stream
      * due to poor network conditions or switches back to the video stream
      * after the network conditions improve.
      *
@@ -4838,7 +4878,8 @@ declare class AgoraRtcEvents {
          */
         (uid: number, delay: number, lost: number, rxKBitRate: number) => void
 
-    /** Reports the transport-layer statistics of each remote video stream.
+    /** @ignore
+     * Reports the transport-layer statistics of each remote video stream.
      *
      * @deprecated This callback is deprecated and replaced by the
      * [onRemoteVideoStats]{@link agora.onRemoteVideoStats} callback.
@@ -4921,12 +4962,12 @@ declare class AgoraRtcEvents {
          */
         (uid: number, info: agora.UserInfo) => void
 
-    /**
+    /** @ignore
      * Occurs when the local user receives the metadata.
      */
     onMetadataReceived:
         /**
-         * @param metadata The received Metadata.
+         * @param metadata The received [Metadata]{@link agora.Metadata}.
          */
         (metadata: agora.Metadata) => void
 }
@@ -5841,8 +5882,7 @@ namespace agora {
      * - Call this method before calling [joinChannel]{@link agora.joinChannel} . You cannot set the channel profile once you have
      * joined the channel.
      * - The default audio route and video encoding bitrate are different in different channel profiles. For details, see
-     * [setDefaultAudioRouteToSpeakerphone]{@link agora.setDefaultAudioRouteToSpeakerphone} and
-     * [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} .
+     * [setDefaultAudioRouteToSpeakerphone]{@link agora.setDefaultAudioRouteToSpeakerphone}.
      *
      * @param profile The channel profile of the `agora`. See [CHANNEL_PROFILE_TYPE]{@link agora.CHANNEL_PROFILE_TYPE}.
      *
@@ -6250,7 +6290,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.STOP_ECHO_TEST)
     }
 
-    /** Enables the video module.
+    /** @ignore
+     * Enables the video module.
      *
      * Call this method either before joining a channel or during a call. If this method is called before joining a
      * channel, the call starts in the video mode. If this method is called during an audio call, the audio mode
@@ -6279,7 +6320,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.ENABLE_VIDEO)
     }
 
-    /** Disables the video module.
+    /** @ignore
+     * Disables the video module.
      *
      * This method can be called before joining a channel or during a call. If this method is called before joining a
      * channel, the call starts in audio mode. If this method is called during a video call, the video mode switches
@@ -6308,7 +6350,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.DISABLE_VIDEO)
     }
 
-    /** Sets the video profile.
+    /** @ignore
+     * Sets the video profile.
      *
      * @deprecated This method is deprecated. Use the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}
      * method instead.
@@ -6389,7 +6432,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_VIDEO_PROFILE, {profile, swapWidthAndHeight})
     }
 
-    /** Sets the video encoder configuration.
+    /** @ignore
+     * Sets the video encoder configuration.
      *
      * Each video encoder configuration corresponds to a set of video parameters, including the resolution, frame rate,
      * bitrate, and video orientation.
@@ -6425,7 +6469,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_VIDEO_ENCODER_CONFIGURATION, {config})
     }
 
-    /** Sets the camera capture configuration.
+    /** @ignore
+     * Sets the camera capture configuration.
      *
      * For a video call or the live interactive video streaming, generally the SDK controls the camera output
      * parameters. When the default camera capturer settings do not meet special requirements or cause performance
@@ -6457,7 +6502,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_CAMERA_CAPTURER_CONFIGURATION, {config})
     }
 
-    /** Starts the local video preview before joining the channel.
+    /** @ignore
+     * Starts the local video preview before joining the channel.
      *
      * Before calling this method, you must:
      * - Call the [setupLocalVideo]{@link agora.setupLocalVideo} method to set up the local preview window and
@@ -6479,7 +6525,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.START_PREVIEW)
     }
 
-    /** Prioritizes a remote user's stream.
+    /** @ignore
+     * Prioritizes a remote user's stream.
      *
      * Use this method with the [setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption} method.
      * If the fallback function is enabled for a subscribed stream, the SDK ensures the high-priority user gets the
@@ -6501,7 +6548,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_REMOTE_USER_PRIORITY, {uid, userPriority})
     }
 
-    /** Stops the local video preview and disables video.
+    /** @ignore
+     * Stops the local video preview and disables video.
      *
      * @return
      * - 0: Success.
@@ -6784,7 +6832,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.MUTE_REMOTE_AUDIO_STREAM, {userId, mute})
     }
 
-    /** Stops/Resumes sending the local video stream.
+    /** @ignore
+     * Stops/Resumes sending the local video stream.
      *
      * A successful `muteLocalVideoStream` method call triggers the
      * [onUserMuteVideo]{@link AgoraRtcEvents.onUserMuteVideo} callback on the remote client.
@@ -6821,7 +6870,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.MUTE_LOCAL_VIDEO_STREAM, {mute})
     }
 
-    /** Enables/Disables the local video capture.
+    /** @ignore
+     * Enables/Disables the local video capture.
      *
      * This method disables or re-enables the local video capturer, and does not affect receiving the remote video stream.
      *
@@ -6859,7 +6909,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.ENABLE_LOCAL_VIDEO, {enabled})
     }
 
-    /** Stops/Resumes receiving all video stream from a specified remote user.
+    /** @ignore
+     * Stops/Resumes receiving all video stream from a specified remote user.
      *
      * @param  mute Sets whether to receive/stop receiving all remote users' video streams:
      * - true: Stop receiving all remote users' video streams.
@@ -6876,7 +6927,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.MUTE_ALL_REMOTE_VIDEO_STREAMS, {mute})
     }
 
-    /** Stops/Resumes receiving all remote users' video streams by default.
+    /** @ignore
+     * Stops/Resumes receiving all remote users' video streams by default.
      *
      * You can call this method either before or after joining a channel. If you call `setDefaultMuteAllRemoteVideoStreams (true)`
      * after joining a channel, the remote video streams of all subsequent users are not received.
@@ -6901,7 +6953,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_DEFAULT_MUTE_ALL_REMOTE_VIDEO_STREAMS, {mute})
     }
 
-    /** Stops/Resumes receiving the video stream from a specified remote user.
+    /** @ignore
+     * Stops/Resumes receiving the video stream from a specified remote user.
      *
      * @note If you called the [muteAllRemoteVideoStreams]{@link agora.muteAllRemoteVideoStreams} method and set `mute`
      * as `true` to stop receiving all remote video streams, call the `muteAllRemoteVideoStreams` method and set `mute`
@@ -6933,7 +6986,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.MUTE_REMOTE_VIDEO_STREAM, {userId, mute})
     }
 
-    /** Sets the stream type of the remote video.
+    /** @ignore
+     * Sets the stream type of the remote video.
      *
      * Under limited network conditions, if the publisher has not disabled the dual-stream mode using `enableDualStreamMode(false)`,
      * the receiver can choose to receive either the high-quality video stream (the high resolution, and high bitrate video stream) or
@@ -6968,7 +7022,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_REMOTE_VIDEO_STREAM_TYPE, {userId, streamType})
     }
 
-    /** Sets the default stream type of remote videos.
+    /** @ignore
+     * Sets the default stream type of remote videos.
      *
      * Under limited network conditions, if the publisher has not disabled the dual-stream mode using `enableDualStreamMode(false)`,
      * the receiver can choose to receive either the high-quality video stream (the high resolution, and high bitrate video stream) or
@@ -7468,7 +7523,8 @@ namespace agora {
         return callNativeMethodAudioEffect(API_TYPE_AUDIO_EFFECT.SET_VOLUME_OF_EFFECT, {soundId, volume})
     }
 
-    /** Enables/Disables face detection for the local user. Applies to Android and iOS only.
+    /** @ignore
+     * Enables/Disables face detection for the local user. Applies to Android and iOS only.
      *
      * Once face detection is enabled, the SDK triggers the
      * [onFacePositionChanged]{@link AgoraRtcEvents.onFacePositionChanged} callback to report the face information of the
@@ -7977,7 +8033,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_LOG_FILE_SIZE, {fileSizeInKBytes})
     }
 
-    /** Updates the display mode of the local video view.
+    /** @ignore
+     * Updates the display mode of the local video view.
      *
      * After initializing the local video view, you can call this method to update its rendering and mirror modes. It
      * affects only the video view that the local user sees, not the published local video stream.
@@ -8010,7 +8067,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_LOCAL_RENDER_MODE_2, {renderMode, mirrorMode})
     }
 
-    /** Updates the display mode of the video view of a remote user.
+    /** @ignore
+     * Updates the display mode of the video view of a remote user.
      *
      * After initializing the video view of a remote user, you can call this method to update its rendering and mirror
      * modes. This method affects only the video view that the local user sees.
@@ -8043,7 +8101,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_REMOTE_RENDER_MODE_2, {userId, renderMode, mirrorMode})
     }
 
-    /** Sets the local video mirror mode.
+    /** @ignore
+     * Sets the local video mirror mode.
      *
      * @deprecated This method is deprecated, use the [setupLocalVideo]{@link agora.setupLocalVideo} or
      * [setLocalRenderMode]{@link agora.setLocalRenderMode} method instead.
@@ -8068,7 +8127,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_LOCAL_VIDEO_MIRROR_MODE, {mirrorMode})
     }
 
-    /** Sets the stream mode to the single-stream (default) or dual-stream mode. (`LIVE_BROADCASTING` only.)
+    /** @ignore
+     * Sets the stream mode to the single-stream (default) or dual-stream mode. (`LIVE_BROADCASTING` only.)
      *
      * If the dual-stream mode is enabled, the receiver can choose to receive the high stream (high-resolution and
      * high-bitrate video stream), or the low stream (low-resolution and low-bitrate video stream).
@@ -8089,7 +8149,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.ENABLE_DUAL_STREAM_MODE, {enabled})
     }
 
-    /** Sets the external audio source. Please call this method before [joinChannel]{@link agora.joinChannel}.
+    /** @ignore
+     * Sets the external audio source. Please call this method before [joinChannel]{@link agora.joinChannel}.
      *
      * @param enabled Sets whether to enable/disable the external audio source:
      * - true: Enables the external audio source.
@@ -8115,7 +8176,8 @@ namespace agora {
         })
     }
 
-    /** Sets the external audio sink.
+    /** @ignore
+     * Sets the external audio sink.
      *
      * This method applies to scenarios where you want to use external audio
      * data for playback. After enabling the external audio sink, you can call
@@ -8152,7 +8214,8 @@ namespace agora {
         })
     }
 
-    /** Sets the audio recording format for the [onRecordAudioFrame]{@link AgoraRtcEvents.onRecordAudioFrame} callback.
+    /** @ignore
+     * Sets the audio recording format for the [onRecordAudioFrame]{@link AgoraRtcEvents.onRecordAudioFrame} callback.
      *
      * @param sampleRate Sets the sample rate (`samplesPerSec`) returned in the onRecordAudioFrame* callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.
      * @param channel Sets the number of audio channels (`channels`) returned in the *onRecordAudioFrame* callback:
@@ -8177,20 +8240,24 @@ namespace agora {
         })
     }
 
-    /** Sets the audio playback format for the [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame} callback.
-
-     @param sampleRate Sets the sample rate (`samplesPerSec`) returned in the *onPlaybackAudioFrame* callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.
-     @param channel Sets the number of channels (`channels`) returned in the *onPlaybackAudioFrame* callback:
-     - 1: Mono
-     - 2: Stereo
-     @param mode Sets the use mode (see [RAW_AUDIO_FRAME_OP_MODE_TYPE)]{@link agora.RAW_AUDIO_FRAME_OP_MODE_TYPE)} of the *onPlaybackAudioFrame* callback.
-     @param samplesPerCall Sets the number of samples returned in the *onPlaybackAudioFrame* callback. `samplesPerCall` is usually set as 1024 for RTMP streaming.
-
-     @note The SDK triggers the `onPlaybackAudioFrame` callback according to the sample interval. Ensure that the sample interval ≥ 0.01 (s). And, Sample interval (sec) = `samplePerCall`/(`sampleRate` × `channel`).
-
-     @return
-         - 0: Success.
-     - < 0: Failure.
+    /** @ignore
+     * Sets the audio playback format for the [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame} callback.
+     * 
+     * @param sampleRate Sets the sample rate (`samplesPerSec`) returned in the *onPlaybackAudioFrame* callback, 
+     * which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.
+     * @param channel Sets the number of channels (`channels`) returned in the *onPlaybackAudioFrame* callback:
+     * - 1: Mono
+     * - 2: Stereo
+     * @param mode Sets the use mode (see [RAW_AUDIO_FRAME_OP_MODE_TYPE)]{@link agora.RAW_AUDIO_FRAME_OP_MODE_TYPE)} of the 
+     * `onPlaybackAudioFrame` callback.
+     * @param samplesPerCall Sets the number of samples returned in the `onPlaybackAudioFrame` callback. `samplesPerCall` 
+     * is usually set as 1024 for RTMP streaming.
+     * @note The SDK triggers the `onPlaybackAudioFrame` callback according to the sample interval. Ensure that the sample 
+     * interval ≥ 0.01 (s). And, Sample interval (sec) = `samplePerCall`/(`sampleRate` × `channel`).
+     * 
+     * @return
+     * - 0: Success.
+     * - < 0: Failure.
      */
     function setPlaybackAudioFrameParameters(sampleRate: number, channel: number, mode: RAW_AUDIO_FRAME_OP_MODE_TYPE, samplesPerCall: number): number {
         if (isWeb) {
@@ -8204,16 +8271,19 @@ namespace agora {
         })
     }
 
-    /** Sets the mixed audio format for the [onMixedAudioFrame]{@link agora.onMixedAudioFrame} callback.
-
-     @param sampleRate Sets the sample rate (`samplesPerSec`) returned in the *onMixedAudioFrame* callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.
-     @param samplesPerCall Sets the number of samples (`samples`) returned in the *onMixedAudioFrame* callback. `samplesPerCall` is usually set as 1024 for RTMP streaming.
-
-     @note The SDK triggers the `onMixedAudioFrame` callback according to the sample interval. Ensure that the sample interval ≥ 0.01 (s). And, Sample interval (sec) = `samplePerCall`/(`sampleRate` × `channels`).
-
-     @return
-         - 0: Success.
-     - < 0: Failure.
+    /** @ignore
+     * Sets the mixed audio format for the [onMixedAudioFrame]{@link agora.onMixedAudioFrame} callback.
+     * 
+     * @param sampleRate Sets the sample rate (`samplesPerSec`) returned in the `onMixedAudioFrame` callback, which can be set as 
+     * 8000, 16000, 32000, 44100, or 48000 Hz.
+     * @param samplesPerCall Sets the number of samples (`samples`) returned in the *onMixedAudioFrame* callback. `samplesPerCall` 
+     * is usually set as 1024 for RTMP streaming.
+     * @note The SDK triggers the `onMixedAudioFrame` callback according to the sample interval. Ensure that the sample 
+     * interval ≥ 0.01 (s). And, Sample interval (sec) = `samplePerCall`/(`sampleRate` × `channels`).
+     * 
+     * @return
+     * - 0: Success.
+     * - < 0: Failure.
      */
     function setMixedAudioFrameParameters(sampleRate: number, samplesPerCall: number): number {
         if (isWeb) {
@@ -8295,7 +8365,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.ENABLE_WEB_SDK_INTEROPER_ABILITY, {enabled})
     }
 
-    /** Sets the preferences for the high-quality video. (`LIVE_BROADCASTING` only).
+    /** @ignore
+     * Sets the preferences for the high-quality video. (`LIVE_BROADCASTING` only).
      *
      * @deprecated This method is deprecated.
      *
@@ -8314,7 +8385,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_VIDEO_QUALITY_PARAMETERS, {preferFrameRateOverImageQuality})
     }
 
-    /** Sets the fallback option for the published video stream based on the network conditions.
+    /** @ignore
+     * Sets the fallback option for the published video stream based on the network conditions.
      *
      * If `option` is set as
      * [STREAM_FALLBACK_OPTION_AUDIO_ONLY]{@link agora.STREAM_FALLBACK_OPTIONS.STREAM_FALLBACK_OPTION_AUDIO_ONLY}(2),
@@ -8343,7 +8415,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_LOCAL_PUBLISH_FALLBACK_OPTION, {option})
     }
 
-    /** Sets the fallback option for the remotely subscribed video stream based on the network conditions.
+    /** @ignore
+     * Sets the fallback option for the remotely subscribed video stream based on the network conditions.
      *
      * The default setting for `option` is
      * [STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW]{@link agora.STREAM_FALLBACK_OPTIONS.STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW}(1),
@@ -8374,7 +8447,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_REMOTE_SUBSCRIBE_FALLBACK_OPTION, {option})
     }
 
-    /** Switches between front and rear cameras.
+    /** @ignore
+     * Switches between front and rear cameras.
      *
      * @note This method is for Android and iOS only.
      *
@@ -8402,12 +8476,7 @@ namespace agora {
      * audio route after joining a channel, call the [setEnableSpeakerphone]{@link agora.setEnableSpeakerphone} method.
      *
      * The default setting for each profile:
-     * - `COMMUNICATION`: In a voice call, the default audio route is the earpiece. In a video call, the default audio
-     * route is the speakerphone. If a user who is in the `COMMUNICATION` profile calls the
-     * [disableVideo]{@link agora.disableVideo} method or if the user calls the
-     * [muteLocalVideoStream]{@link agora.muteLocalVideoStream} and
-     * [muteAllRemoteVideoStreams]{@link agora.muteAllRemoteVideoStreams} methods, the default audio route switches
-     * back to the earpiece automatically.
+     * - `COMMUNICATION`: In a voice call, the default audio route is the earpiece.
      * - `LIVE_BROADCASTING`: Speakerphone.
      *
      * **Note**
@@ -8594,10 +8663,6 @@ namespace agora {
      * - Do not call any other methods before receiving the `onLastmileQuality` callback. Otherwise, the callback may
      * be interrupted by other methods, and hence may not be triggered.
      * - A host should not call this method after joining a channel (when in a call).
-     * - If you call this method to test the last-mile quality, the SDK consumes the bandwidth of a video stream, whose
-     * bitrate corresponds to the bitrate you set in the
-     * [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} method. After you join the channel,
-     * whether you have called the `disableLastmileTest` method or not, the SDK automatically stops consuming the bandwidth.
      *
      * @return
      * - 0: Success.
@@ -8919,7 +8984,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.REMOVE_PUBLISH_STREAM_URL, {url})
     }
 
-    /** Sets the video layout and audio settings for CDN live. (CDN live only.)
+    /** @ignore
+     * Sets the video layout and audio settings for CDN live. (CDN live only.)
      *
      * The SDK triggers the [onTranscodingUpdated]{@link AgoraRtcEvents.onTranscodingUpdated} callback when you call the
      * `setLiveTranscoding` method to update the transcoding setting.
@@ -8960,7 +9026,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_LIVE_TRANSCODING, {transcoding})
     }
 
-    /** Adds a watermark image to the local video.
+    /** @ignore
+     * Adds a watermark image to the local video.
      *
      * This method adds a PNG watermark image to the local video in the live streaming. Once the watermark image is added, all
      * the audience in the channel (CDN audience included), and the recording device can see and capture it. Agora supports
@@ -9007,7 +9074,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.ADD_VIDEO_WATER_MARK_2, {watermarkUrl, options})
     }
 
-    /** Removes the watermark image from the video stream added by the
+    /** @ignore
+     * Removes the watermark image from the video stream added by the
      * [addVideoWatermark]{@link agora.addVideoWatermark} method.
      *
      * @return
@@ -9021,7 +9089,8 @@ namespace agora {
         return callNativeMethod(API_TYPE.CLEAR_VIDEO_WATER_MARKS)
     }
 
-    /** Enables/Disables image enhancement and sets the options.
+    /** @ignore
+     * Enables/Disables image enhancement and sets the options.
      *
      * **Note**
      * - Call this method after calling the [enableVideo]{@link agora.enableVideo} method.
@@ -9257,6 +9326,23 @@ namespace agora {
         return callNativeMethod(API_TYPE.GET_CONNECTION_STATE)
     }
 
+    /** @ignore
+     * Sends the metadata.
+     * 
+     * **Note**
+     * - Call this method after [registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver}.
+     * - Ensure that the size of the metadata does not exceed the value set in the 
+     * [setMaxMetadataSize]{@link agora.setMaxMetadataSize} callback.
+     * 
+     * @param uid ID of the user who sends the metadata.
+     * @param size The size of the sent metadata.
+     * @param buffer The sent metadata.
+     * @param timeStampMs The timestamp of the metadata.
+     * 
+     * @return
+     * - 0: Success.
+     * - < 0: Failure.
+     */
     export function sendMetadata({uid, size, buffer, timeStampMs}: Metadata): number {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
@@ -9264,6 +9350,23 @@ namespace agora {
         return callNativeMethod(API_TYPE.SEND_METADATA, {uid, size, timeStampMs}, buffer)
     }
 
+    /** @ignore
+     * Sets the maximum size of the [Metadata]{@link agora.Metadata}.
+     * 
+     * The metadata includes the following parameters:
+     * - `uid`: ID of the user who sends the metadata.
+     * - `size`: The size of the sent or received metadata.
+     * - `buffer`: The sent or received metadata.
+     * - `timeStampMs`: The timestamp of the metadata.
+     * 
+     * @note Call this method after [registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver}.
+     * 
+     * @param size The maximum size of the buffer of the metadata that you want to use. The highest value is 1024 bytes.
+     * 
+     * @return
+     * - 0: Success.
+     * - < 0: Failure.
+     */
     export function setMaxMetadataSize(size: number): number {
         if (isWeb) {
             return ERROR_CODE_TYPE.ERR_NOT_SUPPORTED
@@ -9271,10 +9374,10 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_MAX_META_SIZE, {size})
     }
 
-    /** Registers the metadata observer.
+    /** @ignore
+     * Registers the metadata observer.
      *
-     * You need to specify the metadata type in this method. A successful call of this method triggers the
-     * [getMaxMetadataSize]{@link agora.getMaxMetadataSize} callback.
+     * You need to specify the metadata type in this method.
      *
      * This method enables you to add synchronized metadata in the video stream for more diversified live interactive
      * streaming, such as sending shopping links, digital coupons, and online quizzes.
@@ -9495,12 +9598,12 @@ declare interface agora {
      */
     on(evt: 'networkQuality', cb: typeof AgoraRtcEvents.prototype.onNetworkQuality)
 
-    /**
+    /** @ignore
      * @event localVideoStats
      */
     on(evt: 'localVideoStats', cb: typeof AgoraRtcEvents.prototype.onLocalVideoStats)
 
-    /**
+    /** @ignore
      * @event remoteVideoStats
      */
     on(evt: 'remoteVideoStats', cb: typeof AgoraRtcEvents.prototype.onRemoteVideoStats)
@@ -9535,7 +9638,7 @@ declare interface agora {
      */
     on(evt: 'audioPublishStateChanged', cb: typeof AgoraRtcEvents.prototype.onAudioPublishStateChanged)
 
-    /**
+    /** @ignore
      * @event videoPublishStateChanged
      */
     on(evt: 'videoPublishStateChanged', cb: typeof AgoraRtcEvents.prototype.onVideoPublishStateChanged)
@@ -9545,7 +9648,7 @@ declare interface agora {
      */
     on(evt: 'audioSubscribeStateChanged', cb: typeof AgoraRtcEvents.prototype.onAudioSubscribeStateChanged)
 
-    /**
+    /** @ignore
      * @event videoSubscribeStateChanged
      */
     on(evt: 'videoSubscribeStateChanged', cb: typeof AgoraRtcEvents.prototype.onVideoSubscribeStateChanged)
@@ -9567,29 +9670,29 @@ declare interface agora {
      */
     on(evt: 'activeSpeaker', cb: typeof AgoraRtcEvents.prototype.onActiveSpeaker)
 
-    /**
+    /** @ignore
      * @event videoStopped
      */
     on(evt: 'videoStopped', cb: typeof AgoraRtcEvents.prototype.onVideoStopped)
 
-    /**
+    /** @ignore
      * @event firstLocalVideoFrame
      */
     on(evt: 'firstLocalVideoFrame', cb: typeof AgoraRtcEvents.prototype.onFirstLocalVideoFrame)
 
-    /**
+    /** @ignore
      * @event firstLocalVideoFramePublished
      */
     on(evt: 'firstLocalVideoFramePublished', cb: typeof AgoraRtcEvents.prototype.onFirstLocalVideoFramePublished)
 
-    /**
+    /** @ignore
      * @deprecated
      *
      * @event firstRemoteVideoDecoded
      */
     on(evt: 'firstRemoteVideoDecoded', cb: typeof AgoraRtcEvents.prototype.onFirstRemoteVideoDecoded)
 
-    /**
+    /** @ignore
      * @event firstRemoteVideoFrame
      */
     on(evt: 'firstRemoteVideoFrame', cb: typeof AgoraRtcEvents.prototype.onFirstRemoteVideoFrame)
@@ -9608,44 +9711,44 @@ declare interface agora {
      */
     on(evt: 'userMuteAudio', cb: typeof AgoraRtcEvents.prototype.onUserMuteAudio)
 
-    /**
+    /** @ignore
      * @event userMuteVideo
      */
     on(evt: 'userMuteVideo', cb: typeof AgoraRtcEvents.prototype.onUserMuteVideo)
 
-    /**
+    /** @ignore
      * @deprecated
      *
      * @event userEnableVideo
      */
     on(evt: 'userEnableVideo', cb: typeof AgoraRtcEvents.prototype.onUserEnableVideo)
 
-    /**
+    /** @ignore
      * @event audioDeviceStateChanged
      */
     on(evt: 'audioDeviceStateChanged', cb: typeof AgoraRtcEvents.prototype.onAudioDeviceStateChanged)
 
-    /**
+    /** @ignore
      * @event audioDeviceVolumeChanged
      */
     on(evt: 'audioDeviceVolumeChanged', cb: typeof AgoraRtcEvents.prototype.onAudioDeviceVolumeChanged)
 
-    /**
+    /** @ignore
      * @event cameraReady
      */
     on(evt: 'cameraReady', cb: typeof AgoraRtcEvents.prototype.onCameraReady)
 
-    /**
+    /** @ignore
      * @event cameraFocusAreaChanged
      */
     on(evt: 'cameraFocusAreaChanged', cb: typeof AgoraRtcEvents.prototype.onCameraFocusAreaChanged)
 
-    /**
+    /** @ignore
      * @event facePositionChanged
      */
     on(evt: 'facePositionChanged', cb: typeof AgoraRtcEvents.prototype.onFacePositionChanged)
 
-    /**
+    /** @ignore
      * @event cameraExposureAreaChanged
      */
     on(evt: 'cameraExposureAreaChanged', cb: typeof AgoraRtcEvents.prototype.onCameraExposureAreaChanged)
@@ -9682,27 +9785,27 @@ declare interface agora {
      */
     on(evt: 'firstRemoteAudioDecoded', cb: typeof AgoraRtcEvents.prototype.onFirstRemoteAudioDecoded)
 
-    /**
+    /** @ignore
      * @event videoDeviceStateChanged
      */
     on(evt: 'videoDeviceStateChanged', cb: typeof AgoraRtcEvents.prototype.onVideoDeviceStateChanged)
 
-    /**
+    /** @ignore
      * @event localVideoStateChanged
      */
     on(evt: 'localVideoStateChanged', cb: typeof AgoraRtcEvents.prototype.onLocalVideoStateChanged)
 
-    /**
+    /** @ignore
      * @event videoSizeChanged
      */
     on(evt: 'videoSizeChanged', cb: typeof AgoraRtcEvents.prototype.onVideoSizeChanged)
 
-    /**
+    /** @ignore
      * @event remoteVideoStateChanged
      */
     on(evt: 'remoteVideoStateChanged', cb: typeof AgoraRtcEvents.prototype.onRemoteVideoStateChanged)
 
-    /**
+    /** @ignore
      * @deprecated
      *
      * @event userEnableLocalVideo
@@ -9782,7 +9885,7 @@ declare interface agora {
      */
     on(evt: 'streamUnpublished', cb: typeof AgoraRtcEvents.prototype.onStreamUnpublished)
 
-    /**
+    /** @ignore
      * @event transcodingUpdated
      */
     on(evt: 'transcodingUpdated', cb: typeof AgoraRtcEvents.prototype.onTranscodingUpdated)
@@ -9804,12 +9907,12 @@ declare interface agora {
      */
     on(evt: 'audioRouteChanged', cb: typeof AgoraRtcEvents.prototype.onAudioRouteChanged)
 
-    /**
+    /** @ignore
      * @event localPublishFallbackToAudioOnly
      */
     on(evt: 'localPublishFallbackToAudioOnly', cb: typeof AgoraRtcEvents.prototype.onLocalPublishFallbackToAudioOnly)
 
-    /**
+    /** @ignore
      * @event remoteSubscribeFallbackToAudioOnly
      */
     on(evt: 'remoteSubscribeFallbackToAudioOnly', cb: typeof AgoraRtcEvents.prototype.onRemoteSubscribeFallbackToAudioOnly)
@@ -9821,7 +9924,7 @@ declare interface agora {
      */
     on(evt: 'remoteAudioTransportStats', cb: typeof AgoraRtcEvents.prototype.onRemoteAudioTransportStats)
 
-    /**
+    /** @ignore
      * @deprecated
      *
      * @event remoteVideoTransportStats
@@ -9855,7 +9958,7 @@ declare interface agora {
      */
     on(evt: 'userInfoUpdated', cb: typeof AgoraRtcEvents.prototype.onUserInfoUpdated)
 
-    /**
+    /** @ignore
      * @event metadataReceived
      */
     on(evt: 'metadataReceived', cb: typeof AgoraRtcEvents.prototype.onMetadataReceived)
