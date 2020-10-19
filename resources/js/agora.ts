@@ -1,6 +1,6 @@
 namespace agora {
     /**
-     * @internal
+     * @ignore
      */
     export enum API_TYPE {
         INITIALIZE = 0,
@@ -126,7 +126,7 @@ namespace agora {
     }
 
     /**
-     * @internal
+     * @ignore
      */
     export enum API_TYPE_AUDIO_EFFECT {
         START_AUDIO_MIXING = 45,
@@ -220,7 +220,8 @@ namespace agora {
         /** 713: The audio mixing file stops playing.
          */
         AUDIO_MIXING_STATE_STOPPED = 713,
-        /** 714: An exception occurs when playing the audio mixing file. See [AUDIO_MIXING_ERROR_TYPE]{@link agora.AUDIO_MIXING_ERROR_TYPE}.
+        /** 714: An exception occurs when playing the audio mixing file. See 
+         * [AUDIO_MIXING_ERROR_TYPE]{@link agora.AUDIO_MIXING_ERROR_TYPE}.
          */
         AUDIO_MIXING_STATE_FAILED = 714,
     }
@@ -249,7 +250,8 @@ namespace agora {
         LOCAL_VIDEO_STREAM_STATE_STOPPED = 0,
         /** 1: The local video capturing device starts successfully.
          *
-         * The SDK also reports this state when you share a maximized window by calling [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId} .
+         * The SDK also reports this state when you share a maximized window by calling 
+         * [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId}.
          */
         LOCAL_VIDEO_STREAM_STATE_CAPTURING = 1,
         /** 2: The first video frame is successfully encoded. */
@@ -273,7 +275,9 @@ namespace agora {
         LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE = 4,
         /** 5: The local video encoding fails. */
         LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE = 5,
-        /** 11: The shared window is minimized when you call [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId} to share a window.         */
+        /** 11: The shared window is minimized when you call 
+         * [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId} to share a window.
+         */
         LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED = 11,
     }
 
@@ -359,14 +363,12 @@ namespace agora {
 
     /** Video display modes. */
     export enum RENDER_MODE_TYPE {
-        /**
-         1: Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have
-         clipped contents.
+        /** 1: Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have
+         * clipped contents.
          */
         RENDER_MODE_HIDDEN = 1,
-        /**
-         2: Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due
-         to disparity in the aspect ratio are filled with black.
+        /** 2: Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due
+         * to disparity in the aspect ratio are filled with black.
          */
         RENDER_MODE_FIT = 2,
         /** @deprecated 3: This mode is deprecated.
@@ -380,8 +382,7 @@ namespace agora {
 
     /** Video mirror modes. */
     export enum VIDEO_MIRROR_MODE_TYPE {
-        /** 0: (Default) The SDK enables the mirror mode.
-         */
+        /** 0: (Default) The SDK enables the mirror mode. */
         VIDEO_MIRROR_MODE_AUTO = 0,//determined by SDK
         /** 1: Enable mirror mode. */
         VIDEO_MIRROR_MODE_ENABLED = 1,//enabled mirror
@@ -553,8 +554,8 @@ namespace agora {
         /** 0: Default audio profile:
          * - For the interactive streaming profile: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 64 Kbps.
          * - For the `COMMUNICATION` profile:
-         * - Windows: A sample rate of 16 KHz, music encoding, mono, and a bitrate of up to 16 Kbps.
-         * - Android/macOS/iOS: A sample rate of 32 KHz, music encoding, mono, and a bitrate of up to 18 Kbps.
+         *   - Windows: A sample rate of 16 KHz, music encoding, mono, and a bitrate of up to 16 Kbps.
+         *   - Android/macOS/iOS: A sample rate of 32 KHz, music encoding, mono, and a bitrate of up to 18 Kbps.
          */
         AUDIO_PROFILE_DEFAULT = 0, // use default settings
         /** 1: A sample rate of 32 KHz, audio encoding, mono, and a bitrate of up to 18 Kbps.
@@ -641,9 +642,7 @@ namespace agora {
         USER_OFFLINE_BECOME_AUDIENCE = 2,
     }
 
-    /**
-     States of the RTMP streaming.
-     */
+    /** States of the RTMP streaming. */
     export enum RTMP_STREAM_PUBLISH_STATE {
         /** The RTMP streaming has not started or has ended. This state is also triggered after you remove an RTMP address from
          * the CDN by calling [removePublishStreamUrl]{@link agora.removePublishStreamUrl}.
@@ -671,9 +670,7 @@ namespace agora {
         RTMP_STREAM_PUBLISH_STATE_FAILURE = 4,
     }
 
-    /**
-     Error codes of the RTMP streaming.
-     */
+    /** Error codes of the RTMP streaming. */
     export enum RTMP_STREAM_PUBLISH_ERROR {
         /** The RTMP streaming publishes successfully. */
         RTMP_STREAM_PUBLISH_ERROR_OK = 0,
@@ -748,11 +745,23 @@ namespace agora {
         REMOTE_VIDEO_STREAM_LOW = 1,
     }
 
-    /** The use mode of the audio data in the [onRecordAudioFrame]{@link agora.onRecordAudioFrame} or [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame} callback.     */
+    /** The use mode of the audio data in the [onRecordAudioFrame]{@link agora.onRecordAudioFrame} or 
+     * [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame} callback.
+     */
     export enum RAW_AUDIO_FRAME_OP_MODE_TYPE {
-        /** 0: Read-only mode: Users only read the [AudioFrame]{@link agora.AudioFrame} data without modifying anything. For example, when users acquire the data with the Agora SDK, then push the RTMP streams. */        RAW_AUDIO_FRAME_OP_MODE_READ_ONLY = 0,
-        /** 1: Write-only mode: Users replace the [AudioFrame]{@link agora.AudioFrame} data with their own data and pass the data to the SDK for encoding. For example, when users acquire the data. */        RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY = 1,
-        /** 2: Read and write mode: Users read the data from [AudioFrame]{@link agora.AudioFrame} , modify it, and then play it. For example, when users have their own sound-effect processing module and perform some voice pre-processing, such as a voice change. */        RAW_AUDIO_FRAME_OP_MODE_READ_WRITE = 2,
+        /** 0: Read-only mode: Users only read the [AudioFrame]{@link agora.AudioFrame} data without modifying anything. For example, 
+         * when users acquire the data with the Agora SDK, then push the RTMP streams. 
+         */
+        RAW_AUDIO_FRAME_OP_MODE_READ_ONLY = 0,
+        /** 1: Write-only mode: Users replace the [AudioFrame]{@link agora.AudioFrame} data with their own data and pass the data to 
+         * the SDK for encoding. For example, when users acquire the data. 
+         */
+        RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY = 1,
+        /** 2: Read and write mode: Users read the data from [AudioFrame]{@link agora.AudioFrame} , modify it, and then play it. 
+         * For example, when users have their own sound-effect processing module and perform some voice pre-processing, such as 
+         * a voice change. 
+         */
+        RAW_AUDIO_FRAME_OP_MODE_READ_WRITE = 2,
     }
 
     /** Audio-sample rates. */
@@ -904,7 +913,7 @@ namespace agora {
          */
         GENERAL_BEAUTY_VOICE_FEMALE_FRESH = 0x00200002,
         /**
-         *    (For female only) A more vital voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs.
+         * (For female only) A more vital voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs.
          */
         GENERAL_BEAUTY_VOICE_FEMALE_VITALITY = 0x00200003
     }
@@ -978,8 +987,8 @@ namespace agora {
         /**
          * The reverberation of the virtual stereo. The virtual stereo is an effect that renders the monophonic
          * audio as the stereo audio, so that all users in the channel can hear the stereo voice effect.
-         * To achieve better virtual stereo reverberation, Agora recommends setting `profile` in `setAudioProfile`
-         * as `AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO(5)`.
+         * To achieve better virtual stereo reverberation, Agora recommends setting `profile` in 
+         * [setAudioProfile]{@link agora.setAudioProfile} as `AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO(5)`.
          */
         AUDIO_VIRTUAL_STEREO = 0x00200001
     }
@@ -1301,12 +1310,12 @@ namespace agora {
         CONNECTION_STATE_DISCONNECTED = 1,
         /** 2: The SDK is connecting to Agora's edge server.
          * - When the application calls the [joinChannel]{@link agora.joinChannel} method, the SDK starts to establish a
-         * connection to the specified channel, triggers the [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged}
+         * connection to the specified channel, triggers the [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}
          * callback, and switches to the `CONNECTION_STATE_CONNECTING` state.
          * - When the SDK successfully joins the channel, it triggers the `onConnectionStateChanged` callback and switches to the
          * [CONNECTION_STATE_CONNECTED]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_CONNECTED} state.
          * - After the SDK joins the channel and when it finishes initializing the media engine, the SDK triggers the
-         * [onJoinChannelSuccess]{@link agoraCreator.onJoinChannelSuccess} callback.
+         * [onJoinChannelSuccess]{@link AgoraRtcEvents.onJoinChannelSuccess} callback.
          */
         CONNECTION_STATE_CONNECTING = 2,
         /** 3: The SDK is connected to Agora's edge server and has joined a channel. You can now publish or subscribe to a media
@@ -1314,19 +1323,19 @@ namespace agora {
          *
          * If the connection to the channel is lost because, for example, if the network is down or switched, the SDK automatically
          * tries to reconnect and triggers:
-         * - The [onConnectionInterrupted]{@link agoraCreator.onConnectionInterrupted} callback (deprecated).
-         * - The [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged} callback and switches to the
+         * - The [onConnectionInterrupted]{@link AgoraRtcEvents.onConnectionInterrupted} callback (deprecated).
+         * - The [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback and switches to the
          * [CONNECTION_STATE_RECONNECTING]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_RECONNECTING} state.
          */
         CONNECTION_STATE_CONNECTED = 3,
         /** 4: The SDK keeps rejoining the channel after being disconnected from a joined channel because of network issues.
          *
          * - If the SDK cannot rejoin the channel within 10 seconds after being disconnected from Agora's edge server,
-         * the SDK triggers the [onConnectionLost]{@link agoraCreator.onConnectionLost} callback, stays in the
+         * the SDK triggers the [onConnectionLost]{@link AgoraRtcEvents.onConnectionLost} callback, stays in the
          * [CONNECTION_STATE_RECONNECTING]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_RECONNECTING} state, and keeps
          * rejoining the channel.
          * - If the SDK fails to rejoin the channel 20 minutes after being disconnected from Agora's edge server, the SDK
-         * triggers the [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged} callback, switches to the
+         * triggers the [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback, switches to the
          * [CONNECTION_STATE_FAILED]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_FAILED} state, and stops rejoining the channel.
          */
         CONNECTION_STATE_RECONNECTING = 4,
@@ -1336,8 +1345,8 @@ namespace agora {
          * [joinChannel]{@link agora.joinChannel} method again to rejoin the channel.
          *
          * If the SDK is banned from joining the channel by Agora's edge server (through the RESTful API), the SDK triggers the
-         * [onConnectionBanned]{@link agoraCreator.onConnectionBanned} (deprecated) and
-         * [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged} callbacks.
+         * [onConnectionBanned]{@link AgoraRtcEvents.onConnectionBanned} (deprecated) and
+         * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callbacks.
          */
         CONNECTION_STATE_FAILED = 5,
     }
@@ -1791,7 +1800,7 @@ namespace agora {
          */
         ERR_NO_SERVER_RESOURCES = 103,
         /** @deprecated 109: Use CONNECTION_CHANGED_TOKEN_EXPIRED(9) in the
-         * [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged} callback instead.
+         * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          *
          * The token expired due to one of the following reasons:
          * - Authorized Timestamp expired: The timestamp is represented by the number of seconds elapsed since 1/1/1970. The user can
@@ -1803,7 +1812,7 @@ namespace agora {
          */
         ERR_TOKEN_EXPIRED = 109,
         /** @deprecated 110: Use CONNECTION_CHANGED_INVALID_TOKEN(8) in the
-         * [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged} callback instead.
+         * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          *
          * The token is invalid due to one of the following reasons:
          * - The App Certificate for the project is enabled in Console, but the user is still using the App ID. Once the App
@@ -2042,7 +2051,7 @@ namespace agora {
         ERR_START_CALL = 1002,
         /** @deprecated 1003: Fails to start the camera.
          * Use `LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE(4)` in the
-         * [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged} callback instead.
+         * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          */
         ERR_START_CAMERA = 1003,
         /** 1004: Fails to start the video rendering module.
@@ -2263,7 +2272,7 @@ namespace agora {
         /** @deprecated 1502: Video Device Module: The camera in use.
          *
          * Use LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY(3) in the
-         * [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged} callback instead.
+         * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          */
         ERR_VDM_WIN_DEVICE_IN_USE = 1502,
 
@@ -2382,7 +2391,7 @@ namespace agora {
         /** @deprecated 105: The server rejects the request to look up the channel. The server cannot process this request or the
          * request is illegal.
          *
-         * Use CONNECTION_CHANGED_REJECTED_BY_SERVER(10) in the [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged}
+         * Use CONNECTION_CHANGED_REJECTED_BY_SERVER(10) in the [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}
          * callback instead.
          */
         WARN_LOOKUP_CHANNEL_REJECTED = 105,
@@ -3834,7 +3843,7 @@ declare class AgoraRtcEvents {
 
     /** Occurs when the connection between the SDK and the server is interrupted.
      *
-     * @deprecated This method is deprecated and replaced by the [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged}
+     * @deprecated This method is deprecated and replaced by the [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}
      * callback.
      *
      * The SDK triggers this callback when it loses connection with the server for more than four seconds after the connection is
@@ -3843,7 +3852,7 @@ declare class AgoraRtcEvents {
      * After triggering this callback, the SDK tries reconnecting to the server. You can use this callback to implement pop-up
      * reminders.
      *
-     * This callback is different from [onConnectionLost]{@link agoraCreator.onConnectionLost}:
+     * This callback is different from [onConnectionLost]{@link AgoraRtcEvents.onConnectionLost}:
      * - The SDK triggers the `onConnectionInterrupted` callback when it loses connection
      * with the server for more than four seconds after it successfully joins the channel.
      * - The SDK triggers the `onConnectionLost` callback when it loses connection with the
@@ -3859,10 +3868,10 @@ declare class AgoraRtcEvents {
      * The SDK triggers this callback when it cannot connect to the server 10 seconds after calling the
      * [joinChannel]{@link agora.joinChannel} method, whether or not it is in the channel.
      *
-     * This callback is different from [onConnectionInterrupted]{@link agoraCreator.onConnectionInterrupted}:
+     * This callback is different from [onConnectionInterrupted]{@link AgoraRtcEvents.onConnectionInterrupted}:
      * - The SDK triggers the `onConnectionInterrupted` callback when it loses connection with the server for more than
      * four seconds after it successfully joins the channel.
-     * - The SDK triggers the [onConnectionLost]{@link agoraCreator.onConnectionLost} callback when it loses connection with
+     * - The SDK triggers the [onConnectionLost]{@link AgoraRtcEvents.onConnectionLost} callback when it loses connection with
      * the server for more than 10 seconds, whether or not it joins the channel.
      *
      * If the SDK fails to rejoin the channel 20 minutes after being disconnected from Agora edge server, the SDK stops
@@ -3873,7 +3882,7 @@ declare class AgoraRtcEvents {
     /** Occurs when your connection is banned by the Agora Server.
      *
      * @deprecated This method is deprecated and replaced by the
-     * [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged} callback.
+     * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback.
      */
     onConnectionBanned: () => void
 
@@ -3913,7 +3922,7 @@ declare class AgoraRtcEvents {
 
     /** Reports the statistics of the audio stream from each remote user/host.
      *
-     * @deprecated This method is deprecated. Use the [onRemoteAudioStats]{@link agoraCreator.onRemoteAudioStats} callback instead.
+     * @deprecated This method is deprecated. Use the [onRemoteAudioStats]{@link AgoraRtcEvents.onRemoteAudioStats} callback instead.
      *
      * The SDK triggers this callback once every two seconds to report the audio quality of each remote user/host sending an
      * audio stream. If a channel has multiple users/hosts sending audio streams, the SDK triggers this callback as many times.
@@ -4000,7 +4009,7 @@ declare class AgoraRtcEvents {
 
     /** Reports the statistics of the audio stream from each remote user/host.
      *
-     * This callback replaces the [onAudioQuality]{@link agoraCreator.onAudioQuality} callback.
+     * This callback replaces the [onAudioQuality]{@link AgoraRtcEvents.onAudioQuality} callback.
      *
      * The SDK triggers this callback once every two seconds for each remote user/host. If a channel includes multiple remote
      * users, the SDK triggers this callback as many times.
@@ -4164,7 +4173,7 @@ declare class AgoraRtcEvents {
     /** Occurs when the video stops playing.
      *
      * @deprecated This method is deprecated. Use `LOCAL_VIDEO_STREAM_STATE_STOPPED(0)` in the
-     * [onLocalVideoStateChanged]{@link agoraCreator.onLocalVideoStateChanged} callback instead.
+     * [onLocalVideoStateChanged]{@link AgoraRtcEvents.onLocalVideoStateChanged} callback instead.
      *
      * The application can use this callback to change the configuration of the view (for example, displaying other pictures in the
      * view) after the video stops playing.
@@ -4244,7 +4253,7 @@ declare class AgoraRtcEvents {
 
     /** Occurs when a remote user's audio stream playback pauses/resumes.
      *
-     * @deprecated This method is deprecated, use the  [onRemoteAudioStateChanged]{@link agoraCreator.onRemoteAudioStateChanged}
+     * @deprecated This method is deprecated, use the  [onRemoteAudioStateChanged]{@link AgoraRtcEvents.onRemoteAudioStateChanged}
      * callback instead.
      *
      * The SDK triggers this callback when the remote user stops or resumes sending the audio stream by calling the
@@ -4347,9 +4356,9 @@ declare class AgoraRtcEvents {
      *
      * @deprecated This method is deprecated. Use
      * [LOCAL_VIDEO_STREAM_STATE_CAPTURING(1)]{@link agora.LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_CAPTURING}
-     * in the [onLocalVideoStateChanged]{@link agoraCreator.onLocalVideoStateChanged} callback instead.
+     * in the [onLocalVideoStateChanged]{@link AgoraRtcEvents.onLocalVideoStateChanged} callback instead.
      *
-     * If the camera fails to turn on, fix the error reported in the [onError]{@link agoraCreator.onError} callback.
+     * If the camera fails to turn on, fix the error reported in the [onError]{@link AgoraRtcEvents.onError} callback.
      */
     onCameraReady: () => void
 
@@ -4418,12 +4427,12 @@ declare class AgoraRtcEvents {
 
     /** Occurs when the audio mixing file playback finishes.
      *
-     * @deprecated  use [onAudioMixingStateChanged]{@link agoraCreator.onAudioMixingStateChanged} instead.
+     * @deprecated  use [onAudioMixingStateChanged]{@link AgoraRtcEvents.onAudioMixingStateChanged} instead.
      *
      * You can start an audio mixing file playback by calling the [startAudioMixing]{@link agora.startAudioMixing} method.
      * The SDK triggers this callback when the audio mixing file playback finishes.
      *
-     * If the `startAudioMixing` method call fails, an error code returns in the [onError]{@link agoraCreator.onError} callback.
+     * If the `startAudioMixing` method call fails, an error code returns in the [onError]{@link AgoraRtcEvents.onError} callback.
      */
     onAudioMixingFinished: () => void
 
@@ -4632,7 +4641,7 @@ declare class AgoraRtcEvents {
     /** Occurs when the engine sends the first local audio frame.
      *
      * @deprecated This callback is deprecated. Use the
-     * [onFirstLocalAudioFramePublished]{@link agoraCreator.onFirstLocalAudioFramePublished} callback instead.
+     * [onFirstLocalAudioFramePublished]{@link AgoraRtcEvents.onFirstLocalAudioFramePublished} callback instead.
      */
     onFirstLocalAudioFrame:
         /**
@@ -4696,7 +4705,7 @@ declare class AgoraRtcEvents {
 
     /** Reports the result of calling the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method. (CDN live only.)
      *
-     * @deprecated This method is deprecated, use the [onRtmpStreamingStateChanged]{@link agoraCreator.onRtmpStreamingStateChanged}
+     * @deprecated This method is deprecated, use the [onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged}
      * callback instead.
      */
     onStreamPublished:
@@ -4720,7 +4729,7 @@ declare class AgoraRtcEvents {
     /** Reports the result of calling the [removePublishStreamUrl]{@link agora.removePublishStreamUrl} method. (CDN live only.)
      *
      * @deprecated This method is deprecated, use the
-     * [onRtmpStreamingStateChanged]{@link agoraCreator.onRtmpStreamingStateChanged} callback instead.
+     * [onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged} callback instead.
      *
      * This callback indicates whether you have successfully removed an RTMP stream from the CDN.
      */
@@ -4771,7 +4780,7 @@ declare class AgoraRtcEvents {
      * video after the uplink network condition improves.
      *
      * @note If the local stream fallbacks to the audio-only stream, the remote user receives the
-     * [onUserMuteVideo]{@link agoraCreator.onUserMuteVideo} callback.
+     * [onUserMuteVideo]{@link AgoraRtcEvents.onUserMuteVideo} callback.
      */
     onLocalPublishFallbackToAudioOnly:
         /**
@@ -4923,7 +4932,7 @@ declare class AgoraRtcEvents {
 }
 
 /**
- * @internal
+ * @ignore
  */
 declare class agoraCreator extends AgoraRtcEvents {
     callNativeMethod: (apiType: number, jsonParam?: string, extra?: any) => any
@@ -4945,28 +4954,28 @@ declare class agoraCreator extends AgoraRtcEvents {
 
 namespace agora {
     /**
-     * @internal
+     * @ignore
      */
     const isWeb = typeof AgoraRTC !== 'undefined'
     /**
-     * @internal
+     * @ignore
      */
     const event = new cc.EventTarget()
 
     /**
-     * @internal
+     * @ignore
      */
     let bridge: agoraCreator
     /**
-     * @internal
+     * @ignore
      */
     let client: AgoraRTC.Client
     /**
-     * @internal
+     * @ignore
      */
     let localStream: AgoraRTC.Stream
     /**
-     * @internal
+     * @ignore
      */
     let remoteStreams = new Map<string | number, AgoraRTC.Stream>()
 
@@ -4975,7 +4984,7 @@ namespace agora {
     }
 
     /**
-     * @internal
+     * @ignore
      */
     function initNativeEvent() {
         bridge.onWarning = function (warn, msg) {
@@ -5539,7 +5548,7 @@ namespace agora {
     }
 
     /**
-     * @internal
+     * @ignore
      */
     function initWebEvent() {
         client.on('first-audio-frame-decode', (evt: { stream: AgoraRTC.Stream }) => {
@@ -5707,14 +5716,14 @@ namespace agora {
     }
 
     /**
-     * @internal
+     * @ignore
      */
     function callNativeMethod(apiType: API_TYPE, param: {} = {}, extra?: any): any {
         return bridge.callNativeMethod(apiType, JSON.stringify(param), extra)
     }
 
     /**
-     * @internal
+     * @ignore
      */
     function callNativeMethodAudioEffect(apiType: API_TYPE_AUDIO_EFFECT, param: {} = {}): any {
         return bridge.callNativeMethodAudioEffect(apiType, JSON.stringify(param))
@@ -5793,26 +5802,29 @@ namespace agora {
         }
     }
 
+    /** Releases all `agora` resources.
+     * 
+     * Use this method for apps in which users occasionally make voice or video calls. When users do not make calls, you can free up 
+     * resources for other operations. Once you call `release` to destroy the created `agora` instance, you cannot use any method or 
+     * callback in the SDK any more. 
+     * 
+     * If you want to use the real-time communication functions again, you must call [init]{@link agora.init} to initialize a 
+     * new `agora` instance.
+     * 
+     * @note If you want to create a new `agora` instance after destroying the current one, ensure that you wait till the 
+     * `release` method completes executing.
+     */
     export function release() {
         callNativeMethod(API_TYPE.RELEASE)
     }
 
-    /** Listens fpr the events during the `agora` engine runtime.
-     *
-     * @param type A string representing the event type to listen for.
-     * @param callback The callback that will be invoked when the event is dispatched.
-     * @param target The target (this object) to invoke the callback, can be `null`.
-     * @param useCapture When set to true, the listener will be triggered at capturing phase which is ahead of the final target emit, otherwise it will be triggered during bubbling phase.
+    /** Listens for the events during the `agora` engine runtime.
      */
     export function on<T extends Function>(type: string, callback: T, target?: any, useCapture?: boolean): T {
         return event.on(type, callback, target, useCapture)
     }
 
     /** Stops monitoring the events during the `agora` engine runtime.
-     *
-     * @param type A string representing the event type being removed.
-     * @param callback The callback to remove.
-     * @param target The target to invoke the callback, if it's not given, only callback without target will be removed.
      */
     export function off(type: string, callback?: Function, target?: any) {
         event.off(type, callback, target)
@@ -5853,9 +5865,9 @@ namespace agora {
      *
      * In the `LIVE_BROADCASTING` profile, when a user switches user roles after joining a channel, a successful
      * `setClientRole` method call triggers the following callbacks:
-     * - The local client: [onClientRoleChanged]{@link agoraCreator.onClientRoleChanged}
-     * - The remote client: [onUserJoined]{@link agoraCreator.onUserJoined} or
-     * [onUserOffline]{@link agoraCreator.onUserOffline}(BECOME_AUDIENCE)
+     * - The local client: [onClientRoleChanged]{@link AgoraRtcEvents.onClientRoleChanged}
+     * - The remote client: [onUserJoined]{@link AgoraRtcEvents.onUserJoined} or
+     * [onUserOffline]{@link AgoraRtcEvents.onUserOffline}(BECOME_AUDIENCE)
      *
      * @note This method applies only to the `LIVE_BROADCASTING` profile.
      *
@@ -5888,13 +5900,13 @@ namespace agora {
      * You must call the [leaveChannel]{@link agora.leaveChannel} method to exit the current call before entering another channel.
      *
      * A successful [joinChannel]{@link agora.joinChannel} method call triggers the following callbacks:
-     * - The local client: [onJoinChannelSuccess]{@link agoraCreator.onJoinChannelSuccess}
-     * - The remote client: [onUserJoined]{@link agoraCreator.onUserJoined} , if the user joining the channel is in the `COMMUNICATION`
+     * - The local client: [onJoinChannelSuccess]{@link AgoraRtcEvents.onJoinChannelSuccess}
+     * - The remote client: [onUserJoined]{@link AgoraRtcEvents.onUserJoined} , if the user joining the channel is in the `COMMUNICATION`
      * profile, or is a host in the `LIVE_BROADCASTING` profile.
      *
      * When the connection between the client and Agora server is interrupted due to poor network conditions, the SDK tries reconnecting
      * to the server. When the local client successfully rejoins the channel, the SDK triggers the
-     * [onRejoinChannelSuccess]{@link agoraCreator.onRejoinChannelSuccess} callback on the local client.
+     * [onRejoinChannelSuccess]{@link AgoraRtcEvents.onRejoinChannelSuccess} callback on the local client.
      *
      * @note A channel does not accept duplicate uids, such as two users with the same `uid`. If you set `uid` as 0, the system
      * automatically assigns a `uid`. If you want to join a channel from different devices, ensure that each device has a different uid.
@@ -5919,7 +5931,7 @@ namespace agora {
      * related information. Other users in the channel will not receive this message.
      * @param uid (Optional) User ID. A 32-bit unsigned integer with a value ranging from 1 to 2<sup>32</sup>-1. The `uid` must be unique.
      * If a `uid` is not assigned (or set to `0`), the SDK assigns and returns a `uid` in the
-     * [onJoinChannelSuccess]{@link agoraCreator.onJoinChannelSuccess} callback. Your application must record and maintain the returned
+     * [onJoinChannelSuccess]{@link AgoraRtcEvents.onJoinChannelSuccess} callback. Your application must record and maintain the returned
      * `uid` since the SDK does not do so.
      * @return
      * - 0(ERR_OK): Success.
@@ -5949,8 +5961,8 @@ namespace agora {
      *
      * This method allows the audience of a `LIVE_BROADCASTING` channel to switch to a different channel.
      *
-     * After the user successfully switches to another channel, the [onLeaveChannel]{@link agoraCreator.onLeaveChannel}
-     * and [onJoinChannelSuccess]{@link agoraCreator.onJoinChannelSuccess} callbacks are triggered to indicate that the
+     * After the user successfully switches to another channel, the [onLeaveChannel]{@link AgoraRtcEvents.onLeaveChannel}
+     * and [onJoinChannelSuccess]{@link AgoraRtcEvents.onJoinChannelSuccess} callbacks are triggered to indicate that the
      * user has left the original channel and joined a new one.
      *
      * @note
@@ -5994,15 +6006,15 @@ namespace agora {
      * This method returns `0` if the user leaves the channel and releases all resources related to the call.
      *
      * This method call is asynchronous, and the user has not left the channel when the method call returns. Once the user leaves the
-     * channel, the SDK triggers the [onLeaveChannel]{@link agoraCreator.onLeaveChannel} callback. A successful
+     * channel, the SDK triggers the [onLeaveChannel]{@link AgoraRtcEvents.onLeaveChannel} callback. A successful
      * [leaveChannel]{@link agora.leaveChannel} method call triggers the following callbacks:
-     * - The local client: [onLeaveChannel]{@link agoraCreator.onLeaveChannel}.
-     * - The remote client: [onUserOffline]{@link agoraCreator.onUserOffline}, if the user leaving the channel is in the
+     * - The local client: [onLeaveChannel]{@link AgoraRtcEvents.onLeaveChannel}.
+     * - The remote client: [onUserOffline]{@link AgoraRtcEvents.onUserOffline}, if the user leaving the channel is in the
      * `COMMUNICATION` channel, or is a host in the `LIVE_BROADCASTING` profile.
      *
      * **Note**
      * - If you call the [destroy]{@link agora.destroy} method immediately after the `leaveChannel` method, the `leaveChannel` process
-     * interrupts, and the [onLeaveChannel]{@link agoraCreator.onLeaveChannel} callback is not triggered.
+     * interrupts, and the [onLeaveChannel]{@link AgoraRtcEvents.onLeaveChannel} callback is not triggered.
      * - If you call the `leaveChannel` method during a CDN live streaming, the SDK triggers the
      * [removePublishStreamUrl]{@link agora.removePublishStreamUrl} method.
      *
@@ -6026,8 +6038,8 @@ namespace agora {
     /** Gets a new token when the current token expires after a period of time.
      *
      * The `token` expires after a period of time once the token schema is enabled when:
-     * - The SDK triggers the [onTokenPrivilegeWillExpire]{@link agoraCreator.onTokenPrivilegeWillExpire} callback, or
-     * - The [onConnectionStateChanged]{@link agoraCreator.onConnectionStateChanged} reports `CONNECTION_CHANGED_TOKEN_EXPIRED(9)`.
+     * - The SDK triggers the [onTokenPrivilegeWillExpire]{@link AgoraRtcEvents.onTokenPrivilegeWillExpire} callback, or
+     * - The [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} reports `CONNECTION_CHANGED_TOKEN_EXPIRED(9)`.
      *
      * The application should call this method to get the new `token`. Failure to do so will result in the SDK disconnecting from the
      * server.
@@ -6053,7 +6065,7 @@ namespace agora {
      *
      * Once registered, the user account can be used to identify the local user when the user joins the channel. After the user
      * successfully registers a user account, the SDK triggers the
-     * [onLocalUserRegistered]{@link agoraCreator.onLocalUserRegistered} callback on the local client, reporting the user ID and
+     * [onLocalUserRegistered]{@link AgoraRtcEvents.onLocalUserRegistered} callback on the local client, reporting the user ID and
      * user account of the local user.
      *
      * To join a channel with a user account, you can choose either of the following:
@@ -6097,10 +6109,10 @@ namespace agora {
      *
      * After the user successfully joins the channel, the SDK triggers the following callbacks:
      *
-     * - The local client: [onLocalUserRegistered]{@link agoraCreator.onLocalUserRegistered} and
-     * [onJoinChannelSuccess]{@link agoraCreator.onJoinChannelSuccess}.
-     * - The remote client: [onUserJoined]{@link agoraCreator.onUserJoined} and
-     * [onUserInfoUpdated]{@link agoraCreator.onUserInfoUpdated}, if the user joining the channel is in the `COMMUNICATION` profile, or
+     * - The local client: [onLocalUserRegistered]{@link AgoraRtcEvents.onLocalUserRegistered} and
+     * [onJoinChannelSuccess]{@link AgoraRtcEvents.onJoinChannelSuccess}.
+     * - The remote client: [onUserJoined]{@link AgoraRtcEvents.onUserJoined} and
+     * [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated}, if the user joining the channel is in the `COMMUNICATION` profile, or
      * is a host in the `LIVE_BROADCASTING` profile.
      *
      * **Note**
@@ -6159,9 +6171,9 @@ namespace agora {
      *
      * After a remote user joins the channel, the SDK gets the user ID and user account of the remote user, caches them
      * in a mapping table object ([UserInfo]{@link agora.UserInfo}), and triggers the
-     * [onUserInfoUpdated]{@link agoraCreator.onUserInfoUpdated}  callback on the local client.
+     * [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated}  callback on the local client.
      *
-     * After receiving the [onUserInfoUpdated]{@link agoraCreator.onUserInfoUpdated} callback, you can call this method
+     * After receiving the [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated} callback, you can call this method
      * to get the user ID of the remote user from the `UserInfo` interface by passing in the user account.
      *
      * @param userAccount The user account of the user. Ensure that you set this parameter.
@@ -6179,9 +6191,9 @@ namespace agora {
      *
      * After a remote user joins the channel, the SDK gets the user ID and user account of the remote user,
      * caches them in a mapping table object ([UserInfo]{@link agora.UserInfo}), and triggers the
-     * [onUserInfoUpdated]{@link agoraCreator.onUserInfoUpdated} callback on the local client.
+     * [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated} callback on the local client.
      *
-     * After receiving the [onUserInfoUpdated]{@link agoraCreator.onUserInfoUpdated} callback, you can call this method
+     * After receiving the [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated} callback, you can call this method
      * to get the user account of the remote user from the `UserInfo` interface by passing in the user ID.
      *
      * @param uid The user ID of the remote user. Ensure that you set this parameter.
@@ -6245,7 +6257,7 @@ namespace agora {
      * switches to the video mode. To disable the video module, call the [disableVideo]{@link agora.disableVideo} method.
      *
      * A successful [enableVideo]{@link agora.enableVideo} method call triggers the
-     * [onUserEnableVideo]{@link agoraCreator.onUserEnableVideo}(true) callback on the remote client.
+     * [onUserEnableVideo]{@link AgoraRtcEvents.onUserEnableVideo}(true) callback on the remote client.
      *
      * **Note**
      * - This method affects the internal engine and can be called after the [leaveChannel]{@link agora.leaveChannel} method.
@@ -6274,7 +6286,7 @@ namespace agora {
      * to the audio mode. To enable the video module, call the [enableVideo]{@link agora.enableVideo} method.
      *
      * A successful [disableVideo]{@link agora.disableVideo} method call triggers the
-     * [onUserEnableVideo]{@link agoraCreator.onUserEnableVideo} (false) callback on the remote client.
+     * [onUserEnableVideo]{@link AgoraRtcEvents.onUserEnableVideo} (false) callback on the remote client.
      *
      * **Note**
      * - This method affects the internal engine and can be called after the [leaveChannel]{@link agora.leaveChannel} method.
@@ -6537,7 +6549,7 @@ namespace agora {
      * other users in the channel.
      *
      * Once the local audio function is disabled or re-enabled, the SDK triggers the
-     * [onLocalAudioStateChanged]{@link agoraCreator.onLocalAudioStateChanged} callback, which reports
+     * [onLocalAudioStateChanged]{@link AgoraRtcEvents.onLocalAudioStateChanged} callback, which reports
      * `LOCAL_AUDIO_STREAM_STATE_STOPPED(0)` or `LOCAL_AUDIO_STREAM_STATE_RECORDING(1)`.
      *
      * @note
@@ -6637,7 +6649,7 @@ namespace agora {
 
     /** Stops/Resumes sending the local audio stream.
      *
-     * A successful `muteLocalAudioStream` method call triggers the [onUserMuteAudio]{@link agoraCreator.onUserMuteAudio}
+     * A successful `muteLocalAudioStream` method call triggers the [onUserMuteAudio]{@link AgoraRtcEvents.onUserMuteAudio}
      * callback on the remote client.
      *
      * **Note**
@@ -6775,7 +6787,7 @@ namespace agora {
     /** Stops/Resumes sending the local video stream.
      *
      * A successful `muteLocalVideoStream` method call triggers the
-     * [onUserMuteVideo]{@link agoraCreator.onUserMuteVideo} callback on the remote client.
+     * [onUserMuteVideo]{@link AgoraRtcEvents.onUserMuteVideo} callback on the remote client.
      *
      * **Note**
      * - When set to `true`, this method does not disable the camera which does not affect the retrieval of the local
@@ -6818,7 +6830,7 @@ namespace agora {
      * `[enableLocalVideo(true)`.
      *
      * After the local video capturer is successfully disabled or re-enabled, the SDK triggers the
-     * [onUserEnableLocalVideo]{@link agoraCreator.onUserEnableLocalVideo} callback on the remote client.
+     * [onUserEnableLocalVideo]{@link AgoraRtcEvents.onUserEnableLocalVideo} callback on the remote client.
      *
      * @note This method affects the internal engine and can be called after the [leaveChannel]{@link agora.leaveChannel} method.
      *
@@ -6934,7 +6946,7 @@ namespace agora {
      * The aspect ratio of the low-video stream is the same as the high-quality video stream. Once the resolution of the high-quality
      * video stream is set, the system automatically sets the resolution, frame rate, and bitrate of the low-video stream.
      *
-     * The method result returns in the [onApiCallExecuted]{@link agoraCreator.onApiCallExecuted} callback.
+     * The method result returns in the [onApiCallExecuted]{@link AgoraRtcEvents.onApiCallExecuted} callback.
      *
      * @param userId ID of the remote user sending the video stream.
      * @param streamType  Sets the video-stream type. See [REMOTE_VIDEO_STREAM_TYPE]{@link agora.REMOTE_VIDEO_STREAM_TYPE}.
@@ -6969,7 +6981,7 @@ namespace agora {
      * Once the resolution of the high-quality video stream is set, the system automatically sets the resolution, frame rate,
      * and bitrate of the low-video stream.
      *
-     * The method result returns in the [onApiCallExecuted]{@link agoraCreator.onApiCallExecuted} callback.
+     * The method result returns in the [onApiCallExecuted]{@link AgoraRtcEvents.onApiCallExecuted} callback.
      *
      * @param streamType Sets the default video-stream type. See [REMOTE_VIDEO_STREAM_TYPE]{@link agora.REMOTE_VIDEO_STREAM_TYPE}.
      *
@@ -6984,11 +6996,11 @@ namespace agora {
         return callNativeMethod(API_TYPE.SET_REMOTE_DEFAULT_VIDEO_STREAM_TYPE, {streamType})
     }
 
-    /** Enables the [onAudioVolumeIndication]{@link agoraCreator.onAudioVolumeIndication} callback at a set time interval
+    /** Enables the [onAudioVolumeIndication]{@link AgoraRtcEvents.onAudioVolumeIndication} callback at a set time interval
      * to report on which users are speaking and the speakers' volume.
      *
      * Once this method is enabled, the SDK returns the volume indication in the
-     * [onAudioVolumeIndication]{@link agoraCreator.onAudioVolumeIndication} callback at the set time interval, whether
+     * [onAudioVolumeIndication]{@link AgoraRtcEvents.onAudioVolumeIndication} callback at the set time interval, whether
      * or not any user is speaking in the channel.
      *
      * @param interval Sets the time interval between two consecutive volume indications:
@@ -7081,10 +7093,10 @@ namespace agora {
      * playback.
      *
      * When the audio mixing file playback finishes after calling this method, the SDK triggers the
-     * [onAudioMixingFinished]{@link agoraCreator.onAudioMixingFinished} callback.
+     * [onAudioMixingFinished]{@link AgoraRtcEvents.onAudioMixingFinished} callback.
      *
      * A successful `startAudioMixing` method call triggers the
-     * [onAudioMixingStateChanged]{@link agoraCreator.onAudioMixingStateChanged}(PLAY) callback on the local client.
+     * [onAudioMixingStateChanged]{@link AgoraRtcEvents.onAudioMixingStateChanged}(PLAY) callback on the local client.
      *
      * When the audio mixing file playback finishes, the SDK triggers the `onAudioMixingStateChanged(STOPPED)`
      * callback on the local client.
@@ -7459,7 +7471,7 @@ namespace agora {
     /** Enables/Disables face detection for the local user. Applies to Android and iOS only.
      *
      * Once face detection is enabled, the SDK triggers the
-     * [onFacePositionChanged]{@link agoraCreator.onFacePositionChanged} callback to report the face information of the
+     * [onFacePositionChanged]{@link AgoraRtcEvents.onFacePositionChanged} callback to report the face information of the
      * local user, which includes the following aspects:
      * - The width and height of the local video.
      * - The position of the human face in the local video.
@@ -8113,7 +8125,7 @@ namespace agora {
      * @note
      * Once you enable the external audio sink, the app will not retrieve any
      * audio data from the
-     * [onPlaybackAudioFrame]{@link agoraCreator.onPlaybackAudioFrame} callback.
+     * [onPlaybackAudioFrame]{@link AgoraRtcEvents.onPlaybackAudioFrame} callback.
      *
      * @param enabled
      * - true: Enables the external audio sink.
@@ -8140,7 +8152,7 @@ namespace agora {
         })
     }
 
-    /** Sets the audio recording format for the [onRecordAudioFrame]{@link agoraCreator.onRecordAudioFrame} callback.
+    /** Sets the audio recording format for the [onRecordAudioFrame]{@link AgoraRtcEvents.onRecordAudioFrame} callback.
      *
      * @param sampleRate Sets the sample rate (`samplesPerSec`) returned in the onRecordAudioFrame* callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.
      * @param channel Sets the number of audio channels (`channels`) returned in the *onRecordAudioFrame* callback:
@@ -8312,7 +8324,7 @@ namespace agora {
      * - Re-enable the video when the network conditions improve.
      *
      * When the published video stream falls back to audio only or when the audio-only stream switches back to the video,
-     * the SDK triggers the [onLocalPublishFallbackToAudioOnly]{@link agoraCreator.onLocalPublishFallbackToAudioOnly} callback.
+     * the SDK triggers the [onLocalPublishFallbackToAudioOnly]{@link AgoraRtcEvents.onLocalPublishFallbackToAudioOnly} callback.
      *
      * @note Agora does not recommend using this method for CDN live streaming, because the remote CDN live user will
      * have a noticeable lag when the published video stream falls back to audio only.
@@ -8345,7 +8357,7 @@ namespace agora {
      * and restores the video stream when the network conditions improve.
      *
      * When the remotely subscribed video stream falls back to audio only or when the audio-only stream switches back to the video
-     * stream, the SDK triggers the [onRemoteSubscribeFallbackToAudioOnly]{@link agoraCreator.onRemoteSubscribeFallbackToAudioOnly}
+     * stream, the SDK triggers the [onRemoteSubscribeFallbackToAudioOnly]{@link AgoraRtcEvents.onRemoteSubscribeFallbackToAudioOnly}
      * callback.
      *
      * @param  option  Sets the fallback option for the remotely subscribed video stream. See
@@ -8431,7 +8443,7 @@ namespace agora {
      * **Note**
      * - This method is for Android and iOS only.
      * - Ensure that you have successfully called the [joinChannel]{@link agora.joinChannel} method before calling this method.
-     * - After calling this method, the SDK returns the [onAudioRouteChanged]{@link agoraCreator.onAudioRouteChanged}
+     * - After calling this method, the SDK returns the [onAudioRouteChanged]{@link AgoraRtcEvents.onAudioRouteChanged}
      * callback to indicate the changes.
      * - This method does not take effect if a headset is used.
      *
@@ -8576,7 +8588,7 @@ namespace agora {
      * This method consumes additional network traffic, and hence may affect communication quality.
      *
      * Call the [disableLastmileTest]{@link agora.disableLastmileTest} method to disable this test after receiving
-     * the [onLastmileQuality]{@link agoraCreator.onLastmileQuality} callback, and before joining a channel.
+     * the [onLastmileQuality]{@link AgoraRtcEvents.onLastmileQuality} callback, and before joining a channel.
      *
      * **Note**
      * - Do not call any other methods before receiving the `onLastmileQuality` callback. Otherwise, the callback may
@@ -8619,9 +8631,9 @@ namespace agora {
      * Call this method to check the uplink network quality before users join a channel or before an audience switches to a host.
      *
      * Once this method is enabled, the SDK returns the following callbacks:
-     * - [onLastmileQuality]{@link agoraCreator.onLastmileQuality}: the SDK triggers this callback within two seconds
+     * - [onLastmileQuality]{@link AgoraRtcEvents.onLastmileQuality}: the SDK triggers this callback within two seconds
      * depending on the network conditions. This callback rates the network conditions and is more closely linked to the user experience.
-     * - [onLastmileProbeResult]{@link agoraCreator.onLastmileProbeResult}: the SDK triggers this callback within 30 seconds depending
+     * - [onLastmileProbeResult]{@link AgoraRtcEvents.onLastmileProbeResult}: the SDK triggers this callback within 30 seconds depending
      * on the network conditions. This callback returns the real-time statistics of the network conditions and is more objective.
      *
      * **Note**
@@ -8660,8 +8672,8 @@ namespace agora {
 
     /** Retrieves the warning or error description.
      *
-     * @param code Warning code or error code returned in the [onWarning]{@link agoraCreator.onWarning} or
-     * [onError]{@link agoraCreator.onError} callback.
+     * @param code Warning code or error code returned in the [onWarning]{@link AgoraRtcEvents.onWarning} or
+     * [onError]{@link AgoraRtcEvents.onError} callback.
      *
      * @return See [WARN_CODE_TYPE]{@link agora.WARN_CODE_TYPE} or [ERROR_CODE_TYPE]{@link agora.ERROR_CODE_TYPE}.
      */
@@ -8822,9 +8834,9 @@ namespace agora {
      * - Each client can send up to 6 kB of data per second.
      * - Each user can have up to five data streams simultaneously.
      *
-     * A successful `sendStreamMessage` method call triggers the [onStreamMessage]{@link agoraCreator.onStreamMessage}
+     * A successful `sendStreamMessage` method call triggers the [onStreamMessage]{@link AgoraRtcEvents.onStreamMessage}
      * callback on the remote client, from which the remote user gets the stream message. A failed `sendStreamMessage`
-     * method call triggers the [onStreamMessageError]{@link agoraCreator.onStreamMessageError} callback on the remote client.
+     * method call triggers the [onStreamMessageError]{@link AgoraRtcEvents.onStreamMessageError} callback on the remote client.
      *
      * @note This method applies only to the `COMMUNICATION` profile or to the hosts in the `LIVE_BROADCASTING` profile.
      * If an audience in the `LIVE_BROADCASTING` profile calls this method, the audience may be switched to a host.
@@ -8846,9 +8858,9 @@ namespace agora {
 
     /** Publishes the local stream to a specified CDN live RTMP address. (CDN live only.)
      *
-     * The SDK returns the result of this method call in the [onStreamPublished]{@link agoraCreator.onStreamPublished} callback.
+     * The SDK returns the result of this method call in the [onStreamPublished]{@link AgoraRtcEvents.onStreamPublished} callback.
      *
-     * The `addPublishStreamUrl` method call triggers the [onRtmpStreamingStateChanged]{@link agoraCreator.onRtmpStreamingStateChanged}
+     * The `addPublishStreamUrl` method call triggers the [onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged}
      * callback on the local client to report the state of adding a local stream to the CDN.
      *
      * **Note**
@@ -8883,10 +8895,10 @@ namespace agora {
      *
      * This method removes the RTMP URL address (added by the [addPublishStreamUrl]{@link agora.addPublishStreamUrl}
      * method) from a CDN live stream. The SDK returns the result of this method call in the
-     * [onStreamUnpublished]{@link agoraCreator.onStreamUnpublished} callback.
+     * [onStreamUnpublished]{@link AgoraRtcEvents.onStreamUnpublished} callback.
      *
      * The `removePublishStreamUrl` method call triggers the
-     * [onRtmpStreamingStateChanged]{@link agoraCreator.onRtmpStreamingStateChanged} callback on the local client to report the
+     * [onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged} callback on the local client to report the
      * state of removing an RTMP stream from the CDN.
      *
      * **Note**
@@ -8909,7 +8921,7 @@ namespace agora {
 
     /** Sets the video layout and audio settings for CDN live. (CDN live only.)
      *
-     * The SDK triggers the [onTranscodingUpdated]{@link agoraCreator.onTranscodingUpdated} callback when you call the
+     * The SDK triggers the [onTranscodingUpdated]{@link AgoraRtcEvents.onTranscodingUpdated} callback when you call the
      * `setLiveTranscoding` method to update the transcoding setting.
      *
      * **Note**
@@ -9038,16 +9050,16 @@ namespace agora {
 
     /** Adds a voice or video stream URL address to the live streaming.
      *
-     * The [onStreamPublished]{@link agoraCreator.onStreamPublished} callback returns the inject status. If this method
+     * The [onStreamPublished]{@link AgoraRtcEvents.onStreamPublished} callback returns the inject status. If this method
      * call is successful, the server pulls the voice or video stream and injects it into a live channel. This is
      * applicable to scenarios where all audience members in the channel can watch a live show and interact with each other.
      *
      * The `addInjectStreamUrl` method call triggers the following callbacks:
      * - The local client:
-     *   - [onStreamInjectedStatus]{@link agoraCreator.onStreamInjectedStatus}, with the state of the injecting the online stream.
-     *   - [onUserJoined]{@link agoraCreator.onUserJoined}(uid: 666), if the method call is successful and the online media stream
+     *   - [onStreamInjectedStatus]{@link AgoraRtcEvents.onStreamInjectedStatus}, with the state of the injecting the online stream.
+     *   - [onUserJoined]{@link AgoraRtcEvents.onUserJoined}(uid: 666), if the method call is successful and the online media stream
      * is injected into the channel.
-     * - The remote client: [onUserJoined]{@link agoraCreator.onUserJoined}(uid: 666), if the method call is successful and the
+     * - The remote client: [onUserJoined]{@link AgoraRtcEvents.onUserJoined}(uid: 666), if the method call is successful and the
      * online media stream is injected into the channel.
      *
      * **Note**
@@ -9084,8 +9096,8 @@ namespace agora {
     /** Starts to relay media streams across channels.
      *
      * After a successful method call, the SDK triggers the
-     * [onChannelMediaRelayStateChanged]{@link agoraCreator.onChannelMediaRelayStateChanged} and
-     * [onChannelMediaRelayEvent]{@link agoraCreator.onChannelMediaRelayEvent} callbacks, and these callbacks return the
+     * [onChannelMediaRelayStateChanged]{@link AgoraRtcEvents.onChannelMediaRelayStateChanged} and
+     * [onChannelMediaRelayEvent]{@link AgoraRtcEvents.onChannelMediaRelayEvent} callbacks, and these callbacks return the
      * state and events of the media stream relay.
      * - If the `onChannelMediaRelayStateChanged` callback returns
      * [RELAY_STATE_RUNNING]{@link agora.CHANNEL_MEDIA_RELAY_STATE.RELAY_STATE_RUNNING}(2) and
@@ -9133,7 +9145,7 @@ namespace agora {
      * [updateChannelMediaRelay]{@link agora.updateChannelMediaRelay} method.
      *
      * After a successful method call, the SDK triggers the
-     * [onChannelMediaRelayEvent]{@link agoraCreator.onChannelMediaRelayEvent} callback with the
+     * [onChannelMediaRelayEvent]{@link AgoraRtcEvents.onChannelMediaRelayEvent} callback with the
      * [RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL]{@link agora.CHANNEL_MEDIA_RELAY_EVENT.RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL}(7)
      * state code.
      *
@@ -9167,7 +9179,7 @@ namespace agora {
      * Once the relay stops, the host quits all the destination channels.
      *
      * After a successful method call, the SDK triggers the
-     * [onChannelMediaRelayStateChanged]{@link agoraCreator.onChannelMediaRelayStateChanged} callback. If the callback returns
+     * [onChannelMediaRelayStateChanged]{@link AgoraRtcEvents.onChannelMediaRelayStateChanged} callback. If the callback returns
      * [RELAY_STATE_IDLE]{@link agora.CHANNEL_MEDIA_RELAY_STATE.RELAY_STATE_IDLE}(0) and
      * [RELAY_OK]{@link agora.CHANNEL_MEDIA_RELAY_ERROR.RELAY_OK}(0), the host successfully stops the relay.
      *
@@ -9196,7 +9208,7 @@ namespace agora {
      * This method removes the URL address (added by the [addInjectStreamUrl]{@link agora.addInjectStreamUrl} method) from the
      * live streaming.
      *
-     * @note If this method is called successfully, the SDK triggers the [onUserOffline]{@link agoraCreator.onUserOffline} callback
+     * @note If this method is called successfully, the SDK triggers the [onUserOffline]{@link AgoraRtcEvents.onUserOffline} callback
      * and returns a stream `uid` of `666`.
      *
      * @param url The URL address of the injected stream to be removed.
