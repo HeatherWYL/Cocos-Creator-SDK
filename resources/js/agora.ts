@@ -197,10 +197,12 @@ namespace agora {
         /** 1: Audio recording device.
          */
         AUDIO_RECORDING_DEVICE = 1,
-        /** 2: Video renderer.
+        /** @ignore
+         * 2: Video renderer.
          */
         VIDEO_RENDER_DEVICE = 2,
-        /** 3: Video capturer.
+        /** @ignore
+         * 3: Video capturer.
          */
         VIDEO_CAPTURE_DEVICE = 3,
         /** 4: Application audio playback device.
@@ -363,7 +365,7 @@ namespace agora {
         QUALITY_DETECTING = 8,
     }
 
-    /** Video display modes. */
+    /** @ignore Video display modes. */
     export enum RENDER_MODE_TYPE {
         /** 1: Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have
          * clipped contents.
@@ -713,29 +715,29 @@ namespace agora {
         RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE = 1,
     }
 
-    /** States of importing an external video stream in the live interactive streaming. */
+    /** States of importing an external media stream in the live interactive streaming. */
     export enum INJECT_STREAM_STATUS {
-        /** 0: The external video stream imported successfully. */
+        /** 0: The external media stream imported successfully. */
         INJECT_STREAM_STATUS_START_SUCCESS = 0,
-        /** 1: The external video stream already exists. */
+        /** 1: The external media stream already exists. */
         INJECT_STREAM_STATUS_START_ALREADY_EXISTS = 1,
-        /** 2: The external video stream to be imported is unauthorized. */
+        /** 2: The external media stream to be imported is unauthorized. */
         INJECT_STREAM_STATUS_START_UNAUTHORIZED = 2,
-        /** 3: Import external video stream timeout. */
+        /** 3: Import external media stream timeout. */
         INJECT_STREAM_STATUS_START_TIMEDOUT = 3,
-        /** 4: Import external video stream failed. */
+        /** 4: Import external media stream failed. */
         INJECT_STREAM_STATUS_START_FAILED = 4,
-        /** 5: The external video stream stopped importing successfully. */
+        /** 5: The external media stream stopped importing successfully. */
         INJECT_STREAM_STATUS_STOP_SUCCESS = 5,
-        /** 6: No external video stream is found. */
+        /** 6: No external media stream is found. */
         INJECT_STREAM_STATUS_STOP_NOT_FOUND = 6,
-        /** 7: The external video stream to be stopped importing is unauthorized. */
+        /** 7: The external media stream to be stopped importing is unauthorized. */
         INJECT_STREAM_STATUS_STOP_UNAUTHORIZED = 7,
-        /** 8: Stop importing external video stream timeout. */
+        /** 8: Stop importing external media stream timeout. */
         INJECT_STREAM_STATUS_STOP_TIMEDOUT = 8,
-        /** 9: Stop importing external video stream failed. */
+        /** 9: Stop importing external media stream failed. */
         INJECT_STREAM_STATUS_STOP_FAILED = 9,
-        /** 10: The external video stream is corrupted. */
+        /** 10: The external media stream is corrupted. */
         INJECT_STREAM_STATUS_BROKEN = 10,
     }
 
@@ -1129,22 +1131,17 @@ namespace agora {
         SUB_STATE_IDLE = 0,
         /** 1: Fails to subscribe to the remote stream. Possible reasons:
          * - The remote user:
-         *   - Calls [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream} or
-         * [muteLocalVideoStream(true)]{@link agora.muteLocalVideoStream} to stop sending local streams.
+         *   - Calls [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream} to stop sending local streams.
          *   - Calls [disableAudio]{@link agora.disableAudio} to disable the
-         * entire audio or video modules.
-         *   - Calls [enableLocalAudio(false)]{@link agora.enableLocalAudio} or [enableLocalVideo(false)]{@link agora.enableLocalVideo}
-         * to disable the local audio sampling or video capturing.
+         * entire audio modules.
+         *   - Calls [enableLocalAudio(false)]{@link agora.enableLocalAudio} 
+         * to disable the local audio sampling.
          *   - The role of the remote user is `AUDIENCE`.
-         * - The local user calls the following methods to stop receiving remote streams:
-         *   - Calls [muteRemoteAudioStream(true)]{@link agora.muteRemoteAudioStream},
+         * - The local user calls the following methods to stop receiving remote streams: 
+         * Calls [muteRemoteAudioStream(true)]{@link agora.muteRemoteAudioStream},
          * [muteAllRemoteAudioStreams(true)]{@link agora.muteAllRemoteAudioStreams} , or
          * [setDefaultMuteAllRemoteAudioStreams(true)]{@link agora.setDefaultMuteAllRemoteAudioStreams} to stop receiving remote
          * audio streams.
-         *   - Calls [muteRemoteVideoStream(true)]{@link agora.muteRemoteVideoStream},
-         * [muteAllRemoteVideoStreams(true)]{@link agora.muteAllRemoteVideoStreams} , or
-         * [setDefaultMuteAllRemoteVideoStreams(true)]{@link agora.setDefaultMuteAllRemoteVideoStreams} to stop receiving remote
-         * video streams.
          */
         SUB_STATE_NO_SUBSCRIBED = 1,
         /** 2: Subscribing.
@@ -1198,7 +1195,7 @@ namespace agora {
         REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY = 9
     }
 
-    /** Video frame rates. */
+    /** @ignore Video frame rates. */
     export enum FRAME_RATE {
         /** 1: 1 fps */
         FRAME_RATE_FPS_1 = 1,
@@ -1216,7 +1213,7 @@ namespace agora {
         FRAME_RATE_FPS_60 = 60,
     }
 
-    /** Video output orientation modes.
+    /** @ignore Video output orientation modes.
      */
     export enum ORIENTATION_MODE {
         /** 0: (Default) Adaptive mode.
@@ -1245,7 +1242,7 @@ namespace agora {
         ORIENTATION_MODE_FIXED_PORTRAIT = 2,
     }
 
-    /** Video degradation preferences when the bandwidth is a constraint. */
+    /** @ignore Video degradation preferences when the bandwidth is a constraint. */
     export enum DEGRADATION_PREFERENCE {
         /** 0: (Default) Degrade the frame rate in order to maintain the video quality. */
         MAINTAIN_QUALITY = 0,
@@ -1255,7 +1252,7 @@ namespace agora {
         MAINTAIN_BALANCED = 2,
     }
 
-    /** Stream fallback options. */
+    /** @ignore Stream fallback options. */
     export enum STREAM_FALLBACK_OPTIONS {
         /** 0: No fallback behavior for the local/remote video stream when the uplink/downlink network conditions are poor. The
          * quality of the stream is not guaranteed.
@@ -1489,7 +1486,7 @@ namespace agora {
         CAMERA_FRONT = 1,
     }
 
-    /** Quality change of the local video in terms of target frame rate and target bit rate since last count.
+    /** @ignore Quality change of the local video in terms of target frame rate and target bit rate since last count.
      */
     export enum QUALITY_ADAPT_INDICATION {
         /** The quality of the local video stays the same. */
@@ -1561,7 +1558,7 @@ namespace agora {
         /** 4: The SDK starts relaying the media stream to the destination channel.
          */
         RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL = 4,
-        /** 5: The server receives the video stream from the source channel.
+        /** @ignore 5: The server receives the video stream from the source channel.
          */
         RELAY_EVENT_PACKET_RECEIVED_VIDEO_FROM_SRC = 5,
         /** 6: The server receives the audio stream from the source channel.
@@ -1580,7 +1577,7 @@ namespace agora {
         /** 10: The destination channel name is `null`.
          */
         RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_IS_NULL = 10,
-        /** 11: The video profile is sent to the server.
+        /** @ignore 11: The video profile is sent to the server.
          */
         RELAY_EVENT_VIDEO_PROFILE_UPDATE = 11,
     }
@@ -2610,7 +2607,7 @@ namespace agora {
          * by an aggregate value.
          */
         txAudioBytes: number
-        /** Total number of video bytes sent (bytes), represented
+        /** @ignore Total number of video bytes sent (bytes), represented
          * by an aggregate value.
          */
         txVideoBytes: number
@@ -2618,7 +2615,7 @@ namespace agora {
          * network countermeasures, represented by an aggregate value.
          */
         rxAudioBytes: number
-        /** Total number of video bytes received (bytes),
+        /** @ignore Total number of video bytes received (bytes),
          * represented by an aggregate value.
          */
         rxVideoBytes: number
@@ -2634,10 +2631,10 @@ namespace agora {
         /** Audio transmission bitrate (Kbps), represented by an instantaneous value.
          */
         txAudioKBitRate: number
-        /** Video receive bitrate (Kbps), represented by an instantaneous value.
+        /** @ignore Video receive bitrate (Kbps), represented by an instantaneous value.
          */
         rxVideoKBitRate: number
-        /** Video transmission bitrate (Kbps), represented by an instantaneous value.
+        /** @ignore Video transmission bitrate (Kbps), represented by an instantaneous value.
          */
         txVideoKBitRate: number
         /** Client-server latency (ms)
@@ -3436,7 +3433,7 @@ namespace agora {
         }
     }
 
-    /** The options of the watermark image to be added. */
+    /** @ignore The options of the watermark image to be added. */
     export class WatermarkOptions {
         /** Sets whether or not the watermark image is visible in the local video preview:
          * - true: (Default) The watermark image is visible in preview.
@@ -3463,7 +3460,7 @@ namespace agora {
         }
     }
 
-    /** Screen sharing encoding parameters.
+    /** @ignore Screen sharing encoding parameters.
      */
     export class ScreenCaptureParameters {
         /** The maximum encoding dimensions of the shared region in terms of width * height.
@@ -3661,7 +3658,7 @@ namespace agora {
          * in the channel.
          */
         autoSubscribeAudio: boolean
-        /** Determines whether to subscribe to video streams when the user joins the channel:
+        /** @ignore Determines whether to subscribe to video streams when the user joins the channel:
          * - true: (Default) Subscribe.
          * - false: Do not subscribe.
          *
