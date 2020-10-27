@@ -1,802 +1,816 @@
-Agora provides ensured quality of experience (QoE) for worldwide Internet-based voice communications through a virtual global network optimized for real-time web and mobile-to-mobile applications.
+声网通过全球部署的虚拟网络，提供可以灵活搭配的 API 组合，为移动端到移动端以及移动端到 Web 端提供质量可靠的实时音视频通信。
 
-- The [agora]{@link agora} namespace is the entry point of the Agora Cocos Creator SDK providing API methods for applications to quickly start a voice call or the live interactive audio streaming.
-- The [AgoraRtcEvents]{@link AgoraRtcEvents} class reports runtime events to the applications.
+- [agora]{@link agora} 命名空间包含应用程序调用的主要方法。
+- [AgoraRtcEvents]{@link AgoraRtcEvents} 类用于向应用程序发送回调通知。
 
-### Channel Management
+### 频道管理
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[init]{@link agora.init}</td>
-<td>Initializes an <tt>agora</tt> instance.</td>
+<td>初始化 Agora 引擎</td>
 </tr>
 <tr>
 <td>[initWithAreaCode]{@link agora.initWithAreaCode}</td>
-<td>Initializes an <tt>agora</tt> instance and specifies the region for connection.</td>
+<td>初始化 Agora 引擎（指定访问区域）</td>
 </tr>
 <tr>
 <td>[release]{@link agora.release}</td>
-<td>Releases all <tt>agora</tt> resources.</td>
+<td>销毁 Agora 引擎</td>
 </tr>
 <tr>
 <td>[setChannelProfile]{@link agora.setChannelProfile}</td>
-<td>Sets the channel profile.</td>
+<td>设置频道场景</td>
 </tr>
 <tr>
 <td>[setClientRole]{@link agora.setClientRole}</td>
-<td>Sets the role of the user.</td>
+<td>设置直播场景下的用户角色</td>
 </tr>
 <tr>
 <td>[joinChannel]{@link agora.joinChannel}</td>
-<td>Allows a user to join a channel.</td>
+<td>加入频道</td>
 </tr>
 <tr>
 <td>[switchChannel]{@link agora.switchChannel}</td>
-<td>Switches to a different channel in the live interactive streaming.</td>
+<td>快速切换直播频道</td>
 </tr>
 <tr>
 <td>[leaveChannel]{@link agora.leaveChannel}</td>
-<td>Allows a user to leave a channel.</td>
+<td>离开频道</td>
 </tr>
 <tr>
 <td>[renewToken]{@link agora.renewToken}</td>
-<td>Renews the Token.</td>
+<td>更新 Token</td>
 </tr>
 <tr>
 <td>[getConnectionState]{@link agora.getConnectionState}</td>
-<td>Gets the current connection state of the SDK.</td>
+<td>获取网络连接状态</td>
 </tr>
 </table>
 
-### Channel Events
+### 频道事件
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}</td>
-<td>Occurs when the connection state between the SDK and the server changes.</td>
+<td>网络连接状态已改变回调</td>
 </tr>
 <tr>
 <td>[onJoinChannelSuccess]{@link AgoraRtcEvents.onJoinChannelSuccess}</td>
-<td>Occurs when a user joins a channel.</td>
+<td>加入频道回调</td>
 </tr>
 <tr>
 <td>[onRejoinChannelSuccess]{@link AgoraRtcEvents.onRejoinChannelSuccess}</td>
-<td>Occurs when a user rejoins the channel.</td>
+<td>重新加入频道回调</td>
 </tr>
 <tr>
 <td>[onLeaveChannel]{@link AgoraRtcEvents.onLeaveChannel}</td>
-<td>Occurs when a user leaves the channel.</td>
+<td>离开频道回调</td>
 </tr>
 <tr>
 <td>[onClientRoleChanged]{@link AgoraRtcEvents.onClientRoleChanged}</td>
-<td>Occurs when the user role switches in the live interactive streaming.</td>
+<td>用户角色已切换回调</td>
 </tr>
 <tr>
 <td>[onUserJoined]{@link AgoraRtcEvents.onUserJoined}</td>
-<td>Occurs when a remote user (<tt>COMMUNICATION</tt>)/ host (<tt>LIVE_BROADCASTING</tt>) joins the channel.</td>
+<td>远端用户加入当前频道回调</td>
 </tr>
 <tr>
 <td>[onUserOffline]{@link AgoraRtcEvents.onUserOffline}</td>
-<td>Occurs when a remote user (<tt>COMMUNICATION</tt>)/ host (<tt>LIVE_BROADCASTING</tt>) leaves the channel.</td>
+<td>远端用户离开当前频道回调</td>
 </tr>
 <tr>
 <td>[onNetworkTypeChanged]{@link AgoraRtcEvents.onNetworkTypeChanged}</td>
-<td>Occurs when the local network type changes.</td>
+<td>本地网络类型发生改变回调</td>
 </tr>
 <tr>
 <td>[onConnectionLost]{@link AgoraRtcEvents.onConnectionLost}</td>
-<td>Occurs when the SDK cannot reconnect to Agora's edge server 10 seconds after its connection to the server is interrupted.</td>
+<td>网络连接丢失回调</td>
 </tr>
 <tr>
 <td>[onTokenPrivilegeWillExpire]{@link AgoraRtcEvents onTokenPrivilegeWillExpire}</td>
-<td>Occurs when the token expires in 30 seconds.</td>
+<td>Token 服务即将过期回调</td>
 </tr>
 <tr>
 <td>[onRequestToken]{@link AgoraRtcEvents onRequestToken}</td>
-<td>Occurs when the token expires.</td>
+<td>Token 已过期回调</td>
 </tr>
 </table>
 
-### Audio Management
+### 音频管理
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[enableAudio]{@link agora.enableAudio}</td>
-<td>Enables the audio module.</td>
+<td>启用音频模块</td>
 </tr>
 <tr>
 <td>[disableAudio]{@link agora.disableAudio}</td>
-<td>Disables the audio module.</td>
+<td>关闭音频模块</td>
 </tr>
 <tr>
 <td>[setAudioProfile]{@link agora.setAudioProfile}</td>
-<td>Sets the audio parameters and application scenarios.</td>
+<td>设置音频编码属性</td>
 </tr>
 <tr>
 <td>[adjustRecordingSignalVolume]{@link agora.adjustRecordingSignalVolume}</td>
-<td>Adjusts the recording volume.</td>
+<td>调节录音音量</td>
 </tr>
 <tr>
 <td>[adjustUserPlaybackSignalVolume]{@link agora.adjustUserPlaybackSignalVolume}</td>
-<td>Adjusts the playback volume of a specified remote user.</td>
+<td>调节本地播放的指定远端用户音量</td>
 </tr>
 <tr>
 <td>[adjustPlaybackSignalVolume]{@link agora.adjustPlaybackSignalVolume}</td>
-<td>Adjusts the playback volume of all remote users.</td>
+<td>调节本地播放的所有远端用户音量</td>
 </tr>
 <tr>
 <td>[enableLocalAudio]{@link agora.enableLocalAudio}</td>
-<td>Enables/Disables the local audio sampling.</td>
+<td>开关本地音频采集</td>
 </tr>
 <tr>
 <td>[muteLocalAudioStream]{@link agora.muteLocalAudioStream}</td>
-<td>Stops/Resumes sending the local audio stream.</td>
+<td>停止/恢复发送本地音频流</td>
 </tr>
 <tr>
 <td>[muteRemoteAudioStream]{@link agora.muteRemoteAudioStream}</td>
-<td>Stops/Resumes receiving the audio stream from a specified remote user.</td>
+<td>停止/恢复接收指定音频流</td>
 </tr>
 <tr>
 <td>[muteAllRemoteAudioStreams]{@link agora.muteAllRemoteAudioStreams}</td>
-<td>Stops/Resumes receiving all remote users' audio streams.</td>
+<td>停止/恢复接收所有音频流</td>
 </tr>
 <tr>
 <td>[setDefaultMuteAllRemoteAudioStreams]{@link agora.setDefaultMuteAllRemoteAudioStreams}</td>
-<td>Stops/Resumes receiving all remote users' audio streams by default.</td>
+<td>设置是否默认接收音频流</td>
 </tr>
 </table>
 
-### Local Media Events
+### 本地媒体事件
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onLocalAudioStateChanged]{@link AgoraRtcEvents.onLocalAudioStateChanged}</td>
-<td>Occurs when the local audio state changes.</td>
+<td>本地音频状态改变回调</td>
 </tr>
 <tr>
 <td>[onFirstLocalAudioFramePublished]{@link AgoraRtcEvents.onFirstLocalAudioFramePublished}</td>
-<td>Occurs when the first audio frame is published.</td>
+<td>已发布本地音频首帧回调</td>
 </tr>
 <tr>
 <td>[onAudioPublishStateChanged]{@link AgoraRtcEvents.onAudioPublishStateChanged}</td>
-<td>Occurs when the audio publishing state changes. </td>
+<td>音频发布状态改变回调</td>
 </tr>
 </table>
 
-### Remote Media Events
+### 远端媒体事件
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[onRemoteAudioStateChanged]{@link AgoraRtcEvents.onRemoteAudioStateChanged}</td>
+<td>远端用户音频状态已改变回调</td>
 </tr>
 <tr>
 <td>[onAudioSubscribeStateChanged]{@link AgoraRtcEvents.onAudioSubscribeStateChanged}</td>
-<td>Occurs when the audio subscribing state changes. </td>
+<td>音频订阅状态改变回调</td>
 </tr>
 </table>
 
-### Statistics Events
+### 数据统计事件
 
-> After joining a channel, SDK triggers this group of callbacks once every two seconds.
+> 加入频道后，SDK 每隔 2 秒自动触发本组回调。
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onRtcStats]{@link AgoraRtcEvents.onRtcStats}</td>
-<td>Reports the statistics of the current call.</td>
+<td>当前通话统计回调</td>
 </tr>
 <tr>
 <td>[onNetworkQuality]{@link AgoraRtcEvents.onNetworkQuality}</td>
-<td>Reports the network quality of each user.</td>
+<td>网络上下行质量报告回调</td>
 </tr>
 <tr>
 <td>[onLocalAudioStats]{@link AgoraRtcEvents.onLocalAudioStats}</td>
-<td>Reports the statistics of the local audio stream.</td>
+<td>通话中本地音频流统计信息回调</td>
 </tr>
 <tr>
 <td>[onRemoteAudioStats]{@link AgoraRtcEvents.onRemoteAudioStats}</td>
-<td>Reports the statistics of the audio stream from each remote user/host.</td>
+<td>通话中远端音频流的统计信息回调</td>
 </tr>
 </table>
 
-### Audio File Playback and Mixing
+### 音乐文件播放及混音
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[startAudioMixing]{@link agora.startAudioMixing}</td>
-<td>Starts playing and mixing the music file.</td>
+<td>开始播放音乐文件</td>
 </tr>
 <tr>
 <td>[stopAudioMixing]{@link agora.stopAudioMixing}</td>
-<td>Stops playing and mixing the music file.</td>
+<td>停止播放音乐文件</td>
 </tr>
 <tr>
 <td>[pauseAudioMixing]{@link agora.pauseAudioMixing}</td>
-<td>Pauses playing and mixing the music file.</td>
+<td>暂停播放音乐文件</td>
 </tr>
 <tr>
 <td>[resumeAudioMixing]{@link agora.resumeAudioMixing}</td>
-<td>Resumes playing and mixing the music file.</td>
+<td>恢复播放音乐文件</td>
 </tr>
 <tr>
 <td>[adjustAudioMixingVolume]{@link agora.adjustAudioMixingVolume}</td>
-<td>Adjusts the volume during audio mixing.</td>
+<td>调节音乐文件播放音量</td>
 </tr>
 <tr>
 <td>[adjustAudioMixingPlayoutVolume]{@link agora.adjustAudioMixingPlayoutVolume}</td>
-<td>Adjusts the volume of audio mixing for local playback.</td>
+<td>调节音乐文件的本地播放音量</td>
 </tr>
 <tr>
 <td>[adjustAudioMixingPublishVolume]{@link agora.adjustAudioMixingPublishVolume}</td>
-<td>Adjusts the volume of audio mixing for remote playback.</td>
+<td>调节音乐文件的远端播放音量</td>
 </tr>
 <tr>
 <td>[setAudioMixingPitch]{@link agora.setAudioMixingPitch}</td>
-<td>Sets the audio mixing pitch.</td>
+<td>调整本地播放的音乐文件的音调</td>
 </tr>
 <tr>
 <td>[getAudioMixingPlayoutVolume]{@link agora.getAudioMixingPlayoutVolume}</td>
-<td>Gets the audio mixing volume for local playback.</td>
+<td>获取音乐文件的本地播放音量</td>
 </tr>
 <tr>
 <td>[getAudioMixingPublishVolume]{@link agora.getAudioMixingPublishVolume}</td>
-<td>Gets the audio mixing volume for publishing.</td>
+<td>获取音乐文件的远端播放音量</td>
 </tr>
 <tr>
 <td>[getAudioMixingDuration]{@link agora.getAudioMixingDuration}</td>
-<td>Gets the duration (ms) of the music file.</td>
+<td>获取音乐文件播放时长</td>
 </tr>
 <tr>
 <td>[getAudioMixingCurrentPosition]{@link agora.getAudioMixingCurrentPosition}</td>
-<td>Gets the playback position (ms) of the music file.</td>
+<td>获取音乐文件的播放进度</td>
 </tr>
 <tr>
 <td>[setAudioMixingPosition]{@link agora.setAudioMixingPosition}</td>
-<td>Sets the playback position of the music file.</td>
+<td>设置音乐文件的播放位置</td>
 </tr>
 </table>
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onAudioMixingStateChanged]{@link AgoraRtcEvents.onAudioMixingStateChanged}</td>
-<td>Occurs when the state of the local user's audio mixing file changes.</td>
+<td>本地用户的音乐文件播放状态已改变回调</td>
 </tr>
 <tr>
 <td>[onRemoteAudioMixingBegin]{@link AgoraRtcEvents.onRemoteAudioMixingBegin}</td>
-<td>Occurs when a remote user starts audio mixing.</td>
+<td>远端音乐文件播放已开始回调。</td>
 </tr>
 <tr>
 <td>[onRemoteAudioMixingEnd]{@link AgoraRtcEvents.onRemoteAudioMixingEnd}</td>
-<td>Occurs when a remote user finishes audio mixing.</td>
+<td>远端音乐文件播放已结束回调。</td>
 </tr>
 </table>
 
-### Audio Effect Playback
+### 音效文件播放管理
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[getEffectsVolume]{@link agora.getEffectsVolume}</td>
-<td>Gets the volume of the audio effects.</td>
+<td>获取音效文件的播放音量</td>
 </tr>
 <tr>
 <td>[setEffectsVolume]{@link agora.setEffectsVolume}</td>
-<td>Sets the volume of the audio effects.</td>
+<td>设置音效文件的播放音量</td>
 </tr>
 <tr>
 <td>[setVolumeOfEffect]{@link agora.setVolumeOfEffect}</td>
-<td>Sets the volume of the audio effect.</td>
+<td>实时调整音效文件的播放音量</td>
 </tr>
 <tr>
 <td>[playEffect]{@link agora.playEffect}</td>
-<td>Plays a specified audio effect.</td>
+<td>播放指定音效文件</td>
 </tr>
 <tr>
 <td>[stopEffect]{@link agora.stopEffect}</td>
-<td>Stops playing a specified audio effect.</td>
+<td>停止播放指定音效文件.</td>
 </tr>
 <tr>
 <td>[stopAllEffects]{@link agora.stopAllEffects}</td>
-<td>Stops playing all audio effects.</td>
+<td>停止播放所有音效文件.</td>
 </tr>
 <tr>
 <td>[preloadEffect]{@link agora.preloadEffect}</td>
-<td>Preloads a specified audio effect file into the memory.</td>
+<td>将音效文件加载至内存</td>
 </tr>
 <tr>
 <td>[unloadEffect]{@link agora.unloadEffect}</td>
-<td>Releases a specified audio effect from the memory.</td>
+<td>从内存释放某个预加载的音效文件</td>
 </tr>
 <tr>
 <td>[pauseEffect]{@link agora.pauseEffect}</td>
-<td>Pauses a specified audio effect.</td>
+<td>暂停播放指定音效文件</td>
 </tr>
 <tr>
 <td>[pauseAllEffects]{@link agora.pauseAllEffects}</td>
-<td>Pauses all audio effects.</td>
+<td>暂停播放所有音效文件</td>
 </tr>
 <tr>
 <td>[resumeEffect]{@link agora.resumeEffect}</td>
-<td>Resumes playing a specified audio effect.</td>
+<td>恢复播放指定音效文件</td>
 </tr>
 <tr>
 <td>[resumeAllEffects]{@link agora.resumeAllEffects}</td>
-<td>Resumes playing all audio effects.</td>
+<td>恢复播放所有音效文件</td>
 </tr>
 </table>
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onAudioEffectFinished]{@link AgoraRtcEvents.onAudioEffectFinished}</td>
-<td>Occurs when the local audio effect playback finishes.</td>
+<td>本地音效文件播放已结束回调</td>
 </tr>
 </table>
 
-### Voice Changer and Reverberation
+### 变声与混响
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[setLocalVoiceChanger]{@link agora.setLocalVoiceChanger}</td>
-<td>Sets the local voice changer option.</td>
+<td>设置本地语音变声</td>
 </tr>
 <tr>
 <td>[setLocalVoiceReverbPreset]{@link agora.setLocalVoiceReverbPreset}</td>
-<td>Sets the preset local voice reverberation effect.</td>
+<td>设置预设的本地语音混响效果</td>
 </tr>
 <tr>
 <td>[setLocalVoicePitch]{@link agora.setLocalVoicePitch}</td>
-<td>Changes the voice pitch of the local speaker.</td>
+<td>设置本地语音音调</td>
 </tr>
 <tr>
 <td>[setLocalVoiceEqualization]{@link agora.setLocalVoiceEqualization}</td>
-<td>Sets the local voice equalization effect.</td>
+<td>设置本地语音音效均衡</td>
 </tr>
 <tr>
 <td>[setLocalVoiceReverb]{@link agora.setLocalVoiceReverb}</td>
-<td>Sets the local voice reverberation.</td>
+<td>设置本地音效混响</td>
 </tr>
 </table>
 
-### Sound Position Indication
+### 听声辨位
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 <tr>
 <td>[enableSoundPositionIndication]{@link agora.enableSoundPositionIndication}</td>
-<td>Enables/Disables stereo panning for remote users.</td>
+<td>开启/关闭远端用户的语音立体声</td>
 </tr>
 <tr>
 <td>[setRemoteVoicePosition]{@link agora.setRemoteVoicePosition}</td>
-<td>Sets the sound position and gain of a remote user.</td>
+<td>设置远端用户的语音位置</td>
 </tr>
 </table>
 
-### CDN Publisher
+### CDN 推流
 
-> This group of methods apply to live interactive streaming only.
+> 该组方法仅适用于互动直播。
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[setLiveTranscoding]{@link agora.setLiveTranscoding}</td>
+<td>设置直播转码</td>
 </tr>
 <tr>
 <td>[addPublishStreamUrl]{@link agora.addPublishStreamUrl}</td>
-<td>Adds a CDN stream address.</td>
+<td>增加旁路推流地址</td>
 </tr>
 <tr>
 <td>[removePublishStreamUrl]{@link agora.removePublishStreamUrl}</td>
-<td>Removes a CDN stream address.</td>
+<td>删除旁路推流地址</td>
 </tr>
 </table>
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged}</td>
-<td>Occurs when the state of the RTMP streaming changes.</td>
+<td>旁路推流状态改变回调</td>
 </tr>
 <tr>
 <td>[onRtmpStreamingEvent]{@link AgoraRtcEvents.onRtmpStreamingEvent}</td>
-<td>Reports events during the RTMP streaming.</td>
+<td>RTMP 推流事件回调</td>
+</tr>
+<tr>
+<td>[onTranscodingUpdated]{@link AgoraRtcEvents.onTranscodingUpdated}</td>
+<td>旁路推流设置已被更新回调</td>
 </tr>
 </table>
 
-### Media Stream Relay Across Channels
-
-> This group of methods apply to live interactive streaming only.
+### 跨频道媒体流转发
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[startChannelMediaRelay]{@link agora.startChannelMediaRelay}</td>
-<td>Starts to relay media streams across channels.</td>
+<td>开始跨频道媒体流转发</td>
 </tr>
 <tr>
 <td>[updateChannelMediaRelay]{@link agora.updateChannelMediaRelay}</td>
-<td>Updates the channels for media stream relay.</td>
+<td>更新媒体流转发的频道</td>
 </tr>
 <tr>
 <td>[stopChannelMediaRelay]{@link agora.stopChannelMediaRelay}</td>
-<td>Stops the media stream relay.</td>
+<td>停止跨频道媒体流转发</td>
 </tr>
 </table>
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onChannelMediaRelayStateChanged]{@link AgoraRtcEvents.onChannelMediaRelayStateChanged}</td>
-<td>Occurs when the state of the media stream relay changes.</td>
+<td>跨频道媒体流转发状态发生改变回调</td>
 </tr>
 <tr>
 <td>[onChannelMediaRelayEvent]{@link AgoraRtcEvents.onChannelMediaRelayEvent}</td>
-<td>Reports events during the media stream relay.</td>
+<td>跨频道媒体流转发事件回调</td>
 </tr>
 </table>
 
-### Audio Volume Indication
+### 音量提示
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[enableAudioVolumeIndication]{@link agora.enableAudioVolumeIndication}</td>
-<td>Enables the [onAudioVolumeIndication]{@link AgoraRtcEvents.onAudioVolumeIndication} callback at a set time interval to report on which users are speaking and the speakers' volume.</td>
+<td>启用说话者音量提示</td>
 </tr>
 </table>
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onAudioVolumeIndication]{@link AgoraRtcEvents.onAudioVolumeIndication}</td>
-<td>Reports which users are speaking, the speakers' volumes, and whether the local user is speaking.</td>
+<td>提示频道内谁正在说话及说话者音量的回调</td>
 </tr>
 <tr>
 <td>[onActiveSpeaker]{@link AgoraRtcEvents.onActiveSpeaker}</td>
-<td>Occurs when the most active speaker is detected.</td>
+<td>监测到最活跃用户回调</td>
 </tr>
 </table>
 
-### Audio Routing Control
+### 语音播放路由
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[setDefaultAudioRouteToSpeakerphone]{@link agora.setDefaultAudioRouteToSpeakerphone}</td>
-<td>Sets the default audio playback route (for Android and iOS only).</td>
+<td>设置默认的音频播放路由</td>
 </tr>
 <tr>
 <td>[setEnableSpeakerphone]{@link agora.setEnableSpeakerphone}</td>
-<td>Enables/Disables the audio playback route to the speakerphone (for Android and iOS only).</td>
+<td>启用/关闭扬声器播放</td>
 </tr>
 <tr>
 <td>[isSpeakerphoneEnabled]{@link agora.isSpeakerphoneEnabled}</td>
-<td>Checks whether the speakerphone is enabled (for Android and iOS only).</td>
+<td>查询扬声器启用状态</td>
 </tr>
 </table>
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onAudioRouteChanged]{@link AgoraRtcEvents.onAudioRouteChanged}</td>
-<td>Occurs when the local audio route changes.</td>
+<td>语音路由已改变回调</td>
 </tr>
 </table>
 
-### In-ear Monitoring
+### 耳返控制
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[enableInEarMonitoring]{@link agora.enableInEarMonitoring}</td>
+<td>开启耳返功能</td>
 </tr>
 <tr>
 <td>[setInEarMonitoringVolume]{@link agora.setInEarMonitoringVolume}</td>
-<td>Sets the volume of the in-ear monitor (for Android and iOS only).</td>
+<td>设置耳返音量</td>
 </tr>
 </table>
 
-### Pre-call Network Test
+### 通话前网络测试
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[startEchoTest]{@link agora.startEchoTest}</td>
-<td>Starts an audio call test.</td>
+<td>开始语音通话回路测试</td>
 </tr>
 <tr>
 <td>[stopEchoTest]{@link agora.stopEchoTest}</td>
-<td>Stops the audio call test.</td>
+<td>停止语音通话回路测试</td>
 </tr>
 <tr>
 <td>[enableLastmileTest]{@link agora.enableLastmileTest}</td>
-<td>Enables the network connection quality test.</td>
+<td>启用网络测试</td>
 </tr>
 <tr>
 <td>[disableLastmileTest]{@link agora.disableLastmileTest}</td>
-<td>Disables the network connection quality test.</td>
+<td>关闭网络测试</td>
 </tr>
 <tr>
 <td>[startLastmileProbeTest]{@link agora.startLastmileProbeTest}</td>
-<td>Starts the last-mile network probe test.</td>
+<td>开始通话前网络质量探测</td>
 </tr>
 <tr>
 <td>[stopLastmileProbeTest]{@link agora.stopLastmileProbeTest}</td>
-<td>Stops the last-mile network probe test.</td>
+<td>停止通话前网络质量探测</td>
 </tr>
 </table>
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onLastmileQuality]{@link AgoraRtcEvents.onLastmileQuality}</td>
-<td>Reports the last mile network quality of the local user before the user joins the channel.</td>
+<td>本地网络质量报告回调</td>
 </tr>
 <tr>
 <td>[onLastmileProbeResult]{@link AgoraRtcEvents.onLastmileProbeResult}</td>
-<td>Reports the last-mile network probe result.</td>
+<td>本地网络上下行 Last-mile 质量报告回调</td>
 </tr>
 </table>
 
-### Media Metadata
+### 媒体附属信息
 
-> This group of methods apply to live interactive streaming only.
+> 该组方法仅适用于互动直播。
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver}</td>
-<td>Registers the metadata observer.</td>
+<td>注册媒体 Metadata 观测器</td>
 </tr>
 <tr>
 <td>[sendMetadata]{@link agora.sendMetadata}</td>
-<td>Sends the metadata.</td>
+<td>发送 Metadata</td>
 </tr>
 <tr>
 <td>[setMaxMetadataSize]{@link agora.setMaxMetadataSize}</td>
-<td>Sets the maximum size of the metadata.</td>
+<td>设置 Metadata 最大数据大小</td>
 </tr>
 </table>
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onMetadataReceived]{@link AgoraRtcEvents.onMetadataReceived}</td>
-<td>Occurs when the local user receives the metadata.</td>
+<td>接收端已收到 Metadata</td>
 </tr>
 </table>
 
-### Encryption
+### 加密
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[enableEncryption]{@link agora.enableEncryption}</td>
-<td>Enables/Disables the built-in encryption.</td>
+<td>开启/关闭内置加密</td>
 </tr>
 <tr>
 <td>[registerPacketObserver]{@link agora.registerPacketObserver}</td>
-<td>Registers a packet observer.</td>
+<td>注册数据包观测器</td>
 </tr>
 </table>
 
 
-### Audio Recorder
+### 音频录制
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[startAudioRecording]{@link agora.startAudioRecording}</td>
-<td>Starts an audio recording on the client.</td>
+<td>开始客户端录音</td>
 </tr>
 <tr>
 <td>[stopAudioRecording]{@link agora.stopAudioRecording}</td>
-<td>Stops an audio recording on the client.</td>
+<td>停止客户端录音</td>
 </tr>
 </table>
 
-### Inject an Online Media Stream
+### 直播输入在线媒体流
 
-> This group of methods apply to live interactive streaming only.
+> 该组方法仅适用于互动直播。
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[addInjectStreamUrl]{@link agora.addInjectStreamUrl}</td>
-<td>Adds an online media stream to the live interactive streaming.</td>
+<td>输入在线媒体流</td>
 </tr>
 <tr>
 <td>[removeInjectStreamUrl]{@link agora.removeInjectStreamUrl}</td>
-<td>Removes the online media stream from the live interactive streaming.</td>
+<td>删除输入的在线媒体流</td>
 </tr>
 </table>
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onStreamInjectedStatus]{@link AgoraRtcEvents.onStreamInjectedStatus}</td>
-<td>Reports the status of the injected online media stream.</td>
+<td>输入在线媒体流状态回调</td>
 </tr>
 </table>
 
-### Stream Message
+### 流消息
 
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[createDataStream]{@link agora.createDataStream}</td>
-<td>Creates a data stream.</td>
+<td>创建数据流</td>
 </tr>
 <tr>
 <td>[sendStreamMessage]{@link agora.sendStreamMessage}</td>
-<td>Sends data stream messages.</td>
+<td>发送数据流</td>
 </tr>
 </table>
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onStreamMessage]{@link AgoraRtcEvents.onStreamMessage}</td>
-<td>Occurs when the local user receives a remote data stream within five seconds.</td>
+<td>接收到对方数据流消息的回调</td>
 </tr>
 <tr>
 <td>[onStreamMessageError]{@link AgoraRtcEvents.onStreamMessageError}</td>
-<td>Occurs when the local user fails to receive the remote data stream.</td>
+<td>接收对方数据流消息发生错误的回调</td>
 </tr>
 </table>
 
-### Miscellaneous Methods
+### 其他方法
 <table>
 <tr>
-<th>Method</th>
-<th>Description</th>
+<th>方法</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[sendCustomReportMessage]{@link agora.sendCustomReportMessage}</td>
-<td>Reports customized messages.</td>
+<td>自定义数据上报</td>
 </tr>
 <tr>
 <td>[getCallId]{@link agora.getCallId}</td>
-<td>Gets the current call ID.</td>
+<td>获取通话 ID</td>
 </tr>
 <tr>
 <td>[rate]{@link agora.rate}</td>
-<td>Allows the user to rate the call and is called after the call ends.</td>
+<td>给通话评分</td>
 </tr>
 <tr>
 <td>[complain]{@link agora.complain}</td>
-<td>Allows a user to complain about the call quality after a call ends.</td>
+<td>投诉通话质量</td>
 </tr>
 <tr>
 <td>[getVersion]{@link agora.getVersion}</td>
-<td>Gets the SDK version number.</td>
+<td>查询 SDK 版本号</td>
 </tr>
 <tr>
 <td>[setLogFile]{@link agora.setLogFile}</td>
-<td>Specifies an SDK output log file.</td>
+<td>设置日志文件</td>
 </tr>
 <tr>
 <td>[setLogFilter]{@link agora.setLogFilter}</td>
-<td>Sets the output log level of the SDK.</td>
+<td>设置日志输出等级</td>
 </tr>
 <tr>
 <td>[setLogFileSize]{@link agora.setLogFileSize}</td>
-<td>Sets the log file size (KB).</td>
+<td>设置日志文件大小</td>
 </tr>
 <tr>
 <td>[getErrorDescription]{@link agora.getErrorDescription}</td>
-<td>Gets the warning or error description.</td>
+<td>获取警告或错误描述</td>
 </tr>
 </table>
 
 
-### Miscellaneous Events
+### 其他事件
 
 <table>
 <tr>
-<th>Event</th>
-<th>Description</th>
+<th>事件</th>
+<th>描述</th>
 </tr>
 <tr>
 <td>[onWarning]{@link AgoraRtcEvents.onWarning}</td>
-<td>Reports a warning during SDK runtime.</td>
+<td>发生警告回调</td>
 </tr>
 <tr>
 <td>[onError]{@link AgoraRtcEvents.onError}</td>
-<td>Reports an error during SDK runtime.</td>
+<td>发生错误回调</td>
 </tr>
 <tr>
 <td>[onApiCallExecuted]{@link AgoraRtcEvents onApiCallExecuted}</td>
-<td>Occurs when a method is executed.</td>
+<td>API 方法已执行回调</td>
 </tr>
 </table>
