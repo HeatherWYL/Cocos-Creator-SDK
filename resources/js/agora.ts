@@ -6672,7 +6672,7 @@ declare class AgoraRtcEvents {
 /**
  * @ignore
  */
-declare class AgoraRtcEvents extends AgoraRtcEvents {
+declare class agoraCreator extends AgoraRtcEvents {
     callNativeMethod: (apiType: number, jsonParam?: string, extra?: any) => any
 
     callNativeMethodAudioEffect: (apiType: number, jsonParam?: string) => any
@@ -6703,7 +6703,7 @@ namespace agora {
     /**
      * @ignore
      */
-    let bridge: AgoraRtcEvents
+    let bridge: agoraCreator
     /**
      * @ignore
      */
@@ -6718,7 +6718,7 @@ namespace agora {
     let remoteStreams = new Map<string | number, AgoraRTC.Stream>()
 
     if (!isWeb) {
-        bridge = new AgoraRtcEvents()
+        bridge = new agoraCreator()
     }
 
     /**
@@ -10757,7 +10757,9 @@ namespace agora {
     }
 
     
-    /** 请求最大的 Metadata 大小。
+    /** @cn
+     * @ignore
+     * 请求最大的 Metadata 大小。
      * 
      * Metadata 结构体由如下字段组成：
      * - `uid`: 发送 Metadata 数据的用户 ID

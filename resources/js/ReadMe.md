@@ -618,40 +618,6 @@
 </tr>
 </table>
 
-### 媒体附属信息
-
-> 该组方法仅适用于互动直播。
-
-<table>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-<tr>
-<td>[registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver}</td>
-<td>注册媒体 Metadata 观测器</td>
-</tr>
-<tr>
-<td>[sendMetadata]{@link agora.sendMetadata}</td>
-<td>发送 Metadata</td>
-</tr>
-<tr>
-<td>[setMaxMetadataSize]{@link agora.setMaxMetadataSize}</td>
-<td>设置 Metadata 最大数据大小</td>
-</tr>
-</table>
-
-<table>
-<tr>
-<th>事件</th>
-<th>描述</th>
-</tr>
-<tr>
-<td>[onMetadataReceived]{@link AgoraRtcEvents.onMetadataReceived}</td>
-<td>接收端已收到 Metadata</td>
-</tr>
-</table>
-
 ### 加密
 
 <table>
