@@ -6876,7 +6876,6 @@ declare class AgoraRtcEvents {
         (url: string) => void
 
     /** @en
-     * @ignore
      * Occurs when the publisher's transcoding is updated.
      *
      * When the `LiveTranscoding` class in the [setLiveTranscoding]{@link agora.setLiveTranscoding} method updates, the SDK
@@ -11775,22 +11774,6 @@ namespace agora {
      * @return
      * - 0: Success.
      * - < 0: Failure.
-     */
-    /** 请求最大的 Metadata 大小。
-     * 
-     * Metadata 结构体由如下字段组成：
-     * - `uid`: 发送 Metadata 数据的用户 ID
-     * - `size`: 发送或收到的 Metadata 的数据大小
-     * - `buffer`: 发送或收到的 Metadata 数据
-     * - `timeStampMs`: 该 Metadata 的时间戳（毫秒）
-     * 
-     * @note 该方法需要在 [registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver} 之后调用。
-     * 
-     * @parm size Metadata 中 buffer 的最大数据大小，单位为 Byte，最大值不超过 1024。
-     * 
-     * @return
-     * - 0: 方法调用成功
-     * - < 0: 方法调用失败
      */
     export function setMaxMetadataSize(size: number): number {
         if (isWeb) {

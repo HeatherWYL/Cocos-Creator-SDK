@@ -618,40 +618,6 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 </tr>
 </table>
 
-### Media Metadata
-
-> This group of methods apply to live interactive streaming only.
-
-<table>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>[registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver}</td>
-<td>Registers the metadata observer.</td>
-</tr>
-<tr>
-<td>[sendMetadata]{@link agora.sendMetadata}</td>
-<td>Sends the metadata.</td>
-</tr>
-<tr>
-<td>[setMaxMetadataSize]{@link agora.setMaxMetadataSize}</td>
-<td>Sets the maximum size of the metadata.</td>
-</tr>
-</table>
-
-<table>
-<tr>
-<th>Event</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>[onMetadataReceived]{@link AgoraRtcEvents.onMetadataReceived}</td>
-<td>Occurs when the local user receives the metadata.</td>
-</tr>
-</table>
-
 ### Encryption
 
 <table>
