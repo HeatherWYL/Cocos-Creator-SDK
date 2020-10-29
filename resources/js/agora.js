@@ -169,497 +169,780 @@ var agora;
         API_TYPE_AUDIO_EFFECT[API_TYPE_AUDIO_EFFECT["SET_PLAYBACK_AUDIO_FRAME_PARAMETERS"] = 91] = "SET_PLAYBACK_AUDIO_FRAME_PARAMETERS";
         API_TYPE_AUDIO_EFFECT[API_TYPE_AUDIO_EFFECT["SET_MIXED_AUDIO_FRAME_PARAMETERS"] = 92] = "SET_MIXED_AUDIO_FRAME_PARAMETERS";
     })(API_TYPE_AUDIO_EFFECT = agora.API_TYPE_AUDIO_EFFECT || (agora.API_TYPE_AUDIO_EFFECT = {}));
-    /** Media device states.
+    /** @en
+     * Media device states.
      */
     var MEDIA_DEVICE_STATE_TYPE;
     (function (MEDIA_DEVICE_STATE_TYPE) {
-        /** 1: The device is active.
+        /** @en
+         * 1: The device is active.
          */
         MEDIA_DEVICE_STATE_TYPE[MEDIA_DEVICE_STATE_TYPE["MEDIA_DEVICE_STATE_ACTIVE"] = 1] = "MEDIA_DEVICE_STATE_ACTIVE";
-        /** 2: The device is disabled.
+        /** @en
+         * 2: The device is disabled.
          */
         MEDIA_DEVICE_STATE_TYPE[MEDIA_DEVICE_STATE_TYPE["MEDIA_DEVICE_STATE_DISABLED"] = 2] = "MEDIA_DEVICE_STATE_DISABLED";
-        /** 4: The device is not present.
+        /** @en
+         * 4: The device is not present.
          */
         MEDIA_DEVICE_STATE_TYPE[MEDIA_DEVICE_STATE_TYPE["MEDIA_DEVICE_STATE_NOT_PRESENT"] = 4] = "MEDIA_DEVICE_STATE_NOT_PRESENT";
-        /** 8: The device is unplugged.
+        /** @en
+         * 8: The device is unplugged.
          */
         MEDIA_DEVICE_STATE_TYPE[MEDIA_DEVICE_STATE_TYPE["MEDIA_DEVICE_STATE_UNPLUGGED"] = 8] = "MEDIA_DEVICE_STATE_UNPLUGGED";
     })(MEDIA_DEVICE_STATE_TYPE = agora.MEDIA_DEVICE_STATE_TYPE || (agora.MEDIA_DEVICE_STATE_TYPE = {}));
-    /** Media device types.
+    /** @en
+     * Media device types.
      */
     var MEDIA_DEVICE_TYPE;
     (function (MEDIA_DEVICE_TYPE) {
-        /** -1: Unknown device type.
+        /** @en
+         * -1: Unknown device type.
          */
         MEDIA_DEVICE_TYPE[MEDIA_DEVICE_TYPE["UNKNOWN_AUDIO_DEVICE"] = -1] = "UNKNOWN_AUDIO_DEVICE";
-        /** 0: Audio playback device.
+        /** @en
+         * 0: Audio playback device.
          */
         MEDIA_DEVICE_TYPE[MEDIA_DEVICE_TYPE["AUDIO_PLAYOUT_DEVICE"] = 0] = "AUDIO_PLAYOUT_DEVICE";
-        /** 1: Audio recording device.
+        /** @en
+         * 1: Audio recording device.
          */
         MEDIA_DEVICE_TYPE[MEDIA_DEVICE_TYPE["AUDIO_RECORDING_DEVICE"] = 1] = "AUDIO_RECORDING_DEVICE";
-        /** @ignore
+        /** @en
+         * @ignore
          * 2: Video renderer.
          */
         MEDIA_DEVICE_TYPE[MEDIA_DEVICE_TYPE["VIDEO_RENDER_DEVICE"] = 2] = "VIDEO_RENDER_DEVICE";
-        /** @ignore
+        /** @en
+         * @ignore
          * 3: Video capturer.
          */
         MEDIA_DEVICE_TYPE[MEDIA_DEVICE_TYPE["VIDEO_CAPTURE_DEVICE"] = 3] = "VIDEO_CAPTURE_DEVICE";
-        /** 4: Application audio playback device.
+        /** @en
+         * 4: Application audio playback device.
          */
         MEDIA_DEVICE_TYPE[MEDIA_DEVICE_TYPE["AUDIO_APPLICATION_PLAYOUT_DEVICE"] = 4] = "AUDIO_APPLICATION_PLAYOUT_DEVICE";
     })(MEDIA_DEVICE_TYPE = agora.MEDIA_DEVICE_TYPE || (agora.MEDIA_DEVICE_TYPE = {}));
-    /** The states of the local user's audio mixing file.
+    /** @en
+     * The states of the local user's audio mixing file.
      */
     var AUDIO_MIXING_STATE_TYPE;
     (function (AUDIO_MIXING_STATE_TYPE) {
-        /** 710: The audio mixing file is playing.
+        /** @en
+         * 710: The audio mixing file is playing after the method call of [startAudioMixing]{@link agora.startAudioMixing} or
+         * [resumeAudioMixing]{@link agora.resumeAudioMixing} succeeds.
          */
         AUDIO_MIXING_STATE_TYPE[AUDIO_MIXING_STATE_TYPE["AUDIO_MIXING_STATE_PLAYING"] = 710] = "AUDIO_MIXING_STATE_PLAYING";
-        /** 711: The audio mixing file pauses playing.
+        /** @en
+         * 711: The audio mixing file pauses playing after the method call of [pauseAudioMixing]{@link agora.pauseAudioMixing} succeeds.
          */
         AUDIO_MIXING_STATE_TYPE[AUDIO_MIXING_STATE_TYPE["AUDIO_MIXING_STATE_PAUSED"] = 711] = "AUDIO_MIXING_STATE_PAUSED";
-        /** 713: The audio mixing file stops playing.
+        /** @en
+         * 713: The audio mixing file stops playing after the method call of [stopAudioMixing]{@link agora.stopAudioMixing} succeeds.
          */
         AUDIO_MIXING_STATE_TYPE[AUDIO_MIXING_STATE_TYPE["AUDIO_MIXING_STATE_STOPPED"] = 713] = "AUDIO_MIXING_STATE_STOPPED";
-        /** 714: An exception occurs when playing the audio mixing file. See
+        /** @en
+         * 714: An exception occurs when playing the audio mixing file. See
          * [AUDIO_MIXING_ERROR_TYPE]{@link agora.AUDIO_MIXING_ERROR_TYPE}.
          */
         AUDIO_MIXING_STATE_TYPE[AUDIO_MIXING_STATE_TYPE["AUDIO_MIXING_STATE_FAILED"] = 714] = "AUDIO_MIXING_STATE_FAILED";
     })(AUDIO_MIXING_STATE_TYPE = agora.AUDIO_MIXING_STATE_TYPE || (agora.AUDIO_MIXING_STATE_TYPE = {}));
-    /** The error codes of the local user's audio mixing file.
+    /** @en
+     * The error codes of the local user's audio mixing file.
      */
     var AUDIO_MIXING_ERROR_TYPE;
     (function (AUDIO_MIXING_ERROR_TYPE) {
-        /** 701: The SDK cannot open the audio mixing file.
+        /** @en
+         * 701: The SDK cannot open the audio mixing file.
          */
         AUDIO_MIXING_ERROR_TYPE[AUDIO_MIXING_ERROR_TYPE["AUDIO_MIXING_ERROR_CAN_NOT_OPEN"] = 701] = "AUDIO_MIXING_ERROR_CAN_NOT_OPEN";
-        /** 702: The SDK opens the audio mixing file too frequently.
+        /** @en
+         * 702: The SDK opens the audio mixing file too frequently.
          */
         AUDIO_MIXING_ERROR_TYPE[AUDIO_MIXING_ERROR_TYPE["AUDIO_MIXING_ERROR_TOO_FREQUENT_CALL"] = 702] = "AUDIO_MIXING_ERROR_TOO_FREQUENT_CALL";
-        /** 703: The audio mixing file playback is interrupted.
+        /** @en
+         * 703: The audio mixing file playback is interrupted.
          */
         AUDIO_MIXING_ERROR_TYPE[AUDIO_MIXING_ERROR_TYPE["AUDIO_MIXING_ERROR_INTERRUPTED_EOF"] = 703] = "AUDIO_MIXING_ERROR_INTERRUPTED_EOF";
-        /** 0: The SDK can open the audio mixing file.
+        /** @en
+         * 0: The SDK can open the audio mixing file.
          */
         AUDIO_MIXING_ERROR_TYPE[AUDIO_MIXING_ERROR_TYPE["AUDIO_MIXING_ERROR_OK"] = 0] = "AUDIO_MIXING_ERROR_OK";
     })(AUDIO_MIXING_ERROR_TYPE = agora.AUDIO_MIXING_ERROR_TYPE || (agora.AUDIO_MIXING_ERROR_TYPE = {}));
-    /** @ignore
+    /** @en
+     * @ignore
      * Local video state types
      */
     var LOCAL_VIDEO_STREAM_STATE;
     (function (LOCAL_VIDEO_STREAM_STATE) {
-        /** 0: Initial state */
+        /** @en
+         * 0: Initial state
+         */
         LOCAL_VIDEO_STREAM_STATE[LOCAL_VIDEO_STREAM_STATE["LOCAL_VIDEO_STREAM_STATE_STOPPED"] = 0] = "LOCAL_VIDEO_STREAM_STATE_STOPPED";
-        /** 1: The local video capturing device starts successfully.
+        /** @en
+         * 1: The local video capturing device starts successfully.
          *
          * The SDK also reports this state when you share a maximized window by calling
          * [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId}.
          */
         LOCAL_VIDEO_STREAM_STATE[LOCAL_VIDEO_STREAM_STATE["LOCAL_VIDEO_STREAM_STATE_CAPTURING"] = 1] = "LOCAL_VIDEO_STREAM_STATE_CAPTURING";
-        /** 2: The first video frame is successfully encoded. */
+        /** @en
+         * 2: The first video frame is successfully encoded.
+         */
         LOCAL_VIDEO_STREAM_STATE[LOCAL_VIDEO_STREAM_STATE["LOCAL_VIDEO_STREAM_STATE_ENCODING"] = 2] = "LOCAL_VIDEO_STREAM_STATE_ENCODING";
-        /** 3: The local video fails to start. */
+        /** @en
+         * 3: The local video fails to start.
+         */
         LOCAL_VIDEO_STREAM_STATE[LOCAL_VIDEO_STREAM_STATE["LOCAL_VIDEO_STREAM_STATE_FAILED"] = 3] = "LOCAL_VIDEO_STREAM_STATE_FAILED";
     })(LOCAL_VIDEO_STREAM_STATE = agora.LOCAL_VIDEO_STREAM_STATE || (agora.LOCAL_VIDEO_STREAM_STATE = {}));
-    /** @ignore
+    /** @en
+     * @ignore
      * Local video state error codes
      */
     var LOCAL_VIDEO_STREAM_ERROR;
     (function (LOCAL_VIDEO_STREAM_ERROR) {
-        /** 0: The local video is normal. */
+        /** @en
+         * 0: The local video is normal.
+         */
         LOCAL_VIDEO_STREAM_ERROR[LOCAL_VIDEO_STREAM_ERROR["LOCAL_VIDEO_STREAM_ERROR_OK"] = 0] = "LOCAL_VIDEO_STREAM_ERROR_OK";
-        /** 1: No specified reason for the local video failure. */
+        /** @en
+         * 1: No specified reason for the local video failure.
+         */
         LOCAL_VIDEO_STREAM_ERROR[LOCAL_VIDEO_STREAM_ERROR["LOCAL_VIDEO_STREAM_ERROR_FAILURE"] = 1] = "LOCAL_VIDEO_STREAM_ERROR_FAILURE";
-        /** 2: No permission to use the local video capturing device. */
+        /** @en
+         * 2: No permission to use the local video capturing device.
+         */
         LOCAL_VIDEO_STREAM_ERROR[LOCAL_VIDEO_STREAM_ERROR["LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"] = 2] = "LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION";
-        /** 3: The local video capturing device is in use. */
+        /** @en
+         * 3: The local video capturing device is in use.
+         */
         LOCAL_VIDEO_STREAM_ERROR[LOCAL_VIDEO_STREAM_ERROR["LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"] = 3] = "LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY";
-        /** 4: The local video capture fails. Check whether the capturing device is working properly. */
+        /** @en
+         * 4: The local video capture fails. Check whether the capturing device is working properly.
+         */
         LOCAL_VIDEO_STREAM_ERROR[LOCAL_VIDEO_STREAM_ERROR["LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"] = 4] = "LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE";
-        /** 5: The local video encoding fails. */
+        /** @en
+         * 5: The local video encoding fails.
+         */
         LOCAL_VIDEO_STREAM_ERROR[LOCAL_VIDEO_STREAM_ERROR["LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"] = 5] = "LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE";
-        /** 11: The shared window is minimized when you call
+        /** @en
+         * 11: The shared window is minimized when you call
          * [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId} to share a window.
          */
         LOCAL_VIDEO_STREAM_ERROR[LOCAL_VIDEO_STREAM_ERROR["LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED"] = 11] = "LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED";
     })(LOCAL_VIDEO_STREAM_ERROR = agora.LOCAL_VIDEO_STREAM_ERROR || (agora.LOCAL_VIDEO_STREAM_ERROR = {}));
-    /** Local audio state types.
+    /** @en
+     * Local audio state types.
      */
     var LOCAL_AUDIO_STREAM_STATE;
     (function (LOCAL_AUDIO_STREAM_STATE) {
-        /** 0: The local audio is in the initial state.
+        /** @en
+         * 0: The local audio is in the initial state.
          */
         LOCAL_AUDIO_STREAM_STATE[LOCAL_AUDIO_STREAM_STATE["LOCAL_AUDIO_STREAM_STATE_STOPPED"] = 0] = "LOCAL_AUDIO_STREAM_STATE_STOPPED";
-        /** 1: The recording device starts successfully.
+        /** @en
+         * 1: The recording device starts successfully.
          */
         LOCAL_AUDIO_STREAM_STATE[LOCAL_AUDIO_STREAM_STATE["LOCAL_AUDIO_STREAM_STATE_RECORDING"] = 1] = "LOCAL_AUDIO_STREAM_STATE_RECORDING";
-        /** 2: The first audio frame encodes successfully.
+        /** @en
+         * 2: The first audio frame encodes successfully.
          */
         LOCAL_AUDIO_STREAM_STATE[LOCAL_AUDIO_STREAM_STATE["LOCAL_AUDIO_STREAM_STATE_ENCODING"] = 2] = "LOCAL_AUDIO_STREAM_STATE_ENCODING";
-        /** 3: The local audio fails to start.
+        /** @en
+         * 3: The local audio fails to start.
          */
         LOCAL_AUDIO_STREAM_STATE[LOCAL_AUDIO_STREAM_STATE["LOCAL_AUDIO_STREAM_STATE_FAILED"] = 3] = "LOCAL_AUDIO_STREAM_STATE_FAILED";
     })(LOCAL_AUDIO_STREAM_STATE = agora.LOCAL_AUDIO_STREAM_STATE || (agora.LOCAL_AUDIO_STREAM_STATE = {}));
-    /** Local audio state error codes.
+    /** @en
+     * Local audio state error codes.
      */
     var LOCAL_AUDIO_STREAM_ERROR;
     (function (LOCAL_AUDIO_STREAM_ERROR) {
-        /** 0: The local audio is normal.
+        /** @en
+         * 0: The local audio is normal.
          */
         LOCAL_AUDIO_STREAM_ERROR[LOCAL_AUDIO_STREAM_ERROR["LOCAL_AUDIO_STREAM_ERROR_OK"] = 0] = "LOCAL_AUDIO_STREAM_ERROR_OK";
-        /** 1: No specified reason for the local audio failure.
+        /** @en
+         * 1: No specified reason for the local audio failure.
          */
         LOCAL_AUDIO_STREAM_ERROR[LOCAL_AUDIO_STREAM_ERROR["LOCAL_AUDIO_STREAM_ERROR_FAILURE"] = 1] = "LOCAL_AUDIO_STREAM_ERROR_FAILURE";
-        /** 2: No permission to use the local audio device.
+        /** @en
+         * 2: No permission to use the local audio device.
          */
         LOCAL_AUDIO_STREAM_ERROR[LOCAL_AUDIO_STREAM_ERROR["LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION"] = 2] = "LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION";
-        /** 3: The microphone is in use.
+        /** @en
+         * 3: The microphone is in use.
          */
         LOCAL_AUDIO_STREAM_ERROR[LOCAL_AUDIO_STREAM_ERROR["LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY"] = 3] = "LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY";
-        /** 4: The local audio recording fails. Check whether the recording device
+        /** @en
+         * 4: The local audio recording fails. Check whether the recording device
          * is working properly.
          */
         LOCAL_AUDIO_STREAM_ERROR[LOCAL_AUDIO_STREAM_ERROR["LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE"] = 4] = "LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE";
-        /** 5: The local audio encoding fails.
+        /** @en
+         * 5: The local audio encoding fails.
          */
         LOCAL_AUDIO_STREAM_ERROR[LOCAL_AUDIO_STREAM_ERROR["LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE"] = 5] = "LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE";
     })(LOCAL_AUDIO_STREAM_ERROR = agora.LOCAL_AUDIO_STREAM_ERROR || (agora.LOCAL_AUDIO_STREAM_ERROR = {}));
-    /** Audio recording qualities.
+    /** @en
+     * Audio recording qualities.
      */
     var AUDIO_RECORDING_QUALITY_TYPE;
     (function (AUDIO_RECORDING_QUALITY_TYPE) {
-        /** 0: Low quality. The sample rate is 32 kHz, and the file size is around
+        /** @en
+         * 0: Low quality. The sample rate is 32 kHz, and the file size is around
          * 1.2 MB after 10 minutes of recording.
          */
         AUDIO_RECORDING_QUALITY_TYPE[AUDIO_RECORDING_QUALITY_TYPE["AUDIO_RECORDING_QUALITY_LOW"] = 0] = "AUDIO_RECORDING_QUALITY_LOW";
-        /** 1: Medium quality. The sample rate is 32 kHz, and the file size is
+        /** @en
+         * 1: Medium quality. The sample rate is 32 kHz, and the file size is
          * around 2 MB after 10 minutes of recording.
          */
         AUDIO_RECORDING_QUALITY_TYPE[AUDIO_RECORDING_QUALITY_TYPE["AUDIO_RECORDING_QUALITY_MEDIUM"] = 1] = "AUDIO_RECORDING_QUALITY_MEDIUM";
-        /** 2: High quality. The sample rate is 32 kHz, and the file size is
+        /** @en
+         * 2: High quality. The sample rate is 32 kHz, and the file size is
          * around 3.75 MB after 10 minutes of recording.
          */
         AUDIO_RECORDING_QUALITY_TYPE[AUDIO_RECORDING_QUALITY_TYPE["AUDIO_RECORDING_QUALITY_HIGH"] = 2] = "AUDIO_RECORDING_QUALITY_HIGH";
     })(AUDIO_RECORDING_QUALITY_TYPE = agora.AUDIO_RECORDING_QUALITY_TYPE || (agora.AUDIO_RECORDING_QUALITY_TYPE = {}));
-    /** Network quality types. */
+    /** @en
+     * Network quality types.
+     */
     var QUALITY_TYPE;
     (function (QUALITY_TYPE) {
-        /** 0: The network quality is unknown. */
+        /** @en
+         * 0: The network quality is unknown.
+         */
         QUALITY_TYPE[QUALITY_TYPE["QUALITY_UNKNOWN"] = 0] = "QUALITY_UNKNOWN";
-        /** 1: The network quality is excellent. */
+        /** @en
+         * 1: The network quality is excellent.
+         */
         QUALITY_TYPE[QUALITY_TYPE["QUALITY_EXCELLENT"] = 1] = "QUALITY_EXCELLENT";
-        /** 2: The network quality is quite good, but the bitrate may be slightly lower than excellent. */
+        /** @en
+         * 2: The network quality is quite good, but the bitrate may be slightly lower than excellent.
+         */
         QUALITY_TYPE[QUALITY_TYPE["QUALITY_GOOD"] = 2] = "QUALITY_GOOD";
-        /** 3: Users can feel the communication slightly impaired. */
+        /** @en
+         * 3: Users can feel the communication slightly impaired.
+         */
         QUALITY_TYPE[QUALITY_TYPE["QUALITY_POOR"] = 3] = "QUALITY_POOR";
-        /** 4: Users cannot communicate smoothly. */
+        /** @en
+         * 4: Users cannot communicate smoothly.
+         */
         QUALITY_TYPE[QUALITY_TYPE["QUALITY_BAD"] = 4] = "QUALITY_BAD";
-        /** 5: The network is so bad that users can barely communicate. */
+        /** @en
+         * 5: The network is so bad that users can barely communicate.
+         */
         QUALITY_TYPE[QUALITY_TYPE["QUALITY_VBAD"] = 5] = "QUALITY_VBAD";
-        /** 6: The network is down and users cannot communicate at all. */
+        /** @en
+         * 6: The network is down and users cannot communicate at all.
+         */
         QUALITY_TYPE[QUALITY_TYPE["QUALITY_DOWN"] = 6] = "QUALITY_DOWN";
-        /** 7: Users cannot detect the network quality. (Not in use.) */
+        /** @en
+         * 7: Users cannot detect the network quality. (Not in use.)
+         */
         QUALITY_TYPE[QUALITY_TYPE["QUALITY_UNSUPPORTED"] = 7] = "QUALITY_UNSUPPORTED";
-        /** 8: Detecting the network quality. */
+        /** @en
+         * 8: Detecting the network quality.
+         */
         QUALITY_TYPE[QUALITY_TYPE["QUALITY_DETECTING"] = 8] = "QUALITY_DETECTING";
     })(QUALITY_TYPE = agora.QUALITY_TYPE || (agora.QUALITY_TYPE = {}));
-    /** @ignore Video display modes. */
+    /** @en
+     * @ignore Video display modes.
+     */
     var RENDER_MODE_TYPE;
     (function (RENDER_MODE_TYPE) {
-        /** 1: Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have
+        /** @en
+         * 1: Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have
          * clipped contents.
          */
         RENDER_MODE_TYPE[RENDER_MODE_TYPE["RENDER_MODE_HIDDEN"] = 1] = "RENDER_MODE_HIDDEN";
-        /** 2: Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due
+        /** @en
+         * 2: Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due
          * to disparity in the aspect ratio are filled with black.
          */
         RENDER_MODE_TYPE[RENDER_MODE_TYPE["RENDER_MODE_FIT"] = 2] = "RENDER_MODE_FIT";
-        /** @deprecated 3: This mode is deprecated.
+        /** @en
+         * @deprecated 3: This mode is deprecated.
          */
         RENDER_MODE_TYPE[RENDER_MODE_TYPE["RENDER_MODE_ADAPTIVE"] = 3] = "RENDER_MODE_ADAPTIVE";
-        /**
+        /** @en
          4: The fill mode. In this mode, the SDK stretches or zooms the video to fill the display window.
          */
         RENDER_MODE_TYPE[RENDER_MODE_TYPE["RENDER_MODE_FILL"] = 4] = "RENDER_MODE_FILL";
     })(RENDER_MODE_TYPE = agora.RENDER_MODE_TYPE || (agora.RENDER_MODE_TYPE = {}));
-    /** @ignore Video mirror modes. */
+    /** @en
+     * @ignore
+     * Video mirror modes.
+     */
     var VIDEO_MIRROR_MODE_TYPE;
     (function (VIDEO_MIRROR_MODE_TYPE) {
-        /** 0: (Default) The SDK enables the mirror mode. */
+        /** @en
+         * 0: (Default) The SDK enables the mirror mode.
+         */
         VIDEO_MIRROR_MODE_TYPE[VIDEO_MIRROR_MODE_TYPE["VIDEO_MIRROR_MODE_AUTO"] = 0] = "VIDEO_MIRROR_MODE_AUTO";
-        /** 1: Enable mirror mode. */
+        /** @en
+         * 1: Enable mirror mode.
+         */
         VIDEO_MIRROR_MODE_TYPE[VIDEO_MIRROR_MODE_TYPE["VIDEO_MIRROR_MODE_ENABLED"] = 1] = "VIDEO_MIRROR_MODE_ENABLED";
-        /** 2: Disable mirror mode. */
+        /** @en
+         * 2: Disable mirror mode.
+         */
         VIDEO_MIRROR_MODE_TYPE[VIDEO_MIRROR_MODE_TYPE["VIDEO_MIRROR_MODE_DISABLED"] = 2] = "VIDEO_MIRROR_MODE_DISABLED";
     })(VIDEO_MIRROR_MODE_TYPE = agora.VIDEO_MIRROR_MODE_TYPE || (agora.VIDEO_MIRROR_MODE_TYPE = {}));
-    /** @ignore @deprecated Video profiles. */
+    /** @en
+     * @ignore
+     * @deprecated Video profiles.
+     */
     var VIDEO_PROFILE_TYPE;
     (function (VIDEO_PROFILE_TYPE) {
-        /** 0: 160 * 120, frame rate 15 fps, bitrate 65 Kbps. */
+        /** @en
+         * 0: 160 * 120, frame rate 15 fps, bitrate 65 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_120P"] = 0] = "VIDEO_PROFILE_LANDSCAPE_120P";
-        /** 2: 120 * 120, frame rate 15 fps, bitrate 50 Kbps. */
+        /** @en
+         * 2: 120 * 120, frame rate 15 fps, bitrate 50 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_120P_3"] = 2] = "VIDEO_PROFILE_LANDSCAPE_120P_3";
-        /** 10: 320*180, frame rate 15 fps, bitrate 140 Kbps. */
+        /** @en
+         * 10: 320*180, frame rate 15 fps, bitrate 140 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_180P"] = 10] = "VIDEO_PROFILE_LANDSCAPE_180P";
-        /** 12: 180 * 180, frame rate 15 fps, bitrate 100 Kbps. */
+        /** @en
+         * 12: 180 * 180, frame rate 15 fps, bitrate 100 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_180P_3"] = 12] = "VIDEO_PROFILE_LANDSCAPE_180P_3";
-        /** 13: 240 * 180, frame rate 15 fps, bitrate 120 Kbps. */
+        /** @en
+         * 13: 240 * 180, frame rate 15 fps, bitrate 120 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_180P_4"] = 13] = "VIDEO_PROFILE_LANDSCAPE_180P_4";
-        /** 20: 320 * 240, frame rate 15 fps, bitrate 200 Kbps. */
+        /** @en
+         * 20: 320 * 240, frame rate 15 fps, bitrate 200 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_240P"] = 20] = "VIDEO_PROFILE_LANDSCAPE_240P";
-        /** 22: 240 * 240, frame rate 15 fps, bitrate 140 Kbps. */
+        /** @en
+         * 22: 240 * 240, frame rate 15 fps, bitrate 140 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_240P_3"] = 22] = "VIDEO_PROFILE_LANDSCAPE_240P_3";
-        /** 23: 424 * 240, frame rate 15 fps, bitrate 220 Kbps. */
+        /** @en
+         * 23: 424 * 240, frame rate 15 fps, bitrate 220 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_240P_4"] = 23] = "VIDEO_PROFILE_LANDSCAPE_240P_4";
-        /** 30: 640 * 360, frame rate 15 fps, bitrate 400 Kbps. */
+        /** @en
+         * 30: 640 * 360, frame rate 15 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_360P"] = 30] = "VIDEO_PROFILE_LANDSCAPE_360P";
-        /** 32: 360 * 360, frame rate 15 fps, bitrate 260 Kbps. */
+        /** @en
+         * 32: 360 * 360, frame rate 15 fps, bitrate 260 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_360P_3"] = 32] = "VIDEO_PROFILE_LANDSCAPE_360P_3";
-        /** 33: 640 * 360, frame rate 30 fps, bitrate 600 Kbps. */
+        /** @en
+         * 33: 640 * 360, frame rate 30 fps, bitrate 600 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_360P_4"] = 33] = "VIDEO_PROFILE_LANDSCAPE_360P_4";
-        /** 35: 360 * 360, frame rate 30 fps, bitrate 400 Kbps. */
+        /** @en
+         * 35: 360 * 360, frame rate 30 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_360P_6"] = 35] = "VIDEO_PROFILE_LANDSCAPE_360P_6";
-        /** 36: 480 * 360, frame rate 15 fps, bitrate 320 Kbps. */
+        /** @en
+         * 36: 480 * 360, frame rate 15 fps, bitrate 320 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_360P_7"] = 36] = "VIDEO_PROFILE_LANDSCAPE_360P_7";
-        /** 37: 480 * 360, frame rate 30 fps, bitrate 490 Kbps. */
+        /** @en
+         * 37: 480 * 360, frame rate 30 fps, bitrate 490 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_360P_8"] = 37] = "VIDEO_PROFILE_LANDSCAPE_360P_8";
-        /** 38: 640 * 360, frame rate 15 fps, bitrate 800 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 38: 640 * 360, frame rate 15 fps, bitrate 800 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_360P_9"] = 38] = "VIDEO_PROFILE_LANDSCAPE_360P_9";
-        /** 39: 640 * 360, frame rate 24 fps, bitrate 800 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 39: 640 * 360, frame rate 24 fps, bitrate 800 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_360P_10"] = 39] = "VIDEO_PROFILE_LANDSCAPE_360P_10";
-        /** 100: 640 * 360, frame rate 24 fps, bitrate 1000 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 100: 640 * 360, frame rate 24 fps, bitrate 1000 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_360P_11"] = 100] = "VIDEO_PROFILE_LANDSCAPE_360P_11";
-        /** 40: 640 * 480, frame rate 15 fps, bitrate 500 Kbps. */
+        /** @en
+         * 40: 640 * 480, frame rate 15 fps, bitrate 500 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_480P"] = 40] = "VIDEO_PROFILE_LANDSCAPE_480P";
-        /** 42: 480 * 480, frame rate 15 fps, bitrate 400 Kbps. */
+        /** @en
+         * 42: 480 * 480, frame rate 15 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_480P_3"] = 42] = "VIDEO_PROFILE_LANDSCAPE_480P_3";
-        /** 43: 640 * 480, frame rate 30 fps, bitrate 750 Kbps. */
+        /** @en
+         * 43: 640 * 480, frame rate 30 fps, bitrate 750 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_480P_4"] = 43] = "VIDEO_PROFILE_LANDSCAPE_480P_4";
-        /** 45: 480 * 480, frame rate 30 fps, bitrate 600 Kbps. */
+        /** @en
+         * 45: 480 * 480, frame rate 30 fps, bitrate 600 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_480P_6"] = 45] = "VIDEO_PROFILE_LANDSCAPE_480P_6";
-        /** 47: 848 * 480, frame rate 15 fps, bitrate 610 Kbps. */
+        /** @en
+         * 47: 848 * 480, frame rate 15 fps, bitrate 610 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_480P_8"] = 47] = "VIDEO_PROFILE_LANDSCAPE_480P_8";
-        /** 48: 848 * 480, frame rate 30 fps, bitrate 930 Kbps. */
+        /** @en
+         * 48: 848 * 480, frame rate 30 fps, bitrate 930 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_480P_9"] = 48] = "VIDEO_PROFILE_LANDSCAPE_480P_9";
-        /** 49: 640 * 480, frame rate 10 fps, bitrate 400 Kbps. */
+        /** @en
+         * 49: 640 * 480, frame rate 10 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_480P_10"] = 49] = "VIDEO_PROFILE_LANDSCAPE_480P_10";
-        /** 50: 1280 * 720, frame rate 15 fps, bitrate 1130 Kbps. */
+        /** @en
+         * 50: 1280 * 720, frame rate 15 fps, bitrate 1130 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_720P"] = 50] = "VIDEO_PROFILE_LANDSCAPE_720P";
-        /** 52: 1280 * 720, frame rate 30 fps, bitrate 1710 Kbps. */
+        /** @en
+         * 52: 1280 * 720, frame rate 30 fps, bitrate 1710 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_720P_3"] = 52] = "VIDEO_PROFILE_LANDSCAPE_720P_3";
-        /** 54: 960 * 720, frame rate 15 fps, bitrate 910 Kbps. */
+        /** @en
+         * 54: 960 * 720, frame rate 15 fps, bitrate 910 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_720P_5"] = 54] = "VIDEO_PROFILE_LANDSCAPE_720P_5";
-        /** 55: 960 * 720, frame rate 30 fps, bitrate 1380 Kbps. */
+        /** @en
+         * 55: 960 * 720, frame rate 30 fps, bitrate 1380 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_720P_6"] = 55] = "VIDEO_PROFILE_LANDSCAPE_720P_6";
-        /** 60: 1920 * 1080, frame rate 15 fps, bitrate 2080 Kbps. */
+        /** @en
+         * 60: 1920 * 1080, frame rate 15 fps, bitrate 2080 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_1080P"] = 60] = "VIDEO_PROFILE_LANDSCAPE_1080P";
-        /** 62: 1920 * 1080, frame rate 30 fps, bitrate 3150 Kbps. */
+        /** @en
+         * 62: 1920 * 1080, frame rate 30 fps, bitrate 3150 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_1080P_3"] = 62] = "VIDEO_PROFILE_LANDSCAPE_1080P_3";
-        /** 64: 1920 * 1080, frame rate 60 fps, bitrate 4780 Kbps. */
+        /** @en
+         * 64: 1920 * 1080, frame rate 60 fps, bitrate 4780 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_1080P_5"] = 64] = "VIDEO_PROFILE_LANDSCAPE_1080P_5";
-        /** 66: 2560 * 1440, frame rate 30 fps, bitrate 4850 Kbps. */
+        /** @en
+         * 66: 2560 * 1440, frame rate 30 fps, bitrate 4850 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_1440P"] = 66] = "VIDEO_PROFILE_LANDSCAPE_1440P";
-        /** 67: 2560 * 1440, frame rate 60 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 67: 2560 * 1440, frame rate 60 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_1440P_2"] = 67] = "VIDEO_PROFILE_LANDSCAPE_1440P_2";
-        /** 70: 3840 * 2160, frame rate 30 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 70: 3840 * 2160, frame rate 30 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_4K"] = 70] = "VIDEO_PROFILE_LANDSCAPE_4K";
-        /** 72: 3840 * 2160, frame rate 60 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 72: 3840 * 2160, frame rate 60 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_LANDSCAPE_4K_3"] = 72] = "VIDEO_PROFILE_LANDSCAPE_4K_3";
-        /** 1000: 120 * 160, frame rate 15 fps, bitrate 65 Kbps. */
+        /** @en
+         * 1000: 120 * 160, frame rate 15 fps, bitrate 65 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_120P"] = 1000] = "VIDEO_PROFILE_PORTRAIT_120P";
-        /** 1002: 120 * 120, frame rate 15 fps, bitrate 50 Kbps. */
+        /** @en
+         * 1002: 120 * 120, frame rate 15 fps, bitrate 50 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_120P_3"] = 1002] = "VIDEO_PROFILE_PORTRAIT_120P_3";
-        /** 1010: 180 * 320, frame rate 15 fps, bitrate 140 Kbps. */
+        /** @en
+         * 1010: 180 * 320, frame rate 15 fps, bitrate 140 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_180P"] = 1010] = "VIDEO_PROFILE_PORTRAIT_180P";
-        /** 1012: 180 * 180, frame rate 15 fps, bitrate 100 Kbps. */
+        /** @en
+         * 1012: 180 * 180, frame rate 15 fps, bitrate 100 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_180P_3"] = 1012] = "VIDEO_PROFILE_PORTRAIT_180P_3";
-        /** 1013: 180 * 240, frame rate 15 fps, bitrate 120 Kbps. */
+        /** @en
+         * 1013: 180 * 240, frame rate 15 fps, bitrate 120 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_180P_4"] = 1013] = "VIDEO_PROFILE_PORTRAIT_180P_4";
-        /** 1020: 240 * 320, frame rate 15 fps, bitrate 200 Kbps. */
+        /** @en
+         * 1020: 240 * 320, frame rate 15 fps, bitrate 200 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_240P"] = 1020] = "VIDEO_PROFILE_PORTRAIT_240P";
-        /** 1022: 240 * 240, frame rate 15 fps, bitrate 140 Kbps. */
+        /** @en
+         * 1022: 240 * 240, frame rate 15 fps, bitrate 140 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_240P_3"] = 1022] = "VIDEO_PROFILE_PORTRAIT_240P_3";
-        /** 1023: 240 * 424, frame rate 15 fps, bitrate 220 Kbps. */
+        /** @en
+         * 1023: 240 * 424, frame rate 15 fps, bitrate 220 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_240P_4"] = 1023] = "VIDEO_PROFILE_PORTRAIT_240P_4";
-        /** 1030: 360 * 640, frame rate 15 fps, bitrate 400 Kbps. */
+        /** @en
+         * 1030: 360 * 640, frame rate 15 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_360P"] = 1030] = "VIDEO_PROFILE_PORTRAIT_360P";
-        /** 1032: 360 * 360, frame rate 15 fps, bitrate 260 Kbps. */
+        /** @en
+         * 1032: 360 * 360, frame rate 15 fps, bitrate 260 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_360P_3"] = 1032] = "VIDEO_PROFILE_PORTRAIT_360P_3";
-        /** 1033: 360 * 640, frame rate 30 fps, bitrate 600 Kbps. */
+        /** @en
+         * 1033: 360 * 640, frame rate 30 fps, bitrate 600 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_360P_4"] = 1033] = "VIDEO_PROFILE_PORTRAIT_360P_4";
-        /** 1035: 360 * 360, frame rate 30 fps, bitrate 400 Kbps. */
+        /** @en
+         * 1035: 360 * 360, frame rate 30 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_360P_6"] = 1035] = "VIDEO_PROFILE_PORTRAIT_360P_6";
-        /** 1036: 360 * 480, frame rate 15 fps, bitrate 320 Kbps. */
+        /** @en
+         * 1036: 360 * 480, frame rate 15 fps, bitrate 320 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_360P_7"] = 1036] = "VIDEO_PROFILE_PORTRAIT_360P_7";
-        /** 1037: 360 * 480, frame rate 30 fps, bitrate 490 Kbps. */
+        /** @en
+         * 1037: 360 * 480, frame rate 30 fps, bitrate 490 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_360P_8"] = 1037] = "VIDEO_PROFILE_PORTRAIT_360P_8";
-        /** 1038: 360 * 640, frame rate 15 fps, bitrate 800 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 1038: 360 * 640, frame rate 15 fps, bitrate 800 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_360P_9"] = 1038] = "VIDEO_PROFILE_PORTRAIT_360P_9";
-        /** 1039: 360 * 640, frame rate 24 fps, bitrate 800 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 1039: 360 * 640, frame rate 24 fps, bitrate 800 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_360P_10"] = 1039] = "VIDEO_PROFILE_PORTRAIT_360P_10";
-        /** 1100: 360 * 640, frame rate 24 fps, bitrate 1000 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 1100: 360 * 640, frame rate 24 fps, bitrate 1000 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_360P_11"] = 1100] = "VIDEO_PROFILE_PORTRAIT_360P_11";
-        /** 1040: 480 * 640, frame rate 15 fps, bitrate 500 Kbps. */
+        /** @en
+         * 1040: 480 * 640, frame rate 15 fps, bitrate 500 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_480P"] = 1040] = "VIDEO_PROFILE_PORTRAIT_480P";
-        /** 1042: 480 * 480, frame rate 15 fps, bitrate 400 Kbps. */
+        /** @en
+         * 1042: 480 * 480, frame rate 15 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_480P_3"] = 1042] = "VIDEO_PROFILE_PORTRAIT_480P_3";
-        /** 1043: 480 * 640, frame rate 30 fps, bitrate 750 Kbps. */
+        /** @en
+         * 1043: 480 * 640, frame rate 30 fps, bitrate 750 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_480P_4"] = 1043] = "VIDEO_PROFILE_PORTRAIT_480P_4";
-        /** 1045: 480 * 480, frame rate 30 fps, bitrate 600 Kbps. */
+        /** @en
+         * 1045: 480 * 480, frame rate 30 fps, bitrate 600 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_480P_6"] = 1045] = "VIDEO_PROFILE_PORTRAIT_480P_6";
-        /** 1047: 480 * 848, frame rate 15 fps, bitrate 610 Kbps. */
+        /** @en
+         * 1047: 480 * 848, frame rate 15 fps, bitrate 610 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_480P_8"] = 1047] = "VIDEO_PROFILE_PORTRAIT_480P_8";
-        /** 1048: 480 * 848, frame rate 30 fps, bitrate 930 Kbps. */
+        /** @en
+         * 1048: 480 * 848, frame rate 30 fps, bitrate 930 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_480P_9"] = 1048] = "VIDEO_PROFILE_PORTRAIT_480P_9";
-        /** 1049: 480 * 640, frame rate 10 fps, bitrate 400 Kbps. */
+        /** @en
+         * 1049: 480 * 640, frame rate 10 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_480P_10"] = 1049] = "VIDEO_PROFILE_PORTRAIT_480P_10";
-        /** 1050: 720 * 1280, frame rate 15 fps, bitrate 1130 Kbps. */
+        /** @en
+         * 1050: 720 * 1280, frame rate 15 fps, bitrate 1130 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_720P"] = 1050] = "VIDEO_PROFILE_PORTRAIT_720P";
-        /** 1052: 720 * 1280, frame rate 30 fps, bitrate 1710 Kbps. */
+        /** @en
+         * 1052: 720 * 1280, frame rate 30 fps, bitrate 1710 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_720P_3"] = 1052] = "VIDEO_PROFILE_PORTRAIT_720P_3";
-        /** 1054: 720 * 960, frame rate 15 fps, bitrate 910 Kbps. */
+        /** @en
+         * 1054: 720 * 960, frame rate 15 fps, bitrate 910 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_720P_5"] = 1054] = "VIDEO_PROFILE_PORTRAIT_720P_5";
-        /** 1055: 720 * 960, frame rate 30 fps, bitrate 1380 Kbps. */
+        /** @en
+         * 1055: 720 * 960, frame rate 30 fps, bitrate 1380 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_720P_6"] = 1055] = "VIDEO_PROFILE_PORTRAIT_720P_6";
-        /** 1060: 1080 * 1920, frame rate 15 fps, bitrate 2080 Kbps. */
+        /** @en
+         * 1060: 1080 * 1920, frame rate 15 fps, bitrate 2080 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_1080P"] = 1060] = "VIDEO_PROFILE_PORTRAIT_1080P";
-        /** 1062: 1080 * 1920, frame rate 30 fps, bitrate 3150 Kbps. */
+        /** @en
+         * 1062: 1080 * 1920, frame rate 30 fps, bitrate 3150 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_1080P_3"] = 1062] = "VIDEO_PROFILE_PORTRAIT_1080P_3";
-        /** 1064: 1080 * 1920, frame rate 60 fps, bitrate 4780 Kbps. */
+        /** @en
+         * 1064: 1080 * 1920, frame rate 60 fps, bitrate 4780 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_1080P_5"] = 1064] = "VIDEO_PROFILE_PORTRAIT_1080P_5";
-        /** 1066: 1440 * 2560, frame rate 30 fps, bitrate 4850 Kbps. */
+        /** @en
+         * 1066: 1440 * 2560, frame rate 30 fps, bitrate 4850 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_1440P"] = 1066] = "VIDEO_PROFILE_PORTRAIT_1440P";
-        /** 1067: 1440 * 2560, frame rate 60 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 1067: 1440 * 2560, frame rate 60 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_1440P_2"] = 1067] = "VIDEO_PROFILE_PORTRAIT_1440P_2";
-        /** 1070: 2160 * 3840, frame rate 30 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 1070: 2160 * 3840, frame rate 30 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_4K"] = 1070] = "VIDEO_PROFILE_PORTRAIT_4K";
-        /** 1072: 2160 * 3840, frame rate 60 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 1072: 2160 * 3840, frame rate 60 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_PORTRAIT_4K_3"] = 1072] = "VIDEO_PROFILE_PORTRAIT_4K_3";
-        /** Default 640 * 360, frame rate 15 fps, bitrate 400 Kbps. */
+        /** @en
+         * Default 640 * 360, frame rate 15 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_TYPE[VIDEO_PROFILE_TYPE["VIDEO_PROFILE_DEFAULT"] = 30] = "VIDEO_PROFILE_DEFAULT";
     })(VIDEO_PROFILE_TYPE = agora.VIDEO_PROFILE_TYPE || (agora.VIDEO_PROFILE_TYPE = {}));
-    /** Audio profiles. Sets the sample rate, bitrate, encoding mode, and the number of channels. */
+    /** @en
+     * Audio profiles. Sets the sample rate, bitrate, encoding mode, and the number of channels.
+     */
     var AUDIO_PROFILE_TYPE;
     (function (AUDIO_PROFILE_TYPE) {
-        /** 0: Default audio profile:
+        /** @en
+         * 0: Default audio profile:
          * - For the interactive streaming profile: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 64 Kbps.
          * - For the `COMMUNICATION` profile:
          *   - Windows: A sample rate of 16 KHz, music encoding, mono, and a bitrate of up to 16 Kbps.
          *   - Android/macOS/iOS: A sample rate of 32 KHz, music encoding, mono, and a bitrate of up to 18 Kbps.
          */
         AUDIO_PROFILE_TYPE[AUDIO_PROFILE_TYPE["AUDIO_PROFILE_DEFAULT"] = 0] = "AUDIO_PROFILE_DEFAULT";
-        /** 1: A sample rate of 32 KHz, audio encoding, mono, and a bitrate of up to 18 Kbps.
+        /** @en
+         * 1: A sample rate of 32 KHz, audio encoding, mono, and a bitrate of up to 18 Kbps.
          */
         AUDIO_PROFILE_TYPE[AUDIO_PROFILE_TYPE["AUDIO_PROFILE_SPEECH_STANDARD"] = 1] = "AUDIO_PROFILE_SPEECH_STANDARD";
-        /** 2: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 64 Kbps.
+        /** @en
+         * 2: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 64 Kbps.
          */
         AUDIO_PROFILE_TYPE[AUDIO_PROFILE_TYPE["AUDIO_PROFILE_MUSIC_STANDARD"] = 2] = "AUDIO_PROFILE_MUSIC_STANDARD";
-        /** 3: A sample rate of 48 KHz, music encoding, stereo, and a bitrate of up to 80 Kbps.
+        /** @en
+         * 3: A sample rate of 48 KHz, music encoding, stereo, and a bitrate of up to 80 Kbps.
          */
         AUDIO_PROFILE_TYPE[AUDIO_PROFILE_TYPE["AUDIO_PROFILE_MUSIC_STANDARD_STEREO"] = 3] = "AUDIO_PROFILE_MUSIC_STANDARD_STEREO";
-        /** 4: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 96 Kbps.
+        /** @en
+         * 4: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 96 Kbps.
          */
         AUDIO_PROFILE_TYPE[AUDIO_PROFILE_TYPE["AUDIO_PROFILE_MUSIC_HIGH_QUALITY"] = 4] = "AUDIO_PROFILE_MUSIC_HIGH_QUALITY";
-        /** 5: A sample rate of 48 KHz, music encoding, stereo, and a bitrate of up to 128 Kbps.
+        /** @en
+         * 5: A sample rate of 48 KHz, music encoding, stereo, and a bitrate of up to 128 Kbps.
          */
         AUDIO_PROFILE_TYPE[AUDIO_PROFILE_TYPE["AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"] = 5] = "AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO";
-        /** 6: A sample rate of 16 KHz, audio encoding, mono, and Acoustic Echo Cancellation (AES) enabled.
+        /** @en
+         * 6: A sample rate of 16 KHz, audio encoding, mono, and Acoustic Echo Cancellation (AES) enabled.
          */
         AUDIO_PROFILE_TYPE[AUDIO_PROFILE_TYPE["AUDIO_PROFILE_IOT"] = 6] = "AUDIO_PROFILE_IOT";
-        /** The number of elements in the enumeration.
+        /** @en
+         * The number of elements in the enumeration.
          */
         AUDIO_PROFILE_TYPE[AUDIO_PROFILE_TYPE["AUDIO_PROFILE_NUM"] = 7] = "AUDIO_PROFILE_NUM";
     })(AUDIO_PROFILE_TYPE = agora.AUDIO_PROFILE_TYPE || (agora.AUDIO_PROFILE_TYPE = {}));
-    /** Audio application scenarios.
+    /** @en
+     * Audio application scenarios.
      */
     var AUDIO_SCENARIO_TYPE;
     (function (AUDIO_SCENARIO_TYPE) {
-        /** 0: Default audio scenario.. */
+        /** @en
+         * 0: Default audio scenario..
+         */
         AUDIO_SCENARIO_TYPE[AUDIO_SCENARIO_TYPE["AUDIO_SCENARIO_DEFAULT"] = 0] = "AUDIO_SCENARIO_DEFAULT";
-        /** 1: Entertainment scenario where users need to frequently switch the user role. */
+        /** @en
+         * 1: Entertainment scenario where users need to frequently switch the user role.
+         */
         AUDIO_SCENARIO_TYPE[AUDIO_SCENARIO_TYPE["AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT"] = 1] = "AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT";
-        /** 2: Education scenario where users want smoothness and stability. */
+        /** @en
+         * 2: Education scenario where users want smoothness and stability.
+         */
         AUDIO_SCENARIO_TYPE[AUDIO_SCENARIO_TYPE["AUDIO_SCENARIO_EDUCATION"] = 2] = "AUDIO_SCENARIO_EDUCATION";
-        /** 3: High-quality audio chatroom scenario where hosts mainly play music. */
+        /** @en
+         * 3: High-quality audio chatroom scenario where hosts mainly play music.
+         */
         AUDIO_SCENARIO_TYPE[AUDIO_SCENARIO_TYPE["AUDIO_SCENARIO_GAME_STREAMING"] = 3] = "AUDIO_SCENARIO_GAME_STREAMING";
-        /** 4: Showroom scenario where a single host wants high-quality audio. */
+        /** @en
+         * 4: Showroom scenario where a single host wants high-quality audio.
+         */
         AUDIO_SCENARIO_TYPE[AUDIO_SCENARIO_TYPE["AUDIO_SCENARIO_SHOWROOM"] = 4] = "AUDIO_SCENARIO_SHOWROOM";
-        /** 5: Gaming scenario for group chat that only contains the human voice. */
+        /** @en
+         * 5: Gaming scenario for group chat that only contains the human voice.
+         */
         AUDIO_SCENARIO_TYPE[AUDIO_SCENARIO_TYPE["AUDIO_SCENARIO_CHATROOM_GAMING"] = 5] = "AUDIO_SCENARIO_CHATROOM_GAMING";
-        /** 6: IoT (Internet of Things) scenario where users use IoT devices with low power consumption. */
+        /** @en
+         * 6: IoT (Internet of Things) scenario where users use IoT devices with low power consumption.
+         */
         AUDIO_SCENARIO_TYPE[AUDIO_SCENARIO_TYPE["AUDIO_SCENARIO_IOT"] = 6] = "AUDIO_SCENARIO_IOT";
-        /** The number of elements in the enumeration. */
+        /** @en
+         * The number of elements in the enumeration.
+         */
         AUDIO_SCENARIO_TYPE[AUDIO_SCENARIO_TYPE["AUDIO_SCENARIO_NUM"] = 7] = "AUDIO_SCENARIO_NUM";
     })(AUDIO_SCENARIO_TYPE = agora.AUDIO_SCENARIO_TYPE || (agora.AUDIO_SCENARIO_TYPE = {}));
-    /** The channel profile.
+    /** @en
+     * The channel profile.
      */
     var CHANNEL_PROFILE_TYPE;
     (function (CHANNEL_PROFILE_TYPE) {
-        /** (Default) Communication. This profile applies to scenarios such as an audio call or video call,
+        /** @en
+         * (Default) Communication. This profile applies to scenarios such as an audio call or video call,
          * where all users can publish and subscribe to streams.
          */
         CHANNEL_PROFILE_TYPE[CHANNEL_PROFILE_TYPE["CHANNEL_PROFILE_COMMUNICATION"] = 0] = "CHANNEL_PROFILE_COMMUNICATION";
-        /** Live streaming. In this profile, uses have roles, namely, host and audience (default).
+        /** @en
+         * Live streaming. In this profile, uses have roles, namely, host and audience (default).
          *
          * A host both publishes and subscribes to streams, while an audience subscribes to streams only.
          * This profile applies to scenarios such as a chat room or interactive video streaming.
          */
         CHANNEL_PROFILE_TYPE[CHANNEL_PROFILE_TYPE["CHANNEL_PROFILE_LIVE_BROADCASTING"] = 1] = "CHANNEL_PROFILE_LIVE_BROADCASTING";
-        /** 2: Agora recommends not using this profile.
+        /** @en
+         * 2: Agora recommends not using this profile.
          */
         CHANNEL_PROFILE_TYPE[CHANNEL_PROFILE_TYPE["CHANNEL_PROFILE_GAME"] = 2] = "CHANNEL_PROFILE_GAME";
     })(CHANNEL_PROFILE_TYPE = agora.CHANNEL_PROFILE_TYPE || (agora.CHANNEL_PROFILE_TYPE = {}));
-    /** Client roles in the live interactive streaming. */
+    /** @en
+     * Client roles in the live interactive streaming.
+     */
     var CLIENT_ROLE_TYPE;
     (function (CLIENT_ROLE_TYPE) {
-        /** 1: Host. A host can both send and receive streams. */
+        /** @en
+         * 1: Host. A host can both send and receive streams.
+         */
         CLIENT_ROLE_TYPE[CLIENT_ROLE_TYPE["CLIENT_ROLE_BROADCASTER"] = 1] = "CLIENT_ROLE_BROADCASTER";
-        /** 2: Audience, the default role. An audience can only receive streams. */
+        /** @en
+         * 2: Audience, the default role. An audience can only receive streams.
+         */
         CLIENT_ROLE_TYPE[CLIENT_ROLE_TYPE["CLIENT_ROLE_AUDIENCE"] = 2] = "CLIENT_ROLE_AUDIENCE";
     })(CLIENT_ROLE_TYPE = agora.CLIENT_ROLE_TYPE || (agora.CLIENT_ROLE_TYPE = {}));
-    /** Reasons for a user being offline. */
+    /** @en
+     * Reasons for a user being offline.
+     */
     var USER_OFFLINE_REASON_TYPE;
     (function (USER_OFFLINE_REASON_TYPE) {
-        /** 0: The user quits the call. */
+        /** @en
+         * 0: The user quits the call.
+         */
         USER_OFFLINE_REASON_TYPE[USER_OFFLINE_REASON_TYPE["USER_OFFLINE_QUIT"] = 0] = "USER_OFFLINE_QUIT";
-        /** 1: The SDK times out and the user drops offline because no data packet is received within a certain period of time. If
+        /** @en
+         * 1: The SDK times out and the user drops offline because no data packet is received within a certain period of time. If
          * the user quits the call and the message is not passed to the SDK (due to an unreliable channel), the SDK assumes the user
          * dropped offline.
          */
         USER_OFFLINE_REASON_TYPE[USER_OFFLINE_REASON_TYPE["USER_OFFLINE_DROPPED"] = 1] = "USER_OFFLINE_DROPPED";
-        /** 2: (`LIVE_BROADCASTING` only.) The client role switched from the host to the audience. */
+        /** @en
+         * 2: (`LIVE_BROADCASTING` only.) The client role switched from the host to the audience. */
         USER_OFFLINE_REASON_TYPE[USER_OFFLINE_REASON_TYPE["USER_OFFLINE_BECOME_AUDIENCE"] = 2] = "USER_OFFLINE_BECOME_AUDIENCE";
     })(USER_OFFLINE_REASON_TYPE = agora.USER_OFFLINE_REASON_TYPE || (agora.USER_OFFLINE_REASON_TYPE = {}));
-    /** States of the RTMP streaming. */
+    /** @en
+     * States of the RTMP streaming.
+     */
     var RTMP_STREAM_PUBLISH_STATE;
     (function (RTMP_STREAM_PUBLISH_STATE) {
-        /** The RTMP streaming has not started or has ended. This state is also triggered after you remove an RTMP address from
+        /** @en
+         * The RTMP streaming has not started or has ended. This state is also triggered after you remove an RTMP address from
          * the CDN by calling [removePublishStreamUrl]{@link agora.removePublishStreamUrl}.
          */
         RTMP_STREAM_PUBLISH_STATE[RTMP_STREAM_PUBLISH_STATE["RTMP_STREAM_PUBLISH_STATE_IDLE"] = 0] = "RTMP_STREAM_PUBLISH_STATE_IDLE";
-        /** The SDK is connecting to Agora streaming server and the RTMP server. This state is triggered after you call the
+        /** @en
+         * The SDK is connecting to Agora streaming server and the RTMP server. This state is triggered after you call the
          * [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method.
          */
         RTMP_STREAM_PUBLISH_STATE[RTMP_STREAM_PUBLISH_STATE["RTMP_STREAM_PUBLISH_STATE_CONNECTING"] = 1] = "RTMP_STREAM_PUBLISH_STATE_CONNECTING";
-        /** The RTMP streaming publishes. The SDK successfully publishes the RTMP streaming and returns this state.
+        /** @en
+         * The RTMP streaming publishes. The SDK successfully publishes the RTMP streaming and returns this state.
          */
         RTMP_STREAM_PUBLISH_STATE[RTMP_STREAM_PUBLISH_STATE["RTMP_STREAM_PUBLISH_STATE_RUNNING"] = 2] = "RTMP_STREAM_PUBLISH_STATE_RUNNING";
-        /** The RTMP streaming is recovering. When exceptions occur to the CDN, or the streaming is interrupted, the SDK tries to resume
+        /** @en
+         * The RTMP streaming is recovering. When exceptions occur to the CDN, or the streaming is interrupted, the SDK tries to resume
          * RTMP streaming and returns this state.
          * - If the SDK successfully resumes the streaming, `RTMP_STREAM_PUBLISH_STATE_RUNNING(2)` returns.
          * - If the streaming does not resume within 60 seconds or server errors occur,
@@ -668,327 +951,448 @@ var agora;
          * [addPublishStreamUrl]{@link agora.addPublishStreamUrl} methods.
          */
         RTMP_STREAM_PUBLISH_STATE[RTMP_STREAM_PUBLISH_STATE["RTMP_STREAM_PUBLISH_STATE_RECOVERING"] = 3] = "RTMP_STREAM_PUBLISH_STATE_RECOVERING";
-        /** The RTMP streaming fails. See the `errCode` parameter for the detailed error information. You can also call the
+        /** @en
+         * The RTMP streaming fails. See the `errCode` parameter for the detailed error information. You can also call the
          * [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method to publish the RTMP streaming again.
          */
         RTMP_STREAM_PUBLISH_STATE[RTMP_STREAM_PUBLISH_STATE["RTMP_STREAM_PUBLISH_STATE_FAILURE"] = 4] = "RTMP_STREAM_PUBLISH_STATE_FAILURE";
     })(RTMP_STREAM_PUBLISH_STATE = agora.RTMP_STREAM_PUBLISH_STATE || (agora.RTMP_STREAM_PUBLISH_STATE = {}));
-    /** Error codes of the RTMP streaming. */
+    /** @en
+     * Error codes of the RTMP streaming.
+     */
     var RTMP_STREAM_PUBLISH_ERROR;
     (function (RTMP_STREAM_PUBLISH_ERROR) {
-        /** The RTMP streaming publishes successfully. */
+        /** @en
+         * The RTMP streaming publishes successfully.
+         */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_OK"] = 0] = "RTMP_STREAM_PUBLISH_ERROR_OK";
-        /** Invalid argument used. If, for example, you do not call the [setLiveTranscoding]{@link agora.setLiveTranscoding} method to
+        /** @en
+         * Invalid argument used. If, for example, you do not call the [setLiveTranscoding]{@link agora.setLiveTranscoding} method to
          * configure the [LiveTranscoding]{@link agora.LiveTranscoding} parameters before calling the
          * [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method, the SDK returns this error. Check whether you set the
          * parameters in the *setLiveTranscoding* method properly.
          */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT"] = 1] = "RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT";
-        /** The RTMP streaming is encrypted and cannot be published. */
+        /** @en
+         * The RTMP streaming is encrypted and cannot be published.
+         */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED"] = 2] = "RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED";
-        /** Timeout for the RTMP streaming. Call the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method to publish
+        /** @en
+         * Timeout for the RTMP streaming. Call the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method to publish
          * the streaming again.
          */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT"] = 3] = "RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT";
-        /** An error occurs in Agora's streaming server. Call the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method to
+        /** @en
+         * An error occurs in Agora's streaming server. Call the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method to
          * publish the streaming again.
          */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR"] = 4] = "RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR";
-        /** An error occurs in the RTMP server. */
+        /** @en
+         * An error occurs in the RTMP server.
+         */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR"] = 5] = "RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR";
-        /** The RTMP streaming publishes too frequently. */
+        /** @en
+         * The RTMP streaming publishes too frequently.
+         */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN"] = 6] = "RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN";
-        /** The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones. */
+        /** @en
+         * The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones.
+         */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT"] = 7] = "RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT";
-        /** The host manipulates other hosts' URLs. Check your app logic. */
+        /** @en
+         * The host manipulates other hosts' URLs. Check your app logic.
+         */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED"] = 8] = "RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED";
-        /** Agora's server fails to find the RTMP streaming. */
+        /** @en
+         * Agora's server fails to find the RTMP streaming.
+         */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND"] = 9] = "RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND";
-        /** The format of the RTMP streaming URL is not supported. Check whether the URL format is correct. */
+        /** @en
+         * The format of the RTMP streaming URL is not supported. Check whether the URL format is correct.
+         */
         RTMP_STREAM_PUBLISH_ERROR[RTMP_STREAM_PUBLISH_ERROR["RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED"] = 10] = "RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED";
     })(RTMP_STREAM_PUBLISH_ERROR = agora.RTMP_STREAM_PUBLISH_ERROR || (agora.RTMP_STREAM_PUBLISH_ERROR = {}));
-    /** Events during the RTMP streaming. */
+    /** @en
+     * Events during the RTMP streaming.
+     */
     var RTMP_STREAMING_EVENT;
     (function (RTMP_STREAMING_EVENT) {
-        /** An error occurs when you add a background image or a watermark image to the RTMP stream.
+        /** @en
+         * An error occurs when you add a background image or a watermark image to the RTMP stream.
          */
         RTMP_STREAMING_EVENT[RTMP_STREAMING_EVENT["RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE"] = 1] = "RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE";
     })(RTMP_STREAMING_EVENT = agora.RTMP_STREAMING_EVENT || (agora.RTMP_STREAMING_EVENT = {}));
-    /** States of importing an external media stream in the live interactive streaming. */
+    /** @en
+     * States of importing an external media stream in the live interactive streaming.
+     */
     var INJECT_STREAM_STATUS;
     (function (INJECT_STREAM_STATUS) {
-        /** 0: The external media stream imported successfully. */
+        /** @en
+         * 0: The external media stream imported successfully.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_START_SUCCESS"] = 0] = "INJECT_STREAM_STATUS_START_SUCCESS";
-        /** 1: The external media stream already exists. */
+        /** @en
+         * 1: The external media stream already exists.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_START_ALREADY_EXISTS"] = 1] = "INJECT_STREAM_STATUS_START_ALREADY_EXISTS";
-        /** 2: The external media stream to be imported is unauthorized. */
+        /** @en
+         * 2: The external media stream to be imported is unauthorized.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_START_UNAUTHORIZED"] = 2] = "INJECT_STREAM_STATUS_START_UNAUTHORIZED";
-        /** 3: Import external media stream timeout. */
+        /** @en
+         * 3: Import external media stream timeout.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_START_TIMEDOUT"] = 3] = "INJECT_STREAM_STATUS_START_TIMEDOUT";
-        /** 4: Import external media stream failed. */
+        /** @en
+         * 4: Import external media stream failed.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_START_FAILED"] = 4] = "INJECT_STREAM_STATUS_START_FAILED";
-        /** 5: The external media stream stopped importing successfully. */
+        /** @en
+         * 5: The external media stream stopped importing successfully.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_STOP_SUCCESS"] = 5] = "INJECT_STREAM_STATUS_STOP_SUCCESS";
-        /** 6: No external media stream is found. */
+        /** @en
+         * 6: No external media stream is found.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_STOP_NOT_FOUND"] = 6] = "INJECT_STREAM_STATUS_STOP_NOT_FOUND";
-        /** 7: The external media stream to be stopped importing is unauthorized. */
+        /** @en
+         * 7: The external media stream to be stopped importing is unauthorized.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_STOP_UNAUTHORIZED"] = 7] = "INJECT_STREAM_STATUS_STOP_UNAUTHORIZED";
-        /** 8: Stop importing external media stream timeout. */
+        /** @en
+         * 8: Stop importing external media stream timeout.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_STOP_TIMEDOUT"] = 8] = "INJECT_STREAM_STATUS_STOP_TIMEDOUT";
-        /** 9: Stop importing external media stream failed. */
+        /** @en
+         * 9: Stop importing external media stream failed.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_STOP_FAILED"] = 9] = "INJECT_STREAM_STATUS_STOP_FAILED";
-        /** 10: The external media stream is corrupted. */
+        /** @en
+         * 10: The external media stream is corrupted.
+         */
         INJECT_STREAM_STATUS[INJECT_STREAM_STATUS["INJECT_STREAM_STATUS_BROKEN"] = 10] = "INJECT_STREAM_STATUS_BROKEN";
     })(INJECT_STREAM_STATUS = agora.INJECT_STREAM_STATUS || (agora.INJECT_STREAM_STATUS = {}));
-    /** @ignore Remote video stream types. */
+    /** @en
+     * @ignore
+     * Remote video stream types.
+     */
     var REMOTE_VIDEO_STREAM_TYPE;
     (function (REMOTE_VIDEO_STREAM_TYPE) {
-        /** 0: High-stream video. */
+        /** @en
+         * 0: High-stream video.
+         */
         REMOTE_VIDEO_STREAM_TYPE[REMOTE_VIDEO_STREAM_TYPE["REMOTE_VIDEO_STREAM_HIGH"] = 0] = "REMOTE_VIDEO_STREAM_HIGH";
-        /** 1: Low-stream video. */
+        /** @en
+         * 1: Low-stream video.
+         */
         REMOTE_VIDEO_STREAM_TYPE[REMOTE_VIDEO_STREAM_TYPE["REMOTE_VIDEO_STREAM_LOW"] = 1] = "REMOTE_VIDEO_STREAM_LOW";
     })(REMOTE_VIDEO_STREAM_TYPE = agora.REMOTE_VIDEO_STREAM_TYPE || (agora.REMOTE_VIDEO_STREAM_TYPE = {}));
-    /** The use mode of the audio data in the [onRecordAudioFrame]{@link agora.onRecordAudioFrame} or
+    /** @en
+     * The use mode of the audio data in the [onRecordAudioFrame]{@link agora.onRecordAudioFrame} or
      * [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame} callback.
      */
     var RAW_AUDIO_FRAME_OP_MODE_TYPE;
     (function (RAW_AUDIO_FRAME_OP_MODE_TYPE) {
-        /** 0: Read-only mode: Users only read the [AudioFrame]{@link agora.AudioFrame} data without modifying anything. For example,
+        /** @en
+         * 0: Read-only mode: Users only read the [AudioFrame]{@link agora.AudioFrame} data without modifying anything. For example,
          * when users acquire the data with the Agora SDK, then push the RTMP streams.
          */
         RAW_AUDIO_FRAME_OP_MODE_TYPE[RAW_AUDIO_FRAME_OP_MODE_TYPE["RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"] = 0] = "RAW_AUDIO_FRAME_OP_MODE_READ_ONLY";
-        /** 1: Write-only mode: Users replace the [AudioFrame]{@link agora.AudioFrame} data with their own data and pass the data to
+        /** @en
+         * 1: Write-only mode: Users replace the [AudioFrame]{@link agora.AudioFrame} data with their own data and pass the data to
          * the SDK for encoding. For example, when users acquire the data.
          */
         RAW_AUDIO_FRAME_OP_MODE_TYPE[RAW_AUDIO_FRAME_OP_MODE_TYPE["RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY"] = 1] = "RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY";
-        /** 2: Read and write mode: Users read the data from [AudioFrame]{@link agora.AudioFrame} , modify it, and then play it.
+        /** @en
+         * 2: Read and write mode: Users read the data from [AudioFrame]{@link agora.AudioFrame} , modify it, and then play it.
          * For example, when users have their own sound-effect processing module and perform some voice pre-processing, such as
          * a voice change.
          */
         RAW_AUDIO_FRAME_OP_MODE_TYPE[RAW_AUDIO_FRAME_OP_MODE_TYPE["RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"] = 2] = "RAW_AUDIO_FRAME_OP_MODE_READ_WRITE";
     })(RAW_AUDIO_FRAME_OP_MODE_TYPE = agora.RAW_AUDIO_FRAME_OP_MODE_TYPE || (agora.RAW_AUDIO_FRAME_OP_MODE_TYPE = {}));
-    /** Audio-sample rates. */
+    /** @en
+     * Audio-sample rates.
+     */
     var AUDIO_SAMPLE_RATE_TYPE;
     (function (AUDIO_SAMPLE_RATE_TYPE) {
-        /** 32000: 32 kHz */
+        /** @en
+         * 32000: 32 kHz
+         */
         AUDIO_SAMPLE_RATE_TYPE[AUDIO_SAMPLE_RATE_TYPE["AUDIO_SAMPLE_RATE_32000"] = 32000] = "AUDIO_SAMPLE_RATE_32000";
-        /** 44100: 44.1 kHz */
+        /** @en
+         * 44100: 44.1 kHz
+         */
         AUDIO_SAMPLE_RATE_TYPE[AUDIO_SAMPLE_RATE_TYPE["AUDIO_SAMPLE_RATE_44100"] = 44100] = "AUDIO_SAMPLE_RATE_44100";
-        /** 48000: 48 kHz */
+        /** @en
+         * 48000: 48 kHz
+         */
         AUDIO_SAMPLE_RATE_TYPE[AUDIO_SAMPLE_RATE_TYPE["AUDIO_SAMPLE_RATE_48000"] = 48000] = "AUDIO_SAMPLE_RATE_48000";
     })(AUDIO_SAMPLE_RATE_TYPE = agora.AUDIO_SAMPLE_RATE_TYPE || (agora.AUDIO_SAMPLE_RATE_TYPE = {}));
-    /** @ignore Video codec profile types. */
+    /** @en
+     * @ignore Video codec profile types.
+     */
     var VIDEO_CODEC_PROFILE_TYPE;
     (function (VIDEO_CODEC_PROFILE_TYPE) {
-        /** 66: Baseline video codec profile. Generally used in video calls on mobile phones. */
+        /** @en
+         * 66: Baseline video codec profile. Generally used in video calls on mobile phones.
+         */
         VIDEO_CODEC_PROFILE_TYPE[VIDEO_CODEC_PROFILE_TYPE["VIDEO_CODEC_PROFILE_BASELINE"] = 66] = "VIDEO_CODEC_PROFILE_BASELINE";
-        /** 77: Main video codec profile. Generally used in mainstream electronics such as MP4 players, portable video players,
+        /** @en
+         * 77: Main video codec profile. Generally used in mainstream electronics such as MP4 players, portable video players,
          * PSP, and iPads.
          */
         VIDEO_CODEC_PROFILE_TYPE[VIDEO_CODEC_PROFILE_TYPE["VIDEO_CODEC_PROFILE_MAIN"] = 77] = "VIDEO_CODEC_PROFILE_MAIN";
-        /** 100: (Default) High video codec profile. Generally used in high-resolution live streaming or television. */
+        /** @en
+         * 100: (Default) High video codec profile. Generally used in high-resolution live streaming or television.
+         */
         VIDEO_CODEC_PROFILE_TYPE[VIDEO_CODEC_PROFILE_TYPE["VIDEO_CODEC_PROFILE_HIGH"] = 100] = "VIDEO_CODEC_PROFILE_HIGH";
     })(VIDEO_CODEC_PROFILE_TYPE = agora.VIDEO_CODEC_PROFILE_TYPE || (agora.VIDEO_CODEC_PROFILE_TYPE = {}));
-    /** @ignore Video codec types */
+    /** @en
+     * @ignore Video codec types
+     */
     var VIDEO_CODEC_TYPE;
     (function (VIDEO_CODEC_TYPE) {
-        /** Standard VP8 */
+        /** @en
+         * Standard VP8
+         */
         VIDEO_CODEC_TYPE[VIDEO_CODEC_TYPE["VIDEO_CODEC_VP8"] = 1] = "VIDEO_CODEC_VP8";
-        /** Standard H264 */
+        /** @en
+         * Standard H264
+         */
         VIDEO_CODEC_TYPE[VIDEO_CODEC_TYPE["VIDEO_CODEC_H264"] = 2] = "VIDEO_CODEC_H264";
-        /** Enhanced VP8 */
+        /** @en
+         * Enhanced VP8
+         */
         VIDEO_CODEC_TYPE[VIDEO_CODEC_TYPE["VIDEO_CODEC_EVP"] = 3] = "VIDEO_CODEC_EVP";
-        /** Enhanced H264 */
+        /** @en
+         * Enhanced H264
+         */
         VIDEO_CODEC_TYPE[VIDEO_CODEC_TYPE["VIDEO_CODEC_E264"] = 4] = "VIDEO_CODEC_E264";
     })(VIDEO_CODEC_TYPE = agora.VIDEO_CODEC_TYPE || (agora.VIDEO_CODEC_TYPE = {}));
-    /** Audio equalization band frequencies. */
+    /** @en
+     * Audio equalization band frequencies.
+     */
     var AUDIO_EQUALIZATION_BAND_FREQUENCY;
     (function (AUDIO_EQUALIZATION_BAND_FREQUENCY) {
-        /** 0: 31 Hz */
+        /** @en
+         * 0: 31 Hz
+         */
         AUDIO_EQUALIZATION_BAND_FREQUENCY[AUDIO_EQUALIZATION_BAND_FREQUENCY["AUDIO_EQUALIZATION_BAND_31"] = 0] = "AUDIO_EQUALIZATION_BAND_31";
-        /** 1: 62 Hz */
+        /** @en
+         * 1: 62 Hz
+         */
         AUDIO_EQUALIZATION_BAND_FREQUENCY[AUDIO_EQUALIZATION_BAND_FREQUENCY["AUDIO_EQUALIZATION_BAND_62"] = 1] = "AUDIO_EQUALIZATION_BAND_62";
-        /** 2: 125 Hz */
+        /** @en
+         * 2: 125 Hz
+         */
         AUDIO_EQUALIZATION_BAND_FREQUENCY[AUDIO_EQUALIZATION_BAND_FREQUENCY["AUDIO_EQUALIZATION_BAND_125"] = 2] = "AUDIO_EQUALIZATION_BAND_125";
-        /** 3: 250 Hz */
+        /** @en
+         * 3: 250 Hz
+         */
         AUDIO_EQUALIZATION_BAND_FREQUENCY[AUDIO_EQUALIZATION_BAND_FREQUENCY["AUDIO_EQUALIZATION_BAND_250"] = 3] = "AUDIO_EQUALIZATION_BAND_250";
-        /** 4: 500 Hz */
+        /** @en
+         * 4: 500 Hz
+         */
         AUDIO_EQUALIZATION_BAND_FREQUENCY[AUDIO_EQUALIZATION_BAND_FREQUENCY["AUDIO_EQUALIZATION_BAND_500"] = 4] = "AUDIO_EQUALIZATION_BAND_500";
-        /** 5: 1 kHz */
+        /** @en
+         * 5: 1 kHz
+         */
         AUDIO_EQUALIZATION_BAND_FREQUENCY[AUDIO_EQUALIZATION_BAND_FREQUENCY["AUDIO_EQUALIZATION_BAND_1K"] = 5] = "AUDIO_EQUALIZATION_BAND_1K";
-        /** 6: 2 kHz */
+        /** @en
+         * 6: 2 kHz
+         */
         AUDIO_EQUALIZATION_BAND_FREQUENCY[AUDIO_EQUALIZATION_BAND_FREQUENCY["AUDIO_EQUALIZATION_BAND_2K"] = 6] = "AUDIO_EQUALIZATION_BAND_2K";
-        /** 7: 4 kHz */
+        /** @en
+         * 7: 4 kHz
+         */
         AUDIO_EQUALIZATION_BAND_FREQUENCY[AUDIO_EQUALIZATION_BAND_FREQUENCY["AUDIO_EQUALIZATION_BAND_4K"] = 7] = "AUDIO_EQUALIZATION_BAND_4K";
-        /** 8: 8 kHz */
+        /** @en
+         * 8: 8 kHz
+         */
         AUDIO_EQUALIZATION_BAND_FREQUENCY[AUDIO_EQUALIZATION_BAND_FREQUENCY["AUDIO_EQUALIZATION_BAND_8K"] = 8] = "AUDIO_EQUALIZATION_BAND_8K";
-        /** 9: 16 kHz */
+        /** @en
+         * 9: 16 kHz
+         */
         AUDIO_EQUALIZATION_BAND_FREQUENCY[AUDIO_EQUALIZATION_BAND_FREQUENCY["AUDIO_EQUALIZATION_BAND_16K"] = 9] = "AUDIO_EQUALIZATION_BAND_16K";
     })(AUDIO_EQUALIZATION_BAND_FREQUENCY = agora.AUDIO_EQUALIZATION_BAND_FREQUENCY || (agora.AUDIO_EQUALIZATION_BAND_FREQUENCY = {}));
-    /** Audio reverberation types. */
+    /** @en
+     * Audio reverberation types.
+     */
     var AUDIO_REVERB_TYPE;
     (function (AUDIO_REVERB_TYPE) {
-        /** 0: The level of the dry signal (db). The value is between -20 and 10. */
+        /** @en
+         * 0: The level of the dry signal (db). The value is between -20 and 10.
+         */
         AUDIO_REVERB_TYPE[AUDIO_REVERB_TYPE["AUDIO_REVERB_DRY_LEVEL"] = 0] = "AUDIO_REVERB_DRY_LEVEL";
-        /** 1: The level of the early reflection signal (wet signal) (dB). The value is between -20 and 10. */
+        /** @en
+         * 1: The level of the early reflection signal (wet signal) (dB). The value is between -20 and 10.
+         */
         AUDIO_REVERB_TYPE[AUDIO_REVERB_TYPE["AUDIO_REVERB_WET_LEVEL"] = 1] = "AUDIO_REVERB_WET_LEVEL";
-        /** 2: The room size of the reflection. The value is between 0 and 100. */
+        /** @en
+         * 2: The room size of the reflection. The value is between 0 and 100.
+         */
         AUDIO_REVERB_TYPE[AUDIO_REVERB_TYPE["AUDIO_REVERB_ROOM_SIZE"] = 2] = "AUDIO_REVERB_ROOM_SIZE";
-        /** 3: The length of the initial delay of the wet signal (ms). The value is between 0 and 200. */
+        /** @en
+         * 3: The length of the initial delay of the wet signal (ms). The value is between 0 and 200.
+         */
         AUDIO_REVERB_TYPE[AUDIO_REVERB_TYPE["AUDIO_REVERB_WET_DELAY"] = 3] = "AUDIO_REVERB_WET_DELAY";
-        /** 4: The reverberation strength. The value is between 0 and 100. */
+        /** @en
+         * 4: The reverberation strength. The value is between 0 and 100.
+         */
         AUDIO_REVERB_TYPE[AUDIO_REVERB_TYPE["AUDIO_REVERB_STRENGTH"] = 4] = "AUDIO_REVERB_STRENGTH";
     })(AUDIO_REVERB_TYPE = agora.AUDIO_REVERB_TYPE || (agora.AUDIO_REVERB_TYPE = {}));
-    /**
+    /** @en
      * Local voice changer options.
      */
     var VOICE_CHANGER_PRESET;
     (function (VOICE_CHANGER_PRESET) {
-        /**
+        /** @en
          * The original voice (no local voice change).
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_CHANGER_OFF"] = 0] = "VOICE_CHANGER_OFF";
-        /**
+        /** @en
          * The voice of an old man.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_CHANGER_OLDMAN"] = 1] = "VOICE_CHANGER_OLDMAN";
-        /**
+        /** @en
          * The voice of a little boy.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_CHANGER_BABYBOY"] = 2] = "VOICE_CHANGER_BABYBOY";
-        /**
+        /** @en
          * The voice of a little girl.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_CHANGER_BABYGIRL"] = 3] = "VOICE_CHANGER_BABYGIRL";
-        /**
+        /** @en
          * The voice of Zhu Bajie, a character in Journey to the West who has a voice like that of a growling bear.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_CHANGER_ZHUBAJIE"] = 4] = "VOICE_CHANGER_ZHUBAJIE";
-        /**
+        /** @en
          * The ethereal voice.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_CHANGER_ETHEREAL"] = 5] = "VOICE_CHANGER_ETHEREAL";
-        /**
+        /** @en
          * The voice of Hulk.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_CHANGER_HULK"] = 6] = "VOICE_CHANGER_HULK";
-        /**
+        /** @en
          * A more vigorous voice.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_BEAUTY_VIGOROUS"] = 1048577] = "VOICE_BEAUTY_VIGOROUS";
-        /**
+        /** @en
          * A deeper voice.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_BEAUTY_DEEP"] = 1048578] = "VOICE_BEAUTY_DEEP";
-        /**
+        /** @en
          * A mellower voice.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_BEAUTY_MELLOW"] = 1048579] = "VOICE_BEAUTY_MELLOW";
-        /**
+        /** @en
          * Falsetto.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_BEAUTY_FALSETTO"] = 1048580] = "VOICE_BEAUTY_FALSETTO";
-        /**
+        /** @en
          * A fuller voice.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_BEAUTY_FULL"] = 1048581] = "VOICE_BEAUTY_FULL";
-        /**
+        /** @en
          * A clearer voice.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_BEAUTY_CLEAR"] = 1048582] = "VOICE_BEAUTY_CLEAR";
-        /**
+        /** @en
          * A more resounding voice.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_BEAUTY_RESOUNDING"] = 1048583] = "VOICE_BEAUTY_RESOUNDING";
-        /**
+        /** @en
          * A more ringing voice.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_BEAUTY_RINGING"] = 1048584] = "VOICE_BEAUTY_RINGING";
-        /**
+        /** @en
          * A more spatially resonant voice.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["VOICE_BEAUTY_SPACIAL"] = 1048585] = "VOICE_BEAUTY_SPACIAL";
-        /**
+        /** @en
          * (For male only) A more magnetic voice. Do not use it when the speaker is a female; otherwise, voice distortion occurs.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"] = 2097153] = "GENERAL_BEAUTY_VOICE_MALE_MAGNETIC";
-        /**
+        /** @en
          * (For female only) A fresher voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["GENERAL_BEAUTY_VOICE_FEMALE_FRESH"] = 2097154] = "GENERAL_BEAUTY_VOICE_FEMALE_FRESH";
-        /**
+        /** @en
          * (For female only) A more vital voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs.
          */
         VOICE_CHANGER_PRESET[VOICE_CHANGER_PRESET["GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"] = 2097155] = "GENERAL_BEAUTY_VOICE_FEMALE_VITALITY";
     })(VOICE_CHANGER_PRESET = agora.VOICE_CHANGER_PRESET || (agora.VOICE_CHANGER_PRESET = {}));
-    /** Local voice reverberation presets. */
+    /** @en
+     * Local voice reverberation presets.
+     */
     var AUDIO_REVERB_PRESET;
     (function (AUDIO_REVERB_PRESET) {
-        /**
+        /** @en
          * Turn off local voice reverberation, that is, to use the original voice.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_OFF"] = 0] = "AUDIO_REVERB_OFF";
-        /**
+        /** @en
          * The reverberation style typical of a KTV venue (enhanced).
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_FX_KTV"] = 1048577] = "AUDIO_REVERB_FX_KTV";
-        /**
+        /** @en
          * The reverberation style typical of a concert hall (enhanced).
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_FX_VOCAL_CONCERT"] = 1048578] = "AUDIO_REVERB_FX_VOCAL_CONCERT";
-        /**
+        /** @en
          * The reverberation style typical of an uncle's voice.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_FX_UNCLE"] = 1048579] = "AUDIO_REVERB_FX_UNCLE";
-        /**
+        /** @en
          * The reverberation style typical of a little sister's voice.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_FX_SISTER"] = 1048580] = "AUDIO_REVERB_FX_SISTER";
-        /**
+        /** @en
          * The reverberation style typical of a recording studio (enhanced).
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_FX_STUDIO"] = 1048581] = "AUDIO_REVERB_FX_STUDIO";
-        /**
+        /** @en
          * The reverberation style typical of popular music (enhanced).
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_FX_POPULAR"] = 1048582] = "AUDIO_REVERB_FX_POPULAR";
-        /**
+        /** @en
          * The reverberation style typical of R&B music (enhanced).
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_FX_RNB"] = 1048583] = "AUDIO_REVERB_FX_RNB";
-        /**
+        /** @en
          * The reverberation style typical of the vintage phonograph.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_FX_PHONOGRAPH"] = 1048584] = "AUDIO_REVERB_FX_PHONOGRAPH";
-        /**
+        /** @en
          * The reverberation style typical of popular music.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_POPULAR"] = 1] = "AUDIO_REVERB_POPULAR";
-        /**
+        /** @en
          * The reverberation style typical of R&B music.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_RNB"] = 2] = "AUDIO_REVERB_RNB";
-        /**
+        /** @en
          * The reverberation style typical of rock music.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_ROCK"] = 3] = "AUDIO_REVERB_ROCK";
-        /**
+        /** @en
          * The reverberation style typical of hip-hop music.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_HIPHOP"] = 4] = "AUDIO_REVERB_HIPHOP";
-        /**
+        /** @en
          * The reverberation style typical of a concert hall.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_VOCAL_CONCERT"] = 5] = "AUDIO_REVERB_VOCAL_CONCERT";
-        /**
+        /** @en
          * The reverberation style typical of a KTV venue.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_KTV"] = 6] = "AUDIO_REVERB_KTV";
-        /**
+        /** @en
          * The reverberation style typical of a recording studio.
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_REVERB_STUDIO"] = 7] = "AUDIO_REVERB_STUDIO";
-        /**
+        /** @en
          * The reverberation of the virtual stereo. The virtual stereo is an effect that renders the monophonic
          * audio as the stereo audio, so that all users in the channel can hear the stereo voice effect.
          * To achieve better virtual stereo reverberation, Agora recommends setting `profile` in
@@ -996,136 +1400,172 @@ var agora;
          */
         AUDIO_REVERB_PRESET[AUDIO_REVERB_PRESET["AUDIO_VIRTUAL_STEREO"] = 2097153] = "AUDIO_VIRTUAL_STEREO";
     })(AUDIO_REVERB_PRESET = agora.AUDIO_REVERB_PRESET || (agora.AUDIO_REVERB_PRESET = {}));
-    /** Audio codec profile types. The default value is LC_ACC. */
+    /** @en
+     * Audio codec profile types. The default value is LC_ACC.
+     */
     var AUDIO_CODEC_PROFILE_TYPE;
     (function (AUDIO_CODEC_PROFILE_TYPE) {
-        /** 0: LC-AAC, which is the low-complexity audio codec type. */
+        /** @en
+         * 0: LC-AAC, which is the low-complexity audio codec type.
+         */
         AUDIO_CODEC_PROFILE_TYPE[AUDIO_CODEC_PROFILE_TYPE["AUDIO_CODEC_PROFILE_LC_AAC"] = 0] = "AUDIO_CODEC_PROFILE_LC_AAC";
-        /** 1: HE-AAC, which is the high-efficiency audio codec type. */
+        /** @en
+         * 1: HE-AAC, which is the high-efficiency audio codec type.
+         */
         AUDIO_CODEC_PROFILE_TYPE[AUDIO_CODEC_PROFILE_TYPE["AUDIO_CODEC_PROFILE_HE_AAC"] = 1] = "AUDIO_CODEC_PROFILE_HE_AAC";
     })(AUDIO_CODEC_PROFILE_TYPE = agora.AUDIO_CODEC_PROFILE_TYPE || (agora.AUDIO_CODEC_PROFILE_TYPE = {}));
-    /** Remote audio states.
+    /** @en
+     * Remote audio states.
      */
     var REMOTE_AUDIO_STATE;
     (function (REMOTE_AUDIO_STATE) {
-        /** 0: The remote audio is in the default state, probably due to
+        /** @en
+         * 0: The remote audio is in the default state, probably due to
          * [REMOTE_AUDIO_REASON_LOCAL_MUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_LOCAL_MUTED}(3),
          * [REMOTE_AUDIO_REASON_REMOTE_MUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_REMOTE_MUTED} (5), or
          * [REMOTE_AUDIO_REASON_REMOTE_OFFLINE]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_REMOTE_OFFLINE} (7).
          */
         REMOTE_AUDIO_STATE[REMOTE_AUDIO_STATE["REMOTE_AUDIO_STATE_STOPPED"] = 0] = "REMOTE_AUDIO_STATE_STOPPED";
-        /** 1: The first remote audio packet is received.
+        /** @en
+         * 1: The first remote audio packet is received.
          */
         REMOTE_AUDIO_STATE[REMOTE_AUDIO_STATE["REMOTE_AUDIO_STATE_STARTING"] = 1] = "REMOTE_AUDIO_STATE_STARTING";
-        /** 2: The remote audio stream is decoded and plays normally, probably
+        /** @en
+         * 2: The remote audio stream is decoded and plays normally, probably
          * due to [REMOTE_AUDIO_REASON_NETWORK_RECOVERY]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_NETWORK_RECOVERY}(2),
          * [REMOTE_AUDIO_REASON_LOCAL_UNMUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_LOCAL_UNMUTED}(4), or
          * [REMOTE_AUDIO_REASON_REMOTE_UNMUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_REMOTE_UNMUTED}(6).
          */
         REMOTE_AUDIO_STATE[REMOTE_AUDIO_STATE["REMOTE_AUDIO_STATE_DECODING"] = 2] = "REMOTE_AUDIO_STATE_DECODING";
-        /** 3: The remote audio is frozen, probably due to
+        /** @en
+         * 3: The remote audio is frozen, probably due to
          * [REMOTE_AUDIO_REASON_NETWORK_CONGESTION]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_NETWORK_CONGESTION}(1).
          */
         REMOTE_AUDIO_STATE[REMOTE_AUDIO_STATE["REMOTE_AUDIO_STATE_FROZEN"] = 3] = "REMOTE_AUDIO_STATE_FROZEN";
-        /** 4: The remote audio fails to start, probably due to
+        /** @en
+         * 4: The remote audio fails to start, probably due to
          * [REMOTE_AUDIO_REASON_INTERNAL]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_INTERNAL}(0).
          */
         REMOTE_AUDIO_STATE[REMOTE_AUDIO_STATE["REMOTE_AUDIO_STATE_FAILED"] = 4] = "REMOTE_AUDIO_STATE_FAILED";
     })(REMOTE_AUDIO_STATE = agora.REMOTE_AUDIO_STATE || (agora.REMOTE_AUDIO_STATE = {}));
-    /** Remote audio state reasons.
+    /** @en
+     * Remote audio state reasons.
      */
     var REMOTE_AUDIO_STATE_REASON;
     (function (REMOTE_AUDIO_STATE_REASON) {
-        /** 0: Internal reasons.
+        /** @en
+         * 0: Internal reasons.
          */
         REMOTE_AUDIO_STATE_REASON[REMOTE_AUDIO_STATE_REASON["REMOTE_AUDIO_REASON_INTERNAL"] = 0] = "REMOTE_AUDIO_REASON_INTERNAL";
-        /** 1: Network congestion.
+        /** @en
+         * 1: Network congestion.
          */
         REMOTE_AUDIO_STATE_REASON[REMOTE_AUDIO_STATE_REASON["REMOTE_AUDIO_REASON_NETWORK_CONGESTION"] = 1] = "REMOTE_AUDIO_REASON_NETWORK_CONGESTION";
-        /** 2: Network recovery.
+        /** @en
+         * 2: Network recovery.
          */
         REMOTE_AUDIO_STATE_REASON[REMOTE_AUDIO_STATE_REASON["REMOTE_AUDIO_REASON_NETWORK_RECOVERY"] = 2] = "REMOTE_AUDIO_REASON_NETWORK_RECOVERY";
-        /** 3: The local user stops receiving the remote audio stream or
+        /** @en
+         * 3: The local user stops receiving the remote audio stream or
          * disables the audio module.
          */
         REMOTE_AUDIO_STATE_REASON[REMOTE_AUDIO_STATE_REASON["REMOTE_AUDIO_REASON_LOCAL_MUTED"] = 3] = "REMOTE_AUDIO_REASON_LOCAL_MUTED";
-        /** 4: The local user resumes receiving the remote audio stream or
+        /** @en
+         * 4: The local user resumes receiving the remote audio stream or
          * enables the audio module.
          */
         REMOTE_AUDIO_STATE_REASON[REMOTE_AUDIO_STATE_REASON["REMOTE_AUDIO_REASON_LOCAL_UNMUTED"] = 4] = "REMOTE_AUDIO_REASON_LOCAL_UNMUTED";
-        /** 5: The remote user stops sending the audio stream or disables the
+        /** @en
+         * 5: The remote user stops sending the audio stream or disables the
          * audio module.
          */
         REMOTE_AUDIO_STATE_REASON[REMOTE_AUDIO_STATE_REASON["REMOTE_AUDIO_REASON_REMOTE_MUTED"] = 5] = "REMOTE_AUDIO_REASON_REMOTE_MUTED";
-        /** 6: The remote user resumes sending the audio stream or enables the
+        /** @en
+         * 6: The remote user resumes sending the audio stream or enables the
          * audio module.
          */
         REMOTE_AUDIO_STATE_REASON[REMOTE_AUDIO_STATE_REASON["REMOTE_AUDIO_REASON_REMOTE_UNMUTED"] = 6] = "REMOTE_AUDIO_REASON_REMOTE_UNMUTED";
-        /** 7: The remote user leaves the channel.
+        /** @en
+         * 7: The remote user leaves the channel.
          */
         REMOTE_AUDIO_STATE_REASON[REMOTE_AUDIO_STATE_REASON["REMOTE_AUDIO_REASON_REMOTE_OFFLINE"] = 7] = "REMOTE_AUDIO_REASON_REMOTE_OFFLINE";
     })(REMOTE_AUDIO_STATE_REASON = agora.REMOTE_AUDIO_STATE_REASON || (agora.REMOTE_AUDIO_STATE_REASON = {}));
-    /** @ignore
+    /** @en
+     * @ignore
      * The state of the remote video.
      */
     var REMOTE_VIDEO_STATE;
     (function (REMOTE_VIDEO_STATE) {
-        /** 0: The remote video is in the default state, probably due to
+        /** @en
+         * 0: The remote video is in the default state, probably due to
          * [REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED}(3),
          * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED}(5),
          * or [REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE}(7).
          */
         REMOTE_VIDEO_STATE[REMOTE_VIDEO_STATE["REMOTE_VIDEO_STATE_STOPPED"] = 0] = "REMOTE_VIDEO_STATE_STOPPED";
-        /** 1: The first remote video packet is received.
+        /** @en
+         * 1: The first remote video packet is received.
          */
         REMOTE_VIDEO_STATE[REMOTE_VIDEO_STATE["REMOTE_VIDEO_STATE_STARTING"] = 1] = "REMOTE_VIDEO_STATE_STARTING";
-        /** 2: The remote video stream is decoded and plays normally, probably due to
+        /** @en
+         * 2: The remote video stream is decoded and plays normally, probably due to
          * [REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY}(2),
          * [REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED}(4),
          * [REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED}(6),
          * or [REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY} (9).
          */
         REMOTE_VIDEO_STATE[REMOTE_VIDEO_STATE["REMOTE_VIDEO_STATE_DECODING"] = 2] = "REMOTE_VIDEO_STATE_DECODING";
-        /** 3: The remote video is frozen, probably due to
+        /** @en
+         * 3: The remote video is frozen, probably due to
          * [REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION}(1)
          * or [REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK}(8).
          */
         REMOTE_VIDEO_STATE[REMOTE_VIDEO_STATE["REMOTE_VIDEO_STATE_FROZEN"] = 3] = "REMOTE_VIDEO_STATE_FROZEN";
-        /** 4: The remote video fails to start, probably due to
+        /** @en
+         * 4: The remote video fails to start, probably due to
          * [REMOTE_VIDEO_STATE_REASON_INTERNAL]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_INTERNAL}(0).
          */
         REMOTE_VIDEO_STATE[REMOTE_VIDEO_STATE["REMOTE_VIDEO_STATE_FAILED"] = 4] = "REMOTE_VIDEO_STATE_FAILED";
     })(REMOTE_VIDEO_STATE = agora.REMOTE_VIDEO_STATE || (agora.REMOTE_VIDEO_STATE = {}));
-    /** The publishing state.
+    /** @en
+     * The publishing state.
      */
     var STREAM_PUBLISH_STATE;
     (function (STREAM_PUBLISH_STATE) {
-        /** 0: The initial publishing state after joining the channel.
+        /** @en
+         * 0: The initial publishing state after joining the channel.
          */
         STREAM_PUBLISH_STATE[STREAM_PUBLISH_STATE["PUB_STATE_IDLE"] = 0] = "PUB_STATE_IDLE";
-        /** 1: Fails to publish the local stream. Possible reasons:
+        /** @en
+         * 1: Fails to publish the local stream. Possible reasons:
          * - The local user calls [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream} to stop sending local streams.
          * - The local user calls [disableAudio]{@link agora.disableAudio} to
          * disable the entire audio or video module.
-         * - The local user calls [enableLocalAudio(false)]{@link agora.enableLocalAudio} to disable the local audio sampling or video capturing.
+         * - The local user calls [enableLocalAudio(false)]{@link agora.enableLocalAudio} to disable the local audio sampling or
+         * video capturing.
          * - The role of the local user is `AUDIENCE`.
          */
         STREAM_PUBLISH_STATE[STREAM_PUBLISH_STATE["PUB_STATE_NO_PUBLISHED"] = 1] = "PUB_STATE_NO_PUBLISHED";
-        /** 2: Publishing.
+        /** @en
+         * 2: Publishing.
          */
         STREAM_PUBLISH_STATE[STREAM_PUBLISH_STATE["PUB_STATE_PUBLISHING"] = 2] = "PUB_STATE_PUBLISHING";
-        /** 3: Publishes successfully.
+        /** @en
+         * 3: Publishes successfully.
          */
         STREAM_PUBLISH_STATE[STREAM_PUBLISH_STATE["PUB_STATE_PUBLISHED"] = 3] = "PUB_STATE_PUBLISHED";
     })(STREAM_PUBLISH_STATE = agora.STREAM_PUBLISH_STATE || (agora.STREAM_PUBLISH_STATE = {}));
-    /** The subscribing state.
+    /** @en
+     * The subscribing state.
      */
     var STREAM_SUBSCRIBE_STATE;
     (function (STREAM_SUBSCRIBE_STATE) {
-        /** 0: The initial subscribing state after joining the channel.
+        /** @en
+         * 0: The initial subscribing state after joining the channel.
          */
         STREAM_SUBSCRIBE_STATE[STREAM_SUBSCRIBE_STATE["SUB_STATE_IDLE"] = 0] = "SUB_STATE_IDLE";
-        /** 1: Fails to subscribe to the remote stream. Possible reasons:
+        /** @en
+         * 1: Fails to subscribe to the remote stream. Possible reasons:
          * - The remote user:
          *   - Calls [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream} to stop sending local streams.
          *   - Calls [disableAudio]{@link agora.disableAudio} to disable the
@@ -1140,70 +1580,107 @@ var agora;
          * audio streams.
          */
         STREAM_SUBSCRIBE_STATE[STREAM_SUBSCRIBE_STATE["SUB_STATE_NO_SUBSCRIBED"] = 1] = "SUB_STATE_NO_SUBSCRIBED";
-        /** 2: Subscribing.
+        /** @en
+         * 2: Subscribing.
          */
         STREAM_SUBSCRIBE_STATE[STREAM_SUBSCRIBE_STATE["SUB_STATE_SUBSCRIBING"] = 2] = "SUB_STATE_SUBSCRIBING";
-        /** 3: Subscribes to and receives the remote stream successfully.
+        /** @en
+         * 3: Subscribes to and receives the remote stream successfully.
          */
         STREAM_SUBSCRIBE_STATE[STREAM_SUBSCRIBE_STATE["SUB_STATE_SUBSCRIBED"] = 3] = "SUB_STATE_SUBSCRIBED";
     })(STREAM_SUBSCRIBE_STATE = agora.STREAM_SUBSCRIBE_STATE || (agora.STREAM_SUBSCRIBE_STATE = {}));
-    /** @ignore The reason for the remote video state change. */
+    /** @en
+     * @ignore
+     * The reason for the remote video state change. */
     var REMOTE_VIDEO_STATE_REASON;
     (function (REMOTE_VIDEO_STATE_REASON) {
-        /** 0: Internal reasons.
+        /** @en
+         * 0: Internal reasons.
          */
         REMOTE_VIDEO_STATE_REASON[REMOTE_VIDEO_STATE_REASON["REMOTE_VIDEO_STATE_REASON_INTERNAL"] = 0] = "REMOTE_VIDEO_STATE_REASON_INTERNAL";
-        /** 1: Network congestion.
+        /** @en
+         * 1: Network congestion.
          */
         REMOTE_VIDEO_STATE_REASON[REMOTE_VIDEO_STATE_REASON["REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION"] = 1] = "REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION";
-        /** 2: Network recovery.
+        /** @en
+         * 2: Network recovery.
          */
         REMOTE_VIDEO_STATE_REASON[REMOTE_VIDEO_STATE_REASON["REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY"] = 2] = "REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY";
-        /** 3: The local user stops receiving the remote video stream or disables the video module.
+        /** @en
+         * 3: The local user stops receiving the remote video stream or disables the video module.
          */
         REMOTE_VIDEO_STATE_REASON[REMOTE_VIDEO_STATE_REASON["REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED"] = 3] = "REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED";
-        /** 4: The local user resumes receiving the remote video stream or enables the video module.
+        /** @en
+         * 4: The local user resumes receiving the remote video stream or enables the video module.
          */
         REMOTE_VIDEO_STATE_REASON[REMOTE_VIDEO_STATE_REASON["REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED"] = 4] = "REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED";
-        /** 5: The remote user stops sending the video stream or disables the video module.
+        /** @en
+         * 5: The remote user stops sending the video stream or disables the video module.
          */
         REMOTE_VIDEO_STATE_REASON[REMOTE_VIDEO_STATE_REASON["REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"] = 5] = "REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED";
-        /** 6: The remote user resumes sending the video stream or enables the video module.
+        /** @en
+         * 6: The remote user resumes sending the video stream or enables the video module.
          */
         REMOTE_VIDEO_STATE_REASON[REMOTE_VIDEO_STATE_REASON["REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"] = 6] = "REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED";
-        /** 7: The remote user leaves the channel.
+        /** @en
+         * 7: The remote user leaves the channel.
          */
         REMOTE_VIDEO_STATE_REASON[REMOTE_VIDEO_STATE_REASON["REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE"] = 7] = "REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE";
-        /** 8: The remote audio-and-video stream falls back to the audio-only stream due to poor network conditions.
+        /** @en
+         * 8: The remote audio-and-video stream falls back to the audio-only stream due to poor network conditions.
          */
         REMOTE_VIDEO_STATE_REASON[REMOTE_VIDEO_STATE_REASON["REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK"] = 8] = "REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK";
-        /** 9: The remote audio-only stream switches back to the audio-and-video stream after the network conditions improve.
+        /** @en
+         * 9: The remote audio-only stream switches back to the audio-and-video stream after the network conditions improve.
          */
         REMOTE_VIDEO_STATE_REASON[REMOTE_VIDEO_STATE_REASON["REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY"] = 9] = "REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY";
     })(REMOTE_VIDEO_STATE_REASON = agora.REMOTE_VIDEO_STATE_REASON || (agora.REMOTE_VIDEO_STATE_REASON = {}));
-    /** @ignore Video frame rates. */
+    /** @en
+     * @ignore
+     * Video frame rates.
+     */
     var FRAME_RATE;
     (function (FRAME_RATE) {
-        /** 1: 1 fps */
+        /** @en
+         * 1: 1 fps
+         */
         FRAME_RATE[FRAME_RATE["FRAME_RATE_FPS_1"] = 1] = "FRAME_RATE_FPS_1";
-        /** 7: 7 fps */
+        /** @en
+         * 7: 7 fps
+         */
         FRAME_RATE[FRAME_RATE["FRAME_RATE_FPS_7"] = 7] = "FRAME_RATE_FPS_7";
-        /** 10: 10 fps */
+        /** @en
+         * 10: 10 fps
+         */
         FRAME_RATE[FRAME_RATE["FRAME_RATE_FPS_10"] = 10] = "FRAME_RATE_FPS_10";
-        /** 15: 15 fps */
+        /** @en
+         * 15: 15 fps
+         */
         FRAME_RATE[FRAME_RATE["FRAME_RATE_FPS_15"] = 15] = "FRAME_RATE_FPS_15";
-        /** 24: 24 fps */
+        /** @en
+         * 24: 24 fps
+         */
         FRAME_RATE[FRAME_RATE["FRAME_RATE_FPS_24"] = 24] = "FRAME_RATE_FPS_24";
-        /** 30: 30 fps */
+        /** @en
+         * 30: 30 fps
+         */
         FRAME_RATE[FRAME_RATE["FRAME_RATE_FPS_30"] = 30] = "FRAME_RATE_FPS_30";
-        /** 60: 60 fps (Windows and macOS only) */
+        /** @en
+         * 60: 60 fps (Windows and macOS only)
+         */
+        /** ce
+         * n60: 60 fps 仅适用于 WINDOWS 和 macOS 平台
+         */
         FRAME_RATE[FRAME_RATE["FRAME_RATE_FPS_60"] = 60] = "FRAME_RATE_FPS_60";
     })(FRAME_RATE = agora.FRAME_RATE || (agora.FRAME_RATE = {}));
-    /** @ignore Video output orientation modes.
+    /** @en
+     * @ignore
+     * Video output orientation modes.
      */
     var ORIENTATION_MODE;
     (function (ORIENTATION_MODE) {
-        /** 0: (Default) Adaptive mode.
+        /** @en
+         * 0: (Default) Adaptive mode.
          *
          * The video encoder adapts to the orientation mode of the video input device.
          *
@@ -1215,87 +1692,115 @@ var agora;
          * the rotational information of the video to the receiver.
          */
         ORIENTATION_MODE[ORIENTATION_MODE["ORIENTATION_MODE_ADAPTIVE"] = 0] = "ORIENTATION_MODE_ADAPTIVE";
-        /** 1: Landscape mode.
+        /** @en
+         * 1: Landscape mode.
          *
          * The video encoder always sends the video in landscape mode. The video encoder rotates the original video before sending
          * it and the rotational information is 0. This mode applies to scenarios involving CDN live streaming.
          */
         ORIENTATION_MODE[ORIENTATION_MODE["ORIENTATION_MODE_FIXED_LANDSCAPE"] = 1] = "ORIENTATION_MODE_FIXED_LANDSCAPE";
-        /** 2: Portrait mode.
+        /** @en
+         * 2: Portrait mode.
          *
          * The video encoder always sends the video in portrait mode. The video encoder rotates the original video before sending it
          * and the rotational information is 0. This mode applies to scenarios involving CDN live streaming.
          */
         ORIENTATION_MODE[ORIENTATION_MODE["ORIENTATION_MODE_FIXED_PORTRAIT"] = 2] = "ORIENTATION_MODE_FIXED_PORTRAIT";
     })(ORIENTATION_MODE = agora.ORIENTATION_MODE || (agora.ORIENTATION_MODE = {}));
-    /** @ignore Video degradation preferences when the bandwidth is a constraint. */
+    /** @en
+     * @ignore
+     * Video degradation preferences when the bandwidth is a constraint.
+     */
     var DEGRADATION_PREFERENCE;
     (function (DEGRADATION_PREFERENCE) {
-        /** 0: (Default) Degrade the frame rate in order to maintain the video quality. */
+        /** @en
+         * 0: (Default) Degrade the frame rate in order to maintain the video quality.
+         */
         DEGRADATION_PREFERENCE[DEGRADATION_PREFERENCE["MAINTAIN_QUALITY"] = 0] = "MAINTAIN_QUALITY";
-        /** 1: Degrade the video quality in order to maintain the frame rate. */
+        /** @en
+         * 1: Degrade the video quality in order to maintain the frame rate.
+         */
         DEGRADATION_PREFERENCE[DEGRADATION_PREFERENCE["MAINTAIN_FRAMERATE"] = 1] = "MAINTAIN_FRAMERATE";
-        /** 2: (For future use) Maintain a balance between the frame rate and video quality. */
+        /** @en
+         * 2: (For future use) Maintain a balance between the frame rate and video quality.
+         */
         DEGRADATION_PREFERENCE[DEGRADATION_PREFERENCE["MAINTAIN_BALANCED"] = 2] = "MAINTAIN_BALANCED";
     })(DEGRADATION_PREFERENCE = agora.DEGRADATION_PREFERENCE || (agora.DEGRADATION_PREFERENCE = {}));
-    /** @ignore Stream fallback options. */
+    /** @en
+     * @ignore
+     * Stream fallback options.
+     */
     var STREAM_FALLBACK_OPTIONS;
     (function (STREAM_FALLBACK_OPTIONS) {
-        /** 0: No fallback behavior for the local/remote video stream when the uplink/downlink network conditions are poor. The
+        /** @en
+         * 0: No fallback behavior for the local/remote video stream when the uplink/downlink network conditions are poor. The
          * quality of the stream is not guaranteed.
          */
         STREAM_FALLBACK_OPTIONS[STREAM_FALLBACK_OPTIONS["STREAM_FALLBACK_OPTION_DISABLED"] = 0] = "STREAM_FALLBACK_OPTION_DISABLED";
-        /** 1: Under poor downlink network conditions, the remote video stream, to which you subscribe, falls back to the
+        /** @en
+         * 1: Under poor downlink network conditions, the remote video stream, to which you subscribe, falls back to the
          * low-stream (low resolution and low bitrate) video. You can set this option only in the
          * [setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption} method. Nothing happens when you set this
          * in the [setLocalPublishFallbackOption]{@link agora.setLocalPublishFallbackOption} method.
          */
         STREAM_FALLBACK_OPTIONS[STREAM_FALLBACK_OPTIONS["STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"] = 1] = "STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW";
-        /** 2: Under poor uplink network conditions, the published video stream falls back to audio only.
+        /** @en
+         * 2: Under poor uplink network conditions, the published video stream falls back to audio only.
          *
          * Under poor downlink network conditions, the remote video stream, to which you subscribe, first falls back to the
          * low-stream (low resolution and low bitrate) video; and then to an audio-only stream if the network conditions worsen.
          */
         STREAM_FALLBACK_OPTIONS[STREAM_FALLBACK_OPTIONS["STREAM_FALLBACK_OPTION_AUDIO_ONLY"] = 2] = "STREAM_FALLBACK_OPTION_AUDIO_ONLY";
     })(STREAM_FALLBACK_OPTIONS = agora.STREAM_FALLBACK_OPTIONS || (agora.STREAM_FALLBACK_OPTIONS = {}));
-    /** @ignore
+    /** @en
+     * @ignore
      * Camera capturer configuration.
      */
     var CAPTURER_OUTPUT_PREFERENCE;
     (function (CAPTURER_OUTPUT_PREFERENCE) {
-        /** 0: (Default) self-adapts the camera output parameters to the system performance and network conditions to balance
+        /** @en
+         * 0: (Default) self-adapts the camera output parameters to the system performance and network conditions to balance
          * CPU consumption and video preview quality.
          */
         CAPTURER_OUTPUT_PREFERENCE[CAPTURER_OUTPUT_PREFERENCE["CAPTURER_OUTPUT_PREFERENCE_AUTO"] = 0] = "CAPTURER_OUTPUT_PREFERENCE_AUTO";
-        /** 1: Prioritizes the system performance. The SDK chooses the dimension and frame rate of the local camera capture
+        /** @en
+         * 1: Prioritizes the system performance. The SDK chooses the dimension and frame rate of the local camera capture
          * closest to those set by [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}
          */
         CAPTURER_OUTPUT_PREFERENCE[CAPTURER_OUTPUT_PREFERENCE["CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"] = 1] = "CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE";
-        /** 2: Prioritizes the local preview quality. The SDK chooses higher camera output parameters to improve the local
+        /** @en
+         * 2: Prioritizes the local preview quality. The SDK chooses higher camera output parameters to improve the local
          * video preview quality. This option requires extra CPU and RAM usage for video pre-processing.
          */
         CAPTURER_OUTPUT_PREFERENCE[CAPTURER_OUTPUT_PREFERENCE["CAPTURER_OUTPUT_PREFERENCE_PREVIEW"] = 2] = "CAPTURER_OUTPUT_PREFERENCE_PREVIEW";
     })(CAPTURER_OUTPUT_PREFERENCE = agora.CAPTURER_OUTPUT_PREFERENCE || (agora.CAPTURER_OUTPUT_PREFERENCE = {}));
-    /** The priority of the remote user.
+    /** @en
+     * The priority of the remote user.
      */
     var PRIORITY_TYPE;
     (function (PRIORITY_TYPE) {
-        /** 50: The user's priority is high.
+        /** @en
+         * 50: The user's priority is high.
          */
         PRIORITY_TYPE[PRIORITY_TYPE["PRIORITY_HIGH"] = 50] = "PRIORITY_HIGH";
-        /** 100: (Default) The user's priority is normal.
+        /** @en
+         * 100: (Default) The user's priority is normal.
          */
         PRIORITY_TYPE[PRIORITY_TYPE["PRIORITY_NORMAL"] = 100] = "PRIORITY_NORMAL";
     })(PRIORITY_TYPE = agora.PRIORITY_TYPE || (agora.PRIORITY_TYPE = {}));
-    /** Connection states. */
+    /** @en
+     * Connection states.
+     */
     var CONNECTION_STATE_TYPE;
     (function (CONNECTION_STATE_TYPE) {
-        /** 1: The SDK is disconnected from Agora's edge server.
+        /** @en
+         * 1: The SDK is disconnected from Agora's edge server.
          * - This is the initial state before calling the [joinChannel]{@link agora.joinChannel} method.
          * - The SDK also enters this state when the application calls the [leaveChannel]{@link agora.leaveChannel} method.
          */
         CONNECTION_STATE_TYPE[CONNECTION_STATE_TYPE["CONNECTION_STATE_DISCONNECTED"] = 1] = "CONNECTION_STATE_DISCONNECTED";
-        /** 2: The SDK is connecting to Agora's edge server.
+        /** @en
+         * 2: The SDK is connecting to Agora's edge server.
          * - When the application calls the [joinChannel]{@link agora.joinChannel} method, the SDK starts to establish a
          * connection to the specified channel, triggers the [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}
          * callback, and switches to the `CONNECTION_STATE_CONNECTING` state.
@@ -1305,7 +1810,8 @@ var agora;
          * [onJoinChannelSuccess]{@link AgoraRtcEvents.onJoinChannelSuccess} callback.
          */
         CONNECTION_STATE_TYPE[CONNECTION_STATE_TYPE["CONNECTION_STATE_CONNECTING"] = 2] = "CONNECTION_STATE_CONNECTING";
-        /** 3: The SDK is connected to Agora's edge server and has joined a channel. You can now publish or subscribe to a media
+        /** @en
+         * 3: The SDK is connected to Agora's edge server and has joined a channel. You can now publish or subscribe to a media
          * stream in the channel.
          *
          * If the connection to the channel is lost because, for example, if the network is down or switched, the SDK automatically
@@ -1315,7 +1821,8 @@ var agora;
          * [CONNECTION_STATE_RECONNECTING]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_RECONNECTING} state.
          */
         CONNECTION_STATE_TYPE[CONNECTION_STATE_TYPE["CONNECTION_STATE_CONNECTED"] = 3] = "CONNECTION_STATE_CONNECTED";
-        /** 4: The SDK keeps rejoining the channel after being disconnected from a joined channel because of network issues.
+        /** @en
+         * 4: The SDK keeps rejoining the channel after being disconnected from a joined channel because of network issues.
          *
          * - If the SDK cannot rejoin the channel within 10 seconds after being disconnected from Agora's edge server,
          * the SDK triggers the [onConnectionLost]{@link AgoraRtcEvents.onConnectionLost} callback, stays in the
@@ -1326,7 +1833,8 @@ var agora;
          * [CONNECTION_STATE_FAILED]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_FAILED} state, and stops rejoining the channel.
          */
         CONNECTION_STATE_TYPE[CONNECTION_STATE_TYPE["CONNECTION_STATE_RECONNECTING"] = 4] = "CONNECTION_STATE_RECONNECTING";
-        /** 5: The SDK fails to connect to Agora's edge server or join the channel.
+        /** @en
+         * 5: The SDK fails to connect to Agora's edge server or join the channel.
          *
          * You must call the [leaveChannel]{@link agora.leaveChannel} method to leave this state, and call the
          * [joinChannel]{@link agora.joinChannel} method again to rejoin the channel.
@@ -1337,26 +1845,45 @@ var agora;
          */
         CONNECTION_STATE_TYPE[CONNECTION_STATE_TYPE["CONNECTION_STATE_FAILED"] = 5] = "CONNECTION_STATE_FAILED";
     })(CONNECTION_STATE_TYPE = agora.CONNECTION_STATE_TYPE || (agora.CONNECTION_STATE_TYPE = {}));
-    /** Reasons for a connection state change. */
+    /** @en
+     * Reasons for a connection state change.
+     */
     var CONNECTION_CHANGED_REASON_TYPE;
     (function (CONNECTION_CHANGED_REASON_TYPE) {
-        /** 0: The SDK is connecting to Agora's edge server. */
+        /** @en
+         * 0: The SDK is connecting to Agora's edge server.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_CONNECTING"] = 0] = "CONNECTION_CHANGED_CONNECTING";
-        /** 1: The SDK has joined the channel successfully. */
+        /** @en
+         * 1: The SDK has joined the channel successfully.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_JOIN_SUCCESS"] = 1] = "CONNECTION_CHANGED_JOIN_SUCCESS";
-        /** 2: The connection between the SDK and Agora's edge server is interrupted. */
+        /** @en
+         * 2: The connection between the SDK and Agora's edge server is interrupted.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_INTERRUPTED"] = 2] = "CONNECTION_CHANGED_INTERRUPTED";
-        /** 3: The connection between the SDK and Agora's edge server is banned by Agora's edge server. */
+        /** @en
+         * 3: The connection between the SDK and Agora's edge server is banned by Agora's edge server.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_BANNED_BY_SERVER"] = 3] = "CONNECTION_CHANGED_BANNED_BY_SERVER";
-        /** 4: The SDK fails to join the channel for more than 20 minutes and stops reconnecting to the channel. */
+        /** @en
+         * 4: The SDK fails to join the channel for more than 20 minutes and stops reconnecting to the channel.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_JOIN_FAILED"] = 4] = "CONNECTION_CHANGED_JOIN_FAILED";
-        /** 5: The SDK has left the channel. */
+        /** @en
+         * 5: The SDK has left the channel.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_LEAVE_CHANNEL"] = 5] = "CONNECTION_CHANGED_LEAVE_CHANNEL";
-        /** 6: The connection failed since Appid is not valid. */
+        /** @en
+         * 6: The connection failed since Appid is not valid.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_INVALID_APP_ID"] = 6] = "CONNECTION_CHANGED_INVALID_APP_ID";
-        /** 7: The connection failed since channel name is not valid. */
+        /** @en
+         * 7: The connection failed since channel name is not valid.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_INVALID_CHANNEL_NAME"] = 7] = "CONNECTION_CHANGED_INVALID_CHANNEL_NAME";
-        /** 8: The connection failed since token is not valid, possibly because:
+        /** @en
+         * 8: The connection failed since token is not valid, possibly because:
          *
          * - The App Certificate for the project is enabled in Console, but you do not use Token when joining the channel.
          * If you enable the App Certificate, you must use a token to join the channel.
@@ -1364,228 +1891,333 @@ var agora;
          * you pass for generating the token.
          */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_INVALID_TOKEN"] = 8] = "CONNECTION_CHANGED_INVALID_TOKEN";
-        /** 9: The connection failed since token is expired. */
+        /** @en
+         * 9: The connection failed since token is expired.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_TOKEN_EXPIRED"] = 9] = "CONNECTION_CHANGED_TOKEN_EXPIRED";
-        /** 10: The connection is rejected by server. */
+        /** @en
+         * 10: The connection is rejected by server.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_REJECTED_BY_SERVER"] = 10] = "CONNECTION_CHANGED_REJECTED_BY_SERVER";
-        /** 11: The connection changed to reconnecting since SDK has set a proxy server. */
+        /** @en
+         * 11: The connection changed to reconnecting since SDK has set a proxy server.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_SETTING_PROXY_SERVER"] = 11] = "CONNECTION_CHANGED_SETTING_PROXY_SERVER";
-        /** 12: When SDK is in connection failed, the renew token operation will make it connecting. */
+        /** @en
+         * 12: When SDK is in connection failed, the renew token operation will make it connecting.
+         */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_RENEW_TOKEN"] = 12] = "CONNECTION_CHANGED_RENEW_TOKEN";
-        /** 13: The IP Address of SDK client has changed. i.e., Network type or IP/Port changed by network operator might
+        /** @en
+         * 13: The IP Address of SDK client has changed. i.e., Network type or IP/Port changed by network operator might
          * change client IP address.
          */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"] = 13] = "CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED";
-        /** 14: Timeout for the keep-alive of the connection between the SDK and Agora's edge server. The connection state
+        /** @en
+         * 14: Timeout for the keep-alive of the connection between the SDK and Agora's edge server. The connection state
          * changes to [CONNECTION_STATE_RECONNECTING]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_RECONNECTING}.
          */
         CONNECTION_CHANGED_REASON_TYPE[CONNECTION_CHANGED_REASON_TYPE["CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"] = 14] = "CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT";
     })(CONNECTION_CHANGED_REASON_TYPE = agora.CONNECTION_CHANGED_REASON_TYPE || (agora.CONNECTION_CHANGED_REASON_TYPE = {}));
-    /** Network type. */
+    /** @en
+     * Network type.
+     */
     var NETWORK_TYPE;
     (function (NETWORK_TYPE) {
-        /** -1: The network type is unknown. */
+        /** @en
+         * -1: The network type is unknown.
+         */
         NETWORK_TYPE[NETWORK_TYPE["NETWORK_TYPE_UNKNOWN"] = -1] = "NETWORK_TYPE_UNKNOWN";
-        /** 0: The SDK disconnects from the network. */
+        /** @en
+         * 0: The SDK disconnects from the network.
+         */
         NETWORK_TYPE[NETWORK_TYPE["NETWORK_TYPE_DISCONNECTED"] = 0] = "NETWORK_TYPE_DISCONNECTED";
-        /** 1: The network type is LAN. */
+        /** @en
+         * 1: The network type is LAN.
+         */
         NETWORK_TYPE[NETWORK_TYPE["NETWORK_TYPE_LAN"] = 1] = "NETWORK_TYPE_LAN";
-        /** 2: The network type is Wi-Fi(including hotspots). */
+        /** @en
+         * 2: The network type is Wi-Fi(including hotspots).
+         */
         NETWORK_TYPE[NETWORK_TYPE["NETWORK_TYPE_WIFI"] = 2] = "NETWORK_TYPE_WIFI";
-        /** 3: The network type is mobile 2G. */
+        /** @en
+         * 3: The network type is mobile 2G.
+         */
         NETWORK_TYPE[NETWORK_TYPE["NETWORK_TYPE_MOBILE_2G"] = 3] = "NETWORK_TYPE_MOBILE_2G";
-        /** 4: The network type is mobile 3G. */
+        /** @en
+         * 4: The network type is mobile 3G.
+         */
         NETWORK_TYPE[NETWORK_TYPE["NETWORK_TYPE_MOBILE_3G"] = 4] = "NETWORK_TYPE_MOBILE_3G";
-        /** 5: The network type is mobile 4G. */
+        /** @en
+         * 5: The network type is mobile 4G.
+         */
         NETWORK_TYPE[NETWORK_TYPE["NETWORK_TYPE_MOBILE_4G"] = 5] = "NETWORK_TYPE_MOBILE_4G";
     })(NETWORK_TYPE = agora.NETWORK_TYPE || (agora.NETWORK_TYPE = {}));
-    /** States of the last-mile network probe test. */
+    /** @en
+     * States of the last-mile network probe test.
+     */
     var LASTMILE_PROBE_RESULT_STATE;
     (function (LASTMILE_PROBE_RESULT_STATE) {
-        /** 1: The last-mile network probe test is complete. */
+        /** @en
+         * 1: The last-mile network probe test is complete.
+         */
         LASTMILE_PROBE_RESULT_STATE[LASTMILE_PROBE_RESULT_STATE["LASTMILE_PROBE_RESULT_COMPLETE"] = 1] = "LASTMILE_PROBE_RESULT_COMPLETE";
-        /** 2: The last-mile network probe test is incomplete and the bandwidth estimation is not available, probably due to
+        /** @en
+         * 2: The last-mile network probe test is incomplete and the bandwidth estimation is not available, probably due to
          * limited test resources.
          */
         LASTMILE_PROBE_RESULT_STATE[LASTMILE_PROBE_RESULT_STATE["LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"] = 2] = "LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE";
-        /** 3: The last-mile network probe test is not carried out, probably due to poor network conditions. */
+        /** @en
+         * 3: The last-mile network probe test is not carried out, probably due to poor network conditions. */
         LASTMILE_PROBE_RESULT_STATE[LASTMILE_PROBE_RESULT_STATE["LASTMILE_PROBE_RESULT_UNAVAILABLE"] = 3] = "LASTMILE_PROBE_RESULT_UNAVAILABLE";
     })(LASTMILE_PROBE_RESULT_STATE = agora.LASTMILE_PROBE_RESULT_STATE || (agora.LASTMILE_PROBE_RESULT_STATE = {}));
-    /** Audio output routing. */
+    /** @en
+     * Audio output routing.
+     */
     var AUDIO_ROUTE_TYPE;
     (function (AUDIO_ROUTE_TYPE) {
-        /** Default.
+        /** @en
+         * Default.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_DEFAULT"] = -1] = "AUDIO_ROUTE_DEFAULT";
-        /** Headset.
+        /** @en
+         * Headset.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_HEADSET"] = 0] = "AUDIO_ROUTE_HEADSET";
-        /** Earpiece.
+        /** @en
+         * Earpiece.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_EARPIECE"] = 1] = "AUDIO_ROUTE_EARPIECE";
-        /** Headset with no microphone.
+        /** @en
+         * Headset with no microphone.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_HEADSET_NO_MIC"] = 2] = "AUDIO_ROUTE_HEADSET_NO_MIC";
-        /** Speakerphone.
+        /** @en
+         * Speakerphone.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_SPEAKERPHONE"] = 3] = "AUDIO_ROUTE_SPEAKERPHONE";
-        /** Loudspeaker.
+        /** @en
+         * Loudspeaker.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_LOUDSPEAKER"] = 4] = "AUDIO_ROUTE_LOUDSPEAKER";
-        /** Bluetooth headset.
+        /** @en
+         * Bluetooth headset.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_BLUETOOTH"] = 5] = "AUDIO_ROUTE_BLUETOOTH";
-        /** USB peripheral.
+        /** @en
+         * USB peripheral.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_USB"] = 6] = "AUDIO_ROUTE_USB";
-        /** HDMI peripheral.
+        /** @en
+         * HDMI peripheral.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_HDMI"] = 7] = "AUDIO_ROUTE_HDMI";
-        /** DisplayPort peripheral.
+        /** @en
+         * DisplayPort peripheral.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_DISPLAYPORT"] = 8] = "AUDIO_ROUTE_DISPLAYPORT";
-        /** Apple AirPlay.
+        /** @en
+         * Apple AirPlay.
          */
         AUDIO_ROUTE_TYPE[AUDIO_ROUTE_TYPE["AUDIO_ROUTE_AIRPLAY"] = 9] = "AUDIO_ROUTE_AIRPLAY";
     })(AUDIO_ROUTE_TYPE = agora.AUDIO_ROUTE_TYPE || (agora.AUDIO_ROUTE_TYPE = {}));
-    /** Audio session restriction. */
+    /** @en
+     * Audio session restriction.
+     */
     var AUDIO_SESSION_OPERATION_RESTRICTION;
     (function (AUDIO_SESSION_OPERATION_RESTRICTION) {
-        /** No restriction, the SDK has full control of the audio session operations. */
+        /** @en
+         * No restriction, the SDK has full control of the audio session operations.
+         */
         AUDIO_SESSION_OPERATION_RESTRICTION[AUDIO_SESSION_OPERATION_RESTRICTION["AUDIO_SESSION_OPERATION_RESTRICTION_NONE"] = 0] = "AUDIO_SESSION_OPERATION_RESTRICTION_NONE";
-        /** The SDK does not change the audio session category. */
+        /** @en
+         * The SDK does not change the audio session category.
+         */
         AUDIO_SESSION_OPERATION_RESTRICTION[AUDIO_SESSION_OPERATION_RESTRICTION["AUDIO_SESSION_OPERATION_RESTRICTION_SET_CATEGORY"] = 1] = "AUDIO_SESSION_OPERATION_RESTRICTION_SET_CATEGORY";
-        /** The SDK does not change any setting of the audio session (category, mode, categoryOptions). */
+        /** @en
+         * The SDK does not change any setting of the audio session (category, mode, categoryOptions).
+         */
         AUDIO_SESSION_OPERATION_RESTRICTION[AUDIO_SESSION_OPERATION_RESTRICTION["AUDIO_SESSION_OPERATION_RESTRICTION_CONFIGURE_SESSION"] = 2] = "AUDIO_SESSION_OPERATION_RESTRICTION_CONFIGURE_SESSION";
-        /** The SDK keeps the audio session active when leaving a channel. */
+        /** @en
+         * The SDK keeps the audio session active when leaving a channel.
+         */
         AUDIO_SESSION_OPERATION_RESTRICTION[AUDIO_SESSION_OPERATION_RESTRICTION["AUDIO_SESSION_OPERATION_RESTRICTION_DEACTIVATE_SESSION"] = 4] = "AUDIO_SESSION_OPERATION_RESTRICTION_DEACTIVATE_SESSION";
-        /** The SDK does not configure the audio session anymore. */
+        /** @en
+         * The SDK does not configure the audio session anymore.
+         */
         AUDIO_SESSION_OPERATION_RESTRICTION[AUDIO_SESSION_OPERATION_RESTRICTION["AUDIO_SESSION_OPERATION_RESTRICTION_ALL"] = 128] = "AUDIO_SESSION_OPERATION_RESTRICTION_ALL";
     })(AUDIO_SESSION_OPERATION_RESTRICTION = agora.AUDIO_SESSION_OPERATION_RESTRICTION || (agora.AUDIO_SESSION_OPERATION_RESTRICTION = {}));
-    /** @ignore
+    /** @en
+     * @ignore
      * The direction of the camera.
      */
     var CAMERA_DIRECTION;
     (function (CAMERA_DIRECTION) {
-        /** The rear camera. */
+        /** @en
+         * The rear camera.
+         */
         CAMERA_DIRECTION[CAMERA_DIRECTION["CAMERA_REAR"] = 0] = "CAMERA_REAR";
-        /** The front camera. */
+        /** @en
+         * The front camera.
+         */
         CAMERA_DIRECTION[CAMERA_DIRECTION["CAMERA_FRONT"] = 1] = "CAMERA_FRONT";
     })(CAMERA_DIRECTION = agora.CAMERA_DIRECTION || (agora.CAMERA_DIRECTION = {}));
-    /** @ignore Quality change of the local video in terms of target frame rate and target bit rate since last count.
+    /** @en
+     * @ignore
+     * Quality change of the local video in terms of target frame rate and target bit rate since last count.
      */
     var QUALITY_ADAPT_INDICATION;
     (function (QUALITY_ADAPT_INDICATION) {
-        /** The quality of the local video stays the same. */
+        /** @en
+         * The quality of the local video stays the same.
+         */
         QUALITY_ADAPT_INDICATION[QUALITY_ADAPT_INDICATION["ADAPT_NONE"] = 0] = "ADAPT_NONE";
-        /** The quality improves because the network bandwidth increases. */
+        /** @en
+         * The quality improves because the network bandwidth increases.
+         */
         QUALITY_ADAPT_INDICATION[QUALITY_ADAPT_INDICATION["ADAPT_UP_BANDWIDTH"] = 1] = "ADAPT_UP_BANDWIDTH";
-        /** The quality worsens because the network bandwidth decreases. */
+        /** @en
+         * The quality worsens because the network bandwidth decreases.
+         */
         QUALITY_ADAPT_INDICATION[QUALITY_ADAPT_INDICATION["ADAPT_DOWN_BANDWIDTH"] = 2] = "ADAPT_DOWN_BANDWIDTH";
     })(QUALITY_ADAPT_INDICATION = agora.QUALITY_ADAPT_INDICATION || (agora.QUALITY_ADAPT_INDICATION = {}));
-    /** The error code in CHANNEL_MEDIA_RELAY_ERROR. */
+    /** @en
+     * The error code in CHANNEL_MEDIA_RELAY_ERROR.
+     */
     var CHANNEL_MEDIA_RELAY_ERROR;
     (function (CHANNEL_MEDIA_RELAY_ERROR) {
-        /** 0: The state is normal.
+        /** @en
+         * 0: The state is normal.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_OK"] = 0] = "RELAY_OK";
-        /** 1: An error occurs in the server response.
+        /** @en
+         * 1: An error occurs in the server response.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_SERVER_ERROR_RESPONSE"] = 1] = "RELAY_ERROR_SERVER_ERROR_RESPONSE";
-        /** 2: No server response. You can call the
+        /** @en
+         * 2: No server response. You can call the
          * [leaveChannel]{@link agora.leaveChannel} method to leave the channel.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_SERVER_NO_RESPONSE"] = 2] = "RELAY_ERROR_SERVER_NO_RESPONSE";
-        /** 3: The SDK fails to access the service, probably due to limited
+        /** @en
+         * 3: The SDK fails to access the service, probably due to limited
          * resources of the server.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_NO_RESOURCE_AVAILABLE"] = 3] = "RELAY_ERROR_NO_RESOURCE_AVAILABLE";
-        /** 4: Fails to send the relay request.
+        /** @en
+         * 4: Fails to send the relay request.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_FAILED_JOIN_SRC"] = 4] = "RELAY_ERROR_FAILED_JOIN_SRC";
-        /** 5: Fails to accept the relay request.
+        /** @en
+         * 5: Fails to accept the relay request.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_FAILED_JOIN_DEST"] = 5] = "RELAY_ERROR_FAILED_JOIN_DEST";
-        /** 6: The server fails to receive the media stream.
+        /** @en
+         * 6: The server fails to receive the media stream.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC"] = 6] = "RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC";
-        /** 7: The server fails to send the media stream.
+        /** @en
+         * 7: The server fails to send the media stream.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST"] = 7] = "RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST";
-        /** 8: The SDK disconnects from the server due to poor network
+        /** @en
+         * 8: The SDK disconnects from the server due to poor network
          * connections. You can call the [leaveChannel]{@link agora.leaveChannel} method to leave the channel.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_SERVER_CONNECTION_LOST"] = 8] = "RELAY_ERROR_SERVER_CONNECTION_LOST";
-        /** 9: An internal error occurs in the server.
+        /** @en
+         * 9: An internal error occurs in the server.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_INTERNAL_ERROR"] = 9] = "RELAY_ERROR_INTERNAL_ERROR";
-        /** 10: The token of the source channel has expired.
+        /** @en
+         * 10: The token of the source channel has expired.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_SRC_TOKEN_EXPIRED"] = 10] = "RELAY_ERROR_SRC_TOKEN_EXPIRED";
-        /** 11: The token of the destination channel has expired.
+        /** @en
+         * 11: The token of the destination channel has expired.
          */
         CHANNEL_MEDIA_RELAY_ERROR[CHANNEL_MEDIA_RELAY_ERROR["RELAY_ERROR_DEST_TOKEN_EXPIRED"] = 11] = "RELAY_ERROR_DEST_TOKEN_EXPIRED";
     })(CHANNEL_MEDIA_RELAY_ERROR = agora.CHANNEL_MEDIA_RELAY_ERROR || (agora.CHANNEL_MEDIA_RELAY_ERROR = {}));
-    /** The event code in CHANNEL_MEDIA_RELAY_EVENT. */
+    /** @en
+     * The event code in CHANNEL_MEDIA_RELAY_EVENT.
+     */
     var CHANNEL_MEDIA_RELAY_EVENT;
     (function (CHANNEL_MEDIA_RELAY_EVENT) {
-        /** 0: The user disconnects from the server due to poor network
+        /** @en
+         * 0: The user disconnects from the server due to poor network
          * connections.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_NETWORK_DISCONNECTED"] = 0] = "RELAY_EVENT_NETWORK_DISCONNECTED";
-        /** 1: The network reconnects.
+        /** @en
+         * 1: The network reconnects.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_NETWORK_CONNECTED"] = 1] = "RELAY_EVENT_NETWORK_CONNECTED";
-        /** 2: The user joins the source channel.
+        /** @en
+         * 2: The user joins the source channel.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_PACKET_JOINED_SRC_CHANNEL"] = 2] = "RELAY_EVENT_PACKET_JOINED_SRC_CHANNEL";
-        /** 3: The user joins the destination channel.
+        /** @en
+         * 3: The user joins the destination channel.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_PACKET_JOINED_DEST_CHANNEL"] = 3] = "RELAY_EVENT_PACKET_JOINED_DEST_CHANNEL";
-        /** 4: The SDK starts relaying the media stream to the destination channel.
+        /** @en
+         * 4: The SDK starts relaying the media stream to the destination channel.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"] = 4] = "RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL";
-        /** @ignore 5: The server receives the video stream from the source channel.
+        /** @en
+         * @ignore 5: The server receives the video stream from the source channel.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_PACKET_RECEIVED_VIDEO_FROM_SRC"] = 5] = "RELAY_EVENT_PACKET_RECEIVED_VIDEO_FROM_SRC";
-        /** 6: The server receives the audio stream from the source channel.
+        /** @en
+         * 6: The server receives the audio stream from the source channel.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_PACKET_RECEIVED_AUDIO_FROM_SRC"] = 6] = "RELAY_EVENT_PACKET_RECEIVED_AUDIO_FROM_SRC";
-        /** 7: The destination channel is updated.
+        /** @en
+         * 7: The destination channel is updated.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL"] = 7] = "RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL";
-        /** 8: The destination channel update fails due to internal reasons.
+        /** @en
+         * 8: The destination channel update fails due to internal reasons.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED"] = 8] = "RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED";
-        /** 9: The destination channel does not change, which means that the
+        /** @en
+         * 9: The destination channel does not change, which means that the
          * destination channel fails to be updated.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_NOT_CHANGE"] = 9] = "RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_NOT_CHANGE";
-        /** 10: The destination channel name is `null`.
+        /** @en
+         * 10: The destination channel name is `null`.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_IS_NULL"] = 10] = "RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_IS_NULL";
-        /** @ignore 11: The video profile is sent to the server.
+        /** @en
+         * @ignore 11: The video profile is sent to the server.
          */
         CHANNEL_MEDIA_RELAY_EVENT[CHANNEL_MEDIA_RELAY_EVENT["RELAY_EVENT_VIDEO_PROFILE_UPDATE"] = 11] = "RELAY_EVENT_VIDEO_PROFILE_UPDATE";
     })(CHANNEL_MEDIA_RELAY_EVENT = agora.CHANNEL_MEDIA_RELAY_EVENT || (agora.CHANNEL_MEDIA_RELAY_EVENT = {}));
-    /** The state code in CHANNEL_MEDIA_RELAY_STATE. */
+    /** @en
+     * The state code in CHANNEL_MEDIA_RELAY_STATE.
+     */
     var CHANNEL_MEDIA_RELAY_STATE;
     (function (CHANNEL_MEDIA_RELAY_STATE) {
-        /** 0: The SDK is initializing.
+        /** @en
+         * 0: The SDK is initializing.
          */
         CHANNEL_MEDIA_RELAY_STATE[CHANNEL_MEDIA_RELAY_STATE["RELAY_STATE_IDLE"] = 0] = "RELAY_STATE_IDLE";
-        /** 1: The SDK tries to relay the media stream to the destination channel.
+        /** @en
+         * 1: The SDK tries to relay the media stream to the destination channel.
          */
         CHANNEL_MEDIA_RELAY_STATE[CHANNEL_MEDIA_RELAY_STATE["RELAY_STATE_CONNECTING"] = 1] = "RELAY_STATE_CONNECTING";
-        /** 2: The SDK successfully relays the media stream to the destination
+        /** @en
+         * 2: The SDK successfully relays the media stream to the destination
          * channel.
          */
         CHANNEL_MEDIA_RELAY_STATE[CHANNEL_MEDIA_RELAY_STATE["RELAY_STATE_RUNNING"] = 2] = "RELAY_STATE_RUNNING";
-        /** 3: A failure occurs. See the details in code.
+        /** @en
+         * 3: A failure occurs. See the details in code.
          */
         CHANNEL_MEDIA_RELAY_STATE[CHANNEL_MEDIA_RELAY_STATE["RELAY_STATE_FAILURE"] = 3] = "RELAY_STATE_FAILURE";
     })(CHANNEL_MEDIA_RELAY_STATE = agora.CHANNEL_MEDIA_RELAY_STATE || (agora.CHANNEL_MEDIA_RELAY_STATE = {}));
-    /** @ignore
+    /** @en
+     * @ignore
      * (Recommended) The standard bitrate set in the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} method.
      *
      * In this mode, the bitrates differ between the live interactive streaming and communication profiles:
@@ -1593,164 +2225,198 @@ var agora;
      * - `LIVE_BROADCASTING` profile: The video bitrate is twice the base bitrate.
      */
     agora.STANDARD_BITRATE = 0;
-    /** @ignore
+    /** @en
+     * @ignore
      * The compatible bitrate set in the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} method.
      * The bitrate remains the same regardless of the channel profile. If you choose this mode in the `LIVE_BROADCASTING` profile, the
      * video frame rate may be lower than the set value.
      */
     agora.COMPATIBLE_BITRATE = -1;
-    /** @ignore
+    /** @en
+     * @ignore
      * Use the default minimum bitrate.
      */
     agora.DEFAULT_MIN_BITRATE = -1;
-    /**  @deprecated Lifecycle of the CDN live video stream.
+    /** @en
+     * @deprecated
+     * Lifecycle of the CDN live video stream.
      */
     var RTMP_STREAM_LIFE_CYCLE_TYPE;
     (function (RTMP_STREAM_LIFE_CYCLE_TYPE) {
-        /** Bind to the channel lifecycle. If all hosts leave the channel, the CDN live streaming stops after 30 seconds.
+        /** @en
+         * Bind to the channel lifecycle. If all hosts leave the channel, the CDN live streaming stops after 30 seconds.
          */
         RTMP_STREAM_LIFE_CYCLE_TYPE[RTMP_STREAM_LIFE_CYCLE_TYPE["RTMP_STREAM_LIFE_CYCLE_BIND2CHANNEL"] = 1] = "RTMP_STREAM_LIFE_CYCLE_BIND2CHANNEL";
-        /** Bind to the owner of the RTMP stream. If the owner leaves the channel, the CDN live streaming stops immediately.
+        /** @en
+         * Bind to the owner of the RTMP stream. If the owner leaves the channel, the CDN live streaming stops immediately.
          */
         RTMP_STREAM_LIFE_CYCLE_TYPE[RTMP_STREAM_LIFE_CYCLE_TYPE["RTMP_STREAM_LIFE_CYCLE_BIND2OWNER"] = 2] = "RTMP_STREAM_LIFE_CYCLE_BIND2OWNER";
     })(RTMP_STREAM_LIFE_CYCLE_TYPE = agora.RTMP_STREAM_LIFE_CYCLE_TYPE || (agora.RTMP_STREAM_LIFE_CYCLE_TYPE = {}));
-    /** @ignore
+    /** @en
+     * @ignore
      * Content hints for screen sharing.
      */
     var VideoContentHint;
     (function (VideoContentHint) {
-        /** (Default) No content hint.
+        /** @en
+         * (Default) No content hint.
          */
         VideoContentHint[VideoContentHint["CONTENT_HINT_NONE"] = 0] = "CONTENT_HINT_NONE";
-        /** Motion-intensive content. Choose this option if you prefer smoothness or when you are sharing a video clip, movie, or
+        /** @en
+         * Motion-intensive content. Choose this option if you prefer smoothness or when you are sharing a video clip, movie, or
          * video game.
          */
         VideoContentHint[VideoContentHint["CONTENT_HINT_MOTION"] = 1] = "CONTENT_HINT_MOTION";
-        /** Motionless content. Choose this option if you prefer sharpness or when you are sharing a picture, PowerPoint slide, or text.
+        /** @en
+         * Motionless content. Choose this option if you prefer sharpness or when you are sharing a picture, PowerPoint slide, or text.
          */
         VideoContentHint[VideoContentHint["CONTENT_HINT_DETAILS"] = 2] = "CONTENT_HINT_DETAILS";
     })(VideoContentHint = agora.VideoContentHint || (agora.VideoContentHint = {}));
-    /**
+    /** @en
      * Regions for connection.
      */
     var AREA_CODE;
     (function (AREA_CODE) {
-        /**
+        /** @en
          * Mainland China.
          */
         AREA_CODE[AREA_CODE["AREA_CODE_CN"] = 1] = "AREA_CODE_CN";
-        /**
+        /** @en
          * North America.
          */
         AREA_CODE[AREA_CODE["AREA_CODE_NA"] = 2] = "AREA_CODE_NA";
-        /**
+        /** @en
          * Europe.
          */
         AREA_CODE[AREA_CODE["AREA_CODE_EUR"] = 4] = "AREA_CODE_EUR";
-        /**
+        /** @en
          * Asia, excluding Mainland China.
          */
         AREA_CODE[AREA_CODE["AREA_CODE_AS"] = 8] = "AREA_CODE_AS";
-        /**
+        /** @en
          * Japan.
          */
         AREA_CODE[AREA_CODE["AREA_CODE_JAPAN"] = 16] = "AREA_CODE_JAPAN";
-        /**
+        /** @en
          * India.
          */
         AREA_CODE[AREA_CODE["AREA_CODE_INDIA"] = 32] = "AREA_CODE_INDIA";
-        /**
+        /** @en
          * (Default) Global.
          */
         AREA_CODE[AREA_CODE["AREA_CODE_GLOBAL"] = 4294967295] = "AREA_CODE_GLOBAL";
     })(AREA_CODE = agora.AREA_CODE || (agora.AREA_CODE = {}));
+    /**
+     * @ignore
+     */
     var ENCRYPTION_CONFIG;
     (function (ENCRYPTION_CONFIG) {
-        /**
-         * - 1: Force set master key and mode;
-         * - 0: Not force set, checking whether encryption plugin exists
-         */
         ENCRYPTION_CONFIG[ENCRYPTION_CONFIG["ENCRYPTION_FORCE_SETTING"] = 1] = "ENCRYPTION_FORCE_SETTING";
-        /**
-         * - 1: Force not encrypting packet;
-         * - 0: Not force encrypting;
-         */
         ENCRYPTION_CONFIG[ENCRYPTION_CONFIG["ENCRYPTION_FORCE_DISABLE_PACKET"] = 2] = "ENCRYPTION_FORCE_DISABLE_PACKET";
     })(ENCRYPTION_CONFIG = agora.ENCRYPTION_CONFIG || (agora.ENCRYPTION_CONFIG = {}));
-    /** Encryption mode. */
+    /** @en
+     * Encryption mode.
+     */
     var ENCRYPTION_MODE;
     (function (ENCRYPTION_MODE) {
-        /** 1: (Default) 128-bit AES encryption, XTS mode. */
+        /** @en
+         * 1: (Default) 128-bit AES encryption, XTS mode.
+         */
         ENCRYPTION_MODE[ENCRYPTION_MODE["AES_128_XTS"] = 1] = "AES_128_XTS";
-        /** 2: 128-bit AES encryption, ECB mode. */
+        /** @en
+         * 2: 128-bit AES encryption, ECB mode.
+         */
         ENCRYPTION_MODE[ENCRYPTION_MODE["AES_128_ECB"] = 2] = "AES_128_ECB";
-        /** 3: 256-bit AES encryption, XTS mode. */
+        /** @en
+         * 3: 256-bit AES encryption, XTS mode.
+         */
         ENCRYPTION_MODE[ENCRYPTION_MODE["AES_256_XTS"] = 3] = "AES_256_XTS";
-        /** 4: 128-bit SM4 encryption, ECB mode. */
+        /** @en
+         * 4: 128-bit SM4 encryption, ECB mode.
+         */
         ENCRYPTION_MODE[ENCRYPTION_MODE["SM4_128_ECB"] = 4] = "SM4_128_ECB";
-        /** Enumerator boundary. */
+        /** @en
+         * Enumerator boundary.
+         */
         ENCRYPTION_MODE[ENCRYPTION_MODE["MODE_END"] = 5] = "MODE_END";
     })(ENCRYPTION_MODE = agora.ENCRYPTION_MODE || (agora.ENCRYPTION_MODE = {}));
-    /** Error code. */
+    /** @en
+     * Error code.
+     */
     var ERROR_CODE_TYPE;
     (function (ERROR_CODE_TYPE) {
-        /** 0: No error occurs.
+        /** @en
+         * 0: No error occurs.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_OK"] = 0] = "ERR_OK";
         //1~1000
-        /** 1: A general error occurs (no specified reason).
+        /** @en
+         * 1: A general error occurs (no specified reason).
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_FAILED"] = 1] = "ERR_FAILED";
-        /** 2: An invalid parameter is used. For example, the specific channel name includes illegal characters.
+        /** @en
+         * 2: An invalid parameter is used. For example, the specific channel name includes illegal characters.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_INVALID_ARGUMENT"] = 2] = "ERR_INVALID_ARGUMENT";
-        /** 3: The SDK module is not ready. Possible solutions:
-
-         - Check the audio device.
-         - Check the completeness of the application.
-         - Re-initialize the `agora` instance.
+        /** @en
+         * 3: The SDK module is not ready. Possible solutions:
+         * - Check the audio device.
+         * - Check the completeness of the application.
+         * - Re-initialize the Agora engine.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_NOT_READY"] = 3] = "ERR_NOT_READY";
-        /** 4: The SDK does not support this function.
+        /** @en
+         * 4: The SDK does not support this function.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_NOT_SUPPORTED"] = 4] = "ERR_NOT_SUPPORTED";
-        /** 5: The request is rejected.
+        /** @en
+         * 5: The request is rejected.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_REFUSED"] = 5] = "ERR_REFUSED";
-        /** 6: The buffer size is not big enough to store the returned data.
+        /** @en
+         * 6: The buffer size is not big enough to store the returned data.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_BUFFER_TOO_SMALL"] = 6] = "ERR_BUFFER_TOO_SMALL";
-        /** 7: The SDK is not initialized before calling this method.
+        /** @en
+         * 7: The SDK is not initialized before calling this method.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_NOT_INITIALIZED"] = 7] = "ERR_NOT_INITIALIZED";
-        /** 9: No permission exists. Check if the user has granted access to the audio or video device.
+        /** @en
+         * 9: No permission exists. Check if the user has granted access to the audio or video device.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_NO_PERMISSION"] = 9] = "ERR_NO_PERMISSION";
-        /** 10: An API method timeout occurs. Some API methods require the SDK to return the execution result, and this error occurs if
+        /** @en
+         * 10: An API method timeout occurs. Some API methods require the SDK to return the execution result, and this error occurs if
          * the request takes too long (more than 10 seconds) for the SDK to process.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_TIMEDOUT"] = 10] = "ERR_TIMEDOUT";
-        /** 11: The request is canceled. This is for internal SDK use only, and it does not return to the application through any method
+        /** @en
+         * 11: The request is canceled. This is for internal SDK use only, and it does not return to the application through any method
          * or callback.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_CANCELED"] = 11] = "ERR_CANCELED";
-        /** 12: The method is called too often. This is for internal SDK use only, and it does not return to the application through any
+        /** @en
+         * 12: The method is called too often. This is for internal SDK use only, and it does not return to the application through any
          * method or callback.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_TOO_OFTEN"] = 12] = "ERR_TOO_OFTEN";
-        /** 13: The SDK fails to bind to the network socket. This is for internal SDK use only, and it does not return to the application
+        /** @en
+         * 13: The SDK fails to bind to the network socket. This is for internal SDK use only, and it does not return to the application
          * through any method or callback.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_BIND_SOCKET"] = 13] = "ERR_BIND_SOCKET";
-        /** 14: The network is unavailable. This is for internal SDK use only, and it does not return to the application through any
+        /** @en
+         * 14: The network is unavailable. This is for internal SDK use only, and it does not return to the application through any
          * method or callback.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_NET_DOWN"] = 14] = "ERR_NET_DOWN";
-        /** 15: No network buffers are available. This is for internal SDK internal use only, and it does not return to the application
+        /** @en
+         * 15: No network buffers are available. This is for internal SDK internal use only, and it does not return to the application
          * through any method or callback.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_NET_NOBUFS"] = 15] = "ERR_NET_NOBUFS";
-        /** 17: The request to join the channel is rejected.
+        /** @en
+         * 17: The request to join the channel is rejected.
          *
          * - This error usually occurs when the user is already in the channel, and still calls the method to join the channel, for
          * example, [joinChannel]{@link agora.joinChannel} .
@@ -1759,7 +2425,8 @@ var agora;
          * [stopEchoTest]{@link agora.stopEchoTest} before joining a channel.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_JOIN_CHANNEL_REJECTED"] = 17] = "ERR_JOIN_CHANNEL_REJECTED";
-        /** 18: The request to leave the channel is rejected.
+        /** @en
+         * 18: The request to leave the channel is rejected.
          *
          * This error usually occurs:
          * - When the user has left the channel and still calls [leaveChannel]{@link agora.leaveChannel} to leave the channel.
@@ -1768,29 +2435,37 @@ var agora;
          * In this case, no extra operation is needed.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_LEAVE_CHANNEL_REJECTED"] = 18] = "ERR_LEAVE_CHANNEL_REJECTED";
-        /** 19: Resources are occupied and cannot be reused.
+        /** @en
+         * 19: Resources are occupied and cannot be reused.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ALREADY_IN_USE"] = 19] = "ERR_ALREADY_IN_USE";
-        /** 20: The SDK gives up the request due to too many requests.
+        /** @en
+         * 20: The SDK gives up the request due to too many requests.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ABORTED"] = 20] = "ERR_ABORTED";
-        /** 21: In Windows, specific firewall settings can cause the SDK to fail to initialize and crash.
+        /** @en
+         * 21: In Windows, specific firewall settings can cause the SDK to fail to initialize and crash.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_INIT_NET_ENGINE"] = 21] = "ERR_INIT_NET_ENGINE";
-        /** 22: The application uses too much of the system resources and the SDK fails to allocate the resources.
+        /** @en
+         * 22: The application uses too much of the system resources and the SDK fails to allocate the resources.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_RESOURCE_LIMITED"] = 22] = "ERR_RESOURCE_LIMITED";
-        /** 101: The specified App ID is invalid. Please try to rejoin the channel with a valid App ID.
+        /** @en
+         * 101: The specified App ID is invalid. Please try to rejoin the channel with a valid App ID.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_INVALID_APP_ID"] = 101] = "ERR_INVALID_APP_ID";
-        /** 102: The specified channel name is invalid. Please try to rejoin the channel with a valid channel name.
+        /** @en
+         * 102: The specified channel name is invalid. Please try to rejoin the channel with a valid channel name.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_INVALID_CHANNEL_NAME"] = 102] = "ERR_INVALID_CHANNEL_NAME";
-        /** 103: Fails to get server resources in the specified region. Please try to specify another region when calling
+        /** @en
+         * 103: Fails to get server resources in the specified region. Please try to specify another region when calling
          * [init]{@link agora.init} .
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_NO_SERVER_RESOURCES"] = 103] = "ERR_NO_SERVER_RESOURCES";
-        /** @deprecated 109: Use CONNECTION_CHANGED_TOKEN_EXPIRED(9) in the
+        /** @en
+         * @deprecated 109: Use `CONNECTION_CHANGED_TOKEN_EXPIRED(9)` in the
          * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          *
          * The token expired due to one of the following reasons:
@@ -1802,7 +2477,8 @@ var agora;
          * it does not mean that the token will expire, but that the user will be banned from the channel.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_TOKEN_EXPIRED"] = 109] = "ERR_TOKEN_EXPIRED";
-        /** @deprecated 110: Use CONNECTION_CHANGED_INVALID_TOKEN(8) in the
+        /** @en
+         * @deprecated 110: Use `CONNECTION_CHANGED_INVALID_TOKEN(8)` in the
          * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          *
          * The token is invalid due to one of the following reasons:
@@ -1811,81 +2487,105 @@ var agora;
          * - The uid is mandatory, and users must set the same uid as the one set in the [joinChannel]{@link agora.joinChannel} method.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_INVALID_TOKEN"] = 110] = "ERR_INVALID_TOKEN";
-        /** 111: The internet connection is interrupted. This applies to the Agora Web SDK only.
+        /** @en
+         * 111: The internet connection is interrupted. This applies to the Agora Web SDK only.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_CONNECTION_INTERRUPTED"] = 111] = "ERR_CONNECTION_INTERRUPTED";
-        /** 112: The internet connection is lost. This applies to the Agora Web SDK only.
+        /** @en
+         * 112: The internet connection is lost. This applies to the Agora Web SDK only.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_CONNECTION_LOST"] = 112] = "ERR_CONNECTION_LOST";
-        /** 113: The user is not in the channel when calling the method.
+        /** @en
+         * 113: The user is not in the channel when calling the method.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_NOT_IN_CHANNEL"] = 113] = "ERR_NOT_IN_CHANNEL";
-        /** 114: The size of the sent data is over 1024 bytes when the user calls the
+        /** @en
+         * 114: The size of the sent data is over 1024 bytes when the user calls the
          * [sendStreamMessage]{@link agora.sendStreamMessage} method.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_SIZE_TOO_LARGE"] = 114] = "ERR_SIZE_TOO_LARGE";
-        /** 115: The bitrate of the sent data exceeds the limit of 6 Kbps when the user calls the
+        /** @en
+         * 115: The bitrate of the sent data exceeds the limit of 6 Kbps when the user calls the
          * [sendStreamMessage]{@link agora.sendStreamMessage} method.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_BITRATE_LIMIT"] = 115] = "ERR_BITRATE_LIMIT";
-        /** 116: Too many data streams (over 5 streams) are created when the user calls the
+        /** @en
+         * 116: Too many data streams (over 5 streams) are created when the user calls the
          * [createDataStream]{@link agora.createDataStream} method.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_TOO_MANY_DATA_STREAMS"] = 116] = "ERR_TOO_MANY_DATA_STREAMS";
-        /** 117: The data stream transmission timed out.
+        /** @en
+         * 117: The data stream transmission timed out.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_STREAM_MESSAGE_TIMEOUT"] = 117] = "ERR_STREAM_MESSAGE_TIMEOUT";
-        /** 119: Switching roles fail. Please try to rejoin the channel.
+        /** @en
+         * 119: Switching roles fail. Please try to rejoin the channel.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED"] = 119] = "ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED";
-        /** 120: Decryption fails. The user may have used a different encryption password to join the channel. Check your settings
+        /** @en120: Decryption fails. The user may have used a different encryption password to join the channel. Check your settings
          * or try rejoining the channel.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_DECRYPTION_FAILED"] = 120] = "ERR_DECRYPTION_FAILED";
-        /** 123: The client is banned by the server.
+        /** @en
+         * 123: The client is banned by the server.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_CLIENT_IS_BANNED_BY_SERVER"] = 123] = "ERR_CLIENT_IS_BANNED_BY_SERVER";
-        /** 124: Incorrect watermark file parameter.
+        /** @en
+         * 124: Incorrect watermark file parameter.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_WATERMARK_PARAM"] = 124] = "ERR_WATERMARK_PARAM";
-        /** 125: Incorrect watermark file path.
+        /** @en
+         * 125: Incorrect watermark file path.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_WATERMARK_PATH"] = 125] = "ERR_WATERMARK_PATH";
-        /** 126: Incorrect watermark file format.
+        /** @en
+         * 126: Incorrect watermark file format.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_WATERMARK_PNG"] = 126] = "ERR_WATERMARK_PNG";
-        /** 127: Incorrect watermark file information.
+        /** @en
+         * 127: Incorrect watermark file information.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_WATERMARKR_INFO"] = 127] = "ERR_WATERMARKR_INFO";
-        /** 128: Incorrect watermark file data format.
+        /** @en
+         * 128: Incorrect watermark file data format.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_WATERMARK_ARGB"] = 128] = "ERR_WATERMARK_ARGB";
-        /** 129: An error occurs in reading the watermark file.
+        /** @en
+         * 129: An error occurs in reading the watermark file.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_WATERMARK_READ"] = 129] = "ERR_WATERMARK_READ";
-        /** 130: Encryption is enabled when the user calls the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method
+        /** @en
+         * 130: Encryption is enabled when the user calls the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method
          * (CDN live streaming does not support encrypted streams).
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH"] = 130] = "ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH";
-        /** 134: The user account is invalid. */
+        /** @en
+         * 134: The user account is invalid.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_INVALID_USER_ACCOUNT"] = 134] = "ERR_INVALID_USER_ACCOUNT";
-        /** 151: CDN related errors. Remove the original URL address and add a new one by calling the
+        /** @en
+         * 151: CDN related errors. Remove the original URL address and add a new one by calling the
          * [removePublishStreamUrl]{@link agora.removePublishStreamUrl} and [addPublishStreamUrl]{@link agora.addPublishStreamUrl} methods.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_PUBLISH_STREAM_CDN_ERROR"] = 151] = "ERR_PUBLISH_STREAM_CDN_ERROR";
-        /** 152: The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones.
+        /** @en
+         * 152: The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_PUBLISH_STREAM_NUM_REACH_LIMIT"] = 152] = "ERR_PUBLISH_STREAM_NUM_REACH_LIMIT";
-        /** 153: The host manipulates other hosts' URLs. Check your app logic.
+        /** @en
+         * 153: The host manipulates other hosts' URLs. Check your app logic.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_PUBLISH_STREAM_NOT_AUTHORIZED"] = 153] = "ERR_PUBLISH_STREAM_NOT_AUTHORIZED";
-        /** 154: An error occurs in Agora's streaming server. Call the addPublishStreamUrl method to publish the streaming again.
+        /** @en
+         * 154: An error occurs in Agora's streaming server. Call the addPublishStreamUrl method to publish the streaming again.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_PUBLISH_STREAM_INTERNAL_SERVER_ERROR"] = 154] = "ERR_PUBLISH_STREAM_INTERNAL_SERVER_ERROR";
-        /** 155: The server fails to find the stream.
+        /** @en
+         * 155: The server fails to find the stream.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_PUBLISH_STREAM_NOT_FOUND"] = 155] = "ERR_PUBLISH_STREAM_NOT_FOUND";
-        /** 156: The format of the RTMP stream URL is not supported. Check whether the URL format is correct.
+        /** @en
+         * 156: The format of the RTMP stream URL is not supported. Check whether the URL format is correct.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED"] = 156] = "ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED";
         //signaling: 400~600
@@ -2030,101 +2730,128 @@ var agora;
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_INVITE_CANT_RECV"] = 475] = "ERR_INVITE_CANT_RECV";
         //1001~2000
-        /** 1001: Fails to load the media engine.
+        /** @en
+         * 1001: Fails to load the media engine.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_LOAD_MEDIA_ENGINE"] = 1001] = "ERR_LOAD_MEDIA_ENGINE";
-        /** 1002: Fails to start the call after enabling the media engine.
+        /** @en
+         * 1002: Fails to start the call after enabling the media engine.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_START_CALL"] = 1002] = "ERR_START_CALL";
-        /** @deprecated 1003: Fails to start the camera.
+        /** @en
+         * @deprecated 1003: Fails to start the camera.
          * Use `LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE(4)` in the
          * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_START_CAMERA"] = 1003] = "ERR_START_CAMERA";
-        /** 1004: Fails to start the video rendering module.
+        /** @en
+         * 1004: Fails to start the video rendering module.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_START_VIDEO_RENDER"] = 1004] = "ERR_START_VIDEO_RENDER";
-        /** 1005: A general error occurs in the Audio Device Module (no specified reason). Check if the audio device is used by
+        /** @en
+         * 1005: A general error occurs in the Audio Device Module (no specified reason). Check if the audio device is used by
          * another application, or try rejoining the channel.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_GENERAL_ERROR"] = 1005] = "ERR_ADM_GENERAL_ERROR";
-        /** 1006: Audio Device Module: An error occurs in using the Java resources.
+        /** @en
+         * 1006: Audio Device Module: An error occurs in using the Java resources.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_JAVA_RESOURCE"] = 1006] = "ERR_ADM_JAVA_RESOURCE";
-        /** 1007: Audio Device Module: An error occurs in setting the sampling frequency.
+        /** @en
+         * 1007: Audio Device Module: An error occurs in setting the sampling frequency.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_SAMPLE_RATE"] = 1007] = "ERR_ADM_SAMPLE_RATE";
-        /** 1008: Audio Device Module: An error occurs in initializing the playback device.
+        /** @en
+         * 1008: Audio Device Module: An error occurs in initializing the playback device.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_INIT_PLAYOUT"] = 1008] = "ERR_ADM_INIT_PLAYOUT";
-        /** 1009: Audio Device Module: An error occurs in starting the playback device.
+        /** @en
+         * 1009: Audio Device Module: An error occurs in starting the playback device.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_START_PLAYOUT"] = 1009] = "ERR_ADM_START_PLAYOUT";
-        /** 1010: Audio Device Module: An error occurs in stopping the playback device.
+        /** @en
+         * 1010: Audio Device Module: An error occurs in stopping the playback device.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_STOP_PLAYOUT"] = 1010] = "ERR_ADM_STOP_PLAYOUT";
-        /** 1011: Audio Device Module: An error occurs in initializing the recording device.
+        /** @en
+         * 1011: Audio Device Module: An error occurs in initializing the recording device.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_INIT_RECORDING"] = 1011] = "ERR_ADM_INIT_RECORDING";
-        /** 1012: Audio Device Module: An error occurs in starting the recording device.
+        /** @en
+         * 1012: Audio Device Module: An error occurs in starting the recording device.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_START_RECORDING"] = 1012] = "ERR_ADM_START_RECORDING";
-        /** 1013: Audio Device Module: An error occurs in stopping the recording device.
+        /** @en
+         * 1013: Audio Device Module: An error occurs in stopping the recording device.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_STOP_RECORDING"] = 1013] = "ERR_ADM_STOP_RECORDING";
-        /** 1015: Audio Device Module: A playback error occurs. Check your playback device and try rejoining the channel.
+        /** @en
+         * 1015: Audio Device Module: A playback error occurs. Check your playback device and try rejoining the channel.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_RUNTIME_PLAYOUT_ERROR"] = 1015] = "ERR_ADM_RUNTIME_PLAYOUT_ERROR";
-        /** 1017: Audio Device Module: A recording error occurs.
+        /** @en
+         * 1017: Audio Device Module: A recording error occurs.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_RUNTIME_RECORDING_ERROR"] = 1017] = "ERR_ADM_RUNTIME_RECORDING_ERROR";
-        /** 1018: Audio Device Module: Fails to record.
+        /** @en
+         * 1018: Audio Device Module: Fails to record.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_RECORD_AUDIO_FAILED"] = 1018] = "ERR_ADM_RECORD_AUDIO_FAILED";
-        /** 1022: Audio Device Module: An error occurs in initializing the
+        /** @en
+         * 1022: Audio Device Module: An error occurs in initializing the
          * loopback device.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_INIT_LOOPBACK"] = 1022] = "ERR_ADM_INIT_LOOPBACK";
-        /** 1023: Audio Device Module: An error occurs in starting the loopback
+        /** @en
+         * 1023: Audio Device Module: An error occurs in starting the loopback
          * device.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_START_LOOPBACK"] = 1023] = "ERR_ADM_START_LOOPBACK";
-        /** 1027: Audio Device Module: No recording permission exists. Check if the
+        /** @en
+         * 1027: Audio Device Module: No recording permission exists. Check if the
          *  recording permission is granted.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_NO_PERMISSION"] = 1027] = "ERR_ADM_NO_PERMISSION";
-        /** 1033: Audio device module: The device is occupied.
+        /** @en
+         * 1033: Audio device module: The device is occupied.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_RECORD_AUDIO_IS_ACTIVE"] = 1033] = "ERR_ADM_RECORD_AUDIO_IS_ACTIVE";
-        /** 1101: Audio device module: A fatal exception occurs.
+        /** @en
+         * 1101: Audio device module: A fatal exception occurs.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_ANDROID_JNI_JAVA_RESOURCE"] = 1101] = "ERR_ADM_ANDROID_JNI_JAVA_RESOURCE";
-        /** 1108: Audio device module: The recording frequency is lower than 50.
+        /** @en
+         * 1108: Audio device module: The recording frequency is lower than 50.
          * 0 indicates that the recording is not yet started. We recommend
          * checking your recording permission.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_ANDROID_JNI_NO_RECORD_FREQUENCY"] = 1108] = "ERR_ADM_ANDROID_JNI_NO_RECORD_FREQUENCY";
-        /** 1109: The playback frequency is lower than 50. 0 indicates that the
+        /** @en
+         * 1109: The playback frequency is lower than 50. 0 indicates that the
          * playback is not yet started. We recommend checking if you have created
          * too many AudioTrack instances.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_ANDROID_JNI_NO_PLAYBACK_FREQUENCY"] = 1109] = "ERR_ADM_ANDROID_JNI_NO_PLAYBACK_FREQUENCY";
-        /** 1111: Audio device module: AudioRecord fails to start up. A ROM system
+        /** @en
+         * 1111: Audio device module: AudioRecord fails to start up. A ROM system
          * error occurs. We recommend the following options to debug:
          * - Restart your App.
          * - Restart your cellphone.
          * - Check your recording permission.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_ANDROID_JNI_JAVA_START_RECORD"] = 1111] = "ERR_ADM_ANDROID_JNI_JAVA_START_RECORD";
-        /** 1112: Audio device module: AudioTrack fails to start up. A ROM system
+        /** @en
+         * 1112: Audio device module: AudioTrack fails to start up. A ROM system
          * error occurs. We recommend the following options to debug:
          * - Restart your App.
          * - Restart your cellphone.
          * - Check your playback permission.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_ANDROID_JNI_JAVA_START_PLAYBACK"] = 1112] = "ERR_ADM_ANDROID_JNI_JAVA_START_PLAYBACK";
-        /** 1115: Audio device module: AudioRecord returns error. The SDK will
-         * automatically restart AudioRecord. */
+        /** @en
+         * 1115: Audio device module: AudioRecord returns error. The SDK will
+         * automatically restart AudioRecord.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_ANDROID_JNI_JAVA_RECORD_ERROR"] = 1115] = "ERR_ADM_ANDROID_JNI_JAVA_RECORD_ERROR";
         /** @deprecated */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_ANDROID_OPENSL_CREATE_ENGINE"] = 1151] = "ERR_ADM_ANDROID_OPENSL_CREATE_ENGINE";
@@ -2136,358 +2863,477 @@ var agora;
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_ANDROID_OPENSL_CREATE_AUDIO_PLAYER"] = 1157] = "ERR_ADM_ANDROID_OPENSL_CREATE_AUDIO_PLAYER";
         /** @deprecated */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_ANDROID_OPENSL_START_PLAYER_THREAD"] = 1160] = "ERR_ADM_ANDROID_OPENSL_START_PLAYER_THREAD";
-        /** 1201: Audio device module: The current device does not support audio
+        /** @en
+         * 1201: Audio device module: The current device does not support audio
          * input, possibly because you have mistakenly configured the audio session
          *  category, or because some other app is occupying the input device. We
-         * recommend terminating all background apps and re-joining the channel. */
+         * recommend terminating all background apps and re-joining the channel.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_IOS_INPUT_NOT_AVAILABLE"] = 1201] = "ERR_ADM_IOS_INPUT_NOT_AVAILABLE";
-        /** 1206: Audio device module: Cannot activate the Audio Session.*/
+        /** @en
+         * 1206: Audio device module: Cannot activate the Audio Session.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_IOS_ACTIVATE_SESSION_FAIL"] = 1206] = "ERR_ADM_IOS_ACTIVATE_SESSION_FAIL";
-        /** 1210: Audio device module: Fails to initialize the audio device,
-         * normally because the audio device parameters are wrongly set.*/
+        /** @en
+         * 1210: Audio device module: Fails to initialize the audio device,
+         * normally because the audio device parameters are wrongly set.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_IOS_VPIO_INIT_FAIL"] = 1210] = "ERR_ADM_IOS_VPIO_INIT_FAIL";
-        /** 1213: Audio device module: Fails to re-initialize the audio device,
-         * normally because the audio device parameters are wrongly set.*/
+        /** @en
+         * 1213: Audio device module: Fails to re-initialize the audio device,
+         * normally because the audio device parameters are wrongly set.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_IOS_VPIO_REINIT_FAIL"] = 1213] = "ERR_ADM_IOS_VPIO_REINIT_FAIL";
-        /** 1214: Fails to re-start up the Audio Unit, possibly because the audio
-         * session category is not compatible with the settings of the Audio Unit.
+        /** @en
+         * 1214: Fails to re-start up the Audio Unit, possibly because the audio session category is not compatible
+         * with the settings of the Audio Unit.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_IOS_VPIO_RESTART_FAIL"] = 1214] = "ERR_ADM_IOS_VPIO_RESTART_FAIL";
         /** @ignore */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_IOS_SET_RENDER_CALLBACK_FAIL"] = 1219] = "ERR_ADM_IOS_SET_RENDER_CALLBACK_FAIL";
         /** @deprecated */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_IOS_SESSION_SAMPLERATR_ZERO"] = 1221] = "ERR_ADM_IOS_SESSION_SAMPLERATR_ZERO";
-        /** 1301: Audio device module: An audio driver abnomality or a
+        /** @en
+         * 1301: Audio device module: An audio driver abnomality or a
          * compatibility issue occurs. Solutions: Disable and restart the audio
-         * device, or reboot the system.*/
+         * device, or reboot the system
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_INIT"] = 1301] = "ERR_ADM_WIN_CORE_INIT";
-        /** 1303: Audio device module: A recording driver abnomality or a
+        /** @en
+         * 1303: Audio device module: A recording driver abnomality or a
          * compatibility issue occurs. Solutions: Disable and restart the audio
-         * device, or reboot the system. */
+         * device, or reboot the system.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_INIT_RECORDING"] = 1303] = "ERR_ADM_WIN_CORE_INIT_RECORDING";
-        /** 1306: Audio device module: A playout driver abnomality or a
+        /** @en
+         * 1306: Audio device module: A playout driver abnomality or a
          * compatibility issue occurs. Solutions: Disable and restart the audio
-         * device, or reboot the system. */
+         * device, or reboot the system.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_INIT_PLAYOUT"] = 1306] = "ERR_ADM_WIN_CORE_INIT_PLAYOUT";
-        /** 1307: Audio device module: No audio device is available. Solutions:
-         * Plug in a proper audio device. */
+        /** @en
+         * 1307: Audio device module: No audio device is available. Solutions:
+         * Plug in a proper audio device.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_INIT_PLAYOUT_NULL"] = 1307] = "ERR_ADM_WIN_CORE_INIT_PLAYOUT_NULL";
-        /** 1309: Audio device module: An audio driver abnomality or a
+        /** @en
+         * 1309: Audio device module: An audio driver abnomality or a
          * compatibility issue occurs. Solutions: Disable and restart the audio
-         * device, or reboot the system. */
+         * device, or reboot the system.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_START_RECORDING"] = 1309] = "ERR_ADM_WIN_CORE_START_RECORDING";
-        /** 1311: Audio device module: Insufficient system memory or poor device
+        /** @en
+         * 1311: Audio device module: Insufficient system memory or poor device
          * performance. Solutions: Reboot the system or replace the device.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_CREATE_REC_THREAD"] = 1311] = "ERR_ADM_WIN_CORE_CREATE_REC_THREAD";
-        /** 1314: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1314: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
          * - Upgrade your audio card driver.*/
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_CAPTURE_NOT_STARTUP"] = 1314] = "ERR_ADM_WIN_CORE_CAPTURE_NOT_STARTUP";
-        /** 1319: Audio device module: Insufficient system memory or poor device
+        /** @en
+         * 1319: Audio device module: Insufficient system memory or poor device
          * performance. Solutions: Reboot the system or replace the device. */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_CREATE_RENDER_THREAD"] = 1319] = "ERR_ADM_WIN_CORE_CREATE_RENDER_THREAD";
-        /** 1320: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1320: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
-         * - Replace the device. */
+         * - Replace the device.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_RENDER_NOT_STARTUP"] = 1320] = "ERR_ADM_WIN_CORE_RENDER_NOT_STARTUP";
-        /** 1322: Audio device module: No audio sampling device is available.
-         * Solutions: Plug in a proper recording device. */
+        /** @en
+         * 1322: Audio device module: No audio sampling device is available.
+         * Solutions: Plug in a proper recording device.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_NO_RECORDING_DEVICE"] = 1322] = "ERR_ADM_WIN_CORE_NO_RECORDING_DEVICE";
-        /** 1323: Audio device module: No audio playout device is available.
-         * Solutions: Plug in a proper playback device.*/
+        /** @en
+         * 1323: Audio device module: No audio playout device is available.
+         * Solutions: Plug in a proper playback device.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_CORE_NO_PLAYOUT_DEVICE"] = 1323] = "ERR_ADM_WIN_CORE_NO_PLAYOUT_DEVICE";
-        /** 1351: Audio device module: An audio driver abnormality or a
+        /** @en
+         * 1351: Audio device module: An audio driver abnormality or a
          * compatibility issue occurs. Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
-         * - Upgrade your audio card driver. */
+         * - Upgrade your audio card driver.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_WAVE_INIT"] = 1351] = "ERR_ADM_WIN_WAVE_INIT";
-        /** 1353: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1353: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
-         * - Upgrade your audio card driver. */
+         * - Upgrade your audio card driver.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_WAVE_INIT_RECORDING"] = 1353] = "ERR_ADM_WIN_WAVE_INIT_RECORDING";
-        /** 1354: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1354: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
-         * - Upgrade your audio card driver. */
+         * - Upgrade your audio card driver.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_WAVE_INIT_MICROPHONE"] = 1354] = "ERR_ADM_WIN_WAVE_INIT_MICROPHONE";
-        /** 1355: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1355: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
          * - Upgrade your audio card driver. */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_WAVE_INIT_PLAYOUT"] = 1355] = "ERR_ADM_WIN_WAVE_INIT_PLAYOUT";
-        /** 1356: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1356: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
-         * - Upgrade your audio card driver. */
+         * - Upgrade your audio card driver.
+         */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_WAVE_INIT_SPEAKER"] = 1356] = "ERR_ADM_WIN_WAVE_INIT_SPEAKER";
-        /** 1357: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1357: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
          * - Upgrade your audio card driver. */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_WAVE_START_RECORDING"] = 1357] = "ERR_ADM_WIN_WAVE_START_RECORDING";
-        /** 1358: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1358: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
          * - Upgrade your audio card driver.*/
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_WIN_WAVE_START_PLAYOUT"] = 1358] = "ERR_ADM_WIN_WAVE_START_PLAYOUT";
-        /** 1359: Audio Device Module: No recording device exists.
+        /** @en
+         * 1359: Audio Device Module: No recording device exists.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_NO_RECORDING_DEVICE"] = 1359] = "ERR_ADM_NO_RECORDING_DEVICE";
-        /** 1360: Audio Device Module: No playback device exists.
+        /** @en
+         * 1360: Audio Device Module: No playback device exists.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_ADM_NO_PLAYOUT_DEVICE"] = 1360] = "ERR_ADM_NO_PLAYOUT_DEVICE";
         // VDM error code starts from 1500
-        /** 1501: Video Device Module: The camera is unauthorized.
+        /** @en
+         * 1501: Video Device Module: The camera is unauthorized.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_VDM_CAMERA_NOT_AUTHORIZED"] = 1501] = "ERR_VDM_CAMERA_NOT_AUTHORIZED";
         // VDM error code starts from 1500
-        /** @deprecated 1502: Video Device Module: The camera in use.
+        /** @en
+         * @deprecated 1502: Video Device Module: The camera in use.
          *
-         * Use LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY(3) in the
+         * Use `LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY(3)` in the
          * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_VDM_WIN_DEVICE_IN_USE"] = 1502] = "ERR_VDM_WIN_DEVICE_IN_USE";
         // VCM error code starts from 1600
-        /** 1600: Video Device Module: An unknown error occurs.
+        /** @en
+         * 1600: Video Device Module: An unknown error occurs.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_VCM_UNKNOWN_ERROR"] = 1600] = "ERR_VCM_UNKNOWN_ERROR";
-        /** 1601: Video Device Module: An error occurs in initializing the video encoder.
+        /** @en
+         * 1601: Video Device Module: An error occurs in initializing the video encoder.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_VCM_ENCODER_INIT_ERROR"] = 1601] = "ERR_VCM_ENCODER_INIT_ERROR";
-        /** 1602: Video Device Module: An error occurs in encoding.
+        /** @en
+         * 1602: Video Device Module: An error occurs in encoding.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_VCM_ENCODER_ENCODE_ERROR"] = 1602] = "ERR_VCM_ENCODER_ENCODE_ERROR";
-        /** 1603: Video Device Module: An error occurs in setting the video encoder.
+        /** @en
+         * 1603: Video Device Module: An error occurs in setting the video encoder.
          */
         ERROR_CODE_TYPE[ERROR_CODE_TYPE["ERR_VCM_ENCODER_SET_ERROR"] = 1603] = "ERR_VCM_ENCODER_SET_ERROR";
     })(ERROR_CODE_TYPE = agora.ERROR_CODE_TYPE || (agora.ERROR_CODE_TYPE = {}));
-    /** The contrast level, used with the `lightening` parameter.
+    /** @en
+     * The contrast level, used with the `lightening` parameter.
      */
     var LIGHTENING_CONTRAST_LEVEL;
     (function (LIGHTENING_CONTRAST_LEVEL) {
-        /** Low contrast level. */
+        /** @en
+         * Low contrast level.
+         */
         LIGHTENING_CONTRAST_LEVEL[LIGHTENING_CONTRAST_LEVEL["LIGHTENING_CONTRAST_LOW"] = 0] = "LIGHTENING_CONTRAST_LOW";
-        /** (Default) Normal contrast level. */
+        /** @en
+         * (Default) Normal contrast level.
+         */
         LIGHTENING_CONTRAST_LEVEL[LIGHTENING_CONTRAST_LEVEL["LIGHTENING_CONTRAST_NORMAL"] = 1] = "LIGHTENING_CONTRAST_NORMAL";
-        /** High contrast level. */
+        /** @en
+         * High contrast level.
+         */
         LIGHTENING_CONTRAST_LEVEL[LIGHTENING_CONTRAST_LEVEL["LIGHTENING_CONTRAST_HIGH"] = 2] = "LIGHTENING_CONTRAST_HIGH";
     })(LIGHTENING_CONTRAST_LEVEL = agora.LIGHTENING_CONTRAST_LEVEL || (agora.LIGHTENING_CONTRAST_LEVEL = {}));
-    /** Output log filter level. */
+    /** @en
+     * Output log filter level.
+     */
     var LOG_FILTER_TYPE;
     (function (LOG_FILTER_TYPE) {
-        /** 0: Do not output any log information. */
+        /** @en
+         * 0: Do not output any log information.
+         */
         LOG_FILTER_TYPE[LOG_FILTER_TYPE["LOG_FILTER_OFF"] = 0] = "LOG_FILTER_OFF";
-        /** 0x080f: Output all log information.
-         Set your log filter as debug if you want to get the most complete log file.      */
+        /** @en
+         * 0x080f: Output all log information.
+         * Set your log filter as debug if you want to get the most complete log file.
+         */
         LOG_FILTER_TYPE[LOG_FILTER_TYPE["LOG_FILTER_DEBUG"] = 2063] = "LOG_FILTER_DEBUG";
-        /** 0x000f: Output CRITICAL, ERROR, WARNING, and INFO level log information.
-         We recommend setting your log filter as this level.
+        /** @en
+         * 0x000f: Output CRITICAL, ERROR, WARNING, and INFO level log information.
+         * We recommend setting your log filter as this level.
          */
         LOG_FILTER_TYPE[LOG_FILTER_TYPE["LOG_FILTER_INFO"] = 15] = "LOG_FILTER_INFO";
-        /** 0x000e: Outputs CRITICAL, ERROR, and WARNING level log information.
+        /** @en
+         * 0x000e: Outputs CRITICAL, ERROR, and WARNING level log information.
          */
         LOG_FILTER_TYPE[LOG_FILTER_TYPE["LOG_FILTER_WARN"] = 14] = "LOG_FILTER_WARN";
-        /** 0x000c: Outputs CRITICAL and ERROR level log information. */
+        /** @en
+         * 0x000c: Outputs CRITICAL and ERROR level log information.
+         */
         LOG_FILTER_TYPE[LOG_FILTER_TYPE["LOG_FILTER_ERROR"] = 12] = "LOG_FILTER_ERROR";
-        /** 0x0008: Outputs CRITICAL level log information. */
+        /** @en
+         * 0x0008: Outputs CRITICAL level log information.
+         */
         LOG_FILTER_TYPE[LOG_FILTER_TYPE["LOG_FILTER_CRITICAL"] = 8] = "LOG_FILTER_CRITICAL";
         /** @ignore */
         LOG_FILTER_TYPE[LOG_FILTER_TYPE["LOG_FILTER_MASK"] = 2063] = "LOG_FILTER_MASK";
     })(LOG_FILTER_TYPE = agora.LOG_FILTER_TYPE || (agora.LOG_FILTER_TYPE = {}));
-    /** @ignore
+    /** @en
+     * @ignore
      * Metadata type of the observer.
      * @note We only support video metadata for now.
      */
     var METADATA_TYPE;
     (function (METADATA_TYPE) {
-        /** -1: the metadata type is unknown.
+        /** @en
+         * -1: the metadata type is unknown.
          */
         METADATA_TYPE[METADATA_TYPE["UNKNOWN_METADATA"] = -1] = "UNKNOWN_METADATA";
-        /** 0: the metadata type is video.
+        /** @en
+         * 0: the metadata type is video.
          */
         METADATA_TYPE[METADATA_TYPE["VIDEO_METADATA"] = 0] = "VIDEO_METADATA";
     })(METADATA_TYPE = agora.METADATA_TYPE || (agora.METADATA_TYPE = {}));
-    /** @ignore
+    /** @en
+     * @ignore
      * The video pixel format.
      */
     var VIDEO_PIXEL_FORMAT;
     (function (VIDEO_PIXEL_FORMAT) {
-        /** 0: The video pixel format is unknown.
+        /** @en
+         * 0: The video pixel format is unknown.
          */
         VIDEO_PIXEL_FORMAT[VIDEO_PIXEL_FORMAT["VIDEO_PIXEL_UNKNOWN"] = 0] = "VIDEO_PIXEL_UNKNOWN";
-        /** 1: The video pixel format is I420.
+        /** @en
+         * 1: The video pixel format is I420.
          */
         VIDEO_PIXEL_FORMAT[VIDEO_PIXEL_FORMAT["VIDEO_PIXEL_I420"] = 1] = "VIDEO_PIXEL_I420";
-        /** 2: The video pixel format is BGRA.
+        /** @en
+         * 2: The video pixel format is BGRA.
          */
         VIDEO_PIXEL_FORMAT[VIDEO_PIXEL_FORMAT["VIDEO_PIXEL_BGRA"] = 2] = "VIDEO_PIXEL_BGRA";
-        /** 3: The video pixel format is NV21.
+        /** @en
+         * 3: The video pixel format is NV21.
          */
         VIDEO_PIXEL_FORMAT[VIDEO_PIXEL_FORMAT["VIDEO_PIXEL_NV21"] = 3] = "VIDEO_PIXEL_NV21";
-        /** 4: The video pixel format is RGBA.
+        /** @en
+         * 4: The video pixel format is RGBA.
          */
         VIDEO_PIXEL_FORMAT[VIDEO_PIXEL_FORMAT["VIDEO_PIXEL_RGBA"] = 4] = "VIDEO_PIXEL_RGBA";
-        /** 5: The video pixel format is IMC2.
+        /** @en
+         * 5: The video pixel format is IMC2.
          */
         VIDEO_PIXEL_FORMAT[VIDEO_PIXEL_FORMAT["VIDEO_PIXEL_IMC2"] = 5] = "VIDEO_PIXEL_IMC2";
-        /** 7: The video pixel format is ARGB.
+        /** @en
+         * 7: The video pixel format is ARGB.
          */
         VIDEO_PIXEL_FORMAT[VIDEO_PIXEL_FORMAT["VIDEO_PIXEL_ARGB"] = 7] = "VIDEO_PIXEL_ARGB";
-        /** 8: The video pixel format is NV12.
+        /** @en
+         * 8: The video pixel format is NV12.
          */
         VIDEO_PIXEL_FORMAT[VIDEO_PIXEL_FORMAT["VIDEO_PIXEL_NV12"] = 8] = "VIDEO_PIXEL_NV12";
-        /** 16: The video pixel format is I422.
+        /** @en
+         * 16: The video pixel format is I422.
          */
         VIDEO_PIXEL_FORMAT[VIDEO_PIXEL_FORMAT["VIDEO_PIXEL_I422"] = 16] = "VIDEO_PIXEL_I422";
     })(VIDEO_PIXEL_FORMAT = agora.VIDEO_PIXEL_FORMAT || (agora.VIDEO_PIXEL_FORMAT = {}));
-    /** Warning code.
+    /** @en
+     * Warning code.
      */
     var WARN_CODE_TYPE;
     (function (WARN_CODE_TYPE) {
-        /** 8: The specified view is invalid. Specify a view when using the video call function.
+        /** @en
+         * 8: The specified view is invalid. Specify a view when using the video call function.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_INVALID_VIEW"] = 8] = "WARN_INVALID_VIEW";
-        /** 16: Failed to initialize the video function, possibly caused by a lack of resources. The users cannot see the video
+        /** @en
+         * 16: Failed to initialize the video function, possibly caused by a lack of resources. The users cannot see the video
          * while the voice communication is not affected.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_INIT_VIDEO"] = 16] = "WARN_INIT_VIDEO";
-        /** 20: The request is pending, usually due to some module not being ready, and the SDK postponed processing the request.
+        /** @en
+         * 20: The request is pending, usually due to some module not being ready, and the SDK postponed processing the request.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_PENDING"] = 20] = "WARN_PENDING";
-        /** 103: No channel resources are available. Maybe because the server cannot allocate any channel resource.
+        /** @en
+         * 103: No channel resources are available. Maybe because the server cannot allocate any channel resource.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_NO_AVAILABLE_CHANNEL"] = 103] = "WARN_NO_AVAILABLE_CHANNEL";
-        /** 104: A timeout occurs when looking up the channel. When joining a channel, the SDK looks up the specified channel. This
+        /** @en
+         * 104: A timeout occurs when looking up the channel. When joining a channel, the SDK looks up the specified channel. This
          * warning usually occurs when the network condition is too poor for the SDK to connect to the server.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_LOOKUP_CHANNEL_TIMEOUT"] = 104] = "WARN_LOOKUP_CHANNEL_TIMEOUT";
-        /** @deprecated 105: The server rejects the request to look up the channel. The server cannot process this request or the
+        /** @en
+         * @deprecated 105: The server rejects the request to look up the channel. The server cannot process this request or the
          * request is illegal.
          *
          * Use CONNECTION_CHANGED_REJECTED_BY_SERVER(10) in the [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}
          * callback instead.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_LOOKUP_CHANNEL_REJECTED"] = 105] = "WARN_LOOKUP_CHANNEL_REJECTED";
-        /** 106: A timeout occurs when opening the channel. Once the specific channel is found, the SDK opens the channel.
+        /** @en
+         * 106: A timeout occurs when opening the channel. Once the specific channel is found, the SDK opens the channel.
          * This warning usually occurs when the network condition is too poor for the SDK to connect to the server.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_OPEN_CHANNEL_TIMEOUT"] = 106] = "WARN_OPEN_CHANNEL_TIMEOUT";
-        /** 107: The server rejects the request to open the channel. The server cannot process this request or the request is illegal.
+        /** @en
+         * 107: The server rejects the request to open the channel. The server cannot process this request or the request is illegal.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_OPEN_CHANNEL_REJECTED"] = 107] = "WARN_OPEN_CHANNEL_REJECTED";
         // sdk: 100~1000
-        /** 111: A timeout occurs when switching to the live video.
+        /** @en
+         * 111: A timeout occurs when switching to the live video.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_SWITCH_LIVE_VIDEO_TIMEOUT"] = 111] = "WARN_SWITCH_LIVE_VIDEO_TIMEOUT";
-        /** 118: A timeout occurs when setting the client role in the live interactive streaming profile.
+        /** @en
+         * 118: A timeout occurs when setting the client role in the live interactive streaming profile.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_SET_CLIENT_ROLE_TIMEOUT"] = 118] = "WARN_SET_CLIENT_ROLE_TIMEOUT";
-        /** 121: The ticket to open the channel is invalid.
+        /** @en
+         * 121: The ticket to open the channel is invalid.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_OPEN_CHANNEL_INVALID_TICKET"] = 121] = "WARN_OPEN_CHANNEL_INVALID_TICKET";
-        /** 122: Try connecting to another server.
+        /** @en
+         * 122: Try connecting to another server.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_OPEN_CHANNEL_TRY_NEXT_VOS"] = 122] = "WARN_OPEN_CHANNEL_TRY_NEXT_VOS";
-        /** 131: The channel connection cannot be recovered. */
+        /** @en
+         * 131: The channel connection cannot be recovered.
+         */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_CHANNEL_CONNECTION_UNRECOVERABLE"] = 131] = "WARN_CHANNEL_CONNECTION_UNRECOVERABLE";
-        /** 132: The IP address has changed. */
+        /** @en
+         * 132: The IP address has changed.
+         */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_CHANNEL_CONNECTION_IP_CHANGED"] = 132] = "WARN_CHANNEL_CONNECTION_IP_CHANGED";
-        /** 133: The port has changed. */
+        /** @en
+         * 133: The port has changed.
+         */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_CHANNEL_CONNECTION_PORT_CHANGED"] = 133] = "WARN_CHANNEL_CONNECTION_PORT_CHANGED";
-        /** 701: An error occurs in opening the audio mixing file.
+        /** @en
+         * 701: An error occurs in opening the audio mixing file.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_AUDIO_MIXING_OPEN_ERROR"] = 701] = "WARN_AUDIO_MIXING_OPEN_ERROR";
-        /** 1014: Audio Device Module: A warning occurs in the playback device.
+        /** @en
+         * 1014: Audio Device Module: A warning occurs in the playback device.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_RUNTIME_PLAYOUT_WARNING"] = 1014] = "WARN_ADM_RUNTIME_PLAYOUT_WARNING";
-        /** 1016: Audio Device Module: a warning occurs in the recording device.
+        /** @en
+         * 1016: Audio Device Module: a warning occurs in the recording device.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_RUNTIME_RECORDING_WARNING"] = 1016] = "WARN_ADM_RUNTIME_RECORDING_WARNING";
-        /** 1019: Audio Device Module: no valid audio data is recorded.
+        /** @en
+         * 1019: Audio Device Module: no valid audio data is recorded.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_RECORD_AUDIO_SILENCE"] = 1019] = "WARN_ADM_RECORD_AUDIO_SILENCE";
-        /** 1020: Audio device module: The audio playback frequency is abnormal, which may cause audio freezes. This abnormality
+        /** @en
+         * 1020: Audio device module: The audio playback frequency is abnormal, which may cause audio freezes. This abnormality
          * is caused by high CPU usage. Agora recommends stopping other apps.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_PLAYOUT_MALFUNCTION"] = 1020] = "WARN_ADM_PLAYOUT_MALFUNCTION";
-        /** 1021: Audio device module: the audio recording frequency is abnormal, which may cause audio freezes. This abnormality
+        /** @en
+         * 1021: Audio device module: the audio recording frequency is abnormal, which may cause audio freezes. This abnormality
          * is caused by high CPU usage. Agora recommends stopping other apps.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_RECORD_MALFUNCTION"] = 1021] = "WARN_ADM_RECORD_MALFUNCTION";
-        /** 1025: The audio playback or recording is interrupted by system events (such as a phone call).
+        /** @en
+         * 1025: The audio playback or recording is interrupted by system events (such as a phone call).
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_CALL_INTERRUPTION"] = 1025] = "WARN_ADM_CALL_INTERRUPTION";
-        /** 1029: During a call, the audio session category should be set to
-         * AVAudioSessionCategoryPlayAndRecord, and RtcEngine monitors this value.
+        /** @en
+         * 1029: During a call, the audio session category should be set to
+         * AVAudioSessionCategoryPlayAndRecord, and agora monitors this value.
          * If the audio session category is set to other values, this warning code
-         * is triggered and RtcEngine will forcefully set it back to
+         * is triggered and agora will forcefully set it back to
          * AVAudioSessionCategoryPlayAndRecord.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_IOS_CATEGORY_NOT_PLAYANDRECORD"] = 1029] = "WARN_ADM_IOS_CATEGORY_NOT_PLAYANDRECORD";
-        /** 1031: Audio Device Module: The recorded audio voice is too low.
+        /** @en
+         * 1031: Audio Device Module: The recorded audio voice is too low.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_RECORD_AUDIO_LOWLEVEL"] = 1031] = "WARN_ADM_RECORD_AUDIO_LOWLEVEL";
-        /** 1032: Audio Device Module: The playback audio voice is too low.
+        /** @en
+         * 1032: Audio Device Module: The playback audio voice is too low.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_PLAYOUT_AUDIO_LOWLEVEL"] = 1032] = "WARN_ADM_PLAYOUT_AUDIO_LOWLEVEL";
-        /** 1033: Audio device module: The audio recording device is occupied.
+        /** @en
+         * 1033: Audio device module: The audio recording device is occupied.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_RECORD_AUDIO_IS_ACTIVE"] = 1033] = "WARN_ADM_RECORD_AUDIO_IS_ACTIVE";
-        /** 1040: Audio device module: An exception occurs with the audio drive.
+        /** @en
+         * 1040: Audio device module: An exception occurs with the audio drive.
          * Solutions:
          * - Disable or re-enable the audio device.
          * - Re-enable your device.
          * - Update the sound card drive.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_WINDOWS_NO_DATA_READY_EVENT"] = 1040] = "WARN_ADM_WINDOWS_NO_DATA_READY_EVENT";
-        /** 1042: Audio device module: The audio recording device is different from the audio playback device,
+        /** @en
+         * 1042: Audio device module: The audio recording device is different from the audio playback device,
          * which may cause echoes problem. Agora recommends using the same audio device to record and playback
          * audio.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_INCONSISTENT_AUDIO_DEVICE"] = 1042] = "WARN_ADM_INCONSISTENT_AUDIO_DEVICE";
-        /** 1051: (Communication profile only) Audio processing module: A howling sound is detected when recording the audio data.
+        /** @en
+         * 1051: (Communication profile only) Audio processing module: A howling sound is detected when recording the audio data.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_APM_HOWLING"] = 1051] = "WARN_APM_HOWLING";
-        /** 1052: Audio Device Module: The device is in the glitch state.
+        /** @en
+         * 1052: Audio Device Module: The device is in the glitch state.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_GLITCH_STATE"] = 1052] = "WARN_ADM_GLITCH_STATE";
-        /** 1053: Audio Processing Module: A residual echo is detected, which may be caused by the belated scheduling of system threads
+        /** @en
+         * 1053: Audio Processing Module: A residual echo is detected, which may be caused by the belated scheduling of system threads
          * or the signal overflow.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_APM_RESIDUAL_ECHO"] = 1053] = "WARN_APM_RESIDUAL_ECHO";
         /** @ignore */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_WIN_CORE_NO_RECORDING_DEVICE"] = 1322] = "WARN_ADM_WIN_CORE_NO_RECORDING_DEVICE";
-        /** 1323: Audio device module: No available playback device.
+        /** @en
+         * 1323: Audio device module: No available playback device.
          * Solution: Plug in the audio device.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_WIN_CORE_NO_PLAYOUT_DEVICE"] = 1323] = "WARN_ADM_WIN_CORE_NO_PLAYOUT_DEVICE";
-        /** Audio device module: The capture device is released improperly.
+        /** @en
+         * Audio device module: The capture device is released improperly.
          * Solutions:
          * - Disable or re-enable the audio device.
          * - Re-enable your device.
          * - Update the sound card drive.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_ADM_WIN_CORE_IMPROPER_CAPTURE_RELEASE"] = 1324] = "WARN_ADM_WIN_CORE_IMPROPER_CAPTURE_RELEASE";
-        /** 1610: Super-resolution warning: The original video dimensions of the remote user exceed 640 * 480.
+        /** @en
+         * 1610: Super-resolution warning: The original video dimensions of the remote user exceed 640 * 480.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION"] = 1610] = "WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION";
-        /** 1611: Super-resolution warning: Another user is using super resolution.
+        /** @en
+         * 1611: Super-resolution warning: Another user is using super resolution.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION"] = 1611] = "WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION";
-        /** 1612: The device is not supported.
+        /** @en
+         * 1612: The device is not supported.
          */
         WARN_CODE_TYPE[WARN_CODE_TYPE["WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED"] = 1612] = "WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED";
         /** @ignore */
@@ -2497,7 +3343,13 @@ var agora;
     })(WARN_CODE_TYPE = agora.WARN_CODE_TYPE || (agora.WARN_CODE_TYPE = {}));
 })(agora || (agora = {}));
 (function (agora) {
-    /** @ignore Video dimensions. */
+    /** @en
+     * The uplink or downlink last-mile network probe test result.
+     */
+    /** @en
+     * @ignore
+     * Video dimensions.
+     */
     var VideoDimensions = /** @class */ (function () {
         function VideoDimensions(width, height) {
             if (width === void 0) { width = 640; }
@@ -2508,7 +3360,8 @@ var agora;
         return VideoDimensions;
     }());
     agora.VideoDimensions = VideoDimensions;
-    /** @ignore
+    /** @en
+     * @ignore
      * Video encoder configurations.
      */
     var VideoEncoderConfiguration = /** @class */ (function () {
@@ -2533,7 +3386,8 @@ var agora;
         return VideoEncoderConfiguration;
     }());
     agora.VideoEncoderConfiguration = VideoEncoderConfiguration;
-    /** @ignore
+    /** @en
+     * @ignore
      * The video and audio properties of the user displaying the video in the CDN live. Agora supports a maximum of 17 transcoding
      * users in a CDN streaming channel.
      */
@@ -2552,7 +3406,8 @@ var agora;
         return TranscodingUser;
     }());
     agora.TranscodingUser = TranscodingUser;
-    /** @ignore
+    /** @en
+     * @ignore
      * Image properties.
      *
      * The properties of the watermark and background images.
@@ -2568,21 +3423,22 @@ var agora;
         return RtcImage;
     }());
     agora.RtcImage = RtcImage;
-    /** @ignore The configuration for advanced features of the RTMP streaming with transcoding.
+    /** @en
+     * @ignore
+     * The configuration for advanced features of the RTMP streaming with transcoding.
      */
     var LiveStreamAdvancedFeature = /** @class */ (function () {
         function LiveStreamAdvancedFeature(featureName, opened) {
             this.featureName = featureName;
             this.opened = opened;
         }
-        /** The advanced feature for high-quality video with a lower bitrate. */
         LiveStreamAdvancedFeature.LBHQ = "lbhq";
-        /** The advanced feature for the optimized video encoder. */
         LiveStreamAdvancedFeature.VEO = "veo";
         return LiveStreamAdvancedFeature;
     }());
     agora.LiveStreamAdvancedFeature = LiveStreamAdvancedFeature;
-    /** @ignore
+    /** @en
+     * @ignore
      * A struct for managing CDN live audio/video transcoding settings.
      */
     var LiveTranscoding = /** @class */ (function () {
@@ -2625,7 +3481,8 @@ var agora;
         return LiveTranscoding;
     }());
     agora.LiveTranscoding = LiveTranscoding;
-    /** @ignore
+    /** @en
+     * @ignore
      * Camera capturer configuration.
      */
     var CameraCapturerConfiguration = /** @class */ (function () {
@@ -2636,7 +3493,8 @@ var agora;
         return CameraCapturerConfiguration;
     }());
     agora.CameraCapturerConfiguration = CameraCapturerConfiguration;
-    /** Configuration of the injected media stream.
+    /** @en
+     * Configuration of the injected media stream.
      */
     var InjectStreamConfig = /** @class */ (function () {
         function InjectStreamConfig(width, height, videoGop, videoFramerate, videoBitrate, audioSampleRate, audioBitrate, audioChannels) {
@@ -2660,7 +3518,8 @@ var agora;
         return InjectStreamConfig;
     }());
     agora.InjectStreamConfig = InjectStreamConfig;
-    /** The definition of [ChannelMediaInfo]{@link agora.ChannelMediaInfo}.
+    /** @en
+     * The definition of [ChannelMediaInfo]{@link agora.ChannelMediaInfo}.
      */
     var ChannelMediaInfo = /** @class */ (function () {
         function ChannelMediaInfo(channelName, token, uid) {
@@ -2671,7 +3530,8 @@ var agora;
         return ChannelMediaInfo;
     }());
     agora.ChannelMediaInfo = ChannelMediaInfo;
-    /** The definition of [ChannelMediaRelayConfiguration]{@link agora.ChannelMediaRelayConfiguration}.
+    /** @en
+     * The definition of [ChannelMediaRelayConfiguration]{@link agora.ChannelMediaRelayConfiguration}.
      */
     var ChannelMediaRelayConfiguration = /** @class */ (function () {
         function ChannelMediaRelayConfiguration(srcInfo, destInfos, destCount) {
@@ -2682,7 +3542,8 @@ var agora;
         return ChannelMediaRelayConfiguration;
     }());
     agora.ChannelMediaRelayConfiguration = ChannelMediaRelayConfiguration;
-    /** The relative location of the region to the screen or window.
+    /** @en
+     * The relative location of the region to the screen or window.
      */
     var Rectangle = /** @class */ (function () {
         function Rectangle(x, y, width, height) {
@@ -2698,7 +3559,10 @@ var agora;
         return Rectangle;
     }());
     agora.Rectangle = Rectangle;
-    /**  @deprecated Definition of the rectangular region. */
+    /** @en
+     * @deprecated
+     * Definition of the rectangular region.
+     */
     var Rect = /** @class */ (function () {
         function Rect(top, left, bottom, right) {
             if (top === void 0) { top = 0; }
@@ -2713,7 +3577,9 @@ var agora;
         return Rect;
     }());
     agora.Rect = Rect;
-    /** @ignore The options of the watermark image to be added. */
+    /** @en
+     * @ignore The options of the watermark image to be added.
+     */
     var WatermarkOptions = /** @class */ (function () {
         function WatermarkOptions(visibleInPreview, positionInLandscapeMode, positionInPortraitMode) {
             if (visibleInPreview === void 0) { visibleInPreview = true; }
@@ -2726,7 +3592,9 @@ var agora;
         return WatermarkOptions;
     }());
     agora.WatermarkOptions = WatermarkOptions;
-    /** @ignore Screen sharing encoding parameters.
+    /** @en
+     * @ignore
+     * Screen sharing encoding parameters.
      */
     var ScreenCaptureParameters = /** @class */ (function () {
         function ScreenCaptureParameters(dimensions, frameRate, bitrate, captureMouseCursor, windowFocus, excludeWindowList, excludeWindowCount) {
@@ -2747,8 +3615,9 @@ var agora;
         return ScreenCaptureParameters;
     }());
     agora.ScreenCaptureParameters = ScreenCaptureParameters;
-    /** @ignore
-     * Video display settings of the VideoCanvas class.
+    /** @en
+     * @ignore
+     * Video display settings of the `VideoCanvas` class.
      */
     var VideoCanvas = /** @class */ (function () {
         function VideoCanvas(view, renderMode, channelId, uid, priv, mirrorMode) {
@@ -2765,7 +3634,9 @@ var agora;
         return VideoCanvas;
     }());
     agora.VideoCanvas = VideoCanvas;
-    /** Image enhancement options.
+    /** @en
+     * @ignore
+     * Image enhancement options.
      */
     var BeautyOptions = /** @class */ (function () {
         function BeautyOptions(lighteningContrastLevel, lighteningLevel, smoothnessLevel, rednessLevel) {
@@ -2781,7 +3652,9 @@ var agora;
         return BeautyOptions;
     }());
     agora.BeautyOptions = BeautyOptions;
-    /** Configurations of built-in encryption schemas. */
+    /** @en
+     * Configurations of built-in encryption schemas.
+     */
     var EncryptionConfig = /** @class */ (function () {
         function EncryptionConfig(encryptionMode, encryptionKey) {
             if (encryptionMode === void 0) { encryptionMode = agora.ENCRYPTION_MODE.AES_128_XTS; }
@@ -2791,7 +3664,9 @@ var agora;
         return EncryptionConfig;
     }());
     agora.EncryptionConfig = EncryptionConfig;
-    /** The channel media options. */
+    /** @en
+     * The channel media options.
+     */
     var ChannelMediaOptions = /** @class */ (function () {
         function ChannelMediaOptions(autoSubscribeAudio, autoSubscribeVideo) {
             if (autoSubscribeAudio === void 0) { autoSubscribeAudio = true; }
@@ -2802,6 +3677,9 @@ var agora;
         return ChannelMediaOptions;
     }());
     agora.ChannelMediaOptions = ChannelMediaOptions;
+    /** @en
+     * The defination of [Metadata]{@link agora.Metadata}.
+     */
     var Metadata = /** @class */ (function () {
         function Metadata(uid, size, buffer, timeStampMs) {
             this.uid = uid;
@@ -3584,52 +4462,60 @@ var agora;
         if (param === void 0) { param = {}; }
         return bridge.callNativeMethodAudioEffect(apiType, JSON.stringify(param));
     }
-    /** Initializes an `agora` instance.
+    /** @en
+     * Initializes the Agora engine.
      *
-     * Unless otherwise specified, all the methods provided by an `agora` instance are executed asynchronously. Agora recommends calling
+     * Unless otherwise specified, all the methods provided by the Agora engine are executed asynchronously. Agora recommends calling
      * these methods in the same thread.
      *
      * **Note**
-     * - You must initializes an `agora` instance before calling any other method.
-     * - You can initializes an `agora` instance either by calling this method or by calling
+     * - You must initializes the Agora engine before calling any other method.
+     * - You can initializes the Agora engine either by calling this method or by calling
      * [initWithAreaCode]{@link agora.initWithAreaCode}. The difference between `initWithAreaCode` and this method is that
      * `initWithAreaCode` enables you to specify the region for connection.
-     * - The SDK supports initializing only one `agora` instance for an app for now.
      *
      * @param appId The App ID issued to you by Agora. See
      * [How to get the App ID](https://docs.agora.io/en/Agora%20Platform/token#getappid). Only users in apps with the same App ID can
-     * join the same channel and communicate with each other. Use an App ID to initialize only one `agora` instance. To change your
-     * App ID, call [destroy]{@link agora.destroy} to `destroy` the current `agora` instance, and after `destroy` returns `0`, call
-     * `init` to initializes an `agora` instance with a new App ID.
+     * join the same channel and communicate with each other. To change your
+     * App ID, call [release]{@link agora.release} to `release` the current Agora engine, and after `release` returns `0`, call
+     * `init` to initializes the Agora engine with a new App ID.
+     *
+     * @return
+     * - The Agora engine, if the method call succeeds.
+     * - < 0, if the method call fails.
+     *   - ERR_INVALID_APP_ID(101): The app ID is invalid. Check if it is in the correct format.
      */
     function init(appId) {
         return initWithAreaCode(appId, agora.AREA_CODE.AREA_CODE_GLOBAL);
     }
     agora.init = init;
-    /** Initializes an `agora` instance.
+    /** @en
+     * Initializes the Agora engine.
      *
-     * Unless otherwise specified, all the methods provided by an `agora` instance are executed asynchronously. Agora recommends calling
+     * Unless otherwise specified, all the methods provided by the Agora engine are executed asynchronously. Agora recommends calling
      * these methods in the same thread.
      *
      * **Note**
-     * - You must initializes an `agora` instance before calling any other method.
-     * - You can initializes an `agora` instance either by calling this method or by calling [init]{@link agora.init}. The difference
+     * - You must initializes the Agora engine before calling any other method.
+     * - You can initializes the Agora engine either by calling this method or by calling [init]{@link agora.init}. The difference
      * between `init` and this method is that this method enables you to specify the region for connection.
-     * - The SDK supports initializing only one `agora` instance for an app for now.
+     * - The SDK supports initializing only one Agora engine for an app for now.
      *
      * @param appId The App ID issued to you by Agora. See
      * [How to get the App ID](https://docs.agora.io/en/Agora%20Platform/token#getappid). Only users in apps with the same App ID can
-     * join the same channel and communicate with each other. Use an App ID to initialize only one `agora` instance. To change your
-     * App ID, call [destroy]{@link agora.destroy} to `destroy` the current `agora` instance, and after `destroy` returns `0`, call
-     * `initWithAreaCode` to initializes an `agora` instance with a new App ID.
+     * join the same channel and communicate with each other. Use an App ID to initialize only one Agora engine. To change your
+     * App ID, call [release]{@link agora.release} to `release` the current Agora engine, and after `release` returns `0`, call
+     * `initWithAreaCode` to initializes the Agora engine with a new App ID.
      * @param areaCode The region for connection. This advanced feature applies to scenarios that have regional restrictions.
      *
      * For the regions that Agora supports, see [AREA_CODE]{@link agora.AREA_CODE}. After specifying the region, the SDK connects to
      * the Agora servers within that region.
+     * @note The SDK supports specifying only one region.
      *
-     * **Note**
-     *
-     * The SDK supports specifying only one region.
+     * @return
+     * - The Agora engine, if the method call succeeds.
+     * - < 0, if the method call fails.
+     *   - ERR_INVALID_APP_ID(101): The app ID is invalid. Check if it is in the correct format.
      */
     function initWithAreaCode(appId, areaCode) {
         var _a;
@@ -3659,37 +4545,41 @@ var agora;
         }
     }
     agora.initWithAreaCode = initWithAreaCode;
-    /** Releases all `agora` resources.
+    /** @en
+     * Releases all resources of the Agora engine.
      *
      * Use this method for apps in which users occasionally make voice or video calls. When users do not make calls, you can free up
-     * resources for other operations. Once you call `release` to destroy the created `agora` instance, you cannot use any method or
+     * resources for other operations. Once you call `release` to release the Agora engine, you cannot use any method or
      * callback in the SDK any more.
      *
      * If you want to use the real-time communication functions again, you must call [init]{@link agora.init} to initialize a
-     * new `agora` instance.
+     * new Agora engine.
      *
-     * @note If you want to create a new `agora` instance after destroying the current one, ensure that you wait till the
+     * @note If you want to reinitialize the Agora engine after releasing the current one, ensure that you wait till the
      * `release` method completes executing.
      */
     function release() {
         callNativeMethod(agora.API_TYPE.RELEASE);
     }
     agora.release = release;
-    /** Listens for the events during the `agora` engine runtime.
+    /** @en
+     * Listens for the events during the Agora engine runtime.
      */
     function on(type, callback, target, useCapture) {
         return event.on(type, callback, target, useCapture);
     }
     agora.on = on;
-    /** Stops monitoring the events during the `agora` engine runtime.
+    /** @en
+     * Stops monitoring the events during the Agora engine runtime.
      */
     function off(type, callback, target) {
         event.off(type, callback, target);
     }
     agora.off = off;
-    /** Sets the channel profile of the `agora`.
+    /** @en
+     * Sets the channel profile of the Agora engine.
      *
-     * The `agora` differentiates channel profiles and applies optimization algorithms accordingly.
+     * The Agora engine differentiates channel profiles and applies optimization algorithms accordingly.
      * For example, it prioritizes smoothness and low latency for a video call, and prioritizes video quality for the live interactive
      * video streaming.
      *
@@ -3700,7 +4590,7 @@ var agora;
      * - The default audio route and video encoding bitrate are different in different channel profiles. For details, see
      * [setDefaultAudioRouteToSpeakerphone]{@link agora.setDefaultAudioRouteToSpeakerphone}.
      *
-     * @param profile The channel profile of the `agora`. See [CHANNEL_PROFILE_TYPE]{@link agora.CHANNEL_PROFILE_TYPE}.
+     * @param profile The channel profile of the Agora engine. See [CHANNEL_PROFILE_TYPE]{@link agora.CHANNEL_PROFILE_TYPE}.
      *
      * @return
      * - 0(`ERR_OK`): Success.
@@ -3715,7 +4605,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_CHANNEL_PROFILE, { profile: profile });
     }
     agora.setChannelProfile = setChannelProfile;
-    /** Sets the role of the user, such as a host or an audience (default), before joining a channel in the live interactive streaming.
+    /** @en
+     * Sets the role of the user, such as a host or an audience (default), before joining a channel in the live interactive streaming.
      *
      * This method can be used to switch the user role in the live interactive streaming after the user joins a channel.
      *
@@ -3748,7 +4639,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_CLIENT_ROLE, { role: role });
     }
     agora.setClientRole = setClientRole;
-    /** Joins a channel with the user ID.
+    /** @en
+     * Joins a channel with the user ID.
      *
      * Users in the same channel can talk to each other, and multiple users in the same channel can start a group chat. Users with
      * different App IDs cannot call each other.
@@ -3768,7 +4660,7 @@ var agora;
      * automatically assigns a `uid`. If you want to join a channel from different devices, ensure that each device has a different uid.
      *
      * @warning Ensure that the App ID used for creating the token is the same App ID used by the [init]{@link agora.init} method for
-     * initializing the `agora` instance. Otherwise, the CDN live streaming may fail.
+     * initializing the Agora engine. Otherwise, the CDN live streaming may fail.
      *
      * @param token The token for authentication:
      * - In situations not requiring high security: You can use the temporary token generated at Console. For details, see
@@ -3814,7 +4706,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.JOIN_CHANNEL, { token: token, channelId: channelId, info: info, uid: uid });
     }
     agora.joinChannel = joinChannel;
-    /** Switches to a different channel.
+    /** @en
+     * Switches to a different channel.
      *
      * This method allows the audience of a `LIVE_BROADCASTING` channel to switch to a different channel.
      *
@@ -3856,7 +4749,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SWITCH_CHANNEL, { token: token, channelId: channelId });
     }
     agora.switchChannel = switchChannel;
-    /** Allows a user to leave a channel, such as hanging up or exiting a call.
+    /** @en
+     * Allows a user to leave a channel, such as hanging up or exiting a call.
      *
      * After joining a channel, the user must call the `leaveChannel` method to end the call before joining another channel.
      *
@@ -3870,7 +4764,7 @@ var agora;
      * `COMMUNICATION` channel, or is a host in the `LIVE_BROADCASTING` profile.
      *
      * **Note**
-     * - If you call the [destroy]{@link agora.destroy} method immediately after the `leaveChannel` method, the `leaveChannel` process
+     * - If you call the [release]{@link agora.release} method immediately after the `leaveChannel` method, the `leaveChannel` process
      * interrupts, and the [onLeaveChannel]{@link AgoraRtcEvents.onLeaveChannel} callback is not triggered.
      * - If you call the `leaveChannel` method during a CDN live streaming, the SDK triggers the
      * [removePublishStreamUrl]{@link agora.removePublishStreamUrl} method.
@@ -3892,7 +4786,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.LEAVE_CHANNEL);
     }
     agora.leaveChannel = leaveChannel;
-    /** Gets a new token when the current token expires after a period of time.
+    /** @en
+     * Gets a new token when the current token expires after a period of time.
      *
      * The `token` expires after a period of time once the token schema is enabled when:
      * - The SDK triggers the [onTokenPrivilegeWillExpire]{@link AgoraRtcEvents.onTokenPrivilegeWillExpire} callback, or
@@ -3918,7 +4813,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.RE_NEW_TOKEN, { token: token });
     }
     agora.renewToken = renewToken;
-    /** Registers a user account.
+    /** @en
+     * Registers a user account.
      *
      * Once registered, the user account can be used to identify the local user when the user joins the channel. After the user
      * successfully registers a user account, the SDK triggers the
@@ -3962,7 +4858,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.REGISTER_LOCAL_USER_ACCOUNT, { appId: appId, userAccount: userAccount });
     }
     agora.registerLocalUserAccount = registerLocalUserAccount;
-    /** Joins the channel with a user account.
+    /** @en
+     * Joins the channel with a user account.
      *
      * After the user successfully joins the channel, the SDK triggers the following callbacks:
      *
@@ -4023,10 +4920,11 @@ var agora;
         return callNativeMethod(agora.API_TYPE.JOIN_CHANNEL_WITH_USER_ACCOUNT, { token: token, channelId: channelId, userAccount: userAccount });
     }
     agora.joinChannelWithUserAccount = joinChannelWithUserAccount;
-    /** Gets the user information by passing in the user account.
+    /** @en
+     * Gets the user information by passing in the user account.
      *
      * After a remote user joins the channel, the SDK gets the user ID and user account of the remote user, caches them
-     * in a mapping table object ([UserInfo]{@link agora.UserInfo}), and triggers the
+     * in [UserInfo]{@link agora.UserInfo}, and triggers the
      * [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated}  callback on the local client.
      *
      * After receiving the [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated} callback, you can call this method
@@ -4043,10 +4941,11 @@ var agora;
         return callNativeMethod(agora.API_TYPE.GET_USER_INFO_BY_USER_ACCOUNT, { userAccount: userAccount });
     }
     agora.getUserInfoByUserAccount = getUserInfoByUserAccount;
-    /** Gets the user information by passing in the user ID.
+    /** @en
+     * Gets the user information by passing in the user ID.
      *
      * After a remote user joins the channel, the SDK gets the user ID and user account of the remote user,
-     * caches them in a mapping table object ([UserInfo]{@link agora.UserInfo}), and triggers the
+     * caches [UserInfo]{@link agora.UserInfo}, and triggers the
      * [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated} callback on the local client.
      *
      * After receiving the [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated} callback, you can call this method
@@ -4063,7 +4962,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.GET_USER_INFO_BY_UID, { uid: uid });
     }
     agora.getUserInfoByUid = getUserInfoByUid;
-    /** Starts an audio call test.
+    /** @en
+     * Starts an audio call test.
      *
      * This method starts an audio call test to determine whether the audio devices (for example, headset and speaker)
      * and the network connection are working properly.
@@ -4093,7 +4993,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.START_ECHO_TEST_2, { intervalInSeconds: intervalInSeconds });
     }
     agora.startEchoTest = startEchoTest;
-    /** Stops the audio call test.
+    /** @en
+     * Stops the audio call test.
      *
      * @return
      * - 0: Success.
@@ -4106,7 +5007,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.STOP_ECHO_TEST);
     }
     agora.stopEchoTest = stopEchoTest;
-    /** @ignore
+    /** @en
+     * @ignore
      * Enables the video module.
      *
      * Call this method either before joining a channel or during a call. If this method is called before joining a
@@ -4136,7 +5038,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_VIDEO);
     }
     agora.enableVideo = enableVideo;
-    /** @ignore
+    /** @en
+     * @ignore
      * Disables the video module.
      *
      * This method can be called before joining a channel or during a call. If this method is called before joining a
@@ -4166,7 +5069,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.DISABLE_VIDEO);
     }
     agora.disableVideo = disableVideo;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the video profile.
      *
      * @deprecated This method is deprecated. Use the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}
@@ -4251,7 +5155,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_VIDEO_PROFILE, { profile: profile, swapWidthAndHeight: swapWidthAndHeight });
     }
     agora.setVideoProfile = setVideoProfile;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the video encoder configuration.
      *
      * Each video encoder configuration corresponds to a set of video parameters, including the resolution, frame rate,
@@ -4289,7 +5194,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_VIDEO_ENCODER_CONFIGURATION, { config: config });
     }
     agora.setVideoEncoderConfiguration = setVideoEncoderConfiguration;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the camera capture configuration.
      *
      * For a video call or the live interactive video streaming, generally the SDK controls the camera output
@@ -4322,7 +5228,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_CAMERA_CAPTURER_CONFIGURATION, { config: config });
     }
     agora.setCameraCapturerConfiguration = setCameraCapturerConfiguration;
-    /** @ignore
+    /** @en
+     * @ignore
      * Starts the local video preview before joining the channel.
      *
      * Before calling this method, you must:
@@ -4345,7 +5252,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.START_PREVIEW);
     }
     agora.startPreview = startPreview;
-    /** @ignore
+    /** @en
+     * @ignore
      * Prioritizes a remote user's stream.
      *
      * Use this method with the [setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption} method.
@@ -4368,7 +5276,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_REMOTE_USER_PRIORITY, { uid: uid, userPriority: userPriority });
     }
     agora.setRemoteUserPriority = setRemoteUserPriority;
-    /** @ignore
+    /** @en
+     * @ignore
      * Stops the local video preview and disables video.
      *
      * @return
@@ -4382,7 +5291,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.STOP_PREVIEW);
     }
     agora.stopPreview = stopPreview;
-    /** Enables the audio module.
+    /** @en
+     * Enables the audio module.
      *
      * The audio mode is enabled by default.
      *
@@ -4407,7 +5317,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_AUDIO);
     }
     agora.enableAudio = enableAudio;
-    /** Disables/Re-enables the local audio function.
+    /** @en
+     * Disables/Re-enables the local audio function.
      *
      * The audio function is enabled by default. This method disables or re-enables the local audio function, that is,
      * to stop or restart local audio capturing.
@@ -4454,7 +5365,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_LOCAL_AUDIO, { enabled: enabled });
     }
     agora.enableLocalAudio = enableLocalAudio;
-    /** Disables the audio module.
+    /** @en
+     * Disables the audio module.
      *
      * **Note**
      * - This method affects the internal engine and can be called after the [leaveChannel]{@link agora.leaveChannel}
@@ -4474,7 +5386,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.DISABLE_AUDIO);
     }
     agora.disableAudio = disableAudio;
-    /** Sets the audio parameters and application scenarios.
+    /** @en
+     * Sets the audio parameters and application scenarios.
      *
      * **Note**
      * - The `setAudioProfile` method must be called before the [joinChannel]{@link agora.joinChannel} method.
@@ -4520,7 +5433,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_AUDIO_PROFILE, { profile: profile, scenario: scenario });
     }
     agora.setAudioProfile = setAudioProfile;
-    /** Stops/Resumes sending the local audio stream.
+    /** @en
+     * Stops/Resumes sending the local audio stream.
      *
      * A successful `muteLocalAudioStream` method call triggers the [onUserMuteAudio]{@link AgoraRtcEvents.onUserMuteAudio}
      * callback on the remote client.
@@ -4557,7 +5471,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.MUTE_LOCAL_AUDIO_STREAM, { mute: mute });
     }
     agora.muteLocalAudioStream = muteLocalAudioStream;
-    /** Stops/Resumes receiving all remote users' audio streams.
+    /** @en
+     * Stops/Resumes receiving all remote users' audio streams.
      *
      * @param mute Sets whether to receive or stop receiving all remote users' audio streams.
      * - true: Stops receiving all remote users' audio streams.
@@ -4574,7 +5489,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.MUTE_ALL_REMOTE_AUDIO_STREAMS, { mute: mute });
     }
     agora.muteAllRemoteAudioStreams = muteAllRemoteAudioStreams;
-    /** Stops/Resumes receiving all remote users' audio streams by default.
+    /** @en
+     * Stops/Resumes receiving all remote users' audio streams by default.
      *
      * You can call this method either before or after joining a channel. If you call `setDefaultMuteAllRemoteAudioStreams (true)`
      * after joining a channel, the remote audio streams of all subsequent users are not received.
@@ -4599,7 +5515,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_DEFAULT_MUTE_ALL_REMOTE_AUDIO_STREAMS, { mute: mute });
     }
     agora.setDefaultMuteAllRemoteAudioStreams = setDefaultMuteAllRemoteAudioStreams;
-    /** Adjusts the playback volume of a specified remote user.
+    /** @en
+     * Adjusts the playback volume of a specified remote user.
      *
      * You can call this method as many times as necessary to adjust the playback volume of different remote users, or to
      * repeatedly adjust the playback volume of the same remote user.
@@ -4626,7 +5543,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ADJUST_USER_PLAYBACK_SIGNAL_VOLUME, { uid: uid, volume: volume });
     }
     agora.adjustUserPlaybackSignalVolume = adjustUserPlaybackSignalVolume;
-    /** Stops/Resumes receiving a specified remote user's audio stream.
+    /** @en
+     * Stops/Resumes receiving a specified remote user's audio stream.
      *
      * @note If you called the [muteAllRemoteAudioStreams]{@link agora.muteAllRemoteAudioStreams} method and set `mute`
      * as `true` to stop receiving all remote users' audio streams, call the `muteAllRemoteAudioStreams` method and set
@@ -4661,7 +5579,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.MUTE_REMOTE_AUDIO_STREAM, { userId: userId, mute: mute });
     }
     agora.muteRemoteAudioStream = muteRemoteAudioStream;
-    /** @ignore
+    /** @en
+     * @ignore
      * Stops/Resumes sending the local video stream.
      *
      * A successful `muteLocalVideoStream` method call triggers the
@@ -4701,7 +5620,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.MUTE_LOCAL_VIDEO_STREAM, { mute: mute });
     }
     agora.muteLocalVideoStream = muteLocalVideoStream;
-    /** @ignore
+    /** @en
+     * @ignore
      * Enables/Disables the local video capture.
      *
      * This method disables or re-enables the local video capturer, and does not affect receiving the remote video stream.
@@ -4742,7 +5662,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_LOCAL_VIDEO, { enabled: enabled });
     }
     agora.enableLocalVideo = enableLocalVideo;
-    /** @ignore
+    /** @en
+     * @ignore
      * Stops/Resumes receiving all video stream from a specified remote user.
      *
      * @param  mute Sets whether to receive/stop receiving all remote users' video streams:
@@ -4760,7 +5681,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.MUTE_ALL_REMOTE_VIDEO_STREAMS, { mute: mute });
     }
     agora.muteAllRemoteVideoStreams = muteAllRemoteVideoStreams;
-    /** @ignore
+    /** @en
+     * @ignore
      * Stops/Resumes receiving all remote users' video streams by default.
      *
      * You can call this method either before or after joining a channel. If you call `setDefaultMuteAllRemoteVideoStreams (true)`
@@ -4786,7 +5708,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_DEFAULT_MUTE_ALL_REMOTE_VIDEO_STREAMS, { mute: mute });
     }
     agora.setDefaultMuteAllRemoteVideoStreams = setDefaultMuteAllRemoteVideoStreams;
-    /** @ignore
+    /** @en
+     * @ignore
      * Stops/Resumes receiving the video stream from a specified remote user.
      *
      * @note If you called the [muteAllRemoteVideoStreams]{@link agora.muteAllRemoteVideoStreams} method and set `mute`
@@ -4821,7 +5744,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.MUTE_REMOTE_VIDEO_STREAM, { userId: userId, mute: mute });
     }
     agora.muteRemoteVideoStream = muteRemoteVideoStream;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the stream type of the remote video.
      *
      * Under limited network conditions, if the publisher has not disabled the dual-stream mode using `enableDualStreamMode(false)`,
@@ -4858,7 +5782,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_REMOTE_VIDEO_STREAM_TYPE, { userId: userId, streamType: streamType });
     }
     agora.setRemoteVideoStreamType = setRemoteVideoStreamType;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the default stream type of remote videos.
      *
      * Under limited network conditions, if the publisher has not disabled the dual-stream mode using `enableDualStreamMode(false)`,
@@ -4887,7 +5812,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_REMOTE_DEFAULT_VIDEO_STREAM_TYPE, { streamType: streamType });
     }
     agora.setRemoteDefaultVideoStreamType = setRemoteDefaultVideoStreamType;
-    /** Enables the [onAudioVolumeIndication]{@link AgoraRtcEvents.onAudioVolumeIndication} callback at a set time interval
+    /** @en
+     * Enables the [onAudioVolumeIndication]{@link AgoraRtcEvents.onAudioVolumeIndication} callback at a set time interval
      * to report on which users are speaking and the speakers' volume.
      *
      * Once this method is enabled, the SDK returns the volume indication in the
@@ -4918,7 +5844,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_AUDIO_VOLUME_INDICATION, { interval: interval, smooth: smooth, report_vad: report_vad });
     }
     agora.enableAudioVolumeIndication = enableAudioVolumeIndication;
-    /** Starts an audio recording on the client.
+    /** @en
+     * Starts an audio recording on the client.
      *
      * The SDK allows recording during a call. After successfully calling this method, you can record the audio of all
      * the users in the channel and get an audio recording file.
@@ -4937,14 +5864,14 @@ var agora;
      * `sampleRate` is 44.1 kHz or 48 kHz.
      *
      * @param filePath The absolute file path of the recording file. The string of the file name is in UTF-8, such as
-     * c:\music\audio.aac.
+     * /dir1/dir2/dir3/audio.aac.
      * @param quality Sets the audio recording quality. See
      * [AUDIO_RECORDING_QUALITY_TYPE]{@link agora.AUDIO_RECORDING_QUALITY_TYPE}.
-     * @param sampleRate Sample rate (kHz) of the recording file. Supported values are as follows:
-     * - 16
-     * - (Default) 32
-     * - 44.1
-     * - 48
+     * @param sampleRate Sample rate (Hz) of the recording file. Supported values are as follows:
+     * - 16000
+     * - (Default) 32000
+     * - 44100
+     * - 48000
      *
      * @return
      * - 0: Success.
@@ -4960,7 +5887,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.START_AUDIO_RECORDING2, { filePath: filePath, sampleRate: sampleRate, quality: quality });
     }
     agora.startAudioRecording = startAudioRecording;
-    /** Stops an audio recording on the client.
+    /** @en
+     * Stops an audio recording on the client.
      *
      * You can call this method before calling the [leaveChannel]{@link agora.leaveChannel} method else, the
      * recording automatically stops when the `leaveChannel` method is called.
@@ -4976,7 +5904,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.STOP_AUDIO_RECORDING);
     }
     agora.stopAudioRecording = stopAudioRecording;
-    /** Starts playing and mixing the music file.
+    /** @en
+     * Starts playing and mixing the music file.
      *
      * This method mixes the specified local audio file with the audio stream from the microphone, or replaces the
      * microphone's audio stream with the specified local audio file. You can choose whether the other user can hear
@@ -5034,7 +5963,8 @@ var agora;
         });
     }
     agora.startAudioMixing = startAudioMixing;
-    /** Stops playing and mixing the music file.
+    /** @en
+     * Stops playing and mixing the music file.
      *
      * Call this method when you are in a channel.
      *
@@ -5055,7 +5985,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.STOP_AUDIO_MIXING);
     }
     agora.stopAudioMixing = stopAudioMixing;
-    /** Pauses playing and mixing the music file.
+    /** @en
+     * Pauses playing and mixing the music file.
      *
      * Call this method when you are in a channel.
      *
@@ -5076,7 +6007,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.PAUSE_AUDIO_MIXING);
     }
     agora.pauseAudioMixing = pauseAudioMixing;
-    /** Resumes playing and mixing the music file.
+    /** @en
+     * Resumes playing and mixing the music file.
      *
      * Call this method when you are in a channel.
      *
@@ -5097,7 +6029,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.RESUME_AUDIO_MIXING);
     }
     agora.resumeAudioMixing = resumeAudioMixing;
-    /** Sets the high-quality audio preferences.
+    /** @en
+     * Sets the high-quality audio preferences.
      *
      * @deprecated This callback is deprecated.
      *
@@ -5130,7 +6063,8 @@ var agora;
         });
     }
     agora.setHighQualityAudioParameters = setHighQualityAudioParameters;
-    /** Adjusts the volume during audio mixing.
+    /** @en
+     * Adjusts the volume during audio mixing.
      *
      * Call this method when you are in a channel.
      *
@@ -5156,7 +6090,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_VOLUME, { volume: volume });
     }
     agora.adjustAudioMixingVolume = adjustAudioMixingVolume;
-    /** Adjusts the audio mixing volume for local playback.
+    /** @en
+     * Adjusts the audio mixing volume for local playback.
      *
      * @note Call this method when you are in a channel.
      *
@@ -5173,7 +6108,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_PLAYOUT_VOLUME, { volume: volume });
     }
     agora.adjustAudioMixingPlayoutVolume = adjustAudioMixingPlayoutVolume;
-    /** Retrieves the audio mixing volume for local playback.
+    /** @en
+     * Retrieves the audio mixing volume for local playback.
      *
      * This method helps troubleshoot audio volume related issues.
      *
@@ -5190,7 +6126,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.GET_AUDIO_MIXING_PLAYOUT_VOLUME);
     }
     agora.getAudioMixingPlayoutVolume = getAudioMixingPlayoutVolume;
-    /** Adjusts the audio mixing volume for publishing (for remote users).
+    /** @en
+     * Adjusts the audio mixing volume for publishing (for remote users).
      *
      * @note Call this method when you are in a channel.
      *
@@ -5207,7 +6144,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.ADJUST_AUDIO_MIXING_PUBLISH_VOLUME, { volume: volume });
     }
     agora.adjustAudioMixingPublishVolume = adjustAudioMixingPublishVolume;
-    /** Retrieves the audio mixing volume for publishing.
+    /** @en
+     * Retrieves the audio mixing volume for publishing.
      *
      * This method helps troubleshoot audio volume related issues.
      *
@@ -5224,7 +6162,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.GET_AUDIO_MIXING_PUBLISH_VOLUME);
     }
     agora.getAudioMixingPublishVolume = getAudioMixingPublishVolume;
-    /** Retrieves the duration (ms) of the music file.
+    /** @en
+     * Retrieves the duration (ms) of the music file.
      *
      * Call this method when you are in a channel.
      *
@@ -5244,7 +6183,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.GET_AUDIO_MIXING_DURATION);
     }
     agora.getAudioMixingDuration = getAudioMixingDuration;
-    /** Retrieves the playback position (ms) of the music file.
+    /** @en
+     * Retrieves the playback position (ms) of the music file.
      *
      * Call this method when you are in a channel.
      *
@@ -5264,7 +6204,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.GET_AUDIO_MIXING_CURRENT_POSITION);
     }
     agora.getAudioMixingCurrentPosition = getAudioMixingCurrentPosition;
-    /** Sets the playback position of the music file to a different starting position (the default plays from the beginning).
+    /** @en
+     * Sets the playback position of the music file to a different starting position (the default plays from the beginning).
      *
      * @param pos The playback starting position (ms) of the music file.
      *
@@ -5285,11 +6226,12 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.SET_AUDIO_MIXING_POSITION, { pos: pos });
     }
     agora.setAudioMixingPosition = setAudioMixingPosition;
-    /** Sets the pitch of the local music file.
+    /** @en
+     * Sets the pitch of the local music file.
      *
      * When a local music file is mixed with a local human voice, call this method to set the pitch of the local music file only.
      *
-     * @note Call this method after calling `startAudioMixing`.
+     * @note Call this method after calling [startAudioMixing]{@link agora.startAudioMixing}.
      *
      * @param pitch Sets the pitch of the local music file by chromatic scale. The default value is 0,
      * which means keeping the original pitch. The value ranges from -12 to 12, and the pitch value between
@@ -5307,7 +6249,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.SET_AUDIO_MIXING_PITCH, { pitch: pitch });
     }
     agora.setAudioMixingPitch = setAudioMixingPitch;
-    /** Retrieves the volume of the audio effects.
+    /** @en
+     * Retrieves the volume of the audio effects.
      *
      * The value ranges between 0.0 and 100.0.
      *
@@ -5327,7 +6270,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.GET_EFFECTS_VOLUME);
     }
     agora.getEffectsVolume = getEffectsVolume;
-    /** Sets the volume of the audio effects.
+    /** @en
+     * Sets the volume of the audio effects.
      *
      * @param volume Sets the volume of the audio effects. The value ranges between 0 and 100 (default).
      *
@@ -5348,7 +6292,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.SET_EFFECTS_VOLUME, { volume: volume });
     }
     agora.setEffectsVolume = setEffectsVolume;
-    /** Sets the volume of a specified audio effect.
+    /** @en
+     * Sets the volume of a specified audio effect.
      *
      * @param soundId ID of the audio effect. Each audio effect has a unique ID.
      * @param volume Sets the volume of the specified audio effect. The value ranges between 0 and 100 (default).
@@ -5370,7 +6315,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.SET_VOLUME_OF_EFFECT, { soundId: soundId, volume: volume });
     }
     agora.setVolumeOfEffect = setVolumeOfEffect;
-    /** @ignore
+    /** @en
+     * @ignore
      * Enables/Disables face detection for the local user. Applies to Android and iOS only.
      *
      * Once face detection is enabled, the SDK triggers the
@@ -5395,7 +6341,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_FACE_DETECTION, { enabled: enabled });
     }
     agora.enableFaceDetection = enableFaceDetection;
-    /** Plays a specified local or online audio effect file.
+    /** @en
+     * Plays a specified local or online audio effect file.
      *
      * This method allows you to set the loop count, pitch, pan, and gain of the audio effect file, as well as whether
      * the remote user can hear the audio effect.
@@ -5454,7 +6401,8 @@ var agora;
         });
     }
     agora.playEffect = playEffect;
-    /** Stops playing a specified audio effect.
+    /** @en
+     * Stops playing a specified audio effect.
      *
      * @param soundId ID of the audio effect to stop playing. Each audio effect has a unique ID.
      *
@@ -5475,7 +6423,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.STOP_EFFECT, { soundId: soundId });
     }
     agora.stopEffect = stopEffect;
-    /** Stops playing all audio effects.
+    /** @en
+     * Stops playing all audio effects.
      *
      * @return
      * - 0: Success.
@@ -5494,7 +6443,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.STOP_ALL_EFFECTS);
     }
     agora.stopAllEffects = stopAllEffects;
-    /** Preloads a specified audio effect file into the memory.
+    /** @en
+     * Preloads a specified audio effect file into the memory.
      *
      * To ensure smooth communication, limit the size of the audio effect file. We recommend using this method to
      * preload the audio effect before calling the [joinChannel]{@link agora.joinChannel} method.
@@ -5522,7 +6472,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.PRE_LOAD_EFFECT, { soundId: soundId, filePath: filePath });
     }
     agora.preloadEffect = preloadEffect;
-    /** Releases a specified preloaded audio effect from the memory.
+    /** @en
+     * Releases a specified preloaded audio effect from the memory.
      *
      * @param soundId ID of the audio effect. Each audio effect has a unique ID.
      *
@@ -5543,7 +6494,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.UN_LOAD_EFFECT, { soundId: soundId });
     }
     agora.unloadEffect = unloadEffect;
-    /** Pauses a specified audio effect.
+    /** @en
+     * Pauses a specified audio effect.
      *
      * @param soundId ID of the audio effect. Each audio effect has a unique ID.
      *
@@ -5564,7 +6516,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.PAUSE_EFFECT, { soundId: soundId });
     }
     agora.pauseEffect = pauseEffect;
-    /** Pauses all audio effects.
+    /** @en
+     * Pauses all audio effects.
      *
      * @return
      * - 0: Success.
@@ -5583,7 +6536,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.PAUSE_ALL_EFFECTS);
     }
     agora.pauseAllEffects = pauseAllEffects;
-    /** Resumes playing a specified audio effect.
+    /** @en
+     * Resumes playing a specified audio effect.
      *
      * @param soundId ID of the audio effect. Each audio effect has a unique ID.
      *
@@ -5604,7 +6558,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.RESUME_EFFECT, { soundId: soundId });
     }
     agora.resumeEffect = resumeEffect;
-    /** Resumes playing all audio effects.
+    /** @en
+     * Resumes playing all audio effects.
      *
      * @return
      * - 0: Success.
@@ -5623,7 +6578,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.RESUME_ALL_EFFECTS);
     }
     agora.resumeAllEffects = resumeAllEffects;
-    /** Enables/Disables stereo panning for remote users.
+    /** @en
+     * Enables/Disables stereo panning for remote users.
      *
      * Ensure that you call this method before [joinChannel]{@link agora.joinChannel} to enable stereo panning for
      * remote users so that the local user can track the position of a remote user by calling
@@ -5644,7 +6600,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.ENABLE_SOUND_POSITION_INDICATION, { enabled: enabled });
     }
     agora.enableSoundPositionIndication = enableSoundPositionIndication;
-    /** Sets the sound position and gain of a remote user.
+    /** @en
+     * Sets the sound position and gain of a remote user.
      *
      * When the local user calls this method to set the sound position of a remote user, the sound difference between
      * the left and right channels allows the local user to track the real-time position of the remote user, creating
@@ -5674,7 +6631,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_REMOTE_VOICE_POSITIONN, { uid: uid, pan: pan, gain: gain });
     }
     agora.setRemoteVoicePosition = setRemoteVoicePosition;
-    /** Changes the voice pitch of the local speaker.
+    /** @en
+     * Changes the voice pitch of the local speaker.
      *
      * @param pitch Sets the voice pitch. The value ranges between 0.5 and 2.0. The lower the value, the lower the
      * voice pitch. The default value is 1.0 (no change to the local voice pitch).
@@ -5690,7 +6648,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_CHANGER, { pitch: pitch });
     }
     agora.setLocalVoicePitch = setLocalVoicePitch;
-    /** Sets the local voice equalization effect.
+    /** @en
+     * Sets the local voice equalization effect.
      *
      * @param bandFrequency Sets the band frequency. The value ranges between 0 and 9, representing the respective
      * 10-band center frequencies of the voice effects, including 31, 62, 125, 500, 1k, 2k, 4k, 8k, and 16k Hz. See
@@ -5711,11 +6670,11 @@ var agora;
         });
     }
     agora.setLocalVoiceEqualization = setLocalVoiceEqualization;
-    /**  Sets the local voice reverberation.
+    /** @en
+     * Sets the local voice reverberation.
      *
-     * v2.4.0 adds the [setLocalVoiceReverbPreset]{@link agora.setLocalVoiceReverbPreset} method, a more user-friendly
-     * method for setting the local voice reverberation. You can use this method to set the local reverberation effect,
-     * such as pop music, R&B, rock music, and hip-hop.
+     * You can also use [setLocalVoiceReverbPreset]{@link agora.setLocalVoiceReverbPreset} to use the preset reverberation effect,
+     * such as pop music, R&B or rock music effects.
      *
      * @param reverbKey Sets the reverberation key. See [AUDIO_REVERB_TYPE]{@link agora.AUDIO_REVERB_TYPE}.
      * @param value Sets the value of the reverberation key.
@@ -5731,7 +6690,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_REVERB, { reverbKey: reverbKey, value: value });
     }
     agora.setLocalVoiceReverb = setLocalVoiceReverb;
-    /** Sets the local voice changer option.
+    /** @en
+     * Sets the local voice changer option.
      *
      * This method can be used to set the local voice effect for users in a `COMMUNICATION` channel or hosts in a
      * `LIVE_BROADCASTING` channel.
@@ -5774,7 +6734,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_CHANGER, { voiceChanger: voiceChanger });
     }
     agora.setLocalVoiceChanger = setLocalVoiceChanger;
-    /** Sets the local voice reverberation option, including the virtual stereo.
+    /** @en
+     * Sets the local voice reverberation option, including the virtual stereo.
      *
      * This method sets the local voice reverberation for users in a `COMMUNICATION` channel or hosts in a `LIVE_BROADCASTING` channel.
      * After successfully calling this method, all users in the channel can hear the voice with reverberation.
@@ -5806,7 +6767,8 @@ var agora;
         return callNativeMethodAudioEffect(agora.API_TYPE_AUDIO_EFFECT.SET_LOCAL_VOICE_REVERB_PRESET, { reverbPreset: reverbPreset });
     }
     agora.setLocalVoiceReverbPreset = setLocalVoiceReverbPreset;
-    /** Sets the log files that the SDK outputs.
+    /** @en
+     * Sets the log files that the SDK outputs.
      *
      * By default, the SDK outputs five log files, `agorasdk.log`, `agorasdk_1.log`, `agorasdk_2.log`, `agorasdk_3.log`,
      * `agorasdk_4.log`, each with a default size of 1024 KB.
@@ -5818,8 +6780,10 @@ var agora;
      * @note Ensure that you call this method immediately after calling [init]{@link agora.init}, otherwise the output
      * logs may not be complete.
      *
-     * @param filePath The absolute path of log files. The default file path is
-     * `C: \Users\<user_name>\AppData\Local\Agora\<process_name>\agorasdk.log`.
+     * @param filePath The absolute path of log files. The default file path is as follows:
+     * - Android: `/storage/emulated/0/Android/data/<package name>/files/agorasdk.log`
+     * - iOS: `App Sandbox/Library/caches/agorasdk.log`
+     *
      * Ensure that the directory for the log files exists and is writable. You can use this parameter to rename the log files.
      *
      * @return
@@ -5833,7 +6797,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_LOG_FILE, { filePath: filePath });
     }
     agora.setLogFile = setLogFile;
-    /** Sets the output log level of the SDK.
+    /** @en
+     * Sets the output log level of the SDK.
      *
      * You can use one or a combination of the log filter levels. The log level follows the sequence of `OFF`,
      * `CRITICAL`, `ERROR`, `WARNING`, `INFO`, and `DEBUG`. Choose a level to see the logs preceding that level.
@@ -5867,7 +6832,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_LOG_FILTER, { filter: filter });
     }
     agora.setLogFilter = setLogFilter;
-    /** Sets the size of a log file that the SDK outputs.
+    /** @en
+     * Sets the size of a log file that the SDK outputs.
      *
      * By default, the SDK outputs five log files, `agorasdk.log`, `agorasdk_1.log`, `agorasdk_2.log`, `agorasdk_3.log`,
      * `agorasdk_4.log`, each with a default size of 1024 KB.
@@ -5891,7 +6857,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_LOG_FILE_SIZE, { fileSizeInKBytes: fileSizeInKBytes });
     }
     agora.setLogFileSize = setLogFileSize;
-    /** @ignore
+    /** @en
+     * @ignore
      * Updates the display mode of the local video view.
      *
      * After initializing the local video view, you can call this method to update its rendering and mirror modes. It
@@ -5925,7 +6892,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_LOCAL_RENDER_MODE_2, { renderMode: renderMode, mirrorMode: mirrorMode });
     }
     agora.setLocalRenderMode = setLocalRenderMode;
-    /** @ignore
+    /** @en
+     * @ignore
      * Updates the display mode of the video view of a remote user.
      *
      * After initializing the video view of a remote user, you can call this method to update its rendering and mirror
@@ -5959,7 +6927,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_REMOTE_RENDER_MODE_2, { userId: userId, renderMode: renderMode, mirrorMode: mirrorMode });
     }
     agora.setRemoteRenderMode = setRemoteRenderMode;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the local video mirror mode.
      *
      * @deprecated This method is deprecated, use the [setupLocalVideo]{@link agora.setupLocalVideo} or
@@ -5985,7 +6954,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_LOCAL_VIDEO_MIRROR_MODE, { mirrorMode: mirrorMode });
     }
     agora.setLocalVideoMirrorMode = setLocalVideoMirrorMode;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the stream mode to the single-stream (default) or dual-stream mode. (`LIVE_BROADCASTING` only.)
      *
      * If the dual-stream mode is enabled, the receiver can choose to receive the high stream (high-resolution and
@@ -6008,7 +6978,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_DUAL_STREAM_MODE, { enabled: enabled });
     }
     agora.enableDualStreamMode = enableDualStreamMode;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the external audio source. Please call this method before [joinChannel]{@link agora.joinChannel}.
      *
      * @param enabled Sets whether to enable/disable the external audio source:
@@ -6035,7 +7006,8 @@ var agora;
         });
     }
     agora.setExternalAudioSource = setExternalAudioSource;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the external audio sink.
      *
      * This method applies to scenarios where you want to use external audio
@@ -6073,7 +7045,8 @@ var agora;
         });
     }
     agora.setExternalAudioSink = setExternalAudioSink;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the audio recording format for the [onRecordAudioFrame]{@link AgoraRtcEvents.onRecordAudioFrame} callback.
      *
      * @param sampleRate Sets the sample rate (`samplesPerSec`) returned in the onRecordAudioFrame* callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.
@@ -6098,7 +7071,8 @@ var agora;
             samplesPerCall: samplesPerCall
         });
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the audio playback format for the [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame} callback.
      *
      * @param sampleRate Sets the sample rate (`samplesPerSec`) returned in the *onPlaybackAudioFrame* callback,
@@ -6128,7 +7102,8 @@ var agora;
             samplesPerCall: samplesPerCall
         });
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the mixed audio format for the [onMixedAudioFrame]{@link agora.onMixedAudioFrame} callback.
      *
      * @param sampleRate Sets the sample rate (`samplesPerSec`) returned in the `onMixedAudioFrame` callback, which can be set as
@@ -6151,7 +7126,8 @@ var agora;
             samplesPerCall: samplesPerCall
         });
     }
-    /** Adjusts the recording volume.
+    /** @en
+     * Adjusts the recording volume.
      *
      * @param volume Recording volume. To avoid echoes and improve call quality,
      * Agora recommends setting the value of volume between 0 and 100. If you
@@ -6170,7 +7146,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ADJUST_RECORDING_SIGNAL_VOLUME, { volume: volume });
     }
     agora.adjustRecordingSignalVolume = adjustRecordingSignalVolume;
-    /** Adjusts the playback volume of all remote users.
+    /** @en
+     * Adjusts the playback volume of all remote users.
      *
      * **Note**
      * - This method adjusts the playback volume that is the mixed volume of all remote users.
@@ -6195,7 +7172,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ADJUST_PLAYBACK_SIGNAL_VOLUME, { volume: volume });
     }
     agora.adjustPlaybackSignalVolume = adjustPlaybackSignalVolume;
-    /** Enables interoperability with the Agora Web SDK.
+    /** @en
+     * Enables interoperability with the Agora Web SDK.
      *
      * @deprecated This method is deprecated. As of v3.1.2, the Native SDK automatically enables interoperability with
      * the Web SDK, so you no longer need to call this method.
@@ -6221,10 +7199,12 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_WEB_SDK_INTEROPER_ABILITY, { enabled: enabled });
     }
     agora.enableWebSdkInteroperability = enableWebSdkInteroperability;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the preferences for the high-quality video. (`LIVE_BROADCASTING` only).
      *
-     * @deprecated This method is deprecated.
+     * @deprecated This method is deprecated. Agora recommends using the `degradationPrefer` parameter of
+     * [VideoEncoderConfiguration]{@link agora.VideoEncoderConfiguration}.
      *
      * @param preferFrameRateOverImageQuality Sets the video quality preference:
      * - true: Frame rate over image quality.
@@ -6241,7 +7221,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_VIDEO_QUALITY_PARAMETERS, { preferFrameRateOverImageQuality: preferFrameRateOverImageQuality });
     }
     agora.setVideoQualityParameters = setVideoQualityParameters;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the fallback option for the published video stream based on the network conditions.
      *
      * If `option` is set as
@@ -6271,7 +7252,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_LOCAL_PUBLISH_FALLBACK_OPTION, { option: option });
     }
     agora.setLocalPublishFallbackOption = setLocalPublishFallbackOption;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the fallback option for the remotely subscribed video stream based on the network conditions.
      *
      * The default setting for `option` is
@@ -6303,7 +7285,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_REMOTE_SUBSCRIBE_FALLBACK_OPTION, { option: option });
     }
     agora.setRemoteSubscribeFallbackOption = setRemoteSubscribeFallbackOption;
-    /** @ignore
+    /** @en
+     * @ignore
      * Switches between front and rear cameras.
      *
      * @note This method is for Android and iOS only.
@@ -6324,7 +7307,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SWITCH_CAMERA_2, { direction: direction });
     }
     agora.switchCamera = switchCamera;
-    /** Sets the default audio playback route.
+    /** @en
+     * Sets the default audio playback route.
      *
      * This method sets whether the received audio is routed to the earpiece or speakerphone by default before joining a channel.
      *
@@ -6357,7 +7341,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_DEFAULT_AUDIO_ROUTE_SPEAKER_PHONE, { defaultToSpeaker: defaultToSpeaker });
     }
     agora.setDefaultAudioRouteToSpeakerphone = setDefaultAudioRouteToSpeakerphone;
-    /** Enables/Disables the audio playback route to the speakerphone.
+    /** @en
+     * Enables/Disables the audio playback route to the speakerphone.
      *
      * This method sets whether the audio is routed to the speakerphone or earpiece.
      *
@@ -6388,7 +7373,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_ENABLE_SPEAKER_PHONE, { speakerOn: speakerOn });
     }
     agora.setEnableSpeakerphone = setEnableSpeakerphone;
-    /** Enables in-ear monitoring (for Android and iOS only).
+    /** @en
+     * Enables in-ear monitoring (for Android and iOS only).
      *
      * @param enabled Determines whether to enable in-ear monitoring.
      * - true: Enable.
@@ -6405,7 +7391,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_IN_EAR_MONITORING, { enabled: enabled });
     }
     agora.enableInEarMonitoring = enableInEarMonitoring;
-    /** Sets the volume of the in-ear monitor.
+    /** @en
+     * Sets the volume of the in-ear monitor.
      *
      * @param volume Sets the volume of the in-ear monitor. The value ranges between 0 and 100 (default).
      *
@@ -6422,7 +7409,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_IN_EAR_MONITORING_VOLUME, { volume: volume });
     }
     agora.setInEarMonitoringVolume = setInEarMonitoringVolume;
-    /** Checks whether the speakerphone is enabled.
+    /** @en
+     * Checks whether the speakerphone is enabled.
      *
      * @note This method is for Android and iOS only.
      *
@@ -6437,7 +7425,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.IS_SPEAKER_PHONE_ENABLED);
     }
     agora.isSpeakerphoneEnabled = isSpeakerphoneEnabled;
-    /** Retrieves the current call ID.
+    /** @en
+     * Retrieves the current call ID.
      *
      * When a user joins a channel on a client, a `callId` is generated to identify the call from the client. Feedback
      * methods, such as [rate]{@link agora.rate} and [complain]{@link agora.complain} , must be called after the call
@@ -6459,11 +7448,12 @@ var agora;
         return callNativeMethod(agora.API_TYPE.GET_CALL_ID);
     }
     agora.getCallId = getCallId;
-    /** Allows a user to rate a call after the call ends.
+    /** @en
+     * Allows a user to rate a call after the call ends.
      *
      * @param callId The ID of the call, retrieved from the [getCallId]{@link agora.getCallId} method.
      * @param rating  Rating of the call. The value is between 1 (lowest score) and 5 (highest score). If you set a
-     * value out of this range, the (`ERR_INVALID_ARGUMENT(-2)`) error returns.
+     * value out of this range, the `ERR_INVALID_ARGUMENT(-2)` error returns.
      * @param description (Optional) The description of the rating, with a string length of less than 800 bytes.
      *
      * @return
@@ -6477,7 +7467,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.RATE, { callId: callId, rating: rating, description: description });
     }
     agora.rate = rate;
-    /** Allows a user to complain about the call quality after a call ends.
+    /** @en
+     * Allows a user to complain about the call quality after a call ends.
      *
      * @param callId The ID of the call, retrieved from the [getCallId]{@link agora.getCallId} method.
      * @param description (Optional) The description of the complaint, with a string length of less than 800 bytes.
@@ -6493,7 +7484,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.COMPLAIN, { callId: callId, description: description });
     }
     agora.complain = complain;
-    /** Retrieves the SDK version number.
+    /** @en
+     * Retrieves the SDK version number.
      *
      * @return The version of the current SDK in the string format. For example, 3.1.2.
      */
@@ -6504,7 +7496,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.GET_VERSION);
     }
     agora.getVersion = getVersion;
-    /**  Enables the network connection quality test.
+    /** @en
+     * Enables the network connection quality test.
      *
      * This method tests the quality of the users' network connections and is disabled by default.
      *
@@ -6531,7 +7524,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_LAST_MILE_TEST);
     }
     agora.enableLastmileTest = enableLastmileTest;
-    /** Disables the network connection quality test.
+    /** @en
+     * Disables the network connection quality test.
      *
      * @return
      * - 0: Success.
@@ -6544,7 +7538,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.DISABLE_LAST_MILE_TEST);
     }
     agora.disableLastmileTest = disableLastmileTest;
-    /** Starts the last-mile network probe test.
+    /** @en
+     * Starts the last-mile network probe test.
      *
      * This method starts the last-mile network probe test before joining a channel to get the uplink and downlink last-mile network
      * statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT).
@@ -6578,7 +7573,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.START_LAST_MILE_PROBE_TEST, { config: config });
     }
     agora.startLastmileProbeTest = startLastmileProbeTest;
-    /** Stops the last-mile network probe test.
+    /** @en
+     * Stops the last-mile network probe test.
      *
      * @return
      * - 0: Success.
@@ -6591,7 +7587,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.STOP_LAST_MILE_PROBE_TEST);
     }
     agora.stopLastmileProbeTest = stopLastmileProbeTest;
-    /** Retrieves the warning or error description.
+    /** @en
+     * Retrieves the warning or error description.
      *
      * @param code Warning code or error code returned in the [onWarning]{@link AgoraRtcEvents.onWarning} or
      * [onError]{@link AgoraRtcEvents.onError} callback.
@@ -6605,9 +7602,10 @@ var agora;
         return callNativeMethod(agora.API_TYPE.GET_ERROR_DESCRIPTION, { code: code });
     }
     agora.getErrorDescription = getErrorDescription;
-    /** Enables built-in encryption with an encryption password before users join a channel.
+    /** @en
+     * Enables built-in encryption with an encryption password before users join a channel.
      *
-     * @deprecated This method is deprecated. Use the [enableEncryption]{@link agora.enableEncryption} instead.
+     * @deprecated This method is deprecated from v3.1.2. Use the [enableEncryption]{@link agora.enableEncryption} instead.
      *
      * All users in a channel must use the same encryption password. The encryption password is automatically cleared
      * once a user leaves the channel.
@@ -6633,9 +7631,10 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_ENCRYPTION_SECTRT, { secret: secret });
     }
     agora.setEncryptionSecret = setEncryptionSecret;
-    /** Sets the built-in encryption mode.
+    /** @en
+     * Sets the built-in encryption mode.
      *
-     * @deprecated This method is deprecated. Use the [enableEncryption]{@link agora.enableEncryption} instead.
+     * @deprecated This method is deprecated from v3.1.2. Use the [enableEncryption]{@link agora.enableEncryption} instead.
      *
      * The Agora SDK supports built-in encryption, which is set to the `aes-128-xts` mode by default. Call this method
      * to use other encryption modes.
@@ -6664,7 +7663,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_ENCRYPTION_MODE, { encryptionMode: encryptionMode });
     }
     agora.setEncryptionMode = setEncryptionMode;
-    /** Enables/Disables the built-in encryption.
+    /** @en
+     * Enables/Disables the built-in encryption.
      *
      * In scenarios requiring high security, Agora recommends calling this method to enable the built-in encryption
      * before joining a channel.
@@ -6688,7 +7688,7 @@ var agora;
      *  - -2(ERR_INVALID_ARGUMENT): An invalid parameter is used. Set the parameter with a valid value.
      *  - -4(ERR_NOT_SUPPORTED): The encryption mode is incorrect or the SDK fails to load the external encryption
      * library. Check the enumeration or reload the external encryption library.
-     *  - -7(ERR_NOT_INITIALIZED): The SDK is not initialized. Initialize the `agora` instance before calling this method.
+     *  - -7(ERR_NOT_INITIALIZED): The SDK is not initialized. Initialize the Agora engine before calling this method.
      */
     function enableEncryption(enabled, config) {
         if (isWeb) {
@@ -6697,7 +7697,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ENABLE_ENCRYPTION, { enabled: enabled, config: config });
     }
     agora.enableEncryption = enableEncryption;
-    /** Registers a packet observer.
+    /** @en
+     * Registers a packet observer.
      *
      * The Agora SDK allows your application to register a packet observer to receive callbacks for voice or video packet transmission.
      *
@@ -6721,9 +7722,10 @@ var agora;
         return callNativeMethod(agora.API_TYPE.REGISTER_PACKET_OBSERVER, { observer: observer });
     }
     agora.registerPacketObserver = registerPacketObserver;
-    /** Creates a data stream.
+    /** @en
+     * Creates a data stream.
      *
-     * Each user can create up to five data streams during the lifecycle of the `agora`.
+     * Each user can create up to five data streams during the lifecycle of the Agora engine.
      *
      * @note Set both the `reliable` and `ordered` parameters to `true` or `false`. Do not set one as `true` and the other as `false`.
      *
@@ -6748,7 +7750,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.CREATE_DATA_STREAM, { streamId: streamId, reliable: reliable, ordered: ordered });
     }
     agora.createDataStream = createDataStream;
-    /** Sends data stream messages to all users in a channel.
+    /** @en
+     * Sends data stream messages to all users in a channel.
      *
      * The SDK has the following restrictions on this method:
      * - Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 kB.
@@ -6777,7 +7780,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SEND_STREAM_MESSAGE, { streamId: streamId, length: length }, data);
     }
     agora.sendStreamMessage = sendStreamMessage;
-    /** Publishes the local stream to a specified CDN live RTMP address. (CDN live only.)
+    /** @en
+     * Publishes the local stream to a specified CDN live RTMP address. (CDN live only.)
      *
      * The SDK returns the result of this method call in the [onStreamPublished]{@link AgoraRtcEvents.onStreamPublished} callback.
      *
@@ -6803,7 +7807,7 @@ var agora;
      * - 0: Success.
      * - < 0: Failure.
      *   - -2(ERR_INVALID_ARGUMENT): The RTMP URL address is `null` or has a string length of 0.
-     *   - -7(ERR_NOT_INITIALIZED): You have not initialized the `agora` instance when publishing the stream.
+     *   - -7(ERR_NOT_INITIALIZED): You have not initialized the Agora engine when publishing the stream.
      */
     function addPublishStreamUrl(url, transcodingEnabled) {
         if (isWeb) {
@@ -6812,7 +7816,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ADD_PUBLISH_STREAM_URL, { url: url, transcodingEnabled: transcodingEnabled });
     }
     agora.addPublishStreamUrl = addPublishStreamUrl;
-    /** Removes an RTMP stream from the CDN. (CDN live only.)
+    /** @en
+     * Removes an RTMP stream from the CDN. (CDN live only.)
      *
      * This method removes the RTMP URL address (added by the [addPublishStreamUrl]{@link agora.addPublishStreamUrl}
      * method) from a CDN live stream. The SDK returns the result of this method call in the
@@ -6840,7 +7845,7 @@ var agora;
         return callNativeMethod(agora.API_TYPE.REMOVE_PUBLISH_STREAM_URL, { url: url });
     }
     agora.removePublishStreamUrl = removePublishStreamUrl;
-    /** @ignore
+    /** @en
      * Sets the video layout and audio settings for CDN live. (CDN live only.)
      *
      * The SDK triggers the [onTranscodingUpdated]{@link AgoraRtcEvents.onTranscodingUpdated} callback when you call the
@@ -6882,7 +7887,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_LIVE_TRANSCODING, { transcoding: transcoding });
     }
     agora.setLiveTranscoding = setLiveTranscoding;
-    /** @ignore
+    /** @en
+     * @ignore
      * Adds a watermark image to the local video.
      *
      * This method adds a PNG watermark image to the local video in the live streaming. Once the watermark image is added, all
@@ -6930,7 +7936,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ADD_VIDEO_WATER_MARK_2, { watermarkUrl: watermarkUrl, options: options });
     }
     agora.addVideoWatermark = addVideoWatermark;
-    /** @ignore
+    /** @en
+     * @ignore
      * Removes the watermark image from the video stream added by the
      * [addVideoWatermark]{@link agora.addVideoWatermark} method.
      *
@@ -6945,7 +7952,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.CLEAR_VIDEO_WATER_MARKS);
     }
     agora.clearVideoWatermarks = clearVideoWatermarks;
-    /** @ignore
+    /** @en
+     * @ignore
      * Enables/Disables image enhancement and sets the options.
      *
      * **Note**
@@ -6974,7 +7982,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_BEAUTY_EFFECT_OPTIONS, { enabled: enabled, options: options });
     }
     agora.setBeautyEffectOptions = setBeautyEffectOptions;
-    /** Adds a voice or video stream URL address to the live streaming.
+    /** @en
+     * Adds a voice or video stream URL address to the live streaming.
      *
      * The [onStreamPublished]{@link AgoraRtcEvents.onStreamPublished} callback returns the inject status. If this method
      * call is successful, the server pulls the voice or video stream and injects it into a live channel. This is
@@ -6990,13 +7999,14 @@ var agora;
      *
      * **Note**
      * - Ensure that you enable the RTMP Converter service before using this function.
+     * - This method applies to the SDK of v3.1.2 and later.
      * - This method applies to the `LIVE_BROADCASTING` profile only.
      * - You can inject only one media stream into the channel at the same time.
      *
      * @param url The URL address to be added to the ongoing streaming. Valid protocols are RTMP, HLS, and HTTP-FLV.
      * - Supported audio codec type: AAC.
      * - Supported video codec type: H264 (AVC).
-     * @param config The [InjectStreamConfig]{@link agora.InjectStreamConfig} object that contains the configuration of
+     * @param config [InjectStreamConfig]{@link agora.InjectStreamConfig} contains the configuration of
      * the added voice or video stream.
      *
      * @return
@@ -7008,7 +8018,7 @@ var agora;
      *   - -4(`ERR_NOT_SUPPORTED`): The channel profile is not `LIVE_BROADCASTING`. Call the
      * [setChannelProfile]{@link agora.setChannelProfile} method and set the channel profile to `LIVE_BROADCASTING`
      * before calling this method.
-     *   - -7(ERR_NOT_INITIALIZED): The SDK is not initialized. Ensure that the `agora` object is initialized before
+     *   - -7(ERR_NOT_INITIALIZED): The SDK is not initialized. Ensure that the Agora engine is initialized before
      * calling this method.
      */
     function addInjectStreamUrl(url, config) {
@@ -7019,7 +8029,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.ADD_INJECT_STREAM_URL, { url: url, config: config });
     }
     agora.addInjectStreamUrl = addInjectStreamUrl;
-    /** Starts to relay media streams across channels.
+    /** @en
+     * Starts to relay media streams across channels.
      *
      * After a successful method call, the SDK triggers the
      * [onChannelMediaRelayStateChanged]{@link AgoraRtcEvents.onChannelMediaRelayStateChanged} and
@@ -7064,7 +8075,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.START_CHANNEL_MEDIA_RELAY, { configuration: configuration });
     }
     agora.startChannelMediaRelay = startChannelMediaRelay;
-    /** Updates the channels for media stream relay.
+    /** @en
+     * Updates the channels for media stream relay.
      *
      * After a successful [startChannelMediaRelay]{@link agora.startChannelMediaRelay} method call, if you want to
      * relay the media  stream to more channels, or leave the current relay channel, you can call the
@@ -7100,7 +8112,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.UPDATE_CHANNEL_MEDIA_RELAY, { configuration: configuration });
     }
     agora.updateChannelMediaRelay = updateChannelMediaRelay;
-    /** Stops the media stream relay.
+    /** @en
+     * Stops the media stream relay.
      *
      * Once the relay stops, the host quits all the destination channels.
      *
@@ -7129,7 +8142,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.STOP_CHANNEL_MEDIA_RELAY);
     }
     agora.stopChannelMediaRelay = stopChannelMediaRelay;
-    /** Removes the voice or video stream URL address from the live streaming.
+    /** @en
+     * Removes the voice or video stream URL address from the live streaming.
      *
      * This method removes the URL address (added by the [addInjectStreamUrl]{@link agora.addInjectStreamUrl} method) from the
      * live streaming.
@@ -7151,7 +8165,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.REMOVE_INJECT_STREAM_URL, { url: url });
     }
     agora.removeInjectStreamUrl = removeInjectStreamUrl;
-    /** Agora supports reporting and analyzing customized messages.
+    /** @en
+     * Agora supports reporting and analyzing customized messages.
      *
      * This function is in the beta stage with a free trial. The ability provided in its beta test version is reporting a maximum of
      * 10 message pieces within 6 seconds, with each message piece not exceeding 256 bytes.
@@ -7166,7 +8181,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SEND_CUSTOM_REPORT_MESSAGE, { id: id, category: category, event: event, label: label, value: value });
     }
     agora.sendCustomReportMessage = sendCustomReportMessage;
-    /** Gets the current connection state of the SDK.
+    /** @en
+     * Gets the current connection state of the SDK.
      *
      * @return See [CONNECTION_STATE_TYPE]{@link agora.CONNECTION_STATE_TYPE}.
      */
@@ -7183,7 +8199,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.GET_CONNECTION_STATE);
     }
     agora.getConnectionState = getConnectionState;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sends the metadata.
      *
      * **Note**
@@ -7194,7 +8211,7 @@ var agora;
      * @param uid ID of the user who sends the metadata.
      * @param size The size of the sent metadata.
      * @param buffer The sent metadata.
-     * @param timeStampMs The timestamp of the metadata.
+     * @param timeStampMs The timestamp (ms) of the metadata.
      *
      * @return
      * - 0: Success.
@@ -7208,14 +8225,15 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SEND_METADATA, { uid: uid, size: size, timeStampMs: timeStampMs }, buffer);
     }
     agora.sendMetadata = sendMetadata;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the maximum size of the [Metadata]{@link agora.Metadata}.
      *
      * The metadata includes the following parameters:
      * - `uid`: ID of the user who sends the metadata.
      * - `size`: The size of the sent or received metadata.
      * - `buffer`: The sent or received metadata.
-     * - `timeStampMs`: The timestamp of the metadata.
+     * - `timeStampMs`: The timestamp (ms) of the metadata.
      *
      * @note Call this method after [registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver}.
      *
@@ -7232,7 +8250,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.SET_MAX_META_SIZE, { size: size });
     }
     agora.setMaxMetadataSize = setMaxMetadataSize;
-    /** @ignore
+    /** @en
+     * @ignore
      * Registers the metadata observer.
      *
      * You need to specify the metadata type in this method.
@@ -7244,7 +8263,6 @@ var agora;
      * - Call this method before the [joinChannel]{@link agora.joinChannel} method.
      * - This method applies to the `LIVE_BROADCASTING` channel profile.
      *
-     * @param observer The metadata observer.
      * @param type See [METADATA_TYPE]{@link agora.METADATA_TYPE}. The SDK supports `VIDEO_METADATA(0)` only for now.
      *
      * @return
@@ -7258,7 +8276,8 @@ var agora;
         return callNativeMethod(agora.API_TYPE.REGISTER_MEDIA_META_DATA_OBSERVER, { type: type });
     }
     agora.registerMediaMetadataObserver = registerMediaMetadataObserver;
-    /** Provides technical preview functionalities or special customizations by configuring the SDK with JSON options.
+    /** @en
+     * Provides technical preview functionalities or special customizations by configuring the SDK with JSON options.
      *
      * The JSON options are not public by default. Agora is working on making commonly used JSON options public in a standard way.
      *

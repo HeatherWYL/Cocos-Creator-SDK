@@ -166,478 +166,761 @@ declare namespace agora {
         SET_PLAYBACK_AUDIO_FRAME_PARAMETERS = 91,
         SET_MIXED_AUDIO_FRAME_PARAMETERS = 92
     }
-    /** Media device states.
+    /** @en
+     * Media device states.
      */
     enum MEDIA_DEVICE_STATE_TYPE {
-        /** 1: The device is active.
+        /** @en
+         * 1: The device is active.
          */
         MEDIA_DEVICE_STATE_ACTIVE = 1,
-        /** 2: The device is disabled.
+        /** @en
+         * 2: The device is disabled.
          */
         MEDIA_DEVICE_STATE_DISABLED = 2,
-        /** 4: The device is not present.
+        /** @en
+         * 4: The device is not present.
          */
         MEDIA_DEVICE_STATE_NOT_PRESENT = 4,
-        /** 8: The device is unplugged.
+        /** @en
+         * 8: The device is unplugged.
          */
         MEDIA_DEVICE_STATE_UNPLUGGED = 8
     }
-    /** Media device types.
+    /** @en
+     * Media device types.
      */
     enum MEDIA_DEVICE_TYPE {
-        /** -1: Unknown device type.
+        /** @en
+         * -1: Unknown device type.
          */
         UNKNOWN_AUDIO_DEVICE = -1,
-        /** 0: Audio playback device.
+        /** @en
+         * 0: Audio playback device.
          */
         AUDIO_PLAYOUT_DEVICE = 0,
-        /** 1: Audio recording device.
+        /** @en
+         * 1: Audio recording device.
          */
         AUDIO_RECORDING_DEVICE = 1,
-        /** @ignore
+        /** @en
+         * @ignore
          * 2: Video renderer.
          */
         VIDEO_RENDER_DEVICE = 2,
-        /** @ignore
+        /** @en
+         * @ignore
          * 3: Video capturer.
          */
         VIDEO_CAPTURE_DEVICE = 3,
-        /** 4: Application audio playback device.
+        /** @en
+         * 4: Application audio playback device.
          */
         AUDIO_APPLICATION_PLAYOUT_DEVICE = 4
     }
-    /** The states of the local user's audio mixing file.
+    /** @en
+     * The states of the local user's audio mixing file.
      */
     enum AUDIO_MIXING_STATE_TYPE {
-        /** 710: The audio mixing file is playing.
+        /** @en
+         * 710: The audio mixing file is playing after the method call of [startAudioMixing]{@link agora.startAudioMixing} or
+         * [resumeAudioMixing]{@link agora.resumeAudioMixing} succeeds.
          */
         AUDIO_MIXING_STATE_PLAYING = 710,
-        /** 711: The audio mixing file pauses playing.
+        /** @en
+         * 711: The audio mixing file pauses playing after the method call of [pauseAudioMixing]{@link agora.pauseAudioMixing} succeeds.
          */
         AUDIO_MIXING_STATE_PAUSED = 711,
-        /** 713: The audio mixing file stops playing.
+        /** @en
+         * 713: The audio mixing file stops playing after the method call of [stopAudioMixing]{@link agora.stopAudioMixing} succeeds.
          */
         AUDIO_MIXING_STATE_STOPPED = 713,
-        /** 714: An exception occurs when playing the audio mixing file. See
+        /** @en
+         * 714: An exception occurs when playing the audio mixing file. See
          * [AUDIO_MIXING_ERROR_TYPE]{@link agora.AUDIO_MIXING_ERROR_TYPE}.
          */
         AUDIO_MIXING_STATE_FAILED = 714
     }
-    /** The error codes of the local user's audio mixing file.
+    /** @en
+     * The error codes of the local user's audio mixing file.
      */
     enum AUDIO_MIXING_ERROR_TYPE {
-        /** 701: The SDK cannot open the audio mixing file.
+        /** @en
+         * 701: The SDK cannot open the audio mixing file.
          */
         AUDIO_MIXING_ERROR_CAN_NOT_OPEN = 701,
-        /** 702: The SDK opens the audio mixing file too frequently.
+        /** @en
+         * 702: The SDK opens the audio mixing file too frequently.
          */
         AUDIO_MIXING_ERROR_TOO_FREQUENT_CALL = 702,
-        /** 703: The audio mixing file playback is interrupted.
+        /** @en
+         * 703: The audio mixing file playback is interrupted.
          */
         AUDIO_MIXING_ERROR_INTERRUPTED_EOF = 703,
-        /** 0: The SDK can open the audio mixing file.
+        /** @en
+         * 0: The SDK can open the audio mixing file.
          */
         AUDIO_MIXING_ERROR_OK = 0
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Local video state types
      */
     enum LOCAL_VIDEO_STREAM_STATE {
-        /** 0: Initial state */
+        /** @en
+         * 0: Initial state
+         */
         LOCAL_VIDEO_STREAM_STATE_STOPPED = 0,
-        /** 1: The local video capturing device starts successfully.
+        /** @en
+         * 1: The local video capturing device starts successfully.
          *
          * The SDK also reports this state when you share a maximized window by calling
          * [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId}.
          */
         LOCAL_VIDEO_STREAM_STATE_CAPTURING = 1,
-        /** 2: The first video frame is successfully encoded. */
+        /** @en
+         * 2: The first video frame is successfully encoded.
+         */
         LOCAL_VIDEO_STREAM_STATE_ENCODING = 2,
-        /** 3: The local video fails to start. */
+        /** @en
+         * 3: The local video fails to start.
+         */
         LOCAL_VIDEO_STREAM_STATE_FAILED = 3
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Local video state error codes
      */
     enum LOCAL_VIDEO_STREAM_ERROR {
-        /** 0: The local video is normal. */
+        /** @en
+         * 0: The local video is normal.
+         */
         LOCAL_VIDEO_STREAM_ERROR_OK = 0,
-        /** 1: No specified reason for the local video failure. */
+        /** @en
+         * 1: No specified reason for the local video failure.
+         */
         LOCAL_VIDEO_STREAM_ERROR_FAILURE = 1,
-        /** 2: No permission to use the local video capturing device. */
+        /** @en
+         * 2: No permission to use the local video capturing device.
+         */
         LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION = 2,
-        /** 3: The local video capturing device is in use. */
+        /** @en
+         * 3: The local video capturing device is in use.
+         */
         LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY = 3,
-        /** 4: The local video capture fails. Check whether the capturing device is working properly. */
+        /** @en
+         * 4: The local video capture fails. Check whether the capturing device is working properly.
+         */
         LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE = 4,
-        /** 5: The local video encoding fails. */
+        /** @en
+         * 5: The local video encoding fails.
+         */
         LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE = 5,
-        /** 11: The shared window is minimized when you call
+        /** @en
+         * 11: The shared window is minimized when you call
          * [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId} to share a window.
          */
         LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED = 11
     }
-    /** Local audio state types.
+    /** @en
+     * Local audio state types.
      */
     enum LOCAL_AUDIO_STREAM_STATE {
-        /** 0: The local audio is in the initial state.
+        /** @en
+         * 0: The local audio is in the initial state.
          */
         LOCAL_AUDIO_STREAM_STATE_STOPPED = 0,
-        /** 1: The recording device starts successfully.
+        /** @en
+         * 1: The recording device starts successfully.
          */
         LOCAL_AUDIO_STREAM_STATE_RECORDING = 1,
-        /** 2: The first audio frame encodes successfully.
+        /** @en
+         * 2: The first audio frame encodes successfully.
          */
         LOCAL_AUDIO_STREAM_STATE_ENCODING = 2,
-        /** 3: The local audio fails to start.
+        /** @en
+         * 3: The local audio fails to start.
          */
         LOCAL_AUDIO_STREAM_STATE_FAILED = 3
     }
-    /** Local audio state error codes.
+    /** @en
+     * Local audio state error codes.
      */
     enum LOCAL_AUDIO_STREAM_ERROR {
-        /** 0: The local audio is normal.
+        /** @en
+         * 0: The local audio is normal.
          */
         LOCAL_AUDIO_STREAM_ERROR_OK = 0,
-        /** 1: No specified reason for the local audio failure.
+        /** @en
+         * 1: No specified reason for the local audio failure.
          */
         LOCAL_AUDIO_STREAM_ERROR_FAILURE = 1,
-        /** 2: No permission to use the local audio device.
+        /** @en
+         * 2: No permission to use the local audio device.
          */
         LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION = 2,
-        /** 3: The microphone is in use.
+        /** @en
+         * 3: The microphone is in use.
          */
         LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY = 3,
-        /** 4: The local audio recording fails. Check whether the recording device
+        /** @en
+         * 4: The local audio recording fails. Check whether the recording device
          * is working properly.
          */
         LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE = 4,
-        /** 5: The local audio encoding fails.
+        /** @en
+         * 5: The local audio encoding fails.
          */
         LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE = 5
     }
-    /** Audio recording qualities.
+    /** @en
+     * Audio recording qualities.
      */
     enum AUDIO_RECORDING_QUALITY_TYPE {
-        /** 0: Low quality. The sample rate is 32 kHz, and the file size is around
+        /** @en
+         * 0: Low quality. The sample rate is 32 kHz, and the file size is around
          * 1.2 MB after 10 minutes of recording.
          */
         AUDIO_RECORDING_QUALITY_LOW = 0,
-        /** 1: Medium quality. The sample rate is 32 kHz, and the file size is
+        /** @en
+         * 1: Medium quality. The sample rate is 32 kHz, and the file size is
          * around 2 MB after 10 minutes of recording.
          */
         AUDIO_RECORDING_QUALITY_MEDIUM = 1,
-        /** 2: High quality. The sample rate is 32 kHz, and the file size is
+        /** @en
+         * 2: High quality. The sample rate is 32 kHz, and the file size is
          * around 3.75 MB after 10 minutes of recording.
          */
         AUDIO_RECORDING_QUALITY_HIGH = 2
     }
-    /** Network quality types. */
+    /** @en
+     * Network quality types.
+     */
     enum QUALITY_TYPE {
-        /** 0: The network quality is unknown. */
+        /** @en
+         * 0: The network quality is unknown.
+         */
         QUALITY_UNKNOWN = 0,
-        /** 1: The network quality is excellent. */
+        /** @en
+         * 1: The network quality is excellent.
+         */
         QUALITY_EXCELLENT = 1,
-        /** 2: The network quality is quite good, but the bitrate may be slightly lower than excellent. */
+        /** @en
+         * 2: The network quality is quite good, but the bitrate may be slightly lower than excellent.
+         */
         QUALITY_GOOD = 2,
-        /** 3: Users can feel the communication slightly impaired. */
+        /** @en
+         * 3: Users can feel the communication slightly impaired.
+         */
         QUALITY_POOR = 3,
-        /** 4: Users cannot communicate smoothly. */
+        /** @en
+         * 4: Users cannot communicate smoothly.
+         */
         QUALITY_BAD = 4,
-        /** 5: The network is so bad that users can barely communicate. */
+        /** @en
+         * 5: The network is so bad that users can barely communicate.
+         */
         QUALITY_VBAD = 5,
-        /** 6: The network is down and users cannot communicate at all. */
+        /** @en
+         * 6: The network is down and users cannot communicate at all.
+         */
         QUALITY_DOWN = 6,
-        /** 7: Users cannot detect the network quality. (Not in use.) */
+        /** @en
+         * 7: Users cannot detect the network quality. (Not in use.)
+         */
         QUALITY_UNSUPPORTED = 7,
-        /** 8: Detecting the network quality. */
+        /** @en
+         * 8: Detecting the network quality.
+         */
         QUALITY_DETECTING = 8
     }
-    /** @ignore Video display modes. */
+    /** @en
+     * @ignore Video display modes.
+     */
     enum RENDER_MODE_TYPE {
-        /** 1: Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have
+        /** @en
+         * 1: Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have
          * clipped contents.
          */
         RENDER_MODE_HIDDEN = 1,
-        /** 2: Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due
+        /** @en
+         * 2: Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due
          * to disparity in the aspect ratio are filled with black.
          */
         RENDER_MODE_FIT = 2,
-        /** @deprecated 3: This mode is deprecated.
+        /** @en
+         * @deprecated 3: This mode is deprecated.
          */
         RENDER_MODE_ADAPTIVE = 3,
-        /**
+        /** @en
          4: The fill mode. In this mode, the SDK stretches or zooms the video to fill the display window.
          */
         RENDER_MODE_FILL = 4
     }
-    /** @ignore Video mirror modes. */
+    /** @en
+     * @ignore
+     * Video mirror modes.
+     */
     enum VIDEO_MIRROR_MODE_TYPE {
-        /** 0: (Default) The SDK enables the mirror mode. */
+        /** @en
+         * 0: (Default) The SDK enables the mirror mode.
+         */
         VIDEO_MIRROR_MODE_AUTO = 0,
-        /** 1: Enable mirror mode. */
+        /** @en
+         * 1: Enable mirror mode.
+         */
         VIDEO_MIRROR_MODE_ENABLED = 1,
-        /** 2: Disable mirror mode. */
+        /** @en
+         * 2: Disable mirror mode.
+         */
         VIDEO_MIRROR_MODE_DISABLED = 2
     }
-    /** @ignore @deprecated Video profiles. */
+    /** @en
+     * @ignore
+     * @deprecated Video profiles.
+     */
     enum VIDEO_PROFILE_TYPE {
-        /** 0: 160 * 120, frame rate 15 fps, bitrate 65 Kbps. */
+        /** @en
+         * 0: 160 * 120, frame rate 15 fps, bitrate 65 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_120P = 0,
-        /** 2: 120 * 120, frame rate 15 fps, bitrate 50 Kbps. */
+        /** @en
+         * 2: 120 * 120, frame rate 15 fps, bitrate 50 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_120P_3 = 2,
-        /** 10: 320*180, frame rate 15 fps, bitrate 140 Kbps. */
+        /** @en
+         * 10: 320*180, frame rate 15 fps, bitrate 140 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_180P = 10,
-        /** 12: 180 * 180, frame rate 15 fps, bitrate 100 Kbps. */
+        /** @en
+         * 12: 180 * 180, frame rate 15 fps, bitrate 100 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_180P_3 = 12,
-        /** 13: 240 * 180, frame rate 15 fps, bitrate 120 Kbps. */
+        /** @en
+         * 13: 240 * 180, frame rate 15 fps, bitrate 120 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_180P_4 = 13,
-        /** 20: 320 * 240, frame rate 15 fps, bitrate 200 Kbps. */
+        /** @en
+         * 20: 320 * 240, frame rate 15 fps, bitrate 200 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_240P = 20,
-        /** 22: 240 * 240, frame rate 15 fps, bitrate 140 Kbps. */
+        /** @en
+         * 22: 240 * 240, frame rate 15 fps, bitrate 140 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_240P_3 = 22,
-        /** 23: 424 * 240, frame rate 15 fps, bitrate 220 Kbps. */
+        /** @en
+         * 23: 424 * 240, frame rate 15 fps, bitrate 220 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_240P_4 = 23,
-        /** 30: 640 * 360, frame rate 15 fps, bitrate 400 Kbps. */
+        /** @en
+         * 30: 640 * 360, frame rate 15 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_360P = 30,
-        /** 32: 360 * 360, frame rate 15 fps, bitrate 260 Kbps. */
+        /** @en
+         * 32: 360 * 360, frame rate 15 fps, bitrate 260 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_360P_3 = 32,
-        /** 33: 640 * 360, frame rate 30 fps, bitrate 600 Kbps. */
+        /** @en
+         * 33: 640 * 360, frame rate 30 fps, bitrate 600 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_360P_4 = 33,
-        /** 35: 360 * 360, frame rate 30 fps, bitrate 400 Kbps. */
+        /** @en
+         * 35: 360 * 360, frame rate 30 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_360P_6 = 35,
-        /** 36: 480 * 360, frame rate 15 fps, bitrate 320 Kbps. */
+        /** @en
+         * 36: 480 * 360, frame rate 15 fps, bitrate 320 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_360P_7 = 36,
-        /** 37: 480 * 360, frame rate 30 fps, bitrate 490 Kbps. */
+        /** @en
+         * 37: 480 * 360, frame rate 30 fps, bitrate 490 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_360P_8 = 37,
-        /** 38: 640 * 360, frame rate 15 fps, bitrate 800 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 38: 640 * 360, frame rate 15 fps, bitrate 800 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_LANDSCAPE_360P_9 = 38,
-        /** 39: 640 * 360, frame rate 24 fps, bitrate 800 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 39: 640 * 360, frame rate 24 fps, bitrate 800 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_LANDSCAPE_360P_10 = 39,
-        /** 100: 640 * 360, frame rate 24 fps, bitrate 1000 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 100: 640 * 360, frame rate 24 fps, bitrate 1000 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_LANDSCAPE_360P_11 = 100,
-        /** 40: 640 * 480, frame rate 15 fps, bitrate 500 Kbps. */
+        /** @en
+         * 40: 640 * 480, frame rate 15 fps, bitrate 500 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_480P = 40,
-        /** 42: 480 * 480, frame rate 15 fps, bitrate 400 Kbps. */
+        /** @en
+         * 42: 480 * 480, frame rate 15 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_480P_3 = 42,
-        /** 43: 640 * 480, frame rate 30 fps, bitrate 750 Kbps. */
+        /** @en
+         * 43: 640 * 480, frame rate 30 fps, bitrate 750 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_480P_4 = 43,
-        /** 45: 480 * 480, frame rate 30 fps, bitrate 600 Kbps. */
+        /** @en
+         * 45: 480 * 480, frame rate 30 fps, bitrate 600 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_480P_6 = 45,
-        /** 47: 848 * 480, frame rate 15 fps, bitrate 610 Kbps. */
+        /** @en
+         * 47: 848 * 480, frame rate 15 fps, bitrate 610 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_480P_8 = 47,
-        /** 48: 848 * 480, frame rate 30 fps, bitrate 930 Kbps. */
+        /** @en
+         * 48: 848 * 480, frame rate 30 fps, bitrate 930 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_480P_9 = 48,
-        /** 49: 640 * 480, frame rate 10 fps, bitrate 400 Kbps. */
+        /** @en
+         * 49: 640 * 480, frame rate 10 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_480P_10 = 49,
-        /** 50: 1280 * 720, frame rate 15 fps, bitrate 1130 Kbps. */
+        /** @en
+         * 50: 1280 * 720, frame rate 15 fps, bitrate 1130 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_720P = 50,
-        /** 52: 1280 * 720, frame rate 30 fps, bitrate 1710 Kbps. */
+        /** @en
+         * 52: 1280 * 720, frame rate 30 fps, bitrate 1710 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_720P_3 = 52,
-        /** 54: 960 * 720, frame rate 15 fps, bitrate 910 Kbps. */
+        /** @en
+         * 54: 960 * 720, frame rate 15 fps, bitrate 910 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_720P_5 = 54,
-        /** 55: 960 * 720, frame rate 30 fps, bitrate 1380 Kbps. */
+        /** @en
+         * 55: 960 * 720, frame rate 30 fps, bitrate 1380 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_720P_6 = 55,
-        /** 60: 1920 * 1080, frame rate 15 fps, bitrate 2080 Kbps. */
+        /** @en
+         * 60: 1920 * 1080, frame rate 15 fps, bitrate 2080 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_1080P = 60,
-        /** 62: 1920 * 1080, frame rate 30 fps, bitrate 3150 Kbps. */
+        /** @en
+         * 62: 1920 * 1080, frame rate 30 fps, bitrate 3150 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_1080P_3 = 62,
-        /** 64: 1920 * 1080, frame rate 60 fps, bitrate 4780 Kbps. */
+        /** @en
+         * 64: 1920 * 1080, frame rate 60 fps, bitrate 4780 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_1080P_5 = 64,
-        /** 66: 2560 * 1440, frame rate 30 fps, bitrate 4850 Kbps. */
+        /** @en
+         * 66: 2560 * 1440, frame rate 30 fps, bitrate 4850 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_1440P = 66,
-        /** 67: 2560 * 1440, frame rate 60 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 67: 2560 * 1440, frame rate 60 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_1440P_2 = 67,
-        /** 70: 3840 * 2160, frame rate 30 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 70: 3840 * 2160, frame rate 30 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_4K = 70,
-        /** 72: 3840 * 2160, frame rate 60 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 72: 3840 * 2160, frame rate 60 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_LANDSCAPE_4K_3 = 72,
-        /** 1000: 120 * 160, frame rate 15 fps, bitrate 65 Kbps. */
+        /** @en
+         * 1000: 120 * 160, frame rate 15 fps, bitrate 65 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_120P = 1000,
-        /** 1002: 120 * 120, frame rate 15 fps, bitrate 50 Kbps. */
+        /** @en
+         * 1002: 120 * 120, frame rate 15 fps, bitrate 50 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_120P_3 = 1002,
-        /** 1010: 180 * 320, frame rate 15 fps, bitrate 140 Kbps. */
+        /** @en
+         * 1010: 180 * 320, frame rate 15 fps, bitrate 140 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_180P = 1010,
-        /** 1012: 180 * 180, frame rate 15 fps, bitrate 100 Kbps. */
+        /** @en
+         * 1012: 180 * 180, frame rate 15 fps, bitrate 100 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_180P_3 = 1012,
-        /** 1013: 180 * 240, frame rate 15 fps, bitrate 120 Kbps. */
+        /** @en
+         * 1013: 180 * 240, frame rate 15 fps, bitrate 120 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_180P_4 = 1013,
-        /** 1020: 240 * 320, frame rate 15 fps, bitrate 200 Kbps. */
+        /** @en
+         * 1020: 240 * 320, frame rate 15 fps, bitrate 200 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_240P = 1020,
-        /** 1022: 240 * 240, frame rate 15 fps, bitrate 140 Kbps. */
+        /** @en
+         * 1022: 240 * 240, frame rate 15 fps, bitrate 140 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_240P_3 = 1022,
-        /** 1023: 240 * 424, frame rate 15 fps, bitrate 220 Kbps. */
+        /** @en
+         * 1023: 240 * 424, frame rate 15 fps, bitrate 220 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_240P_4 = 1023,
-        /** 1030: 360 * 640, frame rate 15 fps, bitrate 400 Kbps. */
+        /** @en
+         * 1030: 360 * 640, frame rate 15 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_360P = 1030,
-        /** 1032: 360 * 360, frame rate 15 fps, bitrate 260 Kbps. */
+        /** @en
+         * 1032: 360 * 360, frame rate 15 fps, bitrate 260 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_360P_3 = 1032,
-        /** 1033: 360 * 640, frame rate 30 fps, bitrate 600 Kbps. */
+        /** @en
+         * 1033: 360 * 640, frame rate 30 fps, bitrate 600 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_360P_4 = 1033,
-        /** 1035: 360 * 360, frame rate 30 fps, bitrate 400 Kbps. */
+        /** @en
+         * 1035: 360 * 360, frame rate 30 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_360P_6 = 1035,
-        /** 1036: 360 * 480, frame rate 15 fps, bitrate 320 Kbps. */
+        /** @en
+         * 1036: 360 * 480, frame rate 15 fps, bitrate 320 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_360P_7 = 1036,
-        /** 1037: 360 * 480, frame rate 30 fps, bitrate 490 Kbps. */
+        /** @en
+         * 1037: 360 * 480, frame rate 30 fps, bitrate 490 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_360P_8 = 1037,
-        /** 1038: 360 * 640, frame rate 15 fps, bitrate 800 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 1038: 360 * 640, frame rate 15 fps, bitrate 800 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_PORTRAIT_360P_9 = 1038,
-        /** 1039: 360 * 640, frame rate 24 fps, bitrate 800 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 1039: 360 * 640, frame rate 24 fps, bitrate 800 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_PORTRAIT_360P_10 = 1039,
-        /** 1100: 360 * 640, frame rate 24 fps, bitrate 1000 Kbps.
-         @note `LIVE_BROADCASTING` profile only.
+        /** @en
+         * 1100: 360 * 640, frame rate 24 fps, bitrate 1000 Kbps.
+         * @note `LIVE_BROADCASTING` profile only.
          */
         VIDEO_PROFILE_PORTRAIT_360P_11 = 1100,
-        /** 1040: 480 * 640, frame rate 15 fps, bitrate 500 Kbps. */
+        /** @en
+         * 1040: 480 * 640, frame rate 15 fps, bitrate 500 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_480P = 1040,
-        /** 1042: 480 * 480, frame rate 15 fps, bitrate 400 Kbps. */
+        /** @en
+         * 1042: 480 * 480, frame rate 15 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_480P_3 = 1042,
-        /** 1043: 480 * 640, frame rate 30 fps, bitrate 750 Kbps. */
+        /** @en
+         * 1043: 480 * 640, frame rate 30 fps, bitrate 750 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_480P_4 = 1043,
-        /** 1045: 480 * 480, frame rate 30 fps, bitrate 600 Kbps. */
+        /** @en
+         * 1045: 480 * 480, frame rate 30 fps, bitrate 600 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_480P_6 = 1045,
-        /** 1047: 480 * 848, frame rate 15 fps, bitrate 610 Kbps. */
+        /** @en
+         * 1047: 480 * 848, frame rate 15 fps, bitrate 610 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_480P_8 = 1047,
-        /** 1048: 480 * 848, frame rate 30 fps, bitrate 930 Kbps. */
+        /** @en
+         * 1048: 480 * 848, frame rate 30 fps, bitrate 930 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_480P_9 = 1048,
-        /** 1049: 480 * 640, frame rate 10 fps, bitrate 400 Kbps. */
+        /** @en
+         * 1049: 480 * 640, frame rate 10 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_480P_10 = 1049,
-        /** 1050: 720 * 1280, frame rate 15 fps, bitrate 1130 Kbps. */
+        /** @en
+         * 1050: 720 * 1280, frame rate 15 fps, bitrate 1130 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_720P = 1050,
-        /** 1052: 720 * 1280, frame rate 30 fps, bitrate 1710 Kbps. */
+        /** @en
+         * 1052: 720 * 1280, frame rate 30 fps, bitrate 1710 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_720P_3 = 1052,
-        /** 1054: 720 * 960, frame rate 15 fps, bitrate 910 Kbps. */
+        /** @en
+         * 1054: 720 * 960, frame rate 15 fps, bitrate 910 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_720P_5 = 1054,
-        /** 1055: 720 * 960, frame rate 30 fps, bitrate 1380 Kbps. */
+        /** @en
+         * 1055: 720 * 960, frame rate 30 fps, bitrate 1380 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_720P_6 = 1055,
-        /** 1060: 1080 * 1920, frame rate 15 fps, bitrate 2080 Kbps. */
+        /** @en
+         * 1060: 1080 * 1920, frame rate 15 fps, bitrate 2080 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_1080P = 1060,
-        /** 1062: 1080 * 1920, frame rate 30 fps, bitrate 3150 Kbps. */
+        /** @en
+         * 1062: 1080 * 1920, frame rate 30 fps, bitrate 3150 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_1080P_3 = 1062,
-        /** 1064: 1080 * 1920, frame rate 60 fps, bitrate 4780 Kbps. */
+        /** @en
+         * 1064: 1080 * 1920, frame rate 60 fps, bitrate 4780 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_1080P_5 = 1064,
-        /** 1066: 1440 * 2560, frame rate 30 fps, bitrate 4850 Kbps. */
+        /** @en
+         * 1066: 1440 * 2560, frame rate 30 fps, bitrate 4850 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_1440P = 1066,
-        /** 1067: 1440 * 2560, frame rate 60 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 1067: 1440 * 2560, frame rate 60 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_1440P_2 = 1067,
-        /** 1070: 2160 * 3840, frame rate 30 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 1070: 2160 * 3840, frame rate 30 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_4K = 1070,
-        /** 1072: 2160 * 3840, frame rate 60 fps, bitrate 6500 Kbps. */
+        /** @en
+         * 1072: 2160 * 3840, frame rate 60 fps, bitrate 6500 Kbps.
+         */
         VIDEO_PROFILE_PORTRAIT_4K_3 = 1072,
-        /** Default 640 * 360, frame rate 15 fps, bitrate 400 Kbps. */
+        /** @en
+         * Default 640 * 360, frame rate 15 fps, bitrate 400 Kbps.
+         */
         VIDEO_PROFILE_DEFAULT = 30
     }
-    /** Audio profiles. Sets the sample rate, bitrate, encoding mode, and the number of channels. */
+    /** @en
+     * Audio profiles. Sets the sample rate, bitrate, encoding mode, and the number of channels.
+     */
     enum AUDIO_PROFILE_TYPE {
-        /** 0: Default audio profile:
+        /** @en
+         * 0: Default audio profile:
          * - For the interactive streaming profile: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 64 Kbps.
          * - For the `COMMUNICATION` profile:
          *   - Windows: A sample rate of 16 KHz, music encoding, mono, and a bitrate of up to 16 Kbps.
          *   - Android/macOS/iOS: A sample rate of 32 KHz, music encoding, mono, and a bitrate of up to 18 Kbps.
          */
         AUDIO_PROFILE_DEFAULT = 0,
-        /** 1: A sample rate of 32 KHz, audio encoding, mono, and a bitrate of up to 18 Kbps.
+        /** @en
+         * 1: A sample rate of 32 KHz, audio encoding, mono, and a bitrate of up to 18 Kbps.
          */
         AUDIO_PROFILE_SPEECH_STANDARD = 1,
-        /** 2: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 64 Kbps.
+        /** @en
+         * 2: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 64 Kbps.
          */
         AUDIO_PROFILE_MUSIC_STANDARD = 2,
-        /** 3: A sample rate of 48 KHz, music encoding, stereo, and a bitrate of up to 80 Kbps.
+        /** @en
+         * 3: A sample rate of 48 KHz, music encoding, stereo, and a bitrate of up to 80 Kbps.
          */
         AUDIO_PROFILE_MUSIC_STANDARD_STEREO = 3,
-        /** 4: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 96 Kbps.
+        /** @en
+         * 4: A sample rate of 48 KHz, music encoding, mono, and a bitrate of up to 96 Kbps.
          */
         AUDIO_PROFILE_MUSIC_HIGH_QUALITY = 4,
-        /** 5: A sample rate of 48 KHz, music encoding, stereo, and a bitrate of up to 128 Kbps.
+        /** @en
+         * 5: A sample rate of 48 KHz, music encoding, stereo, and a bitrate of up to 128 Kbps.
          */
         AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO = 5,
-        /** 6: A sample rate of 16 KHz, audio encoding, mono, and Acoustic Echo Cancellation (AES) enabled.
+        /** @en
+         * 6: A sample rate of 16 KHz, audio encoding, mono, and Acoustic Echo Cancellation (AES) enabled.
          */
         AUDIO_PROFILE_IOT = 6,
-        /** The number of elements in the enumeration.
+        /** @en
+         * The number of elements in the enumeration.
          */
         AUDIO_PROFILE_NUM = 7
     }
-    /** Audio application scenarios.
+    /** @en
+     * Audio application scenarios.
      */
     enum AUDIO_SCENARIO_TYPE {
-        /** 0: Default audio scenario.. */
+        /** @en
+         * 0: Default audio scenario..
+         */
         AUDIO_SCENARIO_DEFAULT = 0,
-        /** 1: Entertainment scenario where users need to frequently switch the user role. */
+        /** @en
+         * 1: Entertainment scenario where users need to frequently switch the user role.
+         */
         AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT = 1,
-        /** 2: Education scenario where users want smoothness and stability. */
+        /** @en
+         * 2: Education scenario where users want smoothness and stability.
+         */
         AUDIO_SCENARIO_EDUCATION = 2,
-        /** 3: High-quality audio chatroom scenario where hosts mainly play music. */
+        /** @en
+         * 3: High-quality audio chatroom scenario where hosts mainly play music.
+         */
         AUDIO_SCENARIO_GAME_STREAMING = 3,
-        /** 4: Showroom scenario where a single host wants high-quality audio. */
+        /** @en
+         * 4: Showroom scenario where a single host wants high-quality audio.
+         */
         AUDIO_SCENARIO_SHOWROOM = 4,
-        /** 5: Gaming scenario for group chat that only contains the human voice. */
+        /** @en
+         * 5: Gaming scenario for group chat that only contains the human voice.
+         */
         AUDIO_SCENARIO_CHATROOM_GAMING = 5,
-        /** 6: IoT (Internet of Things) scenario where users use IoT devices with low power consumption. */
+        /** @en
+         * 6: IoT (Internet of Things) scenario where users use IoT devices with low power consumption.
+         */
         AUDIO_SCENARIO_IOT = 6,
-        /** The number of elements in the enumeration. */
+        /** @en
+         * The number of elements in the enumeration.
+         */
         AUDIO_SCENARIO_NUM = 7
     }
-    /** The channel profile.
+    /** @en
+     * The channel profile.
      */
     enum CHANNEL_PROFILE_TYPE {
-        /** (Default) Communication. This profile applies to scenarios such as an audio call or video call,
+        /** @en
+         * (Default) Communication. This profile applies to scenarios such as an audio call or video call,
          * where all users can publish and subscribe to streams.
          */
         CHANNEL_PROFILE_COMMUNICATION = 0,
-        /** Live streaming. In this profile, uses have roles, namely, host and audience (default).
+        /** @en
+         * Live streaming. In this profile, uses have roles, namely, host and audience (default).
          *
          * A host both publishes and subscribes to streams, while an audience subscribes to streams only.
          * This profile applies to scenarios such as a chat room or interactive video streaming.
          */
         CHANNEL_PROFILE_LIVE_BROADCASTING = 1,
-        /** 2: Agora recommends not using this profile.
+        /** @en
+         * 2: Agora recommends not using this profile.
          */
         CHANNEL_PROFILE_GAME = 2
     }
-    /** Client roles in the live interactive streaming. */
+    /** @en
+     * Client roles in the live interactive streaming.
+     */
     enum CLIENT_ROLE_TYPE {
-        /** 1: Host. A host can both send and receive streams. */
+        /** @en
+         * 1: Host. A host can both send and receive streams.
+         */
         CLIENT_ROLE_BROADCASTER = 1,
-        /** 2: Audience, the default role. An audience can only receive streams. */
+        /** @en
+         * 2: Audience, the default role. An audience can only receive streams.
+         */
         CLIENT_ROLE_AUDIENCE = 2
     }
-    /** Reasons for a user being offline. */
+    /** @en
+     * Reasons for a user being offline.
+     */
     enum USER_OFFLINE_REASON_TYPE {
-        /** 0: The user quits the call. */
+        /** @en
+         * 0: The user quits the call.
+         */
         USER_OFFLINE_QUIT = 0,
-        /** 1: The SDK times out and the user drops offline because no data packet is received within a certain period of time. If
+        /** @en
+         * 1: The SDK times out and the user drops offline because no data packet is received within a certain period of time. If
          * the user quits the call and the message is not passed to the SDK (due to an unreliable channel), the SDK assumes the user
          * dropped offline.
          */
         USER_OFFLINE_DROPPED = 1,
-        /** 2: (`LIVE_BROADCASTING` only.) The client role switched from the host to the audience. */
+        /** @en
+         * 2: (`LIVE_BROADCASTING` only.) The client role switched from the host to the audience. */
         USER_OFFLINE_BECOME_AUDIENCE = 2
     }
-    /** States of the RTMP streaming. */
+    /** @en
+     * States of the RTMP streaming.
+     */
     enum RTMP_STREAM_PUBLISH_STATE {
-        /** The RTMP streaming has not started or has ended. This state is also triggered after you remove an RTMP address from
+        /** @en
+         * The RTMP streaming has not started or has ended. This state is also triggered after you remove an RTMP address from
          * the CDN by calling [removePublishStreamUrl]{@link agora.removePublishStreamUrl}.
          */
         RTMP_STREAM_PUBLISH_STATE_IDLE = 0,
-        /** The SDK is connecting to Agora streaming server and the RTMP server. This state is triggered after you call the
+        /** @en
+         * The SDK is connecting to Agora streaming server and the RTMP server. This state is triggered after you call the
          * [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method.
          */
         RTMP_STREAM_PUBLISH_STATE_CONNECTING = 1,
-        /** The RTMP streaming publishes. The SDK successfully publishes the RTMP streaming and returns this state.
+        /** @en
+         * The RTMP streaming publishes. The SDK successfully publishes the RTMP streaming and returns this state.
          */
         RTMP_STREAM_PUBLISH_STATE_RUNNING = 2,
-        /** The RTMP streaming is recovering. When exceptions occur to the CDN, or the streaming is interrupted, the SDK tries to resume
+        /** @en
+         * The RTMP streaming is recovering. When exceptions occur to the CDN, or the streaming is interrupted, the SDK tries to resume
          * RTMP streaming and returns this state.
          * - If the SDK successfully resumes the streaming, `RTMP_STREAM_PUBLISH_STATE_RUNNING(2)` returns.
          * - If the streaming does not resume within 60 seconds or server errors occur,
@@ -646,315 +929,436 @@ declare namespace agora {
          * [addPublishStreamUrl]{@link agora.addPublishStreamUrl} methods.
          */
         RTMP_STREAM_PUBLISH_STATE_RECOVERING = 3,
-        /** The RTMP streaming fails. See the `errCode` parameter for the detailed error information. You can also call the
+        /** @en
+         * The RTMP streaming fails. See the `errCode` parameter for the detailed error information. You can also call the
          * [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method to publish the RTMP streaming again.
          */
         RTMP_STREAM_PUBLISH_STATE_FAILURE = 4
     }
-    /** Error codes of the RTMP streaming. */
+    /** @en
+     * Error codes of the RTMP streaming.
+     */
     enum RTMP_STREAM_PUBLISH_ERROR {
-        /** The RTMP streaming publishes successfully. */
+        /** @en
+         * The RTMP streaming publishes successfully.
+         */
         RTMP_STREAM_PUBLISH_ERROR_OK = 0,
-        /** Invalid argument used. If, for example, you do not call the [setLiveTranscoding]{@link agora.setLiveTranscoding} method to
+        /** @en
+         * Invalid argument used. If, for example, you do not call the [setLiveTranscoding]{@link agora.setLiveTranscoding} method to
          * configure the [LiveTranscoding]{@link agora.LiveTranscoding} parameters before calling the
          * [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method, the SDK returns this error. Check whether you set the
          * parameters in the *setLiveTranscoding* method properly.
          */
         RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT = 1,
-        /** The RTMP streaming is encrypted and cannot be published. */
+        /** @en
+         * The RTMP streaming is encrypted and cannot be published.
+         */
         RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED = 2,
-        /** Timeout for the RTMP streaming. Call the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method to publish
+        /** @en
+         * Timeout for the RTMP streaming. Call the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method to publish
          * the streaming again.
          */
         RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT = 3,
-        /** An error occurs in Agora's streaming server. Call the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method to
+        /** @en
+         * An error occurs in Agora's streaming server. Call the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method to
          * publish the streaming again.
          */
         RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR = 4,
-        /** An error occurs in the RTMP server. */
+        /** @en
+         * An error occurs in the RTMP server.
+         */
         RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR = 5,
-        /** The RTMP streaming publishes too frequently. */
+        /** @en
+         * The RTMP streaming publishes too frequently.
+         */
         RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN = 6,
-        /** The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones. */
+        /** @en
+         * The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones.
+         */
         RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT = 7,
-        /** The host manipulates other hosts' URLs. Check your app logic. */
+        /** @en
+         * The host manipulates other hosts' URLs. Check your app logic.
+         */
         RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED = 8,
-        /** Agora's server fails to find the RTMP streaming. */
+        /** @en
+         * Agora's server fails to find the RTMP streaming.
+         */
         RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND = 9,
-        /** The format of the RTMP streaming URL is not supported. Check whether the URL format is correct. */
+        /** @en
+         * The format of the RTMP streaming URL is not supported. Check whether the URL format is correct.
+         */
         RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED = 10
     }
-    /** Events during the RTMP streaming. */
+    /** @en
+     * Events during the RTMP streaming.
+     */
     enum RTMP_STREAMING_EVENT {
-        /** An error occurs when you add a background image or a watermark image to the RTMP stream.
+        /** @en
+         * An error occurs when you add a background image or a watermark image to the RTMP stream.
          */
         RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE = 1
     }
-    /** States of importing an external media stream in the live interactive streaming. */
+    /** @en
+     * States of importing an external media stream in the live interactive streaming.
+     */
     enum INJECT_STREAM_STATUS {
-        /** 0: The external media stream imported successfully. */
+        /** @en
+         * 0: The external media stream imported successfully.
+         */
         INJECT_STREAM_STATUS_START_SUCCESS = 0,
-        /** 1: The external media stream already exists. */
+        /** @en
+         * 1: The external media stream already exists.
+         */
         INJECT_STREAM_STATUS_START_ALREADY_EXISTS = 1,
-        /** 2: The external media stream to be imported is unauthorized. */
+        /** @en
+         * 2: The external media stream to be imported is unauthorized.
+         */
         INJECT_STREAM_STATUS_START_UNAUTHORIZED = 2,
-        /** 3: Import external media stream timeout. */
+        /** @en
+         * 3: Import external media stream timeout.
+         */
         INJECT_STREAM_STATUS_START_TIMEDOUT = 3,
-        /** 4: Import external media stream failed. */
+        /** @en
+         * 4: Import external media stream failed.
+         */
         INJECT_STREAM_STATUS_START_FAILED = 4,
-        /** 5: The external media stream stopped importing successfully. */
+        /** @en
+         * 5: The external media stream stopped importing successfully.
+         */
         INJECT_STREAM_STATUS_STOP_SUCCESS = 5,
-        /** 6: No external media stream is found. */
+        /** @en
+         * 6: No external media stream is found.
+         */
         INJECT_STREAM_STATUS_STOP_NOT_FOUND = 6,
-        /** 7: The external media stream to be stopped importing is unauthorized. */
+        /** @en
+         * 7: The external media stream to be stopped importing is unauthorized.
+         */
         INJECT_STREAM_STATUS_STOP_UNAUTHORIZED = 7,
-        /** 8: Stop importing external media stream timeout. */
+        /** @en
+         * 8: Stop importing external media stream timeout.
+         */
         INJECT_STREAM_STATUS_STOP_TIMEDOUT = 8,
-        /** 9: Stop importing external media stream failed. */
+        /** @en
+         * 9: Stop importing external media stream failed.
+         */
         INJECT_STREAM_STATUS_STOP_FAILED = 9,
-        /** 10: The external media stream is corrupted. */
+        /** @en
+         * 10: The external media stream is corrupted.
+         */
         INJECT_STREAM_STATUS_BROKEN = 10
     }
-    /** @ignore Remote video stream types. */
+    /** @en
+     * @ignore
+     * Remote video stream types.
+     */
     enum REMOTE_VIDEO_STREAM_TYPE {
-        /** 0: High-stream video. */
+        /** @en
+         * 0: High-stream video.
+         */
         REMOTE_VIDEO_STREAM_HIGH = 0,
-        /** 1: Low-stream video. */
+        /** @en
+         * 1: Low-stream video.
+         */
         REMOTE_VIDEO_STREAM_LOW = 1
     }
-    /** The use mode of the audio data in the [onRecordAudioFrame]{@link agora.onRecordAudioFrame} or
+    /** @en
+     * The use mode of the audio data in the [onRecordAudioFrame]{@link agora.onRecordAudioFrame} or
      * [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame} callback.
      */
     enum RAW_AUDIO_FRAME_OP_MODE_TYPE {
-        /** 0: Read-only mode: Users only read the [AudioFrame]{@link agora.AudioFrame} data without modifying anything. For example,
+        /** @en
+         * 0: Read-only mode: Users only read the [AudioFrame]{@link agora.AudioFrame} data without modifying anything. For example,
          * when users acquire the data with the Agora SDK, then push the RTMP streams.
          */
         RAW_AUDIO_FRAME_OP_MODE_READ_ONLY = 0,
-        /** 1: Write-only mode: Users replace the [AudioFrame]{@link agora.AudioFrame} data with their own data and pass the data to
+        /** @en
+         * 1: Write-only mode: Users replace the [AudioFrame]{@link agora.AudioFrame} data with their own data and pass the data to
          * the SDK for encoding. For example, when users acquire the data.
          */
         RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY = 1,
-        /** 2: Read and write mode: Users read the data from [AudioFrame]{@link agora.AudioFrame} , modify it, and then play it.
+        /** @en
+         * 2: Read and write mode: Users read the data from [AudioFrame]{@link agora.AudioFrame} , modify it, and then play it.
          * For example, when users have their own sound-effect processing module and perform some voice pre-processing, such as
          * a voice change.
          */
         RAW_AUDIO_FRAME_OP_MODE_READ_WRITE = 2
     }
-    /** Audio-sample rates. */
+    /** @en
+     * Audio-sample rates.
+     */
     enum AUDIO_SAMPLE_RATE_TYPE {
-        /** 32000: 32 kHz */
+        /** @en
+         * 32000: 32 kHz
+         */
         AUDIO_SAMPLE_RATE_32000 = 32000,
-        /** 44100: 44.1 kHz */
+        /** @en
+         * 44100: 44.1 kHz
+         */
         AUDIO_SAMPLE_RATE_44100 = 44100,
-        /** 48000: 48 kHz */
+        /** @en
+         * 48000: 48 kHz
+         */
         AUDIO_SAMPLE_RATE_48000 = 48000
     }
-    /** @ignore Video codec profile types. */
+    /** @en
+     * @ignore Video codec profile types.
+     */
     enum VIDEO_CODEC_PROFILE_TYPE {
-        /** 66: Baseline video codec profile. Generally used in video calls on mobile phones. */
+        /** @en
+         * 66: Baseline video codec profile. Generally used in video calls on mobile phones.
+         */
         VIDEO_CODEC_PROFILE_BASELINE = 66,
-        /** 77: Main video codec profile. Generally used in mainstream electronics such as MP4 players, portable video players,
+        /** @en
+         * 77: Main video codec profile. Generally used in mainstream electronics such as MP4 players, portable video players,
          * PSP, and iPads.
          */
         VIDEO_CODEC_PROFILE_MAIN = 77,
-        /** 100: (Default) High video codec profile. Generally used in high-resolution live streaming or television. */
+        /** @en
+         * 100: (Default) High video codec profile. Generally used in high-resolution live streaming or television.
+         */
         VIDEO_CODEC_PROFILE_HIGH = 100
     }
-    /** @ignore Video codec types */
+    /** @en
+     * @ignore Video codec types
+     */
     enum VIDEO_CODEC_TYPE {
-        /** Standard VP8 */
+        /** @en
+         * Standard VP8
+         */
         VIDEO_CODEC_VP8 = 1,
-        /** Standard H264 */
+        /** @en
+         * Standard H264
+         */
         VIDEO_CODEC_H264 = 2,
-        /** Enhanced VP8 */
+        /** @en
+         * Enhanced VP8
+         */
         VIDEO_CODEC_EVP = 3,
-        /** Enhanced H264 */
+        /** @en
+         * Enhanced H264
+         */
         VIDEO_CODEC_E264 = 4
     }
-    /** Audio equalization band frequencies. */
+    /** @en
+     * Audio equalization band frequencies.
+     */
     enum AUDIO_EQUALIZATION_BAND_FREQUENCY {
-        /** 0: 31 Hz */
+        /** @en
+         * 0: 31 Hz
+         */
         AUDIO_EQUALIZATION_BAND_31 = 0,
-        /** 1: 62 Hz */
+        /** @en
+         * 1: 62 Hz
+         */
         AUDIO_EQUALIZATION_BAND_62 = 1,
-        /** 2: 125 Hz */
+        /** @en
+         * 2: 125 Hz
+         */
         AUDIO_EQUALIZATION_BAND_125 = 2,
-        /** 3: 250 Hz */
+        /** @en
+         * 3: 250 Hz
+         */
         AUDIO_EQUALIZATION_BAND_250 = 3,
-        /** 4: 500 Hz */
+        /** @en
+         * 4: 500 Hz
+         */
         AUDIO_EQUALIZATION_BAND_500 = 4,
-        /** 5: 1 kHz */
+        /** @en
+         * 5: 1 kHz
+         */
         AUDIO_EQUALIZATION_BAND_1K = 5,
-        /** 6: 2 kHz */
+        /** @en
+         * 6: 2 kHz
+         */
         AUDIO_EQUALIZATION_BAND_2K = 6,
-        /** 7: 4 kHz */
+        /** @en
+         * 7: 4 kHz
+         */
         AUDIO_EQUALIZATION_BAND_4K = 7,
-        /** 8: 8 kHz */
+        /** @en
+         * 8: 8 kHz
+         */
         AUDIO_EQUALIZATION_BAND_8K = 8,
-        /** 9: 16 kHz */
+        /** @en
+         * 9: 16 kHz
+         */
         AUDIO_EQUALIZATION_BAND_16K = 9
     }
-    /** Audio reverberation types. */
+    /** @en
+     * Audio reverberation types.
+     */
     enum AUDIO_REVERB_TYPE {
-        /** 0: The level of the dry signal (db). The value is between -20 and 10. */
+        /** @en
+         * 0: The level of the dry signal (db). The value is between -20 and 10.
+         */
         AUDIO_REVERB_DRY_LEVEL = 0,
-        /** 1: The level of the early reflection signal (wet signal) (dB). The value is between -20 and 10. */
+        /** @en
+         * 1: The level of the early reflection signal (wet signal) (dB). The value is between -20 and 10.
+         */
         AUDIO_REVERB_WET_LEVEL = 1,
-        /** 2: The room size of the reflection. The value is between 0 and 100. */
+        /** @en
+         * 2: The room size of the reflection. The value is between 0 and 100.
+         */
         AUDIO_REVERB_ROOM_SIZE = 2,
-        /** 3: The length of the initial delay of the wet signal (ms). The value is between 0 and 200. */
+        /** @en
+         * 3: The length of the initial delay of the wet signal (ms). The value is between 0 and 200.
+         */
         AUDIO_REVERB_WET_DELAY = 3,
-        /** 4: The reverberation strength. The value is between 0 and 100. */
+        /** @en
+         * 4: The reverberation strength. The value is between 0 and 100.
+         */
         AUDIO_REVERB_STRENGTH = 4
     }
-    /**
+    /** @en
      * Local voice changer options.
      */
     enum VOICE_CHANGER_PRESET {
-        /**
+        /** @en
          * The original voice (no local voice change).
          */
         VOICE_CHANGER_OFF = 0,
-        /**
+        /** @en
          * The voice of an old man.
          */
         VOICE_CHANGER_OLDMAN = 1,
-        /**
+        /** @en
          * The voice of a little boy.
          */
         VOICE_CHANGER_BABYBOY = 2,
-        /**
+        /** @en
          * The voice of a little girl.
          */
         VOICE_CHANGER_BABYGIRL = 3,
-        /**
+        /** @en
          * The voice of Zhu Bajie, a character in Journey to the West who has a voice like that of a growling bear.
          */
         VOICE_CHANGER_ZHUBAJIE = 4,
-        /**
+        /** @en
          * The ethereal voice.
          */
         VOICE_CHANGER_ETHEREAL = 5,
-        /**
+        /** @en
          * The voice of Hulk.
          */
         VOICE_CHANGER_HULK = 6,
-        /**
+        /** @en
          * A more vigorous voice.
          */
         VOICE_BEAUTY_VIGOROUS = 1048577,
-        /**
+        /** @en
          * A deeper voice.
          */
         VOICE_BEAUTY_DEEP = 1048578,
-        /**
+        /** @en
          * A mellower voice.
          */
         VOICE_BEAUTY_MELLOW = 1048579,
-        /**
+        /** @en
          * Falsetto.
          */
         VOICE_BEAUTY_FALSETTO = 1048580,
-        /**
+        /** @en
          * A fuller voice.
          */
         VOICE_BEAUTY_FULL = 1048581,
-        /**
+        /** @en
          * A clearer voice.
          */
         VOICE_BEAUTY_CLEAR = 1048582,
-        /**
+        /** @en
          * A more resounding voice.
          */
         VOICE_BEAUTY_RESOUNDING = 1048583,
-        /**
+        /** @en
          * A more ringing voice.
          */
         VOICE_BEAUTY_RINGING = 1048584,
-        /**
+        /** @en
          * A more spatially resonant voice.
          */
         VOICE_BEAUTY_SPACIAL = 1048585,
-        /**
+        /** @en
          * (For male only) A more magnetic voice. Do not use it when the speaker is a female; otherwise, voice distortion occurs.
          */
         GENERAL_BEAUTY_VOICE_MALE_MAGNETIC = 2097153,
-        /**
+        /** @en
          * (For female only) A fresher voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs.
          */
         GENERAL_BEAUTY_VOICE_FEMALE_FRESH = 2097154,
-        /**
+        /** @en
          * (For female only) A more vital voice. Do not use it when the speaker is a male; otherwise, voice distortion occurs.
          */
         GENERAL_BEAUTY_VOICE_FEMALE_VITALITY = 2097155
     }
-    /** Local voice reverberation presets. */
+    /** @en
+     * Local voice reverberation presets.
+     */
     enum AUDIO_REVERB_PRESET {
-        /**
+        /** @en
          * Turn off local voice reverberation, that is, to use the original voice.
          */
         AUDIO_REVERB_OFF = 0,
-        /**
+        /** @en
          * The reverberation style typical of a KTV venue (enhanced).
          */
         AUDIO_REVERB_FX_KTV = 1048577,
-        /**
+        /** @en
          * The reverberation style typical of a concert hall (enhanced).
          */
         AUDIO_REVERB_FX_VOCAL_CONCERT = 1048578,
-        /**
+        /** @en
          * The reverberation style typical of an uncle's voice.
          */
         AUDIO_REVERB_FX_UNCLE = 1048579,
-        /**
+        /** @en
          * The reverberation style typical of a little sister's voice.
          */
         AUDIO_REVERB_FX_SISTER = 1048580,
-        /**
+        /** @en
          * The reverberation style typical of a recording studio (enhanced).
          */
         AUDIO_REVERB_FX_STUDIO = 1048581,
-        /**
+        /** @en
          * The reverberation style typical of popular music (enhanced).
          */
         AUDIO_REVERB_FX_POPULAR = 1048582,
-        /**
+        /** @en
          * The reverberation style typical of R&B music (enhanced).
          */
         AUDIO_REVERB_FX_RNB = 1048583,
-        /**
+        /** @en
          * The reverberation style typical of the vintage phonograph.
          */
         AUDIO_REVERB_FX_PHONOGRAPH = 1048584,
-        /**
+        /** @en
          * The reverberation style typical of popular music.
          */
         AUDIO_REVERB_POPULAR = 1,
-        /**
+        /** @en
          * The reverberation style typical of R&B music.
          */
         AUDIO_REVERB_RNB = 2,
-        /**
+        /** @en
          * The reverberation style typical of rock music.
          */
         AUDIO_REVERB_ROCK = 3,
-        /**
+        /** @en
          * The reverberation style typical of hip-hop music.
          */
         AUDIO_REVERB_HIPHOP = 4,
-        /**
+        /** @en
          * The reverberation style typical of a concert hall.
          */
         AUDIO_REVERB_VOCAL_CONCERT = 5,
-        /**
+        /** @en
          * The reverberation style typical of a KTV venue.
          */
         AUDIO_REVERB_KTV = 6,
-        /**
+        /** @en
          * The reverberation style typical of a recording studio.
          */
         AUDIO_REVERB_STUDIO = 7,
-        /**
+        /** @en
          * The reverberation of the virtual stereo. The virtual stereo is an effect that renders the monophonic
          * audio as the stereo audio, so that all users in the channel can hear the stereo voice effect.
          * To achieve better virtual stereo reverberation, Agora recommends setting `profile` in
@@ -962,130 +1366,166 @@ declare namespace agora {
          */
         AUDIO_VIRTUAL_STEREO = 2097153
     }
-    /** Audio codec profile types. The default value is LC_ACC. */
+    /** @en
+     * Audio codec profile types. The default value is LC_ACC.
+     */
     enum AUDIO_CODEC_PROFILE_TYPE {
-        /** 0: LC-AAC, which is the low-complexity audio codec type. */
+        /** @en
+         * 0: LC-AAC, which is the low-complexity audio codec type.
+         */
         AUDIO_CODEC_PROFILE_LC_AAC = 0,
-        /** 1: HE-AAC, which is the high-efficiency audio codec type. */
+        /** @en
+         * 1: HE-AAC, which is the high-efficiency audio codec type.
+         */
         AUDIO_CODEC_PROFILE_HE_AAC = 1
     }
-    /** Remote audio states.
+    /** @en
+     * Remote audio states.
      */
     enum REMOTE_AUDIO_STATE {
-        /** 0: The remote audio is in the default state, probably due to
+        /** @en
+         * 0: The remote audio is in the default state, probably due to
          * [REMOTE_AUDIO_REASON_LOCAL_MUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_LOCAL_MUTED}(3),
          * [REMOTE_AUDIO_REASON_REMOTE_MUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_REMOTE_MUTED} (5), or
          * [REMOTE_AUDIO_REASON_REMOTE_OFFLINE]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_REMOTE_OFFLINE} (7).
          */
         REMOTE_AUDIO_STATE_STOPPED = 0,
-        /** 1: The first remote audio packet is received.
+        /** @en
+         * 1: The first remote audio packet is received.
          */
         REMOTE_AUDIO_STATE_STARTING = 1,
-        /** 2: The remote audio stream is decoded and plays normally, probably
+        /** @en
+         * 2: The remote audio stream is decoded and plays normally, probably
          * due to [REMOTE_AUDIO_REASON_NETWORK_RECOVERY]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_NETWORK_RECOVERY}(2),
          * [REMOTE_AUDIO_REASON_LOCAL_UNMUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_LOCAL_UNMUTED}(4), or
          * [REMOTE_AUDIO_REASON_REMOTE_UNMUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_REMOTE_UNMUTED}(6).
          */
         REMOTE_AUDIO_STATE_DECODING = 2,
-        /** 3: The remote audio is frozen, probably due to
+        /** @en
+         * 3: The remote audio is frozen, probably due to
          * [REMOTE_AUDIO_REASON_NETWORK_CONGESTION]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_NETWORK_CONGESTION}(1).
          */
         REMOTE_AUDIO_STATE_FROZEN = 3,
-        /** 4: The remote audio fails to start, probably due to
+        /** @en
+         * 4: The remote audio fails to start, probably due to
          * [REMOTE_AUDIO_REASON_INTERNAL]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_INTERNAL}(0).
          */
         REMOTE_AUDIO_STATE_FAILED = 4
     }
-    /** Remote audio state reasons.
+    /** @en
+     * Remote audio state reasons.
      */
     enum REMOTE_AUDIO_STATE_REASON {
-        /** 0: Internal reasons.
+        /** @en
+         * 0: Internal reasons.
          */
         REMOTE_AUDIO_REASON_INTERNAL = 0,
-        /** 1: Network congestion.
+        /** @en
+         * 1: Network congestion.
          */
         REMOTE_AUDIO_REASON_NETWORK_CONGESTION = 1,
-        /** 2: Network recovery.
+        /** @en
+         * 2: Network recovery.
          */
         REMOTE_AUDIO_REASON_NETWORK_RECOVERY = 2,
-        /** 3: The local user stops receiving the remote audio stream or
+        /** @en
+         * 3: The local user stops receiving the remote audio stream or
          * disables the audio module.
          */
         REMOTE_AUDIO_REASON_LOCAL_MUTED = 3,
-        /** 4: The local user resumes receiving the remote audio stream or
+        /** @en
+         * 4: The local user resumes receiving the remote audio stream or
          * enables the audio module.
          */
         REMOTE_AUDIO_REASON_LOCAL_UNMUTED = 4,
-        /** 5: The remote user stops sending the audio stream or disables the
+        /** @en
+         * 5: The remote user stops sending the audio stream or disables the
          * audio module.
          */
         REMOTE_AUDIO_REASON_REMOTE_MUTED = 5,
-        /** 6: The remote user resumes sending the audio stream or enables the
+        /** @en
+         * 6: The remote user resumes sending the audio stream or enables the
          * audio module.
          */
         REMOTE_AUDIO_REASON_REMOTE_UNMUTED = 6,
-        /** 7: The remote user leaves the channel.
+        /** @en
+         * 7: The remote user leaves the channel.
          */
         REMOTE_AUDIO_REASON_REMOTE_OFFLINE = 7
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * The state of the remote video.
      */
     enum REMOTE_VIDEO_STATE {
-        /** 0: The remote video is in the default state, probably due to
+        /** @en
+         * 0: The remote video is in the default state, probably due to
          * [REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED}(3),
          * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED}(5),
          * or [REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE}(7).
          */
         REMOTE_VIDEO_STATE_STOPPED = 0,
-        /** 1: The first remote video packet is received.
+        /** @en
+         * 1: The first remote video packet is received.
          */
         REMOTE_VIDEO_STATE_STARTING = 1,
-        /** 2: The remote video stream is decoded and plays normally, probably due to
+        /** @en
+         * 2: The remote video stream is decoded and plays normally, probably due to
          * [REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY}(2),
          * [REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED}(4),
          * [REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED}(6),
          * or [REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY} (9).
          */
         REMOTE_VIDEO_STATE_DECODING = 2,
-        /** 3: The remote video is frozen, probably due to
+        /** @en
+         * 3: The remote video is frozen, probably due to
          * [REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION}(1)
          * or [REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK}(8).
          */
         REMOTE_VIDEO_STATE_FROZEN = 3,
-        /** 4: The remote video fails to start, probably due to
+        /** @en
+         * 4: The remote video fails to start, probably due to
          * [REMOTE_VIDEO_STATE_REASON_INTERNAL]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_INTERNAL}(0).
          */
         REMOTE_VIDEO_STATE_FAILED = 4
     }
-    /** The publishing state.
+    /** @en
+     * The publishing state.
      */
     enum STREAM_PUBLISH_STATE {
-        /** 0: The initial publishing state after joining the channel.
+        /** @en
+         * 0: The initial publishing state after joining the channel.
          */
         PUB_STATE_IDLE = 0,
-        /** 1: Fails to publish the local stream. Possible reasons:
+        /** @en
+         * 1: Fails to publish the local stream. Possible reasons:
          * - The local user calls [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream} to stop sending local streams.
          * - The local user calls [disableAudio]{@link agora.disableAudio} to
          * disable the entire audio or video module.
-         * - The local user calls [enableLocalAudio(false)]{@link agora.enableLocalAudio} to disable the local audio sampling or video capturing.
+         * - The local user calls [enableLocalAudio(false)]{@link agora.enableLocalAudio} to disable the local audio sampling or
+         * video capturing.
          * - The role of the local user is `AUDIENCE`.
          */
         PUB_STATE_NO_PUBLISHED = 1,
-        /** 2: Publishing.
+        /** @en
+         * 2: Publishing.
          */
         PUB_STATE_PUBLISHING = 2,
-        /** 3: Publishes successfully.
+        /** @en
+         * 3: Publishes successfully.
          */
         PUB_STATE_PUBLISHED = 3
     }
-    /** The subscribing state.
+    /** @en
+     * The subscribing state.
      */
     enum STREAM_SUBSCRIBE_STATE {
-        /** 0: The initial subscribing state after joining the channel.
+        /** @en
+         * 0: The initial subscribing state after joining the channel.
          */
         SUB_STATE_IDLE = 0,
-        /** 1: Fails to subscribe to the remote stream. Possible reasons:
+        /** @en
+         * 1: Fails to subscribe to the remote stream. Possible reasons:
          * - The remote user:
          *   - Calls [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream} to stop sending local streams.
          *   - Calls [disableAudio]{@link agora.disableAudio} to disable the
@@ -1100,67 +1540,104 @@ declare namespace agora {
          * audio streams.
          */
         SUB_STATE_NO_SUBSCRIBED = 1,
-        /** 2: Subscribing.
+        /** @en
+         * 2: Subscribing.
          */
         SUB_STATE_SUBSCRIBING = 2,
-        /** 3: Subscribes to and receives the remote stream successfully.
+        /** @en
+         * 3: Subscribes to and receives the remote stream successfully.
          */
         SUB_STATE_SUBSCRIBED = 3
     }
-    /** @ignore The reason for the remote video state change. */
+    /** @en
+     * @ignore
+     * The reason for the remote video state change. */
     enum REMOTE_VIDEO_STATE_REASON {
-        /** 0: Internal reasons.
+        /** @en
+         * 0: Internal reasons.
          */
         REMOTE_VIDEO_STATE_REASON_INTERNAL = 0,
-        /** 1: Network congestion.
+        /** @en
+         * 1: Network congestion.
          */
         REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION = 1,
-        /** 2: Network recovery.
+        /** @en
+         * 2: Network recovery.
          */
         REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY = 2,
-        /** 3: The local user stops receiving the remote video stream or disables the video module.
+        /** @en
+         * 3: The local user stops receiving the remote video stream or disables the video module.
          */
         REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED = 3,
-        /** 4: The local user resumes receiving the remote video stream or enables the video module.
+        /** @en
+         * 4: The local user resumes receiving the remote video stream or enables the video module.
          */
         REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED = 4,
-        /** 5: The remote user stops sending the video stream or disables the video module.
+        /** @en
+         * 5: The remote user stops sending the video stream or disables the video module.
          */
         REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED = 5,
-        /** 6: The remote user resumes sending the video stream or enables the video module.
+        /** @en
+         * 6: The remote user resumes sending the video stream or enables the video module.
          */
         REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED = 6,
-        /** 7: The remote user leaves the channel.
+        /** @en
+         * 7: The remote user leaves the channel.
          */
         REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE = 7,
-        /** 8: The remote audio-and-video stream falls back to the audio-only stream due to poor network conditions.
+        /** @en
+         * 8: The remote audio-and-video stream falls back to the audio-only stream due to poor network conditions.
          */
         REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK = 8,
-        /** 9: The remote audio-only stream switches back to the audio-and-video stream after the network conditions improve.
+        /** @en
+         * 9: The remote audio-only stream switches back to the audio-and-video stream after the network conditions improve.
          */
         REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY = 9
     }
-    /** @ignore Video frame rates. */
+    /** @en
+     * @ignore
+     * Video frame rates.
+     */
     enum FRAME_RATE {
-        /** 1: 1 fps */
+        /** @en
+         * 1: 1 fps
+         */
         FRAME_RATE_FPS_1 = 1,
-        /** 7: 7 fps */
+        /** @en
+         * 7: 7 fps
+         */
         FRAME_RATE_FPS_7 = 7,
-        /** 10: 10 fps */
+        /** @en
+         * 10: 10 fps
+         */
         FRAME_RATE_FPS_10 = 10,
-        /** 15: 15 fps */
+        /** @en
+         * 15: 15 fps
+         */
         FRAME_RATE_FPS_15 = 15,
-        /** 24: 24 fps */
+        /** @en
+         * 24: 24 fps
+         */
         FRAME_RATE_FPS_24 = 24,
-        /** 30: 30 fps */
+        /** @en
+         * 30: 30 fps
+         */
         FRAME_RATE_FPS_30 = 30,
-        /** 60: 60 fps (Windows and macOS only) */
+        /** @en
+         * 60: 60 fps (Windows and macOS only)
+         */
+        /** ce
+         * n60: 60 fps 仅适用于 WINDOWS 和 macOS 平台
+         */
         FRAME_RATE_FPS_60 = 60
     }
-    /** @ignore Video output orientation modes.
+    /** @en
+     * @ignore
+     * Video output orientation modes.
      */
     enum ORIENTATION_MODE {
-        /** 0: (Default) Adaptive mode.
+        /** @en
+         * 0: (Default) Adaptive mode.
          *
          * The video encoder adapts to the orientation mode of the video input device.
          *
@@ -1172,82 +1649,110 @@ declare namespace agora {
          * the rotational information of the video to the receiver.
          */
         ORIENTATION_MODE_ADAPTIVE = 0,
-        /** 1: Landscape mode.
+        /** @en
+         * 1: Landscape mode.
          *
          * The video encoder always sends the video in landscape mode. The video encoder rotates the original video before sending
          * it and the rotational information is 0. This mode applies to scenarios involving CDN live streaming.
          */
         ORIENTATION_MODE_FIXED_LANDSCAPE = 1,
-        /** 2: Portrait mode.
+        /** @en
+         * 2: Portrait mode.
          *
          * The video encoder always sends the video in portrait mode. The video encoder rotates the original video before sending it
          * and the rotational information is 0. This mode applies to scenarios involving CDN live streaming.
          */
         ORIENTATION_MODE_FIXED_PORTRAIT = 2
     }
-    /** @ignore Video degradation preferences when the bandwidth is a constraint. */
+    /** @en
+     * @ignore
+     * Video degradation preferences when the bandwidth is a constraint.
+     */
     enum DEGRADATION_PREFERENCE {
-        /** 0: (Default) Degrade the frame rate in order to maintain the video quality. */
+        /** @en
+         * 0: (Default) Degrade the frame rate in order to maintain the video quality.
+         */
         MAINTAIN_QUALITY = 0,
-        /** 1: Degrade the video quality in order to maintain the frame rate. */
+        /** @en
+         * 1: Degrade the video quality in order to maintain the frame rate.
+         */
         MAINTAIN_FRAMERATE = 1,
-        /** 2: (For future use) Maintain a balance between the frame rate and video quality. */
+        /** @en
+         * 2: (For future use) Maintain a balance between the frame rate and video quality.
+         */
         MAINTAIN_BALANCED = 2
     }
-    /** @ignore Stream fallback options. */
+    /** @en
+     * @ignore
+     * Stream fallback options.
+     */
     enum STREAM_FALLBACK_OPTIONS {
-        /** 0: No fallback behavior for the local/remote video stream when the uplink/downlink network conditions are poor. The
+        /** @en
+         * 0: No fallback behavior for the local/remote video stream when the uplink/downlink network conditions are poor. The
          * quality of the stream is not guaranteed.
          */
         STREAM_FALLBACK_OPTION_DISABLED = 0,
-        /** 1: Under poor downlink network conditions, the remote video stream, to which you subscribe, falls back to the
+        /** @en
+         * 1: Under poor downlink network conditions, the remote video stream, to which you subscribe, falls back to the
          * low-stream (low resolution and low bitrate) video. You can set this option only in the
          * [setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption} method. Nothing happens when you set this
          * in the [setLocalPublishFallbackOption]{@link agora.setLocalPublishFallbackOption} method.
          */
         STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW = 1,
-        /** 2: Under poor uplink network conditions, the published video stream falls back to audio only.
+        /** @en
+         * 2: Under poor uplink network conditions, the published video stream falls back to audio only.
          *
          * Under poor downlink network conditions, the remote video stream, to which you subscribe, first falls back to the
          * low-stream (low resolution and low bitrate) video; and then to an audio-only stream if the network conditions worsen.
          */
         STREAM_FALLBACK_OPTION_AUDIO_ONLY = 2
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Camera capturer configuration.
      */
     enum CAPTURER_OUTPUT_PREFERENCE {
-        /** 0: (Default) self-adapts the camera output parameters to the system performance and network conditions to balance
+        /** @en
+         * 0: (Default) self-adapts the camera output parameters to the system performance and network conditions to balance
          * CPU consumption and video preview quality.
          */
         CAPTURER_OUTPUT_PREFERENCE_AUTO = 0,
-        /** 1: Prioritizes the system performance. The SDK chooses the dimension and frame rate of the local camera capture
+        /** @en
+         * 1: Prioritizes the system performance. The SDK chooses the dimension and frame rate of the local camera capture
          * closest to those set by [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}
          */
         CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE = 1,
-        /** 2: Prioritizes the local preview quality. The SDK chooses higher camera output parameters to improve the local
+        /** @en
+         * 2: Prioritizes the local preview quality. The SDK chooses higher camera output parameters to improve the local
          * video preview quality. This option requires extra CPU and RAM usage for video pre-processing.
          */
         CAPTURER_OUTPUT_PREFERENCE_PREVIEW = 2
     }
-    /** The priority of the remote user.
+    /** @en
+     * The priority of the remote user.
      */
     enum PRIORITY_TYPE {
-        /** 50: The user's priority is high.
+        /** @en
+         * 50: The user's priority is high.
          */
         PRIORITY_HIGH = 50,
-        /** 100: (Default) The user's priority is normal.
+        /** @en
+         * 100: (Default) The user's priority is normal.
          */
         PRIORITY_NORMAL = 100
     }
-    /** Connection states. */
+    /** @en
+     * Connection states.
+     */
     enum CONNECTION_STATE_TYPE {
-        /** 1: The SDK is disconnected from Agora's edge server.
+        /** @en
+         * 1: The SDK is disconnected from Agora's edge server.
          * - This is the initial state before calling the [joinChannel]{@link agora.joinChannel} method.
          * - The SDK also enters this state when the application calls the [leaveChannel]{@link agora.leaveChannel} method.
          */
         CONNECTION_STATE_DISCONNECTED = 1,
-        /** 2: The SDK is connecting to Agora's edge server.
+        /** @en
+         * 2: The SDK is connecting to Agora's edge server.
          * - When the application calls the [joinChannel]{@link agora.joinChannel} method, the SDK starts to establish a
          * connection to the specified channel, triggers the [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}
          * callback, and switches to the `CONNECTION_STATE_CONNECTING` state.
@@ -1257,7 +1762,8 @@ declare namespace agora {
          * [onJoinChannelSuccess]{@link AgoraRtcEvents.onJoinChannelSuccess} callback.
          */
         CONNECTION_STATE_CONNECTING = 2,
-        /** 3: The SDK is connected to Agora's edge server and has joined a channel. You can now publish or subscribe to a media
+        /** @en
+         * 3: The SDK is connected to Agora's edge server and has joined a channel. You can now publish or subscribe to a media
          * stream in the channel.
          *
          * If the connection to the channel is lost because, for example, if the network is down or switched, the SDK automatically
@@ -1267,7 +1773,8 @@ declare namespace agora {
          * [CONNECTION_STATE_RECONNECTING]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_RECONNECTING} state.
          */
         CONNECTION_STATE_CONNECTED = 3,
-        /** 4: The SDK keeps rejoining the channel after being disconnected from a joined channel because of network issues.
+        /** @en
+         * 4: The SDK keeps rejoining the channel after being disconnected from a joined channel because of network issues.
          *
          * - If the SDK cannot rejoin the channel within 10 seconds after being disconnected from Agora's edge server,
          * the SDK triggers the [onConnectionLost]{@link AgoraRtcEvents.onConnectionLost} callback, stays in the
@@ -1278,7 +1785,8 @@ declare namespace agora {
          * [CONNECTION_STATE_FAILED]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_FAILED} state, and stops rejoining the channel.
          */
         CONNECTION_STATE_RECONNECTING = 4,
-        /** 5: The SDK fails to connect to Agora's edge server or join the channel.
+        /** @en
+         * 5: The SDK fails to connect to Agora's edge server or join the channel.
          *
          * You must call the [leaveChannel]{@link agora.leaveChannel} method to leave this state, and call the
          * [joinChannel]{@link agora.joinChannel} method again to rejoin the channel.
@@ -1289,25 +1797,44 @@ declare namespace agora {
          */
         CONNECTION_STATE_FAILED = 5
     }
-    /** Reasons for a connection state change. */
+    /** @en
+     * Reasons for a connection state change.
+     */
     enum CONNECTION_CHANGED_REASON_TYPE {
-        /** 0: The SDK is connecting to Agora's edge server. */
+        /** @en
+         * 0: The SDK is connecting to Agora's edge server.
+         */
         CONNECTION_CHANGED_CONNECTING = 0,
-        /** 1: The SDK has joined the channel successfully. */
+        /** @en
+         * 1: The SDK has joined the channel successfully.
+         */
         CONNECTION_CHANGED_JOIN_SUCCESS = 1,
-        /** 2: The connection between the SDK and Agora's edge server is interrupted. */
+        /** @en
+         * 2: The connection between the SDK and Agora's edge server is interrupted.
+         */
         CONNECTION_CHANGED_INTERRUPTED = 2,
-        /** 3: The connection between the SDK and Agora's edge server is banned by Agora's edge server. */
+        /** @en
+         * 3: The connection between the SDK and Agora's edge server is banned by Agora's edge server.
+         */
         CONNECTION_CHANGED_BANNED_BY_SERVER = 3,
-        /** 4: The SDK fails to join the channel for more than 20 minutes and stops reconnecting to the channel. */
+        /** @en
+         * 4: The SDK fails to join the channel for more than 20 minutes and stops reconnecting to the channel.
+         */
         CONNECTION_CHANGED_JOIN_FAILED = 4,
-        /** 5: The SDK has left the channel. */
+        /** @en
+         * 5: The SDK has left the channel.
+         */
         CONNECTION_CHANGED_LEAVE_CHANNEL = 5,
-        /** 6: The connection failed since Appid is not valid. */
+        /** @en
+         * 6: The connection failed since Appid is not valid.
+         */
         CONNECTION_CHANGED_INVALID_APP_ID = 6,
-        /** 7: The connection failed since channel name is not valid. */
+        /** @en
+         * 7: The connection failed since channel name is not valid.
+         */
         CONNECTION_CHANGED_INVALID_CHANNEL_NAME = 7,
-        /** 8: The connection failed since token is not valid, possibly because:
+        /** @en
+         * 8: The connection failed since token is not valid, possibly because:
          *
          * - The App Certificate for the project is enabled in Console, but you do not use Token when joining the channel.
          * If you enable the App Certificate, you must use a token to join the channel.
@@ -1315,219 +1842,324 @@ declare namespace agora {
          * you pass for generating the token.
          */
         CONNECTION_CHANGED_INVALID_TOKEN = 8,
-        /** 9: The connection failed since token is expired. */
+        /** @en
+         * 9: The connection failed since token is expired.
+         */
         CONNECTION_CHANGED_TOKEN_EXPIRED = 9,
-        /** 10: The connection is rejected by server. */
+        /** @en
+         * 10: The connection is rejected by server.
+         */
         CONNECTION_CHANGED_REJECTED_BY_SERVER = 10,
-        /** 11: The connection changed to reconnecting since SDK has set a proxy server. */
+        /** @en
+         * 11: The connection changed to reconnecting since SDK has set a proxy server.
+         */
         CONNECTION_CHANGED_SETTING_PROXY_SERVER = 11,
-        /** 12: When SDK is in connection failed, the renew token operation will make it connecting. */
+        /** @en
+         * 12: When SDK is in connection failed, the renew token operation will make it connecting.
+         */
         CONNECTION_CHANGED_RENEW_TOKEN = 12,
-        /** 13: The IP Address of SDK client has changed. i.e., Network type or IP/Port changed by network operator might
+        /** @en
+         * 13: The IP Address of SDK client has changed. i.e., Network type or IP/Port changed by network operator might
          * change client IP address.
          */
         CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED = 13,
-        /** 14: Timeout for the keep-alive of the connection between the SDK and Agora's edge server. The connection state
+        /** @en
+         * 14: Timeout for the keep-alive of the connection between the SDK and Agora's edge server. The connection state
          * changes to [CONNECTION_STATE_RECONNECTING]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_RECONNECTING}.
          */
         CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT = 14
     }
-    /** Network type. */
+    /** @en
+     * Network type.
+     */
     enum NETWORK_TYPE {
-        /** -1: The network type is unknown. */
+        /** @en
+         * -1: The network type is unknown.
+         */
         NETWORK_TYPE_UNKNOWN = -1,
-        /** 0: The SDK disconnects from the network. */
+        /** @en
+         * 0: The SDK disconnects from the network.
+         */
         NETWORK_TYPE_DISCONNECTED = 0,
-        /** 1: The network type is LAN. */
+        /** @en
+         * 1: The network type is LAN.
+         */
         NETWORK_TYPE_LAN = 1,
-        /** 2: The network type is Wi-Fi(including hotspots). */
+        /** @en
+         * 2: The network type is Wi-Fi(including hotspots).
+         */
         NETWORK_TYPE_WIFI = 2,
-        /** 3: The network type is mobile 2G. */
+        /** @en
+         * 3: The network type is mobile 2G.
+         */
         NETWORK_TYPE_MOBILE_2G = 3,
-        /** 4: The network type is mobile 3G. */
+        /** @en
+         * 4: The network type is mobile 3G.
+         */
         NETWORK_TYPE_MOBILE_3G = 4,
-        /** 5: The network type is mobile 4G. */
+        /** @en
+         * 5: The network type is mobile 4G.
+         */
         NETWORK_TYPE_MOBILE_4G = 5
     }
-    /** States of the last-mile network probe test. */
+    /** @en
+     * States of the last-mile network probe test.
+     */
     enum LASTMILE_PROBE_RESULT_STATE {
-        /** 1: The last-mile network probe test is complete. */
+        /** @en
+         * 1: The last-mile network probe test is complete.
+         */
         LASTMILE_PROBE_RESULT_COMPLETE = 1,
-        /** 2: The last-mile network probe test is incomplete and the bandwidth estimation is not available, probably due to
+        /** @en
+         * 2: The last-mile network probe test is incomplete and the bandwidth estimation is not available, probably due to
          * limited test resources.
          */
         LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE = 2,
-        /** 3: The last-mile network probe test is not carried out, probably due to poor network conditions. */
+        /** @en
+         * 3: The last-mile network probe test is not carried out, probably due to poor network conditions. */
         LASTMILE_PROBE_RESULT_UNAVAILABLE = 3
     }
-    /** Audio output routing. */
+    /** @en
+     * Audio output routing.
+     */
     enum AUDIO_ROUTE_TYPE {
-        /** Default.
+        /** @en
+         * Default.
          */
         AUDIO_ROUTE_DEFAULT = -1,
-        /** Headset.
+        /** @en
+         * Headset.
          */
         AUDIO_ROUTE_HEADSET = 0,
-        /** Earpiece.
+        /** @en
+         * Earpiece.
          */
         AUDIO_ROUTE_EARPIECE = 1,
-        /** Headset with no microphone.
+        /** @en
+         * Headset with no microphone.
          */
         AUDIO_ROUTE_HEADSET_NO_MIC = 2,
-        /** Speakerphone.
+        /** @en
+         * Speakerphone.
          */
         AUDIO_ROUTE_SPEAKERPHONE = 3,
-        /** Loudspeaker.
+        /** @en
+         * Loudspeaker.
          */
         AUDIO_ROUTE_LOUDSPEAKER = 4,
-        /** Bluetooth headset.
+        /** @en
+         * Bluetooth headset.
          */
         AUDIO_ROUTE_BLUETOOTH = 5,
-        /** USB peripheral.
+        /** @en
+         * USB peripheral.
          */
         AUDIO_ROUTE_USB = 6,
-        /** HDMI peripheral.
+        /** @en
+         * HDMI peripheral.
          */
         AUDIO_ROUTE_HDMI = 7,
-        /** DisplayPort peripheral.
+        /** @en
+         * DisplayPort peripheral.
          */
         AUDIO_ROUTE_DISPLAYPORT = 8,
-        /** Apple AirPlay.
+        /** @en
+         * Apple AirPlay.
          */
         AUDIO_ROUTE_AIRPLAY = 9
     }
-    /** Audio session restriction. */
+    /** @en
+     * Audio session restriction.
+     */
     enum AUDIO_SESSION_OPERATION_RESTRICTION {
-        /** No restriction, the SDK has full control of the audio session operations. */
+        /** @en
+         * No restriction, the SDK has full control of the audio session operations.
+         */
         AUDIO_SESSION_OPERATION_RESTRICTION_NONE = 0,
-        /** The SDK does not change the audio session category. */
+        /** @en
+         * The SDK does not change the audio session category.
+         */
         AUDIO_SESSION_OPERATION_RESTRICTION_SET_CATEGORY = 1,
-        /** The SDK does not change any setting of the audio session (category, mode, categoryOptions). */
+        /** @en
+         * The SDK does not change any setting of the audio session (category, mode, categoryOptions).
+         */
         AUDIO_SESSION_OPERATION_RESTRICTION_CONFIGURE_SESSION = 2,
-        /** The SDK keeps the audio session active when leaving a channel. */
+        /** @en
+         * The SDK keeps the audio session active when leaving a channel.
+         */
         AUDIO_SESSION_OPERATION_RESTRICTION_DEACTIVATE_SESSION = 4,
-        /** The SDK does not configure the audio session anymore. */
+        /** @en
+         * The SDK does not configure the audio session anymore.
+         */
         AUDIO_SESSION_OPERATION_RESTRICTION_ALL = 128
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * The direction of the camera.
      */
     enum CAMERA_DIRECTION {
-        /** The rear camera. */
+        /** @en
+         * The rear camera.
+         */
         CAMERA_REAR = 0,
-        /** The front camera. */
+        /** @en
+         * The front camera.
+         */
         CAMERA_FRONT = 1
     }
-    /** @ignore Quality change of the local video in terms of target frame rate and target bit rate since last count.
+    /** @en
+     * @ignore
+     * Quality change of the local video in terms of target frame rate and target bit rate since last count.
      */
     enum QUALITY_ADAPT_INDICATION {
-        /** The quality of the local video stays the same. */
+        /** @en
+         * The quality of the local video stays the same.
+         */
         ADAPT_NONE = 0,
-        /** The quality improves because the network bandwidth increases. */
+        /** @en
+         * The quality improves because the network bandwidth increases.
+         */
         ADAPT_UP_BANDWIDTH = 1,
-        /** The quality worsens because the network bandwidth decreases. */
+        /** @en
+         * The quality worsens because the network bandwidth decreases.
+         */
         ADAPT_DOWN_BANDWIDTH = 2
     }
-    /** The error code in CHANNEL_MEDIA_RELAY_ERROR. */
+    /** @en
+     * The error code in CHANNEL_MEDIA_RELAY_ERROR.
+     */
     enum CHANNEL_MEDIA_RELAY_ERROR {
-        /** 0: The state is normal.
+        /** @en
+         * 0: The state is normal.
          */
         RELAY_OK = 0,
-        /** 1: An error occurs in the server response.
+        /** @en
+         * 1: An error occurs in the server response.
          */
         RELAY_ERROR_SERVER_ERROR_RESPONSE = 1,
-        /** 2: No server response. You can call the
+        /** @en
+         * 2: No server response. You can call the
          * [leaveChannel]{@link agora.leaveChannel} method to leave the channel.
          */
         RELAY_ERROR_SERVER_NO_RESPONSE = 2,
-        /** 3: The SDK fails to access the service, probably due to limited
+        /** @en
+         * 3: The SDK fails to access the service, probably due to limited
          * resources of the server.
          */
         RELAY_ERROR_NO_RESOURCE_AVAILABLE = 3,
-        /** 4: Fails to send the relay request.
+        /** @en
+         * 4: Fails to send the relay request.
          */
         RELAY_ERROR_FAILED_JOIN_SRC = 4,
-        /** 5: Fails to accept the relay request.
+        /** @en
+         * 5: Fails to accept the relay request.
          */
         RELAY_ERROR_FAILED_JOIN_DEST = 5,
-        /** 6: The server fails to receive the media stream.
+        /** @en
+         * 6: The server fails to receive the media stream.
          */
         RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC = 6,
-        /** 7: The server fails to send the media stream.
+        /** @en
+         * 7: The server fails to send the media stream.
          */
         RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST = 7,
-        /** 8: The SDK disconnects from the server due to poor network
+        /** @en
+         * 8: The SDK disconnects from the server due to poor network
          * connections. You can call the [leaveChannel]{@link agora.leaveChannel} method to leave the channel.
          */
         RELAY_ERROR_SERVER_CONNECTION_LOST = 8,
-        /** 9: An internal error occurs in the server.
+        /** @en
+         * 9: An internal error occurs in the server.
          */
         RELAY_ERROR_INTERNAL_ERROR = 9,
-        /** 10: The token of the source channel has expired.
+        /** @en
+         * 10: The token of the source channel has expired.
          */
         RELAY_ERROR_SRC_TOKEN_EXPIRED = 10,
-        /** 11: The token of the destination channel has expired.
+        /** @en
+         * 11: The token of the destination channel has expired.
          */
         RELAY_ERROR_DEST_TOKEN_EXPIRED = 11
     }
-    /** The event code in CHANNEL_MEDIA_RELAY_EVENT. */
+    /** @en
+     * The event code in CHANNEL_MEDIA_RELAY_EVENT.
+     */
     enum CHANNEL_MEDIA_RELAY_EVENT {
-        /** 0: The user disconnects from the server due to poor network
+        /** @en
+         * 0: The user disconnects from the server due to poor network
          * connections.
          */
         RELAY_EVENT_NETWORK_DISCONNECTED = 0,
-        /** 1: The network reconnects.
+        /** @en
+         * 1: The network reconnects.
          */
         RELAY_EVENT_NETWORK_CONNECTED = 1,
-        /** 2: The user joins the source channel.
+        /** @en
+         * 2: The user joins the source channel.
          */
         RELAY_EVENT_PACKET_JOINED_SRC_CHANNEL = 2,
-        /** 3: The user joins the destination channel.
+        /** @en
+         * 3: The user joins the destination channel.
          */
         RELAY_EVENT_PACKET_JOINED_DEST_CHANNEL = 3,
-        /** 4: The SDK starts relaying the media stream to the destination channel.
+        /** @en
+         * 4: The SDK starts relaying the media stream to the destination channel.
          */
         RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL = 4,
-        /** @ignore 5: The server receives the video stream from the source channel.
+        /** @en
+         * @ignore 5: The server receives the video stream from the source channel.
          */
         RELAY_EVENT_PACKET_RECEIVED_VIDEO_FROM_SRC = 5,
-        /** 6: The server receives the audio stream from the source channel.
+        /** @en
+         * 6: The server receives the audio stream from the source channel.
          */
         RELAY_EVENT_PACKET_RECEIVED_AUDIO_FROM_SRC = 6,
-        /** 7: The destination channel is updated.
+        /** @en
+         * 7: The destination channel is updated.
          */
         RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL = 7,
-        /** 8: The destination channel update fails due to internal reasons.
+        /** @en
+         * 8: The destination channel update fails due to internal reasons.
          */
         RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED = 8,
-        /** 9: The destination channel does not change, which means that the
+        /** @en
+         * 9: The destination channel does not change, which means that the
          * destination channel fails to be updated.
          */
         RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_NOT_CHANGE = 9,
-        /** 10: The destination channel name is `null`.
+        /** @en
+         * 10: The destination channel name is `null`.
          */
         RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_IS_NULL = 10,
-        /** @ignore 11: The video profile is sent to the server.
+        /** @en
+         * @ignore 11: The video profile is sent to the server.
          */
         RELAY_EVENT_VIDEO_PROFILE_UPDATE = 11
     }
-    /** The state code in CHANNEL_MEDIA_RELAY_STATE. */
+    /** @en
+     * The state code in CHANNEL_MEDIA_RELAY_STATE.
+     */
     enum CHANNEL_MEDIA_RELAY_STATE {
-        /** 0: The SDK is initializing.
+        /** @en
+         * 0: The SDK is initializing.
          */
         RELAY_STATE_IDLE = 0,
-        /** 1: The SDK tries to relay the media stream to the destination channel.
+        /** @en
+         * 1: The SDK tries to relay the media stream to the destination channel.
          */
         RELAY_STATE_CONNECTING = 1,
-        /** 2: The SDK successfully relays the media stream to the destination
+        /** @en
+         * 2: The SDK successfully relays the media stream to the destination
          * channel.
          */
         RELAY_STATE_RUNNING = 2,
-        /** 3: A failure occurs. See the details in code.
+        /** @en
+         * 3: A failure occurs. See the details in code.
          */
         RELAY_STATE_FAILURE = 3
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * (Recommended) The standard bitrate set in the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} method.
      *
      * In this mode, the bitrates differ between the live interactive streaming and communication profiles:
@@ -1535,157 +2167,191 @@ declare namespace agora {
      * - `LIVE_BROADCASTING` profile: The video bitrate is twice the base bitrate.
      */
     const STANDARD_BITRATE = 0;
-    /** @ignore
+    /** @en
+     * @ignore
      * The compatible bitrate set in the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} method.
      * The bitrate remains the same regardless of the channel profile. If you choose this mode in the `LIVE_BROADCASTING` profile, the
      * video frame rate may be lower than the set value.
      */
     const COMPATIBLE_BITRATE = -1;
-    /** @ignore
+    /** @en
+     * @ignore
      * Use the default minimum bitrate.
      */
     const DEFAULT_MIN_BITRATE = -1;
-    /**  @deprecated Lifecycle of the CDN live video stream.
+    /** @en
+     * @deprecated
+     * Lifecycle of the CDN live video stream.
      */
     enum RTMP_STREAM_LIFE_CYCLE_TYPE {
-        /** Bind to the channel lifecycle. If all hosts leave the channel, the CDN live streaming stops after 30 seconds.
+        /** @en
+         * Bind to the channel lifecycle. If all hosts leave the channel, the CDN live streaming stops after 30 seconds.
          */
         RTMP_STREAM_LIFE_CYCLE_BIND2CHANNEL = 1,
-        /** Bind to the owner of the RTMP stream. If the owner leaves the channel, the CDN live streaming stops immediately.
+        /** @en
+         * Bind to the owner of the RTMP stream. If the owner leaves the channel, the CDN live streaming stops immediately.
          */
         RTMP_STREAM_LIFE_CYCLE_BIND2OWNER = 2
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Content hints for screen sharing.
      */
     enum VideoContentHint {
-        /** (Default) No content hint.
+        /** @en
+         * (Default) No content hint.
          */
         CONTENT_HINT_NONE = 0,
-        /** Motion-intensive content. Choose this option if you prefer smoothness or when you are sharing a video clip, movie, or
+        /** @en
+         * Motion-intensive content. Choose this option if you prefer smoothness or when you are sharing a video clip, movie, or
          * video game.
          */
         CONTENT_HINT_MOTION = 1,
-        /** Motionless content. Choose this option if you prefer sharpness or when you are sharing a picture, PowerPoint slide, or text.
+        /** @en
+         * Motionless content. Choose this option if you prefer sharpness or when you are sharing a picture, PowerPoint slide, or text.
          */
         CONTENT_HINT_DETAILS = 2
     }
-    /**
+    /** @en
      * Regions for connection.
      */
     enum AREA_CODE {
-        /**
+        /** @en
          * Mainland China.
          */
         AREA_CODE_CN = 1,
-        /**
+        /** @en
          * North America.
          */
         AREA_CODE_NA = 2,
-        /**
+        /** @en
          * Europe.
          */
         AREA_CODE_EUR = 4,
-        /**
+        /** @en
          * Asia, excluding Mainland China.
          */
         AREA_CODE_AS = 8,
-        /**
+        /** @en
          * Japan.
          */
         AREA_CODE_JAPAN = 16,
-        /**
+        /** @en
          * India.
          */
         AREA_CODE_INDIA = 32,
-        /**
+        /** @en
          * (Default) Global.
          */
         AREA_CODE_GLOBAL = 4294967295
     }
+    /**
+     * @ignore
+     */
     enum ENCRYPTION_CONFIG {
-        /**
-         * - 1: Force set master key and mode;
-         * - 0: Not force set, checking whether encryption plugin exists
-         */
         ENCRYPTION_FORCE_SETTING = 1,
-        /**
-         * - 1: Force not encrypting packet;
-         * - 0: Not force encrypting;
-         */
         ENCRYPTION_FORCE_DISABLE_PACKET = 2
     }
-    /** Encryption mode. */
+    /** @en
+     * Encryption mode.
+     */
     enum ENCRYPTION_MODE {
-        /** 1: (Default) 128-bit AES encryption, XTS mode. */
+        /** @en
+         * 1: (Default) 128-bit AES encryption, XTS mode.
+         */
         AES_128_XTS = 1,
-        /** 2: 128-bit AES encryption, ECB mode. */
+        /** @en
+         * 2: 128-bit AES encryption, ECB mode.
+         */
         AES_128_ECB = 2,
-        /** 3: 256-bit AES encryption, XTS mode. */
+        /** @en
+         * 3: 256-bit AES encryption, XTS mode.
+         */
         AES_256_XTS = 3,
-        /** 4: 128-bit SM4 encryption, ECB mode. */
+        /** @en
+         * 4: 128-bit SM4 encryption, ECB mode.
+         */
         SM4_128_ECB = 4,
-        /** Enumerator boundary. */
+        /** @en
+         * Enumerator boundary.
+         */
         MODE_END = 5
     }
-    /** Error code. */
+    /** @en
+     * Error code.
+     */
     enum ERROR_CODE_TYPE {
-        /** 0: No error occurs.
+        /** @en
+         * 0: No error occurs.
          */
         ERR_OK = 0,
-        /** 1: A general error occurs (no specified reason).
+        /** @en
+         * 1: A general error occurs (no specified reason).
          */
         ERR_FAILED = 1,
-        /** 2: An invalid parameter is used. For example, the specific channel name includes illegal characters.
+        /** @en
+         * 2: An invalid parameter is used. For example, the specific channel name includes illegal characters.
          */
         ERR_INVALID_ARGUMENT = 2,
-        /** 3: The SDK module is not ready. Possible solutions:
-
-         - Check the audio device.
-         - Check the completeness of the application.
-         - Re-initialize the `agora` instance.
+        /** @en
+         * 3: The SDK module is not ready. Possible solutions:
+         * - Check the audio device.
+         * - Check the completeness of the application.
+         * - Re-initialize the Agora engine.
          */
         ERR_NOT_READY = 3,
-        /** 4: The SDK does not support this function.
+        /** @en
+         * 4: The SDK does not support this function.
          */
         ERR_NOT_SUPPORTED = 4,
-        /** 5: The request is rejected.
+        /** @en
+         * 5: The request is rejected.
          */
         ERR_REFUSED = 5,
-        /** 6: The buffer size is not big enough to store the returned data.
+        /** @en
+         * 6: The buffer size is not big enough to store the returned data.
          */
         ERR_BUFFER_TOO_SMALL = 6,
-        /** 7: The SDK is not initialized before calling this method.
+        /** @en
+         * 7: The SDK is not initialized before calling this method.
          */
         ERR_NOT_INITIALIZED = 7,
-        /** 9: No permission exists. Check if the user has granted access to the audio or video device.
+        /** @en
+         * 9: No permission exists. Check if the user has granted access to the audio or video device.
          */
         ERR_NO_PERMISSION = 9,
-        /** 10: An API method timeout occurs. Some API methods require the SDK to return the execution result, and this error occurs if
+        /** @en
+         * 10: An API method timeout occurs. Some API methods require the SDK to return the execution result, and this error occurs if
          * the request takes too long (more than 10 seconds) for the SDK to process.
          */
         ERR_TIMEDOUT = 10,
-        /** 11: The request is canceled. This is for internal SDK use only, and it does not return to the application through any method
+        /** @en
+         * 11: The request is canceled. This is for internal SDK use only, and it does not return to the application through any method
          * or callback.
          */
         ERR_CANCELED = 11,
-        /** 12: The method is called too often. This is for internal SDK use only, and it does not return to the application through any
+        /** @en
+         * 12: The method is called too often. This is for internal SDK use only, and it does not return to the application through any
          * method or callback.
          */
         ERR_TOO_OFTEN = 12,
-        /** 13: The SDK fails to bind to the network socket. This is for internal SDK use only, and it does not return to the application
+        /** @en
+         * 13: The SDK fails to bind to the network socket. This is for internal SDK use only, and it does not return to the application
          * through any method or callback.
          */
         ERR_BIND_SOCKET = 13,
-        /** 14: The network is unavailable. This is for internal SDK use only, and it does not return to the application through any
+        /** @en
+         * 14: The network is unavailable. This is for internal SDK use only, and it does not return to the application through any
          * method or callback.
          */
         ERR_NET_DOWN = 14,
-        /** 15: No network buffers are available. This is for internal SDK internal use only, and it does not return to the application
+        /** @en
+         * 15: No network buffers are available. This is for internal SDK internal use only, and it does not return to the application
          * through any method or callback.
          */
         ERR_NET_NOBUFS = 15,
-        /** 17: The request to join the channel is rejected.
+        /** @en
+         * 17: The request to join the channel is rejected.
          *
          * - This error usually occurs when the user is already in the channel, and still calls the method to join the channel, for
          * example, [joinChannel]{@link agora.joinChannel} .
@@ -1694,7 +2360,8 @@ declare namespace agora {
          * [stopEchoTest]{@link agora.stopEchoTest} before joining a channel.
          */
         ERR_JOIN_CHANNEL_REJECTED = 17,
-        /** 18: The request to leave the channel is rejected.
+        /** @en
+         * 18: The request to leave the channel is rejected.
          *
          * This error usually occurs:
          * - When the user has left the channel and still calls [leaveChannel]{@link agora.leaveChannel} to leave the channel.
@@ -1703,29 +2370,37 @@ declare namespace agora {
          * In this case, no extra operation is needed.
          */
         ERR_LEAVE_CHANNEL_REJECTED = 18,
-        /** 19: Resources are occupied and cannot be reused.
+        /** @en
+         * 19: Resources are occupied and cannot be reused.
          */
         ERR_ALREADY_IN_USE = 19,
-        /** 20: The SDK gives up the request due to too many requests.
+        /** @en
+         * 20: The SDK gives up the request due to too many requests.
          */
         ERR_ABORTED = 20,
-        /** 21: In Windows, specific firewall settings can cause the SDK to fail to initialize and crash.
+        /** @en
+         * 21: In Windows, specific firewall settings can cause the SDK to fail to initialize and crash.
          */
         ERR_INIT_NET_ENGINE = 21,
-        /** 22: The application uses too much of the system resources and the SDK fails to allocate the resources.
+        /** @en
+         * 22: The application uses too much of the system resources and the SDK fails to allocate the resources.
          */
         ERR_RESOURCE_LIMITED = 22,
-        /** 101: The specified App ID is invalid. Please try to rejoin the channel with a valid App ID.
+        /** @en
+         * 101: The specified App ID is invalid. Please try to rejoin the channel with a valid App ID.
          */
         ERR_INVALID_APP_ID = 101,
-        /** 102: The specified channel name is invalid. Please try to rejoin the channel with a valid channel name.
+        /** @en
+         * 102: The specified channel name is invalid. Please try to rejoin the channel with a valid channel name.
          */
         ERR_INVALID_CHANNEL_NAME = 102,
-        /** 103: Fails to get server resources in the specified region. Please try to specify another region when calling
+        /** @en
+         * 103: Fails to get server resources in the specified region. Please try to specify another region when calling
          * [init]{@link agora.init} .
          */
         ERR_NO_SERVER_RESOURCES = 103,
-        /** @deprecated 109: Use CONNECTION_CHANGED_TOKEN_EXPIRED(9) in the
+        /** @en
+         * @deprecated 109: Use `CONNECTION_CHANGED_TOKEN_EXPIRED(9)` in the
          * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          *
          * The token expired due to one of the following reasons:
@@ -1737,7 +2412,8 @@ declare namespace agora {
          * it does not mean that the token will expire, but that the user will be banned from the channel.
          */
         ERR_TOKEN_EXPIRED = 109,
-        /** @deprecated 110: Use CONNECTION_CHANGED_INVALID_TOKEN(8) in the
+        /** @en
+         * @deprecated 110: Use `CONNECTION_CHANGED_INVALID_TOKEN(8)` in the
          * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          *
          * The token is invalid due to one of the following reasons:
@@ -1746,81 +2422,105 @@ declare namespace agora {
          * - The uid is mandatory, and users must set the same uid as the one set in the [joinChannel]{@link agora.joinChannel} method.
          */
         ERR_INVALID_TOKEN = 110,
-        /** 111: The internet connection is interrupted. This applies to the Agora Web SDK only.
+        /** @en
+         * 111: The internet connection is interrupted. This applies to the Agora Web SDK only.
          */
         ERR_CONNECTION_INTERRUPTED = 111,
-        /** 112: The internet connection is lost. This applies to the Agora Web SDK only.
+        /** @en
+         * 112: The internet connection is lost. This applies to the Agora Web SDK only.
          */
         ERR_CONNECTION_LOST = 112,
-        /** 113: The user is not in the channel when calling the method.
+        /** @en
+         * 113: The user is not in the channel when calling the method.
          */
         ERR_NOT_IN_CHANNEL = 113,
-        /** 114: The size of the sent data is over 1024 bytes when the user calls the
+        /** @en
+         * 114: The size of the sent data is over 1024 bytes when the user calls the
          * [sendStreamMessage]{@link agora.sendStreamMessage} method.
          */
         ERR_SIZE_TOO_LARGE = 114,
-        /** 115: The bitrate of the sent data exceeds the limit of 6 Kbps when the user calls the
+        /** @en
+         * 115: The bitrate of the sent data exceeds the limit of 6 Kbps when the user calls the
          * [sendStreamMessage]{@link agora.sendStreamMessage} method.
          */
         ERR_BITRATE_LIMIT = 115,
-        /** 116: Too many data streams (over 5 streams) are created when the user calls the
+        /** @en
+         * 116: Too many data streams (over 5 streams) are created when the user calls the
          * [createDataStream]{@link agora.createDataStream} method.
          */
         ERR_TOO_MANY_DATA_STREAMS = 116,
-        /** 117: The data stream transmission timed out.
+        /** @en
+         * 117: The data stream transmission timed out.
          */
         ERR_STREAM_MESSAGE_TIMEOUT = 117,
-        /** 119: Switching roles fail. Please try to rejoin the channel.
+        /** @en
+         * 119: Switching roles fail. Please try to rejoin the channel.
          */
         ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED = 119,
-        /** 120: Decryption fails. The user may have used a different encryption password to join the channel. Check your settings
+        /** @en120: Decryption fails. The user may have used a different encryption password to join the channel. Check your settings
          * or try rejoining the channel.
          */
         ERR_DECRYPTION_FAILED = 120,
-        /** 123: The client is banned by the server.
+        /** @en
+         * 123: The client is banned by the server.
          */
         ERR_CLIENT_IS_BANNED_BY_SERVER = 123,
-        /** 124: Incorrect watermark file parameter.
+        /** @en
+         * 124: Incorrect watermark file parameter.
          */
         ERR_WATERMARK_PARAM = 124,
-        /** 125: Incorrect watermark file path.
+        /** @en
+         * 125: Incorrect watermark file path.
          */
         ERR_WATERMARK_PATH = 125,
-        /** 126: Incorrect watermark file format.
+        /** @en
+         * 126: Incorrect watermark file format.
          */
         ERR_WATERMARK_PNG = 126,
-        /** 127: Incorrect watermark file information.
+        /** @en
+         * 127: Incorrect watermark file information.
          */
         ERR_WATERMARKR_INFO = 127,
-        /** 128: Incorrect watermark file data format.
+        /** @en
+         * 128: Incorrect watermark file data format.
          */
         ERR_WATERMARK_ARGB = 128,
-        /** 129: An error occurs in reading the watermark file.
+        /** @en
+         * 129: An error occurs in reading the watermark file.
          */
         ERR_WATERMARK_READ = 129,
-        /** 130: Encryption is enabled when the user calls the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method
+        /** @en
+         * 130: Encryption is enabled when the user calls the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method
          * (CDN live streaming does not support encrypted streams).
          */
         ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH = 130,
-        /** 134: The user account is invalid. */
+        /** @en
+         * 134: The user account is invalid.
+         */
         ERR_INVALID_USER_ACCOUNT = 134,
-        /** 151: CDN related errors. Remove the original URL address and add a new one by calling the
+        /** @en
+         * 151: CDN related errors. Remove the original URL address and add a new one by calling the
          * [removePublishStreamUrl]{@link agora.removePublishStreamUrl} and [addPublishStreamUrl]{@link agora.addPublishStreamUrl} methods.
          */
         ERR_PUBLISH_STREAM_CDN_ERROR = 151,
-        /** 152: The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones.
+        /** @en
+         * 152: The host publishes more than 10 URLs. Delete the unnecessary URLs before adding new ones.
          */
         ERR_PUBLISH_STREAM_NUM_REACH_LIMIT = 152,
-        /** 153: The host manipulates other hosts' URLs. Check your app logic.
+        /** @en
+         * 153: The host manipulates other hosts' URLs. Check your app logic.
          */
         ERR_PUBLISH_STREAM_NOT_AUTHORIZED = 153,
-        /** 154: An error occurs in Agora's streaming server. Call the addPublishStreamUrl method to publish the streaming again.
+        /** @en
+         * 154: An error occurs in Agora's streaming server. Call the addPublishStreamUrl method to publish the streaming again.
          */
         ERR_PUBLISH_STREAM_INTERNAL_SERVER_ERROR = 154,
-        /** 155: The server fails to find the stream.
+        /** @en
+         * 155: The server fails to find the stream.
          */
         ERR_PUBLISH_STREAM_NOT_FOUND = 155,
-        /** 156: The format of the RTMP stream URL is not supported. Check whether the URL format is correct.
+        /** @en
+         * 156: The format of the RTMP stream URL is not supported. Check whether the URL format is correct.
          */
         ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED = 156,
         /**
@@ -1963,101 +2663,128 @@ declare namespace agora {
          * @ignore
          */
         ERR_INVITE_CANT_RECV = 475,
-        /** 1001: Fails to load the media engine.
+        /** @en
+         * 1001: Fails to load the media engine.
          */
         ERR_LOAD_MEDIA_ENGINE = 1001,
-        /** 1002: Fails to start the call after enabling the media engine.
+        /** @en
+         * 1002: Fails to start the call after enabling the media engine.
          */
         ERR_START_CALL = 1002,
-        /** @deprecated 1003: Fails to start the camera.
+        /** @en
+         * @deprecated 1003: Fails to start the camera.
          * Use `LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE(4)` in the
          * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          */
         ERR_START_CAMERA = 1003,
-        /** 1004: Fails to start the video rendering module.
+        /** @en
+         * 1004: Fails to start the video rendering module.
          */
         ERR_START_VIDEO_RENDER = 1004,
-        /** 1005: A general error occurs in the Audio Device Module (no specified reason). Check if the audio device is used by
+        /** @en
+         * 1005: A general error occurs in the Audio Device Module (no specified reason). Check if the audio device is used by
          * another application, or try rejoining the channel.
          */
         ERR_ADM_GENERAL_ERROR = 1005,
-        /** 1006: Audio Device Module: An error occurs in using the Java resources.
+        /** @en
+         * 1006: Audio Device Module: An error occurs in using the Java resources.
          */
         ERR_ADM_JAVA_RESOURCE = 1006,
-        /** 1007: Audio Device Module: An error occurs in setting the sampling frequency.
+        /** @en
+         * 1007: Audio Device Module: An error occurs in setting the sampling frequency.
          */
         ERR_ADM_SAMPLE_RATE = 1007,
-        /** 1008: Audio Device Module: An error occurs in initializing the playback device.
+        /** @en
+         * 1008: Audio Device Module: An error occurs in initializing the playback device.
          */
         ERR_ADM_INIT_PLAYOUT = 1008,
-        /** 1009: Audio Device Module: An error occurs in starting the playback device.
+        /** @en
+         * 1009: Audio Device Module: An error occurs in starting the playback device.
          */
         ERR_ADM_START_PLAYOUT = 1009,
-        /** 1010: Audio Device Module: An error occurs in stopping the playback device.
+        /** @en
+         * 1010: Audio Device Module: An error occurs in stopping the playback device.
          */
         ERR_ADM_STOP_PLAYOUT = 1010,
-        /** 1011: Audio Device Module: An error occurs in initializing the recording device.
+        /** @en
+         * 1011: Audio Device Module: An error occurs in initializing the recording device.
          */
         ERR_ADM_INIT_RECORDING = 1011,
-        /** 1012: Audio Device Module: An error occurs in starting the recording device.
+        /** @en
+         * 1012: Audio Device Module: An error occurs in starting the recording device.
          */
         ERR_ADM_START_RECORDING = 1012,
-        /** 1013: Audio Device Module: An error occurs in stopping the recording device.
+        /** @en
+         * 1013: Audio Device Module: An error occurs in stopping the recording device.
          */
         ERR_ADM_STOP_RECORDING = 1013,
-        /** 1015: Audio Device Module: A playback error occurs. Check your playback device and try rejoining the channel.
+        /** @en
+         * 1015: Audio Device Module: A playback error occurs. Check your playback device and try rejoining the channel.
          */
         ERR_ADM_RUNTIME_PLAYOUT_ERROR = 1015,
-        /** 1017: Audio Device Module: A recording error occurs.
+        /** @en
+         * 1017: Audio Device Module: A recording error occurs.
          */
         ERR_ADM_RUNTIME_RECORDING_ERROR = 1017,
-        /** 1018: Audio Device Module: Fails to record.
+        /** @en
+         * 1018: Audio Device Module: Fails to record.
          */
         ERR_ADM_RECORD_AUDIO_FAILED = 1018,
-        /** 1022: Audio Device Module: An error occurs in initializing the
+        /** @en
+         * 1022: Audio Device Module: An error occurs in initializing the
          * loopback device.
          */
         ERR_ADM_INIT_LOOPBACK = 1022,
-        /** 1023: Audio Device Module: An error occurs in starting the loopback
+        /** @en
+         * 1023: Audio Device Module: An error occurs in starting the loopback
          * device.
          */
         ERR_ADM_START_LOOPBACK = 1023,
-        /** 1027: Audio Device Module: No recording permission exists. Check if the
+        /** @en
+         * 1027: Audio Device Module: No recording permission exists. Check if the
          *  recording permission is granted.
          */
         ERR_ADM_NO_PERMISSION = 1027,
-        /** 1033: Audio device module: The device is occupied.
+        /** @en
+         * 1033: Audio device module: The device is occupied.
          */
         ERR_ADM_RECORD_AUDIO_IS_ACTIVE = 1033,
-        /** 1101: Audio device module: A fatal exception occurs.
+        /** @en
+         * 1101: Audio device module: A fatal exception occurs.
          */
         ERR_ADM_ANDROID_JNI_JAVA_RESOURCE = 1101,
-        /** 1108: Audio device module: The recording frequency is lower than 50.
+        /** @en
+         * 1108: Audio device module: The recording frequency is lower than 50.
          * 0 indicates that the recording is not yet started. We recommend
          * checking your recording permission.
          */
         ERR_ADM_ANDROID_JNI_NO_RECORD_FREQUENCY = 1108,
-        /** 1109: The playback frequency is lower than 50. 0 indicates that the
+        /** @en
+         * 1109: The playback frequency is lower than 50. 0 indicates that the
          * playback is not yet started. We recommend checking if you have created
          * too many AudioTrack instances.
          */
         ERR_ADM_ANDROID_JNI_NO_PLAYBACK_FREQUENCY = 1109,
-        /** 1111: Audio device module: AudioRecord fails to start up. A ROM system
+        /** @en
+         * 1111: Audio device module: AudioRecord fails to start up. A ROM system
          * error occurs. We recommend the following options to debug:
          * - Restart your App.
          * - Restart your cellphone.
          * - Check your recording permission.
          */
         ERR_ADM_ANDROID_JNI_JAVA_START_RECORD = 1111,
-        /** 1112: Audio device module: AudioTrack fails to start up. A ROM system
+        /** @en
+         * 1112: Audio device module: AudioTrack fails to start up. A ROM system
          * error occurs. We recommend the following options to debug:
          * - Restart your App.
          * - Restart your cellphone.
          * - Check your playback permission.
          */
         ERR_ADM_ANDROID_JNI_JAVA_START_PLAYBACK = 1112,
-        /** 1115: Audio device module: AudioRecord returns error. The SDK will
-         * automatically restart AudioRecord. */
+        /** @en
+         * 1115: Audio device module: AudioRecord returns error. The SDK will
+         * automatically restart AudioRecord.
+         */
         ERR_ADM_ANDROID_JNI_JAVA_RECORD_ERROR = 1115,
         /** @deprecated */
         ERR_ADM_ANDROID_OPENSL_CREATE_ENGINE = 1151,
@@ -2069,349 +2796,468 @@ declare namespace agora {
         ERR_ADM_ANDROID_OPENSL_CREATE_AUDIO_PLAYER = 1157,
         /** @deprecated */
         ERR_ADM_ANDROID_OPENSL_START_PLAYER_THREAD = 1160,
-        /** 1201: Audio device module: The current device does not support audio
+        /** @en
+         * 1201: Audio device module: The current device does not support audio
          * input, possibly because you have mistakenly configured the audio session
          *  category, or because some other app is occupying the input device. We
-         * recommend terminating all background apps and re-joining the channel. */
+         * recommend terminating all background apps and re-joining the channel.
+         */
         ERR_ADM_IOS_INPUT_NOT_AVAILABLE = 1201,
-        /** 1206: Audio device module: Cannot activate the Audio Session.*/
+        /** @en
+         * 1206: Audio device module: Cannot activate the Audio Session.
+         */
         ERR_ADM_IOS_ACTIVATE_SESSION_FAIL = 1206,
-        /** 1210: Audio device module: Fails to initialize the audio device,
-         * normally because the audio device parameters are wrongly set.*/
+        /** @en
+         * 1210: Audio device module: Fails to initialize the audio device,
+         * normally because the audio device parameters are wrongly set.
+         */
         ERR_ADM_IOS_VPIO_INIT_FAIL = 1210,
-        /** 1213: Audio device module: Fails to re-initialize the audio device,
-         * normally because the audio device parameters are wrongly set.*/
+        /** @en
+         * 1213: Audio device module: Fails to re-initialize the audio device,
+         * normally because the audio device parameters are wrongly set.
+         */
         ERR_ADM_IOS_VPIO_REINIT_FAIL = 1213,
-        /** 1214: Fails to re-start up the Audio Unit, possibly because the audio
-         * session category is not compatible with the settings of the Audio Unit.
+        /** @en
+         * 1214: Fails to re-start up the Audio Unit, possibly because the audio session category is not compatible
+         * with the settings of the Audio Unit.
          */
         ERR_ADM_IOS_VPIO_RESTART_FAIL = 1214,
         /** @ignore */
         ERR_ADM_IOS_SET_RENDER_CALLBACK_FAIL = 1219,
         /** @deprecated */
         ERR_ADM_IOS_SESSION_SAMPLERATR_ZERO = 1221,
-        /** 1301: Audio device module: An audio driver abnomality or a
+        /** @en
+         * 1301: Audio device module: An audio driver abnomality or a
          * compatibility issue occurs. Solutions: Disable and restart the audio
-         * device, or reboot the system.*/
+         * device, or reboot the system
+         */
         ERR_ADM_WIN_CORE_INIT = 1301,
-        /** 1303: Audio device module: A recording driver abnomality or a
+        /** @en
+         * 1303: Audio device module: A recording driver abnomality or a
          * compatibility issue occurs. Solutions: Disable and restart the audio
-         * device, or reboot the system. */
+         * device, or reboot the system.
+         */
         ERR_ADM_WIN_CORE_INIT_RECORDING = 1303,
-        /** 1306: Audio device module: A playout driver abnomality or a
+        /** @en
+         * 1306: Audio device module: A playout driver abnomality or a
          * compatibility issue occurs. Solutions: Disable and restart the audio
-         * device, or reboot the system. */
+         * device, or reboot the system.
+         */
         ERR_ADM_WIN_CORE_INIT_PLAYOUT = 1306,
-        /** 1307: Audio device module: No audio device is available. Solutions:
-         * Plug in a proper audio device. */
+        /** @en
+         * 1307: Audio device module: No audio device is available. Solutions:
+         * Plug in a proper audio device.
+         */
         ERR_ADM_WIN_CORE_INIT_PLAYOUT_NULL = 1307,
-        /** 1309: Audio device module: An audio driver abnomality or a
+        /** @en
+         * 1309: Audio device module: An audio driver abnomality or a
          * compatibility issue occurs. Solutions: Disable and restart the audio
-         * device, or reboot the system. */
+         * device, or reboot the system.
+         */
         ERR_ADM_WIN_CORE_START_RECORDING = 1309,
-        /** 1311: Audio device module: Insufficient system memory or poor device
+        /** @en
+         * 1311: Audio device module: Insufficient system memory or poor device
          * performance. Solutions: Reboot the system or replace the device.
          */
         ERR_ADM_WIN_CORE_CREATE_REC_THREAD = 1311,
-        /** 1314: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1314: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
          * - Upgrade your audio card driver.*/
         ERR_ADM_WIN_CORE_CAPTURE_NOT_STARTUP = 1314,
-        /** 1319: Audio device module: Insufficient system memory or poor device
+        /** @en
+         * 1319: Audio device module: Insufficient system memory or poor device
          * performance. Solutions: Reboot the system or replace the device. */
         ERR_ADM_WIN_CORE_CREATE_RENDER_THREAD = 1319,
-        /** 1320: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1320: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
-         * - Replace the device. */
+         * - Replace the device.
+         */
         ERR_ADM_WIN_CORE_RENDER_NOT_STARTUP = 1320,
-        /** 1322: Audio device module: No audio sampling device is available.
-         * Solutions: Plug in a proper recording device. */
+        /** @en
+         * 1322: Audio device module: No audio sampling device is available.
+         * Solutions: Plug in a proper recording device.
+         */
         ERR_ADM_WIN_CORE_NO_RECORDING_DEVICE = 1322,
-        /** 1323: Audio device module: No audio playout device is available.
-         * Solutions: Plug in a proper playback device.*/
+        /** @en
+         * 1323: Audio device module: No audio playout device is available.
+         * Solutions: Plug in a proper playback device.
+         */
         ERR_ADM_WIN_CORE_NO_PLAYOUT_DEVICE = 1323,
-        /** 1351: Audio device module: An audio driver abnormality or a
+        /** @en
+         * 1351: Audio device module: An audio driver abnormality or a
          * compatibility issue occurs. Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
-         * - Upgrade your audio card driver. */
+         * - Upgrade your audio card driver.
+         */
         ERR_ADM_WIN_WAVE_INIT = 1351,
-        /** 1353: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1353: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
-         * - Upgrade your audio card driver. */
+         * - Upgrade your audio card driver.
+         */
         ERR_ADM_WIN_WAVE_INIT_RECORDING = 1353,
-        /** 1354: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1354: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
-         * - Upgrade your audio card driver. */
+         * - Upgrade your audio card driver.
+         */
         ERR_ADM_WIN_WAVE_INIT_MICROPHONE = 1354,
-        /** 1355: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1355: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
          * - Upgrade your audio card driver. */
         ERR_ADM_WIN_WAVE_INIT_PLAYOUT = 1355,
-        /** 1356: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1356: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
-         * - Upgrade your audio card driver. */
+         * - Upgrade your audio card driver.
+         */
         ERR_ADM_WIN_WAVE_INIT_SPEAKER = 1356,
-        /** 1357: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1357: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
          * - Upgrade your audio card driver. */
         ERR_ADM_WIN_WAVE_START_RECORDING = 1357,
-        /** 1358: Audio device module: An audio driver abnormality occurs.
+        /** @en
+         * 1358: Audio device module: An audio driver abnormality occurs.
          * Solutions:
          * - Disable and then re-enable the audio device.
          * - Reboot the system.
          * - Upgrade your audio card driver.*/
         ERR_ADM_WIN_WAVE_START_PLAYOUT = 1358,
-        /** 1359: Audio Device Module: No recording device exists.
+        /** @en
+         * 1359: Audio Device Module: No recording device exists.
          */
         ERR_ADM_NO_RECORDING_DEVICE = 1359,
-        /** 1360: Audio Device Module: No playback device exists.
+        /** @en
+         * 1360: Audio Device Module: No playback device exists.
          */
         ERR_ADM_NO_PLAYOUT_DEVICE = 1360,
-        /** 1501: Video Device Module: The camera is unauthorized.
+        /** @en
+         * 1501: Video Device Module: The camera is unauthorized.
          */
         ERR_VDM_CAMERA_NOT_AUTHORIZED = 1501,
-        /** @deprecated 1502: Video Device Module: The camera in use.
+        /** @en
+         * @deprecated 1502: Video Device Module: The camera in use.
          *
-         * Use LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY(3) in the
+         * Use `LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY(3)` in the
          * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback instead.
          */
         ERR_VDM_WIN_DEVICE_IN_USE = 1502,
-        /** 1600: Video Device Module: An unknown error occurs.
+        /** @en
+         * 1600: Video Device Module: An unknown error occurs.
          */
         ERR_VCM_UNKNOWN_ERROR = 1600,
-        /** 1601: Video Device Module: An error occurs in initializing the video encoder.
+        /** @en
+         * 1601: Video Device Module: An error occurs in initializing the video encoder.
          */
         ERR_VCM_ENCODER_INIT_ERROR = 1601,
-        /** 1602: Video Device Module: An error occurs in encoding.
+        /** @en
+         * 1602: Video Device Module: An error occurs in encoding.
          */
         ERR_VCM_ENCODER_ENCODE_ERROR = 1602,
-        /** 1603: Video Device Module: An error occurs in setting the video encoder.
+        /** @en
+         * 1603: Video Device Module: An error occurs in setting the video encoder.
          */
         ERR_VCM_ENCODER_SET_ERROR = 1603
     }
-    /** The contrast level, used with the `lightening` parameter.
+    /** @en
+     * The contrast level, used with the `lightening` parameter.
      */
     enum LIGHTENING_CONTRAST_LEVEL {
-        /** Low contrast level. */
+        /** @en
+         * Low contrast level.
+         */
         LIGHTENING_CONTRAST_LOW = 0,
-        /** (Default) Normal contrast level. */
+        /** @en
+         * (Default) Normal contrast level.
+         */
         LIGHTENING_CONTRAST_NORMAL = 1,
-        /** High contrast level. */
+        /** @en
+         * High contrast level.
+         */
         LIGHTENING_CONTRAST_HIGH = 2
     }
-    /** Output log filter level. */
+    /** @en
+     * Output log filter level.
+     */
     enum LOG_FILTER_TYPE {
-        /** 0: Do not output any log information. */
+        /** @en
+         * 0: Do not output any log information.
+         */
         LOG_FILTER_OFF = 0,
-        /** 0x080f: Output all log information.
-         Set your log filter as debug if you want to get the most complete log file.      */
+        /** @en
+         * 0x080f: Output all log information.
+         * Set your log filter as debug if you want to get the most complete log file.
+         */
         LOG_FILTER_DEBUG = 2063,
-        /** 0x000f: Output CRITICAL, ERROR, WARNING, and INFO level log information.
-         We recommend setting your log filter as this level.
+        /** @en
+         * 0x000f: Output CRITICAL, ERROR, WARNING, and INFO level log information.
+         * We recommend setting your log filter as this level.
          */
         LOG_FILTER_INFO = 15,
-        /** 0x000e: Outputs CRITICAL, ERROR, and WARNING level log information.
+        /** @en
+         * 0x000e: Outputs CRITICAL, ERROR, and WARNING level log information.
          */
         LOG_FILTER_WARN = 14,
-        /** 0x000c: Outputs CRITICAL and ERROR level log information. */
+        /** @en
+         * 0x000c: Outputs CRITICAL and ERROR level log information.
+         */
         LOG_FILTER_ERROR = 12,
-        /** 0x0008: Outputs CRITICAL level log information. */
+        /** @en
+         * 0x0008: Outputs CRITICAL level log information.
+         */
         LOG_FILTER_CRITICAL = 8,
         /** @ignore */
         LOG_FILTER_MASK = 2063
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Metadata type of the observer.
      * @note We only support video metadata for now.
      */
     enum METADATA_TYPE {
-        /** -1: the metadata type is unknown.
+        /** @en
+         * -1: the metadata type is unknown.
          */
         UNKNOWN_METADATA = -1,
-        /** 0: the metadata type is video.
+        /** @en
+         * 0: the metadata type is video.
          */
         VIDEO_METADATA = 0
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * The video pixel format.
      */
     enum VIDEO_PIXEL_FORMAT {
-        /** 0: The video pixel format is unknown.
+        /** @en
+         * 0: The video pixel format is unknown.
          */
         VIDEO_PIXEL_UNKNOWN = 0,
-        /** 1: The video pixel format is I420.
+        /** @en
+         * 1: The video pixel format is I420.
          */
         VIDEO_PIXEL_I420 = 1,
-        /** 2: The video pixel format is BGRA.
+        /** @en
+         * 2: The video pixel format is BGRA.
          */
         VIDEO_PIXEL_BGRA = 2,
-        /** 3: The video pixel format is NV21.
+        /** @en
+         * 3: The video pixel format is NV21.
          */
         VIDEO_PIXEL_NV21 = 3,
-        /** 4: The video pixel format is RGBA.
+        /** @en
+         * 4: The video pixel format is RGBA.
          */
         VIDEO_PIXEL_RGBA = 4,
-        /** 5: The video pixel format is IMC2.
+        /** @en
+         * 5: The video pixel format is IMC2.
          */
         VIDEO_PIXEL_IMC2 = 5,
-        /** 7: The video pixel format is ARGB.
+        /** @en
+         * 7: The video pixel format is ARGB.
          */
         VIDEO_PIXEL_ARGB = 7,
-        /** 8: The video pixel format is NV12.
+        /** @en
+         * 8: The video pixel format is NV12.
          */
         VIDEO_PIXEL_NV12 = 8,
-        /** 16: The video pixel format is I422.
+        /** @en
+         * 16: The video pixel format is I422.
          */
         VIDEO_PIXEL_I422 = 16
     }
-    /** Warning code.
+    /** @en
+     * Warning code.
      */
     enum WARN_CODE_TYPE {
-        /** 8: The specified view is invalid. Specify a view when using the video call function.
+        /** @en
+         * 8: The specified view is invalid. Specify a view when using the video call function.
          */
         WARN_INVALID_VIEW = 8,
-        /** 16: Failed to initialize the video function, possibly caused by a lack of resources. The users cannot see the video
+        /** @en
+         * 16: Failed to initialize the video function, possibly caused by a lack of resources. The users cannot see the video
          * while the voice communication is not affected.
          */
         WARN_INIT_VIDEO = 16,
-        /** 20: The request is pending, usually due to some module not being ready, and the SDK postponed processing the request.
+        /** @en
+         * 20: The request is pending, usually due to some module not being ready, and the SDK postponed processing the request.
          */
         WARN_PENDING = 20,
-        /** 103: No channel resources are available. Maybe because the server cannot allocate any channel resource.
+        /** @en
+         * 103: No channel resources are available. Maybe because the server cannot allocate any channel resource.
          */
         WARN_NO_AVAILABLE_CHANNEL = 103,
-        /** 104: A timeout occurs when looking up the channel. When joining a channel, the SDK looks up the specified channel. This
+        /** @en
+         * 104: A timeout occurs when looking up the channel. When joining a channel, the SDK looks up the specified channel. This
          * warning usually occurs when the network condition is too poor for the SDK to connect to the server.
          */
         WARN_LOOKUP_CHANNEL_TIMEOUT = 104,
-        /** @deprecated 105: The server rejects the request to look up the channel. The server cannot process this request or the
+        /** @en
+         * @deprecated 105: The server rejects the request to look up the channel. The server cannot process this request or the
          * request is illegal.
          *
          * Use CONNECTION_CHANGED_REJECTED_BY_SERVER(10) in the [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}
          * callback instead.
          */
         WARN_LOOKUP_CHANNEL_REJECTED = 105,
-        /** 106: A timeout occurs when opening the channel. Once the specific channel is found, the SDK opens the channel.
+        /** @en
+         * 106: A timeout occurs when opening the channel. Once the specific channel is found, the SDK opens the channel.
          * This warning usually occurs when the network condition is too poor for the SDK to connect to the server.
          */
         WARN_OPEN_CHANNEL_TIMEOUT = 106,
-        /** 107: The server rejects the request to open the channel. The server cannot process this request or the request is illegal.
+        /** @en
+         * 107: The server rejects the request to open the channel. The server cannot process this request or the request is illegal.
          */
         WARN_OPEN_CHANNEL_REJECTED = 107,
-        /** 111: A timeout occurs when switching to the live video.
+        /** @en
+         * 111: A timeout occurs when switching to the live video.
          */
         WARN_SWITCH_LIVE_VIDEO_TIMEOUT = 111,
-        /** 118: A timeout occurs when setting the client role in the live interactive streaming profile.
+        /** @en
+         * 118: A timeout occurs when setting the client role in the live interactive streaming profile.
          */
         WARN_SET_CLIENT_ROLE_TIMEOUT = 118,
-        /** 121: The ticket to open the channel is invalid.
+        /** @en
+         * 121: The ticket to open the channel is invalid.
          */
         WARN_OPEN_CHANNEL_INVALID_TICKET = 121,
-        /** 122: Try connecting to another server.
+        /** @en
+         * 122: Try connecting to another server.
          */
         WARN_OPEN_CHANNEL_TRY_NEXT_VOS = 122,
-        /** 131: The channel connection cannot be recovered. */
+        /** @en
+         * 131: The channel connection cannot be recovered.
+         */
         WARN_CHANNEL_CONNECTION_UNRECOVERABLE = 131,
-        /** 132: The IP address has changed. */
+        /** @en
+         * 132: The IP address has changed.
+         */
         WARN_CHANNEL_CONNECTION_IP_CHANGED = 132,
-        /** 133: The port has changed. */
+        /** @en
+         * 133: The port has changed.
+         */
         WARN_CHANNEL_CONNECTION_PORT_CHANGED = 133,
-        /** 701: An error occurs in opening the audio mixing file.
+        /** @en
+         * 701: An error occurs in opening the audio mixing file.
          */
         WARN_AUDIO_MIXING_OPEN_ERROR = 701,
-        /** 1014: Audio Device Module: A warning occurs in the playback device.
+        /** @en
+         * 1014: Audio Device Module: A warning occurs in the playback device.
          */
         WARN_ADM_RUNTIME_PLAYOUT_WARNING = 1014,
-        /** 1016: Audio Device Module: a warning occurs in the recording device.
+        /** @en
+         * 1016: Audio Device Module: a warning occurs in the recording device.
          */
         WARN_ADM_RUNTIME_RECORDING_WARNING = 1016,
-        /** 1019: Audio Device Module: no valid audio data is recorded.
+        /** @en
+         * 1019: Audio Device Module: no valid audio data is recorded.
          */
         WARN_ADM_RECORD_AUDIO_SILENCE = 1019,
-        /** 1020: Audio device module: The audio playback frequency is abnormal, which may cause audio freezes. This abnormality
+        /** @en
+         * 1020: Audio device module: The audio playback frequency is abnormal, which may cause audio freezes. This abnormality
          * is caused by high CPU usage. Agora recommends stopping other apps.
          */
         WARN_ADM_PLAYOUT_MALFUNCTION = 1020,
-        /** 1021: Audio device module: the audio recording frequency is abnormal, which may cause audio freezes. This abnormality
+        /** @en
+         * 1021: Audio device module: the audio recording frequency is abnormal, which may cause audio freezes. This abnormality
          * is caused by high CPU usage. Agora recommends stopping other apps.
          */
         WARN_ADM_RECORD_MALFUNCTION = 1021,
-        /** 1025: The audio playback or recording is interrupted by system events (such as a phone call).
+        /** @en
+         * 1025: The audio playback or recording is interrupted by system events (such as a phone call).
          */
         WARN_ADM_CALL_INTERRUPTION = 1025,
-        /** 1029: During a call, the audio session category should be set to
-         * AVAudioSessionCategoryPlayAndRecord, and RtcEngine monitors this value.
+        /** @en
+         * 1029: During a call, the audio session category should be set to
+         * AVAudioSessionCategoryPlayAndRecord, and agora monitors this value.
          * If the audio session category is set to other values, this warning code
-         * is triggered and RtcEngine will forcefully set it back to
+         * is triggered and agora will forcefully set it back to
          * AVAudioSessionCategoryPlayAndRecord.
          */
         WARN_ADM_IOS_CATEGORY_NOT_PLAYANDRECORD = 1029,
-        /** 1031: Audio Device Module: The recorded audio voice is too low.
+        /** @en
+         * 1031: Audio Device Module: The recorded audio voice is too low.
          */
         WARN_ADM_RECORD_AUDIO_LOWLEVEL = 1031,
-        /** 1032: Audio Device Module: The playback audio voice is too low.
+        /** @en
+         * 1032: Audio Device Module: The playback audio voice is too low.
          */
         WARN_ADM_PLAYOUT_AUDIO_LOWLEVEL = 1032,
-        /** 1033: Audio device module: The audio recording device is occupied.
+        /** @en
+         * 1033: Audio device module: The audio recording device is occupied.
          */
         WARN_ADM_RECORD_AUDIO_IS_ACTIVE = 1033,
-        /** 1040: Audio device module: An exception occurs with the audio drive.
+        /** @en
+         * 1040: Audio device module: An exception occurs with the audio drive.
          * Solutions:
          * - Disable or re-enable the audio device.
          * - Re-enable your device.
          * - Update the sound card drive.
          */
         WARN_ADM_WINDOWS_NO_DATA_READY_EVENT = 1040,
-        /** 1042: Audio device module: The audio recording device is different from the audio playback device,
+        /** @en
+         * 1042: Audio device module: The audio recording device is different from the audio playback device,
          * which may cause echoes problem. Agora recommends using the same audio device to record and playback
          * audio.
          */
         WARN_ADM_INCONSISTENT_AUDIO_DEVICE = 1042,
-        /** 1051: (Communication profile only) Audio processing module: A howling sound is detected when recording the audio data.
+        /** @en
+         * 1051: (Communication profile only) Audio processing module: A howling sound is detected when recording the audio data.
          */
         WARN_APM_HOWLING = 1051,
-        /** 1052: Audio Device Module: The device is in the glitch state.
+        /** @en
+         * 1052: Audio Device Module: The device is in the glitch state.
          */
         WARN_ADM_GLITCH_STATE = 1052,
-        /** 1053: Audio Processing Module: A residual echo is detected, which may be caused by the belated scheduling of system threads
+        /** @en
+         * 1053: Audio Processing Module: A residual echo is detected, which may be caused by the belated scheduling of system threads
          * or the signal overflow.
          */
         WARN_APM_RESIDUAL_ECHO = 1053,
         /** @ignore */
         WARN_ADM_WIN_CORE_NO_RECORDING_DEVICE = 1322,
-        /** 1323: Audio device module: No available playback device.
+        /** @en
+         * 1323: Audio device module: No available playback device.
          * Solution: Plug in the audio device.
          */
         WARN_ADM_WIN_CORE_NO_PLAYOUT_DEVICE = 1323,
-        /** Audio device module: The capture device is released improperly.
+        /** @en
+         * Audio device module: The capture device is released improperly.
          * Solutions:
          * - Disable or re-enable the audio device.
          * - Re-enable your device.
          * - Update the sound card drive.
          */
         WARN_ADM_WIN_CORE_IMPROPER_CAPTURE_RELEASE = 1324,
-        /** 1610: Super-resolution warning: The original video dimensions of the remote user exceed 640 * 480.
+        /** @en
+         * 1610: Super-resolution warning: The original video dimensions of the remote user exceed 640 * 480.
          */
         WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION = 1610,
-        /** 1611: Super-resolution warning: Another user is using super resolution.
+        /** @en
+         * 1611: Super-resolution warning: Another user is using super resolution.
          */
         WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION = 1611,
-        /** 1612: The device is not supported.
+        /** @en
+         * 1612: The device is not supported.
          */
         WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED = 1612,
         /** @ignore */
@@ -2421,358 +3267,475 @@ declare namespace agora {
     }
 }
 declare namespace agora {
-    /** The uplink or downlink last-mile network probe test result. */
+    /** @en
+     * The uplink or downlink last-mile network probe test result.
+     */
     interface LastmileProbeOneWayResult {
-        /** The packet loss rate (%). */
+        /** @en
+         * The packet loss rate (%).
+         */
         packetLossRate: number;
-        /** The network jitter (ms). */
+        /** @en
+         * The network jitter (ms).
+         */
         jitter: number;
+        /** @en
+         * The estimated available bandwidth (bps).
+         */
         availableBandwidth: number;
     }
-    /** The uplink and downlink last-mile network probe test result. */
+    /** @en
+     * The uplink and downlink last-mile network probe test result.
+     */
     interface LastmileProbeResult {
-        /** The state of the probe test. */
+        /** @en
+         * The state of the probe test. See [LASTMILE_PROBE_RESULT_STATE]{@link agora.LASTMILE_PROBE_RESULT_STATE}.
+         */
         state: LASTMILE_PROBE_RESULT_STATE;
-        /** The uplink last-mile network probe test result. */
+        /** @en
+         * The uplink last-mile network probe test result. See [LastmileProbeOneWayResult]{@link agora.LastmileProbeOneWayResult}.
+         */
         uplinkReport: LastmileProbeOneWayResult;
-        /** The downlink last-mile network probe test result. */
+        /** @en
+         * The downlink last-mile network probe test result. See [LastmileProbeOneWayResult]{@link agora.LastmileProbeOneWayResult}.
+         */
         downlinkReport: LastmileProbeOneWayResult;
-        /** The round-trip delay time (ms). */
+        /** @en
+         * The round-trip delay time (ms).
+         */
         rtt: number;
     }
-    /** Configurations of the last-mile network probe test. */
+    /** @en
+     * Configurations of the last-mile network probe test.
+     */
     interface LastmileProbeConfig {
-        /** Sets whether or not to test the uplink network. Some users, for example, the audience in a `LIVE_BROADCASTING` channel,
+        /** @en
+         * Sets whether or not to test the uplink network. Some users, for example, the audience in a `LIVE_BROADCASTING` channel,
          * do not need such a test:
          * - true: test.
          * - false: do not test.
          */
         probeUplink: boolean;
-        /** Sets whether or not to test the downlink network:
+        /** @en
+         * Sets whether or not to test the downlink network:
          * - true: test.
          * - false: do not test.
          */
         probeDownlink: boolean;
-        /** The expected maximum sending bitrate (bps) of the local user. The value ranges between 100000 and 5000000.
+        /** @en
+         * The expected maximum sending bitrate (bps) of the local user. The value ranges between 100000 and 5000000.
          */
         expectedUplinkBitrate: number;
-        /** The expected maximum receiving bitrate (bps) of the local user. The value ranges between 100000 and 5000000. */
+        /** @en
+         * The expected maximum receiving bitrate (bps) of the local user. The value ranges between 100000 and 5000000.
+         */
         expectedDownlinkBitrate: number;
     }
-    /** Properties of the audio volume information.
+    /** @en
+     * Properties of the audio volume information.
      *
      * An array containing the user ID and volume information for each speaker.
      */
     interface AudioVolumeInfo {
-        /** User ID of the speaker. The uid of the local user is 0.
+        /** @en
+         * The user ID.
+         * - In the local user's callback, `uid` = 0.
+         * - In the remote users' callback, `uid` is the ID of a remote user whose instantaneous volume is one of the three highest.
          */
         uid: number;
-        /** The volume of the speaker. The volume ranges between 0 (lowest volume) and 255 (highest volume).
+        /** @en
+         * The volume of each user after audio mixing. The value ranges between 0 (lowest volume) and 255 (highest volume).
+         * In the local user's callback, `volume` = `totalVolume`.
          */
         volume: number;
-        /** Voice activity status of the local user.
+        /** @en
+         * Voice activity status of the local user.
          * - 0: The local user is not speaking.
          * - 1: The local user is speaking.
          *
          * **Note**
-         * - The `vad` parameter cannot report the voice activity status of the remote users. In the remote users' callback, `vad` = 0.
-         * - Ensure that you set `report_vad`(true) in the
-         * [enableAudioVolumeIndication]{@link agora.enableAudioVolumeIndication} method to enable the voice activity detection
-         * of the local user.
+         *
+         * - The `vad` parameter cannot report the voice activity status of remote users. In the remote users' callback, `vad` is
+         * always 0.
+         * - To use this parameter, you must set the `report_vad` parameter to `true` when calling
+         * [enableAudioVolumeIndication]{@link agora.enableAudioVolumeIndication}.
          */
         vad: number;
-        /** The channel ID, which indicates which channel the speaker is in.
+        /** @en
+         * The channel name the user is in.
          */
         channelId: string;
     }
-    /** Statistics of the channel.
+    /** @en
+     * Statistics of the channel.
      */
     interface RtcStats {
-        /** Call duration (s), represented by an aggregate value.
+        /** @en
+         * Call duration (s), represented by an aggregate value.
          */
         duration: number;
-        /** Total number of bytes transmitted, represented by an aggregate value.
+        /** @en
+         * Total number of bytes transmitted, represented by an aggregate value.
          */
         txBytes: number;
-        /** Total number of bytes received, represented by an aggregate value.
+        /** @en
+         * Total number of bytes received, represented by an aggregate value.
          */
         rxBytes: number;
-        /** Total number of audio bytes sent (bytes), represented
+        /** @en
+         * Total number of audio bytes sent (bytes), represented
          * by an aggregate value.
          */
         txAudioBytes: number;
-        /** @ignore Total number of video bytes sent (bytes), represented
+        /** @en
+         * @ignore Total number of video bytes sent (bytes), represented
          * by an aggregate value.
          */
         txVideoBytes: number;
-        /** Total number of audio bytes received (bytes) before
+        /** @en
+         * Total number of audio bytes received (bytes) before
          * network countermeasures, represented by an aggregate value.
          */
         rxAudioBytes: number;
-        /** @ignore Total number of video bytes received (bytes),
+        /** @en
+         * @ignore
+         * Total number of video bytes received (bytes),
          * represented by an aggregate value.
          */
         rxVideoBytes: number;
-        /** Transmission bitrate (Kbps), represented by an instantaneous value.
+        /** @en
+         * Transmission bitrate (Kbps), represented by an instantaneous value.
          */
         txKBitRate: number;
-        /** Receive bitrate (Kbps), represented by an instantaneous value.
+        /** @en
+         * Receive bitrate (Kbps), represented by an instantaneous value.
          */
         rxKBitRate: number;
-        /** Audio receive bitrate (Kbps), represented by an instantaneous value.
+        /** @en
+         * Audio receive bitrate (Kbps), represented by an instantaneous value.
          */
         rxAudioKBitRate: number;
-        /** Audio transmission bitrate (Kbps), represented by an instantaneous value.
+        /** @en
+         * Audio transmission bitrate (Kbps), represented by an instantaneous value.
          */
         txAudioKBitRate: number;
-        /** @ignore Video receive bitrate (Kbps), represented by an instantaneous value.
+        /** @en
+         * @ignore Video receive bitrate (Kbps), represented by an instantaneous value.
          */
         rxVideoKBitRate: number;
-        /** @ignore Video transmission bitrate (Kbps), represented by an instantaneous value.
+        /** @en
+         * @ignore
+         * Video transmission bitrate (Kbps), represented by an instantaneous value.
          */
         txVideoKBitRate: number;
-        /** Client-server latency (ms)
+        /** @en
+         * Client-server latency (ms)
          */
         lastmileDelay: number;
-        /** The packet loss rate (%) from the local client to Agora's edge server,
+        /** @en
+         * The packet loss rate (%) from the local client to Agora's edge server,
          * before using the anti-packet-loss method.
          */
         txPacketLossRate: number;
-        /** The packet loss rate (%) from Agora's edge server to the local client,
+        /** @en
+         * The packet loss rate (%) from Agora's edge server to the local client,
          * before using the anti-packet-loss method.
          */
         rxPacketLossRate: number;
-        /** Number of users in the channel.
+        /** @en
+         * Number of users in the channel.
          * - `COMMUNICATION` profile: The number of users in the channel.
          * - `LIVE_BROADCASTING` profile:
          *   -  If the local user is an audience: The number of users in the channel = The number of hosts in the channel + 1.
          *   -  If the user is a host: The number of users in the channel = The number of hosts in the channel.
          */
         userCount: number;
-        /** Application CPU usage (%).
+        /** @en
+         * Application CPU usage (%).
          */
         cpuAppUsage: number;
-        /** System CPU usage (%).
+        /** @en
+         * System CPU usage (%).
          *
          * In the multi-kernel environment, this member represents the average CPU usage.
          * The value **=** 100 **-** System Idle Progress in Task Manager (%).
          */
         cpuTotalUsage: number;
-        /** The round-trip time delay from the client to the local router.
+        /** @en
+         * The round-trip time delay from the client to the local router.
          *
          * @note (iOS only) Since v3.1.2, this parameter is disabled by default. See
          * [FAQ](https://docs.agora.io/en/faq/local_network_privacy) for details. If you need to enable this parameter,
          * contact [support@agora.io](mailto:support@agora.io).
          */
         gatewayRtt: number;
-        /** The memory usage ratio of the app (%).
+        /** @en
+         * The memory usage ratio of the app (%).
          *
          * @note This value is for reference only. Due to system limitations, you may not get the value of this member.
          */
         memoryAppUsageRatio: number;
-        /** The memory usage ratio of the system (%).
+        /** @en
+         * The memory usage ratio of the system (%).
          *
          * @note This value is for reference only. Due to system limitations, you may not get the value of this member.
          */
         memoryTotalUsageRatio: number;
-        /** The memory usage of the app (KB).
+        /** @en
+         * The memory usage of the app (KB).
          *
          * @note This value is for reference only. Due to system limitations, you may not get the value of this member.
          */
         memoryAppUsageInKbytes: number;
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Statistics of the local video stream.
      */
     interface LocalVideoStats {
-        /** Bitrate (Kbps) sent in the reported interval, which does not include
+        /** @en
+         * Bitrate (Kbps) sent in the reported interval, which does not include
          * the bitrate of the retransmission video after packet loss.
          */
         sentBitrate: number;
-        /** Frame rate (fps) sent in the reported interval, which does not include
+        /** @en
+         * Frame rate (fps) sent in the reported interval, which does not include
          * the frame rate of the retransmission video after packet loss.
          */
         sentFrameRate: number;
-        /** The encoder output frame rate (fps) of the local video.
+        /** @en
+         * The encoder output frame rate (fps) of the local video.
          */
         encoderOutputFrameRate: number;
-        /** The render output frame rate (fps) of the local video.
+        /** @en
+         * The render output frame rate (fps) of the local video.
          */
         rendererOutputFrameRate: number;
-        /** The target bitrate (Kbps) of the current encoder. This value is estimated by the SDK based on the current network conditions.
+        /** @en
+         * The target bitrate (Kbps) of the current encoder. This value is estimated by the SDK based on the current network conditions.
          */
         targetBitrate: number;
-        /** The target frame rate (fps) of the current encoder.
+        /** @en
+         * The target frame rate (fps) of the current encoder.
          */
         targetFrameRate: number;
-        /** Quality change of the local video in terms of target frame rate and
+        /** @en
+         * Quality change of the local video in terms of target frame rate and
          * target bit rate in this reported interval. See [QUALITY_ADAPT_INDICATION]{@link agora.QUALITY_ADAPT_INDICATION}.
          */
         qualityAdaptIndication: QUALITY_ADAPT_INDICATION;
-        /** The encoding bitrate (Kbps), which does not include the bitrate of the
+        /** @en
+         * The encoding bitrate (Kbps), which does not include the bitrate of the
          * re-transmission video after packet loss.
          */
         encodedBitrate: number;
-        /** The width of the encoding frame (px).
+        /** @en
+         * The width of the encoding frame (px).
          */
         encodedFrameWidth: number;
-        /** The height of the encoding frame (px).
+        /** @en
+         * The height of the encoding frame (px).
          */
         encodedFrameHeight: number;
-        /** The value of the sent frames, represented by an aggregate value.
+        /** @en
+         * The value of the sent frames, represented by an aggregate value.
          */
         encodedFrameCount: number;
-        /** The codec type of the local video: [VIDEO_CODEC_TYPE]{@link agora.VIDEO_CODEC_TYPE}.
+        /** @en
+         * The codec type of the local video: [VIDEO_CODEC_TYPE]{@link agora.VIDEO_CODEC_TYPE}.
          */
         codecType: VIDEO_CODEC_TYPE;
-        /** The video packet loss rate (%) from the local client to the Agora edge server before applying the anti-packet
+        /** @en
+         * The video packet loss rate (%) from the local client to the Agora edge server before applying the anti-packet
          * loss strategies.
          */
         txPacketLossRate: number;
-        /** The capture frame rate (fps) of the local video.
+        /** @en
+         * The capture frame rate (fps) of the local video.
          */
         captureFrameRate: number;
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Statistics of the remote video stream.
      */
     interface RemoteVideoStats {
-        /**
-         User ID of the remote user sending the video streams.
+        /** @en
+         * User ID of the remote user sending the video streams.
          */
         uid: number;
-        /** @deprecated Time delay (ms).
+        /** @en
+         * @deprecated
+         * Time delay (ms).
          *
          * In scenarios where audio and video is synchronized, you can use the value of
          * `networkTransportDelay` and `jitterBufferDelay` in `RemoteAudioStats` to know the delay statistics of the remote video.
          */
         delay: number;
-        /** Width (pixels) of the video stream.
+        /** @en
+         * Width (pixels) of the video stream.
          */
         width: number;
-        /**
-         Height (pixels) of the video stream.
+        /** @en
+         * Height (pixels) of the video stream.
          */
         height: number;
-        /**
-         Bitrate (Kbps) received since the last count.
+        /** @en
+         * Bitrate (Kbps) received since the last count.
          */
         receivedBitrate: number;
-        /** The decoder output frame rate (fps) of the remote video.
+        /** @en
+         * The decoder output frame rate (fps) of the remote video.
          */
         decoderOutputFrameRate: number;
-        /** The render output frame rate (fps) of the remote video.
+        /** @en
+         * The render output frame rate (fps) of the remote video.
          */
         rendererOutputFrameRate: number;
-        /** Packet loss rate (%) of the remote video stream after using the anti-packet-loss method.
+        /** @en
+         * Packet loss rate (%) of the remote video stream after using the anti-packet-loss method.
          */
         packetLossRate: number;
-        /** The type of the remote video stream: [REMOTE_VIDEO_STREAM_TYPE]{@link agora.REMOTE_VIDEO_STREAM_TYPE}.
+        /** @en
+         * The type of the remote video stream: [REMOTE_VIDEO_STREAM_TYPE]{@link agora.REMOTE_VIDEO_STREAM_TYPE}.
          */
         rxStreamType: REMOTE_VIDEO_STREAM_TYPE;
-        /**
-         The total freeze time (ms) of the remote video stream after the remote user joins the channel.
-         In a video session where the frame rate is set to no less than 5 fps, video freeze occurs when
-         the time interval between two adjacent renderable video frames is more than 500 ms.
+        /** @en
+         * The total freeze time (ms) of the remote video stream after the remote user joins the channel.
+         * In a video session where the frame rate is set to no less than 5 fps, video freeze occurs when
+         * the time interval between two adjacent renderable video frames is more than 500 ms.
          */
         totalFrozenTime: number;
-        /**
-         The total video freeze time as a percentage (%) of the total time when the video is available.
+        /** @en
+         * The total video freeze time as a percentage (%) of the total time when the video is available.
          */
         frozenRate: number;
-        /**
-         The total time (ms) when the remote user in the Communication profile or the remote
-         broadcaster in the Live-broadcast profile neither stops sending the video stream nor
-         disables the video module after joining the channel.
+        /** @en
+         * The total time (ms) when the remote user in the Communication profile or the remote
+         * broadcaster in the Live-broadcast profile neither stops sending the video stream nor
+         * disables the video module after joining the channel.
          */
         totalActiveTime: number;
-        /**
+        /** @en
          * The total publish duration (ms) of the remote video stream.
          */
         publishDuration: number;
     }
-    /** Audio statistics of the local user */
+    /** @en
+     * Audio statistics of the local user
+     */
     interface LocalAudioStats {
-        /** The number of channels.
+        /** @en
+         * The number of channels.
          */
         numChannels: number;
-        /** The sample rate (Hz).
+        /** @en
+         * The sample rate (Hz).
          */
         sentSampleRate: number;
-        /** The average sending bitrate (Kbps).
+        /** @en
+         * The average sending bitrate (Kbps).
          */
         sentBitrate: number;
-        /** The audio packet loss rate (%) from the local client to the Agora edge server before applying the anti-packet loss strategies.
+        /** @en
+         * The audio packet loss rate (%) from the local client to the Agora edge server before applying the anti-packet loss strategies.
          */
         txPacketLossRate: number;
     }
-    /** Audio statistics of a remote user */
+    /** @en
+     * Audio statistics of a remote user
+     */
     interface RemoteAudioStats {
-        /** User ID of the remote user sending the audio streams.
-         *
+        /** @en
+         * User ID of the remote user sending the audio streams.
          */
         uid: number;
-        /** Audio quality received by the user: [QUALITY_TYPE]{@link agora.QUALITY_TYPE}.
+        /** @en
+         * Audio quality received by the user: [QUALITY_TYPE]{@link agora.QUALITY_TYPE}.
          */
         quality: number;
-        /** Network delay (ms) from the sender to the receiver.
+        /** @en
+         * Network delay (ms) from the sender to the receiver.
          */
         networkTransportDelay: number;
-        /** Network delay (ms) from the receiver to the jitter buffer.
+        /** @en
+         * Network delay (ms) from the receiver to the jitter buffer.
          */
         jitterBufferDelay: number;
-        /** The audio frame loss rate in the reported interval.
+        /** @en
+         * The audio frame loss rate in the reported interval.
          */
         audioLossRate: number;
-        /** The number of channels.
+        /** @en
+         * The number of channels.
          */
         numChannels: number;
-        /** The sample rate (Hz) of the received audio stream in the reported
+        /** @en
+         * The sample rate (Hz) of the received audio stream in the reported
          * interval.
          */
         receivedSampleRate: number;
-        /** The average bitrate (Kbps) of the received audio stream in the
-         * reported interval. */
+        /** @en
+         * The average bitrate (Kbps) of the received audio stream in the
+         * reported interval.
+         */
         receivedBitrate: number;
-        /** The total freeze time (ms) of the remote audio stream after the remote user joins the channel. In a session, audio
+        /** @en
+         * The total freeze time (ms) of the remote audio stream after the remote user joins the channel. In a session, audio
          * freeze occurs when the audio frame loss rate reaches 4%.
          */
         totalFrozenTime: number;
-        /** The total audio freeze time as a percentage (%) of the total time when the audio is available. */
+        /** @en
+         * The total audio freeze time as a percentage (%) of the total time when the audio is available.
+         */
         frozenRate: number;
-        /** The total time (ms) when the remote user in the `COMMUNICATION` profile or the remote host in
+        /** @en
+         * The total time (ms) when the remote user in the `COMMUNICATION` profile or the remote host in
          * the `LIVE_BROADCASTING` profile neither stops sending the audio stream nor disables the audio module after joining the channel.
          */
         totalActiveTime: number;
-        /** The total publish duration (ms) of the remote audio stream.
+        /** @en
+         * The total publish duration (ms) of the remote audio stream.
          */
         publishDuration: number;
     }
-    /** @ignore Video dimensions. */
+    /** @en
+     * @ignore
+     * Video dimensions.
+     */
     class VideoDimensions {
-        /** Width (pixels) of the video. */
+        /** @en
+         * Width (pixels) of the video.
+         */
         width: number;
-        /** Height (pixels) of the video. */
+        /** @en
+         * Height (pixels) of the video.
+         */
         height: number;
         constructor(width?: number, height?: number);
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Video encoder configurations.
      */
     class VideoEncoderConfiguration {
-        /** The video frame dimensions (px) used to specify the video quality and measured by the total number of pixels along a
-         * frame's width and height: VideoDimensions. The default value is 640 x 360.
+        /** @en
+         * The video frame dimensions (px) used to specify the video quality and measured by the total number of pixels along a
+         * frame's width and height: [VideoDimensions]{@link agora.VideoDimensions}. The default value is 640 x 360.
          */
         dimensions: VideoDimensions;
-        /** The frame rate of the video: [FRAME_RATE]{@link agora.FRAME_RATE}. The default value is 15.
+        /** @en
+         * The frame rate of the video: [FRAME_RATE]{@link agora.FRAME_RATE}. The default value is 15.
          *
          * Note that we do not recommend setting this to a value greater than 30.
          */
         frameRate: FRAME_RATE;
-        /** The minimum frame rate of the video. The default value is -1.
+        /** @en
+         * The minimum frame rate of the video. The default value is -1.
          */
         minFrameRate: number;
-        /** The video encoding bitrate (Kbps).
+        /** @en
+         The video encoding bitrate (Kbps).
 
          Choose one of the following options:
 
@@ -2789,8 +3752,7 @@ declare namespace agora {
          profile. Set your bitrate based on this table. If you set a bitrate beyond the proper range, the SDK automatically sets it
          to within the range.
 
-         **Note**
-         In the following table, **Base Bitrate** applies to the `COMMUNICATION` profile, and **Live Bitrate** applies to the
+         @note In the following table, **Base Bitrate** applies to the `COMMUNICATION` profile, and **Live Bitrate** applies to the
          `LIVE_BROADCASTING` profile.
 
          | Resolution             | Frame Rate (fps) | Base Bitrate (Kbps)                    | Live Bitrate (Kbps)                    |
@@ -2827,10 +3789,10 @@ declare namespace agora {
          | 2560 * 1440            | 60               | 6500                                   | 6500                                   |
          | 3840 * 2160            | 30               | 6500                                   | 6500                                   |
          | 3840 * 2160            | 60               | 6500                                   | 6500                                   |
-
          */
         bitrate: number;
-        /** The minimum encoding bitrate (Kbps).
+        /** @en
+         * The minimum encoding bitrate (Kbps).
          *
          * The SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Using a value greater than the default
          * value forces the video encoder to output high-quality images but may cause more packet loss and hence sacrifice the smoothness
@@ -2840,14 +3802,17 @@ declare namespace agora {
          * @note This parameter applies only to the `LIVE_BROADCASTING` profile.
          */
         minBitrate: number;
-        /** The video orientation mode of the video: [ORIENTATION_MODE]{@link agora.ORIENTATION_MODE}.
+        /** @en
+         * The video orientation mode of the video: [ORIENTATION_MODE]{@link agora.ORIENTATION_MODE}.
          */
         orientationMode: ORIENTATION_MODE;
-        /** The video encoding degradation preference under limited bandwidth:
+        /** @en
+         * The video encoding degradation preference under limited bandwidth:
          * [DEGRADATION_PREFERENCE]{@link agora.DEGRADATION_PREFERENCE}.
          */
         degradationPreference: DEGRADATION_PREFERENCE;
-        /** Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See
+        /** @en
+         * Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See
          * [VIDEO_MIRROR_MODE_TYPE]{@link agora.VIDEO_MIRROR_MODE_TYPE}.
          *
          * @note: The SDK disables the mirror mode by default.
@@ -2855,27 +3820,34 @@ declare namespace agora {
         mirrorMode: VIDEO_MIRROR_MODE_TYPE;
         constructor(dimensions?: VideoDimensions, frameRate?: FRAME_RATE, minFrameRate?: number, bitrate?: number, minBitrate?: number, orientationMode?: ORIENTATION_MODE, degradationPreference?: DEGRADATION_PREFERENCE, mirrorMode?: VIDEO_MIRROR_MODE_TYPE);
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * The video and audio properties of the user displaying the video in the CDN live. Agora supports a maximum of 17 transcoding
      * users in a CDN streaming channel.
      */
     class TranscodingUser {
-        /** User ID of the user displaying the video in the CDN live.
+        /** @en
+         * User ID of the user displaying the video in the CDN live.
          */
         uid: number;
-        /** Horizontal position (pixel) of the video frame relative to the top left corner.
+        /** @en
+         * Horizontal position (pixel) of the video frame relative to the top left corner.
          */
         x: number;
-        /** Vertical position (pixel) of the video frame relative to the top left corner.
+        /** @en
+         * Vertical position (pixel) of the video frame relative to the top left corner.
          */
         y: number;
-        /** Width (pixel) of the video frame. The default value is 360.
+        /** @en
+         * Width (pixel) of the video frame. The default value is 360.
          */
         width: number;
-        /** Height (pixel) of the video frame. The default value is 640.
+        /** @en
+         * Height (pixel) of the video frame. The default value is 640.
          */
         height: number;
-        /** The layer index of the video frame. An integer. The value range is [0, 100].
+        /** @en
+         * The layer index of the video frame. An integer. The value range is [0, 100].
          * - 0: (Default) Bottom layer.
          * - 100: Top layer.
          *
@@ -2884,12 +3856,14 @@ declare namespace agora {
          * - As of v3.1.2, the SDK supports `zOrder` = 0.
          */
         zOrder: number;
-        /** The transparency level of the user's video. The value ranges between 0 and 1.0:
+        /** @en
+         * The transparency level of the user's video. The value ranges between 0 and 1.0:
          * - 0: Completely transparent
          * - 1.0: (Default) Opaque
          */
         alpha: number;
-        /** The audio channel of the sound. The default value is 0:
+        /** @en
+         * The audio channel of the sound. The default value is 0:
          * - 0: (Default) Supports dual channels at most, depending on the upstream of the host.
          * - 1: The audio stream of the host uses the FL audio channel. If the upstream of the host uses multiple audio channels,
          * these channels are mixed into mono first.
@@ -2907,120 +3881,143 @@ declare namespace agora {
         audioChannel: number;
         constructor(uid: number, x: number, y: number, width: number, height: number, zOrder: number, alpha: number, audioChannel: number);
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Image properties.
      *
      * The properties of the watermark and background images.
      */
     class RtcImage {
-        /** HTTP/HTTPS URL address of the image on the live video. The maximum length of this parameter is 1024 bytes. */
+        /** @en
+         * HTTP/HTTPS URL address of the image on the live video. The maximum length of this parameter is 1024 bytes.
+         */
         url: string;
-        /** Horizontal position of the image from the upper left of the live video. */
+        /** @en
+         * Horizontal position of the image from the upper left of the live video.
+         */
         x: number;
-        /** Vertical position of the image from the upper left of the live video. */
+        /** @en
+         * Vertical position of the image from the upper left of the live video.
+         */
         y: number;
-        /** Width of the image on the live video. */
+        /** @en
+         * Width of the image on the live video.
+         */
         width: number;
-        /** Height of the image on the live video. */
+        /** @en
+         * Height of the image on the live video.
+         */
         height: number;
         constructor(url: string, x: number, y: number, width: number, height: number);
     }
-    /** @ignore The configuration for advanced features of the RTMP streaming with transcoding.
+    /** @en
+     * @ignore
+     * The configuration for advanced features of the RTMP streaming with transcoding.
      */
     class LiveStreamAdvancedFeature {
-        /** The advanced feature for high-quality video with a lower bitrate. */
         static LBHQ: string;
-        /** The advanced feature for the optimized video encoder. */
         static VEO: string;
-        /** The name of the advanced feature. It contains LBHQ and VEO.
-         */
         featureName: string;
-        /** Whether to enable the advanced feature:
-         * - true: Enable the advanced feature.
-         * - false: (Default) Disable the advanced feature.
-         */
         opened: boolean;
         constructor(featureName: string, opened: boolean);
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * A struct for managing CDN live audio/video transcoding settings.
      */
     class LiveTranscoding {
-        /** The width of the video in pixels. The default value is 360.
+        /** @en
+         * The width of the video in pixels. The default value is 360.
          * - When pushing video streams to the CDN, ensure that `width` is at least 64; otherwise, the Agora server adjusts the value
          * to 64.
          * - When pushing audio streams to the CDN, set `width` and `height` as 0.
          */
         width: number;
-        /** The height of the video in pixels. The default value is 640.
+        /** @en
+         * The height of the video in pixels. The default value is 640.
          * - When pushing video streams to the CDN, ensure that `height` is at least 64; otherwise, the Agora server adjusts the value
          * to 64.
          * - When pushing audio streams to the CDN, set `width` and `height` as 0.
          */
         height: number;
-        /** Bitrate of the CDN live output video stream. The default value is 400 Kbps.
+        /** @en
+         * Bitrate of the CDN live output video stream. The default value is 400 Kbps.
          *
          * Set this parameter according to the Video Bitrate Table. If you set a bitrate beyond the proper range, the SDK automatically
          * adapts it to a value within the range.
          */
         videoBitrate: number;
-        /** Frame rate of the output video stream set for the CDN live streaming. The default value is 15 fps, and the value range
+        /** @en
+         * Frame rate of the output video stream set for the CDN live streaming. The default value is 15 fps, and the value range
          * is (0,30].
          *
          * @note The Agora server adjusts any value over 30 to 30.
          */
         videoFramerate: number;
-        /** @deprecated Latency mode:
+        /** @en
+         * @deprecated Latency mode:
          * - true: Low latency with unassured quality.
          * - false: (Default) High latency with assured quality.
          */
         lowLatency: boolean;
-        /** Video GOP in frames. The default value is 30 fps.
+        /** @en
+         * Video GOP in frames. The default value is 30 fps.
          */
         videoGop: number;
-        /** Self-defined video codec profile: [VIDEO_CODEC_PROFILE_TYPE]{@link agora.VIDEO_CODEC_PROFILE_TYPE}.
+        /** @en
+         * Self-defined video codec profile: [VIDEO_CODEC_PROFILE_TYPE]{@link agora.VIDEO_CODEC_PROFILE_TYPE}.
          *
          * @note If you set this parameter to other values, Agora adjusts it to the default value of 100.
          */
         videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE;
-        /** The background color in RGB hex value. Value only. Do not include a preceeding #. For example, 0xFFB6C1 (light pink).
+        /** @en
+         * The background color in RGB hex value. Value only. Do not include a preceeding #. For example, 0xFFB6C1 (light pink).
          * The default value is 0x000000 (black).
          */
         backgroundColor: number;
-        /** The number of users in the live interactive streaming.
+        /** @en
+         * The number of users in the live interactive streaming. The default value is 0.
          */
         userCount: number;
-        /** TranscodingUser
+        /** @en
+         * TranscodingUser
          */
         transcodingUsers: TranscodingUser[];
-        /** Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN live client.
+        /** @en
+         * Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN live client.
          * Maximum length: 4096 Bytes.
          *
          * For more information on SEI frame, see [SEI-related questions](https://docs.agora.io/en/faq/sei).
          */
         transcodingExtraInfo: string;
-        /** @deprecated The metadata sent to the CDN live client defined by the RTMP or HTTP-FLV metadata.
+        /** @en
+         * @deprecated
+         * The metadata sent to the CDN live client defined by the RTMP or HTTP-FLV metadata.
          */
         metadata: string;
-        /** The watermark image added to the CDN live publishing stream.
-
-         Ensure that the format of the image is PNG. Once a watermark image is added, the audience of the CDN live publishing stream
-         can see the watermark image. See [RtcImage]{@link agora.RtcImage}.
+        /** @en
+         * The watermark image added to the CDN live publishing stream.
+         * Ensure that the format of the image is PNG. Once a watermark image is added, the audience of the CDN live publishing stream
+         * can see the watermark image. See [RtcImage]{@link agora.RtcImage}.
          */
         watermark: RtcImage;
-        /** The background image added to the CDN live publishing stream.
+        /** @en
+         * The background image added to the CDN live publishing stream.
          *
          * Once a background image is added, the audience of the CDN live publishing stream can see the background image.
          * See [RtcImage]{@link agora.RtcImage}.
          */
         backgroundImage: RtcImage;
-        /** Self-defined audio-sample rate: [AUDIO_SAMPLE_RATE_TYPE]{@link agora.AUDIO_SAMPLE_RATE_TYPE}.
+        /** @en
+         * Self-defined audio-sample rate: [AUDIO_SAMPLE_RATE_TYPE]{@link agora.AUDIO_SAMPLE_RATE_TYPE}.
          */
         audioSampleRate: AUDIO_SAMPLE_RATE_TYPE;
-        /** Bitrate of the CDN live audio output stream. The default value is 48 Kbps, and the highest value is 128.
+        /** @en
+         * Bitrate of the CDN live audio output stream. The default value is 48 Kbps, and the highest value is 128.
          */
         audioBitrate: number;
-        /** The numbder of audio channels for the CDN live stream. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels.
+        /** @en
+         * The numbder of audio channels for the CDN live stream. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels.
          * Special players are required if you choose option 3, 4, or 5:
          * - 1: (Default) Mono.
          * - 2: Stereo.
@@ -3029,59 +4026,79 @@ declare namespace agora {
          * - 5: Five audio channels.
          */
         audioChannels: 1 | 2 | 3 | 4 | 5;
-        /** Self-defined audio codec profile: [AUDIO_CODEC_PROFILE_TYPE]{@link agora.AUDIO_CODEC_PROFILE_TYPE}.
+        /** @en
+         * @ignore
+         * Self-defined audio codec profile: [AUDIO_CODEC_PROFILE_TYPE]{@link agora.AUDIO_CODEC_PROFILE_TYPE}.
          */
         audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE;
-        /** @ignore Advanced features of the RTMP streaming with transcoding. See LiveStreamAdvancedFeature.
+        /** @en
+         * @ignore
+         * Advanced features of the RTMP streaming with transcoding. See [LiveStreamAdvancedFeature]{@link agora.LiveStreamAdvancedFeature}.
          */
         advancedFeatures: LiveStreamAdvancedFeature;
-        /** The number of enabled advanced features. The default value is 0. */
+        /** @en
+         * The number of enabled advanced features. The default value is 0.
+         */
         advancedFeatureCount: number;
         constructor(width: number, height: number, videoBitrate: number, videoFramerate: number, lowLatency: boolean, videoGop: number, videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE, backgroundColor: number, userCount: number, transcodingUsers: TranscodingUser[], transcodingExtraInfo: string, metadata: string, watermark: RtcImage, backgroundImage: RtcImage, audioSampleRate: AUDIO_SAMPLE_RATE_TYPE, audioBitrate: number, audioChannels: 1 | 2 | 3 | 4 | 5, audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE, advancedFeatures: LiveStreamAdvancedFeature, advancedFeatureCount?: number);
     }
-    /** @ignore
+    /** @en
+     * @ignore
      * Camera capturer configuration.
      */
     class CameraCapturerConfiguration {
-        /** Camera capturer preference settings. See: [CAPTURER_OUTPUT_PREFERENCE]{@link agora.CAPTURER_OUTPUT_PREFERENCE}. */
+        /** @en
+         * Camera capturer preference settings. See: [CAPTURER_OUTPUT_PREFERENCE]{@link agora.CAPTURER_OUTPUT_PREFERENCE}.
+         */
         preference: CAPTURER_OUTPUT_PREFERENCE;
-        /** Camera direction settings (for Android/iOS only). See: [CAMERA_DIRECTION]{@link agora.CAMERA_DIRECTION}. */
+        /** @en
+         * Camera direction settings (for Android/iOS only). See: [CAMERA_DIRECTION]{@link agora.CAMERA_DIRECTION}.
+         */
         cameraDirection: CAMERA_DIRECTION;
         constructor(preference: CAPTURER_OUTPUT_PREFERENCE, cameraDirection: CAMERA_DIRECTION);
     }
-    /** Configuration of the injected media stream.
+    /** @en
+     * Configuration of the injected media stream.
      */
     class InjectStreamConfig {
-        /** Width of the injected stream in the live interactive streaming. The default value is 0 (same width as the original stream).
+        /** @en
+         * Width of the injected stream in the live interactive streaming. The default value is 0 (same width as the original stream).
          */
         width: number;
-        /** Height of the injected stream in the live interactive streaming. The default value is 0 (same height as the original stream).
+        /** @en
+         * Height of the injected stream in the live interactive streaming. The default value is 0 (same height as the original stream).
          */
         height: number;
-        /** Video GOP (in frames) of the injected stream in the live interactive streaming. The default value is 30 fps.
+        /** @en
+         * Video GOP (in frames) of the injected stream in the live interactive streaming. The default value is 30 fps.
          */
         videoGop: number;
-        /** Video frame rate of the injected stream in the live interactive streaming. The default value is 15 fps.
+        /** @en
+         * Video frame rate of the injected stream in the live interactive streaming. The default value is 15 fps.
          */
         videoFramerate: number;
-        /** Video bitrate of the injected stream in the live interactive streaming. The default value is 400 Kbps.
+        /** @en
+         * Video bitrate of the injected stream in the live interactive streaming. The default value is 400 Kbps.
          *
          * @note The setting of the video bitrate is closely linked to the resolution. If the video bitrate you set is beyond a reasonable
          * range, the SDK sets it within a reasonable range.
          */
         videoBitrate: number;
-        /** Audio-sample rate of the injected stream in the live interactive streaming:
+        /** @en
+         * Audio-sample rate of the injected stream in the live interactive streaming:
          * [AUDIO_SAMPLE_RATE_TYPE]{@link agora.AUDIO_SAMPLE_RATE_TYPE}. The default value is 48000 Hz.
          *
          * @note We recommend setting the default value.
          */
         audioSampleRate: AUDIO_SAMPLE_RATE_TYPE;
-        /** Audio bitrate of the injected stream in the live interactive streaming. The default value is 48.
+        /** @en
+         * Audio bitrate of the injected stream in the live interactive streaming. The default value is 48.
          *
          * @note We recommend setting the default value.
          */
         audioBitrate: number;
-        /** Audio channels in the live interactive streaming.
+        /** @en
+         * Audio channels in the live interactive streaming.
          *
          * - 1: (Default) Mono
          * - 2: Two-channel stereo
@@ -3091,27 +4108,33 @@ declare namespace agora {
         audioChannels: number;
         constructor(width?: number, height?: number, videoGop?: number, videoFramerate?: number, videoBitrate?: number, audioSampleRate?: AUDIO_SAMPLE_RATE_TYPE, audioBitrate?: number, audioChannels?: number);
     }
-    /** The definition of [ChannelMediaInfo]{@link agora.ChannelMediaInfo}.
+    /** @en
+     * The definition of [ChannelMediaInfo]{@link agora.ChannelMediaInfo}.
      */
     class ChannelMediaInfo {
-        /** The channel name.
+        /** @en
+         * The channel name.
          */
         channelName: string;
-        /** The token that enables the user to join the channel.
+        /** @en
+         * The token that enables the user to join the channel.
          */
         token: string;
-        /** The user ID.
+        /** @en
+         * The user ID.
          */
         uid: number;
         constructor(channelName: string, token: string, uid: number);
     }
-    /** The definition of [ChannelMediaRelayConfiguration]{@link agora.ChannelMediaRelayConfiguration}.
+    /** @en
+     * The definition of [ChannelMediaRelayConfiguration]{@link agora.ChannelMediaRelayConfiguration}.
      */
     class ChannelMediaRelayConfiguration {
-        /** The information of the source channel: ChannelMediaInfo. It contains the following members:
+        /** @en
+         * The information of the source channel: `ChannelMediaInfo`. It contains the following members:
          * - `channelName`: The name of the source channel. The default value is `null`, which means the SDK applies the name of the
          * current channel.
-         * - `uid`: ID of the host whose media stream you want to relay. The default value is 0, which means the SDK generates a
+         * - `uid`: The unique ID to identify the relay stream in the source channel. The default value is 0, which means the SDK generates a
          * random UID. You must set it as 0.
          * - `token`: The token for joining the source channel. It is generated with the `channelName` and `uid` you set in `srcInfo`.
          *   - If you have not enabled the App Certificate, set this parameter as the default value `null`, which means the SDK applies
@@ -3120,10 +4143,12 @@ declare namespace agora {
          * `uid` must be set as 0.
          */
         srcInfo: ChannelMediaInfo;
-        /** The information of the destination channel: ChannelMediaInfo. It contains the following members:
+        /** @en
+         * The information of the destination channel: `ChannelMediaInfo`. It contains the following members:
          * - `channelName`: The name of the destination channel.
-         * - `uid`: ID of the host in the destination channel. The value ranges from 0 to (2<sup>32</sup>-1). To avoid UID conflicts,
-         * this `uid` must be different from any other UIDs in the destination channel. The default value is 0, which means the SDK
+         * - `uid`: The unique ID to identify the relay stream in the destination channel. The value ranges from 0 to (2<sup>32</sup>-1).
+         * To avoid UID conflicts, do not set this parameter as the `uid` of the host in the destination channel, and ensure that
+         * this `uid` is different from any other `uid` in the destination channel. The default value is 0, which means the SDK
          * generates a random UID.
          * - `token`: The token for joining the destination channel. It is generated with the `channelName` and `uid` you set in
          * `destInfos`.
@@ -3132,68 +4157,87 @@ declare namespace agora {
          *   - If you have enabled the App Certificate, you must use the `token` generated with the `channelName` and `uid`.
          */
         destInfos: ChannelMediaInfo[];
-        /** The number of destination channels. The default value is 0, and the
+        /** @en
+         * The number of destination channels. The default value is 0, and the
          * value range is [0,4). Ensure that the value of this parameter
-         * corresponds to the number of ChannelMediaInfo structs you define in
+         * corresponds to the number of `ChannelMediaInfo` structs you define in
          * `destInfos`.
          */
         destCount: number;
         constructor(srcInfo: ChannelMediaInfo, destInfos: ChannelMediaInfo[], destCount: number);
     }
-    /** The relative location of the region to the screen or window.
+    /** @en
+     * The relative location of the region to the screen or window.
      */
     class Rectangle {
-        /** The horizontal offset from the top-left corner.
+        /** @en
+         * The horizontal offset from the top-left corner.
          */
         x: number;
-        /** The vertical offset from the top-left corner.
+        /** @en
+         * The vertical offset from the top-left corner.
          */
         y: number;
-        /** The width of the region.
+        /** @en
+         * The width of the region.
          */
         width: number;
-        /** The height of the region.
+        /** @en
+         * The height of the region.
          */
         height: number;
         constructor(x?: number, y?: number, width?: number, height?: number);
     }
-    /**  @deprecated Definition of the rectangular region. */
+    /** @en
+     * @deprecated
+     * Definition of the rectangular region.
+     */
     class Rect {
-        /** Y-axis of the top line.
+        /** @en
+         * Y-axis of the top line.
          */
         top: number;
-        /** X-axis of the left line.
+        /** @en
+         * X-axis of the left line.
          */
         left: number;
-        /** Y-axis of the bottom line.
+        /** @en
+         * Y-axis of the bottom line.
          */
         bottom: number;
-        /** X-axis of the right line.
+        /** @en
+         * X-axis of the right line.
          */
         right: number;
         constructor(top?: number, left?: number, bottom?: number, right?: number);
     }
-    /** @ignore The options of the watermark image to be added. */
+    /** @en
+     * @ignore The options of the watermark image to be added.
+     */
     class WatermarkOptions {
-        /** Sets whether or not the watermark image is visible in the local video preview:
+        /** @en
+         * Sets whether or not the watermark image is visible in the local video preview:
          * - true: (Default) The watermark image is visible in preview.
          * - false: The watermark image is not visible in preview.
          */
         visibleInPreview: boolean;
-        /**
+        /** @en
          * The watermark position in the landscape mode. See [Rectangle]{@link agora.Rectangle}.
          */
         positionInLandscapeMode: Rectangle;
-        /**
+        /** @en
          * The watermark position in the portrait mode. See [Rectangle]{@link agora.Rectangle}.
          */
         positionInPortraitMode: Rectangle;
         constructor(visibleInPreview?: boolean, positionInLandscapeMode?: Rectangle, positionInPortraitMode?: Rectangle);
     }
-    /** @ignore Screen sharing encoding parameters.
+    /** @en
+     * @ignore
+     * Screen sharing encoding parameters.
      */
     class ScreenCaptureParameters {
-        /** The maximum encoding dimensions of the shared region in terms of width * height.
+        /** @en
+         * The maximum encoding dimensions of the shared region in terms of width * height.
          *
          * The default value is 1920 * 1080 pixels, that is, 2073600 pixels. Agora uses the value of this parameter to calculate
          * the charges.
@@ -3206,28 +4250,33 @@ declare namespace agora {
          * 1440 * 1080.
          */
         dimensions: VideoDimensions;
-        /** The frame rate (fps) of the shared region.
+        /** @en
+         * The frame rate (fps) of the shared region.
          *
          * The default value is 5. We do not recommend setting this to a value greater than 15.
          */
         frameRate: number;
-        /** The bitrate (Kbps) of the shared region.
+        /** @en
+         * The bitrate (Kbps) of the shared region.
          *
          * The default value is 0 (the SDK works out a bitrate according to the dimensions of the current screen).
          */
         bitrate: number;
-        /** Sets whether or not to capture the mouse for screen sharing:
+        /** @en
+         * Sets whether or not to capture the mouse for screen sharing:
          * - true: (Default) Capture the mouse.
          * - false: Do not capture the mouse.
          */
         captureMouseCursor: boolean;
-        /** Whether to bring the window to the front when calling
+        /** @en
+         * Whether to bring the window to the front when calling
          * [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId} to share the window:
          * - true: Bring the window to the front.
          * - false: (Default) Do not bring the window to the front.
          */
         windowFocus: boolean;
-        /** A list of IDs of windows to be blocked.
+        /** @en
+         * A list of IDs of windows to be blocked.
          *
          * - When calling [startScreenCaptureByScreenRect]{@link agora.startScreenCaptureByScreenRect} to start screen sharing,
          * you can use this parameter to block the specified windows.
@@ -3235,22 +4284,27 @@ declare namespace agora {
          * for screen sharing, you can use this parameter to dynamically block the specified windows during screen sharing.
          */
         excludeWindowList: any[];
-        /** The number of windows to be blocked.
+        /** @en
+         * The number of windows to be blocked.
          */
         excludeWindowCount: number;
         constructor(dimensions: VideoDimensions, frameRate: number, bitrate: number, captureMouseCursor: boolean, windowFocus: boolean, excludeWindowList: any[], excludeWindowCount?: number);
     }
-    /** @ignore
-     * Video display settings of the VideoCanvas class.
+    /** @en
+     * @ignore
+     * Video display settings of the `VideoCanvas` class.
      */
     class VideoCanvas {
-        /** Video display window (view).
+        /** @en
+         * Video display window (view).
          */
         view: any;
-        /** The rendering mode of the video view. See RENDER_MODE_TYPE
+        /** @en
+         * The rendering mode of the video view. See [RENDER_MODE_TYPE]{@link agora.RENDER_MODE_TYPE}.
          */
         renderMode: number;
-        /** The unique channel name for the AgoraRTC session in the string format. The string length must be less than 64 bytes.
+        /** @en
+         * The unique channel name for the AgoraRTC session in the string format. The string length must be less than 64 bytes.
          * Supported character scopes are:
          * - All lowercase English letters: a to z.
          * - All uppercase English letters: A to Z.
@@ -3260,17 +4314,20 @@ declare namespace agora {
          * ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ",".
          *
          * @note The default value is the empty string "". Use the default value if the user joins the channel using the
-         * [joinChannel]{@link agora.joinChannel} method in the `agora` class. The `VideoCanvas` struct defines the video canvas of
+         * [joinChannel]{@link agora.joinChannel} method in the Agora engine. The `VideoCanvas` struct defines the video canvas of
          * the user in the channel.
          */
         channelId: string;
-        /** The user ID. */
+        /** @en
+         * The user ID.
+         */
         uid: number;
         /** @ignore */
         priv: any;
-        /** The mirror mode of the video view. See [VIDEO_MIRROR_MODE_TYPE]{@link agora.VIDEO_MIRROR_MODE_TYPE}.
+        /** @en
+         * The mirror mode of the video view. See [VIDEO_MIRROR_MODE_TYPE]{@link agora.VIDEO_MIRROR_MODE_TYPE}.
          *
-         * **Note**
+         * @note
          * - For the mirror mode of the local video view: If you use a front camera, the SDK enables the mirror mode by default; if you
          * use a rear camera, the SDK disables the mirror mode by default.
          * - For the mirror mode of the remote video view: The SDK disables the mirror mode by default.
@@ -3278,42 +4335,51 @@ declare namespace agora {
         mirrorMode: VIDEO_MIRROR_MODE_TYPE;
         constructor(view: any, renderMode: number, channelId: string, uid: number, priv: any, mirrorMode?: VIDEO_MIRROR_MODE_TYPE);
     }
-    /** Image enhancement options.
+    /** @en
+     * @ignore
+     * Image enhancement options.
      */
     class BeautyOptions {
-        /** The contrast level, used with the `lightening` parameter.
+        /** @en
+         * The contrast level, used with the `lightening` parameter.
          */
         lighteningContrastLevel: LIGHTENING_CONTRAST_LEVEL;
-        /** The brightness level. The value ranges from 0.0 (original) to 1.0. */
+        /** @en
+         * The brightness level. The value ranges from 0.0 (original) to 1.0.
+         */
         lighteningLevel: number;
-        /** The sharpness level. The value ranges between 0 (original) and 1. This parameter is usually used to remove blemishes.
+        /** @en
+         * The sharpness level. The value ranges between 0 (original) and 1. This parameter is usually used to remove blemishes.
          */
         smoothnessLevel: number;
-        /** The redness level. The value ranges between 0 (original) and 1. This parameter adjusts the red saturation level.
+        /** @en
+         * The redness level. The value ranges between 0 (original) and 1. This parameter adjusts the red saturation level.
          */
         rednessLevel: number;
         constructor(lighteningContrastLevel?: LIGHTENING_CONTRAST_LEVEL, lighteningLevel?: number, smoothnessLevel?: number, rednessLevel?: number);
     }
-    /**
+    /** @en
      * The UserInfo interface.
      */
     interface UserInfo {
-        /**
+        /** @en
          * The user ID.
          */
         uid: number;
-        /**
+        /** @en
          * The user account.
          */
         userAccount: string;
     }
-    /** Configurations of built-in encryption schemas. */
+    /** @en
+     * Configurations of built-in encryption schemas.
+     */
     class EncryptionConfig {
-        /**
+        /** @en
          * Encryption mode. The default encryption mode is `AES_128_XTS`. See [ENCRYPTION_MODE]{@link agora.ENCRYPTION_MODE}.
          */
         encryptionMode: ENCRYPTION_MODE;
-        /**
+        /** @en
          * Encryption key in string type.
          *
          * @note If you do not set an encryption key or set it as `null`, you cannot use the built-in encryption, and the SDK returns
@@ -3322,9 +4388,12 @@ declare namespace agora {
         encryptionKey: string;
         constructor(encryptionMode: ENCRYPTION_MODE, encryptionKey: string);
     }
-    /** The channel media options. */
+    /** @en
+     * The channel media options.
+     */
     class ChannelMediaOptions {
-        /** Determines whether to subscribe to audio streams when the user joins the channel:
+        /** @en
+         * Determines whether to subscribe to audio streams when the user joins the channel:
          * - true: (Default) Subscribe.
          * - false: Do not subscribe.
          *
@@ -3333,7 +4402,9 @@ declare namespace agora {
          * in the channel.
          */
         autoSubscribeAudio: boolean;
-        /** @ignore Determines whether to subscribe to video streams when the user joins the channel:
+        /** @en
+         * @ignore
+         * Determines whether to subscribe to video streams when the user joins the channel:
          * - true: (Default) Subscribe.
          * - false: Do not subscribe.
          *
@@ -3344,26 +4415,37 @@ declare namespace agora {
         autoSubscribeVideo: boolean;
         constructor(autoSubscribeAudio?: boolean, autoSubscribeVideo?: boolean);
     }
+    /** @en
+     * The defination of [Metadata]{@link agora.Metadata}.
+     */
     class Metadata {
-        /** The User ID.
+        /** @en
+         * The User ID.
          * - For the receiver: the ID of the user who sent the metadata.
          * - For the sender: ignore it.
          */
         uid: number;
-        /** Buffer size of the sent or received metadata.
+        /** @en
+         * Buffer size of the sent or received metadata.
          */
         size: number;
-        /** Buffer address of the sent or received metadata.
+        /** @en
+         * Buffer address of the sent or received metadata.
          */
         buffer: Uint8Array;
-        /** Timestamp of the frame following the metadata.
+        /** @en
+         * Timestamp (ms) of the frame following the metadata.
          */
         timeStampMs: number;
         constructor(uid: number, size: number, buffer: Uint8Array, timeStampMs: number);
     }
 }
+/** @en
+ * The `AgoraRtcEvents` class reports runtime events to the applications.
+ */
 declare class AgoraRtcEvents {
-    /** Reports a warning during SDK runtime.
+    /** @en
+     * Reports a warning during SDK runtime.
      *
      * In most cases, the application can ignore the warning reported by the SDK because the SDK can usually fix
      * the issue and resume running. For example, when losing connection with the server, the SDK may report
@@ -3371,12 +4453,13 @@ declare class AgoraRtcEvents {
      * try to reconnect.
      */
     onWarning: 
-    /**
+    /** @en
      * @param warn Warning code: [WARN_CODE_TYPE]{@link agora.WARN_CODE_TYPE}.
      * @param msg The warning message.
      */
     (warn: agora.WARN_CODE_TYPE, msg: string) => void;
-    /** Reports an error during SDK runtime.
+    /** @en
+     * Reports an error during SDK runtime.
      *
      * In most cases, the SDK cannot fix the issue and resume running. The SDK requires the application to take
      * action or informs the user about the issue.
@@ -3386,12 +4469,13 @@ declare class AgoraRtcEvents {
      * invokes the [leaveChannel]{@link agora.leaveChannel} method to leave the channel.
      */
     onError: 
-    /**
+    /** @en
      * @param err Error code: [ERROR_CODE_TYPE]{@link agora.ERROR_CODE_TYPE}.
      * @param msg The error message.
      */
     (err: agora.ERROR_CODE_TYPE, msg: string) => void;
-    /** Occurs when a user joins a channel.
+    /** @en
+     * Occurs when a user joins a channel.
      *
      * This callback notifies the application that a user joins a specified channel when the application calls
      * the [joinChannel]{@link agora.joinChannel} method.
@@ -3400,25 +4484,27 @@ declare class AgoraRtcEvents {
      * If the `uid` is not specified in the `joinChannel` method, the server automatically assigns a `uid`.
      */
     onJoinChannelSuccess: 
-    /**
+    /** @en
      * @param channel The channel name.
      * @param uid User ID of the user joining the channel.
      * @param elapsed Time elapsed (ms) from the user calling the `joinChannel` method until the SDK triggers this callback.
      */
     (channel: string, uid: number, elapsed: number) => void;
-    /** Occurs when a user rejoins the channel after disconnection due to network problems.
+    /** @en
+     * Occurs when a user rejoins the channel after disconnection due to network problems.
      *
      * When a user loses connection with the server because of network problems, the SDK automatically tries to
      * reconnect and triggers this callback upon reconnection.
      */
     onRejoinChannelSuccess: 
-    /**
+    /** @en
      * @param channel The channel name.
      * @param uid User ID of the user rejoining the channel.
      * @param elapsed Time elapsed (ms) from starting to reconnect until the SDK triggers this callback.
      */
     (channel: string, uid: number, elapsed: number) => void;
-    /** Occurs when a user leaves the channel.
+    /** @en
+     * Occurs when a user leaves the channel.
      *
      * This callback notifies the application that a user leaves the channel when the application calls the
      * [leaveChannel]{@link agora.leaveChannel} method.
@@ -3426,11 +4512,12 @@ declare class AgoraRtcEvents {
      * The application retrieves information, such as the call duration and statistics.
      */
     onLeaveChannel: 
-    /**
+    /** @en
      * @param stats The statistics of the call: [RtcStats]{@link agora.RtcStats}.
      */
     (stats: agora.RtcStats) => void;
-    /** Occurs when the user role switches in the live interactive streaming. For example, from a host to an audience or vice versa.
+    /** @en
+     * Occurs when the user role switches in the live interactive streaming. For example, from a host to an audience or vice versa.
      *
      * This callback notifies the application of a user role switch when the application calls the
      * [setClientRole]{@link agora.setClientRole} method.
@@ -3439,12 +4526,13 @@ declare class AgoraRtcEvents {
      * after joining the channel.
      */
     onClientRoleChanged: 
-    /**
+    /** @en
      * @param oldRole Role that the user switches from: [CLIENT_ROLE_TYPE]{@link agora.CLIENT_ROLE_TYPE}.
      * @param newRole Role that the user switches to: [CLIENT_ROLE_TYPE]{@link agora.CLIENT_ROLE_TYPE}.
      */
     (oldRole: agora.CLIENT_ROLE_TYPE, newRole: agora.CLIENT_ROLE_TYPE) => void;
-    /** Occurs when a remote user (`COMMUNICATION`)/ host (`LIVE_BROADCASTING`) joins the channel.
+    /** @en
+     * Occurs when a remote user (`COMMUNICATION`)/ host (`LIVE_BROADCASTING`) joins the channel.
      *
      * - `COMMUNICATION` profile: This callback notifies the application that another user joins the channel. If other users are
      * already in the channel, the SDK also reports to the application on the existing users.
@@ -3466,12 +4554,13 @@ declare class AgoraRtcEvents {
      * - When a web application joins the channel, the SDK triggers this callback as long as the web application publishes streams.
      */
     onUserJoined: 
-    /**
+    /** @en
      * @param uid User ID of the user or host joining the channel.
      * @param elapsed Time delay (ms) from the local user calling the `joinChannel` method until the SDK triggers this callback.
      */
     (uid: number, elapsed: number) => void;
-    /** Occurs when a remote user (`COMMUNICATION`)/ host (`LIVE_BROADCASTING`) leaves the channel.
+    /** @en
+     * Occurs when a remote user (`COMMUNICATION`)/ host (`LIVE_BROADCASTING`) leaves the channel.
      *
      * Reasons why the user is offline:
      * - Leave the channel: When the user/host leaves the channel, the user/host sends a goodbye message. When the message is received,
@@ -3481,34 +4570,37 @@ declare class AgoraRtcEvents {
      * for more reliable offline detection.
      */
     onUserOffline: 
-    /**
+    /** @en
      * @param uid User ID of the user leaving the channel or going offline.
      * @param reason Reason why the user is offline: [USER_OFFLINE_REASON_TYPE]{@link agora.USER_OFFLINE_REASON_TYPE}.
      */
     (uid: number, reason: agora.USER_OFFLINE_REASON_TYPE) => void;
-    /** Reports the last mile network quality of the local user once every two seconds before the user joins the channel.
+    /** @en
+     * Reports the last mile network quality of the local user once every two seconds before the user joins the channel.
      *
      * Last mile refers to the connection between the local device and Agora edge server. After the application calls the
      * [enableLastmileTest]{@link agora.enableLastmileTest} method, this callback reports once every two seconds the uplink and
      * downlink last mile network conditions of the local user before the user joins the channel.
      */
     onLastmileQuality: 
-    /**
+    /** @en
      * @param quality The last mile network quality: [QUALITY_TYPE]{@link agora.QUALITY_TYPE}.
      */
     (quality: agora.QUALITY_TYPE) => void;
-    /** Reports the last-mile network probe result.
+    /** @en
+     * Reports the last-mile network probe result.
      *
      * The SDK triggers this callback within 30 seconds after the app calls the
      * [startLastmileProbeTest]{@link agora.startLastmileProbeTest} method.
      */
     onLastmileProbeResult: 
-    /**
+    /** @en
      * @param result The uplink and downlink last-mile network probe test result. See
      * [LastmileProbeResult]{@link agora.LastmileProbeResult}.
      */
     (result: agora.LastmileProbeResult) => void;
-    /** Occurs when the connection between the SDK and the server is interrupted.
+    /** @en
+     * Occurs when the connection between the SDK and the server is interrupted.
      *
      * @deprecated This method is deprecated and replaced by the [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}
      * callback.
@@ -3529,7 +4621,8 @@ declare class AgoraRtcEvents {
      * the channel.
      */
     onConnectionInterrupted: () => void;
-    /** Occurs when the SDK cannot reconnect to Agora edge server 10 seconds after its connection to the server is interrupted.
+    /** @en
+     * Occurs when the SDK cannot reconnect to Agora edge server 10 seconds after its connection to the server is interrupted.
      *
      * The SDK triggers this callback when it cannot connect to the server 10 seconds after calling the
      * [joinChannel]{@link agora.joinChannel} method, whether or not it is in the channel.
@@ -3544,23 +4637,26 @@ declare class AgoraRtcEvents {
      * rejoining the channel.
      */
     onConnectionLost: () => void;
-    /** Occurs when your connection is banned by the Agora Server.
+    /** @en
+     * Occurs when your connection is banned by the Agora Server.
      *
      * @deprecated This method is deprecated and replaced by the
      * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged} callback.
      */
     onConnectionBanned: () => void;
-    /** Occurs when a method is executed by the SDK.
+    /** @en
+     * Occurs when a method is executed by the SDK.
      */
     onApiCallExecuted: 
-    /**
+    /** @en
      * @param err The error code ([ERROR_CODE_TYPE]{@link agora.ERROR_CODE_TYPE}) returned by the SDK when a method call fails.
      * If the SDK returns 0, then the method call is successful.
      * @param api The method executed by the SDK.
      * @param result The result of the method call.
      */
     (err: agora.ERROR_CODE_TYPE, api: string, result: string) => void;
-    /** Occurs when the token expires.
+    /** @en
+     * Occurs when the token expires.
      *
      * After a token is specified by calling the [joinChannel]{@link agora.joinChannel} method, if the SDK losses connection
      * with the Agora server due to network issues, the token may expire after a certain period of time and a new token may be
@@ -3569,7 +4665,8 @@ declare class AgoraRtcEvents {
      * This callback notifies the app to generate a new token and call `joinChannel` to rejoin the channel with the new token.
      */
     onRequestToken: () => void;
-    /** Occurs when the token expires in 30 seconds.
+    /** @en
+     * Occurs when the token expires in 30 seconds.
      *
      * The user becomes offline if the token used in the [joinChannel]{@link agora.joinChannel} method expires. The SDK
      * triggers this callback 30 seconds before the token expires to remind the application to get a new token. Upon
@@ -3577,11 +4674,12 @@ declare class AgoraRtcEvents {
      * to pass the new token to the SDK.
      */
     onTokenPrivilegeWillExpire: 
-    /**
+    /** @en
      * @param token The token that expires in 30 seconds.
      */
     (token: string) => void;
-    /** Reports the statistics of the audio stream from each remote user/host.
+    /** @en
+     * Reports the statistics of the audio stream from each remote user/host.
      *
      * @deprecated This method is deprecated. Use the [onRemoteAudioStats]{@link AgoraRtcEvents.onRemoteAudioStats} callback instead.
      *
@@ -3589,7 +4687,7 @@ declare class AgoraRtcEvents {
      * audio stream. If a channel has multiple users/hosts sending audio streams, the SDK triggers this callback as many times.
      */
     onAudioQuality: 
-    /**
+    /** @en
      * @param uid User ID of the speaker.
      * @param quality Audio quality of the user: [QUALITY_TYPE]{@link agora.QUALITY_TYPE}.
      * @param delay Time delay (ms) of sending the audio packet from the sender to the receiver, including the time delay of
@@ -3597,23 +4695,25 @@ declare class AgoraRtcEvents {
      * @param lost Packet loss rate (%) of the audio packet sent from the sender to the receiver.
      */
     (uid: number, quality: agora.QUALITY_TYPE, delay: number, lost: number) => void;
-    /** Reports the statistics of the current call.
+    /** @en
+     * Reports the statistics of the current call.
      *
      * The SDK triggers this callback once every two seconds after the user joins the channel.
      */
     onRtcStats: 
-    /**
-     * @param stats Statistics of the `agora`: [RtcStats]{@link agora.RtcStats}.
+    /** @en
+     * @param stats Statistics of the Agora engine: [RtcStats]{@link agora.RtcStats}.
      */
     (stats: agora.RtcStats) => void;
-    /** Reports the last mile network quality of each user in the channel once every two seconds.
+    /** @en
+     * Reports the last mile network quality of each user in the channel once every two seconds.
      *
      * Last mile refers to the connection between the local device and Agora edge server. This callback reports once every two
      * seconds the last mile network conditions of each user in the channel. If a channel includes multiple users, the SDK triggers
      * this callback as many times.
      */
     onNetworkQuality: 
-    /**
+    /** @en
      * @param uid User ID. The network quality of the user with this `uid` is reported. If `uid` is 0, the local network quality
      * is reported.
      * @param txQuality Uplink transmission quality rating of the user in terms of the transmission bitrate, packet loss rate,
@@ -3626,24 +4726,25 @@ declare class AgoraRtcEvents {
      * of the downlink network. See [QUALITY_TYPE]{@link agora.QUALITY_TYPE}.
      */
     (uid: number, txQuality: agora.QUALITY_TYPE, rxQuality: agora.QUALITY_TYPE) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Reports the statistics of the local video stream.
      *
      * The SDK triggers this callback once every two seconds for each
      * user/host. If there are multiple users/hosts in the channel, the SDK
      * triggers this callback as many times.
      *
-     * @note
-     * If you have called the [enableDualStreamMode]{@link agora.enableDualStreamMode} method, the
+     * @note If you have called the [enableDualStreamMode]{@link agora.enableDualStreamMode} method, the
      * [onLocalVideoStats]{@link agora.onLocalVideoStats} callback reports the statistics of the high-video
      * stream (high bitrate, and high-resolution video stream).
      */
     onLocalVideoStats: 
-    /**
+    /** @en
      * @param stats Statistics of the local video stream. See [LocalVideoStats]{@link agora.LocalVideoStats}.
      */
     (stats: agora.LocalVideoStats) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Reports the statistics of the video stream from each remote user/host.
      *
      * The SDK triggers this callback once every two seconds for each remote
@@ -3651,20 +4752,22 @@ declare class AgoraRtcEvents {
      * triggers this callback as many times.
      */
     onRemoteVideoStats: 
-    /**
+    /** @en
      * @param stats Statistics of the remote video stream. See [RemoteVideoStats]{@link agora.RemoteVideoStats}.
      */
     (stats: agora.RemoteVideoStats) => void;
-    /** Reports the statistics of the local audio stream.
+    /** @en
+     * Reports the statistics of the local audio stream.
      *
      * The SDK triggers this callback once every two seconds.
      */
     onLocalAudioStats: 
-    /**
+    /** @en
      * @param stats The statistics of the local audio stream. See [LocalAudioStats]{@link agora.LocalAudioStats}.
      */
     (stats: agora.LocalAudioStats) => void;
-    /** Reports the statistics of the audio stream from each remote user/host.
+    /** @en
+     * Reports the statistics of the audio stream from each remote user/host.
      *
      * This callback replaces the [onAudioQuality]{@link AgoraRtcEvents.onAudioQuality} callback.
      *
@@ -3672,11 +4775,12 @@ declare class AgoraRtcEvents {
      * users, the SDK triggers this callback as many times.
      */
     onRemoteAudioStats: 
-    /**
+    /** @en
      * @param stats The statistics of the received remote audio streams. See [RemoteAudioStats]{@link agora.RemoteAudioStats}.
      */
     (stats: agora.RemoteAudioStats) => void;
-    /** Occurs when the local audio state changes.
+    /** @en
+     * Occurs when the local audio state changes.
      * This callback indicates the state change of the local audio stream,
      * including the state of the audio recording and encoding, and allows
      * you to troubleshoot issues when exceptions occur.
@@ -3686,12 +4790,13 @@ declare class AgoraRtcEvents {
      * see the `error` parameter for details.
      */
     onLocalAudioStateChanged: 
-    /**
+    /** @en
      * @param state State of the local audio. See [LOCAL_AUDIO_STREAM_STATE]{@link agora.LOCAL_AUDIO_STREAM_STATE}.
      * @param error The error information of the local audio. See [LOCAL_AUDIO_STREAM_ERROR]{@link agora.LOCAL_AUDIO_STREAM_ERROR}.
      */
     (state: agora.LOCAL_AUDIO_STREAM_STATE, error: agora.LOCAL_AUDIO_STREAM_ERROR) => void;
-    /** Occurs when the remote audio state changes.
+    /** @en
+     * Occurs when the remote audio state changes.
      *
      * This callback indicates the state change of the remote audio stream.
      *
@@ -3699,7 +4804,7 @@ declare class AgoraRtcEvents {
      * `LIVE_BROADCASTING` profile) in the channel exceeds 17.
      */
     onRemoteAudioStateChanged: 
-    /**
+    /** @en
      * @param uid ID of the remote user whose audio state changes.
      * @param state State of the remote audio. See [REMOTE_AUDIO_STATE]{@link agora.REMOTE_AUDIO_STATE}.
      * @param reason The reason of the remote audio state change.
@@ -3708,36 +4813,40 @@ declare class AgoraRtcEvents {
      * triggers this callback.
      */
     (uid: number, state: agora.REMOTE_AUDIO_STATE, reason: agora.REMOTE_AUDIO_STATE_REASON, elapsed: number) => void;
-    /** Occurs when the audio publishing state changes.
+    /** @en
+     * Occurs when the audio publishing state changes.
      *
      * This callback indicates the publishing state change of the local audio stream.
      */
     onAudioPublishStateChanged: 
-    /**
+    /** @en
      * @param channel The channel name.
      * @param oldState The previous publishing state. For details, see [STREAM_PUBLISH_STATE]{@link agora.STREAM_PUBLISH_STATE}.
      * @param newState The current publishing state. For details, see [STREAM_PUBLISH_STATE]{@link agora.STREAM_PUBLISH_STATE}.
      * @param elapseSinceLastState The time elapsed (ms) from the previous state to the current state.
      */
     (channel: string, oldState: agora.STREAM_PUBLISH_STATE, newState: agora.STREAM_PUBLISH_STATE, elapseSinceLastState: number) => void;
-    /** @ignore Occurs when the video publishing state changes.
+    /** @en
+     * @ignore
+     * Occurs when the video publishing state changes.
      *
      * This callback indicates the publishing state change of the local video stream.
      */
     onVideoPublishStateChanged: 
-    /**
+    /** @en
      * @param channel The channel name.
      * @param oldState The previous publishing state. For details, see [STREAM_PUBLISH_STATE]{@link agora.STREAM_PUBLISH_STATE}.
      * @param newState The current publishing state. For details, see [STREAM_PUBLISH_STATE]{@link agora.STREAM_PUBLISH_STATE}.
      * @param elapseSinceLastState The time elapsed (ms) from the previous state to the current state.
      */
     (channel: string, oldState: agora.STREAM_PUBLISH_STATE, newState: agora.STREAM_PUBLISH_STATE, elapseSinceLastState: number) => void;
-    /** Occurs when the audio subscribing state changes.
+    /** @en
+     * Occurs when the audio subscribing state changes.
      *
      * This callback indicates the subscribing state change of a remote audio stream.
      */
     onAudioSubscribeStateChanged: 
-    /**
+    /** @en
      * @param channel The channel name.
      * @param uid The ID of the remote user.
      * @param oldState The previous subscribing state. For details, see [STREAM_SUBSCRIBE_STATE]{@link agora.STREAM_SUBSCRIBE_STATE}.
@@ -3745,13 +4854,14 @@ declare class AgoraRtcEvents {
      * @param elapseSinceLastState The time elapsed (ms) from the previous state to the current state.
      */
     (channel: string, uid: number, oldState: agora.STREAM_SUBSCRIBE_STATE, newState: agora.STREAM_SUBSCRIBE_STATE, elapseSinceLastState: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the audio subscribing state changes.
      *
      * This callback indicates the subscribing state change of a remote video stream.
      */
     onVideoSubscribeStateChanged: 
-    /**
+    /** @en
      * @param channel The channel name.
      * @param uid The ID of the remote user.
      * @param oldState The previous subscribing state. For details, see [STREAM_SUBSCRIBE_STATE]{@link agora.STREAM_SUBSCRIBE_STATE}.
@@ -3759,67 +4869,61 @@ declare class AgoraRtcEvents {
      * @param elapseSinceLastState The time elapsed (ms) from the previous state to the current state.
      */
     (channel: string, uid: number, oldState: agora.STREAM_SUBSCRIBE_STATE, newState: agora.STREAM_SUBSCRIBE_STATE, elapseSinceLastState: number) => void;
-    /** Reports which users are speaking, the speakers' volume and whether the local user is speaking.
+    /** @en
+     * Reports the volume information of users.
      *
-     * This callback reports the IDs and volumes of the loudest speakers (at most 3 users) at the moment in the channel, and whether
-     * the local user is speaking.
+     * By default, this callback is disabled. You can enable it by calling [enableAudioVolumeIndication]{@link agora.enableAudioVolumeIndication}.
+     * Once this callback is enabled and users send streams in the channel, the SDK triggers the `onAudioVolumeIndication` callback at
+     * the time interval set in `enableAudioVolumeIndication`.
      *
-     * By default, this callback is disabled. You can enable it by calling the
-     * [enableAudioVolumeIndication]{@link agora.enableAudioVolumeIndication} method. Once enabled, this callback
-     * is triggered at the set interval, regardless of whether a user speaks or not.
-     * The SDK triggers two independent `onAudioVolumeIndication` callbacks at one time, which separately report the volume
-     * information of the local user and all the remote speakers. For more information, see the detailed parameter descriptions.
+     * The SDK triggers two independent `onAudioVolumeIndication` callbacks simultaneously, which separately report the volume
+     * information of the local user who sends a stream and the remote users (up to three) whose instantaneous volumes are the highest.
      *
-     * **Note**
-     * - To enable the voice activity detection of the local user, ensure that you set `report_vad`(true) in the
-     * `enableAudioVolumeIndication` method.
-     * - Calling the [muteLocalAudioStream]{@link agora.muteLocalAudioStream} method affects the SDK's behavior:
-     *   - If the local user calls the [muteLocalAudioStream]{@link agora.muteLocalAudioStream} method, the SDK stops triggering
-     *  the local user's callback.
-     *   - 20 seconds after a remote speaker calls the `muteLocalAudioStream` method, the remote speakers' callback excludes this
-     *  remote user's information; 20 seconds after all remote users call the `muteLocalAudioStream` method, the SDK stops triggering
-     *  the remote speakers' callback.
-     * - An empty `speakers` array in the `onAudioVolumeIndication` callback suggests that no remote user is speaking at the moment.
+     * @note After you enable this callback, calling [muteLocalAudioStream]{@link agora.muteLocalAudioStream} affects the SDK's behavior
+     * as follows:
+     *
+     * - If the local user calls `muteLocalAudioStream`, the SDK stops triggering the local user's callback.
+     * - 20 seconds after a remote user whose volume is one of the three highest calls `muteLocalAudioStream`, the remote users' callback
+     * excludes this remote user's information; 20 seconds after all remote users call muteLocalAudioStream, the SDK stops triggering the
+     * remote users' callback.
      */
     onAudioVolumeIndication: 
-    /**
-     * @param speakers [AudioVolumeInfo]{@link agora.AudioVolumeInfo} array:
-     * - In the local user's callback, this struct contains the following members:
-     *   - `uid` = 0,
-     *   - `volume` = `totalVolume`, which reports the sum of the voice volume and audio-mixing volume of the local user, and
-     *   - `vad`, which reports the voice activity status of the local user.
-     * - In the remote speakers' callback, this array contains the following members:
-     *   - `uid` of the remote speaker,
-     *   - `volume`, which reports the sum of the voice volume and audio-mixing volume of each remote speaker, and
-     *   - `vad` = 0.
-     *
-     * An empty speakers array in the callback indicates that no remote user is speaking at the moment.
-     * @param speakerNumber Total number of speakers. The value range is [0, 3].
-     * - In the local user’s callback, `speakerNumber` = 1, regardless of whether the local user speaks or not.
-     * - In the remote speakers' callback, the callback reports the IDs and volumes of the three loudest speakers when there are more
-     * than three remote users in the channel, and `speakerNumber` = 3.
+    /** @en
+     * @param speakers The volume information of users. See [AudioVolumeInfo]{@link agora.AudioVolumeInfo}.
+     * An empty speakers array in the callback indicates that no remote user is in the channel or sending a stream at the moment.
+     * @param speakerNumber Total number of users.
+     * - In the local user’s callback, when the local user sends a stream: `speakerNumber` = 1.
+     * - In the remote users' callback, the value ranges between 0 and 3. If the number of remote users who send streams is
+     * greater than or equal to three, `speakerNumber` = 3.
      * @param totalVolume Total volume after audio mixing. The value ranges between 0 (lowest volume) and 255 (highest volume).
-     * - In the local user’s callback, `totalVolume` is the sum of the voice volume and audio-mixing volume of the local user.
-     * - In the remote speakers' callback, `totalVolume` is the sum of the voice volume and audio-mixing volume of all the remote
-     * speakers.
+     * - In the local user’s callback, `totalVolume` is the volume of the local user who sends a stream.
+     * - In the remote users' callback, `totalVolume` is the sum of the volume of all remote users (at most three) whose
+     * instantaneous volumes are the highest.
+     *
+     * If the user calls [startAudioMixing]{@link agora.startAudioMixing}, `totalVolume` is the sum of the voice volume and audio-mixing volume.
      */
     (speakers: agora.AudioVolumeInfo[], speakerNumber: number, totalVolume: number) => void;
-    /** Reports which user is the loudest speaker.
+    /** @en
+     * Occurs when the most active speaker is detected.
      *
-     * If the user enables the audio volume indication by calling the
-     * [enableAudioVolumeIndication]{@link agora.enableAudioVolumeIndication} method, this callback returns the
-     * `uid` of the active speaker detected by the audio volume detection module of the SDK.
+     * After a successful call of [enableAudioVolumeIndication]{@link agora.enableAudioVolumeIndication}, the SDK continuously
+     * determines which remote user has the loudest volume. The remote user determined to be the loudest and most continuous speaker
+     * is considered the most active user.
      *
-     * **Note**
-     * - To receive this callback, you need to call the `enableAudioVolumeIndication` method.
-     * - This callback returns the user ID of the user with the highest voice volume during a period of time, instead of at the moment.
+     * When the number of users is more than or equal to two and an active speaker exists, the SDK triggers this callback and reports
+     * the `uid` of the most active speaker.
+     *
+     * - If the most active speaker is always the same user, the SDK triggers this callback only once.
+     * - If the most active speaker changes to another user, the SDK triggers this callback again and reports the `uid` of the new
+     * active speaker.
      */
     onActiveSpeaker: 
-    /**
+    /** @en
      * @param uid User ID of the active speaker. A `uid` of 0 represents the local user.
      */
     (uid: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the video stops playing.
      *
      * @deprecated This method is deprecated. Use `LOCAL_VIDEO_STREAM_STATE_STOPPED(0)` in the
@@ -3829,11 +4933,12 @@ declare class AgoraRtcEvents {
      * view) after the video stops playing.
      */
     onVideoStopped: () => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the first local video frame is displayed/rendered on the local video view.
      */
     onFirstLocalVideoFrame: 
-    /**
+    /** @en
      * @param width Width (px) of the first local video frame.
      * @param height Height (px) of the first local video frame.
      * @param elapsed Time elapsed (ms) from the local user calling the [joinChannel]{@link agora.joinChannel} method until the
@@ -3841,7 +4946,8 @@ declare class AgoraRtcEvents {
      * method, then `elapsed` is the time elapsed from calling the `startPreview` method until the SDK triggers this callback.
      */
     (width: number, height: number, elapsed: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the first video frame is published.
      *
      * The SDK triggers this callback under one of the following circumstances:
@@ -3851,12 +4957,13 @@ declare class AgoraRtcEvents {
      * - The local client calls [disableVideo]{@link agora.disableVideo} and [enableVideo]{@link agora.enableVideo} in sequence.
      */
     onFirstLocalVideoFramePublished: 
-    /**
-     * @param elapsed The time elapsed (ms) from the local client calling `joinChannel` until the SDK
+    /** @en
+     * @param elapsed The time elapsed (ms) from the local client calling [joinChannel]{@link agora.joinChannel} until the SDK
      * triggers this callback.
      */
     (elapsed: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the first remote video frame is received and decoded.
      *
      * @deprecated This callback is deprecated and replaced by the [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged()}
@@ -3877,7 +4984,7 @@ declare class AgoraRtcEvents {
      * The application can configure the user view settings in this callback.
      */
     onFirstRemoteVideoDecoded: 
-    /**
+    /** @en
      * @param uid User ID of the remote user sending the video stream.
      * @param width Width (px) of the video stream.
      * @param height Height (px) of the video stream.
@@ -3885,14 +4992,15 @@ declare class AgoraRtcEvents {
      * triggers this callback.
      */
     (uid: number, width: number, height: number, elapsed: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the first remote video frame is rendered.
      *
      * The SDK triggers this callback when the first frame of the remote video is displayed in the user's video window.
      * The application can retrieve the time elapsed from a user joining the channel until the first video frame is displayed.
      */
     onFirstRemoteVideoFrame: 
-    /**
+    /** @en
      * @param uid User ID of the remote user sending the video stream.
      * @param width Width (px) of the video frame.
      * @param height Height (px) of the video stream.
@@ -3900,7 +5008,8 @@ declare class AgoraRtcEvents {
      * triggers this callback.
      */
     (uid: number, width: number, height: number, elapsed: number) => void;
-    /** Occurs when a remote user's audio stream playback pauses/resumes.
+    /** @en
+     * Occurs when a remote user's audio stream playback pauses/resumes.
      *
      * @deprecated This method is deprecated, use the  [onRemoteAudioStateChanged]{@link AgoraRtcEvents.onRemoteAudioStateChanged}
      * callback instead.
@@ -3912,14 +5021,15 @@ declare class AgoraRtcEvents {
      * `LIVE_BROADCASTING` profile) in the channel exceeds 17.
      */
     onUserMuteAudio: 
-    /**
+    /** @en
      * @param uid User ID of the remote user.
      * @param muted Whether the remote user's audio stream is muted/unmuted:
      * - true: Muted.
      * - false: Unmuted.
      */
     (uid: number, muted: boolean) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when a remote user's video stream playback pauses/resumes.
      *
      * You can also use the [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged()} callback with the following
@@ -3936,19 +5046,20 @@ declare class AgoraRtcEvents {
      * `LIVE_BROADCASTING` profile) in the channel exceeds 17.
      */
     onUserMuteVideo: 
-    /**
+    /** @en
      * @param uid User ID of the remote user.
      * @param muted Whether the remote user's video stream playback is paused/resumed:
      * - true: Paused.
      * - false: Resumed.
      */
     (uid: number, muted: boolean) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when a specific remote user enables/disables the video
      * module.
      *
      * @deprecated This callback is deprecated and replaced by the
-     * [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged()} callback with the following parameters:
+     * [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged} callback with the following parameters:
      * - [REMOTE_VIDEO_STATE_STOPPED]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STOPPED} (0) and
      * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED} (5).
      * - [REMOTE_VIDEO_STATE_DECODING]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_DECODING} (2) and
@@ -3966,7 +5077,7 @@ declare class AgoraRtcEvents {
      * channel exceeds 17.
      */
     onUserEnableVideo: 
-    /**
+    /** @en
      * @param uid User ID of the remote user.
      * @param enabled Whether the remote user enables/disables the video
      * module:
@@ -3975,24 +5086,26 @@ declare class AgoraRtcEvents {
      * cannot send or receive any video stream.
      */
     (uid: number, enabled: boolean) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the audio device state changes.
      *
      * This callback notifies the application that the system's audio device state is changed. For example, a headset is
      * unplugged from the device.
      */
     onAudioDeviceStateChanged: 
-    /**
+    /** @en
      * @param deviceId The device ID.
      * @param deviceType Device type: [MEDIA_DEVICE_TYPE]{@link agora.MEDIA_DEVICE_TYPE}.
      * @param deviceState Device state: [MEDIA_DEVICE_STATE_TYPE]{@link agora.MEDIA_DEVICE_STATE_TYPE}.
      */
     (deviceId: string, deviceType: agora.MEDIA_DEVICE_TYPE, deviceState: agora.MEDIA_DEVICE_STATE_TYPE) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the volume of the playback device, microphone, or application changes.
      */
     onAudioDeviceVolumeChanged: 
-    /**
+    /** @en
      * @param deviceType Device type: [MEDIA_DEVICE_TYPE]{@link agora.MEDIA_DEVICE_TYPE}.
      * @param volume Volume of the device. The value ranges between 0 and 255.
      * @param muted
@@ -4000,7 +5113,8 @@ declare class AgoraRtcEvents {
      * - false: The audio device is not muted.
      */
     (deviceType: agora.MEDIA_DEVICE_TYPE, volume: number, muted: boolean) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the camera turns on and is ready to capture the video.
      *
      * @deprecated This method is deprecated. Use
@@ -4010,7 +5124,8 @@ declare class AgoraRtcEvents {
      * If the camera fails to turn on, fix the error reported in the [onError]{@link AgoraRtcEvents.onError} callback.
      */
     onCameraReady: () => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the camera focus area changes.
      *
      * The SDK triggers this callback when the local user changes the camera focus position by calling the
@@ -4018,14 +5133,15 @@ declare class AgoraRtcEvents {
      * @note This callback is for Android and iOS only.
      */
     onCameraFocusAreaChanged: 
-    /**
+    /** @en
      * @param x x coordinate of the changed camera focus area.
      * @param y y coordinate of the changed camera focus area.
      * @param width Width of the changed camera focus area.
      * @param height Height of the changed camera focus area.
      */
     (x: number, y: number, width: number, height: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Reports the face detection result of the local user. Applies to Android and iOS only.
      *
      * Once you enable face detection by calling [enableFaceDetection]{@link agora.enableFaceDetection} (true), you can get the
@@ -4042,7 +5158,7 @@ declare class AgoraRtcEvents {
      * Agora does not recommend using it for accurate calculation.
      */
     onFacePositionChanged: 
-    /**
+    /** @en
      * @param imageWidth The width (px) of the local video.
      * @param imageHeight The height (px) of the local video.
      * @param vecRectangle The position and size of the human face on the local video. See [Rectangle]{@link agora.Rectangle}
@@ -4056,7 +5172,8 @@ declare class AgoraRtcEvents {
      * @param numFaces The number of faces detected. If the value is 0, it means that no human face is detected.
      */
     (imageWidth: number, imageHeight: number, vecRectangle: agora.Rectangle[], vecDistance: number[], numFaces: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the camera exposure area changes.
      *
      * The SDK triggers this callback when the local user changes the camera exposure position by calling the
@@ -4065,16 +5182,17 @@ declare class AgoraRtcEvents {
      * @note This callback is for Android and iOS only.
      */
     onCameraExposureAreaChanged: 
-    /**
+    /** @en
      * @param x x coordinate of the changed camera exposure area.
      * @param y y coordinate of the changed camera exposure area.
      * @param width Width of the changed camera exposure area.
      * @param height Height of the changed camera exposure area.
      */
     (x: number, y: number, width: number, height: number) => void;
-    /** Occurs when the audio mixing file playback finishes.
+    /** @en
+     * Occurs when the audio mixing file playback finishes.
      *
-     * @deprecated  use [onAudioMixingStateChanged]{@link AgoraRtcEvents.onAudioMixingStateChanged} instead.
+     * @deprecated This method is deprecated. Use [onAudioMixingStateChanged]{@link AgoraRtcEvents.onAudioMixingStateChanged} instead.
      *
      * You can start an audio mixing file playback by calling the [startAudioMixing]{@link agora.startAudioMixing} method.
      * The SDK triggers this callback when the audio mixing file playback finishes.
@@ -4082,42 +5200,45 @@ declare class AgoraRtcEvents {
      * If the `startAudioMixing` method call fails, an error code returns in the [onError]{@link AgoraRtcEvents.onError} callback.
      */
     onAudioMixingFinished: () => void;
-    /** Occurs when the state of the local user's audio mixing file changes.
+    /** @en
+     * Occurs when the state of the local user's audio mixing file changes.
      *
-     * When you call the [startAudioMixing]{@link agora.startAudioMixing} method and the state of audio mixing file changes,
-     * the SDK triggers this callback.
-     * - When the audio mixing file plays, pauses playing, or stops playing, this callback returns 710, 711, or 713 in `state`,
-     * and 0 in `errorCode`.
-     * - When exceptions occur during playback, this callback returns 714 in `state` and an error in `errorCode`.
-     * - If the local audio mixing file does not exist, or if the SDK does not support the file format or cannot access the
-     * music file URL, the SDK returns `WARN_AUDIO_MIXING_OPEN_ERROR = 701`.
+     * When the state of the audio mixing file changes, the SDK triggers this callback and reports the audio mixing status and
+     * the error code of the audio playback failure.
+     *
+     * If the local audio mixing file does not exist, or if the SDK does not support the file format or cannot access the music
+     * file URL, the SDK returns [WARN_AUDIO_MIXING_OPEN_ERROR]{@link agora.WARN_AUDIO_MIXING_OPEN_ERROR} (701).
      */
     onAudioMixingStateChanged: 
-    /**
+    /** @en
      * @param state The state code. See [AUDIO_MIXING_STATE_TYPE]{@link agora.AUDIO_MIXING_STATE_TYPE}.
      * @param errorCode The error code. See [AUDIO_MIXING_ERROR_TYPE]{@link agora.AUDIO_MIXING_ERROR_TYPE}.
      */
     (state: agora.AUDIO_MIXING_STATE_TYPE, errorCode: agora.AUDIO_MIXING_ERROR_TYPE) => void;
-    /** Occurs when a remote user starts audio mixing.
+    /** @en
+     * Occurs when a remote user starts audio mixing.
      * When a remote user calls [startAudioMixing]{@link agora.startAudioMixing} to play the background music, the SDK reports
      * this callback.
      */
     onRemoteAudioMixingBegin: () => void;
-    /** Occurs when a remote user finishes audio mixing.
+    /** @en
+     * Occurs when a remote user finishes audio mixing.
      */
     onRemoteAudioMixingEnd: () => void;
-    /** Occurs when the local audio effect playback finishes.
+    /** @en
+     * Occurs when the local audio effect playback finishes.
      *
      * The SDK triggers this callback when the local audio effect file playback finishes.
      */
     onAudioEffectFinished: 
-    /**
+    /** @en
      * @param soundId ID of the local audio effect. Each local audio effect has a unique ID.
      */
     (soundId: number) => void;
-    /** Occurs when the SDK decodes the first remote audio frame for playback.
+    /** @en
+     * Occurs when the SDK decodes the first remote audio frame for playback.
      *
-     * @deprecated This callback is deprecated. Use `onRemoteAudioStateChanged` instead.
+     * @deprecated This callback is deprecated. Use [onRemoteAudioStateChanged]{@link AgoraRtcEvents.onRemoteAudioStateChanged} instead.
      *
      * This callback is triggered in either of the following scenarios:
      * - The remote user joins the channel and sends the audio stream.
@@ -4129,26 +5250,28 @@ declare class AgoraRtcEvents {
      *   - The remote user calls the [disableAudio]{@link agora.disableAudio} method to disable audio.
      */
     onFirstRemoteAudioDecoded: 
-    /**
+    /** @en
      * @param uid User ID of the remote user sending the audio stream.
      * @param elapsed Time elapsed (ms) from the local user calling the [joinChannel]{@link agora.joinChannel} method until the
      * SDK triggers this callback.
      */
     (uid: number, elapsed: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the video device state changes.
      *
      * @note On a Windows device with an external camera for video capturing, the video disables once the external camera is
      * unplugged.
      */
     onVideoDeviceStateChanged: 
-    /**
+    /** @en
      * @param deviceId The device ID of the video device that changes state.
      * @param deviceType Device type: [MEDIA_DEVICE_TYPE]{@link agora.MEDIA_DEVICE_TYPE}.
      * @param deviceState Device state: [MEDIA_DEVICE_STATE_TYPE]{@link agora.MEDIA_DEVICE_STATE_TYPE}.
      */
     (deviceId: string, deviceType: agora.MEDIA_DEVICE_TYPE, deviceState: agora.MEDIA_DEVICE_STATE_TYPE) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the local video stream state changes.
      *
      * This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you
@@ -4158,31 +5281,33 @@ declare class AgoraRtcEvents {
      * the local video capturing device is in use, so you have to make your own timeout judgment.
      */
     onLocalVideoStateChanged: 
-    /**
+    /** @en
      * @param localVideoState State type [LOCAL_VIDEO_STREAM_STATE]{@link agora.LOCAL_VIDEO_STREAM_STATE}. When the state is
      * `LOCAL_VIDEO_STREAM_STATE_FAILED(3)`, see the `error` parameter for details.
      * @param error The detailed error information: [LOCAL_VIDEO_STREAM_ERROR]{@link agora.LOCAL_VIDEO_STREAM_ERROR}.
      */
     (localVideoState: agora.LOCAL_VIDEO_STREAM_STATE, error: agora.LOCAL_VIDEO_STREAM_ERROR) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the video size or rotation of a specified user changes.
      */
     onVideoSizeChanged: 
-    /**
+    /** @en
      * @param uid User ID of the remote user or local user (0) whose video size or rotation changes.
      * @param width New width (pixels) of the video.
      * @param height New height (pixels) of the video.
      * @param rotation New rotation of the video [0 to 360).
      */
     (uid: number, width: number, height: number, rotation: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the remote video state changes.
      *
      * @note This callback does not work properly when the number of users (in the `COMMUNICATION` profile) or
      * hosts (in the `LIVE_BROADCASTING` profile) in the channel exceeds 17.
      */
     onRemoteVideoStateChanged: 
-    /**
+    /** @en
      * @param uid ID of the remote user whose video state changes.
      * @param state State of the remote video. See [REMOTE_VIDEO_STATE]{@link agora.REMOTE_VIDEO_STATE}.
      * @param reason The reason of the remote video state change. See
@@ -4191,12 +5316,13 @@ declare class AgoraRtcEvents {
      * [joinChannel]{@link agora.joinChannel} method until the SDK triggers this callback.
      */
     (uid: number, state: agora.REMOTE_VIDEO_STATE, reason: agora.REMOTE_VIDEO_STATE_REASON, elapsed: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when a specified remote user enables/disables the local video
      * capturing function.
      *
      * @deprecated This callback is deprecated and replaced by the
-     * [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged()} callback with the following parameters:
+     * [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged} callback with the following parameters:
      * - [REMOTE_VIDEO_STATE_STOPPED]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STOPPED} (0) and
      * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED} (5).
      * - [REMOTE_VIDEO_STATE_DECODING]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_DECODING} (2) and
@@ -4211,7 +5337,7 @@ declare class AgoraRtcEvents {
      * [enableLocalVideo]{@link agora.enableLocalVideo} method.
      */
     onUserEnableLocalVideo: 
-    /**
+    /** @en
      * @param uid User ID of the remote user.
      * @param enabled Whether the specified remote user enables/disables the
      * local video capturing function:
@@ -4222,26 +5348,28 @@ declare class AgoraRtcEvents {
      * receive the video streams from other users.
      */
     (uid: number, enabled: boolean) => void;
-    /** Occurs when the local user receives the data stream from the remote user within five seconds.
+    /** @en
+     * Occurs when the local user receives the data stream from the remote user within five seconds.
      *
      * The SDK triggers this callback when the local user receives the stream message that the remote user sends by calling the
      * [sendStreamMessage]{@link agora.sendStreamMessage} method.
      */
     onStreamMessage: 
-    /**
+    /** @en
      * @param uid User ID of the remote user sending the message.
      * @param streamId Stream ID.
      * @param data The data received by the local user.
      * @param length Length of the data in bytes.
      */
     (uid: number, streamId: number, data: Uint8Array, length: number) => void;
-    /** Occurs when the local user does not receive the data stream from the remote user within five seconds.
+    /** @en
+     * Occurs when the local user does not receive the data stream from the remote user within five seconds.
      *
      * The SDK triggers this callback when the local user fails to receive the stream message that the remote user sends by
      * calling the [sendStreamMessage]{@link agora.sendStreamMessage} method.
      */
     onStreamMessageError: 
-    /**
+    /** @en
      * @param uid User ID of the remote user sending the message.
      * @param streamId Stream ID.
      * @param code Error code: [ERROR_CODE_TYPE]{@link agora.ERROR_CODE_TYPE}.
@@ -4249,42 +5377,48 @@ declare class AgoraRtcEvents {
      * @param cached Number of incoming cached messages when the data stream is interrupted.
      */
     (uid: number, streamId: number, code: number, missed: number, cached: number) => void;
-    /** Occurs when the media engine loads.
+    /** @en
+     * Occurs when the media engine loads.
      */
     onMediaEngineLoadSuccess: () => void;
-    /** Occurs when the media engine call starts.
+    /** @en
+     * Occurs when the media engine call starts.
      */
     onMediaEngineStartCallSuccess: () => void;
-    /** Occurs when the state of the media stream relay changes.
+    /** @en
+     * Occurs when the state of the media stream relay changes.
      *
      * The SDK returns the state of the current media relay with any error
      * message.
      */
     onChannelMediaRelayStateChanged: 
-    /**
+    /** @en
      * @param state The state code in [CHANNEL_MEDIA_RELAY_STATE]{@link agora.CHANNEL_MEDIA_RELAY_STATE}.
      * @param code The error code in [CHANNEL_MEDIA_RELAY_ERROR]{@link agora.CHANNEL_MEDIA_RELAY_ERROR}.
      */
     (state: agora.CHANNEL_MEDIA_RELAY_STATE, code: agora.CHANNEL_MEDIA_RELAY_ERROR) => void;
-    /** Reports events during the media stream relay.
+    /** @en
+     * Reports events during the media stream relay.
      */
     onChannelMediaRelayEvent: 
-    /**
+    /** @en
      * @param code The event code in [CHANNEL_MEDIA_RELAY_EVENT]{@link agora.CHANNEL_MEDIA_RELAY_EVENT}.
      */
     (code: agora.CHANNEL_MEDIA_RELAY_EVENT) => void;
-    /** Occurs when the engine sends the first local audio frame.
+    /** @en
+     * Occurs when the engine sends the first local audio frame.
      *
      * @deprecated This callback is deprecated. Use the
      * [onFirstLocalAudioFramePublished]{@link AgoraRtcEvents.onFirstLocalAudioFramePublished} callback instead.
      */
     onFirstLocalAudioFrame: 
-    /**
+    /** @en
      * @param elapsed Time elapsed (ms) from the local user calling [joinChannel]{@link agora.joinChannel} until the SDK triggers
      * this callback.
      */
     (elapsed: number) => void;
-    /** Occurs when the first audio frame is published.
+    /** @en
+     * Occurs when the first audio frame is published.
      *
      * The SDK triggers this callback under one of the following circumstances:
      * - The local client enables the audio module and calls [joinChannel]{@link agora.joinChannel} successfully.
@@ -4293,23 +5427,25 @@ declare class AgoraRtcEvents {
      * - The local client calls [disableAudio]{@link agora.disableAudio} and [enableAudio]{@link agora.enableAudio} in sequence.
      */
     onFirstLocalAudioFramePublished: 
-    /**
+    /** @en
      * @param elapsed The time elapsed (ms) from the local client calling [joinChannel]{@link agora.joinChannel} until the
      * SDK triggers this callback.
      */
     (elapsed: number) => void;
-    /** Occurs when the engine receives the first audio frame from a specific remote user.
+    /** @en
+     * Occurs when the engine receives the first audio frame from a specific remote user.
      *
-     * @deprecated This callback is deprecated. Use `onRemoteAudioStateChanged` instead.
+     * @deprecated This callback is deprecated. Use [onRemoteAudioStateChanged]{@link AgoraRtcEvents.onRemoteAudioStateChanged} instead.
      */
     onFirstRemoteAudioFrame: 
-    /**
+    /** @en
      * @param uid User ID of the remote user.
      * @param elapsed Time elapsed (ms) from the remote user calling [joinChannel]{@link agora.joinChannel} until the SDK triggers
      * this callback.
      */
     (uid: number, elapsed: number) => void;
-    /** Occurs when the state of the RTMP streaming changes.
+    /** @en
+     * Occurs when the state of the RTMP streaming changes.
      *
      * The SDK triggers this callback to report the result of the local user calling the
      * [addPublishStreamUrl]{@link agora.addPublishStreamUrl} or [removePublishStreamUrl]{@link agora.removePublishStreamUrl} method.
@@ -4318,33 +5454,39 @@ declare class AgoraRtcEvents {
      * the detailed error descriptions in the `errCode` parameter.
      */
     onRtmpStreamingStateChanged: 
-    /**
+    /** @en
      * @param url The RTMP URL address.
      * @param state The RTMP streaming state. See: [RTMP_STREAM_PUBLISH_STATE]{@link agora.RTMP_STREAM_PUBLISH_STATE}.
      * @param errCode The detailed error information for streaming.
      * See [RTMP_STREAM_PUBLISH_ERROR]{@link agora.RTMP_STREAM_PUBLISH_ERROR}.
      */
     (url: string, state: agora.RTMP_STREAM_PUBLISH_STATE, errCode: agora.RTMP_STREAM_PUBLISH_ERROR) => void;
-    /** Reports events during the RTMP streaming.
+    /** @en
+     * Reports events during the RTMP streaming.
      */
     onRtmpStreamingEvent: 
-    /**
+    /** @en
      * @param url The RTMP streaming URL.
      * @param eventCode The event code. See [RTMP_STREAMING_EVENT]{@link agora.RTMP_STREAMING_EVENT}.
      */
     (url: string, eventCode: agora.RTMP_STREAMING_EVENT) => void;
-    /** Reports the result of calling the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method. (CDN live only.)
+    /** @en
+     * Reports the result of calling the [addPublishStreamUrl]{@link agora.addPublishStreamUrl} method. (CDN live only.)
      *
      * @deprecated This method is deprecated, use the [onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged}
      * callback instead.
      */
     onStreamPublished: 
-    /**
+    /** @en
      * @param url The RTMP URL address.
      * @param error Error code: [ERROR_CODE_TYPE]{@link agora.ERROR_CODE_TYPE}. Main errors include:
      * - 0(ERR_OK): The publishing succeeds.
      * - -1(ERR_FAILED): The publishing fails.
-     * - -2(ERR_INVALID_ARGUMENT): Invalid argument used. If, for example, you did not call [setLiveTranscoding]{@link agora.setLiveTranscoding} to configure LiveTranscoding before calling [addPublishStreamUrl]{@link agora.addPublishStreamUrl} , the SDK reports [ERR_INVALID_ARGUMENT]{@link agora.ERR_INVALID_ARGUMENT}.        - [ERR_TIMEDOUT]{@link agora.ERR_TIMEDOUT} (10): The publishing timed out.
+     * - -2(ERR_INVALID_ARGUMENT): Invalid argument used. If, for example, you did not call
+     * [setLiveTranscoding]{@link agora.setLiveTranscoding} to configure LiveTranscoding before calling
+     * [addPublishStreamUrl]{@link agora.addPublishStreamUrl} , the SDK reports
+     * [ERR_INVALID_ARGUMENT]{@link agora.ERR_INVALID_ARGUMENT}.
+     * - -10(ERR_TIMEDOUT): The publishing timed out.
      * - -19(ERR_ALREADY_IN_USE): The chosen URL address is already in use for CDN live streaming.
      * - -22(ERR_RESOURCE_LIMITED): The backend system does not have enough resources for the CDN live streaming.
      * - -130(ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH): You cannot publish an encrypted stream.
@@ -4355,7 +5497,8 @@ declare class AgoraRtcEvents {
      * - -156(ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED)
      */
     (url: string, error: number) => void;
-    /** Reports the result of calling the [removePublishStreamUrl]{@link agora.removePublishStreamUrl} method. (CDN live only.)
+    /** @en
+     * Reports the result of calling the [removePublishStreamUrl]{@link agora.removePublishStreamUrl} method. (CDN live only.)
      *
      * @deprecated This method is deprecated, use the
      * [onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged} callback instead.
@@ -4363,11 +5506,11 @@ declare class AgoraRtcEvents {
      * This callback indicates whether you have successfully removed an RTMP stream from the CDN.
      */
     onStreamUnpublished: 
-    /**
+    /** @en
      * @param url The RTMP URL address.
      */
     (url: string) => void;
-    /** @ignore
+    /** @en
      * Occurs when the publisher's transcoding is updated.
      *
      * When the `LiveTranscoding` class in the [setLiveTranscoding]{@link agora.setLiveTranscoding} method updates, the SDK
@@ -4377,63 +5520,67 @@ declare class AgoraRtcEvents {
      * trigger the `onTranscodingUpdated` callback.
      */
     onTranscodingUpdated: () => void;
-    /** Occurs when a voice or video stream URL address is added to the live interactive streaming.
+    /** @en
+     * Occurs when a voice or video stream URL address is added to the live interactive streaming.
      */
     onStreamInjectedStatus: 
-    /**
+    /** @en
      * @param url The URL address of the externally injected stream.
      * @param uid User ID.
      * @param status State of the externally injected stream: [INJECT_STREAM_STATUS]{@link agora.INJECT_STREAM_STATUS}.
      */
     (url: string, uid: number, status: agora.INJECT_STREAM_STATUS) => void;
-    /** Occurs when the local audio route changes.
+    /** @en
+     * Occurs when the local audio route changes.
      *
      * The SDK triggers this callback when the local audio route switches to an earpiece, speakerphone, headset, or Bluetooth device.
      *
      * @note This callback is for Android and iOS only.
      */
     onAudioRouteChanged: 
-    /**
+    /** @en
      * @param routing Audio output routing. See: [AUDIO_ROUTE_TYPE]{@link agora.AUDIO_ROUTE_TYPE}.
      */
     (routing: agora.AUDIO_ROUTE_TYPE) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the published media stream falls back to an audio-only stream due to poor network conditions or switches back
      * to the video after the network conditions improve.
      *
      * If you call [setLocalPublishFallbackOption]{@link agora.setLocalPublishFallbackOption} and set `option` as
-     * [STREAM_FALLBACK_OPTION_AUDIO_ONLY,]{@link agora.STREAM_FALLBACK_OPTION_AUDIO_ONLY,} the SDK triggers this callback when the
-     * published stream falls back to audio-only mode due to poor uplink conditions, or when the audio stream switches back to the
-     * video after the uplink network condition improves.
+     * [STREAM_FALLBACK_OPTION_AUDIO_ONLY,]{@link agora.STREAM_FALLBACK_OPTIONS.STREAM_FALLBACK_OPTION_AUDIO_ONLY,} the SDK triggers
+     * this callback when the published stream falls back to audio-only mode due to poor uplink conditions, or when the audio stream
+     * switches back to the video after the uplink network condition improves.
      *
      * @note If the local stream fallbacks to the audio-only stream, the remote user receives the
      * [onUserMuteVideo]{@link AgoraRtcEvents.onUserMuteVideo} callback.
      */
     onLocalPublishFallbackToAudioOnly: 
-    /**
+    /** @en
      * @param isFallbackOrRecover Whether the published stream falls back to audio-only or switches back to the video:
      * - true: The published stream falls back to audio-only due to poor network conditions.
      * - false: The published stream switches back to the video after the network conditions improve.
      */
     (isFallbackOrRecover: boolean) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the remote media stream falls back to audio-only stream
      * due to poor network conditions or switches back to the video stream
      * after the network conditions improve.
      *
      * If you call
      * [setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption} and set
-     * `option` as [STREAM_FALLBACK_OPTION_AUDIO_ONLY,]{@link agora.STREAM_FALLBACK_OPTION_AUDIO_ONLY,} the SDK triggers this
+     * `option` as [STREAM_FALLBACK_OPTION_AUDIO_ONLY,]{@link agora.STREAM_FALLBACK_OPTIONS.STREAM_FALLBACK_OPTION_AUDIO_ONLY,} the SDK triggers this
      * callback when the remote media stream falls back to audio-only mode due
      * to poor uplink conditions, or when the remote media stream switches
      * back to the video after the uplink network condition improves.
      *
      * @note Once the remote media stream switches to the low stream due to
      * poor network conditions, you can monitor the stream switch between a
-     * high and low stream in the RemoteVideoStats callback.
+     * high and low stream in the [RemoteVideoStats]{@link agora.RemoteVideoStats} callback.
      */
     onRemoteSubscribeFallbackToAudioOnly: 
-    /**
+    /** @en
      * @param uid ID of the remote user sending the stream.
      * @param isFallbackOrRecover Whether the remotely subscribed media stream
      * falls back to audio-only or switches back to the video:
@@ -4443,7 +5590,8 @@ declare class AgoraRtcEvents {
      * video stream after the network conditions improved.
      */
     (uid: number, isFallbackOrRecover: boolean) => void;
-    /** Reports the transport-layer statistics of each remote audio stream.
+    /** @en
+     * Reports the transport-layer statistics of each remote audio stream.
      *
      * @deprecated This callback is deprecated and replaced by the
      * [onRemoteAudioStats]{@link agora.onRemoteAudioStats()} callback.
@@ -4453,7 +5601,7 @@ declare class AgoraRtcEvents {
      * the local user receives an audio packet from a remote user.
      */
     onRemoteAudioTransportStats: 
-    /**
+    /** @en
      * @param uid  User ID of the remote user sending the audio packet.
      * @param delay Network time delay (ms) from the remote user sending the
      * audio packet to the local user.
@@ -4463,7 +5611,8 @@ declare class AgoraRtcEvents {
      * from the remote user.
      */
     (uid: number, delay: number, lost: number, rxKBitRate: number) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Reports the transport-layer statistics of each remote video stream.
      *
      * @deprecated This callback is deprecated and replaced by the
@@ -4473,7 +5622,7 @@ declare class AgoraRtcEvents {
      * the local user receives a video packet from a remote user.
      */
     onRemoteVideoTransportStats: 
-    /**
+    /** @en
      * @param uid User ID of the remote user sending the video packet.
      * @param delay Network time delay (ms) from the remote user sending the
      * video packet to the local user.
@@ -4483,69 +5632,75 @@ declare class AgoraRtcEvents {
      * from the remote user.
      */
     (uid: number, delay: number, lost: number, rxKBitRate: number) => void;
-    /** Occurs when the microphone is enabled/disabled.
+    /** @en
+     * Occurs when the microphone is enabled/disabled.
      *
-     * @deprecated The [onMicrophoneEnabled]{@link agora.onMicrophoneEnabled()} callback is
+     * @deprecated The [onMicrophoneEnabled]{@link agora.onMicrophoneEnabled} callback is
      * deprecated. Use [LOCAL_AUDIO_STREAM_STATE_STOPPED]{@link agora.LOCAL_AUDIO_STREAM_STATE.LOCAL_AUDIO_STREAM_STATE_STOPPED} (0)
      * or [LOCAL_AUDIO_STREAM_STATE_RECORDING]{@link agora.LOCAL_AUDIO_STREAM_STATE.LOCAL_AUDIO_STREAM_STATE_RECORDING} (1) in the
-     * [onLocalAudioStateChanged]{@link agora.onLocalAudioStateChanged()} callback instead.
+     * [onLocalAudioStateChanged]{@link agora.onLocalAudioStateChanged} callback instead.
      *
      * The SDK triggers this callback when the local user resumes or stops
      * capturing the local audio stream by calling the
      * [enbaleLocalAudio]{@link agora.enableLocalAudio} method.
      */
     onMicrophoneEnabled: 
-    /**
+    /** @en
      * @param enabled Whether the microphone is enabled/disabled:
      * - true: Enabled.
      * - false: Disabled.
      */
     (enabled: boolean) => void;
-    /** Occurs when the connection state between the SDK and the server changes.
+    /** @en
+     * Occurs when the connection state between the SDK and the server changes.
      */
     onConnectionStateChanged: 
-    /**
+    /** @en
      * @param state See [CONNECTION_STATE_TYPE]{@link agora.CONNECTION_STATE_TYPE}.
      * @param reason See [CONNECTION_CHANGED_REASON_TYPE]{@link agora.CONNECTION_CHANGED_REASON_TYPE}.
      */
     (state: agora.CONNECTION_STATE_TYPE, reason: agora.CONNECTION_CHANGED_REASON_TYPE) => void;
-    /** Occurs when the local network type changes.
+    /** @en
+     * Occurs when the local network type changes.
      *
      * When the network connection is interrupted, this callback indicates whether the interruption is caused by a network
      * type change or poor network conditions.
      */
     onNetworkTypeChanged: 
-    /**
+    /** @en
      * @param type See [NETWORK_TYPE]{@link agora.NETWORK_TYPE}.
      */
     (type: agora.NETWORK_TYPE) => void;
-    /** Occurs when the local user successfully registers a user account by calling the
+    /** @en
+     * Occurs when the local user successfully registers a user account by calling the
      * [registerLocalUserAccount]{@link agora.registerLocalUserAccount} method or joins a channel by calling the
      * [joinChannelWithUserAccount]{@link agora.joinChannelWithUserAccount} method.This callback reports the user
      * ID and user account of the local user.
      */
     onLocalUserRegistered: 
-    /**
+    /** @en
      * @param uid The ID of the local user.
      * @param userAccount The user account of the local user.
      */
     (uid: number, userAccount: string) => void;
-    /** Occurs when the SDK gets the user ID and user account of the remote user.
+    /** @en
+     * Occurs when the SDK gets the user ID and user account of the remote user.
      *
      * After a remote user joins the channel, the SDK gets the UID and user account of the remote user,
-     * caches them in a mapping table object (`userInfo`), and triggers this callback on the local client.
+     * caches them in `userInfo`, and triggers this callback on the local client.
      */
     onUserInfoUpdated: 
-    /**
+    /** @en
      * @param uid The ID of the remote user.
-     * @param info The [UserInfo]{@link agora.UserInfo} object that contains the user ID and user account of the remote user.
+     * @param info [UserInfo]{@link agora.UserInfo} contains the user ID and user account of the remote user.
      */
     (uid: number, info: agora.UserInfo) => void;
-    /** @ignore
+    /** @en
+     * @ignore
      * Occurs when the local user receives the metadata.
      */
     onMetadataReceived: 
-    /**
+    /** @en
      * @param metadata The received [Metadata]{@link agora.Metadata}.
      */
     (metadata: agora.Metadata) => void;
@@ -4559,78 +5714,90 @@ declare class agoraCreator extends AgoraRtcEvents {
     beginApiTest: (casePath: string) => void;
     handleAPICase: (apiType: number, paramsJson: string) => void;
     compareAndDumpApiTestResult: (casePath: string, dumpPath: string) => void;
-    beginRtcEngineEventTest: (casePath: string) => void;
+    beginagoraEventTest: (casePath: string) => void;
     logEngineEventCase: (eventType: string, paramsJson: string) => void;
-    compareAndDumpRtcEngineEventTestResult: (casePath: string, dumpPath: string) => void;
+    compareAndDumpagoraEventTestResult: (casePath: string, dumpPath: string) => void;
 }
 declare namespace agora {
-    /** Initializes an `agora` instance.
+    /** @en
+     * Initializes the Agora engine.
      *
-     * Unless otherwise specified, all the methods provided by an `agora` instance are executed asynchronously. Agora recommends calling
+     * Unless otherwise specified, all the methods provided by the Agora engine are executed asynchronously. Agora recommends calling
      * these methods in the same thread.
      *
      * **Note**
-     * - You must initializes an `agora` instance before calling any other method.
-     * - You can initializes an `agora` instance either by calling this method or by calling
+     * - You must initializes the Agora engine before calling any other method.
+     * - You can initializes the Agora engine either by calling this method or by calling
      * [initWithAreaCode]{@link agora.initWithAreaCode}. The difference between `initWithAreaCode` and this method is that
      * `initWithAreaCode` enables you to specify the region for connection.
-     * - The SDK supports initializing only one `agora` instance for an app for now.
      *
      * @param appId The App ID issued to you by Agora. See
      * [How to get the App ID](https://docs.agora.io/en/Agora%20Platform/token#getappid). Only users in apps with the same App ID can
-     * join the same channel and communicate with each other. Use an App ID to initialize only one `agora` instance. To change your
-     * App ID, call [destroy]{@link agora.destroy} to `destroy` the current `agora` instance, and after `destroy` returns `0`, call
-     * `init` to initializes an `agora` instance with a new App ID.
+     * join the same channel and communicate with each other. To change your
+     * App ID, call [release]{@link agora.release} to `release` the current Agora engine, and after `release` returns `0`, call
+     * `init` to initializes the Agora engine with a new App ID.
+     *
+     * @return
+     * - The Agora engine, if the method call succeeds.
+     * - < 0, if the method call fails.
+     *   - ERR_INVALID_APP_ID(101): The app ID is invalid. Check if it is in the correct format.
      */
     function init(appId: string): number;
-    /** Initializes an `agora` instance.
+    /** @en
+     * Initializes the Agora engine.
      *
-     * Unless otherwise specified, all the methods provided by an `agora` instance are executed asynchronously. Agora recommends calling
+     * Unless otherwise specified, all the methods provided by the Agora engine are executed asynchronously. Agora recommends calling
      * these methods in the same thread.
      *
      * **Note**
-     * - You must initializes an `agora` instance before calling any other method.
-     * - You can initializes an `agora` instance either by calling this method or by calling [init]{@link agora.init}. The difference
+     * - You must initializes the Agora engine before calling any other method.
+     * - You can initializes the Agora engine either by calling this method or by calling [init]{@link agora.init}. The difference
      * between `init` and this method is that this method enables you to specify the region for connection.
-     * - The SDK supports initializing only one `agora` instance for an app for now.
+     * - The SDK supports initializing only one Agora engine for an app for now.
      *
      * @param appId The App ID issued to you by Agora. See
      * [How to get the App ID](https://docs.agora.io/en/Agora%20Platform/token#getappid). Only users in apps with the same App ID can
-     * join the same channel and communicate with each other. Use an App ID to initialize only one `agora` instance. To change your
-     * App ID, call [destroy]{@link agora.destroy} to `destroy` the current `agora` instance, and after `destroy` returns `0`, call
-     * `initWithAreaCode` to initializes an `agora` instance with a new App ID.
+     * join the same channel and communicate with each other. Use an App ID to initialize only one Agora engine. To change your
+     * App ID, call [release]{@link agora.release} to `release` the current Agora engine, and after `release` returns `0`, call
+     * `initWithAreaCode` to initializes the Agora engine with a new App ID.
      * @param areaCode The region for connection. This advanced feature applies to scenarios that have regional restrictions.
      *
      * For the regions that Agora supports, see [AREA_CODE]{@link agora.AREA_CODE}. After specifying the region, the SDK connects to
      * the Agora servers within that region.
+     * @note The SDK supports specifying only one region.
      *
-     * **Note**
-     *
-     * The SDK supports specifying only one region.
+     * @return
+     * - The Agora engine, if the method call succeeds.
+     * - < 0, if the method call fails.
+     *   - ERR_INVALID_APP_ID(101): The app ID is invalid. Check if it is in the correct format.
      */
     function initWithAreaCode(appId: string, areaCode: AREA_CODE): number;
-    /** Releases all `agora` resources.
+    /** @en
+     * Releases all resources of the Agora engine.
      *
      * Use this method for apps in which users occasionally make voice or video calls. When users do not make calls, you can free up
-     * resources for other operations. Once you call `release` to destroy the created `agora` instance, you cannot use any method or
+     * resources for other operations. Once you call `release` to release the Agora engine, you cannot use any method or
      * callback in the SDK any more.
      *
      * If you want to use the real-time communication functions again, you must call [init]{@link agora.init} to initialize a
-     * new `agora` instance.
+     * new Agora engine.
      *
-     * @note If you want to create a new `agora` instance after destroying the current one, ensure that you wait till the
+     * @note If you want to reinitialize the Agora engine after releasing the current one, ensure that you wait till the
      * `release` method completes executing.
      */
     function release(): void;
-    /** Listens for the events during the `agora` engine runtime.
+    /** @en
+     * Listens for the events during the Agora engine runtime.
      */
     function on<T extends Function>(type: string, callback: T, target?: any, useCapture?: boolean): T;
-    /** Stops monitoring the events during the `agora` engine runtime.
+    /** @en
+     * Stops monitoring the events during the Agora engine runtime.
      */
     function off(type: string, callback?: Function, target?: any): void;
-    /** Sets the channel profile of the `agora`.
+    /** @en
+     * Sets the channel profile of the Agora engine.
      *
-     * The `agora` differentiates channel profiles and applies optimization algorithms accordingly.
+     * The Agora engine differentiates channel profiles and applies optimization algorithms accordingly.
      * For example, it prioritizes smoothness and low latency for a video call, and prioritizes video quality for the live interactive
      * video streaming.
      *
@@ -4641,7 +5808,7 @@ declare namespace agora {
      * - The default audio route and video encoding bitrate are different in different channel profiles. For details, see
      * [setDefaultAudioRouteToSpeakerphone]{@link agora.setDefaultAudioRouteToSpeakerphone}.
      *
-     * @param profile The channel profile of the `agora`. See [CHANNEL_PROFILE_TYPE]{@link agora.CHANNEL_PROFILE_TYPE}.
+     * @param profile The channel profile of the Agora engine. See [CHANNEL_PROFILE_TYPE]{@link agora.CHANNEL_PROFILE_TYPE}.
      *
      * @return
      * - 0(`ERR_OK`): Success.
@@ -4650,7 +5817,8 @@ declare namespace agora {
      *  - -7(`ERR_NOT_INITIALIZED`): The SDK is not initialized.
      */
     function setChannelProfile(profile: CHANNEL_PROFILE_TYPE): number;
-    /** Sets the role of the user, such as a host or an audience (default), before joining a channel in the live interactive streaming.
+    /** @en
+     * Sets the role of the user, such as a host or an audience (default), before joining a channel in the live interactive streaming.
      *
      * This method can be used to switch the user role in the live interactive streaming after the user joins a channel.
      *
@@ -4672,7 +5840,8 @@ declare namespace agora {
      *  - -7(ERR_NOT_INITIALIZED): The SDK is not initialized.
      */
     function setClientRole(role: CLIENT_ROLE_TYPE): number;
-    /** Joins a channel with the user ID.
+    /** @en
+     * Joins a channel with the user ID.
      *
      * Users in the same channel can talk to each other, and multiple users in the same channel can start a group chat. Users with
      * different App IDs cannot call each other.
@@ -4692,7 +5861,7 @@ declare namespace agora {
      * automatically assigns a `uid`. If you want to join a channel from different devices, ensure that each device has a different uid.
      *
      * @warning Ensure that the App ID used for creating the token is the same App ID used by the [init]{@link agora.init} method for
-     * initializing the `agora` instance. Otherwise, the CDN live streaming may fail.
+     * initializing the Agora engine. Otherwise, the CDN live streaming may fail.
      *
      * @param token The token for authentication:
      * - In situations not requiring high security: You can use the temporary token generated at Console. For details, see
@@ -4720,7 +5889,8 @@ declare namespace agora {
      *   - -3(ERR_NOT_READY): The SDK fails to be initialized. You can try re-initializing the SDK.
      */
     function joinChannel(token: string, channelId: string, info?: string, uid?: number): number;
-    /** Switches to a different channel.
+    /** @en
+     * Switches to a different channel.
      *
      * This method allows the audience of a `LIVE_BROADCASTING` channel to switch to a different channel.
      *
@@ -4756,7 +5926,8 @@ declare namespace agora {
      *  - -113(ERR_NOT_IN_CHANNEL): The user is not in the channel.
      */
     function switchChannel(token: string, channelId: string): number;
-    /** Allows a user to leave a channel, such as hanging up or exiting a call.
+    /** @en
+     * Allows a user to leave a channel, such as hanging up or exiting a call.
      *
      * After joining a channel, the user must call the `leaveChannel` method to end the call before joining another channel.
      *
@@ -4770,7 +5941,7 @@ declare namespace agora {
      * `COMMUNICATION` channel, or is a host in the `LIVE_BROADCASTING` profile.
      *
      * **Note**
-     * - If you call the [destroy]{@link agora.destroy} method immediately after the `leaveChannel` method, the `leaveChannel` process
+     * - If you call the [release]{@link agora.release} method immediately after the `leaveChannel` method, the `leaveChannel` process
      * interrupts, and the [onLeaveChannel]{@link AgoraRtcEvents.onLeaveChannel} callback is not triggered.
      * - If you call the `leaveChannel` method during a CDN live streaming, the SDK triggers the
      * [removePublishStreamUrl]{@link agora.removePublishStreamUrl} method.
@@ -4782,7 +5953,8 @@ declare namespace agora {
      *   - -7(ERR_NOT_INITIALIZED): The SDK is not initialized.
      */
     function leaveChannel(): number;
-    /** Gets a new token when the current token expires after a period of time.
+    /** @en
+     * Gets a new token when the current token expires after a period of time.
      *
      * The `token` expires after a period of time once the token schema is enabled when:
      * - The SDK triggers the [onTokenPrivilegeWillExpire]{@link AgoraRtcEvents.onTokenPrivilegeWillExpire} callback, or
@@ -4801,7 +5973,8 @@ declare namespace agora {
      *   - -7(ERR_NOT_INITIALIZED): The SDK is not initialized.
      */
     function renewToken(token: string): number;
-    /** Registers a user account.
+    /** @en
+     * Registers a user account.
      *
      * Once registered, the user account can be used to identify the local user when the user joins the channel. After the user
      * successfully registers a user account, the SDK triggers the
@@ -4839,7 +6012,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function registerLocalUserAccount(appId: string, userAccount: string): number;
-    /** Joins the channel with a user account.
+    /** @en
+     * Joins the channel with a user account.
      *
      * After the user successfully joins the channel, the SDK triggers the following callbacks:
      *
@@ -4884,10 +6058,11 @@ declare namespace agora {
      *   - -5(`ERR_REFUSED`)
      */
     function joinChannelWithUserAccount(token: string, channelId: string, userAccount: string): number;
-    /** Gets the user information by passing in the user account.
+    /** @en
+     * Gets the user information by passing in the user account.
      *
      * After a remote user joins the channel, the SDK gets the user ID and user account of the remote user, caches them
-     * in a mapping table object ([UserInfo]{@link agora.UserInfo}), and triggers the
+     * in [UserInfo]{@link agora.UserInfo}, and triggers the
      * [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated}  callback on the local client.
      *
      * After receiving the [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated} callback, you can call this method
@@ -4898,10 +6073,11 @@ declare namespace agora {
      * @return A [UserInfo]{@link agora.UserInfo} interface that identifies the user.
      */
     function getUserInfoByUserAccount(userAccount: string): UserInfo;
-    /** Gets the user information by passing in the user ID.
+    /** @en
+     * Gets the user information by passing in the user ID.
      *
      * After a remote user joins the channel, the SDK gets the user ID and user account of the remote user,
-     * caches them in a mapping table object ([UserInfo]{@link agora.UserInfo}), and triggers the
+     * caches [UserInfo]{@link agora.UserInfo}, and triggers the
      * [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated} callback on the local client.
      *
      * After receiving the [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated} callback, you can call this method
@@ -4912,7 +6088,8 @@ declare namespace agora {
      * @return A [UserInfo]{@link agora.UserInfo} interface that identifies the user.
      */
     function getUserInfoByUid(uid: number): UserInfo;
-    /** Starts an audio call test.
+    /** @en
+     * Starts an audio call test.
      *
      * This method starts an audio call test to determine whether the audio devices (for example, headset and speaker)
      * and the network connection are working properly.
@@ -4933,14 +6110,16 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function startEchoTest(intervalInSeconds?: number): number;
-    /** Stops the audio call test.
+    /** @en
+     * Stops the audio call test.
      *
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
     function stopEchoTest(): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Enables the video module.
      *
      * Call this method either before joining a channel or during a call. If this method is called before joining a
@@ -4964,7 +6143,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function enableVideo(): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Disables the video module.
      *
      * This method can be called before joining a channel or during a call. If this method is called before joining a
@@ -4988,7 +6168,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function disableVideo(): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the video profile.
      *
      * @deprecated This method is deprecated. Use the [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}
@@ -5018,7 +6199,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setVideoProfile(profile: VIDEO_PROFILE_TYPE, swapWidthAndHeight: boolean): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the video encoder configuration.
      *
      * Each video encoder configuration corresponds to a set of video parameters, including the resolution, frame rate,
@@ -5039,7 +6221,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setVideoEncoderConfiguration(config: VideoEncoderConfiguration): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the camera capture configuration.
      *
      * For a video call or the live interactive video streaming, generally the SDK controls the camera output
@@ -5066,7 +6249,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setCameraCapturerConfiguration(config: CameraCapturerConfiguration): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Starts the local video preview before joining the channel.
      *
      * Before calling this method, you must:
@@ -5083,7 +6267,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function startPreview(): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Prioritizes a remote user's stream.
      *
      * Use this method with the [setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption} method.
@@ -5100,7 +6285,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setRemoteUserPriority(uid: number, userPriority: PRIORITY_TYPE): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Stops the local video preview and disables video.
      *
      * @return
@@ -5108,7 +6294,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function stopPreview(): number;
-    /** Enables the audio module.
+    /** @en
+     * Enables the audio module.
      *
      * The audio mode is enabled by default.
      *
@@ -5127,7 +6314,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function enableAudio(): number;
-    /** Disables/Re-enables the local audio function.
+    /** @en
+     * Disables/Re-enables the local audio function.
      *
      * The audio function is enabled by default. This method disables or re-enables the local audio function, that is,
      * to stop or restart local audio capturing.
@@ -5157,7 +6345,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function enableLocalAudio(enabled: boolean): number;
-    /** Disables the audio module.
+    /** @en
+     * Disables the audio module.
      *
      * **Note**
      * - This method affects the internal engine and can be called after the [leaveChannel]{@link agora.leaveChannel}
@@ -5171,7 +6360,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function disableAudio(): number;
-    /** Sets the audio parameters and application scenarios.
+    /** @en
+     * Sets the audio parameters and application scenarios.
      *
      * **Note**
      * - The `setAudioProfile` method must be called before the [joinChannel]{@link agora.joinChannel} method.
@@ -5192,7 +6382,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setAudioProfile(profile: AUDIO_PROFILE_TYPE, scenario: AUDIO_SCENARIO_TYPE): number;
-    /** Stops/Resumes sending the local audio stream.
+    /** @en
+     * Stops/Resumes sending the local audio stream.
      *
      * A successful `muteLocalAudioStream` method call triggers the [onUserMuteAudio]{@link AgoraRtcEvents.onUserMuteAudio}
      * callback on the remote client.
@@ -5212,7 +6403,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function muteLocalAudioStream(mute: boolean): number;
-    /** Stops/Resumes receiving all remote users' audio streams.
+    /** @en
+     * Stops/Resumes receiving all remote users' audio streams.
      *
      * @param mute Sets whether to receive or stop receiving all remote users' audio streams.
      * - true: Stops receiving all remote users' audio streams.
@@ -5223,7 +6415,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function muteAllRemoteAudioStreams(mute: boolean): number;
-    /** Stops/Resumes receiving all remote users' audio streams by default.
+    /** @en
+     * Stops/Resumes receiving all remote users' audio streams by default.
      *
      * You can call this method either before or after joining a channel. If you call `setDefaultMuteAllRemoteAudioStreams (true)`
      * after joining a channel, the remote audio streams of all subsequent users are not received.
@@ -5242,7 +6435,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setDefaultMuteAllRemoteAudioStreams(mute: boolean): number;
-    /** Adjusts the playback volume of a specified remote user.
+    /** @en
+     * Adjusts the playback volume of a specified remote user.
      *
      * You can call this method as many times as necessary to adjust the playback volume of different remote users, or to
      * repeatedly adjust the playback volume of the same remote user.
@@ -5263,7 +6457,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function adjustUserPlaybackSignalVolume(uid: number, volume: number): number;
-    /** Stops/Resumes receiving a specified remote user's audio stream.
+    /** @en
+     * Stops/Resumes receiving a specified remote user's audio stream.
      *
      * @note If you called the [muteAllRemoteAudioStreams]{@link agora.muteAllRemoteAudioStreams} method and set `mute`
      * as `true` to stop receiving all remote users' audio streams, call the `muteAllRemoteAudioStreams` method and set
@@ -5280,7 +6475,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function muteRemoteAudioStream(userId: number, mute: boolean): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Stops/Resumes sending the local video stream.
      *
      * A successful `muteLocalVideoStream` method call triggers the
@@ -5303,7 +6499,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function muteLocalVideoStream(mute: boolean): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Enables/Disables the local video capture.
      *
      * This method disables or re-enables the local video capturer, and does not affect receiving the remote video stream.
@@ -5327,7 +6524,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function enableLocalVideo(enabled: boolean): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Stops/Resumes receiving all video stream from a specified remote user.
      *
      * @param  mute Sets whether to receive/stop receiving all remote users' video streams:
@@ -5339,7 +6537,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function muteAllRemoteVideoStreams(mute: boolean): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Stops/Resumes receiving all remote users' video streams by default.
      *
      * You can call this method either before or after joining a channel. If you call `setDefaultMuteAllRemoteVideoStreams (true)`
@@ -5359,7 +6558,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setDefaultMuteAllRemoteVideoStreams(mute: boolean): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Stops/Resumes receiving the video stream from a specified remote user.
      *
      * @note If you called the [muteAllRemoteVideoStreams]{@link agora.muteAllRemoteVideoStreams} method and set `mute`
@@ -5376,7 +6576,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function muteRemoteVideoStream(userId: number, mute: boolean): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the stream type of the remote video.
      *
      * Under limited network conditions, if the publisher has not disabled the dual-stream mode using `enableDualStreamMode(false)`,
@@ -5400,7 +6601,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setRemoteVideoStreamType(userId: number, streamType: REMOTE_VIDEO_STREAM_TYPE): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the default stream type of remote videos.
      *
      * Under limited network conditions, if the publisher has not disabled the dual-stream mode using `enableDualStreamMode(false)`,
@@ -5423,7 +6625,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setRemoteDefaultVideoStreamType(streamType: REMOTE_VIDEO_STREAM_TYPE): number;
-    /** Enables the [onAudioVolumeIndication]{@link AgoraRtcEvents.onAudioVolumeIndication} callback at a set time interval
+    /** @en
+     * Enables the [onAudioVolumeIndication]{@link AgoraRtcEvents.onAudioVolumeIndication} callback at a set time interval
      * to report on which users are speaking and the speakers' volume.
      *
      * Once this method is enabled, the SDK returns the volume indication in the
@@ -5447,7 +6650,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function enableAudioVolumeIndication(interval: number, smooth: number, report_vad: boolean): number;
-    /** Starts an audio recording on the client.
+    /** @en
+     * Starts an audio recording on the client.
      *
      * The SDK allows recording during a call. After successfully calling this method, you can record the audio of all
      * the users in the channel and get an audio recording file.
@@ -5466,21 +6670,22 @@ declare namespace agora {
      * `sampleRate` is 44.1 kHz or 48 kHz.
      *
      * @param filePath The absolute file path of the recording file. The string of the file name is in UTF-8, such as
-     * c:\music\audio.aac.
+     * /dir1/dir2/dir3/audio.aac.
      * @param quality Sets the audio recording quality. See
      * [AUDIO_RECORDING_QUALITY_TYPE]{@link agora.AUDIO_RECORDING_QUALITY_TYPE}.
-     * @param sampleRate Sample rate (kHz) of the recording file. Supported values are as follows:
-     * - 16
-     * - (Default) 32
-     * - 44.1
-     * - 48
+     * @param sampleRate Sample rate (Hz) of the recording file. Supported values are as follows:
+     * - 16000
+     * - (Default) 32000
+     * - 44100
+     * - 48000
      *
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
     function startAudioRecording(filePath: string, quality: AUDIO_RECORDING_QUALITY_TYPE, sampleRate?: number): number;
-    /** Stops an audio recording on the client.
+    /** @en
+     * Stops an audio recording on the client.
      *
      * You can call this method before calling the [leaveChannel]{@link agora.leaveChannel} method else, the
      * recording automatically stops when the `leaveChannel` method is called.
@@ -5490,7 +6695,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function stopAudioRecording(): number;
-    /** Starts playing and mixing the music file.
+    /** @en
+     * Starts playing and mixing the music file.
      *
      * This method mixes the specified local audio file with the audio stream from the microphone, or replaces the
      * microphone's audio stream with the specified local audio file. You can choose whether the other user can hear
@@ -5531,7 +6737,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function startAudioMixing(filePath: string, loopback: boolean, replace: boolean, cycle: number): number;
-    /** Stops playing and mixing the music file.
+    /** @en
+     * Stops playing and mixing the music file.
      *
      * Call this method when you are in a channel.
      *
@@ -5540,7 +6747,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function stopAudioMixing(): number;
-    /** Pauses playing and mixing the music file.
+    /** @en
+     * Pauses playing and mixing the music file.
      *
      * Call this method when you are in a channel.
      *
@@ -5549,7 +6757,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function pauseAudioMixing(): number;
-    /** Resumes playing and mixing the music file.
+    /** @en
+     * Resumes playing and mixing the music file.
      *
      * Call this method when you are in a channel.
      *
@@ -5558,7 +6767,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function resumeAudioMixing(): number;
-    /** Sets the high-quality audio preferences.
+    /** @en
+     * Sets the high-quality audio preferences.
      *
      * @deprecated This callback is deprecated.
      *
@@ -5581,7 +6791,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setHighQualityAudioParameters(fullband: boolean, stereo: boolean, fullBitrate: boolean): number;
-    /** Adjusts the volume during audio mixing.
+    /** @en
+     * Adjusts the volume during audio mixing.
      *
      * Call this method when you are in a channel.
      *
@@ -5595,7 +6806,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function adjustAudioMixingVolume(volume: number): number;
-    /** Adjusts the audio mixing volume for local playback.
+    /** @en
+     * Adjusts the audio mixing volume for local playback.
      *
      * @note Call this method when you are in a channel.
      *
@@ -5606,7 +6818,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function adjustAudioMixingPlayoutVolume(volume: number): number;
-    /** Retrieves the audio mixing volume for local playback.
+    /** @en
+     * Retrieves the audio mixing volume for local playback.
      *
      * This method helps troubleshoot audio volume related issues.
      *
@@ -5617,7 +6830,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function getAudioMixingPlayoutVolume(): number;
-    /** Adjusts the audio mixing volume for publishing (for remote users).
+    /** @en
+     * Adjusts the audio mixing volume for publishing (for remote users).
      *
      * @note Call this method when you are in a channel.
      *
@@ -5628,7 +6842,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function adjustAudioMixingPublishVolume(volume: number): number;
-    /** Retrieves the audio mixing volume for publishing.
+    /** @en
+     * Retrieves the audio mixing volume for publishing.
      *
      * This method helps troubleshoot audio volume related issues.
      *
@@ -5639,7 +6854,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function getAudioMixingPublishVolume(): number;
-    /** Retrieves the duration (ms) of the music file.
+    /** @en
+     * Retrieves the duration (ms) of the music file.
      *
      * Call this method when you are in a channel.
      *
@@ -5648,7 +6864,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function getAudioMixingDuration(): number;
-    /** Retrieves the playback position (ms) of the music file.
+    /** @en
+     * Retrieves the playback position (ms) of the music file.
      *
      * Call this method when you are in a channel.
      *
@@ -5657,7 +6874,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function getAudioMixingCurrentPosition(): number;
-    /** Sets the playback position of the music file to a different starting position (the default plays from the beginning).
+    /** @en
+     * Sets the playback position of the music file to a different starting position (the default plays from the beginning).
      *
      * @param pos The playback starting position (ms) of the music file.
      *
@@ -5666,11 +6884,12 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setAudioMixingPosition(pos: number): number;
-    /** Sets the pitch of the local music file.
+    /** @en
+     * Sets the pitch of the local music file.
      *
      * When a local music file is mixed with a local human voice, call this method to set the pitch of the local music file only.
      *
-     * @note Call this method after calling `startAudioMixing`.
+     * @note Call this method after calling [startAudioMixing]{@link agora.startAudioMixing}.
      *
      * @param pitch Sets the pitch of the local music file by chromatic scale. The default value is 0,
      * which means keeping the original pitch. The value ranges from -12 to 12, and the pitch value between
@@ -5682,7 +6901,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setAudioMixingPitch(pitch: number): number;
-    /** Retrieves the volume of the audio effects.
+    /** @en
+     * Retrieves the volume of the audio effects.
      *
      * The value ranges between 0.0 and 100.0.
      *
@@ -5691,7 +6911,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function getEffectsVolume(): number;
-    /** Sets the volume of the audio effects.
+    /** @en
+     * Sets the volume of the audio effects.
      *
      * @param volume Sets the volume of the audio effects. The value ranges between 0 and 100 (default).
      *
@@ -5700,7 +6921,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setEffectsVolume(volume: number): number;
-    /** Sets the volume of a specified audio effect.
+    /** @en
+     * Sets the volume of a specified audio effect.
      *
      * @param soundId ID of the audio effect. Each audio effect has a unique ID.
      * @param volume Sets the volume of the specified audio effect. The value ranges between 0 and 100 (default).
@@ -5710,7 +6932,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setVolumeOfEffect(soundId: number, volume: number): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Enables/Disables face detection for the local user. Applies to Android and iOS only.
      *
      * Once face detection is enabled, the SDK triggers the
@@ -5729,7 +6952,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function enableFaceDetection(enabled: boolean): number;
-    /** Plays a specified local or online audio effect file.
+    /** @en
+     * Plays a specified local or online audio effect file.
      *
      * This method allows you to set the loop count, pitch, pan, and gain of the audio effect file, as well as whether
      * the remote user can hear the audio effect.
@@ -5768,7 +6992,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function playEffect(soundId: number, filePath: string, loopCount: number, pitch: number, pan: number, gain: number, publish: Boolean): number;
-    /** Stops playing a specified audio effect.
+    /** @en
+     * Stops playing a specified audio effect.
      *
      * @param soundId ID of the audio effect to stop playing. Each audio effect has a unique ID.
      *
@@ -5777,14 +7002,16 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function stopEffect(soundId: number): number;
-    /** Stops playing all audio effects.
+    /** @en
+     * Stops playing all audio effects.
      *
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
     function stopAllEffects(): number;
-    /** Preloads a specified audio effect file into the memory.
+    /** @en
+     * Preloads a specified audio effect file into the memory.
      *
      * To ensure smooth communication, limit the size of the audio effect file. We recommend using this method to
      * preload the audio effect before calling the [joinChannel]{@link agora.joinChannel} method.
@@ -5800,7 +7027,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function preloadEffect(soundId: number, filePath: string): number;
-    /** Releases a specified preloaded audio effect from the memory.
+    /** @en
+     * Releases a specified preloaded audio effect from the memory.
      *
      * @param soundId ID of the audio effect. Each audio effect has a unique ID.
      *
@@ -5809,7 +7037,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function unloadEffect(soundId: number): number;
-    /** Pauses a specified audio effect.
+    /** @en
+     * Pauses a specified audio effect.
      *
      * @param soundId ID of the audio effect. Each audio effect has a unique ID.
      *
@@ -5818,14 +7047,16 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function pauseEffect(soundId: number): number;
-    /** Pauses all audio effects.
+    /** @en
+     * Pauses all audio effects.
      *
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
     function pauseAllEffects(): number;
-    /** Resumes playing a specified audio effect.
+    /** @en
+     * Resumes playing a specified audio effect.
      *
      * @param soundId ID of the audio effect. Each audio effect has a unique ID.
      *
@@ -5834,14 +7065,16 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function resumeEffect(soundId: number): number;
-    /** Resumes playing all audio effects.
+    /** @en
+     * Resumes playing all audio effects.
      *
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
     function resumeAllEffects(): number;
-    /** Enables/Disables stereo panning for remote users.
+    /** @en
+     * Enables/Disables stereo panning for remote users.
      *
      * Ensure that you call this method before [joinChannel]{@link agora.joinChannel} to enable stereo panning for
      * remote users so that the local user can track the position of a remote user by calling
@@ -5856,7 +7089,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function enableSoundPositionIndication(enabled: boolean): number;
-    /** Sets the sound position and gain of a remote user.
+    /** @en
+     * Sets the sound position and gain of a remote user.
      *
      * When the local user calls this method to set the sound position of a remote user, the sound difference between
      * the left and right channels allows the local user to track the real-time position of the remote user, creating
@@ -5880,7 +7114,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setRemoteVoicePosition(uid: number, pan: number, gain: number): number;
-    /** Changes the voice pitch of the local speaker.
+    /** @en
+     * Changes the voice pitch of the local speaker.
      *
      * @param pitch Sets the voice pitch. The value ranges between 0.5 and 2.0. The lower the value, the lower the
      * voice pitch. The default value is 1.0 (no change to the local voice pitch).
@@ -5890,7 +7125,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLocalVoicePitch(pitch: number): number;
-    /** Sets the local voice equalization effect.
+    /** @en
+     * Sets the local voice equalization effect.
      *
      * @param bandFrequency Sets the band frequency. The value ranges between 0 and 9, representing the respective
      * 10-band center frequencies of the voice effects, including 31, 62, 125, 500, 1k, 2k, 4k, 8k, and 16k Hz. See
@@ -5902,11 +7138,11 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLocalVoiceEqualization(bandFrequency: AUDIO_EQUALIZATION_BAND_FREQUENCY, bandGain: number): number;
-    /**  Sets the local voice reverberation.
+    /** @en
+     * Sets the local voice reverberation.
      *
-     * v2.4.0 adds the [setLocalVoiceReverbPreset]{@link agora.setLocalVoiceReverbPreset} method, a more user-friendly
-     * method for setting the local voice reverberation. You can use this method to set the local reverberation effect,
-     * such as pop music, R&B, rock music, and hip-hop.
+     * You can also use [setLocalVoiceReverbPreset]{@link agora.setLocalVoiceReverbPreset} to use the preset reverberation effect,
+     * such as pop music, R&B or rock music effects.
      *
      * @param reverbKey Sets the reverberation key. See [AUDIO_REVERB_TYPE]{@link agora.AUDIO_REVERB_TYPE}.
      * @param value Sets the value of the reverberation key.
@@ -5916,7 +7152,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLocalVoiceReverb(reverbKey: AUDIO_REVERB_TYPE, value: number): number;
-    /** Sets the local voice changer option.
+    /** @en
+     * Sets the local voice changer option.
      *
      * This method can be used to set the local voice effect for users in a `COMMUNICATION` channel or hosts in a
      * `LIVE_BROADCASTING` channel.
@@ -5953,7 +7190,8 @@ declare namespace agora {
      * - < 0: Failure. Check if the enumeration is properly set.
      */
     function setLocalVoiceChanger(voiceChanger: VOICE_CHANGER_PRESET): number;
-    /** Sets the local voice reverberation option, including the virtual stereo.
+    /** @en
+     * Sets the local voice reverberation option, including the virtual stereo.
      *
      * This method sets the local voice reverberation for users in a `COMMUNICATION` channel or hosts in a `LIVE_BROADCASTING` channel.
      * After successfully calling this method, all users in the channel can hear the voice with reverberation.
@@ -5979,7 +7217,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLocalVoiceReverbPreset(reverbPreset: AUDIO_REVERB_PRESET): number;
-    /** Sets the log files that the SDK outputs.
+    /** @en
+     * Sets the log files that the SDK outputs.
      *
      * By default, the SDK outputs five log files, `agorasdk.log`, `agorasdk_1.log`, `agorasdk_2.log`, `agorasdk_3.log`,
      * `agorasdk_4.log`, each with a default size of 1024 KB.
@@ -5991,8 +7230,10 @@ declare namespace agora {
      * @note Ensure that you call this method immediately after calling [init]{@link agora.init}, otherwise the output
      * logs may not be complete.
      *
-     * @param filePath The absolute path of log files. The default file path is
-     * `C: \Users\<user_name>\AppData\Local\Agora\<process_name>\agorasdk.log`.
+     * @param filePath The absolute path of log files. The default file path is as follows:
+     * - Android: `/storage/emulated/0/Android/data/<package name>/files/agorasdk.log`
+     * - iOS: `App Sandbox/Library/caches/agorasdk.log`
+     *
      * Ensure that the directory for the log files exists and is writable. You can use this parameter to rename the log files.
      *
      * @return
@@ -6000,7 +7241,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLogFile(filePath: string): number;
-    /** Sets the output log level of the SDK.
+    /** @en
+     * Sets the output log level of the SDK.
      *
      * You can use one or a combination of the log filter levels. The log level follows the sequence of `OFF`,
      * `CRITICAL`, `ERROR`, `WARNING`, `INFO`, and `DEBUG`. Choose a level to see the logs preceding that level.
@@ -6014,7 +7256,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLogFilter(filter: LOG_FILTER_TYPE): number;
-    /** Sets the size of a log file that the SDK outputs.
+    /** @en
+     * Sets the size of a log file that the SDK outputs.
      *
      * By default, the SDK outputs five log files, `agorasdk.log`, `agorasdk_1.log`, `agorasdk_2.log`, `agorasdk_3.log`,
      * `agorasdk_4.log`, each with a default size of 1024 KB.
@@ -6032,7 +7275,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLogFileSize(fileSizeInKBytes: number): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Updates the display mode of the local video view.
      *
      * After initializing the local video view, you can call this method to update its rendering and mirror modes. It
@@ -6057,7 +7301,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLocalRenderMode(renderMode: RENDER_MODE_TYPE, mirrorMode?: VIDEO_MIRROR_MODE_TYPE): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Updates the display mode of the video view of a remote user.
      *
      * After initializing the video view of a remote user, you can call this method to update its rendering and mirror
@@ -6082,7 +7327,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setRemoteRenderMode(userId: number, renderMode: RENDER_MODE_TYPE, mirrorMode?: VIDEO_MIRROR_MODE_TYPE): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the local video mirror mode.
      *
      * @deprecated This method is deprecated, use the [setupLocalVideo]{@link agora.setupLocalVideo} or
@@ -6102,7 +7348,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLocalVideoMirrorMode(mirrorMode: VIDEO_MIRROR_MODE_TYPE): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the stream mode to the single-stream (default) or dual-stream mode. (`LIVE_BROADCASTING` only.)
      *
      * If the dual-stream mode is enabled, the receiver can choose to receive the high stream (high-resolution and
@@ -6113,7 +7360,8 @@ declare namespace agora {
      * - false: Single-stream mode.
      */
     function enableDualStreamMode(enabled: boolean): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the external audio source. Please call this method before [joinChannel]{@link agora.joinChannel}.
      *
      * @param enabled Sets whether to enable/disable the external audio source:
@@ -6130,7 +7378,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setExternalAudioSource(enabled: boolean, sampleRate: number, channels: number): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the external audio sink.
      *
      * This method applies to scenarios where you want to use external audio
@@ -6158,7 +7407,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setExternalAudioSink(enabled: boolean, sampleRate: number, channels: number): number;
-    /** Adjusts the recording volume.
+    /** @en
+     * Adjusts the recording volume.
      *
      * @param volume Recording volume. To avoid echoes and improve call quality,
      * Agora recommends setting the value of volume between 0 and 100. If you
@@ -6171,7 +7421,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function adjustRecordingSignalVolume(volume: number): number;
-    /** Adjusts the playback volume of all remote users.
+    /** @en
+     * Adjusts the playback volume of all remote users.
      *
      * **Note**
      * - This method adjusts the playback volume that is the mixed volume of all remote users.
@@ -6190,7 +7441,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function adjustPlaybackSignalVolume(volume: number): number;
-    /** Enables interoperability with the Agora Web SDK.
+    /** @en
+     * Enables interoperability with the Agora Web SDK.
      *
      * @deprecated This method is deprecated. As of v3.1.2, the Native SDK automatically enables interoperability with
      * the Web SDK, so you no longer need to call this method.
@@ -6210,10 +7462,12 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function enableWebSdkInteroperability(enabled: boolean): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the preferences for the high-quality video. (`LIVE_BROADCASTING` only).
      *
-     * @deprecated This method is deprecated.
+     * @deprecated This method is deprecated. Agora recommends using the `degradationPrefer` parameter of
+     * [VideoEncoderConfiguration]{@link agora.VideoEncoderConfiguration}.
      *
      * @param preferFrameRateOverImageQuality Sets the video quality preference:
      * - true: Frame rate over image quality.
@@ -6224,7 +7478,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setVideoQualityParameters(preferFrameRateOverImageQuality: boolean): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the fallback option for the published video stream based on the network conditions.
      *
      * If `option` is set as
@@ -6248,7 +7503,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLocalPublishFallbackOption(option: STREAM_FALLBACK_OPTIONS): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the fallback option for the remotely subscribed video stream based on the network conditions.
      *
      * The default setting for `option` is
@@ -6274,7 +7530,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setRemoteSubscribeFallbackOption(option: STREAM_FALLBACK_OPTIONS): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Switches between front and rear cameras.
      *
      * @note This method is for Android and iOS only.
@@ -6286,7 +7543,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function switchCamera(direction?: CAMERA_DIRECTION): number;
-    /** Sets the default audio playback route.
+    /** @en
+     * Sets the default audio playback route.
      *
      * This method sets whether the received audio is routed to the earpiece or speakerphone by default before joining a channel.
      *
@@ -6313,7 +7571,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setDefaultAudioRouteToSpeakerphone(defaultToSpeaker: boolean): number;
-    /** Enables/Disables the audio playback route to the speakerphone.
+    /** @en
+     * Enables/Disables the audio playback route to the speakerphone.
      *
      * This method sets whether the audio is routed to the speakerphone or earpiece.
      *
@@ -6338,7 +7597,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setEnableSpeakerphone(speakerOn: boolean): number;
-    /** Enables in-ear monitoring (for Android and iOS only).
+    /** @en
+     * Enables in-ear monitoring (for Android and iOS only).
      *
      * @param enabled Determines whether to enable in-ear monitoring.
      * - true: Enable.
@@ -6349,7 +7609,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function enableInEarMonitoring(enabled: boolean): number;
-    /** Sets the volume of the in-ear monitor.
+    /** @en
+     * Sets the volume of the in-ear monitor.
      *
      * @param volume Sets the volume of the in-ear monitor. The value ranges between 0 and 100 (default).
      *
@@ -6360,7 +7621,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setInEarMonitoringVolume(volume: number): number;
-    /** Checks whether the speakerphone is enabled.
+    /** @en
+     * Checks whether the speakerphone is enabled.
      *
      * @note This method is for Android and iOS only.
      *
@@ -6369,7 +7631,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function isSpeakerphoneEnabled(): boolean;
-    /** Retrieves the current call ID.
+    /** @en
+     * Retrieves the current call ID.
      *
      * When a user joins a channel on a client, a `callId` is generated to identify the call from the client. Feedback
      * methods, such as [rate]{@link agora.rate} and [complain]{@link agora.complain} , must be called after the call
@@ -6385,11 +7648,12 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function getCallId(): string;
-    /** Allows a user to rate a call after the call ends.
+    /** @en
+     * Allows a user to rate a call after the call ends.
      *
      * @param callId The ID of the call, retrieved from the [getCallId]{@link agora.getCallId} method.
      * @param rating  Rating of the call. The value is between 1 (lowest score) and 5 (highest score). If you set a
-     * value out of this range, the (`ERR_INVALID_ARGUMENT(-2)`) error returns.
+     * value out of this range, the `ERR_INVALID_ARGUMENT(-2)` error returns.
      * @param description (Optional) The description of the rating, with a string length of less than 800 bytes.
      *
      * @return
@@ -6397,7 +7661,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function rate(callId: string, rating: number, description?: string): number;
-    /** Allows a user to complain about the call quality after a call ends.
+    /** @en
+     * Allows a user to complain about the call quality after a call ends.
      *
      * @param callId The ID of the call, retrieved from the [getCallId]{@link agora.getCallId} method.
      * @param description (Optional) The description of the complaint, with a string length of less than 800 bytes.
@@ -6407,12 +7672,14 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function complain(callId: string, description: string): number;
-    /** Retrieves the SDK version number.
+    /** @en
+     * Retrieves the SDK version number.
      *
      * @return The version of the current SDK in the string format. For example, 3.1.2.
      */
     function getVersion(): string;
-    /**  Enables the network connection quality test.
+    /** @en
+     * Enables the network connection quality test.
      *
      * This method tests the quality of the users' network connections and is disabled by default.
      *
@@ -6433,14 +7700,16 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function enableLastmileTest(): number;
-    /** Disables the network connection quality test.
+    /** @en
+     * Disables the network connection quality test.
      *
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
     function disableLastmileTest(): number;
-    /** Starts the last-mile network probe test.
+    /** @en
+     * Starts the last-mile network probe test.
      *
      * This method starts the last-mile network probe test before joining a channel to get the uplink and downlink last-mile network
      * statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT).
@@ -6468,14 +7737,16 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function startLastmileProbeTest(config: LastmileProbeConfig): number;
-    /** Stops the last-mile network probe test.
+    /** @en
+     * Stops the last-mile network probe test.
      *
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
     function stopLastmileProbeTest(): number;
-    /** Retrieves the warning or error description.
+    /** @en
+     * Retrieves the warning or error description.
      *
      * @param code Warning code or error code returned in the [onWarning]{@link AgoraRtcEvents.onWarning} or
      * [onError]{@link AgoraRtcEvents.onError} callback.
@@ -6483,9 +7754,10 @@ declare namespace agora {
      * @return See [WARN_CODE_TYPE]{@link agora.WARN_CODE_TYPE} or [ERROR_CODE_TYPE]{@link agora.ERROR_CODE_TYPE}.
      */
     function getErrorDescription(code: number): string;
-    /** Enables built-in encryption with an encryption password before users join a channel.
+    /** @en
+     * Enables built-in encryption with an encryption password before users join a channel.
      *
-     * @deprecated This method is deprecated. Use the [enableEncryption]{@link agora.enableEncryption} instead.
+     * @deprecated This method is deprecated from v3.1.2. Use the [enableEncryption]{@link agora.enableEncryption} instead.
      *
      * All users in a channel must use the same encryption password. The encryption password is automatically cleared
      * once a user leaves the channel.
@@ -6504,9 +7776,10 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setEncryptionSecret(secret: string): number;
-    /** Sets the built-in encryption mode.
+    /** @en
+     * Sets the built-in encryption mode.
      *
-     * @deprecated This method is deprecated. Use the [enableEncryption]{@link agora.enableEncryption} instead.
+     * @deprecated This method is deprecated from v3.1.2. Use the [enableEncryption]{@link agora.enableEncryption} instead.
      *
      * The Agora SDK supports built-in encryption, which is set to the `aes-128-xts` mode by default. Call this method
      * to use other encryption modes.
@@ -6528,7 +7801,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setEncryptionMode(encryptionMode: 'aes-128-xts' | 'aes-128-ecb' | 'aes-256-xts'): number;
-    /** Enables/Disables the built-in encryption.
+    /** @en
+     * Enables/Disables the built-in encryption.
      *
      * In scenarios requiring high security, Agora recommends calling this method to enable the built-in encryption
      * before joining a channel.
@@ -6552,10 +7826,11 @@ declare namespace agora {
      *  - -2(ERR_INVALID_ARGUMENT): An invalid parameter is used. Set the parameter with a valid value.
      *  - -4(ERR_NOT_SUPPORTED): The encryption mode is incorrect or the SDK fails to load the external encryption
      * library. Check the enumeration or reload the external encryption library.
-     *  - -7(ERR_NOT_INITIALIZED): The SDK is not initialized. Initialize the `agora` instance before calling this method.
+     *  - -7(ERR_NOT_INITIALIZED): The SDK is not initialized. Initialize the Agora engine before calling this method.
      */
     function enableEncryption(enabled: boolean, config: EncryptionConfig): number;
-    /** Registers a packet observer.
+    /** @en
+     * Registers a packet observer.
      *
      * The Agora SDK allows your application to register a packet observer to receive callbacks for voice or video packet transmission.
      *
@@ -6573,9 +7848,10 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function registerPacketObserver(observer: any): number;
-    /** Creates a data stream.
+    /** @en
+     * Creates a data stream.
      *
-     * Each user can create up to five data streams during the lifecycle of the `agora`.
+     * Each user can create up to five data streams during the lifecycle of the Agora engine.
      *
      * @note Set both the `reliable` and `ordered` parameters to `true` or `false`. Do not set one as `true` and the other as `false`.
      *
@@ -6594,7 +7870,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function createDataStream(streamId: number, reliable: boolean, ordered: boolean): number;
-    /** Sends data stream messages to all users in a channel.
+    /** @en
+     * Sends data stream messages to all users in a channel.
      *
      * The SDK has the following restrictions on this method:
      * - Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 kB.
@@ -6617,7 +7894,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function sendStreamMessage(streamId: number, data: Uint8Array, length: number): number;
-    /** Publishes the local stream to a specified CDN live RTMP address. (CDN live only.)
+    /** @en
+     * Publishes the local stream to a specified CDN live RTMP address. (CDN live only.)
      *
      * The SDK returns the result of this method call in the [onStreamPublished]{@link AgoraRtcEvents.onStreamPublished} callback.
      *
@@ -6643,10 +7921,11 @@ declare namespace agora {
      * - 0: Success.
      * - < 0: Failure.
      *   - -2(ERR_INVALID_ARGUMENT): The RTMP URL address is `null` or has a string length of 0.
-     *   - -7(ERR_NOT_INITIALIZED): You have not initialized the `agora` instance when publishing the stream.
+     *   - -7(ERR_NOT_INITIALIZED): You have not initialized the Agora engine when publishing the stream.
      */
     function addPublishStreamUrl(url: string, transcodingEnabled: boolean): number;
-    /** Removes an RTMP stream from the CDN. (CDN live only.)
+    /** @en
+     * Removes an RTMP stream from the CDN. (CDN live only.)
      *
      * This method removes the RTMP URL address (added by the [addPublishStreamUrl]{@link agora.addPublishStreamUrl}
      * method) from a CDN live stream. The SDK returns the result of this method call in the
@@ -6668,7 +7947,7 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function removePublishStreamUrl(url: string): number;
-    /** @ignore
+    /** @en
      * Sets the video layout and audio settings for CDN live. (CDN live only.)
      *
      * The SDK triggers the [onTranscodingUpdated]{@link AgoraRtcEvents.onTranscodingUpdated} callback when you call the
@@ -6687,7 +7966,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setLiveTranscoding(transcoding: LiveTranscoding): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Adds a watermark image to the local video.
      *
      * This method adds a PNG watermark image to the local video in the live streaming. Once the watermark image is added, all
@@ -6729,7 +8009,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function addVideoWatermark(watermarkUrl: string, options: WatermarkOptions): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Removes the watermark image from the video stream added by the
      * [addVideoWatermark]{@link agora.addVideoWatermark} method.
      *
@@ -6738,7 +8019,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function clearVideoWatermarks(): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Enables/Disables image enhancement and sets the options.
      *
      * **Note**
@@ -6755,7 +8037,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setBeautyEffectOptions(enabled: boolean, options: BeautyOptions): number;
-    /** Adds a voice or video stream URL address to the live streaming.
+    /** @en
+     * Adds a voice or video stream URL address to the live streaming.
      *
      * The [onStreamPublished]{@link AgoraRtcEvents.onStreamPublished} callback returns the inject status. If this method
      * call is successful, the server pulls the voice or video stream and injects it into a live channel. This is
@@ -6771,13 +8054,14 @@ declare namespace agora {
      *
      * **Note**
      * - Ensure that you enable the RTMP Converter service before using this function.
+     * - This method applies to the SDK of v3.1.2 and later.
      * - This method applies to the `LIVE_BROADCASTING` profile only.
      * - You can inject only one media stream into the channel at the same time.
      *
      * @param url The URL address to be added to the ongoing streaming. Valid protocols are RTMP, HLS, and HTTP-FLV.
      * - Supported audio codec type: AAC.
      * - Supported video codec type: H264 (AVC).
-     * @param config The [InjectStreamConfig]{@link agora.InjectStreamConfig} object that contains the configuration of
+     * @param config [InjectStreamConfig]{@link agora.InjectStreamConfig} contains the configuration of
      * the added voice or video stream.
      *
      * @return
@@ -6789,11 +8073,12 @@ declare namespace agora {
      *   - -4(`ERR_NOT_SUPPORTED`): The channel profile is not `LIVE_BROADCASTING`. Call the
      * [setChannelProfile]{@link agora.setChannelProfile} method and set the channel profile to `LIVE_BROADCASTING`
      * before calling this method.
-     *   - -7(ERR_NOT_INITIALIZED): The SDK is not initialized. Ensure that the `agora` object is initialized before
+     *   - -7(ERR_NOT_INITIALIZED): The SDK is not initialized. Ensure that the Agora engine is initialized before
      * calling this method.
      */
     function addInjectStreamUrl(url: string, config: InjectStreamConfig): number;
-    /** Starts to relay media streams across channels.
+    /** @en
+     * Starts to relay media streams across channels.
      *
      * After a successful method call, the SDK triggers the
      * [onChannelMediaRelayStateChanged]{@link AgoraRtcEvents.onChannelMediaRelayStateChanged} and
@@ -6824,7 +8109,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function startChannelMediaRelay(configuration: ChannelMediaRelayConfiguration): number;
-    /** Updates the channels for media stream relay.
+    /** @en
+     * Updates the channels for media stream relay.
      *
      * After a successful [startChannelMediaRelay]{@link agora.startChannelMediaRelay} method call, if you want to
      * relay the media  stream to more channels, or leave the current relay channel, you can call the
@@ -6846,7 +8132,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function updateChannelMediaRelay(configuration: ChannelMediaRelayConfiguration): number;
-    /** Stops the media stream relay.
+    /** @en
+     * Stops the media stream relay.
      *
      * Once the relay stops, the host quits all the destination channels.
      *
@@ -6867,7 +8154,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function stopChannelMediaRelay(): number;
-    /** Removes the voice or video stream URL address from the live streaming.
+    /** @en
+     * Removes the voice or video stream URL address from the live streaming.
      *
      * This method removes the URL address (added by the [addInjectStreamUrl]{@link agora.addInjectStreamUrl} method) from the
      * live streaming.
@@ -6882,7 +8170,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function removeInjectStreamUrl(url: string): number;
-    /** Agora supports reporting and analyzing customized messages.
+    /** @en
+     * Agora supports reporting and analyzing customized messages.
      *
      * This function is in the beta stage with a free trial. The ability provided in its beta test version is reporting a maximum of
      * 10 message pieces within 6 seconds, with each message piece not exceeding 256 bytes.
@@ -6891,12 +8180,14 @@ declare namespace agora {
      * with us.
      */
     function sendCustomReportMessage(id: string, category: string, event: string, label: string, value: number): number;
-    /** Gets the current connection state of the SDK.
+    /** @en
+     * Gets the current connection state of the SDK.
      *
      * @return See [CONNECTION_STATE_TYPE]{@link agora.CONNECTION_STATE_TYPE}.
      */
     function getConnectionState(): CONNECTION_STATE_TYPE;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sends the metadata.
      *
      * **Note**
@@ -6907,21 +8198,22 @@ declare namespace agora {
      * @param uid ID of the user who sends the metadata.
      * @param size The size of the sent metadata.
      * @param buffer The sent metadata.
-     * @param timeStampMs The timestamp of the metadata.
+     * @param timeStampMs The timestamp (ms) of the metadata.
      *
      * @return
      * - 0: Success.
      * - < 0: Failure.
      */
     function sendMetadata({ uid, size, buffer, timeStampMs }: Metadata): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Sets the maximum size of the [Metadata]{@link agora.Metadata}.
      *
      * The metadata includes the following parameters:
      * - `uid`: ID of the user who sends the metadata.
      * - `size`: The size of the sent or received metadata.
      * - `buffer`: The sent or received metadata.
-     * - `timeStampMs`: The timestamp of the metadata.
+     * - `timeStampMs`: The timestamp (ms) of the metadata.
      *
      * @note Call this method after [registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver}.
      *
@@ -6932,7 +8224,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function setMaxMetadataSize(size: number): number;
-    /** @ignore
+    /** @en
+     * @ignore
      * Registers the metadata observer.
      *
      * You need to specify the metadata type in this method.
@@ -6944,7 +8237,6 @@ declare namespace agora {
      * - Call this method before the [joinChannel]{@link agora.joinChannel} method.
      * - This method applies to the `LIVE_BROADCASTING` channel profile.
      *
-     * @param observer The metadata observer.
      * @param type See [METADATA_TYPE]{@link agora.METADATA_TYPE}. The SDK supports `VIDEO_METADATA(0)` only for now.
      *
      * @return
@@ -6952,7 +8244,8 @@ declare namespace agora {
      * - < 0: Failure.
      */
     function registerMediaMetadataObserver(type: METADATA_TYPE): number;
-    /** Provides technical preview functionalities or special customizations by configuring the SDK with JSON options.
+    /** @en
+     * Provides technical preview functionalities or special customizations by configuring the SDK with JSON options.
      *
      * The JSON options are not public by default. Agora is working on making commonly used JSON options public in a standard way.
      *
