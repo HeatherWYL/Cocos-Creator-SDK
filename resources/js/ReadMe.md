@@ -187,8 +187,12 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 <th>Description</th>
 </tr>
 <tr>
+<td>[onRemoteAudioStateChanged]{@link AgoraRtcEvents.onRemoteAudioStateChanged}</td>
+<td>Occurs when the remote audio state changes.</td>
+</tr>
+<tr>
 <td>[onAudioSubscribeStateChanged]{@link AgoraRtcEvents.onAudioSubscribeStateChanged}</td>
-<td>Occurs when the audio subscribing state changes. </td>
+<td>Occurs when the audio subscribing state changes.</td>
 </tr>
 </table>
 
@@ -421,6 +425,10 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 <th>Description</th>
 </tr>
 <tr>
+<td>[setLiveTranscoding]{@link agora.setLiveTranscoding}</td>
+<td>Sets the video layout and audio settings for CDN live.</td>
+</tr>
+<tr>
 <td>[addPublishStreamUrl]{@link agora.addPublishStreamUrl}</td>
 <td>Adds a CDN stream address.</td>
 </tr>
@@ -443,11 +451,13 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 <td>[onRtmpStreamingEvent]{@link AgoraRtcEvents.onRtmpStreamingEvent}</td>
 <td>Reports events during the RTMP streaming.</td>
 </tr>
+<tr>
+<td>[onTranscodingUpdated]{@link AgoraRtcEvents.onTranscodingUpdated}</td>
+<td>Occurs when the publisher's transcoding settings are updated.</td>
+</tr>
 </table>
 
 ### Media Stream Relay Across Channels
-
-> This group of methods apply to live interactive streaming only.
 
 <table>
 <tr>
@@ -520,15 +530,15 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 </tr>
 <tr>
 <td>[setDefaultAudioRouteToSpeakerphone]{@link agora.setDefaultAudioRouteToSpeakerphone}</td>
-<td>Sets the default audio playback route (for Android and iOS only).</td>
+<td>Sets the default audio playback route.</td>
 </tr>
 <tr>
 <td>[setEnableSpeakerphone]{@link agora.setEnableSpeakerphone}</td>
-<td>Enables/Disables the audio playback route to the speakerphone (for Android and iOS only).</td>
+<td>Enables/Disables the audio playback route to the speakerphone.</td>
 </tr>
 <tr>
 <td>[isSpeakerphoneEnabled]{@link agora.isSpeakerphoneEnabled}</td>
-<td>Checks whether the speakerphone is enabled (for Android and iOS only).</td>
+<td>Checks whether the speakerphone is enabled.</td>
 </tr>
 </table>
 
@@ -551,8 +561,12 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 <th>Description</th>
 </tr>
 <tr>
+<td>[enableInEarMonitoring]{@link agora.enableInEarMonitoring}</td>
+<td>Enables in-ear monitoring.</td>
+</tr>
+<tr>
 <td>[setInEarMonitoringVolume]{@link agora.setInEarMonitoringVolume}</td>
-<td>Sets the volume of the in-ear monitor (for Android and iOS only).</td>
+<td>Sets the volume of the in-ear monitor.</td>
 </tr>
 </table>
 
@@ -601,40 +615,6 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 <tr>
 <td>[onLastmileProbeResult]{@link AgoraRtcEvents.onLastmileProbeResult}</td>
 <td>Reports the last-mile network probe result.</td>
-</tr>
-</table>
-
-### Media Metadata
-
-> This group of methods apply to live interactive streaming only.
-
-<table>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>[registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver}</td>
-<td>Registers the metadata observer.</td>
-</tr>
-<tr>
-<td>[sendMetadata]{@link agora.sendMetadata}</td>
-<td>Sends the metadata.</td>
-</tr>
-<tr>
-<td>[setMaxMetadataSize]{@link agora.setMaxMetadataSize}</td>
-<td>Sets the maximum size of the metadata.</td>
-</tr>
-</table>
-
-<table>
-<tr>
-<th>Event</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>[onMetadataReceived]{@link AgoraRtcEvents.onMetadataReceived}</td>
-<td>Occurs when the local user receives the metadata.</td>
 </tr>
 </table>
 
