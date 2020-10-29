@@ -5,6 +5,7 @@
 #include "../common/utils/DocumentHelper.h"
 #include "../common/utils/StructHelper.h"
 #include "../include/IAgoraRtcEngine.h"
+#include "../include/IAgoraRtcEngine2.h"
 #include "../rtcChannel/RtcChannelBridge.h"
 
 #include "../deviceManager/audioDeviceManager/AudioPlaybackDeviceManager.h"
@@ -428,6 +429,8 @@ public:
 
   int registerVideoFrameObserver(
       media::IVideoFrameObserver *videoFrameObserver);
+
+  int setAppType(rtc::AppType appType);
 };
 
 CROSS_PLATFORM_EXPORT IRtcEngineBridge *createRtcEngineBridge();

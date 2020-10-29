@@ -2887,6 +2887,10 @@ int RtcEngineBridge::registerVideoFrameObserver(
   return ERROR_CODE::ERROR_NO_ENGINE;
 }
 
+int RtcEngineBridge::setAppType(AppType appType) {
+  return static_cast<IRtcEngine3 *>(mRtcEngine)->setAppType(appType);
+}
+
 CROSS_PLATFORM_EXPORT IRtcEngineBridge *createRtcEngineBridge() {
   return new RtcEngineBridge();
 }
