@@ -4,7 +4,7 @@ const fs = require("fire-fs");
 let utils = Editor.require("packages://cocos-services/panel/utils/utils.js");
 let ProjHelper = Editor.require("packages://cocos-services/panel/utils/projHelper.js");
 var projHelper;
-const sdkType = "audio";
+const sdkType = "video";
 
 function addUsesPermission(permission) {
   let manifestPath = this.androidPath + "/app/AndroidManifest.xml";
@@ -30,6 +30,9 @@ module.exports = {
       var jsPath = __dirname + "/resources/js/agora.js";
       Editor.assetdb.refresh("db://assets/agora");
       if (!Editor.assetdb.exists("db://assets/agora/agora.js")) Editor.assetdb.import([jsPath], "db://assets/agora");
+      var tsPath = __dirname + "/resources/js/agora.d.ts";
+      Editor.assetdb.refresh("db://assets/agora");
+      if (!Editor.assetdb.exists("db://assets/agora/agora.d.ts")) Editor.assetdb.import([tsPath], "db://assets/agora");
 
       utils.copyDir(
         path.join(__dirname, "/resources/ccservices-agora-preview-script"),

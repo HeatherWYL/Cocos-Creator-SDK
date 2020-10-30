@@ -5720,6 +5720,10 @@ declare class agoraCreator extends AgoraRtcEvents {
     bindTextureId: (textureId: number, uid: number) => void;
 }
 declare namespace agora {
+    /**
+     * @ignore
+     */
+    let bridge: agoraCreator;
     /** @en
      * Initializes the Agora engine.
      *

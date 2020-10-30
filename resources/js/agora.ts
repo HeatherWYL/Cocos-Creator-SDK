@@ -7141,7 +7141,7 @@ namespace agora {
     /**
      * @ignore
      */
-    let bridge: agoraCreator
+    export let bridge: agoraCreator
     /**
      * @ignore
      */
