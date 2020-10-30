@@ -3344,9 +3344,6 @@ var agora;
 })(agora || (agora = {}));
 (function (agora) {
     /** @en
-     * The uplink or downlink last-mile network probe test result.
-     */
-    /** @en
      * @ignore
      * Video dimensions.
      */
@@ -6326,7 +6323,7 @@ var agora;
      * - The position of the human face in the local video.
      * - The distance between the human face and the device screen.
      *
-     * @param enable Determines whether to enable the face detection function for the local user:
+     * @param enabled Determines whether to enable the face detection function for the local user:
      * - true: Enable face detection.
      * - false: (Default) Disable face detection.
      *
