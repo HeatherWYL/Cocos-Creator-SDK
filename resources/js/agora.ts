@@ -10070,8 +10070,8 @@ namespace agora {
      * 查询扬声器启用状态
      * 
      * @return
-     * `true`: 扬声器已开启，语音会输出到扬声器
-     * `false`: 扬声器未开启，语音会输出到非扬声器（听筒、耳机等）
+     * - `true`: 扬声器已开启，语音会输出到扬声器
+     * - `false`: 扬声器未开启，语音会输出到非扬声器（听筒、耳机等）
      */
     export function isSpeakerphoneEnabled(): boolean {
         if (isWeb) {
@@ -10135,7 +10135,7 @@ namespace agora {
     /** 
      * 获取 SDK 的版本信息
      * 
-     * @return 当前的 SDK 版本号，格式为字符串，如 3.1.2。
+     * @return 当前的 SDK 版本号，格式为字符串，如 `"3.1.2"`。
      */
     export function getVersion(): string {
         if (isWeb) {
