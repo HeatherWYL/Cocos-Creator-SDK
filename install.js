@@ -4,6 +4,7 @@ const fs = require("fire-fs");
 let utils = Editor.require("packages://cocos-services/panel/utils/utils.js");
 let ProjHelper = Editor.require("packages://cocos-services/panel/utils/projHelper.js");
 var projHelper;
+const sdkType = "audio";
 
 function addUsesPermission(permission) {
   let manifestPath = this.androidPath + "/app/AndroidManifest.xml";
@@ -155,20 +156,20 @@ module.exports = {
     });
     if (options.platform === "android") {
       list.push({
-        src: __dirname + "/resources/src/android/ServiceAgora.java",
+        src: __dirname + `/resources/src/android/${sdkType}/ServiceAgora.java`,
         dst: path.join(runtimePath, "proj.android-studio/app/src/org/cocos2dx/javascript/service/ServiceAgora.java")
       });
       list.push({
-        src: __dirname + "/resources/sdk/android/lib/agora-rtc-sdk.jar",
+        src: __dirname + `/resources/sdk/android/lib/${sdkType}/agora-rtc-sdk.jar`,
         dst: path.join(runtimePath, "proj.android-studio/app/libs/agora-rtc-sdk.jar")
       });
       list.push({
-        src: __dirname + "/resources/sdk/android/agora",
+        src: __dirname + `/resources/sdk/android/agora/${sdkType}`,
         dst: path.join(runtimePath, isCreator23x ? "proj.android-studio/jni/agora" : "proj.android-studio/app/jni/agora")
       });
     } else if (options.platform === "ios") {
       list.push({
-        src: __dirname + "/resources/sdk/ios/agora",
+        src: __dirname + `/resources/sdk/ios/agora/${sdkType}`,
         dst: path.join(runtimePath, "proj.ios_mac/ios/agora")
       });
     }
@@ -189,9 +190,11 @@ module.exports = {
 #======================================= 
 #=========Agora import segment==========
 ifeq ($(USE_AGORA), 1)
-LOCAL_MODULE := agora-rtc
+LOCAL_MODULE := agora-rtc-sdk
 LOCAL_SRC_FILES := $(LOCAL_PATH)/agora/$(TARGET_ARCH_ABI)/libagora-rtc-sdk.so
-LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/agora/include
+include $(PREBUILT_SHARED_LIBRARY)
+LOCAL_MODULE := agora-crypto
+LOCAL_SRC_FILES := $(LOCAL_PATH)/agora/$(TARGET_ARCH_ABI)/libagora-crypto.so
 include $(PREBUILT_SHARED_LIBRARY)
 endif
 #=======================================
@@ -219,7 +222,7 @@ LOCAL_C_INCLUDES += ../../Classes/agora \\
         ../../Classes/agora/rtcChannel \\
         ../../Classes/agora/rtcEngine \\
         ../../Classes/agora/test
-LOCAL_SHARED_LIBRARIES := agora-rtc
+LOCAL_SHARED_LIBRARIES := agora-rtc-sdk agora-crypto
 endif
 #======================================
         ` : `
@@ -233,7 +236,7 @@ endef
 
 #find all the file recursively under jni/
 
-ALLFILES = $(call walk, $(LOCAL_PATH)/../../Classes/agora)
+ALLFILES = $(call walk, $(LOCAL_PATH)/../../../Classes/agora)
 FILE_LIST := $(filter %.cpp, $(ALLFILES))
 
 LOCAL_SRC_FILES += $(FILE_LIST:$(LOCAL_PATH)/%=%)
@@ -245,7 +248,7 @@ LOCAL_C_INCLUDES += ../../../Classes/agora \\
         ../../../Classes/agora/rtcChannel \\
         ../../../Classes/agora/rtcEngine \\
         ../../../Classes/agora/test
-LOCAL_SHARED_LIBRARIES := agora-rtc
+LOCAL_SHARED_LIBRARIES := agora-rtc-sdk agora-crypto
 endif
 #======================================
         `;
@@ -264,10 +267,16 @@ endif\n\n
       projHelper.replaceCodeSegment(buildGradePath, "//implementation 'com.android.support:appcompat-v7:23.4.0'", "implementation 'com.android.support:appcompat-v7:23.4.0");
       return;
     }
-    projHelper.Android.addUsesPermission("WRITE_EXTERNAL_STORAGE");
+    projHelper.Android.addUsesPermission("READ_PHONE_STATE");
+    projHelper.Android.addUsesPermission("INTERNET");
     projHelper.Android.addUsesPermission("RECORD_AUDIO");
+    if (sdkType === "video") {
+      projHelper.Android.addUsesPermission("CAMERA");
+    }
     projHelper.Android.addUsesPermission("MODIFY_AUDIO_SETTINGS");
-    projHelper.Android.addUsesPermission("BLUETOOTH");
+    projHelper.Android.addUsesPermission("ACCESS_NETWORK_STATE");
+    projHelper.Android.addUsesPermission("READ_EXTERNAL_STORAGE");
+    projHelper.Android.addUsesPermission("READ_PRIVILEGED_PHONE_STATE");
     projHelper.insertCodeLine(androidMKPath, /CLEAR_VARS/, importAgora);
     projHelper.insertCodeLine(androidMKPath, /cocos2dx_static/, usingAgora, true);
     projHelper.insertCodeLine(applicationMKPath, /NDK_DEBUG/, useAgora, true);
@@ -309,33 +318,42 @@ dependencies {
     projHelper.iOS.addSourceFileToProject("agora/observer/metadata/metadata_observer.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/rtcChannel/RtcChannelBridge.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/rtcEngine/RtcEngineBridge.cpp", "Classes", targetName);
-    projHelper.iOS.addSourceFileToProject("agora/jsb_agoraCreator.cpp", "Classes", targetName);
-    projHelper.iOS.addSourceFileToProject("agora/AgoraManager.cpp", "Classes", targetName);
-    projHelper.iOS.addSourceFileToProject("agora/Extensions.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/test/ApiTester.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/test/EventTester.cpp", "Classes", targetName);
     projHelper.iOS.addSourceFileToProject("agora/test/LogJson.cpp", "Classes", targetName);
-    params.requireTips = "请求麦克风权限";
+    projHelper.iOS.addSourceFileToProject("agora/AgoraManager.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/Extensions.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/jsb_agoraCreator.cpp", "Classes", targetName);
+    projHelper.iOS.addSourceFileToProject("agora/VideoFrameObserver.cpp", "Classes", targetName);
+    params.requireTips = "Request Microphone Permission";
     let infoStr = `<dict>
 	<key>NSMicrophoneUsageDescription</key>
     <string>${params.requireTips}</string>`;
     let infoPlistPath = options.dest + "/frameworks/runtime-src/proj.ios_mac/ios/Info.plist";
     projHelper.replaceCodeSegment(infoPlistPath, "<dict>", infoStr);
+    if (sdkType === "video") {
+      params.requireTips = "Request Camera Permission";
+      let infoStr = `<dict>
+      <key>NSCameraUsageDescription</key>
+      <string>${params.requireTips}</string>`;
+      let infoPlistPath = options.dest + "/frameworks/runtime-src/proj.ios_mac/ios/Info.plist";
+      projHelper.replaceCodeSegment(infoPlistPath, "<dict>", infoStr);
+    }
   },
   uninstallAndroid(options) {
     var isCreator23x = fs.existsSync(`${options.dest}/frameworks/runtime-src/proj.android-studio/jni/CocosAndroid.mk`);
     var runtimePath = path.join(options.dest, "frameworks/runtime-src");
     var list = [];
     list.push({
-      src: __dirname + "/resources/src/android/ServiceAgora.java",
+      src: __dirname + `/resources/src/android/${sdkType}/ServiceAgora.java`,
       dst: path.join(runtimePath, "proj.android-studio/app/src/org/cocos2dx/javascript/service/ServiceAgora.java")
     });
     list.push({
-      src: __dirname + "/resources/sdk/android/lib/agora-rtc-sdk.jar",
+      src: __dirname + `/resources/sdk/android/lib/${sdkType}/agora-rtc-sdk.jar`,
       dst: path.join(runtimePath, "proj.android-studio/app/libs/agora-rtc-sdk.jar")
     });
     list.push({
-      src: __dirname + "/resources/sdk/android/agora",
+      src: __dirname + `/resources/sdk/android/agora/${sdkType}`,
       dst: path.join(runtimePath, isCreator23x ? "proj.android-studio/jni/agora" : "proj.android-studio/app/jni/agora")
     });
     utils.deleteServicePackages(list);
