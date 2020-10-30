@@ -5,10 +5,11 @@
 #ifndef PROJ_ANDROID_STUDIO_CLASSES_AGORA_VIDEOFRAMEOBSERVER_H
 #define PROJ_ANDROID_STUDIO_CLASSES_AGORA_VIDEOFRAMEOBSERVER_H
 
-#include <agora/include/IAgoraMediaEngine.h>
 #include <map>
 #include <mutex>
 #include <vector>
+
+#include "IAgoraMediaEngine.h"
 
 namespace agora {
 namespace cocos {
