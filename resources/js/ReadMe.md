@@ -1,7 +1,7 @@
-声网通过全球部署的虚拟网络，提供可以灵活搭配的 API 组合，为移动端到移动端以及移动端到 Web 端提供质量可靠的实时音视频通信。
+声网通过全球部署的虚拟网络，提供可以灵活搭配的 API 组合，为移动端到移动端以及移动端到 Web 端提供质量可靠的实时音视频通信
 
-- [agora]{@link agora} 命名空间包含应用程序调用的主要方法。
-- [AgoraRtcEvents]{@link AgoraRtcEvents} 类用于向应用程序发送回调通知。
+- [agora]{@link agora} 命名空间包含应用程序调用的主要方法
+- [AgoraRtcEvents]{@link AgoraRtcEvents} 类用于向应用程序发送回调通知
 
 ### 频道管理
 
@@ -198,7 +198,7 @@
 
 ### 数据统计事件
 
-> 加入频道后，SDK 每隔 2 秒自动触发本组回调。
+> 加入频道后，SDK 每隔 2 秒自动触发本组回调
 
 <table>
 <tr>
@@ -295,11 +295,11 @@
 </tr>
 <tr>
 <td>[onRemoteAudioMixingBegin]{@link AgoraRtcEvents.onRemoteAudioMixingBegin}</td>
-<td>远端音乐文件播放已开始回调。</td>
+<td>远端音乐文件播放已开始回调</td>
 </tr>
 <tr>
 <td>[onRemoteAudioMixingEnd]{@link AgoraRtcEvents.onRemoteAudioMixingEnd}</td>
-<td>远端音乐文件播放已结束回调。</td>
+<td>远端音乐文件播放已结束回调</td>
 </tr>
 </table>
 
@@ -328,11 +328,11 @@
 </tr>
 <tr>
 <td>[stopEffect]{@link agora.stopEffect}</td>
-<td>停止播放指定音效文件.</td>
+<td>停止播放指定音效文件</td>
 </tr>
 <tr>
 <td>[stopAllEffects]{@link agora.stopAllEffects}</td>
-<td>停止播放所有音效文件.</td>
+<td>停止播放所有音效文件</td>
 </tr>
 <tr>
 <td>[preloadEffect]{@link agora.preloadEffect}</td>
@@ -417,7 +417,7 @@
 
 ### CDN 推流
 
-> 该组方法仅适用于互动直播。
+> 该组方法仅适用于互动直播
 
 <table>
 <tr>
@@ -655,7 +655,7 @@
 
 ### 直播输入在线媒体流
 
-> 该组方法仅适用于互动直播。
+> 该组方法仅适用于互动直播
 
 <table>
 <tr>

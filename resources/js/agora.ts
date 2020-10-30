@@ -169,78 +169,78 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设备状态。
      */
     export enum MEDIA_DEVICE_STATE_TYPE {
         
-        /** @cn
+        /** 
          * 1: 设备正在使用。
          */
         MEDIA_DEVICE_STATE_ACTIVE = 1,
         
-        /** @cn
+        /** 
          * 2: 设备被禁用。
          */
         MEDIA_DEVICE_STATE_DISABLED = 2,
         
-        /** @cn
+        /** 
          * 4: 没有此设备。
          */
         MEDIA_DEVICE_STATE_NOT_PRESENT = 4,
         
-        /** @cn
+        /** 
          * 8: 设备被拔出。
          */
         MEDIA_DEVICE_STATE_UNPLUGGED = 8
     }
 
     
-    /** @cn
+    /** 
      * 设备类型定义。
      */
     export enum MEDIA_DEVICE_TYPE {
         
-        /** @cn
+        /** 
          * -1: 设备类型未知。
          */
         UNKNOWN_AUDIO_DEVICE = -1,
         
-        /** @cn
+        /** 
          * 0: 音频播放设备。
          */
         AUDIO_PLAYOUT_DEVICE = 0,
         
-        /** @cn
+        /** 
          * 1: 音频录制设备。
          */
         AUDIO_RECORDING_DEVICE = 1,
         
-        /** @cn
+        /** 
          * @ignore
          * 2: 视频渲染设备。
         */
         VIDEO_RENDER_DEVICE = 2,
         
-        /** @cn
+        /** 
          * @ignore
          * 3: 视频采集设备。
          */
         VIDEO_CAPTURE_DEVICE = 3,
         
-        /** @cn
+        /** 
          * 4: 音频应用播放设备。
          */
         AUDIO_APPLICATION_PLAYOUT_DEVICE = 4,
     }
 
     
-    /** @cn
+    /** 
      * 音乐文件播放状态。
      */
     export enum AUDIO_MIXING_STATE_TYPE {
         
-        /** @cn
+        /** 
          * 710: 音乐文件正常播放。
          * 该状态表示 SDK 处于以下阶段：
          * - 成功调用 [startAudioMixing]{@link agora.startAudioMixing} 播放音乐文件。
@@ -248,19 +248,19 @@ namespace agora {
          */
         AUDIO_MIXING_STATE_PLAYING = 710,
         
-        /** @cn
+        /** 
          * 711: 音乐文件暂停播放。
          * 该状态表示 SDK 成功调用 [pauseAudioMixing]{@link agora.pauseAudioMixing} 暂停播放音乐文件。
          */
         AUDIO_MIXING_STATE_PAUSED = 711,
         
-        /** @cn
+        /** 
          * 713: 音乐文件停止播放。
          * 该状态表示 SDK 成功调用 [stopAudioMixing]{@link agora.stopAudioMixing} 停止播放音乐文件。
          */
         AUDIO_MIXING_STATE_STOPPED = 713,
         
-        /** @cn
+        /** 
          * 714: 音乐文件播放失败。
          * 错误类型详见 [AUDIO_MIXING_ERROR_TYPE]{@link agora.AUDIO_MIXING_ERROR_TYPE}
          */
@@ -268,882 +268,880 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 混音音乐文件错误码。
      */
     export enum AUDIO_MIXING_ERROR_TYPE {
         
-        /** @cn
+        /** 
          * 701: 音乐文件打开出错。
          */
         AUDIO_MIXING_ERROR_CAN_NOT_OPEN = 701,
         
-        /** @cn
+        /** 
          * 702: 音乐文件打开太频繁。
          */
         AUDIO_MIXING_ERROR_TOO_FREQUENT_CALL = 702,
         
-        /** @cn
+        /** 
          * 703: 音乐文件播放中断。
          */
         AUDIO_MIXING_ERROR_INTERRUPTED_EOF = 703,
         
-        /** @cn
+        /** 
          * 0: 音乐文件状态正常。
          */
         AUDIO_MIXING_ERROR_OK = 0,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 本地视频状态
      */
     export enum LOCAL_VIDEO_STREAM_STATE {
         
-        /** @cn
+        /** 
          * 0: 本地视频默认初始状态。
          */
         LOCAL_VIDEO_STREAM_STATE_STOPPED = 0,
         
-        /** @cn
+        /** 
          * 1: 本地视频采集设备启动成功。调用 [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId} 
          * 方法共享窗口且共享窗口为最大化时，也会报告该状态。
          */
         LOCAL_VIDEO_STREAM_STATE_CAPTURING = 1,
         
-        /** @cn
+        /** 
          * 2: 本地视频首帧编码成功。
          */
         LOCAL_VIDEO_STREAM_STATE_ENCODING = 2,
         
-        /** @cn
+        /** 
          * 3: 本地视频启动失败。
          */
         LOCAL_VIDEO_STREAM_STATE_FAILED = 3
     }
 
     
-    /** @cn
+    /** 
      * 本地视频出错原因
      */
     export enum LOCAL_VIDEO_STREAM_ERROR {
         
-        /** @cn
+        /** 
          * 0: 本地视频状态正常。
          */
         LOCAL_VIDEO_STREAM_ERROR_OK = 0,
         
-        /** @cn
+        /** 
          * 1: 出错原因不明确。
          */
         LOCAL_VIDEO_STREAM_ERROR_FAILURE = 1,
         
-        /** @cn
+        /** 
          * 2: 没有权限启动本地视频采集设备。
          */
         LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION = 2,
         
-        /** @cn
+        /** 
          * 3: 本地视频采集设备正在使用中。
          */
         LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY = 3,
         
-        /** @cn
+        /** 
          * 4: 本地视频采集失败，建议检查采集设备是否正常工作。
          */
         LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE = 4,
         
-        /** @cn
+        /** 
          * 5: 本地视频编码失败。
          */
         LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE = 5,
         
-        /** @cn
+        /** 
          * 11: 调用 [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId} 方法共享窗口时，共享窗口处于最小化的状态。
          */
         LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED = 11,
     }
 
     
-    /** @cn
+    /** 
      * 本地音频状态
      */
     export enum LOCAL_AUDIO_STREAM_STATE {
         
-        /** @cn
+        /** 
          * 0: 本地音频默认初始状态。
          */
         LOCAL_AUDIO_STREAM_STATE_STOPPED = 0,
         
-        /** @cn
+        /** 
          * 1: 本地音频录制设备启动成功。
          */
         LOCAL_AUDIO_STREAM_STATE_RECORDING = 1,
         
-        /** @cn
+        /** 
          * 2: 本地音频首帧编码成功。
          */
         LOCAL_AUDIO_STREAM_STATE_ENCODING = 2,
         
-        /** @cn
+        /** 
          * 3: 本地音频启动失败。
          */
         LOCAL_AUDIO_STREAM_STATE_FAILED = 3
     }
 
     
-    /** @cn
+    /** 
      * 本地音频出错原因
      */
     export enum LOCAL_AUDIO_STREAM_ERROR {
         
-        /** @cn
+        /** 
          * 0: 本地音频状态正常。
          */
         LOCAL_AUDIO_STREAM_ERROR_OK = 0,
         
-        /** @cn
+        /** 
          * 1: 本地音频出错原因不明确。
          */
         LOCAL_AUDIO_STREAM_ERROR_FAILURE = 1,
         
-        /** @cn
+        /** 
          * 2: 没有权限启动本地音频录制设备。
          */
         LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION = 2,
         
-        /** @cn
+        /** 
          * 3: 本地音频录制设备已经在使用中。
          */
         LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY = 3,
         
-        /** @cn
+        /** 
          * 4: 本地音频录制失败，建议你检查录制设备是否正常工作。
          */
         LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE = 4,
         
-        /** @cn
+        /** 
          * 5: 本地音频编码失败。
          */
         LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE = 5
     }
 
     
-    /** @cn
+    /** 
      * 录音音质。
      */
     export enum AUDIO_RECORDING_QUALITY_TYPE {
         
-        /** @cn
+        /** 
          * 0: 低音质。采样率为 32 kHz，录制 10 分钟的文件大小为 1.2 M 左右。
          */
         AUDIO_RECORDING_QUALITY_LOW = 0,
         
-        /** @cn
+        /** 
          * 1: 中音质。采样率为 32 kHz，录制 10 分钟的文件大小为 2 M 左右。
          */
         AUDIO_RECORDING_QUALITY_MEDIUM = 1,
         
-        /** @cn
+        /** 
          * 2: 高音质。采样率为 32 kHz，录制 10 分钟的文件大小为 3.75 M 左右。
          */
         AUDIO_RECORDING_QUALITY_HIGH = 2,
     }
 
     
-    /** @cn
+    /** 
      * 网络质量。
      */
     export enum QUALITY_TYPE {
         
-        /** @cn
+        /** 
          * 0: 网络质量未知。
          */
         QUALITY_UNKNOWN = 0,
         
-        /** @cn
+        /** 
          *  1: 网络质量极好。
          */
         QUALITY_EXCELLENT = 1,
         
-        /** @cn
+        /** 
          * 2: 用户主观感觉和 excellent 差不多，但码率可能略低于 excellent。
          */
         QUALITY_GOOD = 2,
         
-        /** @cn
+        /** 
          * 3: 用户主观感受有瑕疵但不影响沟通。
          */
         QUALITY_POOR = 3,
         
-        /** @cn
+        /** 
          * 4: 勉强能沟通但不顺畅。
          */
         QUALITY_BAD = 4,
         
-        /** @cn
+        /** 
          * 5: 网络质量非常差，基本不能沟通。
          */
         QUALITY_VBAD = 5,
         
-        /** @cn
+        /** 
          * 6: 完全无法沟通。
          */
         QUALITY_DOWN = 6,
         
-        /** @cn
+        /** 
          * 7: 暂时无法检测网络质量（未使用）。
          */
         QUALITY_UNSUPPORTED = 7,
         
-        /** @cn
+        /** 
          * 8: 网络质量检测已开始还没完成。
          */
         QUALITY_DETECTING = 8,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置视频显示模式。
      */
     export enum RENDER_MODE_TYPE {
         
-         /** @cn
+         /** 
          * 1: 视频尺寸等比缩放。优先保证视窗被填满。因视频尺寸与显示视窗尺寸不一致而多出的视频将被截掉。
          */
         RENDER_MODE_HIDDEN = 1,
         
-         /** @cn
+         /** 
          * 2: 视频尺寸等比缩放。优先保证视频内容全部显示。因视频尺寸与显示视窗尺寸不一致造成的视窗未被填满的区域填充黑色。
          */
         RENDER_MODE_FIT = 2,
         
-        /** @cn
+        /** 
          * @deprecated 3: 该模式已废弃。
          */
         RENDER_MODE_ADAPTIVE = 3,
         
-        /** @cn
+        /** 
          * 4: 视频尺寸进行缩放和拉伸以充满显示视窗。
          */
         RENDER_MODE_FILL = 4,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 镜像模式类型。
      */
     export enum VIDEO_MIRROR_MODE_TYPE {
         
-        /** @cn
+        /** 
          * 0:（默认）由 SDK 决定镜像模式：
          * - 本地视图镜像模式：如果你使用前置摄像头，默认启动本地视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。
          * - 远端用户视图镜像模式：默认关闭远端用户的镜像模式。
          */
         VIDEO_MIRROR_MODE_AUTO = 0,//determined by SDK
         
-        /** @cn
+        /** 
          * 1: 启用镜像模式。
          */
         VIDEO_MIRROR_MODE_ENABLED = 1,//enabled mirror
         
-        /** @cn
+        /** 
          * 2: 关闭镜像模式。
          */
         VIDEO_MIRROR_MODE_DISABLED = 2,//disable mirror
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * @deprecated 横屏模式视频属性。
      */
     export enum VIDEO_PROFILE_TYPE {
         
-        /** @cn
+        /** 
          * @deprecated
          * 0：分辨率 160 &times; 120，帧率 15 fps，码率 65 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_120P = 0,
         
-        /** @cn
+        /** 
          * @deprecated
          * 2：分辨率 120 &times; 120，帧率 15 fps，码率 50 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_120P_3 = 2,
         
-        /** @cn
+        /** 
          * @deprecated
          * 10：分辨率 320 &times; 180，帧率 15 fps，码率 140 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_180P = 10,
         
-        /** @cn
+        /** 
          * @deprecated
          * 12：分辨率 180 &times; 180，帧率 15 fps，码率 100 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_180P_3 = 12,
         
-        /** @cn
+        /** 
          * @deprecated
          * 13：分辨率 240 &times; 180，帧率 15 fps，码率 120 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_180P_4 = 13,
         
-        /** @cn
+        /** 
          * @deprecated
          * 20：分辨率 320 &times; 240，帧率 15 fps，码率 200 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_240P = 20,
         
-        /** @cn
+        /** 
          * @deprecated
          * 22：分辨率 240 &times; 240，帧率 15 fps，码率 140 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_240P_3 = 22,
         
-        /** @cn
+        /** 
          * @deprecated
          * 23：分辨率 424 &times; 240，帧率 15 fps，码率 220 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_240P_4 = 23,
         
-        /** @cn
+        /** 
          * @deprecated
          * 30：分辨率 640 &times; 360，帧率 15 fps，码率 400 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_360P = 30,
         
-        /** @cn
+        /** 
          * @deprecated
          * 32：分辨率 360 &times; 360，帧率 15 fps，码率 260 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_360P_3 = 32,
         
-        /** @cn
+        /** 
          * @deprecated
          * 33：分辨率 640 &times; 360，帧率 30 fps，码率 600 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_360P_4 = 33,
         
-        /** @cn
+        /** 
          * @deprecated
          * 35：分辨率 360 &times; 360，帧率 30 fps，码率 400 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_360P_6 = 35,
         
-        /** @cn
+        /** 
          * @deprecated
          * 36：分辨率 480 &times; 360，帧率 15 fps，码率 320 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_360P_7 = 36,
         
-        /** @cn
+        /** 
          * @deprecated
          * 37：分辨率 480 &times; 360，帧率 30 fps，码率 490 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_360P_8 = 37,
         
-        /** @cn
+        /** 
          * @deprecated
          * 38：分辨率 640 &times; 360，帧率 15 fps，码率 800 Kbps。
          * @note 该视频属性仅适用于直播频道模式。
          */
         VIDEO_PROFILE_LANDSCAPE_360P_9 = 38,
         
-        /** @cn
+        /** 
          * @deprecated
          * 39：分辨率 640 &times; 360，帧率 24 fps，码率 800 Kbps。
          * @note 该视频属性仅适用于直播频道模式。
          */
         VIDEO_PROFILE_LANDSCAPE_360P_10 = 39,
         
-        /** @cn
+        /** 
          * @deprecated 100: 分辨率 640 &times; 360，帧率 24 fps，码率 1000 Kbps。
          * @note 该属性仅适用于直播频道场景。
          */
         VIDEO_PROFILE_LANDSCAPE_360P_11 = 100,
         
-        /** @cn
+        /** 
          * @deprecated
          * 40：分辨率 640 &times; 480，帧率 15 fps，码率 500 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_480P = 40,
         
-        /** @cn
+        /** 
          * @deprecated
          * 42：分辨率 480 &times; 480，帧率 15 fps，码率 400 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_480P_3 = 42,
         
-        /** @cn
+        /** 
          * @deprecated
          * 43：分辨率 640 &times; 480，帧率 30 fps，码率 750 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_480P_4 = 43,
         
-        /** @cn
+        /** 
          * @deprecated
          * 45：分辨率 480 &times; 480，帧率 30 fps，码率 600 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_480P_6 = 45,
         
-        /** @cn
+        /** 
          * @deprecated
          * 47：分辨率 848 &times; 480，帧率 15 fps，码率 610 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_480P_8 = 47,
         
-        /** @cn
+        /** 
          * @deprecated
          * 48：分辨率 848 &times; 480，帧率 30 fps，码率 930 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_480P_9 = 48,
         
-        /** @cn
+        /** 
          * @deprecated
          * 49：分辨率 640 &times; 480，帧率 10 fps，码率 400 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_480P_10 = 49,
         
-        /** @cn
+        /** 
          * @deprecated
          * 50：分辨率 1280 &times; 720，帧率 15 fps，码率 1130 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_720P = 50,
         
-        /** @cn
+        /** 
          * @deprecated
          * 52：分辨率 1280 &times; 720，帧率 30 fps，码率 1710 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_720P_3 = 52,
         
-        /** @cn
+        /** 
          * @deprecated
          * 54：分辨率 960 &times; 720，帧率 15 fps，码率 910 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_720P_5 = 54,
         
-        /** @cn
+        /** 
          * @deprecated
          * 55：分辨率 960 &times; 720，帧率 30 fps，码率 1380 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_720P_6 = 55,
         
-        /** @cn
+        /** 
          * @deprecated
          * 60：分辨率 1920 &times; 1080，帧率 15 fps，码率 2080 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_1080P = 60,
         
-        /** @cn
+        /** 
          * @deprecated
          * 62：分辨率 1920 &times; 1080，帧率 30 fps，码率 3150 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_1080P_3 = 62,
         
-        /** @cn
+        /** 
          * @deprecated
          * 64：分辨率 1920 &times; 1080，帧率 60 fps，码率 4780 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_1080P_5 = 64,
         
-        /** @cn
+        /** 
          * @deprecated
          * 66：分辨率 2560 &times; 1440，帧率 30 fps，码率 4850 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_1440P = 66,
         
-        /** @cn
+        /** 
          * @deprecated
          * 67：分辨率 2560 &times; 1440，帧率 60 fps，码率 7350 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_1440P_2 = 67,
         
-        /** @cn
+        /** 
          * @deprecated
          * 70：分辨率 3840 &times; 2160，分辨率 30 fps，码率 8910 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_4K = 70,
         
-        /** @cn
+        /** 
          * @deprecated
          * 72：分辨率 3840 &times; 2160，帧率 60 fps，码率 13500 Kbps。
          */
         VIDEO_PROFILE_LANDSCAPE_4K_3 = 72,
         
-        /** @cn
+        /** 
          * @deprecated 1000: 分辨率 120 &times; 160，帧率 15 fps，码率 65 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_120P = 1000,
         
-        /** @cn
+        /** 
          * @deprecated 1002: 分辨率 120 &times; 120，帧率 15 fps，码率 50 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_120P_3 = 1002,
         
-        /** @cn
+        /** 
          * @deprecated 1010: 分辨率 180 &times; 320，帧率 15 fps，码率 140 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_180P = 1010,
         
-        /** @cn
+        /** 
          * @deprecated 1012: 分辨率 180 &times; 180，帧率 15 fps，码率 100 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_180P_3 = 1012,
         
-        /** @cn
+        /** 
          * @deprecated 1013: 分辨率 180 &times; 240，帧率 15 fps，码率 120 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_180P_4 = 1013,
         
-        /** @cn
+        /** 
          * @deprecated 1020: 分辨率 240 &times; 320，帧率 15 fps，码率 200 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_240P = 1020,
         
-        /** @cn
+        /** 
          * @deprecated 1022: 分辨率 240 &times; 240，帧率 15 fps，码率 140 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_240P_3 = 1022,
         
-        /** @cn
+        /** 
          * @deprecated 1023: 分辨率 240 &times; 424，帧率 15 fps，码率 220 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_240P_4 = 1023,
         
-        /** @cn
+        /** 
          * @deprecated 1030: 分辨率 360 &times; 640，帧率 15 fps，码率 400 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_360P = 1030,
         
-        /** @cn
+        /** 
          * @deprecated 1032: 分辨率 360 &times; 360，帧率 15 fps，码率 260 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_360P_3 = 1032,
         
-        /** @cn
+        /** 
          * @deprecated 1033: 分辨率 360 &times; 640，帧率 30 fps，码率 600 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_360P_4 = 1033,
         
-        /** @cn
+        /** 
          * @deprecated 1035: 分辨率 360 &times; 360，帧率 30 fps，码率 400 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_360P_6 = 1035,
         
-        /** @cn
+        /** 
          * @deprecated 1036: 分辨率 360 &times; 480，帧率 15 fps，码率 320 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_360P_7 = 1036,
         
-        /** @cn
+        /** 
          * @deprecated 1037: 分辨率 360 &times; 480，帧率 30 fps，码率 490 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_360P_8 = 1037,
         
-        /** @cn
+        /** 
          * @deprecated 1038: 分辨率 360 &times; 640，帧率 15 fps，码率 800 Kbps。
          * @note 该属性仅适用于直播频道场景。
          */
         VIDEO_PROFILE_PORTRAIT_360P_9 = 1038,
         
-        /** @cn
+        /** 
          * @deprecated 1039: 分辨率 360 &times; 640，帧率 24 fps，码率 800 Kbps。
          * @note 该属性仅适用于直播频道场景。
          */
         VIDEO_PROFILE_PORTRAIT_360P_10 = 1039,
         
-        /** @cn
+        /** 
          * @deprecated 1100: 分辨率 360 &times; 640，帧率 24 fps，码率 1000 Kbps。
          * @note 该属性仅适用于直播频道场景。
          */
         VIDEO_PROFILE_PORTRAIT_360P_11 = 1100,
         
-        /** @cn
+        /** 
          * @deprecated 1040: 分辨率 480 &times; 640，帧率 15 fps，码率 500 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_480P = 1040,
         
-        /** @cn
+        /** 
          * @deprecated 1042: 分辨率 480 &times; 480，帧率 15 fps，码率 400 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_480P_3 = 1042,
         
-        /** @cn
+        /** 
          * @deprecated 1043: 分辨率 480 &times; 640，帧率 30 fps，码率 750 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_480P_4 = 1043,
         
-        /** @cn
+        /** 
          * @deprecated 1045: 分辨率 480 &times; 480，帧率 30 fps，码率 600 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_480P_6 = 1045,
         
-        /** @cn
+        /** 
          * @deprecated 1047: 分辨率 480 &times; 848，帧率 15 fps，码率 610 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_480P_8 = 1047,
         
-        /** @cn
+        /** 
          * @deprecated 1048: 分辨率 480 &times; 848，帧率 30 fps，码率 930 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_480P_9 = 1048,
         
-        /** @cn
+        /** 
          * @deprecated 1049: 分辨率 480 &times; 640，帧率 10 fps，码率 400 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_480P_10 = 1049,
         
-        /** @cn
+        /** 
          * @deprecated 1050: 分辨率 分辨率 720 &times; 1280，帧率 15 fps，码率 1130 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_720P = 1050,
         
-        /** @cn
+        /** 
          * @deprecated 1052: 分辨率 分辨率 720 &times; 1280，帧率 30 fps，码率 1710 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_720P_3 = 1052,
         
-        /** @cn
+        /** 
          * @deprecated 1054: 分辨率 720 &times; 960，帧率 15 fps，码率 910 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_720P_5 = 1054,
         
-        /** @cn
+        /** 
          * @deprecated 1055: 分辨率 720 &times; 960，帧率 30 fps，码率 1380 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_720P_6 = 1055,
         
-        /** @cn
+        /** 
          * @deprecated 1060: 分辨率 1080 &times; 1920，帧率 15 fps，码率 2080 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_1080P = 1060,
         
-        /** @cn
+        /** 
          * @deprecated 1062: 分辨率 1080 &times; 1920，帧率 30 fps，码率 3150 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_1080P_3 = 1062,
         
-        /** @cn
+        /** 
          * @deprecated 1064: 分辨率 1080 &times; 1920，帧率 60 fps，码率 4780 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_1080P_5 = 1064,
         
-        /** @cn
+        /** 
          * @deprecated 1066: 分辨率 分辨率 1440 &times; 2560，帧率 30 fps，码率 4850 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_1440P = 1066,
         
-        /** @cn
+        /** 
          * @deprecated 1067: 分辨率 分辨率 1440 &times; 2560，帧率 60 fps，码率 6500 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_1440P_2 = 1067,
         
-        /** @cn
+        /** 
          * @deprecated 1070: 分辨率 1440 &times; 3840，帧率 30 fps，码率 6500 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_4K = 1070,
         
-        /** @cn
+        /** 
          * @deprecated 1072: 分辨率 2160 &times; 3840，帧率 60 fps，码率 6500 Kbps。
          */
         VIDEO_PROFILE_PORTRAIT_4K_3 = 1072,
         
-        /** @cn
+        /** 
          * @deprecated （默认）分辨率 640 &times; 360，帧率 15 fps，码率 400 Kbps。
          */
         VIDEO_PROFILE_DEFAULT = VIDEO_PROFILE_LANDSCAPE_360P,
     }
 
     
-    /** @cn
+    /** 
      * 音频属性。
      * 设置采样率，码率，编码模式和声道数。
      */
     export enum AUDIO_PROFILE_TYPE // sample rate, bit rate, mono/stereo, speech/music codec
     {
         
-        /** @cn
+        /** 
          * 0: 默认值。
          * - 直播场景下：48 KHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。
-         * - 通信场景下：
-         *    - Windows 平台：16 KHz 采样率，音乐编码，单声道，编码码率最大值为 16 Kbps。
-         *    - Android、macOS、iOS 平台：32 KHz 采样率，音乐编码，单声道，编码码率最大值为 18 Kbps。
+         * - 通信场景下：32 KHz 采样率，音乐编码，单声道，编码码率最大值为 18 Kbps。
          */
         AUDIO_PROFILE_DEFAULT = 0, // use default settings
         
-        /** @cn
+        /** 
          * 1: 指定 32 KHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。
          */
         AUDIO_PROFILE_SPEECH_STANDARD = 1, // 32Khz, 18Kbps, mono, speech
         
-        /** @cn
+        /** 
          * 2: 指定 48 KHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。
          */
         AUDIO_PROFILE_MUSIC_STANDARD = 2, // 48Khz, 48Kbps, mono, music
         
-        /** @cn
+        /** 
          * 3: 指定 48 KHz 采样率，音乐编码，双声道，编码码率最大值为 80 Kbps。
          */
         AUDIO_PROFILE_MUSIC_STANDARD_STEREO = 3, // 48Khz, 56Kbps, stereo, music
         
-        /** @cn
+        /** 
          * 4: 指定 48 KHz 采样率，音乐编码，单声道，编码码率最大值为 96 Kbps。
          */
         AUDIO_PROFILE_MUSIC_HIGH_QUALITY = 4, // 48Khz, 128Kbps, mono, music
         
-        /** @cn
+        /** 
          * 5: 指定 48 KHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。
          */
         AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO = 5, // 48Khz, 192Kbps, stereo, music
         
-        /** @cn
+        /** 
          * 6: 指定 16 KHz 采样率，语音编码，单声道，应用回声消除算法 AES。
          */
         AUDIO_PROFILE_IOT = 6,
         
-        /** @cn
+        /** 
          * 枚举的数量。
          */
         AUDIO_PROFILE_NUM = 7,
     }
 
     
-    /** @cn
+    /** 
      * 设置音频应用场景。
      */
     export enum AUDIO_SCENARIO_TYPE // set a suitable scenario for your app type
     {
         
-        /** @cn
+        /** 
          * 0: 默认设置。
          */
         AUDIO_SCENARIO_DEFAULT = 0,
         
-        /** @cn
+        /** 
          * 1: 娱乐应用，需要频繁上下麦的场景。
          */
         AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT = 1,
         
-        /** @cn
+        /** 
          * 2: 教育应用，流畅度和稳定性优先。
          */
         AUDIO_SCENARIO_EDUCATION = 2,
         
-        /** @cn
+        /** 
          * 3: 高音质语聊房应用。
          */
         AUDIO_SCENARIO_GAME_STREAMING = 3,
         
-        /** @cn
+        /** 
          * 4:  秀场应用，音质优先和更好的专业外设支持。
          */
         AUDIO_SCENARIO_SHOWROOM = 4,
         
-        /** @cn
+        /** 
          * 5: 游戏开黑。
          */
         AUDIO_SCENARIO_CHATROOM_GAMING = 5,
         
-        /** @cn
+        /** 
          * 6: 物联网应用。
          */
         AUDIO_SCENARIO_IOT = 6,
         
-        /** @cn
+        /** 
          * 枚举的数量。
          */
         AUDIO_SCENARIO_NUM = 7,
     }
 
     
-    /** @cn
+    /** 
      * 频道使用场景。
      */
     export enum CHANNEL_PROFILE_TYPE {
         
-        /** @cn
+        /** 
          * 0: （默认）通信场景。该场景下，频道内所有用户都可以发布和接收音、视频流。适用于语音通话、视频群聊等应用场景。
          */
         CHANNEL_PROFILE_COMMUNICATION = 0,
         
-        /** @cn
+        /** 
          * 1: 直播场景。该场景有主播和观众两种用户角色，可以通过 [setClientRole]{@link agora.setClientRole}
          * 设置。主播可以发布和接收音视频流，观众直接接收流。适用于语聊房、视频直播、互动大班课等应用场景。
          */
         CHANNEL_PROFILE_LIVE_BROADCASTING = 1,
         
-        /** @cn
+        /** 
          * 2: Agora 不推荐使用该场景。
          */
         CHANNEL_PROFILE_GAME = 2,
     }
 
     
-    /** @cn
+    /** 
      * 直播场景里的用户角色。
      */
     export enum CLIENT_ROLE_TYPE {
         
-        /** @cn
+        /** 
          * 1: 主播。主播可以发流也可以收流。
          */
         CLIENT_ROLE_BROADCASTER = 1,
         
-        /** @cn
+        /** 
          * 2: （默认）观众。观众只能收流不能发流。
          */
         CLIENT_ROLE_AUDIENCE = 2,
     }
 
     
-    /** @cn
+    /** 
      * 用户离线原因。
      */
     export enum USER_OFFLINE_REASON_TYPE {
         
-        /** @cn
+        /** 
          * 0: 用户主动离开。
          */
         USER_OFFLINE_QUIT = 0,
         
-        /** @cn
+        /** 
          * 1: 因过长时间收不到对方数据包，超时掉线。注意：由于 SDK 使用的是不可靠通道，也有可能对方主动离开本方没收到对方离开消息而误判为超时掉线。
          */
         USER_OFFLINE_DROPPED = 1,
         
-         /** @cn
+         /** 
           * 2: 用户身份从主播切换为观众时触发。
           */
         USER_OFFLINE_BECOME_AUDIENCE = 2,
     }
 
     
-    /** @cn
+    /** 
      * 推流状态
      */
     export enum RTMP_STREAM_PUBLISH_STATE {
         
-        /** @cn
+        /** 
          * 推流未开始或已结束。成功调用  [removePublishStreamUrl]{@link agora.removePublishStreamUrl}  方法删除推流地址后，也会返回该状态。
          */
         RTMP_STREAM_PUBLISH_STATE_IDLE = 0,
         
-        /** @cn
+        /** 
          * 正在连接 Agora 推流服务器和 RTMP 服务器。调用  [addPublishStreamUrl]{@link agora.addPublishStreamUrl}  方法后，会返回该状态
          */
         RTMP_STREAM_PUBLISH_STATE_CONNECTING = 1,
         
-        /** @cn
+        /** 
          * 推流正在进行。成功推流后，会返回该状态。
          */
         RTMP_STREAM_PUBLISH_STATE_RUNNING = 2,
         
-        /** @cn
+        /** 
          * 正在恢复推流。当 CDN 出现异常，或推流短暂中断时，SDK 会自动尝试恢复推流，并返回该状态。
          * - 如成功恢复推流，则进入状态 [RTMP_STREAM_PUBLISH_STATE_RUNNING]{@link agora.RTMP_STREAM_PUBLISH_STATE.RTMP_STREAM_PUBLISH_STATE_RUNNING} (2)。
          * - 如服务器出错或 60 秒内未成功恢复，则进入状态 [RTMP_STREAM_PUBLISH_STATE_FAILURE]{@link agora.RTMP_STREAM_PUBLISH_STATE.RTMP_STREAM_PUBLISH_STATE_FAILURE} (4)。
@@ -1152,185 +1150,185 @@ namespace agora {
          */
         RTMP_STREAM_PUBLISH_STATE_RECOVERING = 3,
         
-        /** @cn
+        /** 
          * 推流失败。失败后，你可以通过返回的错误码排查错误原因，也可以再次调用 [addPublishStreamUrl]{@link agora.addPublishStreamUrl} 重新尝试推流。
          */
         RTMP_STREAM_PUBLISH_STATE_FAILURE = 4,
     }
 
     
-    /** @cn
+    /** 
      * 推流错误信息
      */
     export enum RTMP_STREAM_PUBLISH_ERROR {
         
-        /** @cn
+        /** 
          * 推流成功
          */
         RTMP_STREAM_PUBLISH_ERROR_OK = 0,
         
-        /** @cn
+        /** 
          * 参数无效。请检查输入参数是否正确。例如如果你在调用 [addPublishStreamUrl]{@link agora.addPublishStreamUrl} 前没有调用 
          * [setLiveTranscoding]{@link agora.setLiveTranscoding} 设置转码参数，SDK 会返回该错误。
          */
         RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT = 1,
         
-        /** @cn
+        /** 
          * 推流已加密，不能推流。
          */
         RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED = 2,
         
-        /** @cn
+        /** 
          * 推流超时未成功。可调用  [addPublishStreamUrl]{@link agora.addPublishStreamUrl}  重新推流。
          */
         RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT = 3,
         
-        /** @cn
+        /** 
          * 推流服务器出现错误。请调用  [addPublishStreamUrl]{@link agora.addPublishStreamUrl}  重新推流。
          */
         RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR = 4,
         
-        /** @cn
+        /** 
          * RTMP 服务器出现错误。
          */
         RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR = 5,
         
-        /** @cn
+        /** 
          * 推流请求过于频繁。
          */
         RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN = 6,
         
-        /** @cn
+        /** 
          * 单个主播的推流地址数目达到上线 10。请删掉一些不用的推流地址再增加推流地址。
          */
         RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT = 7,
         
-        /** @cn
+        /** 
          * 主播操作不属于自己的流。例如更新其他主播的流参数、停止其他主播的流。请检查 App 逻辑。
          */
         RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED = 8,
         
-        /** @cn
+        /** 
          * 服务器未找到这个流。
          */
         RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND = 9,
         
-        /** @cn
+        /** 
          * 推流地址格式有错误。请检查推流地址格式是否正确。
          */
         RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED = 10,
     }
 
     
-    /** @cn
+    /** 
      * RTMP 推流时发生的事件。
      */
     export enum RTMP_STREAMING_EVENT {
         
-        /** @cn
+        /** 
          * RTMP 推流时，添加背景图或水印出错。
          */
         RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE = 1,
     }
 
     
-    /** @cn
+    /** 
      * 导入的外部视频源状态。
      */
     export enum INJECT_STREAM_STATUS {
         
-        /** @cn
+        /** 
          * 0: 外部视频流导入成功。
          */
         INJECT_STREAM_STATUS_START_SUCCESS = 0,
         
-        /** @cn
+        /** 
          * 1: 外部视频流已存在。
          */
         INJECT_STREAM_STATUS_START_ALREADY_EXISTS = 1,
         
-        /** @cn
+        /** 
          * 2: 外部视频流导入未经授权。
          */
         INJECT_STREAM_STATUS_START_UNAUTHORIZED = 2,
         
-        /** @cn
+        /** 
          * 3: 导入外部视频流超时。
          */
         INJECT_STREAM_STATUS_START_TIMEDOUT = 3,
         
-        /** @cn
+        /** 
          * 4: 外部视频流导入失败。
          */
         INJECT_STREAM_STATUS_START_FAILED = 4,
         
-        /** @cn
+        /** 
          * 5: 外部视频流停止导入成功。
          */
         INJECT_STREAM_STATUS_STOP_SUCCESS = 5,
         
-        /** @cn
+        /** 
          * 6: 未找到要停止导入的外部视频流。
          */
         INJECT_STREAM_STATUS_STOP_NOT_FOUND = 6,
         
-        /** @cn
+        /** 
          * 7: 要停止导入的外部视频流未经授权。
          */
         INJECT_STREAM_STATUS_STOP_UNAUTHORIZED = 7,
         
-        /** @cn
+        /** 
          * 8: 停止导入外部视频流超时。
          */
         INJECT_STREAM_STATUS_STOP_TIMEDOUT = 8,
         
-        /** @cn
+        /** 
          * 9: 停止导入外部视频流失败。
          */
         INJECT_STREAM_STATUS_STOP_FAILED = 9,
         
-        /** @cn
+        /** 
          * 10: 导入的外部视频流被中断。
          */
         INJECT_STREAM_STATUS_BROKEN = 10,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频流类型，视频流大小。
      */
     export enum REMOTE_VIDEO_STREAM_TYPE {
         
-        /** @cn
+        /** 
          * 0: 视频大流。
          */
         REMOTE_VIDEO_STREAM_HIGH = 0,
         
-        /** @cn
+        /** 
          * 1: 视频小流。
          */
         REMOTE_VIDEO_STREAM_LOW = 1,
     }
 
     
-    /** @cn [onRecordAudioFrame]{@link agora.onRecordAudioFrame}  或  [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame}  
+    /**  [onRecordAudioFrame]{@link agora.onRecordAudioFrame}  或  [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame}  
      * 回调中返回的音频数据的使用模式
      */
     export enum RAW_AUDIO_FRAME_OP_MODE_TYPE {
         
-        /** @cn
+        /** 
          * 0: 只读模式，用户仅从  [AudioFrame]{@link agora.AudioFrame}  获取原始数据，不作任何修改。例如: 若用户通过 Agora SDK 采集数据，自己进行 
          * RTMP 推流，则可以选择该模式。
          */
         RAW_AUDIO_FRAME_OP_MODE_READ_ONLY = 0,
         
-        /** @cn
+        /** 
          * 1: 只写模式，用户替换  [AudioFrame]{@link agora.AudioFrame}  中的数据以供 SDK 编码传输。例如: 若用户自行采集数据，可选择该模式。
          */
         RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY = 1,
         
-        /** @cn
+        /** 
          * 2: 读写模式, 用户从  [AudioFrame]{@link agora.AudioFrame}  获取并修改数据、修改，并返回给 SDK 进行编码传输。例如: 若用户自己有音效
          * 处理模块，且想要根据实际需要对数据进行前处理(例如变声)，则可以选择该模式。
          */
@@ -1338,356 +1336,356 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 用于旁路推流的输出音频的采样率。
      */
     export enum AUDIO_SAMPLE_RATE_TYPE {
         
-        /** @cn
+        /** 
          * 32000: 32 kHz
          */
         AUDIO_SAMPLE_RATE_32000 = 32000,
         
-        /** @cn
+        /** 
          * 44100: 44.1 kHz
          */
         AUDIO_SAMPLE_RATE_44100 = 44100,
         
-        /** @cn
+        /** 
          * 48000: 48 kHz
          */
         AUDIO_SAMPLE_RATE_48000 = 48000,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 用于旁路推流的输出视频的编解码规格。
      */
     export enum VIDEO_CODEC_PROFILE_TYPE {
         
-        /** @cn
+        /** 
          * 66: Baseline 级别的视频编码规格，一般用于低阶或需要额外容错的应用，比如视频通话、手机视频等。
          */
         VIDEO_CODEC_PROFILE_BASELINE = 66,
         
-        /** @cn
+        /** 
          * 77: Main 级别的视频编码规格，一般用于主流消费类电子产品，如 mp4、便携的视频播放器、PSP 和 iPad 等。
          */
         VIDEO_CODEC_PROFILE_MAIN = 77,
         
-        /** @cn
+        /** 
          * 100: （默认）High 级别的视频编码规格，一般用于广播及视频碟片存储，高清电视。
          */
         VIDEO_CODEC_PROFILE_HIGH = 100,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频编码格式
      */
     export enum VIDEO_CODEC_TYPE {
         
-        /** @cn
+        /** 
          * 标准 VP8
          */
         VIDEO_CODEC_VP8 = 1,
         
-        /** @cn
+        /** 
          * 标准 H264
          */
         VIDEO_CODEC_H264 = 2,
         
-        /** @cn
+        /** 
          * 增强 VP8
          */
         VIDEO_CODEC_EVP = 3,
         
-        /** @cn
+        /** 
          * 增强 H264
          */
         VIDEO_CODEC_E264 = 4,
     }
 
     
-    /** @cn
+    /** 
      * 语音音效均衡波段的中心频率。
      */
     export enum AUDIO_EQUALIZATION_BAND_FREQUENCY {
         
-        /** @cn
+        /** 
          * 0: 31 Hz
          */
         AUDIO_EQUALIZATION_BAND_31 = 0,
         
-        /** @cn
+        /** 
          * 1: 62 Hz
          */
         AUDIO_EQUALIZATION_BAND_62 = 1,
         
-        /** @cn
+        /** 
          * 2: 125 Hz
          */
         AUDIO_EQUALIZATION_BAND_125 = 2,
         
-        /** @cn
+        /** 
          * 3: 250 Hz
          */
         AUDIO_EQUALIZATION_BAND_250 = 3,
         
-        /** @cn
+        /** 
          * 4: 500 Hz
          */
         AUDIO_EQUALIZATION_BAND_500 = 4,
         
-        /** @cn
+        /** 
          * 5: 1 kHz
          */
         AUDIO_EQUALIZATION_BAND_1K = 5,
         
-        /** @cn
+        /** 
          * 6: 2 kHz
          */
         AUDIO_EQUALIZATION_BAND_2K = 6,
         
-        /** @cn
+        /** 
          * 7: 4 kHz
          */
         AUDIO_EQUALIZATION_BAND_4K = 7,
         
-        /** @cn
+        /** 
          * 8: 8 kHz
          */
         AUDIO_EQUALIZATION_BAND_8K = 8,
         
-        /** @cn
+        /** 
          * 9: 16 kHz
          */
         AUDIO_EQUALIZATION_BAND_16K = 9,
     }
 
     
-    /** @cn
+    /** 
      * 各混响音效 Key 所对应的值。
      */
     export enum AUDIO_REVERB_TYPE {
         
-        /** @cn
+        /** 
          * 0: 取值范围 [-20,10]，单位为 dB, 原始声音强度，即所谓的 dry signal。
          */
         AUDIO_REVERB_DRY_LEVEL = 0, // (dB, [-20,10]), the level of the dry signal
         
-        /** @cn
+        /** 
          * 1: 取值范围 [-20,10]，单位为 dB, 早期反射信号强度，即所谓的 wet signal。
          */
         AUDIO_REVERB_WET_LEVEL = 1, // (dB, [-20,10]), the level of the early reflection signal (wet signal)
         
-        /** @cn
+        /** 
          * 2: 所需混响效果的房间尺寸，一般房间越大，混响越强，取值范围 [0,100]。
          */
         AUDIO_REVERB_ROOM_SIZE = 2, // ([0,100]), the room size of the reflection
         
-        /** @cn
+        /** 
          * 3: 取值范围 [0,200]，单位为毫秒, wet signal 的初始延迟长度，以毫秒为单位。
          */
         AUDIO_REVERB_WET_DELAY = 3, // (ms, [0,200]), the length of the initial delay of the wet signal in ms
         
-        /** @cn
+        /** 
          * 4: 取值范围 [0,100], 混响持续的强度。
          */
         AUDIO_REVERB_STRENGTH = 4, // ([0,100]), the strength of the reverberation
     }
 
     
-    /** @cn
+    /** 
      * 预设的语音变声效果。
      */
     export enum VOICE_CHANGER_PRESET {
         
-        /** @cn
+        /** 
          * 原声，即关闭语音变声。
          */
         VOICE_CHANGER_OFF = 0x00000000, //Turn off the voice changer
         
-        /** @cn
+        /** 
          * 变声：老男人。
          */
         VOICE_CHANGER_OLDMAN = 0x00000001,
         
-        /** @cn
+        /** 
          * 变声：小男孩。
          */
         VOICE_CHANGER_BABYBOY = 0x00000002,
         
-        /** @cn
+        /** 
          * 变声：小女孩。
          */
         VOICE_CHANGER_BABYGIRL = 0x00000003,
         
-        /** @cn
+        /** 
          * 变声：猪八戒。
          */
         VOICE_CHANGER_ZHUBAJIE = 0x00000004,
         
-        /** @cn
+        /** 
          * 变声：空灵。
          */
         VOICE_CHANGER_ETHEREAL = 0x00000005,
         
-        /** @cn
+        /** 
          * 变声：绿巨人。
          */
         VOICE_CHANGER_HULK = 0x00000006,
         
-        /** @cn
+        /** 
          * 美音：浑厚。
          */
         VOICE_BEAUTY_VIGOROUS = 0x00100001,//7,
         
-        /** @cn
+        /** 
          * 美音：低沉。
          */
         VOICE_BEAUTY_DEEP = 0x00100002,
         
-        /** @cn
+        /** 
          * 美音：圆润。
          */
         VOICE_BEAUTY_MELLOW = 0x00100003,
         
-        /** @cn
+        /** 
          * 美音：假音。
          */
         VOICE_BEAUTY_FALSETTO = 0x00100004,
         
-        /** @cn
+        /** 
          * 美音：饱满。
          */
         VOICE_BEAUTY_FULL = 0x00100005,
         
-        /** @cn
+        /** 
          * 美音：清澈。
          */
         VOICE_BEAUTY_CLEAR = 0x00100006,
         
-        /** @cn
+        /** 
          * 美音：高亢。
          */
         VOICE_BEAUTY_RESOUNDING = 0x00100007,
         
-        /** @cn
+        /** 
          * 美音：嘹亮。
          */
         VOICE_BEAUTY_RINGING = 0x00100008,
         
-        /** @cn
+        /** 
          * 美音：空旷。
          */
         VOICE_BEAUTY_SPACIAL = 0x00100009,
         
-        /** @cn
+        /** 
          * 语聊美声：磁性（男）。此枚举为男声定制化效果，不适用于女声。若女声使用此音效设置，则音频可能会产生失真。
          */
         GENERAL_BEAUTY_VOICE_MALE_MAGNETIC = 0x00200001,
         
-        /** @cn
+        /** 
          * 语聊美声：清新（女）。此枚举为女声定制化效果，不适用于男声。若男声使用此音效设置，则音频可能会产生失真。
          */
         GENERAL_BEAUTY_VOICE_FEMALE_FRESH = 0x00200002,
         
-        /** @cn
+        /** 
          * 语聊美声：活力（女）。此枚举为女声定制化效果，不适用于男声。若男声使用此音效设置，则音频可能会产生失真。
          */
         GENERAL_BEAUTY_VOICE_FEMALE_VITALITY = 0x00200003
     }
 
     
-    /** @cn
+    /** 
      * 预设的语音混响效果
      */
     export enum AUDIO_REVERB_PRESET {
         
-        /** @cn
+        /** 
          * 原声，即关闭本地语音混响。
          */
         AUDIO_REVERB_OFF = 0x00000000, // Turn off audio reverb
         
-        /** @cn
+        /** 
          * KTV（增强版）。
          */
         AUDIO_REVERB_FX_KTV = 0x00100001,
         
-        /** @cn
+        /** 
          * 演唱会（增强版）。
          */
         AUDIO_REVERB_FX_VOCAL_CONCERT = 0x00100002,
         
-        /** @cn
+        /** 
          * 大叔。
          */
         AUDIO_REVERB_FX_UNCLE = 0x00100003,
         
-        /** @cn
+        /** 
          * 小姐姐。
          */
         AUDIO_REVERB_FX_SISTER = 0x00100004,
         
-        /** @cn
+        /** 
          * 录音棚（增强版）。
          */
         AUDIO_REVERB_FX_STUDIO = 0x00100005,
         
-        /** @cn
+        /** 
          * 流行（增强版）。
          */
         AUDIO_REVERB_FX_POPULAR = 0x00100006,
         
-        /** @cn
+        /** 
          * R&B（增强版）。
          */
         AUDIO_REVERB_FX_RNB = 0x00100007,
         
-        /** @cn
+        /** 
          * 留声机。
          */
         AUDIO_REVERB_FX_PHONOGRAPH = 0x00100008,
         
-        /** @cn
+        /** 
          * 流行。
          */
         AUDIO_REVERB_POPULAR = 0x00000001,
         
-        /** @cn
+        /** 
          * R&B。
          */
         AUDIO_REVERB_RNB = 0x00000002,
         
-        /** @cn
+        /** 
          * 摇滚。
          */
         AUDIO_REVERB_ROCK = 0x00000003,
         
-        /** @cn
+        /** 
          * 嘻哈。
          */
         AUDIO_REVERB_HIPHOP = 0x00000004,
         
-        /** @cn
+        /** 
          * 演唱会。
          */
         AUDIO_REVERB_VOCAL_CONCERT = 0x00000005,
         
-        /** @cn
+        /** 
          * KTV。
          */
         AUDIO_REVERB_KTV = 0x00000006,
         
-        /** @cn
+        /** 
          * 录音棚。
          */
         AUDIO_REVERB_STUDIO = 0x00000007,
         
-        /** @cn
+        /** 
          * 虚拟立体声。虚拟立体声是指将单声道的音轨渲染出立体声的效果，使频道内所有用户听到有空间感的声音
          * 效果。为达到更好的虚拟立体声效果，Agora 推荐在调用该方法前将 `setAudioProfile` 的 `profile` 参
          * 数设置为 `AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO(5)`。
@@ -1696,29 +1694,29 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 用于旁路推流的输出音频的编解码规格，默认为 LC-AAC。
      */
     export enum AUDIO_CODEC_PROFILE_TYPE {
         
-        /** @cn
+        /** 
          * 0: LC-AAC 规格，表示基本音频编码规格。
          */
         AUDIO_CODEC_PROFILE_LC_AAC = 0,
         
-        /** @cn
+        /** 
          * 1: HE-AAC 规格，表示高效音频编码规格。
          */
         AUDIO_CODEC_PROFILE_HE_AAC = 1,
     }
 
     
-    /** @cn
+    /** 
      * 远端音频流状态
      */
     export enum REMOTE_AUDIO_STATE {
         
-        /** @cn
+        /** 
          * 0: 远端音频流默认初始状态。在
          * [REMOTE_AUDIO_REASON_LOCAL_MUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_LOCAL_MUTED} (3)、
          * [REMOTE_AUDIO_REASON_REMOTE_MUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_REMOTE_MUTED} (5) 或
@@ -1726,12 +1724,12 @@ namespace agora {
          */
         REMOTE_AUDIO_STATE_STOPPED = 0,  // Default state, audio is started or remote user disabled/muted audio stream
         
-        /** @cn
+        /** 
          * 1: 本地用户已接收远端音频首包。
          */
         REMOTE_AUDIO_STATE_STARTING = 1,  // The first audio frame packet has been received
         
-        /** @cn
+        /** 
          * 2: 远端音频流正在解码，正常播放。在
          * [REMOTE_AUDIO_REASON_NETWORK_RECOVERY]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_NETWORK_RECOVERY} (2)、
          * [REMOTE_AUDIO_REASON_LOCAL_UNMUTED]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_LOCAL_UNMUTED} (4) 或
@@ -1739,13 +1737,13 @@ namespace agora {
          */
         REMOTE_AUDIO_STATE_DECODING = 2,  // The first remote audio frame has been decoded or fronzen state ends
         
-        /** @cn
+        /** 
          * 3: 远端音频流卡顿。在 [REMOTE_AUDIO_REASON_NETWORK_CONGESTION]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_NETWORK_CONGESTION} (1)
          * 的情况下，会报告该状态。
          */
         REMOTE_AUDIO_STATE_FROZEN = 3,    // Remote audio is frozen, probably due to network issue
         
-        /** @cn
+        /** 
          * 4: 远端音频流播放失败。在 [REMOTE_AUDIO_REASON_INTERNAL]{@link agora.REMOTE_AUDIO_STATE_REASON.REMOTE_AUDIO_REASON_INTERNAL} (0)
          * 的情况下，会报告该状态。
          */
@@ -1753,60 +1751,60 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 远端音频流状态改变的具体原因
      */
     export enum REMOTE_AUDIO_STATE_REASON {
         
-        /** @cn
+        /** 
          * 0: 内部原因。
          */
         REMOTE_AUDIO_REASON_INTERNAL = 0,
         
-        /** @cn
+        /** 
          * 1: 网络阻塞。
          */
         REMOTE_AUDIO_REASON_NETWORK_CONGESTION = 1,
         
-        /** @cn
+        /** 
          * 2: 网络恢复正常。
          */
         REMOTE_AUDIO_REASON_NETWORK_RECOVERY = 2,
         
-        /** @cn
+        /** 
          * 3: 本地用户停止接收远端音频流或本地用户禁用音频模块。
          */
         REMOTE_AUDIO_REASON_LOCAL_MUTED = 3,
         
-        /** @cn
+        /** 
          * 4: 本地用户恢复接收远端音频流或本地用户启用音频模块。
          */
         REMOTE_AUDIO_REASON_LOCAL_UNMUTED = 4,
         
-        /** @cn
+        /** 
          * 5: 远端用户停止发送音频流或远端用户禁用音频模块。
          */
         REMOTE_AUDIO_REASON_REMOTE_MUTED = 5,
         
-        /** @cn
+        /** 
          * 6: 远端用户恢复发送音频流或远端用户启用音频模块。
          */
         REMOTE_AUDIO_REASON_REMOTE_UNMUTED = 6,
         
-        /** @cn
+        /** 
          * 7: 远端用户离开频道。
          */
         REMOTE_AUDIO_REASON_REMOTE_OFFLINE = 7,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 远端视频流状态。
      */
     export enum REMOTE_VIDEO_STATE {
         
-        /** @cn
+        /** 
          * 0: 远端视频默认初始状态。在 [REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED} (3)、
          * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED} (5) 或
          * [REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE} (7) 的情况下，会报告该状态。
@@ -1814,13 +1812,13 @@ namespace agora {
         REMOTE_VIDEO_STATE_STOPPED = 0,
 
         
-        /** @cn
+        /** 
          * 1: 本地用户已接收远端视频首包。
          */
         REMOTE_VIDEO_STATE_STARTING = 1,
 
         
-        /** @cn
+        /** 
          * 2: 远端视频流正在解码，正常播放。在
          * [REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY} (2)、
          * [REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED} (4)、
@@ -1831,7 +1829,7 @@ namespace agora {
         REMOTE_VIDEO_STATE_DECODING = 2,
 
         
-        /** @cn
+        /** 
          * 3: 远端视频流卡顿。在
          * [REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION} (1) 或
          * [REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK} (8) 的情况下，会报告该状态。
@@ -1839,7 +1837,7 @@ namespace agora {
         REMOTE_VIDEO_STATE_FROZEN = 3,
 
         
-        /** @cn
+        /** 
          * 4: 远端视频流播放失败。在
          * [REMOTE_VIDEO_STATE_REASON_INTERNAL]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_INTERNAL} (0) 的情况下，会报告该状态。
          */
@@ -1847,17 +1845,17 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 发布状态。
      */
     export enum STREAM_PUBLISH_STATE {
         
-        /** @cn
+        /** 
          * 0: 加入频道后的初始发布状态。
          */
         PUB_STATE_IDLE = 0,
         
-        /** @cn
+        /** 
          * 1: 发布失败。可能是因为：
          * - 本地用户调用  [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream}  或  
          * [muteLocalVideoStream(true)]{@link agora.muteLocalVideoStream}  停止发送本地媒体流。
@@ -1868,29 +1866,29 @@ namespace agora {
          */
         PUB_STATE_NO_PUBLISHED = 1,
         
-        /** @cn
+        /** 
          * 2: 正在发布。
          */
         PUB_STATE_PUBLISHING = 2,
         
-        /** @cn
+        /** 
          * 3: 发布成功。
          */
         PUB_STATE_PUBLISHED = 3
     }
 
     
-    /** @cn
+    /** 
      * 订阅状态。
      */
     export enum STREAM_SUBSCRIBE_STATE {
         
-        /** @cn
+        /** 
          * 0: 加入频道后的初始订阅状态。
          */
         SUB_STATE_IDLE = 0,
         
-        /** @cn
+        /** 
          * 1: 订阅失败。可能是因为：
          * - 远端用户：
          *  - 调用  [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream}  或  
@@ -1909,117 +1907,117 @@ namespace agora {
          */
         SUB_STATE_NO_SUBSCRIBED = 1,
         
-        /** @cn
+        /** 
          * 2: 正在订阅。
          */
         SUB_STATE_SUBSCRIBING = 2,
         
-        /** @cn
+        /** 
          * 3: 收到了远端流，订阅成功。
          */
         SUB_STATE_SUBSCRIBED = 3
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 远端视频流状态切换原因。
      */
     export enum REMOTE_VIDEO_STATE_REASON {
         
-        /** @cn
+        /** 
          * 0: 内部原因。
          */
         REMOTE_VIDEO_STATE_REASON_INTERNAL = 0,
 
         
-        /** @cn
+        /** 
          * 1: 网络阻塞。
          */
         REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION = 1,
 
         
-        /** @cn
+        /** 
          * 2: 网络恢复正常。
          */
         REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY = 2,
 
         
-        /** @cn
+        /** 
          * 3: 本地用户停止接收远端视频流或本地用户禁用视频模块。
          */
         REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED = 3,
 
         
-        /** @cn
+        /** 
          * 4: 本地用户恢复接收远端视频流或本地用户启动视频模块。
          */
         REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED = 4,
 
         
-        /** @cn
+        /** 
          * 5: 远端用户停止发送视频流或远端用户禁用视频模块。
          */
         REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED = 5,
 
         
-        /** @cn
+        /** 
          * 6: 远端用户恢复发送视频流或远端用户启用视频模块。
          */
         REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED = 6,
 
         
-        /** @cn
+        /** 
          * 7: 远端用户离开频道。
          */
         REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE = 7,
 
         
-        /** @cn
+        /** 
          * 8: 弱网情况下，远端音视频流回退为音频流。
          */
         REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK = 8,
 
         
-        /** @cn
+        /** 
          * 9: 网络情况改善时，远端音频流恢复为音视频流。
          */
         REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY = 9
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频帧率。
      */
     export enum FRAME_RATE {
         
-        /** @cn
+        /** 
          * 1: 1 fps
          */
         FRAME_RATE_FPS_1 = 1,
         
-        /** @cn
+        /** 
          * 7: 7 fps
          */
         FRAME_RATE_FPS_7 = 7,
         
-        /** @cn
+        /** 
          * 10: 10 fps
          */
         FRAME_RATE_FPS_10 = 10,
         
-        /** @cn
+        /** 
          * 15: 15 fps
          */
         FRAME_RATE_FPS_15 = 15,
         
-        /** @cn
+        /** 
          * 24: 24 fps
          */
         FRAME_RATE_FPS_24 = 24,
         
-        /** @cn
+        /** 
          * 30: 30 fps
          */
         FRAME_RATE_FPS_30 = 30,
@@ -2031,26 +2029,26 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频编码的方向模式。
      */
     export enum ORIENTATION_MODE {
         
-        /** @cn
+        /** 
          * 0: （默认）该模式下 SDK 输出的视频方向与采集到的视频方向一致。接收端会根据收到的视频旋转信息对视频进行旋转。该模式适用于接收端可以调整视频方向的场景。
          * - 如果采集的视频是横屏模式，则输出的视频也是横屏模式；
          * - 如果采集的视频是竖屏模式，则输出的视频也是竖屏模式。
          */
         ORIENTATION_MODE_ADAPTIVE = 0,
         
-        /** @cn
+        /** 
          * 1: 该模式下 SDK 固定输出风景（横屏）模式的视频。如果采集到的视频是竖屏模式，则视频编码器会对其进行裁剪。该模式适用于当接收端无法
          * 调整视频方向时，如使用旁路推流场景下。
          */
         ORIENTATION_MODE_FIXED_LANDSCAPE = 1,
         
-        /** @cn
+        /** 
          * 2: 该模式下 SDK 固定输出人像（竖屏）模式的视频，如果采集到的视频是横屏模式，则视频编码器会对其进行裁剪。该模式适用于当接收端无法
          * 调整视频方向时，如使用旁路推流场景下。
          */
@@ -2058,101 +2056,101 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 带宽受限时的视频编码降级偏好
      */
     export enum DEGRADATION_PREFERENCE {
         
-        /** @cn
+        /** 
          * （默认）降低编码帧率以保证视频质量
          */
         MAINTAIN_QUALITY = 0,
         
-        /** @cn
+        /** 
          * 降低视频质量以保证编码帧率
          */
         MAINTAIN_FRAMERATE = 1,
         
-        /** @cn
+        /** 
          * 预留参数，暂不支持
          */
         MAINTAIN_BALANCED = 2,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 音视频流回退处理选项。
      */
     export enum STREAM_FALLBACK_OPTIONS {
         
-        /** @cn
+        /** 
          * 0: 上行/下行网络较弱时，不对音视频流作回退处理，但不能保证音视频流的质量。
          */
         STREAM_FALLBACK_OPTION_DISABLED = 0,
         
-        /** @cn
+        /** 
          * 1: 在下行网络条件较差时只接收视频小流（低分辨率、低码率视频流）。该选项只对  
          * [setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption}  有效，对  
          * [setLocalPublishFallbackOption]{@link agora.setLocalPublishFallbackOption}  方法无效。
          */
         STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW =1,
         
-        /** @cn
+        /** 
          * 2: 上行/下行网络较弱时，先尝试只接收视频小流（低分辨率、低码率视频流）；如果网络环境无法显示视频，则再回退到只接收远端订阅的音频流。
          */
         STREAM_FALLBACK_OPTION_AUDIO_ONLY = 2,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 摄像头采集偏好。
     */
     export enum CAPTURER_OUTPUT_PREFERENCE {
         
-        /** @cn
+        /** 
          * （默认）自动调整采集参数。SDK 根据实际的采集设备性能及网络情况，选择合适的摄像头输出参数，在设备性能及视频预览质量之间，维持平衡。
          */
         CAPTURER_OUTPUT_PREFERENCE_AUTO = 0,
         
-        /** @cn
+        /** 
          * 优先保证设备性能。SDK 根据用户在  [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}  
          * 中设置编码器的分辨率和帧率，选择最接近的摄像头输出参数，从而保证设备性能。在这种情况下，预览质量接近于编码器的输出质量。
          */
         CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE = 1,
         
-        /** @cn
+        /** 
          * 优先保证视频预览质量。SDK选择较高的摄像头输出参数，从而提高预览视频的质量。在这种情况下，会消耗更多的 CPU 及内存做视频前处理。
          */
         CAPTURER_OUTPUT_PREFERENCE_PREVIEW = 2,
     }
 
     
-    /** @cn
+    /** 
      * 远端用户的需求优先级。如果将某个用户的优先级设为高，那么发给这个用户的音视频流的优先级就会高于其他用户。
      */
     export enum PRIORITY_TYPE {
         
-        /** @cn
+        /** 
          * 用户需求优先级为高。
          */
         PRIORITY_HIGH = 50,
         
-        /** @cn
+        /** 
          * （默认）用户需求优先级为正常。
          */
         PRIORITY_NORMAL = 100,
     }
 
     
-    /** @cn
+    /** 
      * 网络连接状态。
      */
     export enum CONNECTION_STATE_TYPE {
         
-        /** @cn
+        /** 
          * 1: 网络连接断开。
          * 该状态表示 SDK 处于:
          * - 调用  [joinChannel]{@link agora.joinChannel}  加入频道前的初始化阶段;
@@ -2160,7 +2158,7 @@ namespace agora {
          */
         CONNECTION_STATE_DISCONNECTED = 1,
         
-        /** @cn
+        /** 
          * 2: 建立网络连接中。
          * 该状态表示 SDK 在调用  [joinChannel]{@link agora.joinChannel}  后正在与指定的频道建立连接。
          * - 如果成功加入频道，App 会收到  [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}  回调，
@@ -2169,7 +2167,7 @@ namespace agora {
          */
         CONNECTION_STATE_CONNECTING = 2,
         
-        /** @cn
+        /** 
          * 3: 网络已连接。
          * 该状态表示用户已经加入频道，可以在频道内发布或订阅媒体流。
          * 如果因网络断开或切换而导致 SDK 与频道的连接中断，SDK 会自动重连，此时应用程序会收到：
@@ -2179,7 +2177,7 @@ namespace agora {
          */
         CONNECTION_STATE_CONNECTED = 3,
         
-        /** @cn
+        /** 
          * 4: 重新建立网络连接中。
          * 该状态表示 SDK 之前曾加入过频道，但因网络等原因连接中断了，此时 SDK 会自动尝试重新接入频道。
          * - 如果 SDK 无法在 10 秒内重新加入频道，则  [onConnectionLost]{@link AgoraRtcEvents.onConnectionLost}  会被触发，SDK 会一直保持在 
@@ -2190,7 +2188,7 @@ namespace agora {
          */
         CONNECTION_STATE_RECONNECTING = 4,
         
-        /** @cn
+        /** 
          * 5: 网络连接失败。
          * 该状态表示 SDK 已不再尝试重新加入频道，用户必须要调用  [leaveChannel]{@link agora.leaveChannel}  离开频道。
          * - 如果用户还想重新加入频道，则需要再次调用  [joinChannel]{@link agora.joinChannel}  。
@@ -2201,84 +2199,84 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 引起网络连接状态发生改变的原因。
      */
     export enum CONNECTION_CHANGED_REASON_TYPE {
         
-        /** @cn
+        /** 
          * 0: 建立网络连接中。
          */
         CONNECTION_CHANGED_CONNECTING = 0,
         
-        /** @cn
+        /** 
          * 1: 成功加入频道。
          */
         CONNECTION_CHANGED_JOIN_SUCCESS = 1,
         
-        /** @cn
+        /** 
          * 2: 网络连接中断。 
          */
         CONNECTION_CHANGED_INTERRUPTED = 2,
         
-        /** @cn
+        /** 
          * 3: 网络连接被服务器禁止。
          */
         CONNECTION_CHANGED_BANNED_BY_SERVER = 3,
         
-        /** @cn
+        /** 
          * 4: 加入频道失败。SDK 在尝试加入频道 20 分钟后还是没能加入频道，会返回该状态，并停止尝试重连。
          */
         CONNECTION_CHANGED_JOIN_FAILED = 4,
         
-        /** @cn
+        /** 
          * 5: 离开频道。
          */
         CONNECTION_CHANGED_LEAVE_CHANNEL = 5,
         
-        /** @cn
+        /** 
          * 6: 不是有效的 APP ID。请更换有效的 APP ID 重新加入频道。 
          */
         CONNECTION_CHANGED_INVALID_APP_ID = 6,
         
-        /** @cn
+        /** 
          * 7: 不是有效的频道名。请更换有效的频道名重新加入频道。 
          */
         CONNECTION_CHANGED_INVALID_CHANNEL_NAME = 7,
         
-        /** @cn
+        /** 
          * 8: 生成的 Token 无效。一般有以下原因：
          * - 在控制台上启用了 App Certificate，但加入频道未使用 Token。当启用了 App Certificate，必须使用 Token。
          * - 在调用  [joinChannel]{@link agora.joinChannel}  加入频道时指定的 uid 与生成 Token 时传入的 uid 不一致。
          */
         CONNECTION_CHANGED_INVALID_TOKEN = 8,
         
-        /** @cn
+        /** 
          * 9: 当前使用的 Token 过期，不再有效，需要重新在你的服务端申请生成 Token。 
          */
         CONNECTION_CHANGED_TOKEN_EXPIRED = 9,
         
-        /** @cn
+        /** 
          * 10: 此用户被服务器禁止。 
          */
         CONNECTION_CHANGED_REJECTED_BY_SERVER = 10,
         
-        /** @cn
+        /** 
          * 11: 由于设置了代理服务器，SDK 尝试重连。 
          */
         CONNECTION_CHANGED_SETTING_PROXY_SERVER = 11,
         
-        /** @cn
+        /** 
          * 12: 更新 Token 引起网络连接状态改变。 
          */
         CONNECTION_CHANGED_RENEW_TOKEN = 12,
         
-        /** @cn
+        /** 
          * 13: 客户端 IP 地址变更，可能是由于网络类型，或网络运营商的 IP 或端口发生改变引起。
          */
         CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED = 13,
         
-        /** @cn
+        /** 
          * 14: SDK 和服务器连接保活超时，进入自动重连状态 
          * [CONNECTION_STATE_RECONNECTING]{@link agora.CONNECTION_STATE_TYPE.CONNECTION_STATE_RECONNECTING}。
          */
@@ -2286,369 +2284,369 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 网络连接类型
      */
     export enum NETWORK_TYPE {
         
-        /** @cn
+        /** 
          * -1: 网络连接类型未知。 
          */
         NETWORK_TYPE_UNKNOWN = -1,
         
-        /** @cn
+        /** 
          * 0: 网络连接已断开。
          */
         NETWORK_TYPE_DISCONNECTED = 0,
         
-        /** @cn
+        /** 
          * 1: 网络类型为 LAN。
          */
         NETWORK_TYPE_LAN = 1,
         
-        /** @cn
+        /** 
          * 2: 网络类型为 Wi-Fi(包含热点）。
          */
         NETWORK_TYPE_WIFI = 2,
         
-        /** @cn
+        /** 
          * 3: 网络类型为 2G 移动网络。
          */
         NETWORK_TYPE_MOBILE_2G = 3,
         
-        /** @cn
+        /** 
          * 4: 网络类型为 3G 移动网络。
          */
         NETWORK_TYPE_MOBILE_3G = 4,
         
-        /** @cn
+        /** 
          * 5: 网络类型为 4G 移动网络。
          */
         NETWORK_TYPE_MOBILE_4G = 5,
     }
 
     
-    /** @cn
+    /** 
      * Last mile 质量探测结果的状态。
      */
     export enum LASTMILE_PROBE_RESULT_STATE {
         
-        /** @cn
+        /** 
          * 1: 表示本次 last mile 质量探测的结果是完整的。
          */
         LASTMILE_PROBE_RESULT_COMPLETE = 1,
         
-        /** @cn
+        /** 
          * 2: 表示本次 last mile 质量探测未进行带宽预测，因此结果不完整。一个可能的原因是测试资源暂时受限。
          */
         LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE = 2,
         
-        /** @cn
+        /** 
          * 3: 未进行 last mile 质量探测。一个可能的原因是网络连接中断。
          */
         LASTMILE_PROBE_RESULT_UNAVAILABLE = 3
     }
 
     
-    /** @cn
+    /** 
      * 语音路由
      */
     export enum AUDIO_ROUTE_TYPE {
         
-        /** @cn
+        /** 
          * 使用默认的语音路由
          */
         AUDIO_ROUTE_DEFAULT = -1,
         
-        /** @cn
+        /** 
          * 使用耳机为语音路由
          */
         AUDIO_ROUTE_HEADSET = 0,
         
-        /** @cn
+        /** 
          * 使用听筒为语音路由
          */
         AUDIO_ROUTE_EARPIECE = 1,
         
-        /** @cn
+        /** 
          * 使用不带麦的耳机为语音路由
          */
         AUDIO_ROUTE_HEADSET_NO_MIC = 2,
         
-        /** @cn
+        /** 
          * 使用手机的扬声器为语音路由
          */
         AUDIO_ROUTE_SPEAKERPHONE = 3,
         
-        /** @cn
+        /** 
          * 使用外接的扬声器为语音路由
          */
         AUDIO_ROUTE_LOUDSPEAKER = 4,
         
-        /** @cn
+        /** 
          * 使用蓝牙耳机为语音路由
          */
         AUDIO_ROUTE_BLUETOOTH = 5,
         
-        /** @cn
+        /** 
          * 使用 USB 外围设备为语音路由（仅适用于 macOS）
          */
         AUDIO_ROUTE_USB = 6,
         
-        /** @cn
+        /** 
          * 使用 HDMI 外围设备为语音路由（仅适用于 macOS）
          */
         AUDIO_ROUTE_HDMI = 7,
         
-        /** @cn
+        /** 
          * 使用 DisplayPort 外围设备为语音路由（仅适用于 macOS）
          */
         AUDIO_ROUTE_DISPLAYPORT = 8,
         
-        /** @cn
+        /** 
          * 使用 Apple AirPlay 为语音路由（仅适用于 macOS）
          */
         AUDIO_ROUTE_AIRPLAY = 9,
     }
 
     
-    /** @cn
+    /** 
      * 音频会话控制权限
      * Agora SDK 对 Audio Session 的控制权限
      */
     export enum AUDIO_SESSION_OPERATION_RESTRICTION {
         
-        /** @cn
+        /** 
          * 没有限制，SDK 可以完全控制 Audio Session 操作。
          */
         AUDIO_SESSION_OPERATION_RESTRICTION_NONE = 0,
         
-        /** @cn
+        /** 
          * SDK 不能更改 Audio Session 的 category。
          */
         AUDIO_SESSION_OPERATION_RESTRICTION_SET_CATEGORY = 1,
         
-        /** @cn
+        /** 
          * SDK 不能更改 Audio Session 的 category，mode，categoryOptions。
          */
         AUDIO_SESSION_OPERATION_RESTRICTION_CONFIGURE_SESSION = 1 << 1,
         
-        /** @cn
+        /** 
          * 离开某个频道时，SDK 会保持 Audio Session 处于活动状态。
          */
         AUDIO_SESSION_OPERATION_RESTRICTION_DEACTIVATE_SESSION = 1 << 2,
         
-        /** @cn
+        /** 
          * 限制 SDK 对 Audio Session 进行任何操作，SDK 将不能再对 Audio Session 进行任何配置。
          */
         AUDIO_SESSION_OPERATION_RESTRICTION_ALL = 1 << 7,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 摄像头方向
      */
     export enum CAMERA_DIRECTION {
         
-        /** @cn
+        /** 
          * 0: 后置摄像头
          */
         CAMERA_REAR = 0,
         
-        /** @cn
+        /** 
          * 1: 前置摄像头
          */
         CAMERA_FRONT = 1,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 自上次统计后本地视频质量的自适应情况（基于目标帧率和目标码率）。
      */
     export enum QUALITY_ADAPT_INDICATION {
         
-        /** @cn
+        /** 
          * 本地视频质量不变。
          */
         ADAPT_NONE = 0,
         
-        /** @cn
+        /** 
          * 因网络带宽增加，本地视频质量改善。
          */
         ADAPT_UP_BANDWIDTH = 1,
         
-        /** @cn
+        /** 
          * 因网络带宽减少，本地视频质量变差。
          */
         ADAPT_DOWN_BANDWIDTH = 2,
     }
 
     
-    /** @cn
+    /** 
      * 跨频道媒体流转发出错的错误码。
      */
     export enum CHANNEL_MEDIA_RELAY_ERROR {
         
-        /** @cn
+        /** 
          * 0: 一切正常。
          */
         RELAY_OK = 0,
         
-        /** @cn
+        /** 
          * 1: 服务器回应出错。
          */
         RELAY_ERROR_SERVER_ERROR_RESPONSE = 1,
         
-        /** @cn
+        /** 
          * 2: 服务器无回应。你可以调用 [leaveChannel]{@link agora.leaveChannel}  方法离开频道。
          */
         RELAY_ERROR_SERVER_NO_RESPONSE = 2,
         
-        /** @cn
+        /** 
          * 3: SDK 无法获取服务，可能是因为服务器资源有限导致。
          */
         RELAY_ERROR_NO_RESOURCE_AVAILABLE = 3,
         
-        /** @cn
+        /** 
          * 4: 发起跨频道转发媒体流请求失败。
          */
         RELAY_ERROR_FAILED_JOIN_SRC = 4,
         
-        /** @cn
+        /** 
          * 5: 接受跨频道转发媒体流请求失败。
          */
         RELAY_ERROR_FAILED_JOIN_DEST = 5,
         
-        /** @cn
+        /** 
          * 6: 服务器接收跨频道转发媒体流失败。
          */
         RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC = 6,
         
-        /** @cn
+        /** 
          * 7: 服务器发送跨频道转发媒体流失败。
          */
         RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST = 7,
         
-        /** @cn
+        /** 
          * 8: SDK 因网络质量不佳与服务器断开。你可以调用
          *  [leaveChannel]{@link agora.leaveChannel}  方法离开当前频道。
          */
         RELAY_ERROR_SERVER_CONNECTION_LOST = 8,
         
-        /** @cn
+        /** 
          * 9: 服务器内部出错。
          */
         RELAY_ERROR_INTERNAL_ERROR = 9,
         
-        /** @cn
+        /** 
          * 10: 源频道的 Token 已过期。
          */
         RELAY_ERROR_SRC_TOKEN_EXPIRED = 10,
         
-        /** @cn
+        /** 
          * 11: 目标频道的 Token 已过期。
          */
         RELAY_ERROR_DEST_TOKEN_EXPIRED = 11,
     }
 
     
-    /** @cn
+    /** 
      * 跨频道媒体流转发事件码。
      */
     export enum CHANNEL_MEDIA_RELAY_EVENT {
         
-        /** @cn
+        /** 
          * 0: 网络中断导致用户与服务器连接断开。
          */
         RELAY_EVENT_NETWORK_DISCONNECTED = 0,
         
-        /** @cn
+        /** 
          * 1: 用户与服务器建立连接。
          */
         RELAY_EVENT_NETWORK_CONNECTED = 1,
         
-        /** @cn
+        /** 
          * 2: 用户已加入源频道。
          */
         RELAY_EVENT_PACKET_JOINED_SRC_CHANNEL = 2,
         
-        /** @cn
+        /** 
          * 3: 用户已加入目标频道。
          */
         RELAY_EVENT_PACKET_JOINED_DEST_CHANNEL = 3,
         
-        /** @cn
+        /** 
          * 4: SDK 开始向目标频道发送数据包。
          */
         RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL = 4,
         
-        /** @cn
+        /** 
          * 5: 服务器收到了目标频道发送的视频流。
          */
         RELAY_EVENT_PACKET_RECEIVED_VIDEO_FROM_SRC = 5,
         
-        /** @cn
+        /** 
          * 6: 服务器收到了目标频道发送的音频流。
          */
         RELAY_EVENT_PACKET_RECEIVED_AUDIO_FROM_SRC = 6,
         
-        /** @cn
+        /** 
          * 7: 目标频道已更新。
          */
         RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL = 7,
         
-        /** @cn
+        /** 
          * 8: 内部原因导致目标频道更新失败。
          */
         RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED = 8,
         
-        /** @cn
+        /** 
          * 9: 目标频道未发生改变，即目标频道更新失败。
          */
         RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_NOT_CHANGE = 9,
         
-        /** @cn
+        /** 
          * 10: 目标频道名为 NULL。
          */
         RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_IS_NULL = 10,
         
-        /** @cn
+        /** 
          * 11: 视频属性已发送至服务器。
          */
         RELAY_EVENT_VIDEO_PROFILE_UPDATE = 11,
     }
 
     
-    /** @cn
+    /** 
      * 跨频道媒体流转发状态码。
      */
     export enum CHANNEL_MEDIA_RELAY_STATE {
         
-        /** @cn
+        /** 
          * 0: SDK 正在初始化。
          */
         RELAY_STATE_IDLE = 0,
         
-        /** @cn
+        /** 
          * 1: SDK 尝试跨频道。
          */
         RELAY_STATE_CONNECTING = 1,
         
-        /** @cn
+        /** 
          * 2: 源频道主播成功加入目标频道。
          */
         RELAY_STATE_RUNNING = 2,
         
-        /** @cn
+        /** 
          * 3: 发生异常，详见 `code` 中提示的错误信息。
          */
         RELAY_STATE_FAILURE = 3,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}  的标准码率。（推荐）标准码率模式。该模式下，
      * 视频在通信和直播场景下的码率有所不同：通信场景下，码率与基准码率一致；直播场景下，码率对照基准码率翻倍。
@@ -2656,7 +2654,7 @@ namespace agora {
     export const STANDARD_BITRATE = 0
 
     
-    /** @cn
+    /** 
      * @ignore
      * [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}  的兼容码率。 适配码率模式。该模式下，
      * 视频在通信和直播场景下的码率均与基准码率一致。直播下如果选择该模式，视频帧率可能会低于设置的值。
@@ -2664,90 +2662,90 @@ namespace agora {
     export const COMPATIBLE_BITRATE = -1
 
     
-    /** @cn
+    /** 
      * @ignore
      * 使用系统默认最低编码码率。
      */
     export const DEFAULT_MIN_BITRATE = -1
 
     
-    /** @cn
+    /** 
      * @deprecated
      * 服务端转码推流的生命周期。
      */
     export enum RTMP_STREAM_LIFE_CYCLE_TYPE {
         
-        /** @cn
+        /** 
          * @deprecated 跟频道生命周期绑定，即频道内所有主播离开，服务端转码推流会在 30 秒之后停止。
          */
         RTMP_STREAM_LIFE_CYCLE_BIND2CHANNEL = 1,
         
-        /** @cn
+        /** 
          * @deprecated 跟启动服务端转码推流的主播生命周期绑定，即该主播离开，服务端转码推流会立即停止。
          */
         RTMP_STREAM_LIFE_CYCLE_BIND2OWNER = 2,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 屏幕共享的内容类型
      */
     export enum VideoContentHint {
         
-        /** @cn
+        /** 
          * （默认）无指定的内容类型。
          */
         CONTENT_HINT_NONE,
         
-        /** @cn
+        /** 
          * 内容类型为动画。当共享的内容是视频、电影或视频游戏时，推荐选择该内容类型。
          */
         CONTENT_HINT_MOTION,
         
-        /** @cn
+        /** 
          * 内容类型为细节。当共享的内容是图片或文字时，推荐选择该内容类型。
          */
         CONTENT_HINT_DETAILS
     }
 
     
-    /** @cn
+    /** 
      * 访问区域。
      */
     export enum AREA_CODE {
         
-        /** @cn
+        /** 
          * 中国大陆。
          */
         AREA_CODE_CN = (1 << 0),
         
-        /** @cn
+        /** 
          * 北美区域。
          */
         AREA_CODE_NA = (1 << 1),
         
-        /** @cn
+        /** 
          * 欧洲区域。
          */
         AREA_CODE_EUR = (1 << 2),
         
-        /** @cn
+        /** 
          * 除中国大陆以外的亚洲区域。
          */
         AREA_CODE_AS = (1 << 3),
         
-        /** @cn
+        /** 
          * 日本区域。
          */
         AREA_CODE_JAPAN = (1 << 4),
         
-        /** @cn
+        /** 
          * 印度区域。
          */
         AREA_CODE_INDIA = (1 << 5),
         
-        /** @cn
+        /** 
          * （默认）全球。
          */
         AREA_CODE_GLOBAL = (0xFFFFFFFF)
@@ -2762,61 +2760,61 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 内置加密模式。
      */
     export enum ENCRYPTION_MODE {
         
-        /** @cn
+        /** 
          * 1:（默认）128 位 AES 加密，XTS 模式。
          */
         AES_128_XTS = 1,
         
-        /** @cn
+        /** 
          * 2: 128 位 AES 加密，ECB 模式。
          */
         AES_128_ECB = 2,
         
-        /** @cn
+        /** 
          * 3: 256 位 AES 加密，XTS 模式。
          */
         AES_256_XTS = 3,
         
-        /** @cn
+        /** 
          * 4: 128 位 SM4 加密，ECB 模式。
          */
         SM4_128_ECB = 4,
         
-        /** @cn
+        /** 
          * 枚举值边界。
          */
         MODE_END,
     }
 
     
-    /** @cn
+    /** 
      * 错误代码
      * 错误代码意味着 SDK 遇到不可恢复的错误，需要应用程序干预，例如打开摄像头失败会返回错误，应用程序需要提示用户不能使用摄像头。
      */
     export enum ERROR_CODE_TYPE {
         
-        /** @cn
+        /** 
          * 0: 没有错误。
          */
         ERR_OK = 0,
         //1~1000
         
-        /** @cn
+        /** 
          * 1: 一般性的错误（没有明确归类的错误原因）。
          */
         ERR_FAILED = 1,
         
-        /** @cn
+        /** 
          * 2: API 调用了无效的参数。例如指定的频道名含有非法字符。
          */
         ERR_INVALID_ARGUMENT = 2,
         
-        /** @cn
+        /** 
          * 3: RTC 引擎初始化失败。处理方法：
          * - 检查音频设备状态。
          * - 检查程序集完整性。
@@ -2824,62 +2822,62 @@ namespace agora {
          */
         ERR_NOT_READY = 3,
         
-        /** @cn
+        /** 
          * 4: RTC 引擎当前状态不支持此项操作。
          */
         ERR_NOT_SUPPORTED = 4,
         
-        /** @cn
+        /** 
          * 5: 调用被拒绝。
          */
         ERR_REFUSED = 5,
         
-        /** @cn
+        /** 
          * 6: 传入的缓冲区大小不足以存放返回的数据。
          */
         ERR_BUFFER_TOO_SMALL = 6,
         
-        /** @cn
+        /** 
          * 7: SDK 尚未初始化，就调用其 API。请确认在调用 API 之前已初始化 Agora  引擎。
          */
         ERR_NOT_INITIALIZED = 7,
         
-        /** @cn
+        /** 
          * 9: 没有操作权限，请检查用户是否授予 app 音视频设备使用权限。
          */
         ERR_NO_PERMISSION = 9,
         
-        /** @cn
+        /** 
          * 10: API 调用超时。有些 API 调用需要 SDK 返回结果，如果 SDK 处理事件过长，超过 10 秒没有返回，会出现此错误。
          */
         ERR_TIMEDOUT = 10,
         
-        /** @cn
+        /** 
          * 11: 请求被取消。仅供 SDK 内部使用，不通过 API 或者回调事件返回给 App。
          */
         ERR_CANCELED = 11,
         
-        /** @cn
+        /** 
          * 12: 调用频率太高。仅供 SDK 内部使用，不通过 API 或者回调事件返回给 App。
          */
         ERR_TOO_OFTEN = 12,
         
-        /** @cn
+        /** 
          * 13: SDK 内部绑定到网络 Socket 失败。仅供 SDK 内部使用，不通过 API 或者回调事件返回给 App。
          */
         ERR_BIND_SOCKET = 13,
         
-        /** @cn
+        /** 
          * 14: 网络不可用。仅供 SDK 内部使用，不通过 API 或者回调事件返回给 App。
          */
         ERR_NET_DOWN = 14,
         
-        /** @cn
+        /** 
          * 15: 没有网络缓冲区可用。仅供 SDK 内部使用，不通过 API 或者回调事件返回给 App。
          */
         ERR_NET_NOBUFS = 15,
         
-        /** @cn
+        /** 
          * 17: 加入频道被拒绝。一般有以下原因：
          * - 用户已进入频道，再次调用加入频道的 API，例如  [joinChannel]{@link agora.joinChannel}  ，会返回此错误。停止调用该方法即可。
          * - 用户在调用  [startEchoTest]{@link agora.startEchoTest}  进行通话测试时，尝试加入频道。通话测试开始后，需要先调用  
@@ -2887,49 +2885,49 @@ namespace agora {
          */
         ERR_JOIN_CHANNEL_REJECTED = 17,
         
-        /** @cn
+        /** 
          * 18: 离开频道失败。一般有以下原因：
          * - 用户已离开频道，再次调用退出频道的 API，例如  [leaveChannel]{@link agora.leaveChannel}  ，会返回此错误。停止调用该方法即可。
          * - 用户尚未加入频道，就调用退出频道的 API。这种情况下无需额外操作。
          */
         ERR_LEAVE_CHANNEL_REJECTED = 18,
         
-        /** @cn
+        /** 
          * 19: 资源已被占用，不能重复使用。
          */
         ERR_ALREADY_IN_USE = 19,
         
-        /** @cn
+        /** 
          * 20: SDK 放弃请求，可能由于请求次数太多。
          */
         ERR_ABORTED = 20,
         
-        /** @cn
+        /** 
          * 21: Windows 下特定的防火墙设置导致 SDK 初始化失败然后崩溃。
          */
         ERR_INIT_NET_ENGINE = 21,
         
-        /** @cn
+        /** 
          * 22: 当用户 App 占用资源过多，或系统资源耗尽时，SDK 分配资源失败会返回该错误。
          */
         ERR_RESOURCE_LIMITED = 22,
         
-        /** @cn
+        /** 
          * 101: 不是有效的 App ID。请更换有效的 App ID 重新加入频道。
          */
         ERR_INVALID_APP_ID = 101,
         
-        /** @cn
+        /** 
          * 102: 不是有效的频道名。请更换有效的频道名重新加入频道。
          */
         ERR_INVALID_CHANNEL_NAME = 102,
         
-        /** @cn
-         * 103: 无法获取当前指定区域的服务器资源。请在调用  [initialize]{@link agora.initialize}  方法时尝试指定其他区域。
+        /** 
+         * 103: 无法获取当前指定区域的服务器资源。请在调用  [init]{@link agora.init}  方法时尝试指定其他区域。
          */
         ERR_NO_SERVER_RESOURCES = 103,
         
-        /** @cn
+        /** 
          * @deprecated
          * 109: 从 v2.4.1 起废弃。请改用  [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}  回调中的 
          * `CONNECTION_CHANGED_TOKEN_EXPIRED(9)`。
@@ -2942,7 +2940,7 @@ namespace agora {
          */
         ERR_TOKEN_EXPIRED = 109,
         
-        /** @cn
+        /** 
          * @deprecated
          * 110: 从 v2.4.1 起废弃。请改用  [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}  回调中的 
          * `CONNECTION_CHANGED_INVALID_TOKEN(8)`。
@@ -2953,123 +2951,123 @@ namespace agora {
          */
         ERR_INVALID_TOKEN = 110,
         
-        /** @cn
+        /** 
          * 111: 网络连接中断。仅适用于 Agora Web SDK。
          */
         ERR_CONNECTION_INTERRUPTED = 111, // only used in web sdk
         
-        /** @cn
+        /** 
          * 112: 网络连接丢失。仅适用于 Agora Web SDK。
          */
         ERR_CONNECTION_LOST = 112, // only used in web sdk
         
-        /** @cn
+        /** 
          * 113: 用户不在频道内。
          */
         ERR_NOT_IN_CHANNEL = 113,
         
-        /** @cn
+        /** 
          * 114: 在调用  [sendStreamMessage]{@link agora.sendStreamMessage}  时，当发送的数据长度大于 1024 个字节时，会发生该错误。
          */
         ERR_SIZE_TOO_LARGE = 114,
         
-        /** @cn
+        /** 
          * 115: 在调用  [sendStreamMessage]{@link agora.sendStreamMessage}  时，当发送的数据频率超过限制时（6 KB/s），会发生该错误。
          */
         ERR_BITRATE_LIMIT = 115,
         
-        /** @cn
+        /** 
          * 116: 在调用  [createDataStream]{@link agora.createDataStream}  时，如果创建的数据通道过多（超过 5 个通道），会发生该错误。
          */
         ERR_TOO_MANY_DATA_STREAMS = 116,
         
-        /** @cn
+        /** 
          * 117: 数据流发送超时。
          */
         ERR_STREAM_MESSAGE_TIMEOUT = 117,
         
-        /** @cn
+        /** 
          * 119: 切换角色失败。请尝试重新加入频道。
          */
         ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED = 119,
         
-        /** @cn
+        /** 
          * 120: 解密失败，可能是用户加入频道用了不同的密码。请检查加入频道时的设置，或尝试重新加入频道。
          */
         ERR_DECRYPTION_FAILED = 120,
         
-        /** @cn
+        /** 
          * 123: 此用户被服务器禁止。
          */
         ERR_CLIENT_IS_BANNED_BY_SERVER = 123,
         
-        /** @cn
+        /** 
          * 124: 水印文件参数错误。
          */
         ERR_WATERMARK_PARAM = 124,
         
-        /** @cn
+        /** 
          * 125: 水印文件路径错误。
          */
         ERR_WATERMARK_PATH = 125,
         
-        /** @cn
+        /** 
          * 126: 水印文件格式错误。
          */
         ERR_WATERMARK_PNG = 126,
         
-        /** @cn
+        /** 
          * 127: 水印文件信息错误。
          */
         ERR_WATERMARKR_INFO = 127,
         
-        /** @cn
+        /** 
          * 128: 水印文件数据格式错误。
          */
         ERR_WATERMARK_ARGB = 128,
         
-        /** @cn
+        /** 
          * 129: 水印文件读取错误。
          */
         ERR_WATERMARK_READ = 129,
         
-        /** @cn
+        /** 
          * 130: 在调用  [addPublishStreamUrl]{@link agora.addPublishStreamUrl}  时，如果开启了加密，则会返回该错误(推流不支持加密流)。   
          */
         ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH = 130,
         
-        /** @cn
+        /** 
          * 134: 无效的 User account.
          */
         ERR_INVALID_USER_ACCOUNT = 134,
 
         
-        /** @cn
+        /** 
          * 151: CDN 相关错误。请调用  [removePublishStreamUrl]{@link agora.removePublishStreamUrl}  方法删除原来的推流地址，然后调用  
          * [addPublishStreamUrl]{@link agora.addPublishStreamUrl}  方法重新推流到新地址。
          */
         ERR_PUBLISH_STREAM_CDN_ERROR = 151,
         
-        /** @cn
+        /** 
          * 152: 单个主播的推流地址数目达到上限 10。请删掉一些不用的推流地址再增加推流地址。
          */
         ERR_PUBLISH_STREAM_NUM_REACH_LIMIT = 152,
         
-        /** @cn
+        /** 
          * 153: 操作不属于主播自己的流，如更新其他主播的流参数、停止其他主播的流。请检查 App 逻辑。
          */
         ERR_PUBLISH_STREAM_NOT_AUTHORIZED = 153,
         
-        /** @cn
+        /** 
          * 154: 推流服务器出现错误。请调用  [addPublishStreamUrl]{@link agora.addPublishStreamUrl}  重新推流     */
             ERR_PUBLISH_STREAM_INTERNAL_SERVER_ERROR = 154,
         
-        /** @cn
+        /** 
          * 155: 服务器无法找到数据流。
          */
         ERR_PUBLISH_STREAM_NOT_FOUND = 155,
         
-        /** @cn
+        /** 
          * 156: 推流地址格式有错误。请检查推流地址格式是否正确
          */
         ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED = 156,
@@ -3219,17 +3217,17 @@ namespace agora {
 
         //1001~2000
         
-        /** @cn
+        /** 
          * 1001: 加载媒体引擎失败。
          */
         ERR_LOAD_MEDIA_ENGINE = 1001,
         
-        /** @cn
+        /** 
          * 1002: 启动媒体引擎开始通话失败。请尝试重新进入频道。
          */
         ERR_START_CALL = 1002,
         
-        /** @cn
+        /** 
          * @deprecated
          * 1003: 从 v2.4.1 起废弃。请改用  [onLocalVideoStateChanged]{@link AgoraRtcEvents.onLocalVideoStateChanged} 回调中的 
          * `LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE(4)`。
@@ -3237,117 +3235,117 @@ namespace agora {
          */
         ERR_START_CAMERA = 1003,
         
-        /** @cn
+        /** 
          * 1004: 启动视频渲染模块失败。
          */
         ERR_START_VIDEO_RENDER = 1004,
         
-        /** @cn
+        /** 
          * 1005: 音频设备模块：音频设备出现错误（未明确指明为何种错误）。请检查音频设备是否被其他应用占用，或者尝试重新进入频道。
          */
         ERR_ADM_GENERAL_ERROR = 1005,
         
-        /** @cn
+        /** 
          * 1006: 音频设备模块：使用 Java 资源出现错误。
          */
         ERR_ADM_JAVA_RESOURCE = 1006,
         
-        /** @cn
+        /** 
          * 1007: 音频设备模块：设置的采样频率出现错误。
          */
         ERR_ADM_SAMPLE_RATE = 1007,
         
-        /** @cn
+        /** 
          * 1008: 音频设备模块：初始化播放设备出现错误。请检查播放设备是否被其他应用占用，或者尝试重新进入频道。
          */
         ERR_ADM_INIT_PLAYOUT = 1008,
         
-        /** @cn
+        /** 
          * 1009: 音频设备模块：启动播放设备出现错误。请检查播放设备是否正常，或者尝试重新进入频道。
          */
         ERR_ADM_START_PLAYOUT = 1009,
         
-        /** @cn
+        /** 
          * 1010: 音频设备模块：停止播放设备出现错误。
          */
         ERR_ADM_STOP_PLAYOUT = 1010,
         
-        /** @cn
+        /** 
          * 1011: 音频设备模块：初始化录音设备时出现错误。请检查录音设备是否正常，或者尝试重新进入频道。
          */
         ERR_ADM_INIT_RECORDING = 1011,
         
-        /** @cn
+        /** 
          * 1012: 音频设备模块：启动录音设备出现错误。请检查录音设备是否正常，或者尝试重新进入频道。
          */
         ERR_ADM_START_RECORDING = 1012,
         
-        /** @cn
+        /** 
          * 1013: 音频设备模块：停止录音设备出现错误。
          */
         ERR_ADM_STOP_RECORDING = 1013,
         
-        /** @cn
+        /** 
          * 1015: 音频设备模块：运行时播放出现错误。请检查播放设备是否正常，或者尝试重新进入频道。
          */
         ERR_ADM_RUNTIME_PLAYOUT_ERROR = 1015,
         
-        /** @cn
+        /** 
          * 1017: 音频设备模块：运行时录音错误。请检查录音设备是否正常，或者尝试重新进入频道。
          */
         ERR_ADM_RUNTIME_RECORDING_ERROR = 1017,
         
-        /** @cn
+        /** 
          * 1018: 音频设备模块：录音失败。
          */
         ERR_ADM_RECORD_AUDIO_FAILED = 1018,
         
-        /** @cn
+        /** 
          * 1022: 音频设备模块：初始化 Loopback 设备错误。
         */
         ERR_ADM_INIT_LOOPBACK = 1022,
         
-        /** @cn
+        /** 
          * 1023: 音频设备模块：启动 Loopback 设备错误。
         */
         ERR_ADM_START_LOOPBACK = 1023,
         
-        /** @cn
+        /** 
          * 1027: 音频设备模块：没有录音权限。请检查是否已经打开权限允许录音。
          */
         ERR_ADM_NO_PERMISSION = 1027,
         
-        /** @cn
+        /** 
          * 1033: 音频设备模块：录制设备被占用。
          */
         ERR_ADM_RECORD_AUDIO_IS_ACTIVE = 1033,
         
-        /** @cn
+        /** 
          * 1101: 音频设备模块：严重异常。
          */
         ERR_ADM_ANDROID_JNI_JAVA_RESOURCE = 1101,
         
-        /** @cn
+        /** 
          * 1108: 音频设备模块：录制频率低于 50，常见为 0，即采集未启动，建议检查录音权限。
          */
         ERR_ADM_ANDROID_JNI_NO_RECORD_FREQUENCY = 1108,
         
-        /** @cn
+        /** 
          * 1109: 音频设备模块：播放频率低于 50，常见为 0，即播放未启动，建议检查是否 AudioTrack 实例过多。
          */
         ERR_ADM_ANDROID_JNI_NO_PLAYBACK_FREQUENCY = 1109,
         
-        /** @cn
+        /** 
          * 1111: 音频设备模块：AudioRecord 启动失败，系统 ROM 报错，建议重启 App 或重启手机、检查录音权限。
          */
         ERR_ADM_ANDROID_JNI_JAVA_START_RECORD = 1111,
         
-        /** @cn
+        /** 
          * 1112: 音频设备模块：AudioTrack 启动失败，系统 ROM 报错，建议重启 App 或重启手机、检查播放权限。
          */
         ERR_ADM_ANDROID_JNI_JAVA_START_PLAYBACK = 1112,
         
-        /** @cn
+        /** 
          * 1115: 音频设备模块：AudioRecord 数据返回错误、SDK 会自动处理、重启 AudioRecord。
          */
         ERR_ADM_ANDROID_JNI_JAVA_RECORD_ERROR = 1115,
@@ -3362,28 +3360,28 @@ namespace agora {
         /** @deprecated */
         ERR_ADM_ANDROID_OPENSL_START_PLAYER_THREAD = 1160,
         
-        /** @cn
+        /** 
          * 1201: 音频设备模块：当前设备不支持音频输入，可能的原因是 Audio Session 的 category 
          * 配置不对或音频输入设备被占用。建议把后台所有 App 杀掉，重新加入频道。
          */
         ERR_ADM_IOS_INPUT_NOT_AVAILABLE = 1201,
         
-        /** @cn
+        /** 
          * 1206: 音频设备模块：Audio Session 无法被启动。
          */
         ERR_ADM_IOS_ACTIVATE_SESSION_FAIL = 1206,
         
-        /** @cn
+        /** 
          * 1210: 音频设备模块：初始化音频设备出错。一般出错是因为音频设备的设置参数错误。
          */
         ERR_ADM_IOS_VPIO_INIT_FAIL = 1210,
         
-        /** @cn
+        /** 
          * 1213: 音频设备模块：重新初始化音频设备出错。一般出错是因为音频设备的设置参数错误。
          */
         ERR_ADM_IOS_VPIO_REINIT_FAIL = 1213,
         
-        /** @cn
+        /** 
          * 1214: 音频设备模块：重新启动 Audio Unit 出错。一般出错是因为 Audio Session 的 category 设置与 Audio Unit 的设置不兼容。
          */
         ERR_ADM_IOS_VPIO_RESTART_FAIL = 1214,
@@ -3392,116 +3390,116 @@ namespace agora {
         /** @deprecated */
         ERR_ADM_IOS_SESSION_SAMPLERATR_ZERO = 1221,
         
-        /** @cn
+        /** 
          * 1301: 音频设备模块：音频驱动异常或者兼容性问题 解决方案：禁用并重新启用音频设备，或者重启机器。
          */
         ERR_ADM_WIN_CORE_INIT = 1301,
         
-        /** @cn
+        /** 
          * 1303: 音频设备模块：音频驱动异常或者兼容性问题 解决方案：禁用并重新启用音频设备，或者重启机器。
          */
         ERR_ADM_WIN_CORE_INIT_RECORDING = 1303,
         
-        /** @cn
+        /** 
          * 1306: 音频设备模块：音频驱动异常或者兼容性问题 解决方案：禁用并重新启用音频设备，或者重启机器。
          */
         ERR_ADM_WIN_CORE_INIT_PLAYOUT = 1306,
         
-        /** @cn
+        /** 
          * 1307: 音频设备模块：无可用音频设备 解决方案：插入音频设备。
          */
         ERR_ADM_WIN_CORE_INIT_PLAYOUT_NULL = 1307,
         
-        /** @cn
+        /** 
          * 1309: 音频设备模块：音频驱动异常或者兼容性问题 解决方案：禁用并重新启用音频设备，或者重启机器。
          */
         ERR_ADM_WIN_CORE_START_RECORDING = 1309,
         
-        /** @cn
+        /** 
          * 1311: 音频设备模块：系统内存不足或者机器性能较差 解决方案：重启机器或者更换机器。
          */
         ERR_ADM_WIN_CORE_CREATE_REC_THREAD = 1311,
         
-        /** @cn
+        /** 
          * 1314: 音频设备模块：音频驱动异常 解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。
          */
         ERR_ADM_WIN_CORE_CAPTURE_NOT_STARTUP = 1314,
         
-        /** @cn
+        /** 
          * 1319: 音频设备模块：系统内存不足或者机器性能较差 解决方案：重启机器或者更换机器。
          */
         ERR_ADM_WIN_CORE_CREATE_RENDER_THREAD = 1319,
         
-        /** @cn
+        /** 
          * 1320: 音频设备模块：音频驱动异常 解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。
          */
         ERR_ADM_WIN_CORE_RENDER_NOT_STARTUP = 1320,
         
-        /** @cn
+        /** 
          * 1322: 音频设备模块：无可用音频采集设备。解决方案：插入音频设备。
          */
         ERR_ADM_WIN_CORE_NO_RECORDING_DEVICE = 1322,
         
-        /** @cn
+        /** 
          * 1323: 音频设备模块：无可用音频播放设备。解决方案：插入音频设备。
          */
         ERR_ADM_WIN_CORE_NO_PLAYOUT_DEVICE = 1323,
         
-        /** @cn
+        /** 
          * 1351: 音频设备模块：音频驱动异常或者兼容性问题 解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。
          */
         ERR_ADM_WIN_WAVE_INIT = 1351,
         
-        /** @cn
+        /** 
          * 1353: 音频设备模块：音频驱动异常 解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。
          */
         ERR_ADM_WIN_WAVE_INIT_RECORDING = 1353,
         
-        /** @cn
+        /** 
          * 1354: 音频设备模块：音频驱动异常 解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。
          */
         ERR_ADM_WIN_WAVE_INIT_MICROPHONE = 1354,
         
-        /** @cn
+        /** 
          * 1355: 音频设备模块：音频驱动异常 解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。
          */
         ERR_ADM_WIN_WAVE_INIT_PLAYOUT = 1355,
         
-        /** @cn
+        /** 
          * 1356: 音频设备模块：音频驱动异常 解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。
          */
         ERR_ADM_WIN_WAVE_INIT_SPEAKER = 1356,
         
-        /** @cn
+        /** 
          * 1357: 音频设备模块：音频驱动异常 解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。
          */
         ERR_ADM_WIN_WAVE_START_RECORDING = 1357,
         
-        /** @cn
+        /** 
          * 1358: 音频设备模块：音频驱动异常 解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。
          */
         ERR_ADM_WIN_WAVE_START_PLAYOUT = 1358,
         
-        /** @cn
+        /** 
          * 1359: 音频设备模块：无录制设备。请检查是否有可用的录放音设备或者录放音设备是否已经被其他应用占用。
          */
         ERR_ADM_NO_RECORDING_DEVICE = 1359,
         
-        /** @cn
+        /** 
          * 1360: 音频设备模块：无播放设备。
          */
         ERR_ADM_NO_PLAYOUT_DEVICE = 1360,
 
         // VDM error code starts from 1500
         
-        /** @cn
+        /** 
          * 1501: 视频设备模块：没有摄像头使用权限。请检查是否已经打开摄像头权限。
          */
         ERR_VDM_CAMERA_NOT_AUTHORIZED = 1501,
 
         // VDM error code starts from 1500
         
-        /** @cn
+        /** 
          * @deprecated 1502: 视频设备模块：摄像头正在使用中。
          * 从 v2.4.1 起废弃。请改用  [onLocalVideoStateChanged]{@link AgoraRtcEvents.onLocalVideoStateChanged}  回调中的 
          * `LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY(3)`。
@@ -3510,83 +3508,83 @@ namespace agora {
 
         // VCM error code starts from 1600
         
-        /** @cn
+        /** 
          * 1600: 视频设备模块：未知错误。
          */
         ERR_VCM_UNKNOWN_ERROR = 1600,
         
-        /** @cn
+        /** 
          * 1601: 视频设备模块：视频编码器初始化错误。该错误为严重错误，请尝试重新加入频道。
          */
         ERR_VCM_ENCODER_INIT_ERROR = 1601,
         
-        /** @cn
+        /** 
          * 1602: 视频设备模块：视频编码器错误。该错误为严重错误，请尝试重新加入频道。
          */
         ERR_VCM_ENCODER_ENCODE_ERROR = 1602,
         
-        /** @cn
+        /** 
          * 1603: 视频设备模块：视频编码器设置错误。
          */
         ERR_VCM_ENCODER_SET_ERROR = 1603,
     }
 
     
-    /** @cn
+    /** 
      * 亮度明暗对比度。
      */
     export enum LIGHTENING_CONTRAST_LEVEL {
         
-        /** @cn
+        /** 
          * 低对比度。
          */
         LIGHTENING_CONTRAST_LOW = 0,
         
-        /** @cn
+        /** 
          * 正常对比度。
          */
         LIGHTENING_CONTRAST_NORMAL,
         
-        /** @cn
+        /** 
          * 高对比度。
          */
         LIGHTENING_CONTRAST_HIGH
     }
 
     
-    /** @cn
+    /** 
      * 日志过滤分级
      */
     export enum LOG_FILTER_TYPE {
         
-        /** @cn
+        /** 
          * 0: 不输出日志信息。
          */
         LOG_FILTER_OFF = 0,
         
-        /** @cn
+        /** 
          * 0x080f: 输出所有 API 日志信息。
          * 如果你想获取最完整的日志，可以将日志级别设为该等级。
          */
         LOG_FILTER_DEBUG = 0x080f,
         
-        /** @cn
+        /** 
          * 0x000f: 输出 CRITICAL、ERROR、WARNING 和 INFO 级别的日志信息。
          * 我们推荐你将日志级别设为该等级。
          */
         LOG_FILTER_INFO = 0x000f,
         
-        /** @cn
+        /** 
          * 0x000e: 输出 CRITICAL、ERROR 和 WARNING 级别的日志信息。
          */
         LOG_FILTER_WARN = 0x000e,
         
-        /** @cn
+        /** 
          * 0x000c: 输出 CRITICAL 和 ERROR 级别的日志信息。
          */
         LOG_FILTER_ERROR = 0x000c,
         
-        /** @cn
+        /** 
          * 0x0008: 输出 CRITICAL 级别的日志信息。
          */
         LOG_FILTER_CRITICAL = 0x0008,
@@ -3596,266 +3594,266 @@ namespace agora {
 
     
 
-    /** @cn
+    /** 
      * @ignore
      * 观测器的 Metadata 类型。当前仅支持视频类型的 Metadata 。
      */
     export enum METADATA_TYPE {
         
-        /** @cn
+        /** 
          * Metadata 类型未知
          */
         UNKNOWN_METADATA = -1,
         
-        /** @cn
+        /** 
          * Metadata 类型为视频
          */
         VIDEO_METADATA = 0,
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频像素格式
      */
     export enum VIDEO_PIXEL_FORMAT {
         
-        /** @cn
+        /** 
          * 0: 格式未知
          */
         VIDEO_PIXEL_UNKNOWN = 0,
         
-        /** @cn
+        /** 
          * 1: I420 格式
          */
         VIDEO_PIXEL_I420 = 1,
         
-        /** @cn
+        /** 
          * 2: BGRA 格式
          */
         VIDEO_PIXEL_BGRA = 2,
         
-        /** @cn
+        /** 
          * 3: NV21 格式
          */
         VIDEO_PIXEL_NV21 = 3,
         
-        /** @cn
+        /** 
          * 4: RGBA 格式
          */
         VIDEO_PIXEL_RGBA = 4,
         
-        /** @cn
+        /** 
          * 5: IMC2 格式
          */
         VIDEO_PIXEL_IMC2 = 5,
         
-        /** @cn
+        /** 
          * 7: ARGB 格式
          */
         VIDEO_PIXEL_ARGB = 7,
         
-        /** @cn
+        /** 
          * 8: NV12 格式
          */
         VIDEO_PIXEL_NV12 = 8,
         
-        /** @cn
+        /** 
          * 16: I422 格式
          */
         VIDEO_PIXEL_I422 = 16,
     }
 
     
-    /** @cn
+    /** 
      * 警告代码
      * 警告代码意味着 SDK 遇到问题，但有可能恢复，警告代码仅起告知作用，一般情况下应用程序可以忽略警告代码。
      */
     export enum WARN_CODE_TYPE {
         
-        /** @cn
+        /** 
          * 8: 指定的 view 无效，使用视频功能时需要指定 view，如果 view 尚未指定，则返回该警告。
          */
         WARN_INVALID_VIEW = 8,
         
-        /** @cn
+        /** 
          * 16: 初始化视频功能失败。有可能是因视频资源被占用导致的。用户无法看到视频画面，但不影响语音通信。
          */
         WARN_INIT_VIDEO = 16,
         
-        /** @cn
+        /** 
          * 20: 请求处于待定状态。一般是由于某个模块还没准备好，请求被延迟处理。
          */
         WARN_PENDING = 20,
         
-        /** @cn
+        /** 
          * 103: 没有可用的频道资源。可能是因为服务端没法分配频道资源。
          */
         WARN_NO_AVAILABLE_CHANNEL = 103,
         
-        /** @cn
+        /** 
          * 104: 查找频道超时。在加入频道时 SDK 先要查找指定的频道，出现该警告一般是因为网络太差，连接不到服务器。
          */
         WARN_LOOKUP_CHANNEL_TIMEOUT = 104,
         
-        /** @cn
+        /** 
          * @deprecated
          * 105: 查找频道请求被服务器拒绝。服务器可能没有办法处理这个请求或请求是非法的。从 v2.4.1 起废弃。请改用  
          * [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}  回调中的 CONNECTION_CHANGED_REJECTED_BY_SERVER(10)。
          */
         WARN_LOOKUP_CHANNEL_REJECTED = 105,
         
-        /** @cn
+        /** 
          * 106: 打开频道超时。查找到指定频道后，SDK 接着打开该频道，超时一般是因为网络太差，连接不到服务器。
          */
         WARN_OPEN_CHANNEL_TIMEOUT = 106,
         
-        /** @cn
+        /** 
          * 107: 打开频道请求被服务器拒绝。服务器可能没有办法处理该请求或该请求是非法的。
          */
         WARN_OPEN_CHANNEL_REJECTED = 107,
 
         // sdk: 100~1000
         
-        /** @cn
+        /** 
          * 111: 切换直播视频超时。
          */
         WARN_SWITCH_LIVE_VIDEO_TIMEOUT = 111,
         
-        /** @cn
+        /** 
          * 118: 直播场景下设置用户角色超时。
          */
         WARN_SET_CLIENT_ROLE_TIMEOUT = 118,
         
-        /** @cn
+        /** 
          * 121: TICKET 非法，打开频道失败。
          */
         WARN_OPEN_CHANNEL_INVALID_TICKET = 121,
         
-        /** @cn
+        /** 
          * 122: 尝试打开另一个服务器。
          */
         WARN_OPEN_CHANNEL_TRY_NEXT_VOS = 122,
         
-        /** @cn
+        /** 
          * 131: 频道连接不可恢复。
          */
         WARN_CHANNEL_CONNECTION_UNRECOVERABLE = 131,
         
-        /** @cn
+        /** 
          * 132: IP 已改变。
          */
         WARN_CHANNEL_CONNECTION_IP_CHANGED = 132,
         
-        /** @cn
+        /** 
          * 133: 端口已改变。
          */
         WARN_CHANNEL_CONNECTION_PORT_CHANGED = 133,
         
-        /** @cn
+        /** 
          * 701: 打开伴奏出错。
          */
         WARN_AUDIO_MIXING_OPEN_ERROR = 701,
         
-        /** @cn
+        /** 
          * 1014: 音频设备模块：运行时播放设备出现警告。
          */
         WARN_ADM_RUNTIME_PLAYOUT_WARNING = 1014,
         
-        /** @cn
+        /** 
          * 1016: 音频设备模块：运行时录音设备出现警告。
          */
         WARN_ADM_RUNTIME_RECORDING_WARNING = 1016,
         
-        /** @cn
+        /** 
          * 1019: 音频设备模块：没有采集到有效的声音数据。
          */
         WARN_ADM_RECORD_AUDIO_SILENCE = 1019,
         
-        /** @cn
+        /** 
          * 1020: 音频设备模块：播放频率异常，可能造成音频卡顿。该异常原因为系统 CPU 占用率高，建议结束其他可能占用 CPU 的 app。
          */
         WARN_ADM_PLAYOUT_MALFUNCTION = 1020,
         
-         /** @cn
+         /** 
           * 1021: 音频设备模块：录制频率异常，可能造成音频卡顿。该异常原因为系统 CPU 占用率高，建议结束其他可能占用 CPU 的 app。
          */
         WARN_ADM_RECORD_MALFUNCTION = 1021,
         
-        /** @cn
+        /** 
          * 1025: 播放或录制音频时被系统事件（如来电）干扰。
         */
         WARN_ADM_CALL_INTERRUPTION = 1025,
         
-        /** @cn
+        /** 
          * 1029：在通话过程中，Audio Session 的 category 必须设置成 AVAudioSessionCategoryPlayAndRecord，agora 会监控这个属性值。
          * 当这个值被修改成其他值的时候会触发这个告警，并强制设置回 AVAudioSessionCategoryPlayAndRecord。
          */
         WARN_ADM_IOS_CATEGORY_NOT_PLAYANDRECORD = 1029,
         
-        /** @cn
+        /** 
          * 1031: 音频设备模块：录到的声音太低。
          */
         WARN_ADM_RECORD_AUDIO_LOWLEVEL = 1031,
         
-        /** @cn
+        /** 
          * 1032: 音频设备模块：播放的声音太低。
          */
         WARN_ADM_PLAYOUT_AUDIO_LOWLEVEL = 1032,
         
-        /** @cn
+        /** 
          * 1033: 音频设备模块：录制设备被占用。
          */
         WARN_ADM_RECORD_AUDIO_IS_ACTIVE = 1033,
         
-        /** @cn
+        /** 
          * 1040: 音频设备模块：音频驱动异常。解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动
          */
         WARN_ADM_WINDOWS_NO_DATA_READY_EVENT = 1040,
         
-        /** @cn
+        /** 
          * 1042: 音频采集设备和播放设备不一致，可能引起回声，建议使用同一设备采集和播放音频。
          */
         WARN_ADM_INCONSISTENT_AUDIO_DEVICE = 1042,
         
-        /** @cn
+        /** 
          * 1051: （仅通信场景）音频信号处理模块：录制音频时监测到啸叫。
          */
         WARN_APM_HOWLING = 1051,
         
-        /** @cn
+        /** 
          * 1052: 音频设备模块：音频播放会卡顿。
          */
         WARN_ADM_GLITCH_STATE = 1052,
         
-        /** @cn
+        /** 
          * 1053: 音频信号处理模块：检测到残余回声，该回声可能由系统线程调度不及时或信号溢出导致。
          */
         WARN_APM_RESIDUAL_ECHO = 1053,
         /** @ignore */
         WARN_ADM_WIN_CORE_NO_RECORDING_DEVICE = 1322,
         
-        /** @cn
+        /** 
          * 1323: 音频设备模块：无可用音频播放设备。解决方案：插入音频设备
          */
         WARN_ADM_WIN_CORE_NO_PLAYOUT_DEVICE = 1323,
         
-        /** @cn
+        /** 
          * 1324: 音频设备模块：音频采集释放有误。解决方案：禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。
          */
         WARN_ADM_WIN_CORE_IMPROPER_CAPTURE_RELEASE = 1324,
         
-        /** @cn
+        /** 
          * 1610: 超分告警：远端用户的原始视频流的分辨率超出了可以应用超分辨率算法的要求。
          */
         WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION = 1610,
         
-        /** @cn
+        /** 
          * 1611: 超分告警：已指定一个远端用户使用超分辨率算法。
          */
         WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION = 1611,
         
-        /** @cn
+        /** 
          * 1612: 超分告警：当前设备不支持超分算法。
          */
         WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED = 1612,
@@ -3868,105 +3866,105 @@ namespace agora {
 
 namespace agora {
     
-    /** @cn
+    /** 
      * 上行或下行 Last mile 网络质量探测结果。
      */
     export interface LastmileProbeOneWayResult {
         
-        /** @cn
+        /** 
          * 丢包率。
          */
         packetLossRate: number
         
-        /** @cn
+        /** 
          * 网络抖动 (ms)。
          */
         jitter: number
         
-        /** @cn
+        /** 
          * 可用网络带宽预估 (bps)。
          */
         availableBandwidth: number
     }
 
     
-    /** @cn
+    /** 
      * 上行或下行 Last mile 网络质量探测结果。
      */
     export interface LastmileProbeResult {
         
-        /** @cn
+        /** 
          * Last mile 质量探测结果的状态。详见: [LASTMILE_PROBE_RESULT_STATE]{@link agora.LASTMILE_PROBE_RESULT_STATE}。
          */
         state: LASTMILE_PROBE_RESULT_STATE
         
-        /** @cn
+        /** 
          * 上行网络质量报告。详见: [LastmileProbeOneWayResult]{@link agora.LastmileProbeOneWayResult}。
          */
         uplinkReport: LastmileProbeOneWayResult
         
-        /** @cn
+        /** 
          * 下行网络质量报告。详见: [LastmileProbeOneWayResult]{@link agora.LastmileProbeOneWayResult}。
          */
         downlinkReport: LastmileProbeOneWayResult
         
-        /** @cn
+        /** 
          * 往返时延 (ms)。
          */
         rtt: number
     }
 
     
-    /** @cn
+    /** 
      * Last mile 网络探测配置。
      */
     export interface LastmileProbeConfig {
         
-        /** @cn
+        /** 
          * 是否探测上行网络。有些用户，如直播频道中的普通观众，不需要进行网络探测:
          * - true: 探测。
          * - false: 不探测。
          */
         probeUplink: boolean
         
-        /** @cn
+        /** 
          * 是否探测下行网络。
          * - true: 探测。
          * - false: 不探测。
          */
         probeDownlink: boolean
         
-        /** @cn
+        /** 
          * 用户期望的最高发送码率，单位为 bps，范围为 [100000, 5000000]。Agora 推荐参考  
          * [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}  中的码率值设置该参数的值。
          */
         expectedUplinkBitrate: number
         
-        /** @cn
+        /** 
          * 用户期望的最高接收码率，单位为 bps，范围为 [100000, 5000000]。
          */
         expectedDownlinkBitrate: number
     }
 
     
-    /** @cn
+    /** 
      * 以数组的形式返回每个说话者的用户 ID 和音量信息。
      */
     export interface AudioVolumeInfo {
         
-        /** @cn
+        /** 
          * 用户 ID。
          * - 在本地用户的回调中，`uid` 为 `0`。
          * - 在远端用户的回调中，`uid` 为瞬时音量最高的远端用户（最多 3 位）的 ID。
          */
         uid: number
         
-        /** @cn
+        /** 
          * 用户的音量，取值范围为 [0,255]。如果用户调用了 [startAudioMixing]{@link agora.startAudioMixing}，则 `volume` 为用户混音后的音量。
          */
         volume: number
         
-        /** @cn
+        /** 
          * 本地用户的人声状态。
          * - `0`: 本地无人声。
          * - `1`: 本地有人声。
@@ -3978,103 +3976,103 @@ namespace agora {
          */
         vad: number
         
-        /** @cn
+        /** 
          * 用户所在频道的频道名称。
          */
         channelId: string
     }
 
     
-    /** @cn
+    /** 
      * 通话相关的统计信息。
      */
     export interface RtcStats {
         
-        /** @cn
+        /** 
          * 通话时长（秒）。
          */
         duration: number
         
-        /** @cn
+        /** 
          * 发送字节数（bytes）。
          */
         txBytes: number
         
-        /** @cn
+        /** 
          * 接收字节数（bytes）。
          */
         rxBytes: number
         
-        /** @cn
+        /** 
          * 发送音频字节数（bytes），累计值。
          */
         txAudioBytes: number
         
-        /** @cn
+        /** 
          * @ignore
          * 发送视频字节数（bytes），累计值。
          */
         txVideoBytes: number
         
-        /** @cn
+        /** 
          * 接收音频字节数（bytes），累计值。
          */
         rxAudioBytes: number
         
-        /** @cn
+        /** 
          * @ignore
          * 接收视频字节数（bytes），累计值。
          */
         rxVideoBytes: number
         
-        /** @cn
+        /** 
          * 发送码率（Kbps）。
          */
         txKBitRate: number
         
-        /** @cn
+        /** 
          * 接收码率（Kbps）。
          */
         rxKBitRate: number
         
-        /** @cn
+        /** 
          * 音频接收码率 (Kbps）。
          */
         rxAudioKBitRate: number
         
-        /** @cn
+        /** 
          * 音频包的发送码率 (Kbps）。
          */
         txAudioKBitRate: number
         
-        /** @cn
+        /** 
          * @ignore
          * 视频接收码率 (Kbps）。
          */
         rxVideoKBitRate: number
         
-        /** @cn
+        /** 
          * @ignore
          * 视频发送码率 (Kbps）。
          */
         txVideoKBitRate: number
         
-        /** @cn
+        /** 
          * 客户端-接入服务器延时 (毫秒)。
          */
         lastmileDelay: number
         
-        /** @cn
+        /** 
          * 弱网对抗前客户端到 Agora 边缘服务器的丢包率 (%)。
          */
         txPacketLossRate: number
         
-        /** @cn
+        /** 
          * 弱网对抗前 Agora 边缘服务器下行发送到客户端的丢包率 (%)
          */
         rxPacketLossRate: number
         
-        /** @cn
+        /** 
          * 当前频道内的用户人数。
          * - 通信场景下，当前频道内的用户人数。
          * - 直播场景下，
@@ -4083,17 +4081,17 @@ namespace agora {
          */
         userCount: number
         
-        /** @cn
+        /** 
          * 当前 App 的 CPU 使用率 (%)。
          */
         cpuAppUsage: number
         
-        /** @cn
-         * 当前系统的 CPU 使用率 (%)。在多核环境中，该成员指多核 CPU 的平均使用率。计算方式为 100 - 任务管理中显示的系统空闲进程 CPU（%）。
+        /** 
+         * 当前系统的 CPU 使用率 (%)。在多核环境中，该成员指多核 CPU 的平均使用率。计算方式为：100 - 任务管理中显示的系统空闲进程 CPU（%）。
          */
         cpuTotalUsage: number
         
-        /** @cn
+        /** 
          * 客户端到本地路由器的往返时延 (ms)
          * 
          * @note （仅 iOS）自 3.1.2 版本起，该参数默认不生效。详见 [FAQ](https://docs.agora.io/cn/faq/local_network_privacy)。
@@ -4101,20 +4099,20 @@ namespace agora {
          */
         gatewayRtt: number
         
-        /** @cn
+        /** 
          * 当前 App 的内存占比 (%)
          * 
          * @note 该值仅作参考。受系统限制可能无法获取。
          */
         memoryAppUsageRatio: number
         
-        /** @cn
+        /** 
          * 当前系统的内存占比 (%)
          * @note 该值仅作参考。受系统限制可能无法获取。
          */
         memoryTotalUsageRatio: number
         
-        /** @cn
+        /** 
          * 当前 App 的内存大小 (KB)
          * @note 该值仅作参考。受系统限制可能无法获取。
          */
@@ -4122,105 +4120,102 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 本地视频流上传统计信息。
      */
     export interface LocalVideoStats {
         
-        /** @cn
+        /** 
          * 实际发送码率 (Kbps)。
          *
-         * @note
-         * 不包含丢包后重传视频等的发送码率。
+         * @note 不包含丢包后重传视频等的发送码率。
          */
         sentBitrate: number
         
-        /** @cn
+        /** 
          * 实际发送帧率 (fps)。
          *
-         * @note
-         * 不包含丢包后重传视频等的发送帧率。
+         * @note 不包含丢包后重传视频等的发送帧率。
          */
         sentFrameRate: number
         
-        /** @cn
+        /** 
          * 本地视频编码器的输出帧率，单位为 fps。
          */
         encoderOutputFrameRate: number
         
-        /** @cn
+        /** 
          * 本地视频渲染器的输出帧率，单位为 fps
          */
         rendererOutputFrameRate: number
         
-        /** @cn
+        /** 
          * 当前编码器的目标编码码率 (Kbps)，该码率为 SDK 根据当前网络状况预估的一个值。
          */
         targetBitrate: number
         
-        /** @cn
+        /** 
          * 当前编码器的目标编码帧率 (fps)。
          */
         targetFrameRate: number
         
-        /** @cn
+        /** 
          * 统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。详见： [QUALITY_ADAPT_INDICATION]{@link agora.QUALITY_ADAPT_INDICATION} 。
          */
         qualityAdaptIndication: QUALITY_ADAPT_INDICATION
         
-        /** @cn
+        /** 
          * 视频编码码率（Kbps）。
          *
-         * @note
-         * 不包含丢包后重传视频等的编码码率。
+         * @note 不包含丢包后重传视频等的编码码率。
          */
         encodedBitrate: number
         
-        /** @cn
+        /** 
          * 视频编码宽度（px）。
          */
         encodedFrameWidth: number
         
-        /** @cn
+        /** 
          * 视频编码高度（px）。
          */
         encodedFrameHeight: number
         
-        /** @cn
+        /** 
          * 视频发送的帧数，累计值。
          */
         encodedFrameCount: number
         
-        /** @cn
+        /** 
          * 视频的编码类型：[VIDEO_CODEC_TYPE]{@link agora.VIDEO_CODEC_TYPE}。
          */
         codecType: VIDEO_CODEC_TYPE
         
-        /** @cn
+        /** 
          * 弱网对抗前客户端到 Agora 边缘服务器的视频丢包率 (%)。
          */
         txPacketLossRate: number
         
-        /** @cn
+        /** 
          * 本地视频采集帧率 (fps)。
          */
         captureFrameRate: number
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 远端视频流的统计信息。
      */
     export interface RemoteVideoStats {
         
-        /** @cn
+        /** 
          * 远端用户 ID，指定是哪个用户的视频流。
          */
         uid: number
         
-        /** @cn
+        /** 
          * @deprecated
          * 延时 (毫秒)。
          * 在有音画同步机制的音视频场景中，你可以参考 RemoteAudioStats 里的 `networkTransportDelay`
@@ -4228,170 +4223,170 @@ namespace agora {
          */
         delay: number
         
-        /** @cn
+        /** 
          * 视频流的宽度（像素）。
          */
         width: number
         
-        /** @cn
+        /** 
          * 视频流的高度（像素）。
          */
         height: number
         
-        /** @cn
+        /** 
          * （上次统计后）接收到的码率(Kbps)。
          */
         receivedBitrate: number
         
-        /** @cn
+        /** 
          * 远端视频解码器的输出帧率，单位为 fps。
          */
         decoderOutputFrameRate: number
         
-        /** @cn
+        /** 
          * 远端视频渲染器的输出帧率，单位为 fps。
          */
         rendererOutputFrameRate: number
         
-        /** @cn
+        /** 
          * 远端视频在使用抗丢包技术之后的丢包率(%)。
          */
         packetLossRate: number
         
-        /** @cn
+        /** 
          * 视频流类型，大流或小流。
          */
         rxStreamType: REMOTE_VIDEO_STREAM_TYPE
         
-        /** @cn
+        /** 
          * 远端用户在加入频道后发生视频卡顿的累计时长（ms）。通话过程中，视频帧率设置不低于 5 fps 时，连续渲染的两帧视频之间间隔超过 500 ms，
          * 则记为一次视频卡顿。
          */
         totalFrozenTime: number
         
-        /** @cn
+        /** 
          * 远端用户在加入频道后发生视频卡顿的累计时长占视频总有效时长的百分比 (%)。视频有效时长是指远端用户加入频道后视频未被停止发送或禁用的时长。
          */
         frozenRate: number
         
-        /** @cn
+        /** 
          * 视频有效时长（毫秒），即远端用户/主播加入频道后，既没有停止发送视频流，也没有禁用视频模块的通话时长。
          */
         totalActiveTime: number
         
-        /** @cn
+        /** 
          * 远端视频流的累计发布时长（毫秒）。
          */
         publishDuration: number
     }
 
     
-    /** @cn
+    /** 
      * 本地音频统计数据
      */
     export interface LocalAudioStats {
         
-        /** @cn
+        /** 
          * 声道数。
          */
         numChannels: number
         
-        /** @cn
+        /** 
          * 发送的采样率，单位为 Hz。
          */
         sentSampleRate: number
         
-        /** @cn
+        /** 
          * 发送码率的平均值，单位为 Kbps。
          */
         sentBitrate: number
         
-        /** @cn
+        /** 
          * 弱网对抗前本端到 Agora 边缘服务器的音频丢包率 (%)。
          */
         txPacketLossRate: number
     }
 
     
-    /** @cn
+    /** 
      * 远端用户的音频统计
      */
     export interface RemoteAudioStats {
         
-        /** @cn
+        /** 
          * 用户 ID，指定是哪个用户/主播的音频流。
          */
         uid: number
         
-        /** @cn
+        /** 
          * 远端用户发送的音频流质量：[QUALITY_TYPE]{@link agora.QUALITY_TYPE}。
          */
         quality: number
         
-        /** @cn
+        /** 
          * 音频发送端到接收端的网络延迟（毫秒）
          */
         networkTransportDelay: number
         
-        /** @cn
+        /** 
          * 接收端到网络抖动缓冲的网络延迟（毫秒）
          */
         jitterBufferDelay: number
         
-        /** @cn
+        /** 
          * 统计周期内的远端音频流的丢帧率 (%)。
          */
         audioLossRate: number
         
-        /** @cn
+        /** 
          * 声道数。
          */
         numChannels: number
         
-        /** @cn
+        /** 
          * 统计周期内接收到的远端音频采样率。
          */
         receivedSampleRate: number
         
-        /** @cn
+        /** 
          * 接收流在统计周期内的平均码率（Kbps）。
          */
         receivedBitrate: number
         
-        /** @cn
+        /** 
          * 远端用户在加入频道后发生音频卡顿的累计时长（ms）。通话过程中，音频丢帧率达到 4% 即记为一次音频卡顿。
          */
         totalFrozenTime: number
         
-        /** @cn
+        /** 
          * 远端用户在加入频道后发生音频卡顿的累计时长占音频总有效时长的百分比 (%)。音频有效时长是指远端用户加入频道后音频未被停止发送或禁用的时长。
          */
         frozenRate: number
         
-        /** @cn
+        /** 
          * 音频有效时长（毫秒），即远端用户/主播加入频道后，既没有停止发送音频流，也没有禁用音频模块的通话时长。
          */
         totalActiveTime: number
         
-        /** @cn
+        /** 
          * 远端音频流的累计发布时长（毫秒）。
          */
         publishDuration: number
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频尺寸。
      */
     export class VideoDimensions {
         
-        /** @cn
+        /** 
          * 视频帧宽度 (pixel)。
          */
         width: number
         
-        /** @cn
+        /** 
          * 视频帧高度 (pixel)。
          */
         height: number
@@ -4403,30 +4398,30 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频编码器配置的属性。
      */
     export class VideoEncoderConfiguration {
         
-        /** @cn
+        /** 
          * 视频编码的分辨率 (px)。
          * 视频编码的像素，用于衡量编码质量，以长 &times; 宽表示，默认值为 640 x 360。用户可以自行设置分辨率: 
          * [VideoDimensions]{@link agora.VideoDimensions}。
          */
         dimensions: VideoDimensions
         
-        /** @cn
+        /** 
          * 视频编码的帧率: [FRAME_RATE]{@link agora.FRAME_RATE} 。默认值为 15。该值不建议大于 30.
          */
         frameRate: FRAME_RATE
         
-        /** @cn
+        /** 
          * 视频的最小帧率。默认值为 -1。
          */
         minFrameRate: number
         
-        /** @cn
+        /** 
          视频编码码率，单位为 Kbps:
          你可以根据场景需要参照下表手动设置你想要的码率。若设置的视频码率超出合理范围，SDK 会自动按照合理区间处理码率。你也可以直接选择如下任意一种模式进行设置：
          - [STANDARD_BITRATE]{@link agora.STANDARD_BITRATE} : (推荐) 标准码率模式。该模式下，视频在通信和直播场景下的码率有所不同：通信场景下，码率与
@@ -4477,24 +4472,24 @@ namespace agora {
          */
         bitrate: number
         
-        /** @cn
+        /** 
          * 最低编码码率，单位为 Kbps。
          * SDK 会根据网络状况自动调整视频编码码率。将参数设为高于默认值可强制视频编码器输出高质量图片，但在网络状况不佳情况下可能导致网络丢包并影响视频播放的流畅度造成卡顿。因此如非对画质有特殊需求，声网建议不要修改该参数的值。
          * @note 该参数仅适用于直播场景。
          */
         minBitrate: number
         
-        /** @cn
+        /** 
          * 视频编码的方向模式: [ORIENTATION_MODE]{@link agora.ORIENTATION_MODE} 。
          */
         orientationMode: ORIENTATION_MODE
         
-        /** @cn
+        /** 
          * 带宽受限时，视频编码降级偏好: [DEGRADATION_PREFERENCE]{@link agora.DEGRADATION_PREFERENCE} 。
          */
         degradationPreference: DEGRADATION_PREFERENCE
         
-        /** @cn
+        /** 
          * 设置本地发送视频的镜像模式，只影响远端用户看到的视频画面。详见 [VIDEO_MIRROR_MODE_TYPE]{@link agora.VIDEO_MIRROR_MODE_TYPE}
          * @note 默认关闭镜像模式。
          */
@@ -4522,55 +4517,57 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * TranscodingUser 用于管理参与旁路直播的音视频转码合图的用户。最多支持 17 人同时参与转码合图。
      */
     export class TranscodingUser {
         
-        /** @cn
+        /** 
          * 旁路主播的用户 ID。
          */
         uid: number
         
-        /** @cn
+        /** 
          * 左上角的横向偏移。
          */
         x: number
         
-        /** @cn
+        /** 
          * 左上角的纵向偏移。
          */
         y: number
         
-        /** @cn
+        /** 
          * 推流视频的总宽度，默认值 360，单位为像素。
          */
         width: number
         
-        /** @cn
+        /** 
          * 推流视频的总高度，默认值 640，单位为像素。
          */
         height: number
         
-        /** @cn
+        /** 
          * 视频帧图层编号。
          * - 0:（默认）表示该区域图像位于最下层，
          * - 100: 表示该区域图像位于最上层。
-         * @note
-         * - 如果取值小于 0 或大于 100，会返回错误 [ERR_INVALID_ARGUMENT]{@link agora.ERR_INVALID_ARGUMENT} 。
+         * 
+         * **Note**
+         * 
+         * - 如果取值小于 0 或大于 100，会返回错误 [ERR_INVALID_ARGUMENT]{@link agora.ERROR_CODE_TYPE.ERR_INVALID_ARGUMENT} 。
          * - 从 v3.1.2 开始，支持将 `zOrder` 设置为 0。
          */
         zOrder: number
         
-        /** @cn
+        /** 
          * 直播视频上用户视频的透明度。
          * - 0: 该区域图像完全透明；
          * - 1:（默认）该区域图像完全不透明。
          */
         alpha: number
         
-        /** @cn
+        /** 
          * 音频所在声道。取值范围为 [0, 5]，默认值为 0：
          * - 0: (推荐) 默认混音设置，最多支持双声道，与主播端上行音频相关。
          * - 1: 对应主播的音频，推流中位于 FL 声道。如果主播端上行音频是多声道，会先把多声道混音成单声道。
@@ -4595,34 +4592,34 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 图像属性。
      * 用于设置直播视频的水印和背景图片的属性。
      */
     export class RtcImage {
         
-        /** @cn
+        /** 
          * 直播视频上图片的 HTTP/HTTPS 地址。字符长度不得超过 1024 字节。
          */
         url: string
         
-        /** @cn
+        /** 
          * 水印或背景图片在视频帧左上角的横轴坐标。
          */
         x: number
         
-        /** @cn
+        /** 
          * 水印或背景图片在视频帧左上角的纵轴坐标。
          */
         y: number
         
-        /** @cn
+        /** 
          * 水印或背景图片在视频帧上的宽度。
          */
         width: number
         
-        /** @cn
+        /** 
          * 水印或背景图片在视频帧上的高度。
          */
         height: number
@@ -4637,7 +4634,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 转码推流的高级功能配置。
      */
@@ -4654,104 +4651,104 @@ namespace agora {
     }
 
     
-    /** @cn
-     * @ignore
+    /** 
+     * 
      * LiveTranscoding 定义。
      */
     export class LiveTranscoding {
         
-        /** @cn
+        /** 
          * 推流视频的总宽度，默认值 360，单位为像素。
          * - 如果推视频流，`width` 值不得低于 64，否则 Agora 会调整为 64。
          * - 如果推音频流，请将 `width` 和 `height` 设为 0。
          */
         width: number
         
-        /** @cn
+        /** 
          * 推流视频的总高度，默认值 640，单位为像素。
          * - 如果推视频流，`height` 值不得低于 64，否则 Agora 会调整为 64。
          * - 如果推音频流，请将 `width` 和 `height` 设为 0。
          */
         height: number
         
-        /** @cn
+        /** 
          * 用于旁路推流的输出视频的码率。 单位为 Kbps。 400 Kbps 为默认值。用户可以根据 Video Profile 参考表中的码率值进行设置；如果设置的码率超出合理
          * 范围，Agora 服务器会在合理区间内自动调整码率值。
          */
         videoBitrate: number
         
-        /** @cn
+        /** 
          * 用于旁路推流的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。
          * @note Agora 会将所有高于 30 fps 的帧率统一设为 30 fps。
          */
         videoFramerate: number
         
-        /** @cn
+        /** 
          * @deprecated
          * - true: 低延时，不保证画质；
          * - false:（默认值）高延时，保证画质。
          */
         lowLatency: boolean
         
-        /** @cn
+        /** 
          * 用于旁路直播的输出视频的 GOP。单位为帧。默认值为 30 帧。
          */
         videoGop: number
         
-        /** @cn
+        /** 
          * 用于旁路推流的输出视频的编码规格: [VIDEO_CODEC_PROFILE_TYPE]{@link agora.VIDEO_CODEC_PROFILE_TYPE} 。
          * @note 如果你将这个参数设为其他值，Agora 会将其设为默认值 100。
          */
         videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE
         
-        /** @cn
+        /** 
          * 用于旁路直播的输出视频的背景色，格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。默认 0x000000，黑色。
          */
         backgroundColor: number
         
-        /** @cn
+        /** 
          * 参与合图的用户数量，默认 0。
          */
         userCount: number
         
-        /** @cn
+        /** 
          * TranscodingUser
          */
         transcodingUsers: TranscodingUser[]
         
-        /** @cn
+        /** 
          * 预留参数：用户自定义的发送到旁路推流客户端的信息。用于填充 H.264/H.265 视频中 SEI 帧内容。长度限制 4096 字节。关于 SEI 的详细信息，
          * 详见 [SEI 帧相关问题](https://docs.agora.io/cn/faq/sei)。
          */
         transcodingExtraInfo: string
         
-        /** @cn
+        /** 
          * @deprecated 
          * 发送给 CDN 客户端的 metadata。
          */
         metadata: string
         
-        /** @cn
+        /** 
          * 用于旁路直播的输出视频上的水印图片。添加后所有旁路直播的观众都可以看到水印。水印图片的定义详见 [RtcImage]{@link agora.RtcImage}。必须为 PNG 格式。
          */
         watermark: RtcImage
         
-        /** @cn
+        /** 
          * 用于旁路直播的输出视频上的背景图片。添加后所有旁路直播的观众都可以看到背景图片。背景图片的定义详见 [RtcImage]{@link agora.RtcImage}。
          */
         backgroundImage: RtcImage
         
-        /** @cn
+        /** 
          * 自定义音频采样率: [AUDIO_SAMPLE_RATE_TYPE]{@link agora.AUDIO_SAMPLE_RATE_TYPE} 。
          */
         audioSampleRate: AUDIO_SAMPLE_RATE_TYPE
         
-        /** @cn
+        /** 
          * 用于旁路推流的输出音频的码率。单位为 Kbps，默认值为 48，最大值为 128。
          */
         audioBitrate: number
         
-        /** @cn
+        /** 
          * 用于旁路推流的输出音频的声道数，默认值为 1。取值范围为 [1,5] 中的整型，建议取 1 或 2：
          * - 1: 单声道（默认）
          * - 2: 双声道
@@ -4761,19 +4758,19 @@ namespace agora {
          */
         audioChannels: 1 | 2 | 3 | 4 | 5
         
-        /** @cn
+        /** 
          * @ignore
          * 用于旁路推流的输出视频的编码规格: [AUDIO_CODEC_PROFILE_TYPE]{@link agora.AUDIO_CODEC_PROFILE_TYPE} 。
          */
         audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE
         
-        /** @cn
+        /** 
          * 转码推流的高级功能。详见 [LiveStreamAdvancedFeature]{@link agora.LiveStreamAdvancedFeature}。
          */
         advancedFeatures: LiveStreamAdvancedFeature
 
         
-        /** @cn
+        /** 
          * 开启的高级功能数量。默认值为 0。
          */
         advancedFeatureCount: number
@@ -4824,18 +4821,18 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 摄像头采集偏好设置
      */
     export class CameraCapturerConfiguration {
         
-        /** @cn
+        /** 
          * 摄像头采集偏好，详见 [CAPTURER_OUTPUT_PREFERENCE]{@link agora.CAPTURER_OUTPUT_PREFERENCE}。
          */
         preference: CAPTURER_OUTPUT_PREFERENCE
         
-        /** @cn
-         * （仅适用于 Android 和 iOS 平台）摄像头方向，详见 [CAMERA_DIRECTION]{@link agora.CAMERA_DIRECTION}。
+        /** 
+         * 摄像头方向，详见 [CAMERA_DIRECTION]{@link agora.CAMERA_DIRECTION}。
          */
         cameraDirection: CAMERA_DIRECTION
 
@@ -4846,50 +4843,50 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * InjectStreamConfig 定义。
      */
     export class InjectStreamConfig {
         
-        /** @cn
+        /** 
          * 添加进入直播的外部视频源宽度。默认值为 0，即保留视频源原始宽度。
          */
         width: number
         
-        /** @cn
+        /** 
          * 添加进入直播的外部视频源高度。默认值为 0，即保留视频源原始高度。
          */
         height: number
         
-        /** @cn
+        /** 
          * 用于旁路直播的输出视频的 GOP。单位为帧。默认值为 30 帧。
          */
         videoGop: number
         
-        /** @cn
+        /** 
          * 添加进入直播的外部视频源帧率。默认值为 15 fps。
          */
         videoFramerate: number
         
-        /** @cn
+        /** 
          * 添加进入直播的外部视频源码率。默认设置为 400 Kbps。
          * @note 视频码率的设置与分辨率相关。如果设置的视频码率超出合理范围，SDK 会按照合理区间自动设置码率。
          */
         videoBitrate: number
         
-        /** @cn
+        /** 
          * 添加进入直播的外部音频采样率。默认值为 48000。详见 [AUDIO_SAMPLE_RATE_TYPE]{@link agora.AUDIO_SAMPLE_RATE_TYPE} 。
          * @note 声网建议目前采用默认值，不要自行设置。
          */
         audioSampleRate: AUDIO_SAMPLE_RATE_TYPE
         
-        /** @cn
+        /** 
          * 添加进入直播的外部音频码率。默认值为 48 Kbps。
          * @note 声网建议目前采用默认值，不要自行设置。
          */
         audioBitrate: number
         
-        /** @cn
+        /** 
          * 添加进入直播的外部音频频道。
          * - 1: 单声道（默认）
          * - 2: 双声道
@@ -4918,22 +4915,22 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * [ChannelMediaInfo]{@link agora.ChannelMediaInfo} 类定义。
      */
     export class ChannelMediaInfo {
         
-        /** @cn
+        /** 
          * 频道名。
          */
         channelName: string
         
-        /** @cn
+        /** 
          * 能加入频道的 Token。
          */
         token: string
         
-        /** @cn
+        /** 
          * 用户 ID。
          */
         uid: number
@@ -4946,12 +4943,12 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * [ChannelMediaRelayConfiguration]{@link agora.ChannelMediaRelayConfiguration} 类定义。
      */
     export class ChannelMediaRelayConfiguration {
         
-        /** @cn
+        /** 
          * 源频道信息指针 `ChannelMediaInfo`，包含如下成员：
          * - `channelName`：源频道名。默认值为 `NULL`，表示 SDK 填充当前的频道名。
          * - `uid`：标识源频道中的转发媒体流的 UID。默认值为 0，表示 SDK 随机分配一个 `uid`。请确保设为 0。
@@ -4961,7 +4958,7 @@ namespace agora {
          */
         srcInfo: ChannelMediaInfo
         
-        /** @cn
+        /** 
          * 目标频道信息指针 `ChannelMediaInfo`，包含如下成员：
          * - `channelName`：目标频道的频道名。
          * - `uid`：标识目标频道中的转发媒体流的 UID。取值范围为 0 到（2<sup>32</sup>-1），请确保不要将该参数设为目标频道的主播的 UID，并与目标频道中的所有 UID 不同。默认值为 0，表示 SDK 随机分配一个 UID。
@@ -4971,7 +4968,7 @@ namespace agora {
          */
         destInfos: ChannelMediaInfo[]
         
-        /** @cn
+        /** 
          * 目标频道数量，默认值为 0，取值范围为 [0，4]。该参数应与你在 `destInfos`
          * 中定义的 `ChannelMediaInfo` 数组的数目一致。
          */
@@ -4985,27 +4982,27 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 待共享区域相对于整个屏幕或窗口的位置，如不填，则表示共享整个屏幕或窗口。
      */
     export class Rectangle {
         
-        /** @cn
+        /** 
          * 左上角的横向偏移。
          */
         x: number
         
-        /** @cn
+        /** 
          * 左上角的纵向偏移。
          */
         y: number
         
-        /** @cn
+        /** 
          * 待共享区域的宽。
          */
         width: number
         
-        /** @cn
+        /** 
          * 待共享区域的高。
          */
         height: number
@@ -5019,28 +5016,28 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @deprecated
      * 定义视图区域。
      */
     export class Rect {
         
-        /** @cn
+        /** 
          * 视图上边对应的纵坐标
          */
         top: number
         
-        /** @cn
+        /** 
          * 视图左边对应的横坐标
          */
         left: number
         
-        /** @cn
+        /** 
          * 视图底边对应的纵坐标
          */
         bottom: number
         
-        /** @cn
+        /** 
          * 视图右边对应的横坐标
          */
         right: number
@@ -5054,25 +5051,25 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 待添加的水印图片的设置选项。
      */
     export class WatermarkOptions {
         
-        /** @cn
+        /** 
          * 是否将水印设为预览时本地可见：
          * - true：(默认) 预览时水印本地可见；
          * - false：预览时水印本地不可见。
          */
         visibleInPreview: boolean
         
-        /** @cn
+        /** 
          * 视频编码模式为横屏时的水印坐标。详见 [Rectangle]{@link agora.Rectangle}。
          */
         positionInLandscapeMode: Rectangle
         
-        /** @cn
+        /** 
          * 视频编码模式为竖屏时的水印坐标。详见 [Rectangle]{@link agora.Rectangle}。
          */
         positionInPortraitMode: Rectangle
@@ -5089,13 +5086,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 屏幕共享的编码参数配置。
      */
     export class ScreenCaptureParameters {
         
-        /** @cn
+        /** 
          * 屏幕共享视频发送的最大像素值。
          * 默认值为 1920 &times; 1080，即 2073600 像素。该像素值为计费标准。
          * 当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 dimensions 为 1920 &times; 1080：
@@ -5105,31 +5102,31 @@ namespace agora {
          */
         dimensions: VideoDimensions
         
-        /** @cn
+        /** 
          * 共享视频的帧率，单位为 fps；默认值为 5，建议不要超过 15。
          */
         frameRate: number
         
-        /** @cn
+        /** 
          * 共享视频的码率，单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。
          */
         bitrate: number
         
-        /** @cn
+        /** 
          * 是否采集鼠标用于屏幕共享
          * - true: （默认）采集鼠标
          * - false: 不采集鼠标
          */
         captureMouseCursor: boolean
         
-        /** @cn
+        /** 
          * 调用  [startScreenCaptureByWindowId]{@link agora.startScreenCaptureByWindowId}  方法共享窗口时，是否将该窗口前置。
          * - true: 前置窗口。
          * - false:（默认）不前置窗口。
          */
         windowFocus: boolean
         
-        /** @cn
+        /** 
          * 待屏蔽窗口的 ID 列表。
          * - 调用  [startScreenCaptureByScreenRect]{@link agora.startScreenCaptureByScreenRect}  开启屏幕共享时，
          * 你可以通过该参数屏蔽指定的窗口。
@@ -5138,7 +5135,7 @@ namespace agora {
          */
         excludeWindowList: any[]
         
-        /** @cn
+        /** 
          * 待屏蔽窗口的数量。
          */
         excludeWindowCount: number
@@ -5163,23 +5160,23 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * `VideoCanvas` 类的视频显示设置。
      */
     export class VideoCanvas {
         
-        /** @cn
+        /** 
          * 视频显示窗口 (view)。
          */
         view: any
         
-        /** @cn
+        /** 
          * 视频渲染模式，详见 [RENDER_MODE_TYPE]{@link agora.RENDER_MODE_TYPE}。
          */
         renderMode: number
         
-        /** @cn
+        /** 
          * 能标识频道的频道名，长度在 64 字节以内的字符。以下为支持的字符集范围（共 89 个字符）：
          * - 26 个小写英文字母 a~z；
          * - 26 个大写英文字母 A~Z；
@@ -5191,16 +5188,18 @@ namespace agora {
          */
         channelId: string
         
-        /** @cn
+        /** 
          * 用户 ID
          */
         uid: number
         /** @ignore */
         priv: any // private data (underlying video engine denotes it)
         
-        /** @cn
+        /** 
          * 视图镜像模式，详见 [VIDEO_MIRROR_MODE_TYPE]{@link agora.VIDEO_MIRROR_MODE_TYPE}
-         * @note
+         * 
+         * **Note**
+         * 
          * - 本地视图镜像模式：如果你使用前置摄像头，默认启动本地视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。
          * - 远端用户视图镜像模式：默认关闭远端用户的镜像模式。
          */
@@ -5224,28 +5223,28 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 美颜选项。
      */
     export class BeautyOptions {
         
-        /** @cn
+        /** 
          * 亮度明暗对比度。
          */
         lighteningContrastLevel: LIGHTENING_CONTRAST_LEVEL
         
-        /** @cn
+        /** 
          * 亮度，取值范围为 [0.0, 1.0]，其中 0.0 表示原始亮度。可用来实现美白等视觉效果。
          */
         lighteningLevel: number
         
-        /** @cn
+        /** 
          * 平滑度，取值范围为 [0.0, 1.0]，其中 0.0 表示原始平滑等级。可用来实现祛痘、磨皮等视觉效果。
          */
         smoothnessLevel: number
         
-        /** @cn
+        /** 
          * 红色度，取值范围为 [0.0, 1.0]，其中 0.0 表示原始红色度。可用来实现红润肤色等视觉效果。
          */
         rednessLevel: number
@@ -5264,38 +5263,38 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * UserInfo 的定义。
      */
     export interface UserInfo {
         
-        /** @cn
+        /** 
          * 用户 ID。
          */
         uid: number
         
-        /** @cn
+        /** 
          * 用户 Account。
          */
         userAccount: string
     }
 
     
-    /** @cn
+    /** 
      * 配置内置加密模式和密钥。
      */
     export class EncryptionConfig {
         
-        /** @cn
+        /** 
          * 内置加密模式，默认为 `AES_128_XTS` 加密模式。详见 [ENCRYPTION_MODE]{@link agora.ENCRYPTION_MODE}
          */
         encryptionMode: ENCRYPTION_MODE
         
-        /** @cn
+        /** 
          * 内置加密密钥，字符串类型。
          *
          * @note 如果未指定该参数或将该参数设置为空，则无法启用内置加密，且 SDK 会返回错误码 
-         * [ERR_INVALID_ARGUMENT]{@link agora.ERR_INVALID_ARGUMENT} (-2)。
+         * [ERR_INVALID_ARGUMENT]{@link agora.ERROR_CODE_TYPE.ERR_INVALID_ARGUMENT} (-2)。
          */
         encryptionKey: string
 
@@ -5306,12 +5305,12 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 频道媒体设置选项。
      */
     export class ChannelMediaOptions {
         
-        /** @cn
+        /** 
          * 设置加入频道时是否自动订阅音频流：
          * - true：（默认）订阅。
          * - false：不订阅。
@@ -5321,7 +5320,7 @@ namespace agora {
          */
         autoSubscribeAudio: boolean
         
-        /** @cn
+        /** 
          * 设置加入频道是是否自动订阅视频流：
          * - true：（默认）订阅。
          * - false：不订阅。
@@ -5338,29 +5337,29 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * [Metadata]{@link agora.Metadata} 定义。
      */
     export class Metadata {
         
-        /** @cn
+        /** 
          * 用户 ID。
          * - 对于接收者：发送该 Metadata 的远端用户的 ID
          * - 对于发送人：请忽略。
          */
         uid: number
         
-        /** @cn
+        /** 
          * 接收到的或发送的 Metadata 的缓存大小。
          */
         size: number
         
-        /** @cn
+        /** 
          * 接收到的或发送的 Metadata 的缓存地址。
          */
         buffer: Uint8Array
         
-        /** @cn
+        /** 
          * Metadata 的时间戳，单位为毫秒。
          */
         timeStampMs: number
@@ -5375,41 +5374,41 @@ namespace agora {
 }
 
 
-/** @cn
+/** 
  * `AgoraRtcEvents` 类用于向应用程序发送回调通知。
  */
 declare class AgoraRtcEvents {
     
-    /** @cn
+    /** 
      * 发生警告回调。
      * 该回调方法表示 SDK 运行时出现了（网络或媒体相关的）警告。通常情况下，SDK 上报的警告信息 App 可以忽略，SDK 会自动恢复。比如和服务器失去连接时，
-     * SDK 可能会上报 [WARN_OPEN_CHANNEL_TIMEOUT]{@link agora.WARN_OPEN_CHANNEL_TIMEOUT} 警告，同时自动尝试重连。
+     * SDK 可能会上报 [WARN_OPEN_CHANNEL_TIMEOUT]{@link agora.WARN_CODE_TYPE.WARN_OPEN_CHANNEL_TIMEOUT} 警告，同时自动尝试重连。
      */
     onWarning:
         
-        /** @cn
+        /** 
          * @param warn 警告代码： [WARN_CODE_TYPE]{@link agora.WARN_CODE_TYPE} 。
          * @param msg 警告描述。
          */
         (warn: agora.WARN_CODE_TYPE, msg: string) => void
 
     
-    /** @cn
+    /** 
      * 发生错误回调。
      * 该回调方法表示 SDK 运行时出现了（网络或媒体相关的）错误。通常情况下，SDK 上报的错误意味着 SDK 无法自动恢复，需要 App 干预或提示用户。 
-     * 比如启动通话失败时，SDK 会上报 [ERR_START_CALL]{@link agora.ERR_START_CALL} 错误。App 可以提示用户启动通话失败，并调用  
+     * 比如启动通话失败时，SDK 会上报 [ERR_START_CALL]{@link agora.ERROR_CODE_TYPE.ERR_START_CALL} 错误。App 可以提示用户启动通话失败，并调用  
      * [leaveChannel]{@link agora.leaveChannel}  退出频道。
      */
     onError:
         
-        /** @cn
+        /** 
          * @param err 错误代码： [ERROR_CODE_TYPE]{@link agora.ERROR_CODE_TYPE} 。
          * @param msg 错误描述。
          */
         (err: agora.ERROR_CODE_TYPE, msg: string) => void
 
     
-    /** @cn
+    /** 
      * 加入频道回调。
      * 该回调方法表示该客户端成功加入了指定的频道。
      * channel ID 基于  [joinChannel]{@link agora.joinChannel}  中指定的 channel name 分配。如果调用 `joinChannel` 时并没有指定 user ID。
@@ -5417,7 +5416,7 @@ declare class AgoraRtcEvents {
      */
     onJoinChannelSuccess:
         
-        /** @cn
+        /** 
          * @param channel 频道名。
          * @param  uid 用户 ID。如果  [joinChannel]{@link agora.joinChannel}  中指定了 uid，则此处返回该 ID；否则使用 Agora 服务器自动分配的 ID。
          * @param  elapsed 从  [joinChannel]{@link agora.joinChannel}  开始到发生此事件过去的时间（毫秒）。
@@ -5425,13 +5424,13 @@ declare class AgoraRtcEvents {
         (channel: string, uid: number, elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * 重新加入频道回调。
      * 有时候由于网络原因，客户端可能会和服务器失去连接，SDK 会进行自动重连，自动重连成功后触发此回调方法。
      */
     onRejoinChannelSuccess:
         
-        /** @cn
+        /** 
          * @param channel 频道名。
          * @param uid 用户 ID。
          * @param elapsed 从开始重连到重连成功的时间（毫秒）。
@@ -5439,34 +5438,34 @@ declare class AgoraRtcEvents {
         (channel: string, uid: number, elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * 离开频道回调。
      * App 调用  [leaveChannel]{@link agora.leaveChannel}  方法时，SDK提示 App 离开频道成功。在该回调方法中，App 可以得到此次通话的总通话时长、
      * SDK 收发数据的流量等信息。App 通过该回调获取通话时长以及 SDK 接收到或发送的数据统计信息。
      */
     onLeaveChannel:
         
-        /** @cn
+        /** 
          * @param stats 通话的统计数据: [RtcStats]{@link agora.RtcStats}。
          */
         (stats: agora.RtcStats) => void
 
     
-    /** @cn
+    /** 
      * 直播场景下用户角色已切换回调。
      * 直播场景下，当用户切换角色时会触发此回调，即主播切换为观众时，或观众切换为主播时。
      * 该回调由本地用户在加入频道后调用  [setClientRole]{@link agora.setClientRole}  改变用户角色触发的。
      */
     onClientRoleChanged:
         
-        /** @cn
+        /** 
          * @param oldRole 切换前的角色: [CLIENT_ROLE_TYPE]{@link agora.CLIENT_ROLE_TYPE} 。
          * @param newRole 切换后的角色: [CLIENT_ROLE_TYPE]{@link agora.CLIENT_ROLE_TYPE} 。
          */
         (oldRole: agora.CLIENT_ROLE_TYPE, newRole: agora.CLIENT_ROLE_TYPE) => void
 
     
-    /** @cn
+    /** 
      * 远端用户（通信场景）/主播（直播场景）加入当前频道回调。
      * - 通信场景下，该回调提示有远端用户加入了频道，并返回新加入用户的 ID；如果加入之前，已经有其他用户在频道中了，新加入的用户也会收到这些已有用户加入频道的回调。
      * - 直播场景下，该回调提示有主播加入了频道，并返回该主播的 ID。如果在加入之前，已经有主播在频道中了，新加入的用户也会收到已有主播加入频道的回调。声网建议连麦主播不超过 17 人。
@@ -5477,21 +5476,23 @@ declare class AgoraRtcEvents {
      * - 远端用户/主播网络中断后重新加入频道
      * - 主播通过调用  [addInjectStreamUrl]{@link agora.addInjectStreamUrl}  方法成功输入在线媒体流
      * 
-     * @note 直播场景下，
+     * **Note**
+     * 
+     * 直播场景下，
      * - 主播间能相互收到新主播加入频道的回调，并能获得该主播的 uid。
      * - 观众也能收到新主播加入频道的回调，并能获得该主播的 uid。
      * - 当 Web 端加入直播频道时，只要 Web 端有推流，SDK 会默认该 Web 端为主播，并触发该回调。
      */
     onUserJoined:
         
-        /** @cn
+        /** 
          * @param uid 新加入频道的远端用户/主播 ID。
          * @param elapsed 从本地用户调用  [joinChannel]{@link agora.joinChannel}  到该回调触发的延迟（毫秒)。
          */
         (uid: number, elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * 远端用户（通信场景）/主播（直播场景）离开当前频道回调。
      * 提示有远端用户/主播离开了频道（或掉线）。用户离开频道有两个原因，即正常离开和超时掉线：
      * - 正常离开的时候，远端用户/主播会发送类似“再见”的消息。接收此消息后，判断用户离开频道。
@@ -5501,14 +5502,14 @@ declare class AgoraRtcEvents {
      */
     onUserOffline:
         
-        /** @cn
+        /** 
          * @param uid 离线用户或主播的用户 ID。
          * @param reason 离线原因: [USER_OFFLINE_REASON_TYPE]{@link agora.USER_OFFLINE_REASON_TYPE} 。
          */
         (uid: number, reason: agora.USER_OFFLINE_REASON_TYPE) => void
 
     
-    /** @cn
+    /** 
      * 通话前网络上下行 last mile 质量报告回调。
      * 该回调描述本地用户在加入频道前的 last mile 网络探测的结果，其中 last mile 是指设备到 Agora 边缘服务器的网络状态。
      * 在调用  [enableLastmileTest]{@link agora.enableLastmileTest}  之后，该回调函数每 2 秒触发一次。如果远端有多个用户/主播，该回调
@@ -5516,27 +5517,27 @@ declare class AgoraRtcEvents {
      */
     onLastmileQuality:
         
-        /** @cn
+        /** 
          * @param quality 网络上下行质量，基于上下行网络的丢包率和抖动计算，探测结果主要反映上行网络的状态。
          * 详见: [QUALITY_TYPE]{@link agora.QUALITY_TYPE} 。
          */
         (quality: agora.QUALITY_TYPE) => void
 
     
-    /** @cn
+    /** 
      * 通话前网络质量探测报告回调。
      * 通话前网络上下行 Last mile 质量探测报告回调。在调用  [startLastmileProbeTest]{@link agora.startLastmileProbeTest}  之后，
      * SDK 会在约 30 秒内返回该回调。
      */
     onLastmileProbeResult:
         
-        /** @cn
+        /** 
          * @param result 上下行 Last mile 质量探测结果。 详见: [LastmileProbeResult]{@link agora.LastmileProbeResult}。
          */
         (result: agora.LastmileProbeResult) => void
 
     
-    /** @cn
+    /** 
      * 网络连接中断回调。
      * @deprecated 该方法已废弃，被  [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}  取代。
      * SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会触发该回调。在触发事件后，SDK 会主动重连服务器，所以该事件可以用于 UI 提示。
@@ -5548,7 +5549,7 @@ declare class AgoraRtcEvents {
     onConnectionInterrupted: () => void
 
     
-    /** @cn
+    /** 
      * 网络连接丢失回调。
      * SDK 在调用  [joinChannel]{@link agora.joinChannel}  后无论是否加入成功，只要 10 秒和服务器无法连接就会触发该回调。
      * 
@@ -5561,7 +5562,7 @@ declare class AgoraRtcEvents {
     onConnectionLost: () => void
 
     
-    /** @cn
+    /** 
      * @deprecated
      * 连接已被服务器禁止回调。该回调已废弃，被  [onConnectionStateChanged]{@link AgoraRtcEvents.onConnectionStateChanged}  取代。
      * 当你被服务端禁掉连接的权限时，会触发该回调。
@@ -5569,12 +5570,12 @@ declare class AgoraRtcEvents {
     onConnectionBanned: () => void
 
     
-    /** @cn
+    /** 
      * API 方法已执行回调。
      */
     onApiCallExecuted:
         
-        /** @cn
+        /** 
          * @param err 当该方法调用失败时 SDK 返回的错误码。如果方法调用失败，会返回错误码 [ERROR_CODE_TYPE]{@link agora.ERROR_CODE_TYPE} 。
          * 如果该方法调用成功，SDK 将返回 0。
          * @param api SDK 执行的 API。
@@ -5583,7 +5584,7 @@ declare class AgoraRtcEvents {
         (err: agora.ERROR_CODE_TYPE, api: string, result: string) => void
 
     
-    /** @cn
+    /** 
      * Token 已过期回调。
      * 在调用  [joinChannel]{@link agora.joinChannel} , 时如果指定了 Token，由于 Token 具有一定的时效，在通话过程中 SDK 可能由于网络原因
      * 和服务器失去连接，重连时可能需要新的 Token。
@@ -5592,7 +5593,7 @@ declare class AgoraRtcEvents {
     onRequestToken: () => void
 
     
-    /** @cn
+    /** 
      * Token 服务即将过期回调。
      * 在调用  [joinChannel]{@link agora.joinChannel}  时如果指定了 Token，由于 Token 具有一定的时效，在通话过程中如果 Token 即将失效，SDK 
      * 会提前 30 秒触发该回调，提醒 App 更新 Token。 当收到该回调时，用户需要重新在服务端生成新的 Token，然后调用 
@@ -5600,20 +5601,20 @@ declare class AgoraRtcEvents {
      */
     onTokenPrivilegeWillExpire:
         
-        /** @cn
+        /** 
          * @param token 即将服务失效的 Token。
          */
         (token: string) => void
 
     
-    /** @cn
+    /** 
      * @deprecated 远端声音质量回调。
      * 该方法已废弃。请改用  [onRemoteAudioStats]{@link AgoraRtcEvents.onRemoteAudioStats}  方法。
      * 该回调描述远端用户在通话中的音频质量，针对每个远端用户/主播每 2 秒触发一次。如果远端同时存在多个用户/主播，该回调每 2 秒会被触发多次。
      */
     onAudioQuality:
         
-        /** @cn
+        /** 
          * @param uid 用户 ID，指定是谁发的音频流。
          * @param quality 语音质量，详见: [QUALITY_TYPE]{@link agora.QUALITY_TYPE} 。
          * @param delay 音频包从发送端到接收端的延迟（毫秒）。包括声音采样前处理、网络传输、网络抖动缓冲引起的延迟。
@@ -5622,26 +5623,26 @@ declare class AgoraRtcEvents {
         (uid: number, quality: agora.QUALITY_TYPE, delay: number, lost: number) => void
 
     
-    /** @cn
+    /** 
      * 当前通话统计回调。
      * SDK 定期向 App 报告当前通话的统计信息，每两秒触发一次。
      */
     onRtcStats:
         
-        /** @cn
+        /** 
          * @param stats RTC 引擎统计数据: [RtcStats]{@link agora.RtcStats}。
          */
         (stats: agora.RtcStats) => void
 
     
-    /** @cn
+    /** 
      * 通话中每个用户的网络上下行 last mile 质量报告回调。
      * 该回调描述每个用户在通话中的 last mile 网络状态，其中 last mile 是指设备到 Agora 边缘服务器的网络状态。
      * 该回调每 2 秒触发一次。如果远端有多个用户，该回调每 2 秒会被触发多次。
      */
     onNetworkQuality:
         
-        /** @cn
+        /** 
          * @param uid 用户 ID。表示该回调报告的是持有该 ID 的用户的网络质量。当 uid 为 0 时，返回的是本地用户的网络质量。
          * @param txQuality 该用户的上行网络质量，基于发送码率、上行丢包率、平均往返时延和网络抖动计算。该值代表当前的上行网络质量，
          * 帮助判断是否可以支持当前设置的视频编码属性。假设上行码率是 1000 Kbps，那么支持直播场景下 640 &times; 480 的分辨率、15 fps 的帧率没有问题，
@@ -5651,7 +5652,7 @@ declare class AgoraRtcEvents {
         (uid: number, txQuality: agora.QUALITY_TYPE, rxQuality: agora.QUALITY_TYPE) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 本地视频流统计信息回调。
      * 该回调描述本地设备发送视频流的统计信息，每 2 秒触发一次。
@@ -5660,13 +5661,13 @@ declare class AgoraRtcEvents {
      */
     onLocalVideoStats:
         
-        /** @cn
+        /** 
          * @param stats 本地视频流统计信息。详见: [LocalVideoStats]{@link agora.LocalVideoStats}。
          */
         (stats: agora.LocalVideoStats) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 通话中远端视频流的统计信息回调。
      *
@@ -5676,67 +5677,66 @@ declare class AgoraRtcEvents {
      */
     onRemoteVideoStats:
         
-        /** @cn
+        /** 
          * @param stats 远端视频统计数据。详见: [RemoteVideoStats]{@link agora.RemoteVideoStats} 。
          */
         (stats: agora.RemoteVideoStats) => void
 
     
-    /** @cn
+    /** 
      * 通话中本地音频流的统计信息回调。
      *
      * 该回调描述本地设备发送音频流的统计信息。SDK 每 2 秒触发该回调一次。
      */
     onLocalAudioStats:
         
-        /** @cn
+        /** 
          * @param stats 本地音频统计数据。详见 [LocalAudioStats]{@link agora.LocalAudioStats}。
          */
         (stats: agora.LocalAudioStats) => void
 
     
-    /** @cn
+    /** 
      * 通话中远端音频流的统计信息回调。用于取代  [onAudioQuality]{@link AgoraRtcEvents.onAudioQuality}  回调。
      * 该回调描述远端用户在通话中端到端的音频流统计信息。该回调函数针对每个发送音频流的远端用户/主播每 2 秒触发一次。如果远端有多个用户/主播发送音频流，
      * 该回调每 2 秒会被触发多次。
      */
     onRemoteAudioStats:
         
-        /** @cn
+        /** 
          * @param stats 接收到的远端音频统计数据，详细定义见: [RemoteAudioStats]{@link agora.RemoteAudioStats}。
          */
         (stats: agora.RemoteAudioStats) => void
 
     
 
-    /** @cn
+    /** 
      * 本地音频状态发生改变回调。
      *
      * 本地音频的状态发生改变时（包括本地麦克风录制状态和音频编码状态），
      * SDK 会触发该回调报告当前的本地音频状态。在本地音频出现故障时，
      * 该回调可以帮助你了解当前音频的状态以及出现故障的原因，方便你排查问题。
      *
-     * @note
-     * 当状态为 [LOCAL_AUDIO_STREAM_STATE_FAILED]{@link agora.LOCAL_AUDIO_STREAM_STATE.LOCAL_AUDIO_STREAM_STATE_FAILED} (3) 时，
+     * @note 当状态为 [LOCAL_AUDIO_STREAM_STATE_FAILED]{@link agora.LOCAL_AUDIO_STREAM_STATE.LOCAL_AUDIO_STREAM_STATE_FAILED} (3) 时，
      * 你可以在 `error` 参数中查看返回的错误信息。
      */
     onLocalAudioStateChanged:
         
-        /** @cn
+        /** 
          * @param state 当前的本地音频状态。详见 [LOCAL_AUDIO_STREAM_STATE]{@link agora.LOCAL_AUDIO_STREAM_STATE} 。
          * @param error 本地音频出错原因。详见 [LOCAL_AUDIO_STREAM_ERROR]{@link agora.LOCAL_AUDIO_STREAM_ERROR} 。
          */
         (state: agora.LOCAL_AUDIO_STREAM_STATE, error: agora.LOCAL_AUDIO_STREAM_ERROR) => void
 
     
-    /** @cn
+    /** 
      * 远端音频流状态发生改变回调。
      * 远端用户/主播音频状态发生改变时，SDK 会触发该回调向本地用户报告当前的远端音频流状态。
      * @note 频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调不生效。
      */
     onRemoteAudioStateChanged:
         
-        /** @cn
+        /** 
          * @param uid 发生音频状态改变的远端用户 ID。
          * @param state 远端音频流状态。 详见 [REMOTE_AUDIO_STATE]{@link agora.REMOTE_AUDIO_STATE} 。
          * @param reason 远端音频流状态改变的具体原因。详见 [REMOTE_AUDIO_STATE_REASON]{@link agora.REMOTE_AUDIO_STATE_REASON} 。
@@ -5745,12 +5745,12 @@ declare class AgoraRtcEvents {
         (uid: number, state: agora.REMOTE_AUDIO_STATE, reason: agora.REMOTE_AUDIO_STATE_REASON, elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * 音频发布状态改变回调。
      */
     onAudioPublishStateChanged:
         
-        /** @cn
+        /** 
          * @param channel 频道名。
          * @param oldState 之前的发布状态，详见 [STREAM_PUBLISH_STATE]{@link agora.STREAM_PUBLISH_STATE}
          * @param newState 当前的发布状态，详见 [STREAM_PUBLISH_STATE]{@link agora.STREAM_PUBLISH_STATE}
@@ -5759,13 +5759,13 @@ declare class AgoraRtcEvents {
         (channel: string, oldState: agora.STREAM_PUBLISH_STATE, newState: agora.STREAM_PUBLISH_STATE, elapseSinceLastState: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频发布状态改变回调。
      */
     onVideoPublishStateChanged:
         
-        /** @cn
+        /** 
          * @param channel 频道名。
          * @param oldState 之前的发布状态，详见 [STREAM_PUBLISH_STATE]{@link agora.STREAM_PUBLISH_STATE}
          * @param newState 当前的发布状态，详见 [STREAM_PUBLISH_STATE]{@link agora.STREAM_PUBLISH_STATE}
@@ -5774,12 +5774,12 @@ declare class AgoraRtcEvents {
         (channel: string, oldState: agora.STREAM_PUBLISH_STATE, newState: agora.STREAM_PUBLISH_STATE, elapseSinceLastState: number) => void
 
     
-    /** @cn
+    /** 
      * 音频订阅状态发生改变回调。
      */
     onAudioSubscribeStateChanged:
         
-        /** @cn
+        /** 
          * @param channel 频道名。
          * @param uid 远端用户的 ID。
          * @param oldState 之前的订阅状态，详见 [STREAM_SUBSCRIBE_STATE]{@link agora.STREAM_SUBSCRIBE_STATE}
@@ -5789,13 +5789,13 @@ declare class AgoraRtcEvents {
         (channel: string, uid: number, oldState: agora.STREAM_SUBSCRIBE_STATE, newState: agora.STREAM_SUBSCRIBE_STATE, elapseSinceLastState: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频订阅状态发生改变回调。
      */
     onVideoSubscribeStateChanged:
         
-        /** @cn
+        /** 
          * @param channel 频道名。
          * @param uid 远端用户的 ID。
          * @param oldState 之前的订阅状态，详见 [STREAM_SUBSCRIBE_STATE]{@link agora.STREAM_SUBSCRIBE_STATE}
@@ -5805,19 +5805,21 @@ declare class AgoraRtcEvents {
         (channel: string, uid: number, oldState: agora.STREAM_SUBSCRIBE_STATE, newState: agora.STREAM_SUBSCRIBE_STATE, elapseSinceLastState: number) => void
 
     
-    /** @cn
+    /** 
      * 用户音量提示回调。
      * 该回调默认禁用，你可以通过 [enableAudioVolumeIndication]{@link agora.enableAudioVolumeIndication} 开启。开启后，只要频道内有发流用户，
      * SDK 会在加入频道后按 `enableAudioVolumeIndication `中设置的时间间隔触发 `onAudioVolumeIndication` 回调。每次会触发两个 
      * `onAudioVolumeIndication` 回调，一个报告本地发流用户的音量相关信息，另一个报告瞬时音量最高的远端用户（最多 3 位）的音量相关信息。
      * 
-     * @note 启用该功能后，如果有用户将自己静音（调用了 [muteLocalAudioStream]{@link agora.muteLocalAudioStream}），SDK 行为会受如下影响：
+     * **Note**
+     * 
+     * 启用该功能后，如果有用户将自己静音（调用了 [muteLocalAudioStream]{@link agora.muteLocalAudioStream}），SDK 行为会受如下影响：
      * - 本地用户静音后，SDK 立即停止报告本地用户的音量提示回调。
      * - 瞬时音量最高的远端用户静音后 20 秒，远端的音量提示回调中将不再包含该用户；如果远端所有用户都将自己静音，20 秒后 SDK 停止报告远端用户的音量提示回调。
      */
     onAudioVolumeIndication:
         
-        /** @cn
+        /** 
          * @param speakers 用户音量信息，详见 [AudioVolumeInfo]{@link agora.AudioVolumeInfo} 数组。
          * 如果 `speakers` 为空，则表示远端用户不发流或没有远端用户。
          * @param speakerNumber 用户数量。
@@ -5832,7 +5834,7 @@ declare class AgoraRtcEvents {
         (speakers: agora.AudioVolumeInfo[], speakerNumber: number, totalVolume: number) => void
 
     
-    /** @cn
+    /** 
      * 监测到最活跃用户回调。
      * 成功调用  [enableAudioVolumeIndication]{@link agora.enableAudioVolumeIndication}  后，SDK 会持续监测音量最大的远端用户，并统计该用户
      * 被判断为音量最大者的次数。当前时间段内，该次数累积最多的远端用户为最活跃的用户。
@@ -5844,13 +5846,13 @@ declare class AgoraRtcEvents {
      */
     onActiveSpeaker:
         
-        /** @cn
+        /** 
          * @param uid 远端最活跃用户的 ID。
          */
         (uid: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频功能已停止回调。
      * @deprecated 请改用  [onLocalVideoStateChanged]{@link AgoraRtcEvents.onLocalVideoStateChanged}  回调中的 
@@ -5860,14 +5862,14 @@ declare class AgoraRtcEvents {
     onVideoStopped: () => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 已显示本地视频首帧回调。
      * 本地视频首帧显示在本地视图上时，SDK 会触发此回调。
      */
     onFirstLocalVideoFrame:
         
-        /** @cn
+        /** 
          * @param width 本地渲染视频的宽 (px) 。
          * @param height 本地渲染视频的高 (px)。
          * @param elapsed 从调用  [joinChannel]{@link agora.joinChannel}  到发生此事件过去的时间（毫秒）。如果在 
@@ -5877,7 +5879,9 @@ declare class AgoraRtcEvents {
         (width: number, height: number, elapsed: number) => void
 
     
-    /** @cn
+    /** 
+     * @ignore
+     * 
      * 已发布本地视频首帧回调。
      * 
      * SDK 会在以下三种时机触发该回调：
@@ -5888,13 +5892,13 @@ declare class AgoraRtcEvents {
      */
     onFirstLocalVideoFramePublished:
         
-        /** @cn
+        /** 
          * @param elapsed 从调用  [joinChannel]{@link agora.joinChannel}  方法到触发该回调的时间间隔（毫秒）。
          */
         (elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 已接收到远端视频并完成解码回调。
      *
@@ -5913,7 +5917,7 @@ declare class AgoraRtcEvents {
      */
     onFirstRemoteVideoDecoded:
         
-        /** @cn
+        /** 
          * @param uid 用户 ID，指定是哪个用户的视频流。
          * @param width 视频流宽（px）。
          * @param height 视频流高（px）。
@@ -5922,14 +5926,14 @@ declare class AgoraRtcEvents {
         (uid: number, width: number, height: number, elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 已显示首帧远端视频回调。
      * 第一帧远端视频显示在视图上时，触发此调用。 App 可在此调用中获知出图时间（elapsed）。
      */
     onFirstRemoteVideoFrame:
         
-        /** @cn
+        /** 
          * @param uid 用户 ID，指定是哪个用户的视频流。
          * @param width 视频流宽（px）。
          * @param height 视频流高（px）。
@@ -5938,7 +5942,7 @@ declare class AgoraRtcEvents {
         (uid: number, width: number, height: number, elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * 远端用户静音回调。
      * @deprecated 该回调已废弃。请改用  [onRemoteAudioStateChanged]{@link AgoraRtcEvents.onRemoteAudioStateChanged} 提示有远端用户已将其
      * 音频流静音（或取消静音）。
@@ -5947,7 +5951,7 @@ declare class AgoraRtcEvents {
      */
     onUserMuteAudio:
         
-        /** @cn
+        /** 
          * @param uid 用户 ID。
          * @param muted 该用户是否静音：
          * - true: 该用户已将音频静音；
@@ -5956,7 +5960,7 @@ declare class AgoraRtcEvents {
         (uid: number, muted: boolean) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 远端用户暂停/恢复发送视频流回调。
      * @deprecated 该回调已废弃。你也可以使用
@@ -5972,7 +5976,7 @@ declare class AgoraRtcEvents {
      */
     onUserMuteVideo:
         
-        /** @cn
+        /** 
          * @param uid 远端用户 ID。
          * @param muted 该用户是否暂停发送其视频流
          * - true: 该用户已暂停发送其视频流；
@@ -5981,7 +5985,7 @@ declare class AgoraRtcEvents {
         (uid: number, muted: boolean) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 远端用户开关本地视频采集回调。
      *
@@ -5997,7 +6001,7 @@ declare class AgoraRtcEvents {
      */
     onUserEnableVideo:
         
-        /** @cn
+        /** 
          * @param uid 用户 ID，提示是哪个用户的视频流。
          * @param enabled
          * - true: 该用户已启用了视频功能。启用后，该用户可以进行视频通话或直播。
@@ -6007,14 +6011,14 @@ declare class AgoraRtcEvents {
         (uid: number, enabled: boolean) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 音频设备变化回调。
      * 提示系统音频设备状态发生改变，比如耳机被拔出。
      */
     onAudioDeviceStateChanged:
         
-        /** @cn
+        /** 
          * @param deviceId 设备 ID。
          * @param deviceType 设备类型定义: [MEDIA_DEVICE_TYPE]{@link agora.MEDIA_DEVICE_TYPE} 。
          * @param deviceState 设备状态定义: [MEDIA_DEVICE_STATE_TYPE]{@link agora.MEDIA_DEVICE_STATE_TYPE} 。
@@ -6022,13 +6026,13 @@ declare class AgoraRtcEvents {
         (deviceId: string, deviceType: agora.MEDIA_DEVICE_TYPE, deviceState: agora.MEDIA_DEVICE_STATE_TYPE) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 回放、录音设备、或 App 的音量发生改变。
      */
     onAudioDeviceVolumeChanged:
         
-        /** @cn
+        /** 
          * @param deviceType 设备类型定义: [MEDIA_DEVICE_TYPE]{@link agora.MEDIA_DEVICE_TYPE} 。
          * @param volume 音量：范围 [0,255]。
          * @param muted
@@ -6038,7 +6042,7 @@ declare class AgoraRtcEvents {
         (deviceType: agora.MEDIA_DEVICE_TYPE, volume: number, muted: boolean) => void
 
     
-     /** @cn
+     /** 
       * @ignore
       * @deprecated 摄像头就绪回调。
       * 提示已成功打开摄像头，可以开始捕获视频。如果摄像头打开失败，可在  [onError]{@link AgoraRtcEvents.onError}  中处理相应错误。
@@ -6048,17 +6052,15 @@ declare class AgoraRtcEvents {
     onCameraReady: () => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 相机对焦区域已改变回调。
      * 该回调表示相机的对焦区域发生了改变。
      * 该回调是由本地用户调用 setCameraFocusPositionInPreview 方法改变对焦位置触发的。
-     * 
-     * @note 该回调只适用于 Android 和 iOS 平台。
      */
     onCameraFocusAreaChanged:
         
-        /** @cn
+        /** 
          * @param x 发生改变的对焦区域的 x 坐标。
          * @param y 发生改变的对焦区域的 y 坐标。
          * @param width 发生改变的对焦区域的宽度。
@@ -6067,9 +6069,9 @@ declare class AgoraRtcEvents {
         (x: number, y: number, width: number, height: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
-     * 报告本地人脸检测结果。仅适用于 Android 和 iOS 平台。
+     * 报告本地人脸检测结果。
      *
      * 调用  [enableFaceDetection]{@link agora.enableFaceDetection} (true) 开启本地人脸检测后，你可以通过该回调实时获取以下人脸检测的信息：
      * - 摄像头采集的画面大小
@@ -6077,14 +6079,16 @@ declare class AgoraRtcEvents {
      * - 人脸距设备屏幕的距离
      *
      * 其中，人脸距设备屏幕的距离由 SDK 通过摄像头采集的画面大小和人脸在画面中的位置拟合计算得出。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 当检测到摄像头前没有人脸时，该回调触发频率会降低，以节省设备耗能。
      * - 当人脸距离设备屏幕过近时，SDK 不会触发该回调。
      * - Android 平台上，人脸距设备屏幕的距离（`distance`）值有一定误差，请不要用它进行精确计算。
      */
     onFacePositionChanged:
         
-        /** @cn
+        /** 
          * @param imageWidth 摄像头采集画面的宽度 (px)。
          * @param imageHeight 摄像头采集画面的高度 (px)。
          * @param vecRectangle 检测到的人脸信息：
@@ -6098,15 +6102,14 @@ declare class AgoraRtcEvents {
         (imageWidth: number, imageHeight: number, vecRectangle: agora.Rectangle[], vecDistance: number[], numFaces: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 摄像头曝光区域已改变回调。
      * 该回调是由本地用户调用 `setCameraExposurePosition` 方法改变曝光位置触发的。
-     * @note 该回调只适用于 Android 和 iOS 平台。
      */
     onCameraExposureAreaChanged:
         
-        /** @cn
+        /** 
          * @param x 发生改变的曝光区域的 x 坐标。
          * @param y 发生改变的曝光区域的 y 坐标。
          * @param width 发生改变的曝光区域的宽度。
@@ -6115,7 +6118,7 @@ declare class AgoraRtcEvents {
         (x: number, y: number, width: number, height: number) => void
 
     
-    /** @cn
+    /** 
      * 本地音乐文件播放已结束回调。
      * @deprecated 该回调已废弃。请改用 [onAudioMixingStateChanged]{@link AgoraRtcEvents.onAudioMixingStateChanged}。
      * 当调用  [startAudioMixing]{@link agora.startAudioMixing}  播放本地音乐文件结束后，会触发该回调。如果调用 
@@ -6124,48 +6127,48 @@ declare class AgoraRtcEvents {
     onAudioMixingFinished: () => void
 
     
-    /** @cn
+    /** 
      * 本地用户的音乐文件播放状态已改变回调。
      * 该回调在音乐文件播放状态发生改变时触发，并报告当前的播放状态和错误码。
      * 如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，SDK 会返回警告码 
-     * [WARN_AUDIO_MIXING_OPEN_ERROR]{@link agora.WARN_AUDIO_MIXING_OPEN_ERROR} (701)。
+     * [WARN_AUDIO_MIXING_OPEN_ERROR]{@link agora.WARN_CODE_TYPE.WARN_AUDIO_MIXING_OPEN_ERROR} (701)。
      */
     onAudioMixingStateChanged:
         
-        /** @cn
+        /** 
          * @param state 音乐文件播放状态，详见 [AUDIO_MIXING_STATE_TYPE]{@link agora.AUDIO_MIXING_STATE_TYPE}
          * @param errorCode 错误码，详见 [AUDIO_MIXING_ERROR_TYPE]{@link agora.AUDIO_MIXING_ERROR_TYPE}
          */
         (state: agora.AUDIO_MIXING_STATE_TYPE, errorCode: agora.AUDIO_MIXING_ERROR_TYPE) => void
 
     
-    /** @cn
+    /** 
      * 远端音乐文件播放已开始回调。
      * 当远端有用户调用  [startAudioMixing]{@link agora.startAudioMixing}  播放本地音乐文件，会触发该回调。
      */
     onRemoteAudioMixingBegin: () => void
 
     
-    /** @cn
+    /** 
      * 远端音乐文件播放已结束回调。
      * 当远端有用户播放本地音乐文件结束，会触发该回调。
      */
     onRemoteAudioMixingEnd: () => void
 
     
-    /** @cn
+    /** 
      * 本地音效文件播放已结束回调。
      * 当播放音效结束后，会触发该回调。
      */
     onAudioEffectFinished:
         
-        /** @cn
+        /** 
          * @param soundId 指定音效的 ID。每个音效均有唯一的 ID。
          */
         (soundId: number) => void
 
     
-    /** @cn
+    /** 
      * 已解码远端音频首帧的回调。
      * @deprecated 该回调已废弃。请改用  [onRemoteAudioStateChanged]{@link AgoraRtcEvents.onRemoteAudioStateChanged} SDK 完成远端音频首帧解码，
      * 并发送给音频模块用以播放时，会触发此回调。有两种情况：
@@ -6178,21 +6181,21 @@ declare class AgoraRtcEvents {
      */
     onFirstRemoteAudioDecoded:
         
-        /** @cn
+        /** 
          * @param uid 远端用户 ID
          * @param elapsed 从本地用户调用  [joinChannel]{@link agora.joinChannel}  直至该回调触发的延迟，单位为毫秒。
          */
         (uid: number, elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 视频设备变化回调。
      * 该回调提示系统视频设备状态发生改变，比如被拔出或移除。如果设备已使用外接摄像头采集，外接摄像头被拔开后，视频会中断。
      */
     onVideoDeviceStateChanged:
         
-        /** @cn
+        /** 
          * @param deviceId 设备 ID。
          * @param deviceType 设备类型: [MEDIA_DEVICE_TYPE]{@link agora.MEDIA_DEVICE_TYPE} 。
          * @param deviceState 设备状态: [MEDIA_DEVICE_STATE_TYPE]{@link agora.MEDIA_DEVICE_STATE_TYPE} 。
@@ -6200,7 +6203,7 @@ declare class AgoraRtcEvents {
         (deviceId: string, deviceType: agora.MEDIA_DEVICE_TYPE, deviceState: agora.MEDIA_DEVICE_STATE_TYPE) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 本地视频状态发生改变回调
      * 本地视频的状态发生改变时，SDK 会触发该回调返回当前的本地视频状态。
@@ -6209,20 +6212,20 @@ declare class AgoraRtcEvents {
      */
     onLocalVideoStateChanged:
         
-        /** @cn
+        /** 
          * @param localVideoState 本地视频状态，详见: [LOCAL_VIDEO_STREAM_STATE]{@link agora.LOCAL_VIDEO_STREAM_STATE} 。当本地视频状态为 [LOCAL_VIDEO_STREAM_STATE_FAILED]{@link agora.LOCAL_VIDEO_STREAM_STATE_FAILED} (3) 时，你可以在 `error` 参数中查看返回的错误原因。
          * @param error 本地视频出错原因，详见: [LOCAL_VIDEO_STREAM_ERROR]{@link agora.LOCAL_VIDEO_STREAM_ERROR} 。
          */
         (localVideoState: agora.LOCAL_VIDEO_STREAM_STATE, error: agora.LOCAL_VIDEO_STREAM_ERROR) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 本地或远端视频大小和旋转信息发生改变回调。
      */
     onVideoSizeChanged:
         
-        /** @cn
+        /** 
          * @param uid 图像尺寸和旋转信息发生变化的用户的用户 ID（本地用户的 uid 为 0）。
          * @param width 视频流的宽度（像素）。
          * @param height 视频流的高度（像素）。
@@ -6231,14 +6234,14 @@ declare class AgoraRtcEvents {
         (uid: number, width: number, height: number, rotation: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 远端视频状态发生改变回调。
      * @note 频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调不生效。
      */
     onRemoteVideoStateChanged:
         
-        /** @cn
+        /** 
          * @param uid 发生视频状态改变的远端用户 ID。
          * @param state 远端视频流状态。详见 [REMOTE_VIDEO_STATE]{@link agora.REMOTE_VIDEO_STATE} 。
          * @param reason 远端视频流状态改变的具体原因。详见 [REMOTE_VIDEO_STATE_REASON]{@link agora.REMOTE_VIDEO_STATE_REASON} 。
@@ -6247,7 +6250,7 @@ declare class AgoraRtcEvents {
         (uid: number, state: agora.REMOTE_VIDEO_STATE, reason: agora.REMOTE_VIDEO_STATE_REASON, elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 其他用户启用/关闭本地视频。
      *
@@ -6264,7 +6267,7 @@ declare class AgoraRtcEvents {
      */
     onUserEnableLocalVideo:
         
-        /** @cn
+        /** 
          * @param uid 用户 ID，提示是哪个用户的视频流。
          * @param enabled
          * - true: 该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。
@@ -6274,13 +6277,13 @@ declare class AgoraRtcEvents {
         (uid: number, enabled: boolean) => void
 
     
-    /** @cn
+    /** 
      * 接收到对方数据流消息的回调。
      * 该回调表示本地用户收到了远端用户调用  [sendStreamMessage]{@link agora.sendStreamMessage}  方法发送的流消息。
      */
     onStreamMessage:
         
-        /** @cn
+        /** 
          * @param uid 发送消息的用户 ID。
          * @param streamId Stream ID。
          * @param data 接收到的数据。
@@ -6289,13 +6292,13 @@ declare class AgoraRtcEvents {
         (uid: number, streamId: number, data: Uint8Array, length: number) => void
 
     
-    /** @cn
+    /** 
      * 接收对方数据流消息发生错误的回调。
      * 该回调表示本地用户未收到远端用户调用 [sendStreamMessage]{@link agora.sendStreamMessage} 方法发送的流消息。
      */
     onStreamMessageError:
         
-        /** @cn
+        /** 
          * @param uid 发送消息的用户 ID。
          * @param streamId Stream ID。
          * @param code 错误码: [ERROR_CODE_TYPE]{@link agora.ERROR_CODE_TYPE}。
@@ -6305,19 +6308,19 @@ declare class AgoraRtcEvents {
         (uid: number, streamId: number, code: number, missed: number, cached: number) => void
 
     
-    /** @cn
+    /** 
      * 媒体引擎成功加载的回调。
      */
     onMediaEngineLoadSuccess: () => void
 
     
-    /** @cn
+    /** 
      * 媒体引擎成功启动的回调。
      */
     onMediaEngineStartCallSuccess: () => void
 
     
-    /** @cn
+    /** 
      * 跨频道媒体流转发状态发生改变回调。
      *
      * 当跨频道媒体流转发状态发生改变时，SDK 会触发该回调，
@@ -6325,70 +6328,71 @@ declare class AgoraRtcEvents {
      */
     onChannelMediaRelayStateChanged:
         
-        /** @cn
+        /** 
          * @param state 跨频道媒体流转发状态。详见 [CHANNEL_MEDIA_RELAY_STATE]{@link agora.CHANNEL_MEDIA_RELAY_STATE} 。
          * @param code 跨频道媒体流转发出错的错误码。详见 [CHANNEL_MEDIA_RELAY_ERROR]{@link agora.CHANNEL_MEDIA_RELAY_ERROR} 。
          */
         (state: agora.CHANNEL_MEDIA_RELAY_STATE, code: agora.CHANNEL_MEDIA_RELAY_ERROR) => void
 
     
-    /** @cn
+    /** 
      * 跨频道媒体流转发事件回调。
      *
      * 该回调报告跨频道媒体流转发过程中发生的事件。
      */
     onChannelMediaRelayEvent:
         
-        /** @cn
+        /** 
          * @param code 跨频道媒体流转发事件码。详见 [CHANNEL_MEDIA_RELAY_EVENT]{@link agora.CHANNEL_MEDIA_RELAY_EVENT}。
          */
         (code: agora.CHANNEL_MEDIA_RELAY_EVENT) => void
 
     
-    /** @cn
+    /** 
      * 已发送本地音频首帧回调。
      *
      * @deprecated 该回调已废弃，请改用  [onFirstLocalAudioFramePublished]{@link AgoraRtcEvents.onFirstLocalAudioFramePublished}  回调。
      */
     onFirstLocalAudioFrame:
         
-        /** @cn
+        /** 
          * @param elapsed 从调用  [joinChannel]{@link agora.joinChannel}  方法直至该回调被触发的时间。
          */
         (elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * 已发布本地音频首帧回调。
      * 
      * SDK 会在以下三种时机触发该回调：
      * - 开启本地音频的情况下，调用  [joinChannel]{@link agora.joinChannel}  成功加入频道后。
      * - 调用  [muteLocalAudioStream(true)]{@link agora.muteLocalAudioStream} ，再调用  
-     * [muteLocalAudioStream(false)]{@link agora.muteLocalAudioStream}  后。     * - 调用  [disableAudio]{@link agora.disableAudio} ，
+     * [muteLocalAudioStream(false)]{@link agora.muteLocalAudioStream}  后。
+     * - 调用  [disableAudio]{@link agora.disableAudio}，
      * 再调用  [enableAudio]{@link agora.enableAudio}  后。
      */
     onFirstLocalAudioFramePublished:
         
-        /** @cn
+        /** 
          * @param elapsed 从调用  [joinChannel]{@link agora.joinChannel}  方法到触发该回调的时间间隔（毫秒）。
          */
         (elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * 已接收远端音频首帧回调。
      * @deprecated 该回调已废弃。请改用  [onRemoteAudioStateChanged]{@link AgoraRtcEvents.onRemoteAudioStateChanged}。
      */
     onFirstRemoteAudioFrame:
         
-        /** @cn
+        /** 
          * @param uid 发送音频帧的远端用户的用户 ID。
          * @param elapsed 从调用  [joinChannel]{@link agora.joinChannel}  方法直至该回调被触发的时间。
          */
         (uid: number, elapsed: number) => void
 
     
-    /** @cn
+    /** 
      * RTMP 推流状态发生改变回调。
      * 
      * 该回调返回本地用户调用  [addPublishStreamUrl]{@link agora.addPublishStreamUrl}  或  
@@ -6398,7 +6402,7 @@ declare class AgoraRtcEvents {
      */
     onRtmpStreamingStateChanged:
         
-        /** @cn
+        /** 
          * @param url 推流状态发生改变的 URL 地址。
          * @param state 当前的推流状态，详见 [RTMP_STREAM_PUBLISH_STATE]{@link agora.RTMP_STREAM_PUBLISH_STATE} 。
          * @param errCode 推流错误信息，详见 [RTMP_STREAM_PUBLISH_ERROR]{@link agora.RTMP_STREAM_PUBLISH_ERROR} 。
@@ -6406,33 +6410,33 @@ declare class AgoraRtcEvents {
         (url: string, state: agora.RTMP_STREAM_PUBLISH_STATE, errCode: agora.RTMP_STREAM_PUBLISH_ERROR) => void
 
     
-    /** @cn
+    /** 
      * RTMP 推流事件回调。
      */
     onRtmpStreamingEvent:
         
-        /** @cn
+        /** 
          * @param url RTMP 推流 URL。
          * @param eventCode RTMP 推流事件码。详见 [RTMP_STREAMING_EVENT]{@link agora.RTMP_STREAMING_EVENT}。
          */
         (url: string, eventCode: agora.RTMP_STREAMING_EVENT) => void
 
     
-    /** @cn
+    /** 
      * 旁路推流已开启回调。
      * @deprecated 此方法已废弃，请改用  [onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged}
      * 该回调用于通知主播推流状态。
      */
     onStreamPublished:
         
-        /** @cn
+        /** 
          * @param url 主播推流的 URL 地址 。
          * @param error [ERROR_CODE_TYPE]{@link agora.ERROR_CODE_TYPE} 。
          * - 0(ERR_OK): 推流成功。
          * - -1(ERR_FAILED): 推流失败。
          * - -2(ERR_INVALID_ARGUMENT): 参数错误。如果你在调用  [addPublishStreamUrl]{@link agora.addPublishStreamUrl}  前没有调用  
-         * [setLiveTranscoding]{@link agora.setLiveTranscoding}  配置 LiveTranscoding ，SDK 会回调 
-         * [ERR_INVALID_ARGUMENT]{@link agora.ERR_INVALID_ARGUMENT} 。
+         * [setLiveTranscoding]{@link agora.setLiveTranscoding}  配置 `LiveTranscoding`，SDK 会回调 
+         * `ERR_INVALID_ARGUMENT`。
          * - -10(ERR_TIMEDOUT): 推流超时未成功。
          * - -19(ERR_ALREADY_IN_USE): 推流地址已推流。
          * - -22(ERR_RESOURCE_LIMITED): 后台没有足够资源推流。
@@ -6446,20 +6450,20 @@ declare class AgoraRtcEvents {
         (url: string, error: number) => void
 
     
-    /** @cn
+    /** 
      * 旁路推流已停止回调。
      * @deprecated 此方法已废弃，请改用  [onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged}
      * 回调用于通知主播停止推流成功。
      */
     onStreamUnpublished:
         
-        /** @cn
+        /** 
          * @param url 被删除的 RTMP 推流地址。
          */
         (url: string) => void
 
     
-    /** @cn
+    /** 
      * 旁路推流设置已被更新回调。
      *
      * [setLiveTranscoding]{@link agora.setLiveTranscoding}  方法中的直播参数 `LiveTranscoding` 更新时，`onTranscodingUpdated` 
@@ -6470,12 +6474,12 @@ declare class AgoraRtcEvents {
     onTranscodingUpdated: () => void
 
     
-    /** @cn
+    /** 
      * 输入在线媒体流状态回调。
      */
     onStreamInjectedStatus:
         
-        /** @cn
+        /** 
          * @param url 在线媒体流的地址。
          * @param uid 用户 ID。
          * @param status 输入的在线媒体流状态: [INJECT_STREAM_STATUS]{@link agora.INJECT_STREAM_STATUS} 。
@@ -6483,19 +6487,19 @@ declare class AgoraRtcEvents {
         (url: string, uid: number, status: agora.INJECT_STREAM_STATUS) => void
 
     
-    /** @cn
+    /** 
      * 语音路由已发生变化回调。
      * 当语音路由发生变化时，SDK 会触发此回调。
      */
     onAudioRouteChanged:
         
-        /** @cn
+        /** 
          * @param routing 当前的语音路由。详见： [AUDIO_ROUTE_TYPE]{@link agora.AUDIO_ROUTE_TYPE} 。
          */
         (routing: agora.AUDIO_ROUTE_TYPE) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 本地发布流已回退为音频流回调。
      * 如果你调用了  [setLocalPublishFallbackOption]{@link agora.setLocalPublishFallbackOption}  接口并将 option 设置为 
@@ -6505,7 +6509,7 @@ declare class AgoraRtcEvents {
      */
     onLocalPublishFallbackToAudioOnly:
         
-        /** @cn
+        /** 
          * @param isFallbackOrRecover
          * - true: 由于网络环境不理想，本地发布的媒体流已回退为音频流；
          * - false: 由于网络环境改善，发布的音频流已恢复为音视频流。
@@ -6513,7 +6517,7 @@ declare class AgoraRtcEvents {
         (isFallbackOrRecover: boolean) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 远端订阅流已回退为音频流回调。
      * 
@@ -6526,7 +6530,7 @@ declare class AgoraRtcEvents {
      */
     onRemoteSubscribeFallbackToAudioOnly:
         
-        /** @cn
+        /** 
          * @param uid 远端用户的用户 ID。
          * @param  isFallbackOrRecover
          * - true: 由于网络环境不理想，远端订阅流已回退为音频流；
@@ -6535,11 +6539,11 @@ declare class AgoraRtcEvents {
         (uid: number, isFallbackOrRecover: boolean) => void
 
     
-    /** @cn
+    /** 
      * @deprecated
      * 通话中远端音频流传输的统计信息回调。
      *
-     * 该回调已被废弃，请改用  [onRemoteAudioStats]{@link agora.onRemoteAudioStats()}。
+     * 该回调已被废弃，请改用  [onRemoteAudioStats]{@link AgoraRtcEvents.onRemoteAudioStats}。
      * 该回调描述远端用户通话中端到端的网络统计信息，通过音频包计算，用客观的数据，如丢包、
      * 网络延迟等，展示当前网络状态。
      *
@@ -6549,7 +6553,7 @@ declare class AgoraRtcEvents {
      */
     onRemoteAudioTransportStats:
         
-        /** @cn
+        /** 
          * @param uid  用户 ID，指定是哪个用户/主播的音频包。
          * @param delay 音频包从发送端到接收端的延时（毫秒）。
          * @param lost 音频包从发送端到接收端的丢包率 (%)。
@@ -6558,7 +6562,7 @@ declare class AgoraRtcEvents {
         (uid: number, delay: number, lost: number, rxKBitRate: number) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * @deprecated 通话中远端视频流传输的统计信息回调。
      *
@@ -6572,7 +6576,7 @@ declare class AgoraRtcEvents {
      */
     onRemoteVideoTransportStats:
         
-        /** @cn
+        /** 
          * @param uid 用户 ID，指定是哪个用户/主播的视频包。
          * @param delay 视频包从发送端到接收端的延时（毫秒）。
          * @param lost 视频包从发送端到接收端的丢包率 (%)。
@@ -6581,10 +6585,10 @@ declare class AgoraRtcEvents {
         (uid: number, delay: number, lost: number, rxKBitRate: number) => void
 
     
-    /** @cn
+    /** 
      * 麦克风状态已改变回调。
      *
-     * @deprecated 从 v2.9.0。此方法已被废弃，请改用  [onLocalAudioStateChanged]{@link agora.onLocalAudioStateChanged}  回调的：
+     * @deprecated 从 v2.9.0。此方法已被废弃，请改用  [onLocalAudioStateChanged]{@link AgoraRtcEvents.onLocalAudioStateChanged}  回调的：
      * - [LOCAL_AUDIO_STREAM_STATE_STOPPED]{@link agora.LOCAL_AUDIO_STREAM_STATE.LOCAL_AUDIO_STREAM_STATE_STOPPED} (0)。
      * - [LOCAL_AUDIO_STREAM_STATE_RECORDING]{@link agora.LOCAL_AUDIO_STREAM_STATE.LOCAL_AUDIO_STREAM_STATE_RECORDING} (1)。
      *
@@ -6593,7 +6597,7 @@ declare class AgoraRtcEvents {
      */
     onMicrophoneEnabled:
         
-        /** @cn
+        /** 
          * @param enabled
          * - true: 麦克风已启用；
          * - false: 麦克风已禁用。
@@ -6601,33 +6605,33 @@ declare class AgoraRtcEvents {
         (enabled: boolean) => void
 
     
-    /** @cn
+    /** 
      * 网络连接状态已改变回调。
      * 该回调在网络连接状态发生改变的时候触发，并告知用户当前的网络连接状态和引起网络状态改变的原因。
      */
     onConnectionStateChanged:
         
-        /** @cn
+        /** 
          * @param state 详见： [CONNECTION_STATE_TYPE]{@link agora.CONNECTION_STATE_TYPE} 。
          * @param reason 详见： [CONNECTION_CHANGED_REASON_TYPE]{@link agora.CONNECTION_CHANGED_REASON_TYPE} 。
          */
         (state: agora.CONNECTION_STATE_TYPE, reason: agora.CONNECTION_CHANGED_REASON_TYPE) => void
 
     
-    /** @cn
+    /** 
      * 本地网络类型发生改变回调。
      * 本地网络连接类型发生改变时，SDK 会触发该回调，并在回调中明确当前的网络连接类型。
      * 你可以通过该回调获取正在使用的网络类型；当连接中断时，该回调能辨别引起中断的原因是网络切换还是网络条件不好。
      */
     onNetworkTypeChanged:
         
-        /** @cn
+        /** 
          * @param type 详见： [NETWORK_TYPE]{@link agora.NETWORK_TYPE} 。
          */
         (type: agora.NETWORK_TYPE) => void
 
     
-    /** @cn
+    /** 
      * 本地用户成功注册 User Account 回调。
      * 本地用户成功调用  [registerLocalUserAccount]{@link agora.registerLocalUserAccount}  方法注册用户 User Account 或
      * 调用  [joinChannelWithUserAccount]{@link agora.joinChannelWithUserAccount}  加入频道后，
@@ -6635,35 +6639,35 @@ declare class AgoraRtcEvents {
      */
     onLocalUserRegistered:
         
-        /** @cn
+        /** 
          * @param uid 本地用户的 UID
          * @param userAccount 本地用户的 User Account
          */
         (uid: number, userAccount: string) => void
 
     
-    /** @cn
+    /** 
      * 远端用户信息已更新回调。
      * 远端用户加入频道后， SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping 表，
      * 并在本地触发该回调。
      */
     onUserInfoUpdated:
         
-        /** @cn
+        /** 
          * @param uid 远端用户的 UID
          * @param info 标识用户信息的 [UserInfo]{@link agora.UserInfo}，包含用户 UID 和 User Account
          */
         (uid: number, info: agora.UserInfo) => void
 
     
-    /** @cn
+    /** 
      * @ignore
      * 接收端已收到 Metadata。
      * 当接收到远端用户发送的 Metadata 时，SDK 会触发该回调。
      */
     onMetadataReceived:
         
-        /** @cn
+        /** 
          * @param metadata 接收到的 [Metadata]{@link agora.Metadata}。
          */
         (metadata: agora.Metadata) => void
@@ -7469,12 +7473,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 初始化 Agora 引擎。
      *
      * Agora 引擎内的所有接口函数，如无特殊说明，都是异步调用，对接口的调用建议在同一个线程进行。
      *
-     * @note
+     * **Note**
+     * 
      * - 请确保在调用其他 API 前先调用该方法初始化 Agora 引擎。
      * - 调用该方法和 [initWithAreaCode]{@link agora.initWithAreaCode} 均能初始化 Agora 引擎。该方法与 `initWithAreaCode` 的区别在于，
      * `initWithAreaCode` 支持在初始化 Agora 引擎时指定访问区域。
@@ -7493,12 +7498,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 初始化 Agora 引擎。
      *
      * Agora 引擎内的所有接口函数，如无特殊说明，都是异步调用，对接口的调用建议在同一个线程进行。
      *
-     * @note
+     * **Note**
+     * 
      * - 请确保在调用其他 API 前先调用该方法初始化 Agora 引擎。
      * - 调用该方法和 [initWithAreaCode]{@link agora.initWithAreaCode} 均能初始化 Agora 引擎。该方法与 `initWithAreaCode` 的区别在于，
      * 该方法支持在初始化 Agora 引擎时指定访问区域。
@@ -7542,13 +7548,14 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 销毁 Agora 引擎。
      *
      * 该方法释放 Agora SDK 使用的所有资源。有些 app 只在用户需要时才进行实时音视频通信，不需要时则将资源释放出来用于其他操作，该方法适用于此类情况。
      * 调用 `release` 方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能，你必须重新调用 `create` 方法重新初始化 Agora 引擎。
      *
-     * @note
+     * **Note**
+     * 
      * - 该方法为同步调用，需要等待 Agora 引擎资源释放后才能执行其他操作，所以我们建议在子线程中调用该方法，避免主线程阻塞。此外，我们<b>不建议</b>在 SDK 
      * 的回调中调用 `release`，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。
      * - 如需在销毁后重新初始化 Agora 引擎，需要等待 `release` 方法执行结束后再重新初始化。
@@ -7558,7 +7565,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      *  在 Agora 引擎运行期间监听事件。
      */
     export function on<T extends Function>(type: string, callback: T, target?: any, useCapture?: boolean): T {
@@ -7566,7 +7573,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 停止在 Agora 引擎运行期间监听事件。
      */
     export function off(type: string, callback?: Function, target?: any) {
@@ -7574,7 +7581,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置频道场景。
      *
      * 该方法用于设置 Agora 频道场景。Agora 会针对不同的使用场景采用不同的优化策略，如通信场景偏好流畅，直播场景偏好画质。
@@ -7582,9 +7589,8 @@ namespace agora {
      * @warning
      * - 为保证实时音视频质量，我们建议相同频道内的用户使用同一种频道场景。
      * - 该方法必须在  [joinChannel]{@link agora.joinChannel}  前调用和进行设置，进入频道后无法再设置。
-     * - 不同的频道场景下，SDK 的默认音频路由和默认视频编码码率是不同的，详见  
-     * [setDefaultAudioRouteToSpeakerphone]{@link agora.setDefaultAudioRouteToSpeakerphone} 和  
-     * [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}  方法中的说明。
+     * - 不同的频道场景下，SDK 的默认音频路由是不同的，详见  
+     * [setDefaultAudioRouteToSpeakerphone]{@link agora.setDefaultAudioRouteToSpeakerphone} 方法中的说明。
      * 
      * @param profile 频道使用场景: [CHANNEL_PROFILE_TYPE]{@link agora.CHANNEL_PROFILE_TYPE}。
      *
@@ -7602,7 +7608,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置用户角色。
      *
      * 在加入频道前，用户需要通过本方法设置观众（默认）或主播。在加入频道后，用户可以通过本方法切换用户角色。
@@ -7636,7 +7642,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 加入频道。
      * 
      * 该方法让用户加入通话频道，在同一个频道内的用户可以互相通话，多个用户加入同一个频道，可以群聊。 使用不同 App ID 的 App 是不能互通的。如果已在通话中，
@@ -7648,12 +7654,13 @@ namespace agora {
      * 
      * @note 频道内每个用户的用户 ID 必须是唯一的。如果将 uid 设为 0，系统将自动分配一个 uid。如果想要从不同的设备同时接入同一个频道，请确保
      * 每个设备上使用的 uid 是不同的。
-     * @warning 请务必确保用于生成 Token 的 App ID 和  [initialize]{@link agora.initialize}  方法初始化引擎时用的是同一个 App ID，
+     * @warning 请务必确保用于生成 Token 的 App ID 和  [init]{@link agora.init}  方法初始化引擎时用的是同一个 App ID，
      * 否则会造成旁路推流失败。
      * 
      * @param token 动态秘钥。
-     * - 安全要求不高: 将值设为 NULL。
-     * - 安全要求高: 将值设置为 Token。如果你已经启用了 App Certificate, 请务必使用 Token。
+     * - 安全要求不高: 你可以使用控制台生成的临时 Token，详见 [获取临时 Token](https://docs.agora.io/cn/Audio%20Broadcast/token?platform=All%20Platforms#get-a-temporary-token)。
+     * - 安全要求高：将值设为你的服务端生成的正式 Token，详见
+     * [获取正式 Token](https://docs.agora.io/cn/Agora%20Platform/token_server)。
      * @param channelId 标识通话的频道名称，长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:
      * - 26 个小写英文字母 a~z；
      * - 26 个大写英文字母 A~Z；
@@ -7689,7 +7696,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 快速切换直播频道。
      *
      * 当直播频道中的观众想从一个频道切换到另一个频道时，可以调用该方法，实现快速切换。
@@ -7700,10 +7707,9 @@ namespace agora {
      * @note 该方法仅适用于直播场景中，角色为观众的用户。
      *
      * @param token 在服务器端生成的用于鉴权的 Token：
-     * - 安全要求不高：你可以使用控制台生成的临时 Token，详见
-     * [获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platfor%20*%20m=All%20Platforms#获取临时-token)。
+     * - 安全要求不高: 你可以使用控制台生成的临时 Token，详见 [获取临时 Token](https://docs.agora.io/cn/Audio%20Broadcast/token?platform=All%20Platforms#get-a-temporary-token)。
      * - 安全要求高：将值设为你的服务端生成的正式 Token，详见
-     * [获取正式 Token](https://docs.agora.io/cn/Agora%20Platform/token?platfor%20*%20m=All%20Platforms#获取正式-token)。
+     * [获取正式 Token](https://docs.agora.io/cn/Agora%20Platform/token_server)。
      * @param channelId 标识频道的频道名，最大不超过 64 字节。以下为支持的字符集范围
      * （共 89 个字符）：
      * - 26 个小写英文字母 a-z
@@ -7731,7 +7737,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 离开频道。
      * 离开频道，即挂断或退出通话。
      * 当调用  [joinChannel]{@link agora.joinChannel}  方法后，必须调用 `leaveChannel` 结束通话，否则无法开始下一次通话。 不管当前是否在通话中，
@@ -7739,7 +7745,9 @@ namespace agora {
      * 该方法是异步操作，调用返回时并没有真正退出频道。在真正退出频道后，SDK 会触发  [onLeaveChannel]{@link AgoraRtcEvents.onLeaveChannel}  回调。
      * 成功调用该方法离开频道后，本地会触发  [onLeaveChannel]{@link AgoraRtcEvents.onLeaveChannel}  回调；通信场景下的用户和直播场景下的主播离开频道
      * 后，远端会触发  [onUserOffline]{@link AgoraRtcEvents.onUserOffline}  回调。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 如果你调用了 `leaveChannel` 后立即调用 [release]{@link agora.release} ，SDK 将无法触发  
      * [onLeaveChannel]{@link AgoraRtcEvents.onLeaveChannel}  回调。
      * - 如果你在旁路推流时调用 `leaveChannel` 方法， SDK 将自动调用  [removePublishStreamUrl]{@link agora.removePublishStreamUrl}  方法。
@@ -7762,7 +7770,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 更新 Token。
      * 该方法用于更新 Token。如果启用了 Token 机制，过一段时间后使用的 Token 会失效。当：
      * - 发生  [onTokenPrivilegeWillExpire]{@link AgoraRtcEvents.onTokenPrivilegeWillExpire}  回调时，或发生
@@ -7785,7 +7793,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 注册本地用户 User Account。
      * 该方法为本地用户注册一个 User Account。注册成功后，该 User Account 即可标识该本地用户的身份，用户可以使用它加入频道。成功注册 User Account 后，
      * 本地会触发  [onLocalUserRegistered]{@link AgoraRtcEvents.onLocalUserRegistered}  回调，告知本地用户的 UID 和 User Account。
@@ -7797,7 +7805,8 @@ namespace agora {
      * 两种方式的区别在于，提前调用  [registerLocalUserAccount]{@link agora.registerLocalUserAccount} ，可以缩短使用  
      * [joinChannelWithUserAccount]{@link agora.joinChannelWithUserAccount}  进入频道的时间。
      * 
-     * @note
+     * **Note**
+     * 
      * - `userAccount` 不能为空，否则该方法不生效。
      * - 请确保在该方法中设置的 `userAccount` 在频道中的唯一性。
      * - 为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Agora Web SDK 加入频道，
@@ -7823,7 +7832,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 使用 User Account 加入频道。
      *  该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
      * - 本地： [onLocalUserRegistered]{@link AgoraRtcEvents.onLocalUserRegistered}  和  
@@ -7855,9 +7864,9 @@ namespace agora {
      * @return
      * - 0: 方法调用成功
      * - < 0: 方法调用失败
-     *    - [ERR_INVALID_ARGUMENT]{@link agora.ERR_INVALID_ARGUMENT} (-2)
-     *    - [ERR_NOT_READY]{@link agora.ERR_NOT_READY} (-3)
-     *    - [ERR_REFUSED]{@link agora.ERR_REFUSED} (-5)
+     *    - [ERR_INVALID_ARGUMENT]{@link agora.ERROR_CODE_TYPE.ERR_INVALID_ARGUMENT} (-2)
+     *    - [ERR_NOT_READY]{@link agora.ERROR_CODE_TYPE.ERR_NOT_READY} (-3)
+     *    - [ERR_REFUSED]{@link agora.ERROR_CODE_TYPE.ERR_REFUSED} (-5)
      */
     export function joinChannelWithUserAccount(token: string, channelId: string, userAccount: string): number {
         if (isWeb) {
@@ -7878,20 +7887,15 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 通过 User Account 获取用户信息。
      * 远端用户加入频道后，SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping 表，
      * 并在本地触发  [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated}  回调。收到这个回调后，你可以调用该方法，
      * 通过传入 User Account 获取包含了指定用户 UID 的 `UserInfo`。
      * @param userAccount 用户 User Account。该参数为必填
-     * @param[in, out] userInfo 标识用户信息的 `UserInfo`:
-     * - 输入值：一个 `UserInfo`
-     * - 输出值：一个包含了用户 User Account 和 UID 的 `UserInfo`
-     * @return
-     * - 0: 方法调用成功
-     * - < 0: 方法调用失败
+     * @return 一个包含了用户 User Account 和 UID 的 `UserInfo`
      */
-    export function getUserInfoByUserAccount(userAccount: string): UserInfo {
+     export function getUserInfoByUserAccount(userAccount: string): UserInfo {
         if (isWeb) {
             return null
         }
@@ -7899,7 +7903,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 通过 UID 获取用户信息。
      * 远端用户加入频道后， SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping 表，
      * 并在本地触发  [onUserInfoUpdated]{@link AgoraRtcEvents.onUserInfoUpdated}  回调。收到这个回调后，你可以调用该方法，
@@ -7916,12 +7920,14 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 开始语音通话回路测试。
      * 该方法启动语音通话测试，目的是测试系统的音频设备（耳麦、扬声器等）和网络连接是否正常。
      * 在测试过程中，用户先说一段话，声音会在设置的时间间隔（单位为秒）后回放出来。
      * 如果用户能正常听到自己刚才说的话，就表示系统音频设备和网络连接都是正常的。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 请在加入频道前调用该方法。
      * - 调用 `startEchoTest` 后必须调用  [stopEchoTest]{@link agora.stopEchoTest}  以结束测试，否则不能进行下一次回声测试，也无法加入频道。
      * - 直播场景下，该方法仅能由用户角色为主播的用户调用。
@@ -7941,7 +7947,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 停止语音通话回路测试。
      * @return
      * - 0: 方法调用成功
@@ -7955,14 +7961,15 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 启用视频模块。
      * 该方法可以在加入频道前或者通话中调用，在加入频道前调用则自动开启视频模块；在通话中调用则由音频模式切换为视频模式。 调用  
      * [disableVideo]{@link agora.disableVideo}  方法可关闭视频模式。
      * 成功调用该方法后，远端会触发  [onUserEnableVideo]{@link AgoraRtcEvents.onUserEnableVideo}  (true) 回调。
      * 
-     * @note
+     * **Note**
+     * 
      * - 该方法设置内部引擎为启用状态，在  [leaveChannel]{@link agora.leaveChannel}  后仍然有效。
      * - 该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制视频模块：
      *   -  [enableLocalVideo]{@link agora.enableLocalVideo} : 是否启动摄像头采集并创建本地视频流。
@@ -7981,13 +7988,15 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 关闭视频模块。
      * 该方法可以在加入频道前或者通话中调用，在加入频道前调用，则自动开启纯音频模式，在通话中调用则由视频模式切换为纯音频频模式。 
      * 调用  [enableVideo]{@link agora.enableVideo}  方法可开启视频模式。
      * 成功调用该方法后，远端会触发  [onUserEnableVideo]{@link AgoraRtcEvents.onUserEnableVideo}(false) 回调
-     * @note
+     * 
+     * **Note**
+     * 
      * - 该方法设置内部引擎为禁用状态，在  [leaveChannel]{@link agora.leaveChannel}  后仍然有效。
      * - 该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制视频模块：
      *   -  [enableLocalVideo]{@link agora.enableLocalVideo} : 是否启动摄像头采集并创建本地视频流。
@@ -8006,14 +8015,16 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * @deprecated
      * 设置视频编码配置。
      * 该方法已废弃。请改用  [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}  方法。
      * 该方法设置视频编码属性（Profile）。每个属性对应一套视频参数，如分辨率、帧率、码率等。 当设备的摄像头不支持指定的分辨率时，Agora SDK 
      * 会自动选择一个合适的摄像头分辨率，但是编码分辨率仍然用 `setVideoProfile` 指定的。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 如果用户加入频道后不需要重新设置视频编码属性，则 声网建议在  [enableVideo]{@link agora.enableVideo}  前调用该方法，可以加快首帧出图的时间。
      * - 应在调用  [joinChannel]{@link agora.joinChannel}  或  [startPreview]{@link agora.startPreview}  前设置视频属性。
      * @param profile 视频属性。详见: [VIDEO_PROFILE_TYPE]{@link agora.VIDEO_PROFILE_TYPE} 。
@@ -8079,7 +8090,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置视频编码属性。
      * 设置本地视频的编码属性。
@@ -8106,7 +8117,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置摄像头采集偏好。
      * 一般的视频通话或直播中，默认由 SDK 自动控制摄像头的输出参数。在如下特殊场景中，默认的参数通常无法满足需求，或可能引起设备性能问题，
@@ -8133,7 +8144,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 开启视频预览。
      * 该方法用于在进入频道前启动本地视频预览。调用该 API 前，必须：
@@ -8155,7 +8166,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置远端用户流的优先级。
      * 设置远端用户的优先级。如果将某个用户的优先级设为高，那么发给这个用户的音视频流的优先级就会高于其他用户。
@@ -8177,7 +8188,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 停止视频预览。
      * @return
@@ -8192,10 +8203,12 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 启用音频模块。
      * 启用音频模块（默认为开启状态）。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 该方法设置内部引擎为启用状态，在频道内和频道外均可调用。在  [leaveChannel]{@link agora.leaveChannel}  后仍然有效。
      * - 该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制音频模块：
      *   -  [enableLocalAudio]{@link agora.enableLocalAudio} : 是否启动麦克风采集并创建本地音频流。
@@ -8215,13 +8228,15 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 开关本地音频采集。
      * 当用户加入频道时，语音功能默认是开启的。该方法可以关闭或重新开启本地语音功能，即停止或重新开始本地音频采集。
      * 该方法不影响接收或播放远端音频流， [enableLocalAudio]{@link agora.enableLocalAudio} (false) 适用于只听不发的用户场景。
      * 语音功能关闭或重新开启后，会收到回调  [onLocalAudioStateChanged]{@link AgoraRtcEvents.onLocalAudioStateChanged} ，
      * 并报告 `LOCAL_AUDIO_STREAM_STATE_STOPPED(0)` 或 `LOCAL_AUDIO_STREAM_STATE_RECORDING(1)`。
-     * @note
+     * 
+     * **Note**
+     * 
      * 该方法与  [muteLocalAudioStream]{@link agora.muteLocalAudioStream}  的区别在于：
      * -  [enableLocalAudio]{@link agora.enableLocalAudio} : 开启或关闭本地语音采集及处理。使用 `enableLocalAudio` 关闭或开启本地采集后，
      * 本地听远端播放会有短暂中断。
@@ -8251,9 +8266,11 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 关闭音频模块。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 该方法设置内部引擎为禁用状态，在频道内和频道外均可调用。在  [leaveChannel]{@link agora.leaveChannel}  后仍然有效。
      * - 该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制音频模块：
      *   -  [enableLocalAudio]{@link agora.enableLocalAudio} : 是否启动麦克风采集并创建本地音频流。
@@ -8273,9 +8290,11 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置音频编码属性。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 该方法需要在 [joinChannel]{@link agora.joinChannel} 之前设置好， `joinChannel` 之后设置不生效。
      * - 通信和直播场景下，音质（码率）会有网络自适应的调整，通过该方法设置的是一个最高码率。
      * - 在有高音质需求的场景（例如音乐教学场景）中，建议将 `profile` 设置为 `AUDIO_PROFILE_MUSIC_HIGH_QUALITY(4)``，scenario` 设置为 
@@ -8312,11 +8331,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 开关本地音频发送。
      * 该方法用于允许/禁止往网络发送本地音频流。
      * 成功调用该方法后，远端会触发  [onUserMuteAudio]{@link AgoraRtcEvents.onUserMuteAudio}  回调。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 该方法不影响录音状态，因为并没有禁用录音设备。
      * - 如果你在该方法后调用  [setChannelProfile]{@link agora.setChannelProfile}  方法，SDK 会根据你设置的频道场景以及用户角色，
      * 重新设置是否停止发送本地音频。因此我们建议在 `setChannelProfile` 后调用该方法。
@@ -8344,7 +8365,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 接收／停止接收所有音频流。
      * @param mute
      * - true: 停止接收所有音频流；
@@ -8361,12 +8382,11 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置是否默认接收所有音频流。
      * 该方法在加入频道前后都可调用。如果在加入频道后调用 `setDefaultMuteAllRemoteAudioStreams(true)`，
      * 会接收不到后面加入频道的用户的音频流。
-     * @note
-     * 停止接收音频流后，如果想要恢复接收，请调用 [muteRemoteAudioStream(false)]{@link agora.muteRemoteAudioStream}，并指定你想要接收的远端用户的 ID。
+     * @note 停止接收音频流后，如果想要恢复接收，请调用 [muteRemoteAudioStream(false)]{@link agora.muteRemoteAudioStream}，并指定你想要接收的远端用户的 ID。
      * 如果想恢复接收多个用户的音频流，则需要多次调用 `muteRemoteAudioStream`。 `setDefaultMuteAllRemoteAudioStreams(false)`
      * 只能恢复接收后面加入频道的用户的音频流。
      * @param mute
@@ -8384,10 +8404,12 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 调节本地播放的指定远端用户音量。
      * 你可以在通话中调用该方法调节指定远端用户在本地播放的音量。如需调节多个用户在本地播放的音量，则需多次调用该方法。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 请在加入频道后，调用该方法。
      * - 该方法调节的是本地播放的指定远端用户混音后的音量。
      * @param uid 远端用户 ID。
@@ -8406,7 +8428,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 接收／停止接收指定音频流。
      * @note 如果之前有调用过  [muteAllRemoteAudioStreams]{@link agora.muteAllRemoteAudioStreams}  (true) 停止订阅所有远端音频，
      * 在调用本 API 之前请确保你已调用  [muteAllRemoteAudioStreams]{@link agora.muteAllRemoteAudioStreams}  (false)。
@@ -8437,11 +8459,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 开关本地视频发送。
      * 成功调用该方法后，远端会触发  [onUserMuteVideo]{@link AgoraRtcEvents.onUserMuteVideo}  回调。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 调用该方法时，SDK 不再发送本地视频流，但摄像头仍然处于工作状态。相比于  [enableLocalVideo]{@link agora.enableLocalVideo}  (false) 
      * 用于控制本地视频流发送的方法，该方法响应速度更快。该方法不影响本地视频流获取，没有禁用摄像头。
      * - 如果你在该方法后调用  [setChannelProfile]{@link agora.setChannelProfile}  方法，SDK 会根据你设置的频道场景以及用户角色，
@@ -8470,7 +8494,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 开关本地视频采集。
      * 该方法禁用或重新启用本地视频采集，不影响接收远端视频。
@@ -8504,7 +8528,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 接收／停止接收所有远端视频流。
      * @param  mute
@@ -8522,7 +8546,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置是否默认停止接收视频流。
      * 该方法在加入频道前后都可调用。如果在加入频道后调用 `setDefaultMuteAllRemoteVideoStreams (true)`，会接收不到设置后加入频道的用户的视频流。
@@ -8544,7 +8568,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 接收／停止接收指定远端用户的视频流。
      * @note 如果之前调用过  [muteAllRemoteVideoStreams]{@link agora.muteAllRemoteVideoStreams}  (true) 停止接收放所有远端视频流，在调用本 
@@ -8577,7 +8601,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置订阅的视频流类型。
      * 在网络条件受限的情况下，如果发送端没有调用  [enableDualStreamMode]{@link agora.enableDualStreamMode}  (false) 关闭双流模式，
@@ -8605,7 +8629,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置默认订阅的视频流类型。
      * 在网络条件受限的情况下，如果发送端没有调用  [enableDualStreamMode]{@link agora.enableDualStreamMode}  (false) 关闭双流模式，
@@ -8626,18 +8650,19 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 启用说话者音量提示。
      * 该方法允许 SDK 定期向 App 反馈当前谁在说话以及说话者的音量。启用该方法后，无论频道内是否有人说话，都会在  
      * [onAudioVolumeIndication]{@link AgoraRtcEvents.onAudioVolumeIndication}  回调中按设置的间隔时间返回音量提示。
      * @param interval 指定音量提示的时间间隔：
      * - &le; 0: 禁用音量提示功能；
-     * - > 0: 返回音量提示的间隔，单位为毫秒。建议设置到大于 200 毫秒。最小不得少于 10 毫秒，否则会收不到  
+     * - &gt; 0: 返回音量提示的间隔，单位为毫秒。建议设置到大于 200 毫秒。最小不得少于 10 毫秒，否则会收不到  
      * [onAudioVolumeIndication]{@link AgoraRtcEvents.onAudioVolumeIndication}  回调。
      * @param smooth 平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。
      * @param report_vad
      * - true：开启本地人声检测功能。开启后，`onAudioVolumeIndication` 回调的 `vad` 参数会报告是否在本地检测到人声。
      * - false：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，`onAudioVolumeIndication` 回调的 `vad` 参数不会报告是否在本地检测到人声。
+     * 
      * @return
      * - 0: 方法调用成功
      * - < 0: 方法调用失败
@@ -8651,12 +8676,14 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 开始客户端录音。
      * Agora SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内所有用户的音频，并得到一个包含所有用户声音的录音文件。录音文件格式可以为:
      * - .wav: 文件大，音质保真度较高。
      * - .aac: 文件小，音质保真度较低。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 请确保你在该方法中指定的路径存在并且可写。
      * - 该接口需在  [joinChannel]{@link agora.joinChannel}  之后调用。如果调用  [leaveChannel]{@link agora.leaveChannel}  时还在录音，
      * 录音会自动停止。
@@ -8686,7 +8713,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 停止客户端录音。
      * 停止录音。该接口需要在  [leaveChannel]{@link agora.leaveChannel}  之前调用，不然会在调用  [leaveChannel]{@link agora.leaveChannel}  
      * 时自动停止。
@@ -8702,13 +8729,15 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 开始播放音乐文件。
      * 指定本地或在线音频文件来和麦克风采集的音频流进行混音和替换。替换是指用音频文件替换录音设备采集的音频流。该方法可以选择是否让对方听到本地播
      * 放的音频并指定循环播放的次数。成功调用该方法后，本地会触发 
      * [onAudioMixingStateChanged]{@link AgoraRtcEvents.onAudioMixingStateChanged}(PLAY) 回调。播放结束后，会收到  
      * `onAudioMixingStateChanged(STOPPED)` 回调。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 请在频道内调用该方法，如果在频道外调用该方法可能会出现问题。
      * - 如果本地音乐文件不存在、文件格式不支持、无法访问在线音乐文件 URL 都会返回警告码 `WARN_AUDIO_MIXING_OPEN_ERROR` = 701。
      * @param filePath 指定需要混音的本地或在线音频文件的绝对路径，例如：c:/music/audio.mp4。建议填写文件后缀名。若无法确定文件后缀名，可不填。
@@ -8745,7 +8774,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 停止播放音乐文件。
      * 该方法停止播放音乐文件。请在频道内调用该方法。
      * @return
@@ -8765,7 +8794,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 暂停播放音乐文件。
      * 该方法暂停播放音乐文件。请在频道内调用该方法。
      * @return
@@ -8785,7 +8814,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 恢复播放音乐文件。
      * 该方法恢复混音，继续播放音乐文件。请在频道内调用该方法。
      * @return
@@ -8805,7 +8834,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @deprecated 该方法已废弃。声网不建议你使用。如果你希望设置音频高音质选项，请改用  [setAudioProfile]{@link agora.setAudioProfile}  方法。
      * 设置音频高音质选项。
      * @param fullband 全频带编解码器（48 kHz 采样率）, 不兼容 v1.7.4 以前版本
@@ -8833,7 +8862,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 调节音乐文件的播放音量。
      * 该方法调节混音音乐文件在本端和远端的播放音量大小。请在频道内调用该方法。
      * @note 调用该方法不影响调用  [playEffect]{@link agora.playEffect}  播放音效文件的音量。
@@ -8855,7 +8884,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 调节音乐文件本端播放音量。
      * 该方法调节混音音乐文件在本端的播放音量大小。请在频道内调用该方法。
      * @param volume 音乐文件音量范围为 0~100。100 （默认值） 为原始文件音量。
@@ -8871,7 +8900,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 获取音乐文件的本地播放音量。
      * 该方法获取混音的音乐文件本地播放音量，方便排查音量相关问题。
      * @note 请在频道内调用该方法。
@@ -8887,7 +8916,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 调节音乐文件远端播放音量。
      * 该方法调节混音音乐文件在远端的播放音量大小。请在频道内调用该方法。
      * @param volume 音乐文件音量范围为 0~100。100 （默认值） 为原始文件音量。
@@ -8903,7 +8932,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 获取音乐文件的远端播放音量
      * 该接口可以方便开发者排查音量相关问题。
      * @note 请在频道中调用该方法
@@ -8919,7 +8948,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 获取音乐文件总时长。
      * 该方法获取音乐文件总时长，单位为毫秒。请在频道内调用该方法。
      * @return
@@ -8938,7 +8967,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 获取音乐文件的播放进度。
      * 该方法获取当前音乐文件播放进度，单位为毫秒。请在频道内调用该方法。
      * @return
@@ -8957,7 +8986,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置音乐文件的播放位置。
      * 该方法可以设置音频文件的播放位置，这样你可以根据实际情况播放文件，而非从头到尾播放整个文件。
      * @param pos 整数。进度条位置，单位为毫秒。
@@ -8978,12 +9007,11 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 调整本地播放的音乐文件的音调。
      *
      * 本地人声和播放的音乐文件混音时，调用该方法可以仅调节音乐文件的音调。
-     * @note
-     * 该方法需在 [startAudioMixing]{@link agora.startAudioMixing} 后调用。
+     * @note 该方法需在 [startAudioMixing]{@link agora.startAudioMixing} 后调用。
      * @param pitch 按半音音阶调整本地播放的音乐文件的音调，默认值为 0，即不调整音调。取值范围为 [-12,12]，
      * 每相邻两个值的音高距离相差半音。取值的绝对值越大，音调升高或降低得越多。
      * @return
@@ -8998,7 +9026,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 获取音效文件的播放音量。
      * 音量范围为 0~100。100 （默认值）为原始文件音量。
      * @return
@@ -9017,7 +9045,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置音效文件的播放音量。
      * 音量范围为 0~100。100 （默认值）为原始文件音量。
      * @param volume 该方法设置音效的音量。
@@ -9038,7 +9066,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 实时调整音效文件的播放音量。
      * @param soundId 指定音效的 ID。每个音效均有唯一的 ID。
      * @param volume 播放音量。音量范围为 0~100。100 （默认值）为原始文件音量。
@@ -9059,9 +9087,9 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
-     * 开启/关闭本地人脸检测。仅适用于 Android 和 iOS。
+     * 开启/关闭本地人脸检测。
      *
      * 开启本地人脸检测后，SDK 会触发  [onFacePositionChanged]{@link AgoraRtcEvents.onFacePositionChanged}  回调向你报告人脸检测的信息：
      * - 摄像头采集的画面大小
@@ -9083,13 +9111,14 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 播放指定音效文件。
      * 你可以多次调用该方法，通过传入不同的音效文件的 `soundID` 和 `filePath`，同时播放多个音效文件，实现音效叠加。为获得最佳用户体验，
      * 我们建议同时播放的音效文件不要超过 3 个。
      * @param soundId 指定音效的 ID。每个音效均有唯一的 ID。
      * 
      * **Note**
+     * 
      * - 如果你已通过  [preloadEffect]{@link agora.preloadEffect}  将音效加载至内存，确保这里设置的 `soundId` 与  
      * [preloadEffect]{@link agora.preloadEffect}  设置的 `soundId` 相同。
      * - 在 macOS 和 Windows 上，该方法不支持同时播放多个在线音效文件。
@@ -9134,7 +9163,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 停止播放指定音效文件。
      * @param soundId 指定音效文件的 ID。每个音效文件均有唯一的 ID。
      * @return
@@ -9154,7 +9183,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 停止播放所有音效文件。
      * @return
      * - 0: 方法调用成功
@@ -9173,7 +9202,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 将音效文件加载至内存。
      * 该方法将指定音效文件预加载至内存。
      * @note 该方法不支持在线音频文件。
@@ -9198,7 +9227,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 从内存释放某个预加载的音效文件。
      * @param soundId 指定音效文件的 ID。每个音效文件均有唯一的 ID
      * @return
@@ -9218,7 +9247,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 暂停音效文件播放。
      * @param soundId 指定音效文件的 ID。每个音效文件均有唯一的 ID。
      * @return
@@ -9238,7 +9267,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 暂停所有音效文件播放。
      * @return
      * - 0: 方法调用成功
@@ -9257,7 +9286,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 恢复播放指定音效文件。
      * @param soundId 指定音效文件的 ID。每个音效文件均有唯一的 ID。
      * @return
@@ -9277,7 +9306,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 恢复播放所有音效文件。
      * @return
      * - 0: 方法调用成功
@@ -9296,7 +9325,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 开启/关闭远端用户的语音立体声。
      * 如果想调用  [setRemoteVoicePosition]{@link agora.setRemoteVoicePosition}  实现听声辨位的功能，请确保在加入频道前调用该方法开启
      * 远端用户的语音立体声。
@@ -9315,7 +9344,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置远端用户的语音位置。
      * 设置远端用户声音的空间位置和音量，方便本地用户听声辨位。
      * 通过调用该接口设置远端用户声音出现的位置，左右声道的声音差异会产生声音的方位感，从而判断出远端用户的实时位置。在多人在线游戏场景，如吃鸡游戏中，该方法能有效增加游戏角色的方位感，模拟真实场景。
@@ -9338,7 +9367,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置本地语音音调。
      * @param pitch 语音频率可以 [0.5,2.0] 范围内设置。取值越小，则音调越低。默认值为 1.0，表示不需要修改音调。
      * @return
@@ -9353,7 +9382,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置本地语音音效均衡。
      * @param bandFrequency 频谱子带索引。取值范围是 [0,9]，分别代表音效的 10 个频带。对应的中心频率为 
      * [31，62，125，250，500，1k，2k，4k，8k，16k] Hz。详见 
@@ -9374,7 +9403,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置本地音效混响。
      * 你也可以调用 [setLocalVoiceReverbPreset]{@link agora.setLocalVoiceReverbPreset} 使用预设的音效混响，例如流行、R&B、摇滚音效。
      * @param reverbKey 混响音效 Key。该方法共有 5 个混响音效 Key:  [AUDIO_REVERB_TYPE]{@link agora.AUDIO_REVERB_TYPE} 。
@@ -9391,7 +9420,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置本地语音变声、美音或语聊美声效果。
      *
      * 通信场景下的用户或直播场景下的主播均可调用该方法为本地语音设置以下效果。成功设置以后，频道内的所有用户均可听到声音效果。
@@ -9400,17 +9429,18 @@ namespace agora {
      * - 语聊美声效果：枚举值以 `GENERAL_BEAUTY_VOICE` 为前缀。效果包括磁性（男）、清新（女）和活力（女），通常用于语聊场景。该功能主要细化了男声和女声各
      * 自的特点。
      *
-     * @note
+     * **Note**
+     * 
      * - 为达到更好的声音效果，Agora 推荐在调用该方法前将  [setAudioProfile]{@link agora.setAudioProfile}  的 `profile` 参数设置为 
      * `AUDIO_PROFILE_MUSIC_HIGH_QUALITY(4)` 或 `AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO(5)`。
      * - 该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含人声和音乐的音频数据。
      * - 该方法不能与  [setLocalVoiceReverbPreset]{@link agora.setLocalVoiceReverbPreset}  方法一同使用，否则先调的方法会不生效。
-     * @param voiceChanger 预设本地语音变声、美音或语聊美声效果选项，默认值为 [VOICE_CHANGER_OFF]{@link agora.VOICE_CHANGER_OFF} ，即原声。
+     * @param voiceChanger 预设本地语音变声、美音或语聊美声效果选项，默认值为 [VOICE_CHANGER_OFF]{@link agora.VOICE_CHANGER_PRESET.VOICE_CHANGER_OFF} ，即原声。
      * 详见 [VOICE_CHANGER_PRESET]{@link agora.VOICE_CHANGER_PRESET} 。
      * 
-     * 设置语聊美声效果时，Agora 推荐使用 [GENERAL_BEAUTY_VOICE_MALE_MAGNETIC]{@link agora.GENERAL_BEAUTY_VOICE_MALE_MAGNETIC} 处理男声，
-     * 使用 [GENERAL_BEAUTY_VOICE_FEMALE_FRESH]{@link agora.GENERAL_BEAUTY_VOICE_FEMALE_FRESH} 或 
-     * [GENERAL_BEAUTY_VOICE_FEMALE_VITALITY]{@link agora.GENERAL_BEAUTY_VOICE_FEMALE_VITALITY} 处理女声，否则音频可能会产生失真。
+     * 设置语聊美声效果时，Agora 推荐使用 [GENERAL_BEAUTY_VOICE_MALE_MAGNETIC]{@link agora.VOICE_CHANGER_PRESET.GENERAL_BEAUTY_VOICE_MALE_MAGNETIC} 处理男声，
+     * 使用 [GENERAL_BEAUTY_VOICE_FEMALE_FRESH]{@link agora.VOICE_CHANGER_PRESET.GENERAL_BEAUTY_VOICE_FEMALE_FRESH} 或 
+     * [GENERAL_BEAUTY_VOICE_FEMALE_VITALITY]{@link agora.VOICE_CHANGER_PRESET.GENERAL_BEAUTY_VOICE_FEMALE_VITALITY} 处理女声，否则音频可能会产生失真。
      * @return
      * - 0: 方法调用成功
      * - < 0: 方法调用失败
@@ -9423,17 +9453,19 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置本地语音混响（含虚拟立体声效果）。
      * 通信场景下的用户或直播场景下的主播均可调用该方法设置本地语音混响。成功设置以后，频道内的所有用户均可听到声音效果。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 当使用以 `AUDIO_REVERB_FX` 为前缀的枚举值时，请确保在调用该方法前将  [setAudioProfile]{@link agora.setAudioProfile}  的 `profile` 参数
      * 设置为 `AUDIO_PROFILE_MUSIC_HIGH_QUALITY(4)` 或 `AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO(5)`，否则该方法设置无效。
-     * - 当使用 [AUDIO_VIRTUAL_STEREO]{@link agora.AUDIO_VIRTUAL_STEREO} 时，Agora 推荐在调用该方法前将 `setAudioProfile` 的 `profile` 参数
+     * - 当使用 [AUDIO_VIRTUAL_STEREO]{@link agora.AUDIO_REVERB_PRESET.AUDIO_VIRTUAL_STEREO} 时，Agora 推荐在调用该方法前将 `setAudioProfile` 的 `profile` 参数
      * 设置为 `AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO(5)`。
      * - 该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含人声和音乐的音频数据。
      * - 该方法不能与  [setLocalVoiceChanger]{@link agora.setLocalVoiceChanger}  方法一同使用，否则先调的方法会不生效。
-     * @param reverbPreset 本地语音混响选项，默认值为 [AUDIO_REVERB_OFF]{@link agora.AUDIO_REVERB_OFF} ，即原声。详见 
+     * @param reverbPreset 本地语音混响选项，默认值为 [AUDIO_REVERB_OFF]{@link agora.AUDIO_REVERB_PRESET.AUDIO_REVERB_OFF} ，即原声。详见 
      * [AUDIO_REVERB_PRESET]{@link agora.AUDIO_REVERB_PRESET} 。
      * 为达到更好的混响效果，Agora 推荐使用以 `AUDIO_REVERB_FX` 为前缀的枚举值。
      * @return
@@ -9448,14 +9480,16 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置 Agora SDK 输出的日志文件。
      *
      * 默认情况下，SDK 会生成 `agorasdk.log`、`agorasdk_1.log`、`agorasdk_2.log`、`agorasdk_3.log`、`agorasdk_4.log` 这 5 个日志文件。
      * 每个文件的默认大小为 1024 KB。日志文件为 UTF-8 编码。最新的日志永远写在 `agorasdk.log` 中。`agorasdk.log` 写满后，SDK 会从 1-4 中删除修改时间最
      * 早的一个文件，然后将 `agorasdk.log` 重命名为该文件，并建立新的 `agorasdk.log` 写入最新的日志。
      *
-     * @note 如需调用本方法，请在调用  [initialize]{@link agora.initialize}  方法初始化 Agora 引擎后立即调用，否则可能造成输出日志不完整。
+     * @note 如需调用本方法，请在调用  [init]{@link agora.init}  方法初始化 Agora 引擎后立即调用，否则可能造成输出日志不完整。
+     * @see  [setLogFilter]{@link agora.setLogFilter}
+     * @see  [setLogFileSize]{@link agora.setLogFileSize}
      * @param filePath 日志文件的完整路径。默认路径为如下：
      * - Android: `/storage/emulated/0/Android/data/<package name>/files/agorasdk.log`
      * - iOS: `App Sandbox/Library/caches/agorasdk.log`
@@ -9474,12 +9508,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置日志输出等级。
      * 设置 Agora SDK 的输出日志输出等级。不同的输出等级可以单独或组合使用。日志级别顺序依次为 `OFF`、`CRITICAL`、`ERROR`、`WARNING`、`INFO` 和 `DEBUG`。
      * 选择一个级别，你就可以看到在该级别之前所有级别的日志信息。
      * 例如，你选择 `WARNING` 级别，就可以看到在 `CRITICAL`、`ERROR` 和 `WARNING` 级别上的所有日志信息。
-     * 
+     * @see  [setLogFile]{@link agora.setLogFile}
+     * @see  [setLogFileSize]{@link agora.setLogFileSize}
      * @param filter 设置过滤等级: [LOG_FILTER_TYPE]{@link agora.LOG_FILTER_TYPE} 。
      * @return
      * - 0: 方法调用成功
@@ -9505,14 +9540,15 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置 Agora SDK 输出的单个日志文件大小。
      *
      * 默认情况下，SDK 会生成 `agorasdk.log`、`agorasdk_1.log`、`agorasdk_2.log`、`agorasdk_3.log`、`agorasdk_4.log` 这 5 个日志文件。
      * 每个文件的默认大小为 1024 KB。日志文件为 UTF-8 编码。最新的日志永远写在 `agorasdk.log` 中。`agorasdk.log` 写满后，SDK 会从 1-4 中删除修改时间最早的一个文件，
      * 然后将 `agorasdk.log` 重命名为该文件，并建立新的 `agorasdk.log` 写入最新的日志。
      *
-     * @see  [setLogFile]{@link agora.setLogFile}      * @see  [setLogFilter]{@link agora.setLogFilter}      *
+     * @see  [setLogFile]{@link agora.setLogFile}
+     * @see  [setLogFilter]{@link agora.setLogFilter}
      * @param fileSizeInKBytes 单个日志文件的大小，单位为 KB。默认值为 1024 KB。如果你将 `fileSizeInKByte` 设为 1024 KB，SDK 会最多输出 5 MB 的日志文件。如果你将 `fileSizeInKByte` 设为小于 1024 KB，单个日志文件最大仍为 1024 KB。
      *
      * @return
@@ -9527,13 +9563,14 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 更新本地视图显示模式。
      * 
      * 初始化本地用户视图后，你可以调用该方法更新本地用户视图的渲染和镜像模式。该方法只影响本地用户看到的视频画面，不影响本地发布视频。
      * 
-     * @note
+     * **Note**
+     * 
      * - 请在调用  [setupLocalVideo]{@link agora.setupLocalVideo}  方法初始化本地视图后，调用该方法。
      * - 你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。
      * 
@@ -9556,12 +9593,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 更新远端视图显示模式。
      * 初始化远端用户视图后，你可以调用该方法更新远端用户视图在本地显示时的渲染和镜像模式。该方法只影响本地用户看到的视频画面。
      * 
-     * @note
+     * **Note**
+     * 
      * - 请在调用  [setupRemoteVideo]{@link agora.setupRemoteVideo}  方法初始化远端视图后，调用该方法。
      * - 你可以在通话中多次调用该方法，多次更新远端用户视图的显示模式。
      * 
@@ -9585,7 +9623,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * @deprecated 该方法已废弃，请改用  [setupLocalVideo]{@link agora.setupLocalVideo}
      * 或  [setLocalRenderMode]{@link agora.setLocalRenderMode} 设置本地视频镜像模式。
@@ -9603,7 +9641,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 开关双流模式。
      * 该方法设置单流（默认）或者双流模式。发送端开启双流模式后，接收端可以选择接收大流还是小流。其中，大流指高分辨率、高码率的视频流，小流指低分辨率、
@@ -9625,7 +9663,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置外部音频采集参数。请在  [joinChannel]{@link agora.joinChannel}  前调用该方法。
      * @param enabled
@@ -9651,7 +9689,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置外部音频渲染。
      *
@@ -9660,8 +9698,7 @@ namespace agora {
      * 
      * App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。
      *
-     * @note
-     * 开启外部音频渲染后，App 会无法从
+     * @note 开启外部音频渲染后，App 会无法从
      *  [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame}  回调中获得数据。
      * @param enabled
      * - true: 开启外部音频渲染。
@@ -9687,7 +9724,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置录制的声音格式。
      * 该方法设置  [onRecordAudioFrame]{@link agora.onRecordAudioFrame}  回调的录制声音格式。
@@ -9718,7 +9755,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置播放的声音格式。
      * @param sampleRate 指定  [onPlaybackAudioFrame]{@link agora.onPlaybackAudioFrame}  中返回数据的采样率，可设置为 
@@ -9748,7 +9785,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置录制与播放声音混音后的数据格式
      * @param sampleRate 指定  [onMixedAudioFrame]{@link agora.onMixedAudioFrame}  中返回数据的采样率，可设置为 8000，16000，32000，
@@ -9771,7 +9808,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 调节录音音量。
      * @param volume 录音信号音量。为避免回声并提升通话质量，Agora 建议将 volume 值设为 [0,100]。如果
      * volume 值需超过 100，联系[技术支持](https://agora-ticket.agora.io/):
@@ -9789,9 +9826,11 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 调节本地播放的所有远端用户音量。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 该方法调节的是本地播放的所有远端用户混音后的音量。
      * - 从 v3.1.2 开始，静音本地音频需同时调用 `adjustPlaybackSignalVolume` 和  
      * [adjustAudioMixingPlayoutVolume]{@link agora.adjustAudioMixingPlayoutVolume}  方法，并将 `volume` 设置为 `0`。
@@ -9811,11 +9850,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @deprecated
      * 该方法已废弃。自 Native SDK v3.1.2 及之后，SDK 自动开启与 Web SDK 的互通，无需调用该方法开启。
      * 打开直播场景下与 Agora Web SDK 的互通。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 该方法仅适用于直播场景。通信场景默认打开与 Web SDK 的互通。
      * - 如果有用户通过 Web SDK 加入频道，请确保调用该方法，否则 Web 端用户看 Native 端的画面会是黑屏。
      * @param enabled
@@ -9833,7 +9874,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置视频优化选项（仅适用于直播）。
      * @deprecated 该方法已废弃。Agora 建议使用 [VideoEncoderConfiguration]{@link agora.VideoEncoderConfiguration} 类中的 
@@ -9854,7 +9895,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置弱网条件下发布的音视频流回退选项。
      * 
@@ -9881,7 +9922,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置弱网条件下订阅的音视频流的回退选项。
      * 默认 `option` 为 
@@ -9908,10 +9949,9 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 切换前置/后置摄像头
-     * @note 该方法仅适用于 Android 和 iOS 平台。
      * 
      * @param direction 设置使用的摄像头。详见 [CAMERA_DIRECTION]{@link agora.CAMERA_DIRECTION}。
      * 
@@ -9930,18 +9970,16 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置默认的语音路由
      * 该方法设置接收到的语音从听筒或扬声器出声。如果用户不调用本方法，语音默认从听筒出声。
      * 各频道场景下默认的语音路由：
      * - 语音通话：听筒
-     * - 视频通话：扬声器。如果有用户在频道中使用  [disableVideo]{@link agora.disableVideo}、
-     * [muteLocalVideoStream]{@link agora.muteLocalVideoStream} 或 [muteAllRemoteVideoStreams]{@link agora.muteAllRemoteVideoStreams} 
-     * 方法关闭视频，则语音路由会自动切换回听筒。
      * - 直播：扬声器
      * - 游戏语音：扬声器
-     * @note
-     * - 该方法仅适用于 Android 和 iOS 平台。
+     * 
+     * **Note**
+     * 
      * - 在 iOS 平台上，该方法只在纯音频模式下工作，在有视频的模式下不工作。
      * - 该方法需要在  [joinChannel]{@link agora.joinChannel}  前设置，否则不生效。如需在加入频道后更改默认语音路由，请调用  
      * [setEnableSpeakerphone]{@link agora.setEnableSpeakerphone}  方法。
@@ -9960,7 +9998,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 启用/关闭扬声器播放
      * 
      * 该方法设置是否将语音路由设到扬声器（外放）。 你可以在  
@@ -9968,14 +10006,14 @@ namespace agora {
      * 在 Android 上， [setAudioProfile]{@link agora.setAudioProfile}  中 `scenario` 及  
      * [setChannelProfile]{@link agora.setChannelProfile}  的设置
      * 会影响 `setEnableSpeakerphone` 的行为。`setEnableSpeakerphone` 不生效的情况如下：
-     * - 当 `scenario` 为 [AUDIO_SCENARIO_GAME_STREAMING]{@link agora.AUDIO_SCENARIO_GAME_STREAMING} 时，所有用户都无法切换音频播放路由。
-     * - 当 `scenario` 为 [AUDIO_SCENARIO_DEFAULT]{@link agora.AUDIO_SCENARIO_DEFAULT} 或 
-     * [AUDIO_SCENARIO_SHOWROOM]{@link agora.AUDIO_SCENARIO_SHOWROOM} 时，直播场景中的观众无法切换音频播放路由，且当频道中只有一个主播时，
+     * - 当 `scenario` 为 [AUDIO_SCENARIO_GAME_STREAMING]{@link agora.AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_GAME_STREAMING} 时，所有用户都无法切换音频播放路由。
+     * - 当 `scenario` 为 [AUDIO_SCENARIO_DEFAULT]{@link agora.AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_DEFAULT} 或 
+     * [AUDIO_SCENARIO_SHOWROOM]{@link agora.AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_SHOWROOM} 时，直播场景中的观众无法切换音频播放路由，且当频道中只有一个主播时，
      * 该主播也无法切换音频播放路由。
-     * - 当 `scenario` 为 [AUDIO_SCENARIO_EDUCATION]{@link agora.AUDIO_SCENARIO_EDUCATION} 时，直播场景中的观众无法切换音频播放路由。
+     * - 当 `scenario` 为 [AUDIO_SCENARIO_EDUCATION]{@link agora.AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_EDUCATION} 时，直播场景中的观众无法切换音频播放路由。
      * 
-     * @note
-     * - 该方法仅适用于 Android 和 iOS 平台。
+     * **Note**
+     * 
      * - 请确保在调用此方法前已调用过  [joinChannel]{@link agora.joinChannel}  方法。
      * - 调用该方法后，SDK 将返回  [onAudioRouteChanged]{@link AgoraRtcEvents.onAudioRouteChanged}  回调提示状态已更改。
      * 
@@ -9995,11 +10033,9 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 开启耳返功能。
-     * @note
-     * - 该方法仅适用于 Android 和 iOS 平台。
-     * - 用户必须使用有线耳机才能听到耳返效果。
+     * @note 用户必须使用有线耳机才能听到耳返效果。
      * 
      * @param enabled 开启/关闭耳返功能：
      * - true：开启耳返功能
@@ -10016,11 +10052,9 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置耳返音量
-     * @note
-     * - 该方法仅适用于 Android 和 iOS 平台。
-     * - 用户必须使用有线耳机才能听到耳返效果。
+     * @note 用户必须使用有线耳机才能听到耳返效果。
      * @param volume 设置耳返音量，取值范围在 [0,100]。默认值为 100
      * @return
      * - 0: 方法调用成功
@@ -10034,12 +10068,12 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 查询扬声器启用状态
-     * @note 该方法仅适用于 Android 和 iOS 平台。
+     * 
      * @return
-     * - 0: 方法调用成功
-     * - < 0: 方法调用失败
+     * `true`: 扬声器已开启，语音会输出到扬声器
+     * `false`: 扬声器未开启，语音会输出到非扬声器（听筒、耳机等）
      */
     export function isSpeakerphoneEnabled(): boolean {
         if (isWeb) {
@@ -10049,15 +10083,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 获取当前通话 ID。
      * 客户端在每次  [joinChannel]{@link agora.joinChannel}  后会生成一个对应的 `CallId`，标识该客户端的此次通话。有些方法如 
      * [rate]{@link agora.rate}、[complain]{@link agora.complain}  需要在通话结束后调用，向 SDK 提交反馈，这些方法必须指定 `CallId` 参数。
      * 使用这些反馈方法，需要在通话过程中调用  [getCallId]{@link agora.getCallId}  方法获取 `CallId`，在通话结束后在反馈方法中作为参数传入。
-     * @param callId 当前的通话 ID。
-     * @return
-     * - 0: 方法调用成功
-     * - < 0: 方法调用失败
+     * 
+     * @return 当前的通话 ID。
      */
     export function getCallId(): string {
         if (isWeb) {
@@ -10067,7 +10099,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 给通话评分。
      * 该方法能够让用户为通话评分，一般在通话结束后调用。
      * @param callId 通话  [getCallId]{@link agora.getCallId}  函数获取的通话 ID。
@@ -10085,7 +10117,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 投诉通话质量。
      * 该方法让用户就通话质量进行投诉。一般在通话结束后调用。
      * @param callId 通话  [getCallId]{@link agora.getCallId}  函数获取的通话 ID。
@@ -10102,7 +10134,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 获取 SDK 的版本信息
      * 
      * @return 当前的 SDK 版本号，格式为字符串，如 3.1.2。
@@ -10115,7 +10147,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 启动网络测试。
      * 该方法启用网络连接质量测试，用于检测用户目前的网络接入质量（上行网络质量）。默认该功能为关闭状态。该方法主要用于以下场景:
      * - 用户加入频道前，可以调用该方法判断和预测目前的上行网络质量是否足够好。
@@ -10123,14 +10155,14 @@ namespace agora {
      * 
      * 启用该方法均会消耗网络流量，影响通话质量。用户必须在收到  [onLastmileQuality]{@link AgoraRtcEvents.onLastmileQuality}
      * 回调后须调用  [disableLastmileTest]{@link agora.disableLastmileTest}  停止测试，再加入频道或切换为主播。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 该方法请勿与  [startLastmileProbeTest]{@link agora.startLastmileProbeTest}  同时使用。
      * - 调用该方法后，在收到  [onLastmileQuality]{@link AgoraRtcEvents.onLastmileQuality}  回调前请勿调用其他方法，
      * 否则可能由于 API 操作过于频繁导致回调无法执行。
      * - 在直播场景中，如果本地用户为主播，请勿加入频道后调用该方法。
-     * - 加入频道前调用该方法检测网络质量后，SDK 会占用一路视频的带宽，码率与 
-     * [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration} 中设置的码率相同。
-     * 加入频道后，无论是否调用了  [disableLastmileTest]{@link agora.disableLastmileTest}  ，SDK 均会自动停止带宽占用。
+     * 
      * @return
      * - 0: 方法调用成功
      * - < 0: 方法调用失败
@@ -10143,7 +10175,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 关闭网络测试。
      * 
      * @return
@@ -10158,7 +10190,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 开始通话前网络质量探测。
      * 
      * 向用户反馈上下行网络的带宽、丢包、网络抖动和往返时延数据。
@@ -10172,7 +10204,9 @@ namespace agora {
      * 该方法主要用于以下两种场景：
      * - 用户加入频道前，可以调用该方法判断和预测目前的上行网络质量是否足够好。
      * - 直播场景下，当用户角色想由观众切换为主播时，可以调用该方法判断和预测目前的上行网络质量是否足够好。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 该方法会消耗一定的网络流量，影响通话质量，因此我们建议不要和  [enableLastmileTest]{@link agora.enableLastmileTest}  同时使用。
      * - 调用该方法后，在收到  [onLastmileQuality]{@link AgoraRtcEvents.onLastmileQuality}  和  
      * [onLastmileProbeResult]{@link AgoraRtcEvents.onLastmileProbeResult}  回调之前请不要调用其他方法，否则可能会由于 API 操作
@@ -10192,7 +10226,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 停止通话前网络质量探测。
      * @return
      * - 0: 方法调用成功
@@ -10206,7 +10240,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 获取警告或错误描述。
      * @param code  [onWarning]{@link AgoraRtcEvents.onWarning}  或  [onError]{@link AgoraRtcEvents.onError}  提供的警告码或错误码。
      * 
@@ -10220,7 +10254,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 启用内置加密，并设置数据加密密码。
      * 
      * @deprecated 该方法自 v3.1.2 起废弃。请改用  [enableEncryption]{@link agora.enableEncryption}  方法。
@@ -10228,7 +10262,8 @@ namespace agora {
      * 在加入频道之前，App 需调用 `setEncryptionSecret` 方法指定 `secret` 来启用内置的加密功能，同一频道内的所有用户应设置相同的 `secret`。
      * 当用户离开频道时，该频道的 `secret` 会自动清除。如果未指定 `secret` 或将 `secret` 设置为空，则无法激活加密功能。
      * 
-     * @note
+     * **Note**
+     * 
      * - 请不要在旁路推流时调用此方法。
      * - 为保证最佳传输效果，请确保加密后的数据大小不超过原始数据大小 + 16 字节。16 字节是 AES 通用加密模式下最大填充块大小。
      * @param secret 加密密码。
@@ -10245,7 +10280,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 启用内置的加密方案。
      * @deprecated 该方法自 v3.1.2 起废弃。请改用 [enableEncryption]{@link agora.enableEncryption} 方法。
      * Agora Video SDK 支持内置加密方案，默认支持 AES-128-XTS。如需采用其他加密方案，可以调用本方法。同一频道内的所有用户必须设置相同的加密方式
@@ -10269,14 +10304,15 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 开启或关闭内置加密。
      *
      * 在安全要求较高的场景下，Agora 建议你在加入频道前，调用 `enableEncryption` 方法开启内置加密。
      *
      * 同一频道内所有用户必须使用相同的加密模式和密钥。一旦所有用户都离开频道，该频道的加密密钥会自动清除。
      *
-     * @note
+     * **Note**
+     * 
      * - 如果开启了内置加密，则不能使用 RTMP 推流功能。
      * - Agora 支持 4 种加密模式。除 `SM4_128_ECB` 模式外，其他加密模式都需要在集成 SDK 时，额外添加加密库文件。详见《媒体流加密》。
      *
@@ -10300,10 +10336,12 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 注册数据包观测器。
      * 该方法注册数据包观测器 (Packet Observer)。在 Agora SDK 发送/接收（语音、视频）网络包时，会回调你定义的接口，App 可用此接口对数据做处理，例如加解密。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 处理后发送到网络的包大小不应超过 1200 字节，否则有可能发送失败。
      * - 若需调用此方法，需确保接收端和发送端都调用此方法，否则会出现未定义行为（例如音频无声或视频黑屏）。
      * - 若在直播场景下使用 CDN 推流、录制或储存，Agora 不建议调用此方法。
@@ -10320,7 +10358,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 创建数据流。
      * 该方法用于创建数据流。agora 生命周期内，每个用户最多只能创建 5 个数据流。频道内数据通道最多允许数据延迟 5 秒，若超过 5 秒接收方尚未收到数据流，
      * 则数据通道会向 App 报错。
@@ -10345,7 +10383,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 发送数据流。
      * 
      * 该方法发送数据流消息到频道内所有用户。SDK 对该方法的实现进行了如下限制：频道内每秒最多能发送 30 个包，且每个包最大为 1 KB。 API 须
@@ -10354,7 +10392,8 @@ namespace agora {
      * 成功调用该方法后，远端会触发  [onStreamMessage]{@link AgoraRtcEvents.onStreamMessage}  回调，远端用户可以在该回调中获取接收
      * 到的流消息；若调用失败，远端会触发  [onStreamMessageError]{@link AgoraRtcEvents.onStreamMessageError}  回调。
      * 
-     * @note
+     * **Note**
+     * 
      * - 请确保在调用该方法前，已调用  [createDataStream]{@link agora.createDataStream}  创建了数据流。
      * - 该方法仅适用于通信场景以及直播场景下的主播用户，如果直播场景下的观众调用此方法可能会造成观众变主播。
      * @param  streamId  由  [createDataStream]{@link agora.createDataStream}  返回的数据流 ID。
@@ -10372,12 +10411,14 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 增加旁路推流地址。
      * 
      * 调用该方法后，SDK会在本地触发  [onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged}  回调，
      * 报告增加旁路推流地址的状态。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 请确保在成功加入频道后才能调用该接口。
      * - 请确保已开通旁路推流的功能。
      * - 该方法每次只能增加一路旁路推流地址。若需推送多路流，则需多次调用该方法。
@@ -10391,8 +10432,8 @@ namespace agora {
      * @return
      * - 0: 方法调用成功
      * - < 0: 方法调用失败
-     *      - [ERR_INVALID_ARGUMENT]{@link agora.ERR_INVALID_ARGUMENT} (2): URL 为空或是长度为 0 的的字符串
-     *      - [ERR_NOT_INITIALIZED]{@link agora.ERR_NOT_INITIALIZED} (7): 推流时未初始化引擎
+     *      - [ERR_INVALID_ARGUMENT]{@link agora.ERROR_CODE_TYPE.ERR_INVALID_ARGUMENT} (2): URL 为空或是长度为 0 的的字符串
+     *      - [ERR_NOT_INITIALIZED]{@link agora.ERROR_CODE_TYPE.ERR_NOT_INITIALIZED} (7): 推流时未初始化引擎
      */
     export function addPublishStreamUrl(url: string, transcodingEnabled: boolean): number {
         if (isWeb) {
@@ -10402,11 +10443,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 删除旁路推流地址。
      * 调用该方法后，SDK 会在本地触发  [onRtmpStreamingStateChanged]{@link AgoraRtcEvents.onRtmpStreamingStateChanged}  回调，
      * 报告删除旁路推流地址的状态。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 该方法每次只能删除一路旁路推流地址。若需删除多路流，则需多次调用该方法。
      * - URL 不支持中文等特殊字符。
      * - 在直播场景中，只有角色为主播的用户才能调用该方法。
@@ -10423,12 +10466,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 设置直播推流转码。
      * 该方法用于旁路推流的视图布局及音频设置等。调用该方法更新转码设置后本地会触发 
      * [onTranscodingUpdated]{@link AgoraRtcEvents.onTranscodingUpdated} 回调。
      * 
-     * @note
+     * **Note**
+     * 
      * - 在直播场景中，只有角色为主播的用户才能调用该方法。
      * - 请确保已开通旁路推流的功能。
      * - 首次调用该方法更新转码设置时，不会触发 `onTranscodingUpdated` 回调。
@@ -10462,7 +10506,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 添加本地视频水印。
      * 
@@ -10474,7 +10518,8 @@ namespace agora {
      * - 如果视频编码方向/ `ORIENTATION_MODE` 固定为竖屏或自适应模式下的竖屏，那么水印使用竖屏坐标。
      * - 设置水印坐标时，水印的图像区域不能超出 `setVideoEncoderConfiguration` 方法中设置的视频尺寸，否则超出部分将被裁剪。
      * 
-     * @note
+     * **Note**
+     * 
      * - 你需要在调用  [enableVideo]{@link agora.enableVideo}  方法之后再调用本方法。
      * - 如果你只是在旁路直播（推流到CDN）中添加水印，你可以使用本方法或  [setLiveTranscoding]{@link agora.setLiveTranscoding}  方法设置水印。
      * - 待添加水印图片必须是 PNG 格式。本方法支持所有像素格式的 PNG 图片：RGBA、RGB、Palette、Gray 和 Alpha_gray。
@@ -10494,7 +10539,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 删除已添加的视频水印。
      * @return
@@ -10509,11 +10554,13 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 设置美颜效果选项。
      * 开启本地美颜功能，并设置美颜效果选项。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 请在调用  [enableVideo]{@link agora.enableVideo}  方法后，调用该方法。
      * - 该方法目前不适用于 macOS 平台。
      * @param enabled 是否开启美颜功能：
@@ -10537,9 +10584,11 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 输入在线媒体流。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 请确保已开通旁路推流的功能。
      * - 该方法适用于 SDK v3.1.2 及之后的版本。
      * - 在直播场景中，只有角色为主播的用户才能调用该方法。
@@ -10557,11 +10606,11 @@ namespace agora {
      * @return
      * - 0: 方法调用成功
      * - < 0: 方法调用失败
-     *    - [ERR_INVALID_ARGUMENT]{@link agora.ERR_INVALID_ARGUMENT} (2): 输入的 URL 为空。请重新调用该方法，并确认输入的媒体流的 URL 有效。
-     *    - [ERR_NOT_READY]{@link agora.ERR_NOT_READY} (3): 用户没有加入频道。
-     *    - [ERR_NOT_SUPPORTED]{@link agora.ERR_NOT_SUPPORTED} (4): 频道非直播场景。请调用  
+     *    - [ERR_INVALID_ARGUMENT]{@link agora.ERROR_CODE_TYPE.ERR_INVALID_ARGUMENT} (2): 输入的 URL 为空。请重新调用该方法，并确认输入的媒体流的 URL 有效。
+     *    - [ERR_NOT_READY]{@link agora.ERROR_CODE_TYPE.ERR_NOT_READY} (3): 用户没有加入频道。
+     *    - [ERR_NOT_SUPPORTED]{@link agora.ERROR_CODE_TYPE.ERR_NOT_SUPPORTED} (4): 频道非直播场景。请调用  
      * [setChannelProfile]{@link agora.setChannelProfile}  并将频道设置为直播场景再调用该方法。
-     *    - [ERR_NOT_INITIALIZED]{@link agora.ERR_NOT_INITIALIZED} (7): 引擎没有初始化。请确认调用该方法前已初始化 Agora 引擎。
+     *    - [ERR_NOT_INITIALIZED]{@link agora.ERROR_CODE_TYPE.ERR_NOT_INITIALIZED} (7): 引擎没有初始化。请确认调用该方法前已初始化 Agora 引擎。
      */
     export function addInjectStreamUrl(url: string, config: InjectStreamConfig): number {
         if (isWeb) {
@@ -10572,7 +10621,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 开始跨频道媒体流转发。该方法可用于实现跨频道连麦等场景。
      *
      * 成功调用该方法后，SDK 会触发
@@ -10580,15 +10629,16 @@ namespace agora {
      * [onChannelMediaRelayEvent]{@link AgoraRtcEvents.onChannelMediaRelayEvent}  回调，并在回调中报告当前的跨频道媒体流转发状态和事件。
      * - 如果 [onChannelMediaRelayStateChanged]{@link AgoraRtcEvents.onChannelMediaRelayStateChanged}  回调报告 
      * [RELAY_STATE_RUNNING]{@link agora.CHANNEL_MEDIA_RELAY_STATE.RELAY_STATE_RUNNING} (2) 和 
-     * [RELAY_OK]{@link agora.CHANNEL_MEDIA_RELAY_STATE.RELAY_OK} (0)，且 
+     * [RELAY_OK]{@link agora.CHANNEL_MEDIA_RELAY_ERROR.CHANNEL_MEDIA_RELAY_STATE.RELAY_OK} (0)，且 
      * [onChannelMediaRelayEvent]{@link AgoraRtcEvents.onChannelMediaRelayEvent}  回调报告 
-     * [RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL]{@link agora.CHANNEL_MEDIA_RELAY_STATE.RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL} (4)，
+     * [RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL]{@link agora.CHANNEL_MEDIA_RELAY_EVENT.RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL} (4)，
      * 则表示 SDK 开始在源频道和目标频道之间转发媒体流。
      * - 如果
      *  `onChannelMediaRelayStateChanged`  回调报告 [RELAY_STATE_FAILURE]{@link agora.CHANNEL_MEDIA_RELAY_STATE.RELAY_STATE_FAILURE} (3)，
      * 则表示跨频道媒体流转发出现异常。
      *
-     * @note
+     * **Note**
+     * 
      * - 请在成功加入频道后调用该方法。
      * - 在直播场景中，只有角色为主播的用户才能调用该方法。
      * - 成功调用该方法后，若你想再次调用该方法，必须先调用 [stopChannelMediaRelay]{@link agora.stopChannelMediaRelay} 方法退出当前的转发状态。
@@ -10618,7 +10668,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 更新媒体流转发的频道。成功开始跨频道转发媒体流后，如果你希望将流转发到多个目标频道，
      * 或退出当前的转发频道，可以调用该方法。
      *
@@ -10626,8 +10676,7 @@ namespace agora {
      *  [onChannelMediaRelayEvent]{@link AgoraRtcEvents.onChannelMediaRelayEvent}  回调，并在回调中报告状态码 
      * [RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL]{@link agora.CHANNEL_MEDIA_RELAY_EVENT.RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL} (7)。
      *
-     * @note
-     * 请在  [startChannelMediaRelay]{@link agora.startChannelMediaRelay} 方法后调用该方法，更新媒体流转发的频道。
+     * @note 请在  [startChannelMediaRelay]{@link agora.startChannelMediaRelay} 方法后调用该方法，更新媒体流转发的频道。
      *
      * @param configuration 跨频道媒体流转发参数配置。详见
      * [ChannelMediaRelayConfiguration]{@link agora.ChannelMediaRelayConfiguration}。
@@ -10652,20 +10701,19 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 停止跨频道媒体流转发。一旦停止，主播会退出所有目标频道。
      *
      * 成功调用该方法后，SDK 会触发
      *  [onChannelMediaRelayStateChanged]{@link AgoraRtcEvents.onChannelMediaRelayStateChanged}  回调。如果报告 
      * [RELAY_STATE_IDLE]{@link agora.CHANNEL_MEDIA_RELAY_STATE.RELAY_STATE_IDLE} (0) 和 
-     * [RELAY_OK]{@link agora.CHANNEL_MEDIA_RELAY_STATE.RELAY_OK} (0)，则表示已停止转发媒体流。
+     * [RELAY_OK]{@link agora.CHANNEL_MEDIA_RELAY_ERROR.RELAY_OK} (0)，则表示已停止转发媒体流。
      *
-     * @note
-     * 如果该方法调用不成功，SDK 会触发
+     * @note 如果该方法调用不成功，SDK 会触发
      *  [onChannelMediaRelayStateChanged]{@link AgoraRtcEvents.onChannelMediaRelayStateChanged}  回调，并报告状态码 
      * [RELAY_ERROR_SERVER_NO_RESPONSE]{@link agora.CHANNEL_MEDIA_RELAY_ERROR.RELAY_ERROR_SERVER_NO_RESPONSE} (2) 或
      * [RELAY_ERROR_SERVER_CONNECTION_LOST]{@link agora.CHANNEL_MEDIA_RELAY_ERROR.RELAY_ERROR_SERVER_CONNECTION_LOST} (8)。你可以调用
-     *  [leaveChannel]{@link agora.leaveChannel()}  方法离开频道，跨频道媒体流转发会自动停止。
+     *  [leaveChannel]{@link agora.leaveChannel}  方法离开频道，跨频道媒体流转发会自动停止。
      * @return
      * - 0：方法调用成功。
      * - < 0：方法调用失败
@@ -10680,7 +10728,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 删除导入的外部媒体流。
      * @note 成功删除外部视频源 URL 地址后会触发  [onUserOffline]{@link AgoraRtcEvents.onUserOffline}  回调，`uid` 为 `666`。
      * @param url 已导入、待删除的外部视频源 URL 地址。
@@ -10697,7 +10745,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 声网提供自定义数据上报和分析服务。
      *
      * 该服务当前处于免费内测期。内测期提供的能力为 6 秒内最多上报 10 条数据，每条自定义数据不能超过 256 字节，每个字符串不能超过 100 字节。
@@ -10711,7 +10759,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 获取当前网络连接状态。
      * 
      * @return [CONNECTION_STATE_TYPE]{@link agora.CONNECTION_STATE_TYPE}。
@@ -10730,11 +10778,12 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 发送 Metadata。
      * 
-     * @note 
+     * **Note**
+     * 
      * - 该方法需要在 [registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver} 之后调用。
      * - 请确保在该方法中传入的 Metadata 大小不超过 [setMaxMetadataSize]{@link agora.setMaxMetadataSize} 中设定的值。
      * @param metadata 用户想要发送的 Metadata。
@@ -10757,7 +10806,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * @ignore
      * 请求最大的 Metadata 大小。
      * 
@@ -10783,9 +10832,12 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
+     * @ignore
      * 注册媒体 metadata 观测器用于接收或发送 metadata。
-     * @note
+     * 
+     * **Note**
+     * 
      * - 请在  [joinChannel]{@link agora.joinChannel}  前调用该方法
      * - 该方法仅使用于直播场景
      * 
@@ -10803,7 +10855,7 @@ namespace agora {
     }
 
     
-    /** @cn
+    /** 
      * 通过 JSON 配置 SDK 提供技术预览或特别定制功能。
      * JSON 选项默认不公开。声网工程师正在努力寻求以标准化方式公开 JSON 选项。
      * @param parameters JSON 字符串形式的参数
