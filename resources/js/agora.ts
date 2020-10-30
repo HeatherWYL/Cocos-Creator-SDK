@@ -9117,11 +9117,9 @@ namespace agora {
      * 我们建议同时播放的音效文件不要超过 3 个。
      * @param soundId 指定音效的 ID。每个音效均有唯一的 ID。
      * 
-     * **Note**
-     * 
-     * - 如果你已通过  [preloadEffect]{@link agora.preloadEffect}  将音效加载至内存，确保这里设置的 `soundId` 与  
+     * @note 如果你已通过  [preloadEffect]{@link agora.preloadEffect}  将音效加载至内存，确保这里设置的 `soundId` 与  
      * [preloadEffect]{@link agora.preloadEffect}  设置的 `soundId` 相同。
-     * - 在 macOS 和 Windows 上，该方法不支持同时播放多个在线音效文件。
+     * 
      * @param filePath 音效文件的绝对路径或 URL 地址，例如：c:/music/audio.mp4。建议填写文件后缀名。若无法确定文件后缀名，可不填。
      * 支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 及 wav。
      * 详见 [Supported Media Formats in Media Foundation](https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation) 。
@@ -10629,7 +10627,7 @@ namespace agora {
      * [onChannelMediaRelayEvent]{@link AgoraRtcEvents.onChannelMediaRelayEvent}  回调，并在回调中报告当前的跨频道媒体流转发状态和事件。
      * - 如果 [onChannelMediaRelayStateChanged]{@link AgoraRtcEvents.onChannelMediaRelayStateChanged}  回调报告 
      * [RELAY_STATE_RUNNING]{@link agora.CHANNEL_MEDIA_RELAY_STATE.RELAY_STATE_RUNNING} (2) 和 
-     * [RELAY_OK]{@link agora.CHANNEL_MEDIA_RELAY_ERROR.CHANNEL_MEDIA_RELAY_STATE.RELAY_OK} (0)，且 
+     * [RELAY_OK]{@link agora.CHANNEL_MEDIA_RELAY_ERROR.RELAY_OK} (0)，且 
      * [onChannelMediaRelayEvent]{@link AgoraRtcEvents.onChannelMediaRelayEvent}  回调报告 
      * [RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL]{@link agora.CHANNEL_MEDIA_RELAY_EVENT.RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL} (4)，
      * 则表示 SDK 开始在源频道和目标频道之间转发媒体流。
