@@ -325,7 +325,7 @@ public:
         });
   }
 
-  void functionCall(std::string callbackName, uid_t uid,
+  void functionCall(std::string callbackName, rtc::uid_t uid,
                     const rtc::UserInfo &info) {
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -363,7 +363,7 @@ public:
   }
 
   void functionCall(std::string callbackName, int imageWidth, int imageHeight,
-                    const rtc::Rectangle *vecRectangle, const int *vecDistance,
+                    rtc::Rectangle *vecRectangle, int *vecDistance,
                     int numFaces) {
     se::Value vecRectangleValue = toSeValue(vecRectangle, numFaces);
     se::Value vecDistanceValue = se::Value(*vecDistance);
@@ -388,7 +388,7 @@ public:
         });
   }
 
-  void functionCall(std::string callbackName, uid_t uid, int streamId,
+  void functionCall(std::string callbackName, rtc::uid_t uid, int streamId,
                     const char *data, size_t length) {
     se::Value dataValue = toSeValue(data, length);
 

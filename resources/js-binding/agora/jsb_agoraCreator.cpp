@@ -244,7 +244,7 @@ static bool js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State &s) {
       s.rval() = se::Value(res);
       cobj->setAppType(APP_TYPE_COCOSCREATOR);
       cobj->registerVideoFrameObserver(videoFrameObserver);
-    }
+    } break;
 
     default: {
       int ret = cobj->callApi((API_TYPE)api, parameters);
