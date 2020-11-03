@@ -1,20 +1,21 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "sourceMap": false,
+    "outDir": "../../",
+    "alwaysStrict": true,
+    "declaration": false,
+		"removeComments": true,
+		"module": "commonjs",
     "lib": [ "es2015", "es2017", "dom" ],
     "target": "es5",
-    "declaration": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
-    "outDir": "resources/js",
     "forceConsistentCasingInFileNames": true
   },
+  "include": [
+    "../src/*.ts"
+  ],
   "exclude": [
-    "node_modules",
-    "library",
-    "local",
-    "temp",
-    "build",
-    "settings"
+    "node_modules"
   ]
 }

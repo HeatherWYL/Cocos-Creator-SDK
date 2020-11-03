@@ -1,0 +1,8 @@
+{
+	"name": "ts",
+	"version": "1.0.0",
+	"dependencies": {},
+	"scripts": {
+		"build": "tsc -p pub-debug && tsc -p pub-release && mv ../agora.js ../agora/agora.js"
+	}
+}

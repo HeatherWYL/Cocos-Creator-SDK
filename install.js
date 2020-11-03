@@ -2,7 +2,9 @@
 const path = require("fire-path");
 const fs = require("fire-fs");
 let utils = Editor.require("packages://cocos-services/panel/utils/utils.js");
-const { ios } = Editor.require('app://editor/core/native-packer');
+const {
+    ios
+} = Editor.require('app://editor/core/native-packer');
 let ProjHelper = Editor.require("packages://cocos-services/panel/utils/projHelper.js");
 var projHelper;
 const sdkType = "audio";
@@ -16,6 +18,12 @@ function addUsesPermission(permission) {
     projHelper.insertCodeLine(manifestPath, "uses-permission", perStr);
 }
 
+let checkContentByFile = function (filePath, reg) {
+    if (!fs.existsSync(filePath)) return false;
+    let contents = fs.readFileSync(filePath, "utf8");
+    return contents.match(reg) != null;
+}
+
 module.exports = {
     /**
      * 开启服务时会调用此函数，在此函数中要完成的工作：
@@ -27,20 +35,18 @@ module.exports = {
         // 在此处完成 js sdk 的引用
         // Todo...
         try {
-            if (!fs.existsSync(projectPath + "/assets/agora")) utils.mkdirs(projectPath + "/assets/agora");
-            var jsPath = __dirname + "/resources/js/agora.js";
-            Editor.assetdb.refresh("db://assets/agora");
-            if (!Editor.assetdb.exists("db://assets/agora/agora.js")) Editor.assetdb.import([jsPath], "db://assets/agora");
-            var tsPath = __dirname + "/resources/js/agora.d.ts";
-            Editor.assetdb.refresh("db://assets/agora");
-            if (!Editor.assetdb.exists("db://assets/agora/agora.d.ts")) Editor.assetdb.import([tsPath], "db://assets/agora");
+            let metaName = 'agora';
+            let assetDir = `${projectPath}/assets/${metaName}`;
+            if (fs.existsSync(assetDir)) utils.removeDir(assetDir);
+            utils.copyDir(`${__dirname}/resources/js/${metaName}`, assetDir);
+            Editor.assetdb.refresh(`db://assets/${metaName}`);
+            utils.copyFile(`${__dirname}/resources/js/${metaName}.d.ts`, `${projectPath}/${metaName}.d.ts`);
 
             utils.copyDir(
                 path.join(__dirname, "/resources/ccservices-agora-preview-script"),
                 projectPath + "/packages/ccservices-agora-preview-script"
             );
-        } catch (e) {
-        }
+        } catch (e) {}
         utils.printToCreatorConsole("log", "Agora service js sdk installation is complete!");
     },
 
@@ -54,10 +60,11 @@ module.exports = {
         // 在此处完成 js sdk 的移除
         // Todo...
         try {
-            if (Editor.assetdb.exists("db://assets/agora")) Editor.assetdb.delete(["db://assets/agora"]);
+            let metaName = 'agora';
+            if (Editor.assetdb.exists(`db://assets/${metaName}`)) Editor.assetdb.delete([`db://assets/${metaName}`]);
+            if (fs.existsSync(`${projectPath}/${metaName}.d.ts`)) fs.unlinkSync(`${projectPath}/${metaName}.d.ts`);
             utils.removeDir(projectPath + "/packages/ccservices-agora-preview-script");
-        } catch (e) {
-        }
+        } catch (e) {}
         utils.printToCreatorConsole("log", "Agora service js sdk uninstallation is complete!");
     },
 
@@ -266,7 +273,8 @@ ifeq ($(USE_AGORA),1)
 APP_CPPFLAGS += -DSERVICE_AGORA
 endif\n\n
         `;
-        var asPath = path.join(options.dest, "frameworks/runtime-src/proj.android-studio");
+        let asPath = path.join(options.dest, "frameworks/runtime-src/proj.android-studio");
+        this.modifyABIFilters(asPath);
         let androidMKPath = path.join(asPath, isCreator23x ? 'jni/CocosAndroid.mk' : 'app/jni/Android.mk');
         let applicationMKPath = path.join(asPath, isCreator23x ? 'jni/CocosApplication.mk' : 'app/jni/Application.mk');
         let buildGradePath = path.join(asPath, "app/build.gradle");
@@ -303,7 +311,12 @@ dependencies {
         let contents = fs.readFileSync(proguradPath, "utf8");
         if (contents.indexOf("Agora") >= 0) return;
         projHelper.appendCodeLine(proguradPath, proguradRules);
+    },
 
+    modifyABIFilters(asPath) {
+        let appBuildGradePath = path.join(asPath, "app/build.gradle");
+        if (fs.existsSync(appBuildGradePath) && !checkContentByFile(appBuildGradePath, /ndk[\s]*\{[\s\S]*abiFilters[\s]*PROP_APP_ABI\.split\(/))
+            projHelper.replaceCodeSegment(appBuildGradePath, /\}[\s]*\}[\s]*sourceSets\.main/g, `    ndk { abiFilters PROP_APP_ABI.split(':') }\n        }\n    }\n\n    sourceSets.main`);
     },
 
     async ios(options, params) {
@@ -356,15 +369,13 @@ dependencies {
         let iosPacker = new ios(options);
         if (!iosPacker.checkPodEnvironment()) return Promise.reject();
         // 第二步，创建Podfile已经，如果以来已存在，那么不进行修改和更新
-        let dependence = sdkType === "video" ? "AgoraRtcEngine_iOS_Crypto" : "AgoraAudio_iOS";
-        let version = sdkType === "video" ? "'3.1.2'" : "'3.1.2'";
+        let dependence = (sdkType === "video" ? "AgoraRtcEngine_iOS" : "AgoraAudio_iOS");
+        let version = (sdkType === "video" ? "'3.1.2'" : "'3.1.2'");
         let target = `${options.projectName}-mobile`;
-        if (!iosPacker.isDependenceExist(dependence, target)) {
-            iosPacker.addPodDependenceForTarget(dependence, target, version);
-            utils.printToCreatorConsole("info", "开始执行cocoapds");
-            await iosPacker.executePodFile();
-            utils.printToCreatorConsole("info", "cocoapds执行成功");
-        }
+        if (!iosPacker.isDependenceExist(dependence, target)) iosPacker.addPodDependenceForTarget(dependence, target, version);
+        utils.printToCreatorConsole("info", "开始执行cocoapds");
+        await iosPacker.executePodFile();
+        utils.printToCreatorConsole("info", "cocoapds执行成功");
 
         //第三步，往 UserConfigIOS.debug.xcconfig 添加 pod include
         this._addIncludeToUserConfig(path.join(options.dest, `frameworks/runtime-src/proj.ios_mac/ios/UserConfigIOS.debug.xcconfig`), options.projectName, 'debug');
