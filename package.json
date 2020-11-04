@@ -1,10 +1,7 @@
 {
-	"version": "2.1.0_3.1.2",
-	"author": "Cocos",
-	"email": "yangxin@anysdk.com",
-	"upgrade": "适配 Cocos Creator 2.4.x",
-	"upgrade_en": "Adapted to Cocos Creator 2.4.x",
-	"devDependencies": {
-		"typedoc": "^0.19.2"
-	}
+  "version": "2.1.0_3.1.2",
+  "author": "Cocos",
+  "email": "yangxin@anysdk.com",
+  "upgrade": "适配 Cocos Creator 2.4.x",
+  "upgrade_en": "Adapted to Cocos Creator 2.4.x"
 }

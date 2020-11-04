@@ -46,7 +46,8 @@ module.exports = {
                 path.join(__dirname, "/resources/ccservices-agora-preview-script"),
                 projectPath + "/packages/ccservices-agora-preview-script"
             );
-        } catch (e) {}
+        } catch (e) {
+        }
         utils.printToCreatorConsole("log", "Agora service js sdk installation is complete!");
     },
 
@@ -64,7 +65,8 @@ module.exports = {
             if (Editor.assetdb.exists(`db://assets/${metaName}`)) Editor.assetdb.delete([`db://assets/${metaName}`]);
             if (fs.existsSync(`${projectPath}/${metaName}.d.ts`)) fs.unlinkSync(`${projectPath}/${metaName}.d.ts`);
             utils.removeDir(projectPath + "/packages/ccservices-agora-preview-script");
-        } catch (e) {}
+        } catch (e) {
+        }
         utils.printToCreatorConsole("log", "Agora service js sdk uninstallation is complete!");
     },
 
