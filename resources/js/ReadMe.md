@@ -12,15 +12,15 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 </tr>
 <tr>
 <td>[init]{@link agora.init}</td>
-<td>Initializes an <tt>agora</tt> instance.</td>
+<td>Initializes the Agora engine.</td>
 </tr>
 <tr>
 <td>[initWithAreaCode]{@link agora.initWithAreaCode}</td>
-<td>Initializes an <tt>agora</tt> instance and specifies the region for connection.</td>
+<td>Initializes the Agora engine and specifies the region for connection.</td>
 </tr>
 <tr>
 <td>[release]{@link agora.release}</td>
-<td>Releases all <tt>agora</tt> resources.</td>
+<td>Releases all resources of the Agora engine.</td>
 </tr>
 <tr>
 <td>[setChannelProfile]{@link agora.setChannelProfile}</td>
