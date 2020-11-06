@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "IAgoraRtcEngine.h"
+#include "include/IAgoraRtcEngine.h"
 #include "scripting/js-bindings/manual/jsb_global.h"
 
 namespace agora {

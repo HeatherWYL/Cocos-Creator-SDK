@@ -44,14 +44,14 @@
 #define AGORA_CALL
 #endif
 
-#include "./callback/rtcEngineCallback/RtcEngineEventHandler.h"
-#include "./rtcEngine/RtcEngineBridge.h"
-#include "./test/ApiTester.h"
-#include "./test/EventTester.h"
 #include "Extensions.h"
-#include "IAgoraRtcEngine.h"
-#include "IAgoraRtcEngine2.h"
 #include "VideoFrameObserver.h"
+#include "callback/rtcEngineCallback/RtcEngineEventHandler.h"
+#include "include/IAgoraRtcEngine.h"
+#include "include/IAgoraRtcEngine2.h"
+#include "rtcEngine/RtcEngineBridge.h"
+#include "test/ApiTester.h"
+#include "test/EventTester.h"
 
 using namespace cocos2d;
 using namespace agora::rtc;

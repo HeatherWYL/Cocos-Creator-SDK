@@ -9,7 +9,7 @@
 #include <mutex>
 #include <vector>
 
-#include "IAgoraMediaEngine.h"
+#include "include/IAgoraMediaEngine.h"
 
 namespace agora {
 namespace cocos {
