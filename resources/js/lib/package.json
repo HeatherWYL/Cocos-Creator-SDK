@@ -1,0 +1,13 @@
+{
+  "name": "agora-cocos-creator-sdk",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p pub-debug && tsc -p pub-release && mv ../agora.js ../agora/agora.js",
+    "doc": "typedoc -p pub-release"
+  },
+  "devDependencies": {
+    "typedoc": "^0.19.2",
+    "typescript": "^4.0.5"
+  }
+}
