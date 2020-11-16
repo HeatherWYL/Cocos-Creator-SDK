@@ -375,9 +375,9 @@ dependencies {
         let version = (sdkType === "video" ? "'3.1.2'" : "'3.1.2'");
         let target = `${options.projectName}-mobile`;
         if (!iosPacker.isDependenceExist(dependence, target)) iosPacker.addPodDependenceForTarget(dependence, target, version);
-        utils.printToCreatorConsole("info", "开始执行cocoapds");
+        utils.printToCreatorConsole("info", "Start to execute CocoaPods, please wait patiently for the execution to complete before executing the subsequent operation!");
         await iosPacker.executePodFile();
-        utils.printToCreatorConsole("info", "cocoapds执行成功");
+        utils.printToCreatorConsole("info", "CocoaPods was successfully executed, and now you can perform subsequent operations!");
 
         //第三步，往 UserConfigIOS.debug.xcconfig 添加 pod include
         this._addIncludeToUserConfig(path.join(options.dest, `frameworks/runtime-src/proj.ios_mac/ios/UserConfigIOS.debug.xcconfig`), options.projectName, 'debug');

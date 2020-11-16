@@ -450,11 +450,11 @@ static bool js_cocos2dx_extension_agoraCreator_bindTextureId(se::State &s) {
   size_t argc = args.size();
   CC_UNUSED bool ok = true;
   if (argc == 2) {
-    uint8_t textureId;
-    ok &= seval_to_uint8(args[0], &textureId);
+    uint32_t textureId;
+    ok &= seval_to_uint32(args[0], &textureId);
 
-    uint8_t uid;
-    ok &= seval_to_uint8(args[1], &uid);
+    uint32_t uid;
+    ok &= seval_to_uint32(args[1], &uid);
 
     if (videoFrameObserver) {
       videoFrameObserver->bindTextureId(textureId, uid);
