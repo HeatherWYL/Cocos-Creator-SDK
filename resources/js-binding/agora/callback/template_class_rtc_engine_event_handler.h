@@ -233,7 +233,13 @@ public:
   void functionCall(std::string callbackName,
                     const rtc::AudioVolumeInfo *speakers,
                     unsigned int speakerNumber, int totalVolume) {
-    se::Value speakersValue = toSeValue(speakers, speakerNumber);
+    auto *temp = new MyAudioVolumeInfo[speakerNumber];
+    for (int i = 0; i < speakerNumber; ++i) {
+      temp[i].uid = speakers[i].uid;
+      temp[i].volume = speakers[i].volume;
+      temp[i].vad = speakers[i].vad;
+      temp[i].channelId = speakers[i].channelId ? speakers[i].channelId : "";
+    }
 
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -244,11 +250,13 @@ public:
             se::AutoHandleScope hs;
 
             se::ValueArray args;
-            args.push_back(speakersValue);
+            args.push_back(toSeValue(temp, speakerNumber));
             args.push_back(se::Value(speakerNumber));
             args.push_back(se::Value(totalVolume));
 
             func.toObject()->call(args, _refObj);
+
+            delete[] temp;
           }
         });
   }
@@ -365,8 +373,14 @@ public:
   void functionCall(std::string callbackName, int imageWidth, int imageHeight,
                     rtc::Rectangle *vecRectangle, int *vecDistance,
                     int numFaces) {
-    se::Value vecRectangleValue = toSeValue(vecRectangle, numFaces);
-    se::Value vecDistanceValue = se::Value(*vecDistance);
+    auto *temp0 = new rtc::Rectangle[numFaces];
+    for (int i = 0; i < numFaces; ++i) {
+      temp0[i] = vecRectangle[i];
+    }
+    auto *temp1 = new int[numFaces];
+    for (int i = 0; i < numFaces; ++i) {
+      temp1[i] = vecDistance[i];
+    }
 
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -379,18 +393,22 @@ public:
             se::ValueArray args;
             args.push_back(se::Value(imageWidth));
             args.push_back(se::Value(imageHeight));
-            args.push_back(vecRectangleValue);
-            args.push_back(vecDistanceValue);
+            args.push_back(toSeValue(temp0, numFaces));
+            args.push_back(toSeValue(temp1, numFaces));
             args.push_back(se::Value(numFaces));
 
             func.toObject()->call(args, _refObj);
+
+            delete[] temp0;
+            delete[] temp1;
           }
         });
   }
 
   void functionCall(std::string callbackName, rtc::uid_t uid, int streamId,
                     const char *data, size_t length) {
-    se::Value dataValue = toSeValue(data, length);
+    auto *temp = new char[length];
+    memcpy(temp, data, length);
 
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -403,16 +421,23 @@ public:
             se::ValueArray args;
             args.push_back(se::Value(uid));
             args.push_back(se::Value(streamId));
-            args.push_back(dataValue);
+            args.push_back(toSeValue(temp, length));
             args.push_back(se::Value(length));
 
             func.toObject()->call(args, _refObj);
+
+            delete[] temp;
           }
         });
   }
 
   void functionCall(std::string callbackName,
                     const rtc::IMetadataObserver::Metadata &metadata) {
+    auto temp0 = new unsigned char[metadata.size];
+    memcpy(temp0, metadata.buffer, metadata.size);
+    rtc::IMetadataObserver::Metadata temp1 = metadata;
+    temp1.buffer = temp0;
+
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {
@@ -422,9 +447,11 @@ public:
             se::AutoHandleScope hs;
 
             se::ValueArray args;
-            args.push_back(toSeValue(metadata));
+            args.push_back(toSeValue(temp1));
 
             func.toObject()->call(args, _refObj);
+
+            delete[] temp0;
           }
         });
   }

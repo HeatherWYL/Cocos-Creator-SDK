@@ -9,13 +9,22 @@
 
 namespace agora {
 namespace common {
+struct MyAudioVolumeInfo {
+  uid_t uid;
+  unsigned int volume;
+  unsigned int vad;
+  std::string channelId;
+};
+
+se::Value toSeValue(int *value, int length);
+
 se::Value toSeValue(const char *byteValue, int length);
 
 se::Value toSeValue(const rtc::RtcStats &rtcStats);
 
-se::Value toSeValue(const rtc::AudioVolumeInfo &audioVolumeInfo);
+se::Value toSeValue(const MyAudioVolumeInfo &audioVolumeInfo);
 
-se::Value toSeValue(const rtc::AudioVolumeInfo *audioVolumeInfo, int length);
+se::Value toSeValue(const MyAudioVolumeInfo *audioVolumeInfo, int length);
 
 se::Value toSeValue(const rtc::LastmileProbeResult &lastmileProbeResult);
 
