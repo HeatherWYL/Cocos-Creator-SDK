@@ -15,7 +15,11 @@ var agoraVue = Vue.extend({
             sdkType: this.params.sdkType || "audio",
         };
     },
-    created() {},
+    created() {
+        this.paramList.sdkType = this.sdkType || 'audio';
+        this.paramList.isEncrypt = this.isEncrypt || false;
+        this.$emit('save-param', this.paramList);
+    },
     methods: {
         utils_t: function (key, ...args) {
             return utils.t(key, ...args);
