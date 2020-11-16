@@ -1,5 +1,42 @@
-<div>
-    <div style="font-size: 14px;">{{utils_t("agora.service_enable")}}</div>
-    <div style="font-size: 14px; margin-top: 10px;">{{utils_t("agora.service_tips")}}</div>
-    <div style="font-size: 14px; margin-top: 5px;">{{utils_t("agora.api_level_tips")}}</div>
+<div style="height: 400px;">
+    <style>
+        .div-no-wrap {
+            margin: 5px;
+            display: flex;
+            justify-content: space-between;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .prop-item {
+            margin-top: 15px; 
+            margin-left: -13px; 
+            line-height: 20px;
+        }
+
+    </style>
+
+    <div>
+        <div style="font-size: 14px;">{{utils_t("agora.service_enable")}}</div>
+        <div style="font-size: 14px; margin-top: 10px;">{{utils_t("agora.service_tips")}}</div>
+        <div style="font-size: 14px; margin-top: 5px;">{{utils_t("agora.api_level_tips")}}</div>
+    </div>
+
+    <div>
+        <ui-prop class="flex-1 prop-item" name="{{ utils_t('agora.sdk_type') }}" tooltip="{{ utils_t('agora.sdk_type_tips') }}">
+            <label><input type="radio" name="sdkType" v-model="sdkType" value="audio" :checked='sdkType === "audio"' /> Audio </label>
+            <div style="width: 20px;"></div>
+            <label><input type="radio" name="sdkType" v-model="sdkType" value="video" :checked='sdkType === "video"' /> Video </label>
+          </ui-prop>
+        <ui-prop v-if="sdkType === 'video'" class="flex-1 prop-item" name="{{ utils_t('agora.is_encrypt') }}" tooltip="{{ utils_t('agora.is_encrypt_tips') }}">
+            <ui-checkbox @click="enableEncrypt" :checked="isEncrypt"></ui-checkbox>
+        </ui-prop>
+        <div class="div-no-wrap" style="margin-top: 10px;">
+            <div class="flex-1"></div>
+            <ui-button @click="saveParam" class="blue">{{ utils_t('btn_save') }}</ui-button>
+          </div>
+    </div>
+
+
 </div>
