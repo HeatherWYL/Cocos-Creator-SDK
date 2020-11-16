@@ -23,15 +23,18 @@
 
 * 下载并解压程序 zip 包。
 * 找到 `~/.CocosCreator/services/agora` 并替换所有文件。
-* 下载对应版本的Agora SDK，版本号为`package.json`的`version`中间部分的版本，如`2.1.0_3.1.2_3.2.1`，则下载`3.1.2`版本的SDK。
+* 下载对应版本的Agora SDK，版本号为`package.json`的`version`中间部分的版本，如`1.2.1_3.1.2_3.2.1`，则下载`3.1.2`版本的SDK。
   - 下载链接示例：
-    - https://download.agora.io/sdk/release/Agora_Native_SDK_for_Android_v3_1_2_FULL.zip
-    - https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_1_2_FULL.zip
-* 将下载的SDK解压到`resources/sdk`目录下。
-  - `android/agora`目录存放so文件，`android/lib`存放jar文件
-  - `ios/agora`目录存放framework文件
+    - 音频：
+      - https://download.agora.io/sdk/release/Agora_Native_SDK_for_Android_v3_1_2_VOICE.zip
+      - https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_1_2_VOICE.zip
+    - 视频：
+      - https://download.agora.io/sdk/release/Agora_Native_SDK_for_Android_v3_1_2_FULL.zip
+      - https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_1_2_FULL.zip
+* 将下载的SDK解压到`resources/sdk`目录下（注意音频和视频放在不同目录下）。
+  - `android/agora/audio`和`android/agora/video`目录存放so文件，`android/lib/audio`和`android/lib/video`存放jar文件
+  - `ios/agora/audio`和`ios/agora/video`目录存放framework文件（暂不需要，已通过Cocoapods方式导入）
 * 最后可通过Cocos Creator的build来使SDK生效
-* iOS平台，你需要打开XCode工程，并且将我们的framework开启embed，因为它是动态库.
 
 ## 附录
 

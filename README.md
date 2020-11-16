@@ -26,15 +26,18 @@ Check the end of document if you want to use App ID with the certificate.
 * Download and extract the zip file (or clone this repository).
 * Find `~/.CocosCreator/services/agora` and replace all files.
 * Download Agora SDK which matched the version，the version code part of `package.json/version` value in the middle.
-  Sample as `2.1.0_3.1.2_3.2.1`，you need to download the `3.1.2` version of SDK.
-  - SDK link sample：
-    - https://download.agora.io/sdk/release/Agora_Native_SDK_for_Android_v3_1_2_FULL.zip
-    - https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_1_2_FULL.zip
-* Extract SDK to the `resources/sdk` fold.
-  - `android/agora` fold save the `.so` file，`android/lib` save the `.jar` file.
-  - `ios/agora` fold save the `.framework` file
+  Sample as `1.2.1_3.1.2_3.2.1`，you need to download the `3.1.2` version of SDK.
+  - SDK link sample:
+    - Audio:
+      - https://download.agora.io/sdk/release/Agora_Native_SDK_for_Android_v3_1_2_VOICE.zip
+      - https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_1_2_VOICE.zip
+    - Video:
+      - https://download.agora.io/sdk/release/Agora_Native_SDK_for_Android_v3_1_2_FULL.zip
+      - https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_1_2_FULL.zip
+* Extract SDK to the `resources/sdk` folder（Audio and Video in different folder）.
+  - `android/agora/audio` and `android/agora/video` folders save the `.so` file，`android/lib/audio` and `android/lib/video` save the `.jar` file.
+  - `ios/agora/audio` and `ios/agora/video` folders save the `.framework` file. (Not need, use Cocoapods instead of now)
 * Finally, Use Cocos Creator build to make SDK work.
-* On iOS platform, you should open the XCode project, and embed our framework, because it is dynamic library.
 
 ## Sources
 
