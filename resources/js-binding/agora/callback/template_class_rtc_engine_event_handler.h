@@ -9,6 +9,8 @@
 #include "../Extensions.h"
 #include "../include/IAgoraRtcEngine.h"
 
+#include <vector>
+
 namespace agora {
 namespace common {
 class EngineEventHandler {
@@ -233,7 +235,7 @@ public:
   void functionCall(std::string callbackName,
                     const rtc::AudioVolumeInfo *speakers,
                     unsigned int speakerNumber, int totalVolume) {
-    auto *temp = new MyAudioVolumeInfo[speakerNumber];
+    std::vector<MyAudioVolumeInfo> temp(speakerNumber);
     for (int i = 0; i < speakerNumber; ++i) {
       temp[i].uid = speakers[i].uid;
       temp[i].volume = speakers[i].volume;
@@ -255,8 +257,6 @@ public:
             args.push_back(se::Value(totalVolume));
 
             func.toObject()->call(args, _refObj);
-
-            delete[] temp;
           }
         });
   }
@@ -373,14 +373,8 @@ public:
   void functionCall(std::string callbackName, int imageWidth, int imageHeight,
                     rtc::Rectangle *vecRectangle, int *vecDistance,
                     int numFaces) {
-    auto *temp0 = new rtc::Rectangle[numFaces];
-    for (int i = 0; i < numFaces; ++i) {
-      temp0[i] = vecRectangle[i];
-    }
-    auto *temp1 = new int[numFaces];
-    for (int i = 0; i < numFaces; ++i) {
-      temp1[i] = vecDistance[i];
-    }
+    std::vector<rtc::Rectangle> temp0(vecRectangle, vecRectangle + numFaces);
+    std::vector<int> temp1(vecDistance, vecDistance + numFaces);
 
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -398,17 +392,13 @@ public:
             args.push_back(se::Value(numFaces));
 
             func.toObject()->call(args, _refObj);
-
-            delete[] temp0;
-            delete[] temp1;
           }
         });
   }
 
   void functionCall(std::string callbackName, rtc::uid_t uid, int streamId,
                     const char *data, size_t length) {
-    auto *temp = new char[length];
-    memcpy(temp, data, length);
+    std::vector<char> temp(data, data + length);
 
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -425,18 +415,18 @@ public:
             args.push_back(se::Value(length));
 
             func.toObject()->call(args, _refObj);
-
-            delete[] temp;
           }
         });
   }
 
   void functionCall(std::string callbackName,
                     const rtc::IMetadataObserver::Metadata &metadata) {
-    auto temp0 = new unsigned char[metadata.size];
-    memcpy(temp0, metadata.buffer, metadata.size);
-    rtc::IMetadataObserver::Metadata temp1 = metadata;
-    temp1.buffer = temp0;
+    MyMetadata temp;
+    temp.uid = metadata.uid;
+    temp.size = metadata.size;
+    temp.buffer.insert(temp.buffer.begin(), metadata.buffer,
+                       metadata.buffer + metadata.size);
+    temp.timeStampMs = metadata.timeStampMs;
 
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -447,11 +437,9 @@ public:
             se::AutoHandleScope hs;
 
             se::ValueArray args;
-            args.push_back(toSeValue(temp1));
+            args.push_back(toSeValue(temp));
 
             func.toObject()->call(args, _refObj);
-
-            delete[] temp0;
           }
         });
   }
