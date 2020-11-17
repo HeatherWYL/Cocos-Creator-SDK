@@ -24,15 +24,15 @@
 
     <div>
         <ui-prop class="flex-1 prop-item" name="{{ utils_t('agora.sdk_type') }}"
-            tooltip="{{ utils_t('agora.sdk_type_tips') }}">
-            <label><input type="radio" name="sdkType" v-model="sdkType" value="audio" :checked='sdkType === "audio"' />
+                 tooltip="{{ utils_t('agora.sdk_type_tips') }}">
+            <label><input type="radio" name="sdkType" v-model="sdkType" value="audio" :checked='sdkType === "audio"'/>
                 Audio </label>
             <div style="width: 20px;"></div>
-            <label><input type="radio" name="sdkType" v-model="sdkType" value="video" :checked='sdkType === "video"' />
+            <label><input type="radio" name="sdkType" v-model="sdkType" value="video" :checked='sdkType === "video"'/>
                 Video </label>
         </ui-prop>
         <ui-prop v-if="sdkType === 'video'" class="flex-1 prop-item" name="{{ utils_t('agora.is_encrypt') }}"
-            tooltip="{{ utils_t('agora.is_encrypt_tips') }}">
+                 tooltip="{{ utils_t('agora.is_encrypt_tips') }}">
             <ui-checkbox @click="enableEncrypt" :checked="isEncrypt"></ui-checkbox>
         </ui-prop>
         <div class="div-no-wrap" style="margin-top: 10px;">
@@ -40,6 +40,4 @@
             <ui-button @click="saveParam" class="blue">{{ utils_t('btn_save') }}</ui-button>
         </div>
     </div>
-
-
 </div>
