@@ -40,7 +40,6 @@ private:
                             const CacheVideoFrame &frame);
 
 private:
-  std::mutex _mutex;
   std::map<unsigned int, CacheVideoFrame> _map;
 };
 } // namespace cocos

@@ -9,10 +9,17 @@ namespace agora {
 namespace common {
 using namespace agora::rtc;
 
-se::Value toSeValue(const char *byteValue, int length) {
-  se::HandleObject obj(
-      se::Object::createTypedArray(se::Object::TypedArrayType::UINT8,
-                                   const_cast<char *>(byteValue), length));
+se::Value toSeValue(const std::vector<int> &value, int length) {
+  se::HandleObject obj(se::Object::createArrayObject(length));
+  for (int i = 0; i < length; ++i) {
+    obj->setArrayElement(i, se::Value(value[i]));
+  }
+  return se::Value(obj);
+}
+
+se::Value toSeValue(const std::vector<char> &byteValue, int length) {
+  se::HandleObject obj(se::Object::createTypedArray(
+      se::Object::TypedArrayType::UINT8, (void *)byteValue.data(), length));
   return se::Value(obj);
 }
 
@@ -47,7 +54,7 @@ se::Value toSeValue(const RtcStats &rtcStats) {
   return se::Value(obj);
 }
 
-se::Value toSeValue(const AudioVolumeInfo &audioVolumeInfo) {
+se::Value toSeValue(const MyAudioVolumeInfo &audioVolumeInfo) {
   se::HandleObject obj(se::Object::createPlainObject());
   obj->setProperty("uid", se::Value(audioVolumeInfo.uid));
   obj->setProperty("volume", se::Value(audioVolumeInfo.volume));
@@ -56,11 +63,11 @@ se::Value toSeValue(const AudioVolumeInfo &audioVolumeInfo) {
   return se::Value(obj);
 }
 
-se::Value toSeValue(const AudioVolumeInfo *audioVolumeInfo, int length) {
+se::Value toSeValue(const std::vector<MyAudioVolumeInfo> &audioVolumeInfo,
+                    int length) {
   se::HandleObject obj(se::Object::createArrayObject(length));
   for (int i = 0; i < length; ++i) {
-    AudioVolumeInfo info = *(audioVolumeInfo + i);
-    obj->setArrayElement(i, toSeValue(info));
+    obj->setArrayElement(i, toSeValue(audioVolumeInfo[i]));
   }
   return se::Value(obj);
 }
@@ -189,18 +196,18 @@ se::Value toSeValue(const Rectangle &rectangle) {
   return se::Value(obj);
 }
 
-se::Value toSeValue(const Rectangle *rectangle, int length) {
+se::Value toSeValue(const std::vector<Rectangle> &rectangle, int length) {
   se::HandleObject obj(se::Object::createArrayObject(length));
   for (int i = 0; i < length; ++i) {
-    Rectangle info = *(rectangle + i);
-    obj->setArrayElement(i, toSeValue(info));
+    obj->setArrayElement(i, toSeValue(rectangle[i]));
   }
   return se::Value(obj);
 }
 
-se::Value toSeValue(const IMetadataObserver::Metadata &metadata) {
+se::Value toSeValue(const MyMetadata &metadata) {
   se::HandleObject buffer(se::Object::createTypedArray(
-      se::Object::TypedArrayType::UINT8, metadata.buffer, metadata.size));
+      se::Object::TypedArrayType::UINT8, (void *)metadata.buffer.data(),
+      metadata.size));
   se::Value timeStampMs;
   longlong_to_seval(metadata.timeStampMs, &timeStampMs);
 
