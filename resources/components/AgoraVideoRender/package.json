@@ -1,0 +1,8 @@
+{
+    "name": "AgoraVideoRender",
+    "version": "1.0.0",
+    "author": "Agora",
+    "main_perfab": "assets/AgoraVideoRender.prefab",
+    "icon": "icon.png",
+    "describe": "Video Render Perfab For Agora Video SDK"
+}

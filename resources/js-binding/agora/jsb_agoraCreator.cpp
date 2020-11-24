@@ -44,13 +44,14 @@
 #define AGORA_CALL
 #endif
 
-#include "./callback/rtcEngineCallback/RtcEngineEventHandler.h"
-#include "./rtcEngine/RtcEngineBridge.h"
-#include "./test/ApiTester.h"
-#include "./test/EventTester.h"
 #include "Extensions.h"
-#include "IAgoraRtcEngine.h"
-#include "IAgoraRtcEngine2.h"
+#include "VideoFrameObserver.h"
+#include "callback/rtcEngineCallback/RtcEngineEventHandler.h"
+#include "include/IAgoraRtcEngine.h"
+#include "include/IAgoraRtcEngine2.h"
+#include "rtcEngine/RtcEngineBridge.h"
+#include "test/ApiTester.h"
+#include "test/EventTester.h"
 
 using namespace cocos2d;
 using namespace agora::rtc;
@@ -75,7 +76,8 @@ private:
 
 RtcEngineEventHandler *rtcEngineEventHandler;
 EngineEventHandler *eventHandler;
-CocosMetadataObserver *observer;
+CocosMetadataObserver *metadataObserver;
+agora::cocos::VideoFrameObserver *videoFrameObserver;
 
 se::Class *js_cocos2dx_agoraCreator_class = nullptr;
 
@@ -85,9 +87,14 @@ static bool js_cocos2dx_extension_agoraCreator_finalize(se::State &s) {
     cobj->release();
   }
 
-  if (observer) {
-    delete observer;
-    observer = nullptr;
+  if (metadataObserver) {
+    delete metadataObserver;
+    metadataObserver = nullptr;
+  }
+
+  if (videoFrameObserver) {
+    delete videoFrameObserver;
+    videoFrameObserver = nullptr;
   }
 
   if (eventHandler) {
@@ -113,8 +120,12 @@ static bool js_cocos2dx_extension_agoraCreator_constructor(se::State &s) {
     eventHandler = new EngineEventHandler(obj);
   }
 
-  if (!observer) {
-    observer = new CocosMetadataObserver(eventHandler);
+  if (!metadataObserver) {
+    metadataObserver = new CocosMetadataObserver(eventHandler);
+  }
+
+  if (!videoFrameObserver) {
+    videoFrameObserver = new agora::cocos::VideoFrameObserver;
   }
 
   if (!rtcEngineEventHandler) {
@@ -224,8 +235,15 @@ static bool js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State &s) {
     } break;
 
     case REGISTER_MEDIA_META_DATA_OBSERVER: {
-      int res = cobj->callApi((API_TYPE)api, parameters, observer);
+      int res = cobj->callApi((API_TYPE)api, parameters, metadataObserver);
       s.rval() = se::Value(res);
+    } break;
+
+    case INITIALIZE: {
+      int res = cobj->callApi((API_TYPE)api, parameters);
+      s.rval() = se::Value(res);
+      cobj->setAppType(APP_TYPE_COCOSCREATOR);
+      cobj->registerVideoFrameObserver(videoFrameObserver);
     } break;
 
     default: {
@@ -427,6 +445,34 @@ SE_BIND_FUNC(js_cocos2dx_extension_agoraCreator_logEngineEventCase)
 
 #endif
 
+static bool js_cocos2dx_extension_agoraCreator_bindTextureId(se::State &s) {
+  const auto &args = s.args();
+  size_t argc = args.size();
+  CC_UNUSED bool ok = true;
+  if (argc == 2) {
+    uint32_t textureId;
+    ok &= seval_to_uint32(args[0], &textureId);
+
+    uint32_t uid;
+    ok &= seval_to_uint32(args[1], &uid);
+
+    if (videoFrameObserver) {
+      videoFrameObserver->bindTextureId(textureId, uid);
+    }
+
+    SE_PRECONDITION2(ok, false,
+                     "js_cocos2dx_extension_agoraCreator_"
+                     "bindTextureId: Error processing arguments");
+    return true;
+  }
+
+  SE_REPORT_ERROR("wrong number of arguments: %d, was expecting %d", (int)argc,
+                  0);
+  return false;
+}
+
+SE_BIND_FUNC(js_cocos2dx_extension_agoraCreator_bindTextureId)
+
 bool js_register_cocos2dx_extension_agoraCreator(se::Object *obj) {
   CCLOG("[Agora] js_register_cocos2dx_extension_agoraCreator");
 
@@ -457,6 +503,9 @@ bool js_register_cocos2dx_extension_agoraCreator(se::Object *obj) {
       "logEngineEventCase",
       _SE(js_cocos2dx_extension_agoraCreator_logEngineEventCase));
 #endif
+
+  cls->defineFunction("bindTextureId",
+                      _SE(js_cocos2dx_extension_agoraCreator_bindTextureId));
 
   cls->defineFinalizeFunction(_SE(js_cocos2dx_extension_agoraCreator_finalize));
   cls->install();

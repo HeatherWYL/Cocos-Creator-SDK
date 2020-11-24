@@ -54,6 +54,7 @@ module.exports = {
         this.router = Router();
         Editor.PreviewServer.userMiddlewares.push(this.router);
         this.router.get('/settings.js', this.getSettings.bind(this));
+        this.router.get('/plugins/' + Paths.sdkURL, this.getSDK.bind(this));
         this.router.get('/res/raw-' + Paths.sdkURL, this.getSDK.bind(this));
     },
 

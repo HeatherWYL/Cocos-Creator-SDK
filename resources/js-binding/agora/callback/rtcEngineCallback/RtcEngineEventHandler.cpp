@@ -17,7 +17,9 @@ RtcEngineEventHandler::~RtcEngineEventHandler() {
   }
 }
 
-RtcEngineEventHandler::RtcEngineEventHandler() {}
+RtcEngineEventHandler::RtcEngineEventHandler() {
+  cEngineEventHandler = new CEngineEventHandler();
+}
 
 void RtcEngineEventHandler::initCallbackEvent(
     CEngineEventHandler *engineEventHandler) {
@@ -630,8 +632,7 @@ void RtcEngineEventHandler::onStreamMessage(rtc::uid_t uid, int streamId,
   if (!mEventHandler)
     return;
 
-  mEventHandler->functionCall<rtc::uid_t, int, const char *, size_t>(
-      "onStreamMessage", uid, streamId, data, length);
+  mEventHandler->functionCall("onStreamMessage", uid, streamId, data, length);
 }
 
 void RtcEngineEventHandler::onConnectionBanned() {

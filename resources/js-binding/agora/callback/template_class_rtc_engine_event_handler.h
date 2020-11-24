@@ -9,6 +9,8 @@
 #include "../Extensions.h"
 #include "../include/IAgoraRtcEngine.h"
 
+#include <vector>
+
 namespace agora {
 namespace common {
 class EngineEventHandler {
@@ -233,7 +235,13 @@ public:
   void functionCall(std::string callbackName,
                     const rtc::AudioVolumeInfo *speakers,
                     unsigned int speakerNumber, int totalVolume) {
-    se::Value speakersValue = toSeValue(speakers, speakerNumber);
+    std::vector<MyAudioVolumeInfo> temp(speakerNumber);
+    for (int i = 0; i < speakerNumber; ++i) {
+      temp[i].uid = speakers[i].uid;
+      temp[i].volume = speakers[i].volume;
+      temp[i].vad = speakers[i].vad;
+      temp[i].channelId = speakers[i].channelId ? speakers[i].channelId : "";
+    }
 
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -244,7 +252,7 @@ public:
             se::AutoHandleScope hs;
 
             se::ValueArray args;
-            args.push_back(speakersValue);
+            args.push_back(toSeValue(temp, speakerNumber));
             args.push_back(se::Value(speakerNumber));
             args.push_back(se::Value(totalVolume));
 
@@ -325,7 +333,7 @@ public:
         });
   }
 
-  void functionCall(std::string callbackName, uid_t uid,
+  void functionCall(std::string callbackName, rtc::uid_t uid,
                     const rtc::UserInfo &info) {
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -363,10 +371,10 @@ public:
   }
 
   void functionCall(std::string callbackName, int imageWidth, int imageHeight,
-                    const rtc::Rectangle *vecRectangle, const int *vecDistance,
+                    rtc::Rectangle *vecRectangle, int *vecDistance,
                     int numFaces) {
-    se::Value vecRectangleValue = toSeValue(vecRectangle, numFaces);
-    se::Value vecDistanceValue = se::Value(*vecDistance);
+    std::vector<rtc::Rectangle> temp0(vecRectangle, vecRectangle + numFaces);
+    std::vector<int> temp1(vecDistance, vecDistance + numFaces);
 
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -379,8 +387,8 @@ public:
             se::ValueArray args;
             args.push_back(se::Value(imageWidth));
             args.push_back(se::Value(imageHeight));
-            args.push_back(vecRectangleValue);
-            args.push_back(vecDistanceValue);
+            args.push_back(toSeValue(temp0, numFaces));
+            args.push_back(toSeValue(temp1, numFaces));
             args.push_back(se::Value(numFaces));
 
             func.toObject()->call(args, _refObj);
@@ -388,9 +396,9 @@ public:
         });
   }
 
-  void functionCall(std::string callbackName, uid_t uid, int streamId,
+  void functionCall(std::string callbackName, rtc::uid_t uid, int streamId,
                     const char *data, size_t length) {
-    se::Value dataValue = toSeValue(data, length);
+    std::vector<char> temp(data, data + length);
 
     cocos2d::Application::getInstance()
         ->getScheduler()
@@ -403,7 +411,7 @@ public:
             se::ValueArray args;
             args.push_back(se::Value(uid));
             args.push_back(se::Value(streamId));
-            args.push_back(dataValue);
+            args.push_back(toSeValue(temp, length));
             args.push_back(se::Value(length));
 
             func.toObject()->call(args, _refObj);
@@ -413,6 +421,13 @@ public:
 
   void functionCall(std::string callbackName,
                     const rtc::IMetadataObserver::Metadata &metadata) {
+    MyMetadata temp;
+    temp.uid = metadata.uid;
+    temp.size = metadata.size;
+    temp.buffer.insert(temp.buffer.begin(), metadata.buffer,
+                       metadata.buffer + metadata.size);
+    temp.timeStampMs = metadata.timeStampMs;
+
     cocos2d::Application::getInstance()
         ->getScheduler()
         ->performFunctionInCocosThread([=]() {
@@ -422,7 +437,7 @@ public:
             se::AutoHandleScope hs;
 
             se::ValueArray args;
-            args.push_back(toSeValue(metadata));
+            args.push_back(toSeValue(temp));
 
             func.toObject()->call(args, _refObj);
           }
