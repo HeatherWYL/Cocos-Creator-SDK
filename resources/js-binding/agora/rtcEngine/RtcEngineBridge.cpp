@@ -38,7 +38,7 @@ int RtcEngineBridge::callApi(API_TYPE apiType, const std::string &parameters) {
   } break;
 
   case RELEASE: {
-    release(true);
+    release(true, false);
   } break;
 
   case SET_CHANNEL_PROFILE: {
@@ -1899,6 +1899,9 @@ int RtcEngineBridge::initialize(const char *appId, void *context,
   rtcEngineContext.eventHandler = mRtcEngineEventHandler;
 
   LOG_JSON(INITIALIZE, "appId", appId, "areaCode", areaCode);
+  if (!mRtcEngine) {
+    mRtcEngine = createAgoraRtcEngine();
+  }
   return mRtcEngine->initialize(rtcEngineContext);
 }
 
@@ -2601,10 +2604,16 @@ RtcEngineBridge::createVideoDeviceManager(ERROR_CODE &error_code) {
   return new VideoDeviceManager(mRtcEngine, error_code);
 }
 
-void RtcEngineBridge::release(bool sync) {
+void RtcEngineBridge::release(bool sync, bool del) {
+  if (sync) {
+    mRtcEngine->unregisterEventHandler(mRtcEngineEventHandler);
+  }
   IRtcEngine::release(sync);
-  mRtcEngine = nullptr;
-  delete this;
+  if (del) {
+    delete this;
+  } else {
+    mRtcEngine = nullptr;
+  }
 }
 
 int RtcEngineBridge::setupLocalVideo(const VideoCanvas &canvas) {

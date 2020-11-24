@@ -84,7 +84,7 @@ se::Class *js_cocos2dx_agoraCreator_class = nullptr;
 static bool js_cocos2dx_extension_agoraCreator_finalize(se::State &s) {
   auto *cobj = (RtcEngineBridge *)s.nativeThisObject();
   if (cobj) {
-    cobj->release();
+    cobj->release(true);
   }
 
   if (metadataObserver) {
@@ -113,7 +113,7 @@ static bool js_cocos2dx_extension_agoraCreator_finalize(se::State &s) {
 SE_BIND_FINALIZE_FUNC(js_cocos2dx_extension_agoraCreator_finalize)
 
 static bool js_cocos2dx_extension_agoraCreator_constructor(se::State &s) {
-  se::Object *obj = s.thisObject();
+  auto *obj = s.thisObject();
 
   if (!eventHandler) {
     // link the native object with the javascript object
@@ -170,8 +170,8 @@ static bool js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State &s) {
     case GET_VERSION:
     case GET_ERROR_DESCRIPTION:
     case GET_CALL_ID: {
-      std::string res = cobj->callApi_str((API_TYPE)api, parameters);
-      s.rval() = se::Value(res);
+      auto ret = cobj->callApi_str((API_TYPE)api, parameters);
+      std_string_to_seval(ret, &s.rval());
     } break;
 
     case GET_USER_INFO_BY_USER_ACCOUNT:
@@ -198,9 +198,9 @@ static bool js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State &s) {
       seval_to_std_vector_int(args[2], &bytes);
       std::string bytesStr(bytes.begin(), bytes.end());
 
-      int res = cobj->callApi((API_TYPE)api, parameters,
-                              const_cast<char *>(bytesStr.c_str()));
-      s.rval() = se::Value(res);
+      auto ret = cobj->callApi((API_TYPE)api, parameters,
+                               const_cast<char *>(bytesStr.c_str()));
+      int32_to_seval(ret, &s.rval());
     } break;
 
     case SET_UP_LOCAL_VIDEO: {
@@ -220,34 +220,47 @@ static bool js_cocos2dx_extension_agoraCreator_callNativeMethod(se::State &s) {
       seval_to_std_vector_int(args[2], &bytes);
       std::string bytesStr(bytes.begin(), bytes.end());
 
-      int res = cobj->callApi((API_TYPE)api, parameters,
-                              const_cast<char *>(bytesStr.c_str()));
-      s.rval() = se::Value(res);
+      auto ret = cobj->callApi((API_TYPE)api, parameters,
+                               const_cast<char *>(bytesStr.c_str()));
+      int32_to_seval(ret, &s.rval());
     } break;
 
     case SET_MAX_META_SIZE: {
       auto ptr = new int;
 
-      int res = cobj->callApi((API_TYPE)api, parameters, ptr);
-      s.rval() = se::Value(res);
+      auto ret = cobj->callApi((API_TYPE)api, parameters, ptr);
+      int32_to_seval(ret, &s.rval());
 
       delete ptr;
     } break;
 
     case REGISTER_MEDIA_META_DATA_OBSERVER: {
-      int res = cobj->callApi((API_TYPE)api, parameters, metadataObserver);
-      s.rval() = se::Value(res);
+      auto ret = cobj->callApi((API_TYPE)api, parameters, metadataObserver);
+      int32_to_seval(ret, &s.rval());
     } break;
 
     case INITIALIZE: {
-      int res = cobj->callApi((API_TYPE)api, parameters);
-      s.rval() = se::Value(res);
+      auto ret = cobj->callApi((API_TYPE)api, parameters);
+      int32_to_seval(ret, &s.rval());
       cobj->setAppType(APP_TYPE_COCOSCREATOR);
+      if (!videoFrameObserver) {
+        videoFrameObserver = new agora::cocos::VideoFrameObserver;
+      }
       cobj->registerVideoFrameObserver(videoFrameObserver);
     } break;
 
+    case RELEASE: {
+      cobj->registerVideoFrameObserver(nullptr);
+      if (videoFrameObserver) {
+        delete videoFrameObserver;
+        videoFrameObserver = nullptr;
+      }
+      auto ret = cobj->callApi((API_TYPE)api, parameters);
+      int32_to_seval(ret, &s.rval());
+    } break;
+
     default: {
-      int ret = cobj->callApi((API_TYPE)api, parameters);
+      auto ret = cobj->callApi((API_TYPE)api, parameters);
       int32_to_seval(ret, &s.rval());
     } break;
     }
@@ -282,7 +295,8 @@ js_cocos2dx_extension_agoraCreator_callNativeMethodAudioEffect(se::State &s) {
     std::string parameters;
     ok &= seval_to_std_string(args[1], &parameters);
 
-    int ret = cobj->callApi_audioEffect((API_TYPE_AUDIO_EFFECT)api, parameters);
+    auto ret =
+        cobj->callApi_audioEffect((API_TYPE_AUDIO_EFFECT)api, parameters);
     int32_to_seval(ret, &s.rval());
 
     SE_PRECONDITION2(ok, false,
