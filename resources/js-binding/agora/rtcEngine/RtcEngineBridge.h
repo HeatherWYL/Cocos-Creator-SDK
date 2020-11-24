@@ -23,6 +23,7 @@ class RtcEngineBridge : public IRtcEngineBridge {
 public:
   RtcEngineBridge();
 
+protected:
   virtual ~RtcEngineBridge();
 
 private:
@@ -46,7 +47,7 @@ public:
   virtual int callApi_audioEffect(API_TYPE_AUDIO_EFFECT apiType,
                                   const std::string &parameters) override;
 
-  virtual void release(bool sync = false) override;
+  virtual void release(bool sync = false, bool del = true) override;
 
   virtual RtcChannelBridge *createChannel(const char *channelId) override;
 
