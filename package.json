@@ -1,7 +1,14 @@
 {
-    "version": "1.2.2_3.1.2",
+    "version": "1.3.0_3.1",
     "author": "Cocos",
     "email": "mx2913@qq.com",
-    "upgrade": "适配 Cocos Creator 2.4.x",
-    "upgrade_en": "Adapted to Cocos Creator 2.4.x"
+    "upgrade": "新增视频模块，优化性能",
+    "upgrade_en": "新增视频模块，优化性能",
+    "sdk_vers": {
+        "ios-video": "3.1.2",
+        "ios-audio": "3.1.2",
+        "android-video": "3.1.3",
+        "android-audio": "3.1.1",
+        "h5-audio": "3.1.2"
+    }
 }
