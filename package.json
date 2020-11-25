@@ -3,7 +3,7 @@
     "author": "Cocos",
     "email": "mx2913@qq.com",
     "upgrade": "新增视频模块，优化性能",
-    "upgrade_en": "新增视频模块，优化性能",
+    "upgrade_en": "Add video module to optimize performance",
     "sdk_vers": {
         "ios-video": "3.1.2",
         "ios-audio": "3.1.2",
