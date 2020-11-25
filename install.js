@@ -150,11 +150,13 @@ module.exports = {
             let includeAgora = `
 #define SERVICE_AGORA 1
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) && SERVICE_AGORA
+#include "base/CCScheduler.h"
 #include "agora/AgoraManager.h"
 #endif
 `;
             let registerAgora = `
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) && SERVICE_AGORA
+    getScheduler()->removeAllFunctionsToBePerformedInCocosThread();
     AgoraManager::getInstance()->registerJSBCallback();
 #endif
       `;
