@@ -1,7 +1,9 @@
-声网通过全球部署的虚拟网络，提供可以灵活搭配的 API 组合，为移动端到移动端以及移动端到 Web 端提供质量可靠的实时音视频通信
+声网通过全球部署的虚拟网络，提供可以灵活搭配的 API 组合，为移动端到移动端以及移动端到 Web 端提供质量可靠的实时音视频通信。
 
-- [agora]{@link agora} 命名空间包含应用程序调用的主要方法
-- [AgoraRtcEvents]{@link AgoraRtcEvents} 类用于向应用程序发送回调通知
+- [agora]{@link agora} 命名空间包含应用程序调用的主要方法。
+- [AgoraRtcEvents]{@link AgoraRtcEvents} 类用于向应用程序发送回调通知。
+
+在调用 API 过程中，SDK 可能会返回错误码和警告码，详见[错误码和警告码](https://docs.agora.io/cn/Interactive%20Broadcast/error_rtc?platform=Cocos%20Creator)。
 
 ### 频道管理
 
@@ -158,6 +160,70 @@
 </tr>
 </table>
 
+### 视频管理
+
+<table>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[enableVideo]{@link agora.enableVideo}</td>
+<td>启用视频模块</td>
+</tr>
+<tr>
+<td>[disableVideo]{@link agora.disableVideo}</td>
+<td>关闭视频模块</td>
+</tr>
+<tr>
+<td>[setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}</td>
+<td>设置视频编码属性</td>
+</tr>
+<tr>
+<td>[setupLocalVideo]{@link agora.setupLocalVideo}</td>
+<td>初始化本地视图</td>
+</tr>
+<tr>
+<td>[setupRemoteVideo]{@link agora.setupRemoteVideo}</td>
+<td>初始化远端用户视图</td>
+</tr>
+<tr>
+<td>[setLocalRenderMode]{@link agora.setLocalRenderMode}</td>
+<td>更新本地视图显示模式</td>
+</tr>
+<tr>
+<td>[setRemoteRenderMode]{@link agora.setRemoteRenderMode}</td>
+<td>更新远端视图显示模式</td>
+</tr>
+<tr>
+<td>[startPreview]{@link agora.startPreview}</td>
+<td>开启视频预览</td>
+</tr>
+<tr>
+<td>[stopPreview]{@link agora.stopPreview}</td>
+<td>停止视频预览</td>
+<tr>
+<td>[enableLocalVideo]{@link agora.enableLocalVideo}</td>
+<td>开关本地视频采集</td>
+</tr>
+<tr>
+<td>[muteLocalVideoStream]{@link agora.muteLocalVideoStream}</td>
+<td>开关本地视频发送</td>
+</tr>
+<tr>
+<td>[muteRemoteVideoStream]{@link agora.muteRemoteVideoStream}</td>
+<td>接收／停止接收指定远端用户的视频流</td>
+</tr>
+<tr>
+<td>[muteAllRemoteVideoStreams]{@link agora.muteAllRemoteVideoStreams}</td>
+<td>接收／停止接收所有远端视频流</td>
+</tr>
+<tr>
+<td>[setDefaultMuteAllRemoteVideoStreams]{@link agora.setDefaultMuteAllRemoteVideoStreams}</td>
+<td>设置是否默认停止接收视频流</td>
+</tr>
+</table>
+
 ### 本地媒体事件
 
 <table>
@@ -170,12 +236,28 @@
 <td>本地音频状态改变回调</td>
 </tr>
 <tr>
+<td>[onLocalVideoStateChanged]{@link AgoraRtcEvents.onLocalVideoStateChanged}</td>
+<td>本地视频状态发生改变回调</td>
+</tr>
+<tr>
 <td>[onFirstLocalAudioFramePublished]{@link AgoraRtcEvents.onFirstLocalAudioFramePublished}</td>
 <td>已发布本地音频首帧回调</td>
 </tr>
 <tr>
+<td>[onFirstLocalVideoFramePublished]{@link AgoraRtcEvents.onFirstLocalVideoFramePublished}</td>
+<td>已发布本地视频首帧回调</td>
+</tr>
+<tr>
+<td>[onFirstLocalVideoFrame]{@link AgoraRtcEvents.onFirstLocalVideoFrame}</td>
+<td>已显示本地视频首帧回调</td>
+</tr>
+<tr>
 <td>[onAudioPublishStateChanged]{@link AgoraRtcEvents.onAudioPublishStateChanged}</td>
 <td>音频发布状态改变回调</td>
+</tr>
+<tr>
+<td>[onVideoPublishStateChanged]{@link AgoraRtcEvents.onVideoPublishStateChanged}</td>
+<td>视频发布状态改变回调</td>
 </tr>
 </table>
 
@@ -191,8 +273,20 @@
 <td>远端用户音频状态已改变回调</td>
 </tr>
 <tr>
+<td>[onRemoteVideoStateChanged]{@link AgoraRtcEvents.onRemoteVideoStateChanged}</td>
+<td>远端用户视频流状态已变化回调</td>
+</tr>
+<tr>
+<td>[onFirstRemoteVideoFrame]{@link AgoraRtcEvents.onFirstRemoteVideoFrame}</td>
+<td>已显示远端视频首帧回调</td>
+</tr>
+<tr>
 <td>[onAudioSubscribeStateChanged]{@link AgoraRtcEvents.onAudioSubscribeStateChanged}</td>
 <td>音频订阅状态改变回调</td>
+</tr>
+<tr>
+<td>[onVideoSubscribeStateChanged]{@link AgoraRtcEvents.onVideoSubscribeStateChanged}</td>
+<td>视频订阅状态发生改变回调</td>
 </tr>
 </table>
 
@@ -220,6 +314,23 @@
 <tr>
 <td>[onRemoteAudioStats]{@link AgoraRtcEvents.onRemoteAudioStats}</td>
 <td>通话中远端音频流的统计信息回调</td>
+</tr>
+<tr>
+<td>[onRemoteVideoStats]{@link AgoraRtcEvents.onRemoteVideoStats}</td>
+<td>远端视频流统计信息回调</td>
+</tr>
+</table>
+
+### 视频前处理及后处理
+
+<table>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[setBeautyEffectOptions]{@link agora.setBeautyEffectOptions}</td>
+<td>设置美颜效果选项</td>
 </tr>
 </table>
 
@@ -521,6 +632,30 @@
 </tr>
 </table>
 
+### 人脸检测
+
+<table>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[enableFaceDetection]{@link agora.enableFaceDetection}</td>
+<td>开启/关闭本地人脸检测</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[onFacePositionChanged]{@link AgoraRtcEvents.onFacePositionChanged}</td>
+<td>报告本地人脸检测结果</td>
+</tr>
+</table>
+
 ### 语音播放路由
 
 <table>
@@ -570,6 +705,63 @@
 </tr>
 </table>
 
+### 视频双流模式
+
+<table>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[enableDualStreamMode]{@link agora.enableDualStreamMode}</td>
+<td>开关视频双流模式</td>
+</tr>
+<tr>
+<td>[setRemoteVideoStreamType]{@link agora.setRemoteVideoStreamType}</td>
+<td>设置订阅的视频流类型</td>
+</tr>
+<tr>
+<td>[setRemoteDefaultVideoStreamType]{@link agora.setRemoteDefaultVideoStreamType}</td>
+<td>设置默认订阅的视频流类型</td>
+</tr>
+</table>
+
+### 视频流回退
+
+<table>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[setLocalPublishFallbackOption]{@link agora.setLocalPublishFallbackOption}</td>
+<td>设置弱网条件下发布的音视频流的回退选项</td>
+</tr>
+<tr>
+<td>[setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption}</td>
+<td>设置弱网条件下订阅的音视频流的回退选项</td>
+</tr>
+<tr>
+<td>[setRemoteUserPriority]{@link agora.setRemoteUserPriority}</td>
+<td>设置远端用户流的优先级</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[onLocalPublishFallbackToAudioOnly]{@link AgoraRtcEvents.onLocalPublishFallbackToAudioOnly}</td>
+<td>本地发布流已回退为音频流或恢复为音视频流回调</td>
+</tr>
+<tr>
+<td>[onRemoteSubscribeFallbackToAudioOnly]{@link AgoraRtcEvents.onRemoteSubscribeFallbackToAudioOnly}</td>
+<td>远端订阅流已回退为音频流或恢复为音视频流回调</td>
+</tr>
+</table>
+
 ### 通话前网络测试
 
 <table>
@@ -615,6 +807,57 @@
 <tr>
 <td>[onLastmileProbeResult]{@link AgoraRtcEvents.onLastmileProbeResult}</td>
 <td>本地网络上下行 Last-mile 质量报告回调</td>
+</tr>
+</table>
+
+### 媒体附属信息
+
+<table>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver}</td>
+<td>注册媒体 Metadata 观测器</td>
+</tr>
+<tr>
+<td>[sendMetadata]{@link agora.sendMetadata}</td>
+<td>发送 Metadata</td>
+</tr>
+<tr>
+<td>[setMaxMetadataSize]{@link agora.setMaxMetadataSize}</td>
+<td>设置最大的 Metadata 大小</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[onMetadataReceived]{@link AgoraRtcEvents.onMetadataReceived}</td>
+<td>接收端已收到 Metadata 回调</td>
+</tr>
+</table>
+
+### 水印
+
+> 该组方法仅适用于互动直播。
+
+<table>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[addVideoWatermark]{@link agora.addVideoWatermark}</td>
+<td>添加本地视频水印</td>
+</tr>
+<tr>
+<td>[clearVideoWatermarks]{@link agora.clearVideoWatermarks}</td>
+<td>删除已添加的视频水印</td>
 </tr>
 </table>
 
@@ -683,6 +926,55 @@
 </tr>
 </table>
 
+### 摄像头控制
+
+<table>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[switchCamera]{@link agora.switchCamera}</td>
+<td>切换前置/后置摄像头</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[onCameraFocusAreaChanged]{@link AgoraRtcEvents.onCameraFocusAreaChanged}</td>
+<td>摄像头对焦区域已改变回调</td>
+</tr>
+<tr>
+<td>[onCameraExposureAreaChanged]{@link AgoraRtcEvents.onCameraExposureAreaChanged}</td>
+<td>摄像头曝光区域已改变回调</td>
+</tr>
+<tr>
+</table>
+
+### 设备管理
+
+<table>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[onAudioDeviceStateChanged]{@link AgoraRtcEvents.onAudioDeviceStateChanged}</td>
+<td>音频设备变化回调</td>
+</tr>
+<td>[onVideoDeviceStateChanged]{@link AgoraRtcEvents.onVideoDeviceStateChanged}</td>
+<td>视频设备变化回调</td>
+</tr>
+<tr>
+<td>[onAudioDeviceVolumeChanged]{@link AgoraRtcEvents.onAudioDeviceVolumeChanged}</td>
+<td>回放、音频采集设备或 App 的音量发生改变</td>
+</tr>
+</table>
+
 ### 流消息
 
 <table>
@@ -712,6 +1004,18 @@
 <tr>
 <td>[onStreamMessageError]{@link AgoraRtcEvents.onStreamMessageError}</td>
 <td>接收对方数据流消息发生错误的回调</td>
+</tr>
+</table>
+
+### 其他视频控制
+<table>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+<tr>
+<td>[setCameraCapturerConfiguration]{@link agora.setCameraCapturerConfiguration}</td>
+<td>设置摄像头采集偏好</td>
 </tr>
 </table>
 
@@ -758,7 +1062,6 @@
 <td>获取警告或错误描述</td>
 </tr>
 </table>
-
 
 ### 其他事件
 

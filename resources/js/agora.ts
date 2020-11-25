@@ -217,13 +217,13 @@ namespace agora {
         AUDIO_RECORDING_DEVICE = 1,
         
         /** 
-         * @ignore
+         * 
          * 2: 视频渲染设备。
         */
         VIDEO_RENDER_DEVICE = 2,
         
         /** 
-         * @ignore
+         * 
          * 3: 视频采集设备。
          */
         VIDEO_CAPTURE_DEVICE = 3,
@@ -296,7 +296,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 本地视频状态
      */
     export enum LOCAL_VIDEO_STREAM_STATE {
@@ -505,7 +505,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置视频显示模式。
      */
     export enum RENDER_MODE_TYPE {
@@ -533,7 +533,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 镜像模式类型。
      */
     export enum VIDEO_MIRROR_MODE_TYPE {
@@ -558,7 +558,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * @deprecated 横屏模式视频属性。
      */
     export enum VIDEO_PROFILE_TYPE {
@@ -1295,7 +1295,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 视频流类型，视频流大小。
      */
     export enum REMOTE_VIDEO_STREAM_TYPE {
@@ -1359,7 +1359,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 用于旁路推流的输出视频的编解码规格。
      */
     export enum VIDEO_CODEC_PROFILE_TYPE {
@@ -1382,7 +1382,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 视频编码格式
      */
     export enum VIDEO_CODEC_TYPE {
@@ -1799,7 +1799,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 远端视频流状态。
      */
     export enum REMOTE_VIDEO_STATE {
@@ -1920,7 +1920,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 远端视频流状态切换原因。
      */
     export enum REMOTE_VIDEO_STATE_REASON {
@@ -1987,7 +1987,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 视频帧率。
      */
     export enum FRAME_RATE {
@@ -2030,7 +2030,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 视频编码的方向模式。
      */
     export enum ORIENTATION_MODE {
@@ -2057,7 +2057,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 带宽受限时的视频编码降级偏好
      */
     export enum DEGRADATION_PREFERENCE {
@@ -2080,7 +2080,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 音视频流回退处理选项。
      */
     export enum STREAM_FALLBACK_OPTIONS {
@@ -2105,7 +2105,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 摄像头采集偏好。
     */
     export enum CAPTURER_OUTPUT_PREFERENCE {
@@ -2444,7 +2444,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 摄像头方向
      */
     export enum CAMERA_DIRECTION {
@@ -2462,7 +2462,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 自上次统计后本地视频质量的自适应情况（基于目标帧率和目标码率）。
      */
     export enum QUALITY_ADAPT_INDICATION {
@@ -2647,7 +2647,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}  的标准码率。（推荐）标准码率模式。该模式下，
      * 视频在通信和直播场景下的码率有所不同：通信场景下，码率与基准码率一致；直播场景下，码率对照基准码率翻倍。
      */
@@ -2655,7 +2655,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}  的兼容码率。 适配码率模式。该模式下，
      * 视频在通信和直播场景下的码率均与基准码率一致。直播下如果选择该模式，视频帧率可能会低于设置的值。
      */
@@ -2663,7 +2663,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 使用系统默认最低编码码率。
      */
     export const DEFAULT_MIN_BITRATE = -1
@@ -2688,7 +2688,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 屏幕共享的内容类型
      */
     export enum VideoContentHint {
@@ -3595,7 +3595,7 @@ namespace agora {
     
 
     /** 
-     * @ignore
+     * 
      * 观测器的 Metadata 类型。当前仅支持视频类型的 Metadata 。
      */
     export enum METADATA_TYPE {
@@ -3613,7 +3613,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 视频像素格式
      */
     export enum VIDEO_PIXEL_FORMAT {
@@ -4009,7 +4009,7 @@ namespace agora {
         txAudioBytes: number
         
         /** 
-         * @ignore
+         * 
          * 发送视频字节数（bytes），累计值。
          */
         txVideoBytes: number
@@ -4020,7 +4020,7 @@ namespace agora {
         rxAudioBytes: number
         
         /** 
-         * @ignore
+         * 
          * 接收视频字节数（bytes），累计值。
          */
         rxVideoBytes: number
@@ -4046,13 +4046,13 @@ namespace agora {
         txAudioKBitRate: number
         
         /** 
-         * @ignore
+         * 
          * 视频接收码率 (Kbps）。
          */
         rxVideoKBitRate: number
         
         /** 
-         * @ignore
+         * 
          * 视频发送码率 (Kbps）。
          */
         txVideoKBitRate: number
@@ -4121,7 +4121,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 本地视频流上传统计信息。
      */
     export interface LocalVideoStats {
@@ -4205,7 +4205,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 远端视频流的统计信息。
      */
     export interface RemoteVideoStats {
@@ -4376,7 +4376,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 视频尺寸。
      */
     export class VideoDimensions {
@@ -4399,7 +4399,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 视频编码器配置的属性。
      */
     export class VideoEncoderConfiguration {
@@ -4518,7 +4518,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * TranscodingUser 用于管理参与旁路直播的音视频转码合图的用户。最多支持 17 人同时参与转码合图。
      */
     export class TranscodingUser {
@@ -4593,7 +4593,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 图像属性。
      * 用于设置直播视频的水印和背景图片的属性。
      */
@@ -4635,7 +4635,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 转码推流的高级功能配置。
      */
     export class LiveStreamAdvancedFeature {
@@ -4759,7 +4759,7 @@ namespace agora {
         audioChannels: 1 | 2 | 3 | 4 | 5
         
         /** 
-         * @ignore
+         * 
          * 用于旁路推流的输出视频的编码规格: [AUDIO_CODEC_PROFILE_TYPE]{@link agora.AUDIO_CODEC_PROFILE_TYPE} 。
          */
         audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE
@@ -5052,7 +5052,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 待添加的水印图片的设置选项。
      */
     export class WatermarkOptions {
@@ -5087,7 +5087,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 屏幕共享的编码参数配置。
      */
     export class ScreenCaptureParameters {
@@ -5161,7 +5161,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * `VideoCanvas` 类的视频显示设置。
      */
     export class VideoCanvas {
@@ -5224,7 +5224,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 美颜选项。
      */
     export class BeautyOptions {
@@ -5653,7 +5653,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 本地视频流统计信息回调。
      * 该回调描述本地设备发送视频流的统计信息，每 2 秒触发一次。
      * 
@@ -5668,7 +5668,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 通话中远端视频流的统计信息回调。
      *
      * 该回调描述远端用户在通话中端到端的视频流统计信息，
@@ -5760,7 +5760,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 视频发布状态改变回调。
      */
     onVideoPublishStateChanged:
@@ -5790,7 +5790,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 视频订阅状态发生改变回调。
      */
     onVideoSubscribeStateChanged:
@@ -5853,7 +5853,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 视频功能已停止回调。
      * @deprecated 请改用  [onLocalVideoStateChanged]{@link AgoraRtcEvents.onLocalVideoStateChanged}  回调中的 
      * `LOCAL_VIDEO_STREAM_STATE_STOPPED(0)`。
@@ -5863,7 +5863,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 已显示本地视频首帧回调。
      * 本地视频首帧显示在本地视图上时，SDK 会触发此回调。
      */
@@ -5880,7 +5880,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 
      * 已发布本地视频首帧回调。
      * 
@@ -5899,7 +5899,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 已接收到远端视频并完成解码回调。
      *
      * @deprecated 该回调已被废弃，请改用  [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged}  回调的：
@@ -5927,7 +5927,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 已显示首帧远端视频回调。
      * 第一帧远端视频显示在视图上时，触发此调用。 App 可在此调用中获知出图时间（elapsed）。
      */
@@ -5961,7 +5961,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 远端用户暂停/恢复发送视频流回调。
      * @deprecated 该回调已废弃。你也可以使用
      *  [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged()}  回调的：
@@ -5986,7 +5986,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 远端用户开关本地视频采集回调。
      *
      * @deprecated 该回调已被废弃，请改用  [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged} 回调的：
@@ -6012,7 +6012,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 音频设备变化回调。
      * 提示系统音频设备状态发生改变，比如耳机被拔出。
      */
@@ -6027,7 +6027,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 回放、录音设备、或 App 的音量发生改变。
      */
     onAudioDeviceVolumeChanged:
@@ -6043,7 +6043,7 @@ declare class AgoraRtcEvents {
 
     
      /** 
-      * @ignore
+      * 
       * @deprecated 摄像头就绪回调。
       * 提示已成功打开摄像头，可以开始捕获视频。如果摄像头打开失败，可在  [onError]{@link AgoraRtcEvents.onError}  中处理相应错误。
       * 该回调已废弃。请改用  [onLocalVideoStateChanged]{@link AgoraRtcEvents.onLocalVideoStateChanged}  回调中的 
@@ -6053,7 +6053,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 相机对焦区域已改变回调。
      * 该回调表示相机的对焦区域发生了改变。
      * 该回调是由本地用户调用 setCameraFocusPositionInPreview 方法改变对焦位置触发的。
@@ -6070,7 +6070,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 报告本地人脸检测结果。
      *
      * 调用  [enableFaceDetection]{@link agora.enableFaceDetection} (true) 开启本地人脸检测后，你可以通过该回调实时获取以下人脸检测的信息：
@@ -6103,7 +6103,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 摄像头曝光区域已改变回调。
      * 该回调是由本地用户调用 `setCameraExposurePosition` 方法改变曝光位置触发的。
      */
@@ -6189,7 +6189,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 视频设备变化回调。
      * 该回调提示系统视频设备状态发生改变，比如被拔出或移除。如果设备已使用外接摄像头采集，外接摄像头被拔开后，视频会中断。
      */
@@ -6204,7 +6204,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 本地视频状态发生改变回调
      * 本地视频的状态发生改变时，SDK 会触发该回调返回当前的本地视频状态。
      * 在本地视频出现故障时，你可以通过该回调了解当前视频的状态以及出现故障的原因，方便排查问题。
@@ -6220,7 +6220,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 本地或远端视频大小和旋转信息发生改变回调。
      */
     onVideoSizeChanged:
@@ -6235,7 +6235,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 远端视频状态发生改变回调。
      * @note 频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调不生效。
      */
@@ -6251,7 +6251,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 其他用户启用/关闭本地视频。
      *
      * @deprecated 从 v2.9.0。该回调已被废弃，请改用 [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged} 回调的：
@@ -6500,7 +6500,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 本地发布流已回退为音频流回调。
      * 如果你调用了  [setLocalPublishFallbackOption]{@link agora.setLocalPublishFallbackOption}  接口并将 option 设置为 
      * [STREAM_FALLBACK_OPTION_AUDIO_ONLY]{@link agora.STREAM_FALLBACK_OPTIONS.STREAM_FALLBACK_OPTION_AUDIO_ONLY} ，当上行网络环境不理想、
@@ -6518,7 +6518,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 远端订阅流已回退为音频流回调。
      * 
      * 如果你调用了  [setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption}  接口并将 option 设置为 
@@ -6563,7 +6563,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * @deprecated 通话中远端视频流传输的统计信息回调。
      *
      * 该回调已被废弃，请改用  [onRemoteVideoStats]{@link agora.onRemoteVideoStats()} 。
@@ -6661,7 +6661,7 @@ declare class AgoraRtcEvents {
 
     
     /** 
-     * @ignore
+     * 
      * 接收端已收到 Metadata。
      * 当接收到远端用户发送的 Metadata 时，SDK 会触发该回调。
      */
@@ -7962,7 +7962,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 启用视频模块。
      * 该方法可以在加入频道前或者通话中调用，在加入频道前调用则自动开启视频模块；在通话中调用则由音频模式切换为视频模式。 调用  
      * [disableVideo]{@link agora.disableVideo}  方法可关闭视频模式。
@@ -7989,7 +7989,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 关闭视频模块。
      * 该方法可以在加入频道前或者通话中调用，在加入频道前调用，则自动开启纯音频模式，在通话中调用则由视频模式切换为纯音频频模式。 
      * 调用  [enableVideo]{@link agora.enableVideo}  方法可开启视频模式。
@@ -8016,7 +8016,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * @deprecated
      * 设置视频编码配置。
      * 该方法已废弃。请改用  [setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}  方法。
@@ -8091,7 +8091,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置视频编码属性。
      * 设置本地视频的编码属性。
      * @param config 视频编码参数配置。详见: [VideoEncoderConfiguration]{@link agora.VideoEncoderConfiguration}。
@@ -8118,7 +8118,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置摄像头采集偏好。
      * 一般的视频通话或直播中，默认由 SDK 自动控制摄像头的输出参数。在如下特殊场景中，默认的参数通常无法满足需求，或可能引起设备性能问题，
      * 我们推荐调用该方法设置摄像头的采集偏好：
@@ -8145,7 +8145,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 开启视频预览。
      * 该方法用于在进入频道前启动本地视频预览。调用该 API 前，必须：
      * - 调用  [setupLocalVideo]{@link agora.setupLocalVideo}  设置预览窗口及属性；
@@ -8167,7 +8167,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置远端用户流的优先级。
      * 设置远端用户的优先级。如果将某个用户的优先级设为高，那么发给这个用户的音视频流的优先级就会高于其他用户。
      * 
@@ -8189,7 +8189,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 停止视频预览。
      * @return
      * - 0: 方法调用成功
@@ -8460,7 +8460,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 开关本地视频发送。
      * 成功调用该方法后，远端会触发  [onUserMuteVideo]{@link AgoraRtcEvents.onUserMuteVideo}  回调。
      * 
@@ -8495,7 +8495,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 开关本地视频采集。
      * 该方法禁用或重新启用本地视频采集，不影响接收远端视频。
      * 调用  [enableVideo]{@link agora.enableVideo}  后，本地视频即默认开启。你可以调用  
@@ -8529,7 +8529,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 接收／停止接收所有远端视频流。
      * @param  mute
      * - true: 停止接收所有远端视频流；
@@ -8547,7 +8547,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置是否默认停止接收视频流。
      * 该方法在加入频道前后都可调用。如果在加入频道后调用 `setDefaultMuteAllRemoteVideoStreams (true)`，会接收不到设置后加入频道的用户的视频流。
      * @note 停止接收视频流后，如果想要恢复接收，请调用  [muteRemoteVideoStream (false)]{@link agora.muteRemoteVideoStream} ，
@@ -8569,7 +8569,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 接收／停止接收指定远端用户的视频流。
      * @note 如果之前调用过  [muteAllRemoteVideoStreams]{@link agora.muteAllRemoteVideoStreams}  (true) 停止接收放所有远端视频流，在调用本 
      * API 之前请确保你已调用  [muteAllRemoteVideoStreams]{@link agora.muteAllRemoteVideoStreams}  (false) 。 
@@ -8602,7 +8602,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置订阅的视频流类型。
      * 在网络条件受限的情况下，如果发送端没有调用  [enableDualStreamMode]{@link agora.enableDualStreamMode}  (false) 关闭双流模式，
      * 接收端可以选择接收大流还是小流。其中，大流可以接为高分辨率高码率的视频流， 小流则是低分辨率低码率的视频流。
@@ -8630,7 +8630,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置默认订阅的视频流类型。
      * 在网络条件受限的情况下，如果发送端没有调用  [enableDualStreamMode]{@link agora.enableDualStreamMode}  (false) 关闭双流模式，
      * 接收端可以选择接收大流还是小流。其中，大流可以接为高分辨率高码率的视频流， 小流则是低分辨率低码率的视频流。
@@ -9088,7 +9088,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 开启/关闭本地人脸检测。
      *
      * 开启本地人脸检测后，SDK 会触发  [onFacePositionChanged]{@link AgoraRtcEvents.onFacePositionChanged}  回调向你报告人脸检测的信息：
@@ -9562,7 +9562,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 更新本地视图显示模式。
      * 
      * 初始化本地用户视图后，你可以调用该方法更新本地用户视图的渲染和镜像模式。该方法只影响本地用户看到的视频画面，不影响本地发布视频。
@@ -9592,7 +9592,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 更新远端视图显示模式。
      * 初始化远端用户视图后，你可以调用该方法更新远端用户视图在本地显示时的渲染和镜像模式。该方法只影响本地用户看到的视频画面。
      * 
@@ -9622,7 +9622,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * @deprecated 该方法已废弃，请改用  [setupLocalVideo]{@link agora.setupLocalVideo}
      * 或  [setLocalRenderMode]{@link agora.setLocalRenderMode} 设置本地视频镜像模式。
      * @warning 请在调用 `setupLocalVideo` 方法初始化本地视图后，调用该方法。
@@ -9640,7 +9640,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 开关双流模式。
      * 该方法设置单流（默认）或者双流模式。发送端开启双流模式后，接收端可以选择接收大流还是小流。其中，大流指高分辨率、高码率的视频流，小流指低分辨率、
      * 低码率的视频流。
@@ -9873,7 +9873,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置视频优化选项（仅适用于直播）。
      * @deprecated 该方法已废弃。Agora 建议使用 [VideoEncoderConfiguration]{@link agora.VideoEncoderConfiguration} 类中的 
      * `degradationPrefer` 参数设置视频质量偏好。该方法允许用户设置视频的优化选项。
@@ -9894,7 +9894,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置弱网条件下发布的音视频流回退选项。
      * 
      * 网络不理想的环境下，实时通信音视频的质量都会下降。使用该接口并将 `option` 设置为 
@@ -9921,7 +9921,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置弱网条件下订阅的音视频流的回退选项。
      * 默认 `option` 为 
      * [STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW]{@link agora.STREAM_FALLBACK_OPTIONS.STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW}(1)。
@@ -9948,7 +9948,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 切换前置/后置摄像头
      * 
      * @param direction 设置使用的摄像头。详见 [CAMERA_DIRECTION]{@link agora.CAMERA_DIRECTION}。
@@ -10505,7 +10505,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 添加本地视频水印。
      * 
      * 该方法将一张 PNG 图片作为水印添加到本地发布的直播视频流上，同一直播频道中的观众、旁路直播观众和录制设备都能看到或采集到该水印图片。
@@ -10538,7 +10538,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 删除已添加的视频水印。
      * @return
      * - 0: 方法调用成功
@@ -10553,7 +10553,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 设置美颜效果选项。
      * 开启本地美颜功能，并设置美颜效果选项。
      * 
@@ -10777,7 +10777,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 发送 Metadata。
      * 
      * **Note**
@@ -10805,7 +10805,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 请求最大的 Metadata 大小。
      * 
      * Metadata 结构体由如下字段组成：
@@ -10831,7 +10831,7 @@ namespace agora {
 
     
     /** 
-     * @ignore
+     * 
      * 注册媒体 metadata 观测器用于接收或发送 metadata。
      * 
      * **Note**
@@ -11049,12 +11049,12 @@ declare interface agora {
      */
     on(evt: 'networkQuality', cb: typeof AgoraRtcEvents.prototype.onNetworkQuality)
 
-    /** @ignore
+    /** 
      * @event localVideoStats
      */
     on(evt: 'localVideoStats', cb: typeof AgoraRtcEvents.prototype.onLocalVideoStats)
 
-    /** @ignore
+    /** 
      * @event remoteVideoStats
      */
     on(evt: 'remoteVideoStats', cb: typeof AgoraRtcEvents.prototype.onRemoteVideoStats)
@@ -11089,7 +11089,7 @@ declare interface agora {
      */
     on(evt: 'audioPublishStateChanged', cb: typeof AgoraRtcEvents.prototype.onAudioPublishStateChanged)
 
-    /** @ignore
+    /** 
      * @event videoPublishStateChanged
      */
     on(evt: 'videoPublishStateChanged', cb: typeof AgoraRtcEvents.prototype.onVideoPublishStateChanged)
@@ -11099,7 +11099,7 @@ declare interface agora {
      */
     on(evt: 'audioSubscribeStateChanged', cb: typeof AgoraRtcEvents.prototype.onAudioSubscribeStateChanged)
 
-    /** @ignore
+    /** 
      * @event videoSubscribeStateChanged
      */
     on(evt: 'videoSubscribeStateChanged', cb: typeof AgoraRtcEvents.prototype.onVideoSubscribeStateChanged)
@@ -11121,29 +11121,29 @@ declare interface agora {
      */
     on(evt: 'activeSpeaker', cb: typeof AgoraRtcEvents.prototype.onActiveSpeaker)
 
-    /** @ignore
+    /** 
      * @event videoStopped
      */
     on(evt: 'videoStopped', cb: typeof AgoraRtcEvents.prototype.onVideoStopped)
 
-    /** @ignore
+    /** 
      * @event firstLocalVideoFrame
      */
     on(evt: 'firstLocalVideoFrame', cb: typeof AgoraRtcEvents.prototype.onFirstLocalVideoFrame)
 
-    /** @ignore
+    /** 
      * @event firstLocalVideoFramePublished
      */
     on(evt: 'firstLocalVideoFramePublished', cb: typeof AgoraRtcEvents.prototype.onFirstLocalVideoFramePublished)
 
-    /** @ignore
+    /** 
      * @deprecated
      *
      * @event firstRemoteVideoDecoded
      */
     on(evt: 'firstRemoteVideoDecoded', cb: typeof AgoraRtcEvents.prototype.onFirstRemoteVideoDecoded)
 
-    /** @ignore
+    /** 
      * @event firstRemoteVideoFrame
      */
     on(evt: 'firstRemoteVideoFrame', cb: typeof AgoraRtcEvents.prototype.onFirstRemoteVideoFrame)
@@ -11162,44 +11162,44 @@ declare interface agora {
      */
     on(evt: 'userMuteAudio', cb: typeof AgoraRtcEvents.prototype.onUserMuteAudio)
 
-    /** @ignore
+    /** 
      * @event userMuteVideo
      */
     on(evt: 'userMuteVideo', cb: typeof AgoraRtcEvents.prototype.onUserMuteVideo)
 
-    /** @ignore
+    /** 
      * @deprecated
      *
      * @event userEnableVideo
      */
     on(evt: 'userEnableVideo', cb: typeof AgoraRtcEvents.prototype.onUserEnableVideo)
 
-    /** @ignore
+    /** 
      * @event audioDeviceStateChanged
      */
     on(evt: 'audioDeviceStateChanged', cb: typeof AgoraRtcEvents.prototype.onAudioDeviceStateChanged)
 
-    /** @ignore
+    /** 
      * @event audioDeviceVolumeChanged
      */
     on(evt: 'audioDeviceVolumeChanged', cb: typeof AgoraRtcEvents.prototype.onAudioDeviceVolumeChanged)
 
-    /** @ignore
+    /** 
      * @event cameraReady
      */
     on(evt: 'cameraReady', cb: typeof AgoraRtcEvents.prototype.onCameraReady)
 
-    /** @ignore
+    /** 
      * @event cameraFocusAreaChanged
      */
     on(evt: 'cameraFocusAreaChanged', cb: typeof AgoraRtcEvents.prototype.onCameraFocusAreaChanged)
 
-    /** @ignore
+    /** 
      * @event facePositionChanged
      */
     on(evt: 'facePositionChanged', cb: typeof AgoraRtcEvents.prototype.onFacePositionChanged)
 
-    /** @ignore
+    /** 
      * @event cameraExposureAreaChanged
      */
     on(evt: 'cameraExposureAreaChanged', cb: typeof AgoraRtcEvents.prototype.onCameraExposureAreaChanged)
@@ -11236,27 +11236,27 @@ declare interface agora {
      */
     on(evt: 'firstRemoteAudioDecoded', cb: typeof AgoraRtcEvents.prototype.onFirstRemoteAudioDecoded)
 
-    /** @ignore
+    /** 
      * @event videoDeviceStateChanged
      */
     on(evt: 'videoDeviceStateChanged', cb: typeof AgoraRtcEvents.prototype.onVideoDeviceStateChanged)
 
-    /** @ignore
+    /** 
      * @event localVideoStateChanged
      */
     on(evt: 'localVideoStateChanged', cb: typeof AgoraRtcEvents.prototype.onLocalVideoStateChanged)
 
-    /** @ignore
+    /** 
      * @event videoSizeChanged
      */
     on(evt: 'videoSizeChanged', cb: typeof AgoraRtcEvents.prototype.onVideoSizeChanged)
 
-    /** @ignore
+    /** 
      * @event remoteVideoStateChanged
      */
     on(evt: 'remoteVideoStateChanged', cb: typeof AgoraRtcEvents.prototype.onRemoteVideoStateChanged)
 
-    /** @ignore
+    /** 
      * @deprecated
      *
      * @event userEnableLocalVideo
@@ -11358,12 +11358,12 @@ declare interface agora {
      */
     on(evt: 'audioRouteChanged', cb: typeof AgoraRtcEvents.prototype.onAudioRouteChanged)
 
-    /** @ignore
+    /** 
      * @event localPublishFallbackToAudioOnly
      */
     on(evt: 'localPublishFallbackToAudioOnly', cb: typeof AgoraRtcEvents.prototype.onLocalPublishFallbackToAudioOnly)
 
-    /** @ignore
+    /** 
      * @event remoteSubscribeFallbackToAudioOnly
      */
     on(evt: 'remoteSubscribeFallbackToAudioOnly', cb: typeof AgoraRtcEvents.prototype.onRemoteSubscribeFallbackToAudioOnly)
@@ -11375,7 +11375,7 @@ declare interface agora {
      */
     on(evt: 'remoteAudioTransportStats', cb: typeof AgoraRtcEvents.prototype.onRemoteAudioTransportStats)
 
-    /** @ignore
+    /** 
      * @deprecated
      *
      * @event remoteVideoTransportStats
@@ -11409,7 +11409,7 @@ declare interface agora {
      */
     on(evt: 'userInfoUpdated', cb: typeof AgoraRtcEvents.prototype.onUserInfoUpdated)
 
-    /** @ignore
+    /** 
      * @event metadataReceived
      */
     on(evt: 'metadataReceived', cb: typeof AgoraRtcEvents.prototype.onMetadataReceived)
