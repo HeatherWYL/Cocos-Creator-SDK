@@ -1,7 +1,9 @@
-Agora provides ensured quality of experience (QoE) for worldwide Internet-based voice communications through a virtual global network optimized for real-time web and mobile-to-mobile applications.
+Agora provides ensured quality of experience (QoE) for worldwide Internet-based voice and video communications through a virtual global network optimized for real-time web and mobile-to-mobile applications.
 
-- The [agora]{@link agora} namespace is the entry point of the Agora Cocos Creator SDK providing API methods for applications to quickly start a voice call or the live interactive audio streaming.
+- The [agora]{@link agora} namespace is the entry point of the Agora Cocos Creator SDK providing API methods for applications to quickly start a voice and video call or the live interactive audio and video streaming.
 - The [AgoraRtcEvents]{@link AgoraRtcEvents} class reports runtime events to the applications.
+
+During API calls, the SDK may returns error codes and warning codes. See [Error Codes and Warning Codes](https://docs.agora.io/en/Interactive%20Broadcast/error_rtc?platform=Cocos%20Creator).
 
 ### Channel Management
 
@@ -158,6 +160,63 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 </tr>
 </table>
 
+### Video Management
+
+<table>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[enableVideo]{@link agora.enableVideo}</td>
+<td>Enables the video module.</td>
+</tr>
+<tr>
+<td>[disableVideo]{@link agora.disableVideo}</td>
+<td>Disables the video module.</td>
+</tr>
+<tr>
+<td>[setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}</td>
+<td>Sets the video encoder configuration.</td>
+</tr>
+
+<tr>
+<td>[setLocalRenderMode]{@link agora.setLocalRenderMode}</td>
+<td>Updates the display mode of the local video view.</td>
+</tr>
+<tr>
+<td>[setRemoteRenderMode]{@link agora.setRemoteRenderMode}</td>
+<td>Updates the display mode of the video view of a remote user.</td>
+</tr>
+<tr>
+<td>[startPreview]{@link agora.startPreview}</td>
+<td>Starts the local video preview before joining the channel.</td>
+</tr>
+<tr>
+<td>[stopPreview]{@link agora.stopPreview}</td>
+<td>Stops the local video preview and disables video.</td>
+<tr>
+<td>[enableLocalVideo]{@link agora.enableLocalVideo}</td>
+<td>Enables/Disables the local video capture.</td>
+</tr>
+<tr>
+<td>[muteLocalVideoStream]{@link agora.muteLocalVideoStream}</td>
+<td>Stops/Resumes sending the local video stream.</td>
+</tr>
+<tr>
+<td>[muteRemoteVideoStream]{@link agora.muteRemoteVideoStream}</td>
+<td>Stops/Resumes receiving the video stream from a specified remote user.</td>
+</tr>
+<tr>
+<td>[muteAllRemoteVideoStreams]{@link agora.muteAllRemoteVideoStreams}</td>
+<td>Stops/Resumes receiving all video stream from a specified remote user.</td>
+</tr>
+<tr>
+<td>[setDefaultMuteAllRemoteVideoStreams]{@link agora.setDefaultMuteAllRemoteVideoStreams}</td>
+<td>Stops/Resumes receiving all remote users' video streams by default.</td>
+</tr>
+</table>
+
 ### Local Media Events
 
 <table>
@@ -170,12 +229,28 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 <td>Occurs when the local audio state changes.</td>
 </tr>
 <tr>
+<td>[onLocalVideoStateChanged]{@link AgoraRtcEvents.onLocalVideoStateChanged}</td>
+<td>Occurs when the local video state changes.</td>
+</tr>
+<tr>
 <td>[onFirstLocalAudioFramePublished]{@link AgoraRtcEvents.onFirstLocalAudioFramePublished}</td>
 <td>Occurs when the first audio frame is published.</td>
 </tr>
 <tr>
+<td>[onFirstLocalVideoFramePublished]{@link AgoraRtcEvents.onFirstLocalVideoFramePublished}</td>
+<td>Occurs when the first video frame is published.</td>
+</tr>
+<tr>
+<td>[onFirstLocalVideoFrame]{@link AgoraRtcEvents.onFirstLocalVideoFrame}</td>
+<td>Occurs when the first local video frame is rendered.</td>
+</tr>
+<tr>
 <td>[onAudioPublishStateChanged]{@link AgoraRtcEvents.onAudioPublishStateChanged}</td>
 <td>Occurs when the audio publishing state changes. </td>
+</tr>
+<tr>
+<td>[onVideoPublishStateChanged]{@link AgoraRtcEvents.onVideoPublishStateChanged}</td>
+<td>Occurs when the video publishing state changes. </td>
 </tr>
 </table>
 
@@ -191,8 +266,28 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 <td>Occurs when the remote audio state changes.</td>
 </tr>
 <tr>
+<td>[onRemoteAudioStateChanged]{@link AgoraRtcEvents.onRemoteAudioStateChanged}</td>
+<td>Occurs when the remote audio state changes.</td>
+</tr>
+<tr>
+<td>[onRemoteVideoStateChanged]{@link AgoraRtcEvents.onRemoteVideoStateChanged}</td>
+<td>Occurs when the remote video state changes.</td>
+</tr>
+<tr>
+<td>[onUserMuteVideo]{@link AgoraRtcEvents.onUserMuteVideo}</td>
+<td>Occurs when a remote user's video stream playback pauses/resumes.</td>
+</tr>
+<tr>
+<td>[onFirstRemoteVideoFrame]{@link AgoraRtcEvents.onFirstRemoteVideoFrame}</td>
+<td>Occurs when the first remote video frame is rendered.</td>
+</tr>
+<tr>
 <td>[onAudioSubscribeStateChanged]{@link AgoraRtcEvents.onAudioSubscribeStateChanged}</td>
 <td>Occurs when the audio subscribing state changes.</td>
+</tr>
+<tr>
+<td>[onVideoSubscribeStateChanged]{@link AgoraRtcEvents.onVideoSubscribeStateChanged}</td>
+<td>Occurs when the audio subscribing state changes. </td>
 </tr>
 </table>
 
@@ -220,6 +315,23 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 <tr>
 <td>[onRemoteAudioStats]{@link AgoraRtcEvents.onRemoteAudioStats}</td>
 <td>Reports the statistics of the audio stream from each remote user/host.</td>
+</tr>
+<tr>
+<td>[onRemoteVideoStats]{@link AgoraRtcEvents.onRemoteVideoStats}</td>
+<td>Reports the statistics of the video stream from each remote user/host.</td>
+</tr>
+</table>
+
+### Video Pre-process and Post-process
+
+<table>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[setBeautyEffectOptions]{@link agora.setBeautyEffectOptions}</td>
+<td>Sets the image enhancement options.</td>
 </tr>
 </table>
 
@@ -426,7 +538,7 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 </tr>
 <tr>
 <td>[setLiveTranscoding]{@link agora.setLiveTranscoding}</td>
-<td>Sets the video layout and audio settings for CDN live.</td>
+<td>Sets the video layout and audio for CDN live.</td>
 </tr>
 <tr>
 <td>[addPublishStreamUrl]{@link agora.addPublishStreamUrl}</td>
@@ -521,6 +633,30 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 </tr>
 </table>
 
+### Face Detection
+
+<table>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[enableFaceDetection]{@link agora.enableFaceDetection}</td>
+<td>Enables/Disables face detection for the local user.</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[onFacePositionChanged]{@link AgoraRtcEvents.onFacePositionChanged}</td>
+<td>Reports the face detection result of the local user.</td>
+</tr>
+</table>
+
 ### Audio Routing Control
 
 <table>
@@ -570,6 +706,63 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 </tr>
 </table>
 
+### Dual Video Stream Mode
+
+<table>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[enableDualStreamMode]{@link agora.enableDualStreamMode}</td>
+<td>Sets the stream mode to single- (default) or dual-stream mode.</td>
+</tr>
+<tr>
+<td>[setRemoteVideoStreamType]{@link agora.setRemoteVideoStreamType}</td>
+<td>Sets the remote user’s video stream type received by the local user when the remote user sends dual streams.</td>
+</tr>
+<tr>
+<td>[setRemoteDefaultVideoStreamType]{@link agora.setRemoteDefaultVideoStreamType}</td>
+<td>Sets the default video-stream type for the video received by the local user when the remote user sends dual streams.</td>
+</tr>
+</table>
+
+### Stream Fallback
+
+<table>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[setLocalPublishFallbackOption]{@link agora.setLocalPublishFallbackOption}</td>
+<td>Sets the fallback option for the published video stream under unreliable network conditions.</td>
+</tr>
+<tr>
+<td>[setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption}</td>
+<td>Sets the fallback option for the remote stream under unreliable network conditions.</td>
+</tr>
+<tr>
+<td>[setRemoteUserPriority]{@link agora.setRemoteUserPriority}</td>
+<td>Prioritizes a remote user's stream. </td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[onLocalPublishFallbackToAudioOnly]{@link AgoraRtcEvents.onLocalPublishFallbackToAudioOnly}</td>
+<td>Occurs: <p><ul><li>When the published media stream falls back to an audio-only stream due to poor network conditions.</li><li>When the published media stream switches back to the video after the network conditions improve.</li></ul></p></td>
+</tr>
+<tr>
+<td>[onRemoteSubscribeFallbackToAudioOnly]{@link AgoraRtcEvents.onRemoteSubscribeFallbackToAudioOnly}</td>
+<td>Occurs: <p><ul><li>When the remote media stream falls back to audio-only due to poor network conditions. </li><li>When the remote media stream switches back to the video after the network conditions improve.</li></ul></p></td>
+</tr>
+</table>
+
 ### Pre-call Network Test
 
 <table>
@@ -615,6 +808,58 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 <tr>
 <td>[onLastmileProbeResult]{@link AgoraRtcEvents.onLastmileProbeResult}</td>
 <td>Reports the last-mile network probe result.</td>
+</tr>
+</table>
+
+### Media Metadata
+
+<table>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[registerMediaMetadataObserver]{@link agora.registerMediaMetadataObserver}</td>
+<td>Registers the metadata observer.</td>
+</tr>
+<tr>
+<td>[sendMetadata]{@link agora.sendMetadata}</td>
+<td>Sends the metadata.</td>
+</tr>
+<tr>
+<td>[setMaxMetadataSize]{@link agora.setMaxMetadataSize}</td>
+<td>Sets the maximum size of the metadata.</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[onMetadataReceived]{@link AgoraRtcEvents.onMetadataReceived}</td>
+<td>Occurs when the local user receives the metadata.</td>
+</tr>
+</table>
+
+### Watermark
+
+> This group of methods apply to live interactive streaming only.
+
+<table>
+<tr>
+<th>Method</th>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[addVideoWatermark]{@link agora.addVideoWatermark}</td>
+<td>Adds a watermark image to the local video stream.</td>
+</tr>
+<tr>
+<td>[clearVideoWatermarks]{@link agora.clearVideoWatermarks}</td>
+<td>Removes the added watermark image from the video stream.</td>
 </tr>
 </table>
 
@@ -683,6 +928,55 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 </tr>
 </table>
 
+### Camera Control
+
+<table>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[switchCamera]{@link agora.switchCamera}</td>
+<td>Switches between front and rear cameras (for Android and iOS only).</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[onCameraFocusAreaChanged]{@link AgoraRtcEvents.onCameraFocusAreaChanged}</td>
+<td>Occurs when the camera focus area changes.</td>
+</tr>
+<tr>
+<td>[onCameraExposureAreaChanged]{@link AgoraRtcEvents.onCameraExposureAreaChanged}</td>
+<td>Occurs when the camera exposure area changes.</td>
+</tr>
+<tr>
+</table>
+
+### Device Manager
+
+<table>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[onAudioDeviceStateChanged]{@link AgoraRtcEvents.onAudioDeviceStateChanged}</td>
+<td>Occurs when the audio device state changes.</td>
+</tr>
+<td>[onVideoDeviceStateChanged]{@link AgoraRtcEvents.onVideoDeviceStateChanged}</td>
+<td>Occurs when the video device state changes.</td>
+</tr>
+<tr>
+<td>[onAudioDeviceVolumeChanged]{@link AgoraRtcEvents.onAudioDeviceVolumeChanged}</td>
+<td>Occurs when the volume of the playback, microphone, or application changes.</td>
+</tr>
+</table>
+
 ### Stream Message
 
 <table>
@@ -712,6 +1006,18 @@ Agora provides ensured quality of experience (QoE) for worldwide Internet-based 
 <tr>
 <td>[onStreamMessageError]{@link AgoraRtcEvents.onStreamMessageError}</td>
 <td>Occurs when the local user fails to receive the remote data stream.</td>
+</tr>
+</table>
+
+### Miscellaneous Video Control
+<table>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>[setCameraCapturerConfiguration]{@link agora.setCameraCapturerConfiguration}</td>
+<td>Sets the camera capturer configuration.</td>
 </tr>
 </table>
 
