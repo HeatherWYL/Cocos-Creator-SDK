@@ -25,7 +25,7 @@ void CacheVideoFrame::resetVideoFrame(
   width = videoFrame.width;
   height = videoFrame.height;
   auto size = width * height * 4;
-  data.resize(size);
+  data.clear();
   data.insert(data.begin(), (uint8_t *)videoFrame.yBuffer,
               (uint8_t *)videoFrame.yBuffer + size);
 }

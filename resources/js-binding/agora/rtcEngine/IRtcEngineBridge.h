@@ -32,7 +32,7 @@ public:
   virtual int callApi_audioEffect(API_TYPE_AUDIO_EFFECT apiType,
                                   const std::string &parameters) = 0;
 
-  virtual void release(bool sync = false) = 0;
+  virtual void release(bool sync = false, bool del = true) = 0;
 
   virtual IRtcChannelBridge *createChannel(const char *channelId) = 0;
 

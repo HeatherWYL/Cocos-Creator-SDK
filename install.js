@@ -1,13 +1,12 @@
 "use strict";
 const path = require("fire-path");
 const fs = require("fire-fs");
-let utils = Editor.require("packages://cocos-services/panel/utils/utils.js");
-const {
-    ios
-} = Editor.require('app://editor/core/native-packer');
-let ProjHelper = Editor.require("packages://cocos-services/panel/utils/projHelper.js");
+const utils = Editor.require("packages://cocos-services/panel/utils/utils.js");
+const {ios} = Editor.require("app://editor/core/native-packer");
+const ProjHelper = Editor.require("packages://cocos-services/panel/utils/projHelper.js");
+const creatorHomePath = Editor.isMainProcess ? Editor.App.home : Editor.remote.App.home;
+
 var projHelper;
-const sdkType = "audio";
 
 function addUsesPermission(permission) {
     let manifestPath = this.androidPath + "/app/AndroidManifest.xml";
@@ -35,7 +34,7 @@ module.exports = {
         // 在此处完成 js sdk 的引用
         // Todo...
         try {
-            let metaName = 'agora';
+            let metaName = "agora";
             let assetDir = `${projectPath}/assets/${metaName}`;
             if (fs.existsSync(assetDir)) utils.removeDir(assetDir);
             utils.copyDir(`${__dirname}/resources/js/${metaName}`, assetDir);
@@ -46,6 +45,13 @@ module.exports = {
                 path.join(__dirname, "/resources/ccservices-agora-preview-script"),
                 projectPath + "/packages/ccservices-agora-preview-script"
             );
+
+            if (params.sdkType === "video") {
+                utils.copyDir(
+                    path.join(__dirname, "/resources/components/AgoraVideoRender"),
+                    creatorHomePath + "/cloud-component/AgoraVideoRender"
+                );
+            }
         } catch (e) {
         }
         utils.printToCreatorConsole("log", "Agora service js sdk installation is complete!");
@@ -61,10 +67,12 @@ module.exports = {
         // 在此处完成 js sdk 的移除
         // Todo...
         try {
-            let metaName = 'agora';
+            let metaName = "agora";
             if (Editor.assetdb.exists(`db://assets/${metaName}`)) Editor.assetdb.delete([`db://assets/${metaName}`]);
             if (fs.existsSync(`${projectPath}/${metaName}.d.ts`)) fs.unlinkSync(`${projectPath}/${metaName}.d.ts`);
             utils.removeDir(projectPath + "/packages/ccservices-agora-preview-script");
+
+            utils.removeDir(creatorHomePath + "/cloud-component/AgoraVideoRender");
         } catch (e) {
         }
         utils.printToCreatorConsole("log", "Agora service js sdk uninstallation is complete!");
@@ -81,7 +89,7 @@ module.exports = {
         projHelper.Android.addUsesPermission = addUsesPermission;
         projHelper.Android.androidPath = path.join(options.dest, `frameworks/runtime-src/proj.android-studio`);
 
-        // Editor.Builder.on('build-finished', this.handleEventForCocoaPods);
+        // Editor.Builder.on("build-finished", this.handleEventForCocoaPods);
         // 在此处完成构建项目服务 sdk 的集成
         // Todo...
         if (options.platform === "android") {
@@ -115,7 +123,7 @@ module.exports = {
         let filePath = path.join(options.dest, "frameworks/runtime-src/Classes/AppDelegate.cpp");
         fs.exists(filePath) && projHelper.noteCodeLine(filePath, "#define SERVICE_AGORA 1", "//");
         if (options.platform === "android") {
-            this.uninstallAndroid(options);
+            this.uninstallAndroid(options, params);
             utils.printToCreatorConsole("log", "Agora service uninstallation is complete!");
         }
     },
@@ -124,9 +132,9 @@ module.exports = {
         let projectFilePath = path.join(options.dest, "project.json");
         if (fs.existsSync(projectFilePath))
             utils.parseProjectJson(projectFilePath, "org.cocos2dx.javascript.service.ServiceAgora", true);
-        this.copyFiles(options);
+        this.copyFiles(options, params);
         this.modifyAppDelegate(options);
-        if (options.platform === "android") this.android(options);
+        if (options.platform === "android") this.android(options, params);
         else if (options.platform === "ios") this.ios(options, params);
     },
 
@@ -142,11 +150,13 @@ module.exports = {
             let includeAgora = `
 #define SERVICE_AGORA 1
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) && SERVICE_AGORA
+#include "base/CCScheduler.h"
 #include "agora/AgoraManager.h"
 #endif
 `;
             let registerAgora = `
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) && SERVICE_AGORA
+    getScheduler()->removeAllFunctionsToBePerformedInCocosThread();
     AgoraManager::getInstance()->registerJSBCallback();
 #endif
       `;
@@ -162,9 +172,9 @@ module.exports = {
         projHelper.insertScriptToIndexHTML(agoraHtml);
     },
 
-    copyFiles(options) {
+    copyFiles(options, params) {
         var isCreator23x = fs.existsSync(`${options.dest}/frameworks/runtime-src/proj.android-studio/jni/CocosAndroid.mk`);
-        utils.printToCreatorConsole('info', isCreator23x);
+        utils.printToCreatorConsole("info", isCreator23x);
         var runtimePath = path.join(options.dest, "frameworks/runtime-src");
         var list = [];
         list.push({
@@ -173,20 +183,20 @@ module.exports = {
         });
         if (options.platform === "android") {
             list.push({
-                src: __dirname + `/resources/src/android/${sdkType}/ServiceAgora.java`,
+                src: __dirname + `/resources/src/android/${params.sdkType}/ServiceAgora.java`,
                 dst: path.join(runtimePath, "proj.android-studio/app/src/org/cocos2dx/javascript/service/ServiceAgora.java")
             });
             list.push({
-                src: __dirname + `/resources/sdk/android/lib/${sdkType}/agora-rtc-sdk.jar`,
+                src: __dirname + `/resources/sdk/android/lib/${params.sdkType}/agora-rtc-sdk.jar`,
                 dst: path.join(runtimePath, "proj.android-studio/app/libs/agora-rtc-sdk.jar")
             });
             list.push({
-                src: __dirname + `/resources/sdk/android/agora/${sdkType}`,
+                src: __dirname + `/resources/sdk/android/agora/${params.sdkType}`,
                 dst: path.join(runtimePath, isCreator23x ? "proj.android-studio/jni/agora" : "proj.android-studio/app/jni/agora")
             });
         } else if (options.platform === "ios") {
             // list.push({
-            // 	src: __dirname + `/resources/sdk/ios/agora/${sdkType}`,
+            // 	src: __dirname + `/resources/sdk/ios/agora/${params.sdkType}`,
             // 	dst: path.join(runtimePath, "proj.ios_mac/ios/agora")
             // });
         }
@@ -195,13 +205,13 @@ module.exports = {
 
     isInstall(options) {
         var isCreator23x = fs.existsSync(`${options.dest}/frameworks/runtime-src/proj.android-studio/jni/CocosAndroid.mk`);
-        let filePath = path.join(options.dest, "frameworks/runtime-src/proj.android-studio", isCreator23x ? 'jni/CocosAndroid.mk' : 'app/jni/Android.mk');
+        let filePath = path.join(options.dest, "frameworks/runtime-src/proj.android-studio", isCreator23x ? "jni/CocosAndroid.mk" : "app/jni/Android.mk");
         if (!fs.existsSync(filePath)) return;
         let contents = fs.readFileSync(filePath, "utf8");
         return contents.indexOf("USE_AGORA") >= 0;
     },
 
-    android(options) {
+    android(options, params) {
         var isCreator23x = fs.existsSync(`${options.dest}/frameworks/runtime-src/proj.android-studio/jni/CocosAndroid.mk`);
         let importAgora = `
 #======================================= 
@@ -210,9 +220,11 @@ ifeq ($(USE_AGORA), 1)
 LOCAL_MODULE := agora-rtc-sdk
 LOCAL_SRC_FILES := $(LOCAL_PATH)/agora/$(TARGET_ARCH_ABI)/libagora-rtc-sdk.so
 include $(PREBUILT_SHARED_LIBRARY)
+${params.sdkType === "video" && params.isEncrypt ? `
 LOCAL_MODULE := agora-crypto
 LOCAL_SRC_FILES := $(LOCAL_PATH)/agora/$(TARGET_ARCH_ABI)/libagora-crypto.so
 include $(PREBUILT_SHARED_LIBRARY)
+` : ""}
 endif
 #=======================================
         `;
@@ -239,7 +251,7 @@ LOCAL_C_INCLUDES += ../../Classes/agora \\
         ../../Classes/agora/rtcChannel \\
         ../../Classes/agora/rtcEngine \\
         ../../Classes/agora/test
-LOCAL_SHARED_LIBRARIES := agora-rtc-sdk agora-crypto
+LOCAL_SHARED_LIBRARIES := agora-rtc-sdk${params.sdkType === "video" && params.isEncrypt ? " agora-crypto" : ""}
 endif
 #======================================
         ` : `
@@ -265,7 +277,7 @@ LOCAL_C_INCLUDES += ../../../Classes/agora \\
         ../../../Classes/agora/rtcChannel \\
         ../../../Classes/agora/rtcEngine \\
         ../../../Classes/agora/test
-LOCAL_SHARED_LIBRARIES := agora-rtc-sdk agora-crypto
+LOCAL_SHARED_LIBRARIES := agora-rtc-sdk${params.sdkType === "video" && params.isEncrypt ? " agora-crypto" : ""}
 endif
 #======================================
         `;
@@ -277,8 +289,8 @@ endif\n\n
         `;
         let asPath = path.join(options.dest, "frameworks/runtime-src/proj.android-studio");
         this.modifyABIFilters(asPath);
-        let androidMKPath = path.join(asPath, isCreator23x ? 'jni/CocosAndroid.mk' : 'app/jni/Android.mk');
-        let applicationMKPath = path.join(asPath, isCreator23x ? 'jni/CocosApplication.mk' : 'app/jni/Application.mk');
+        let androidMKPath = path.join(asPath, isCreator23x ? "jni/CocosAndroid.mk" : "app/jni/Android.mk");
+        let applicationMKPath = path.join(asPath, isCreator23x ? "jni/CocosApplication.mk" : "app/jni/Application.mk");
         let buildGradePath = path.join(asPath, "app/build.gradle");
         if (this.isInstall(options)) {
             projHelper.replaceCodeSegment(applicationMKPath, "#USE_AGORA := 1", "USE_AGORA := 1");
@@ -288,7 +300,7 @@ endif\n\n
         projHelper.Android.addUsesPermission("READ_PHONE_STATE");
         projHelper.Android.addUsesPermission("INTERNET");
         projHelper.Android.addUsesPermission("RECORD_AUDIO");
-        if (sdkType === "video") {
+        if (params.sdkType === "video") {
             projHelper.Android.addUsesPermission("CAMERA");
         }
         projHelper.Android.addUsesPermission("MODIFY_AUDIO_SETTINGS");
@@ -355,7 +367,7 @@ dependencies {
     <string>${params.requireTips}</string>`;
         let infoPlistPath = options.dest + "/frameworks/runtime-src/proj.ios_mac/ios/Info.plist";
         projHelper.replaceCodeSegment(infoPlistPath, "<dict>", infoStr);
-        if (sdkType === "video") {
+        if (params.sdkType === "video") {
             params.requireTips = "Request Camera Permission";
             let infoStr = `<dict>
       <key>NSCameraUsageDescription</key>
@@ -371,8 +383,8 @@ dependencies {
         let iosPacker = new ios(options);
         if (!iosPacker.checkPodEnvironment()) return Promise.reject();
         // 第二步，创建Podfile已经，如果以来已存在，那么不进行修改和更新
-        let dependence = (sdkType === "video" ? "AgoraRtcEngine_iOS" : "AgoraAudio_iOS");
-        let version = (sdkType === "video" ? "'3.1.2'" : "'3.1.2'");
+        let dependence = (params.sdkType === "video" ? (params.isEncrypt ? "AgoraRtcEngine_iOS_Crypto" : "AgoraRtcEngine_iOS") : "AgoraAudio_iOS");
+        let version = (params.sdkType === "video" ? "'3.1.2'" : "'3.1.2'");
         let target = `${options.projectName}-mobile`;
         if (!iosPacker.isDependenceExist(dependence, target)) iosPacker.addPodDependenceForTarget(dependence, target, version);
         utils.printToCreatorConsole("info", "Start to execute CocoaPods, please wait patiently for the execution to complete before executing the subsequent operation!");
@@ -380,37 +392,37 @@ dependencies {
         utils.printToCreatorConsole("info", "CocoaPods was successfully executed, and now you can perform subsequent operations!");
 
         //第三步，往 UserConfigIOS.debug.xcconfig 添加 pod include
-        this._addIncludeToUserConfig(path.join(options.dest, `frameworks/runtime-src/proj.ios_mac/ios/UserConfigIOS.debug.xcconfig`), options.projectName, 'debug');
-        this._addIncludeToUserConfig(path.join(options.dest, `frameworks/runtime-src/proj.ios_mac/ios/UserConfigIOS.release.xcconfig`), options.projectName, 'release');
+        this._addIncludeToUserConfig(path.join(options.dest, `frameworks/runtime-src/proj.ios_mac/ios/UserConfigIOS.debug.xcconfig`), options.projectName, "debug");
+        this._addIncludeToUserConfig(path.join(options.dest, `frameworks/runtime-src/proj.ios_mac/ios/UserConfigIOS.release.xcconfig`), options.projectName, "release");
     },
 
     _addIncludeToUserConfig(path, projectName, mode) {
-        if (!fs.existsSync(path)) return Editor.warn('file not found ', path);
+        if (!fs.existsSync(path)) return Editor.warn("file not found ", path);
         let str = `#include "Pods/Target Support Files/Pods-${projectName}-mobile/Pods-${projectName}-mobile.${mode}.xcconfig"`;
-        let content = fs.readFileSync(path, 'utf8');
+        let content = fs.readFileSync(path, "utf8");
         if (content.indexOf(str) !== -1) return;
         content += str + "\n";
         fs.writeFileSync(path, content);
     },
 
-    uninstallAndroid(options) {
+    uninstallAndroid(options, params) {
         var isCreator23x = fs.existsSync(`${options.dest}/frameworks/runtime-src/proj.android-studio/jni/CocosAndroid.mk`);
         var runtimePath = path.join(options.dest, "frameworks/runtime-src");
         var list = [];
         list.push({
-            src: __dirname + `/resources/src/android/${sdkType}/ServiceAgora.java`,
+            src: __dirname + `/resources/src/android/${params.sdkType}/ServiceAgora.java`,
             dst: path.join(runtimePath, "proj.android-studio/app/src/org/cocos2dx/javascript/service/ServiceAgora.java")
         });
         list.push({
-            src: __dirname + `/resources/sdk/android/lib/${sdkType}/agora-rtc-sdk.jar`,
+            src: __dirname + `/resources/sdk/android/lib/${params.sdkType}/agora-rtc-sdk.jar`,
             dst: path.join(runtimePath, "proj.android-studio/app/libs/agora-rtc-sdk.jar")
         });
         list.push({
-            src: __dirname + `/resources/sdk/android/agora/${sdkType}`,
+            src: __dirname + `/resources/sdk/android/agora/${params.sdkType}`,
             dst: path.join(runtimePath, isCreator23x ? "proj.android-studio/jni/agora" : "proj.android-studio/app/jni/agora")
         });
         utils.deleteServicePackages(list);
-        let filePath = path.join(options.dest, "frameworks/runtime-src/proj.android-studio", isCreator23x ? 'jni/CocosApplication.mk' : 'app/jni/Application.mk');
+        let filePath = path.join(options.dest, "frameworks/runtime-src/proj.android-studio", isCreator23x ? "jni/CocosApplication.mk" : "app/jni/Application.mk");
         fs.existsSync(filePath) && projHelper.noteCodeLine(filePath, "USE_AGORA := 1", "#");
 
         let buildGradePath = path.join(options.dest, "frameworks/runtime-src/proj.android-studio/app/build.gradle");
