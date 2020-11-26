@@ -937,7 +937,7 @@ During API calls, the SDK may returns error codes and warning codes. See [Error 
 </tr>
 <tr>
 <td>[switchCamera]{@link agora.switchCamera}</td>
-<td>Switches between front and rear cameras (for Android and iOS only).</td>
+<td>Switches between front and rear cameras.</td>
 </tr>
 </table>
 
