@@ -5902,7 +5902,7 @@ declare class AgoraRtcEvents {
      * 
      * 已接收到远端视频并完成解码回调。
      *
-     * @deprecated 该回调已被废弃，请改用  [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged}  回调的：
+     * @deprecated 该回调已被废弃，请改用  [onRemoteVideoStateChanged]{@link AgoraRtcEvents.onRemoteVideoStateChanged}  回调的：
      * - [REMOTE_VIDEO_STATE_STARTING]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STARTING} (1)。
      * - [REMOTE_VIDEO_STATE_DECODING]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_DECODING} (2)。
      *
@@ -5964,13 +5964,13 @@ declare class AgoraRtcEvents {
      * 
      * 远端用户暂停/恢复发送视频流回调。
      * @deprecated 该回调已废弃。你也可以使用
-     *  [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged()}  回调的：
-     * - [REMOTE_VIDEO_STATE_STOPPED]{@link agora.REMOTE_VIDEO_STATE_STOPPED} (0) 和
-     * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED} (5) 。
-     * - [REMOTE_VIDEO_STATE_DECODING]{@link agora.REMOTE_VIDEO_STATE_DECODING} (2) 和
-     * [REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED]{@link agora.REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED} (6)。
+     *  [onRemoteVideoStateChanged]{@link AgoraRtcEvents.onRemoteVideoStateChanged}  回调的：
+     * - [REMOTE_VIDEO_STATE_STOPPED]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STOPPED} (0) 和
+     * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED} (5) 。
+     * - [REMOTE_VIDEO_STATE_DECODING]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_DECODING} (2) 和
+     * [REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED} (6)。
      *
-     * 该回调是由远端用户调用  [muteLocalVideoStream]{@link agora.muteLocalVideoStream     }  方法关闭或开启视频发送触发的。
+     * 该回调是由远端用户调用  [muteLocalVideoStream]{@link agora.muteLocalVideoStream}  方法关闭或开启视频发送触发的。
      *
      * @note 频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调不生效。
      */
@@ -5989,7 +5989,7 @@ declare class AgoraRtcEvents {
      * 
      * 远端用户开关本地视频采集回调。
      *
-     * @deprecated 该回调已被废弃，请改用  [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged} 回调的：
+     * @deprecated 该回调已被废弃，请改用  [onRemoteVideoStateChanged]{@link AgoraRtcEvents.onRemoteVideoStateChanged} 回调的：
      * - [REMOTE_VIDEO_STATE_STOPPED]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STOPPED} (0) 和
      * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED} (5)。
      * - [REMOTE_VIDEO_STATE_DECODING]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_DECODING} (2) 和
@@ -6213,7 +6213,7 @@ declare class AgoraRtcEvents {
     onLocalVideoStateChanged:
         
         /** 
-         * @param localVideoState 本地视频状态，详见: [LOCAL_VIDEO_STREAM_STATE]{@link agora.LOCAL_VIDEO_STREAM_STATE} 。当本地视频状态为 [LOCAL_VIDEO_STREAM_STATE_FAILED]{@link agora.LOCAL_VIDEO_STREAM_STATE_FAILED} (3) 时，你可以在 `error` 参数中查看返回的错误原因。
+         * @param localVideoState 本地视频状态，详见: [LOCAL_VIDEO_STREAM_STATE]{@link agora.LOCAL_VIDEO_STREAM_STATE} 。当本地视频状态为 [LOCAL_VIDEO_STREAM_STATE_FAILED]{@link agora.LOCAL_VIDEO_STREAM_STATE.LOCAL_VIDEO_STREAM_STATE_FAILED} (3) 时，你可以在 `error` 参数中查看返回的错误原因。
          * @param error 本地视频出错原因，详见: [LOCAL_VIDEO_STREAM_ERROR]{@link agora.LOCAL_VIDEO_STREAM_ERROR} 。
          */
         (localVideoState: agora.LOCAL_VIDEO_STREAM_STATE, error: agora.LOCAL_VIDEO_STREAM_ERROR) => void
@@ -6254,7 +6254,7 @@ declare class AgoraRtcEvents {
      * 
      * 其他用户启用/关闭本地视频。
      *
-     * @deprecated 从 v2.9.0。该回调已被废弃，请改用 [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged} 回调的：
+     * @deprecated 从 v2.9.0。该回调已被废弃，请改用 [onRemoteVideoStateChanged]{@link AgoraRtcEvents.onRemoteVideoStateChanged} 回调的：
      * - [REMOTE_VIDEO_STATE_STOPPED]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STOPPED} (0) 和
      * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED} (5)。
      * - [REMOTE_VIDEO_STATE_DECODING]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_DECODING} (2) 和
@@ -6566,7 +6566,7 @@ declare class AgoraRtcEvents {
      * 
      * @deprecated 通话中远端视频流传输的统计信息回调。
      *
-     * 该回调已被废弃，请改用  [onRemoteVideoStats]{@link agora.onRemoteVideoStats()} 。
+     * 该回调已被废弃，请改用  [onRemoteVideoStats]{@link AgoraRtcEvents.onRemoteVideoStats} 。
      * 该回调描述远端用户通话中端到端的网络统计信息，通过视频包计算，用客观的数据，如丢包、
      * 网络延迟等，展示当前网络状态。
      *
@@ -8147,9 +8147,7 @@ namespace agora {
     /** 
      * 
      * 开启视频预览。
-     * 该方法用于在进入频道前启动本地视频预览。调用该 API 前，必须：
-     * - 调用  [setupLocalVideo]{@link agora.setupLocalVideo}  设置预览窗口及属性；
-     * - 调用  [enableVideo]{@link agora.enableVideo}  开启视频功能。
+     * 该方法用于在进入频道前启动本地视频预览。调用该 API 前，必须调用  [enableVideo]{@link agora.enableVideo}  开启视频功能。
      * 
      * 启用了本地视频预览后，如果调用  [leaveChannel]{@link agora.leaveChannel}  退出频道，本地预览依然处于启动状态，如需要关闭本地预览，
      * 需要调用  [stopPreview]{@link agora.stopPreview} 。
@@ -9569,7 +9567,7 @@ namespace agora {
      * 
      * **Note**
      * 
-     * - 请在调用  [setupLocalVideo]{@link agora.setupLocalVideo}  方法初始化本地视图后，调用该方法。
+     * 
      * - 你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。
      * 
      * @param renderMode 本地视图的渲染模式，详见 [RENDER_MODE_TYPE]{@link agora.RENDER_MODE_TYPE}。
@@ -9596,10 +9594,7 @@ namespace agora {
      * 更新远端视图显示模式。
      * 初始化远端用户视图后，你可以调用该方法更新远端用户视图在本地显示时的渲染和镜像模式。该方法只影响本地用户看到的视频画面。
      * 
-     * **Note**
-     * 
-     * - 请在调用  [setupRemoteVideo]{@link agora.setupRemoteVideo}  方法初始化远端视图后，调用该方法。
-     * - 你可以在通话中多次调用该方法，多次更新远端用户视图的显示模式。
+     * @note 你可以在通话中多次调用该方法，多次更新远端用户视图的显示模式。
      * 
      * @param userId 远端用户 ID。
      * @param renderMode 远端用户视图的渲染模式，详见 [RENDER_MODE_TYPE]{@link agora.RENDER_MODE_TYPE}
@@ -9622,7 +9617,7 @@ namespace agora {
 
     
     /** 
-     * 
+     * @ignore
      * @deprecated 该方法已废弃，请改用  [setupLocalVideo]{@link agora.setupLocalVideo}
      * 或  [setLocalRenderMode]{@link agora.setLocalRenderMode} 设置本地视频镜像模式。
      * @warning 请在调用 `setupLocalVideo` 方法初始化本地视图后，调用该方法。

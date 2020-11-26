@@ -3,7 +3,7 @@
 - [agora]{@link agora} 命名空间包含应用程序调用的主要方法。
 - [AgoraRtcEvents]{@link AgoraRtcEvents} 类用于向应用程序发送回调通知。
 
-在调用 API 过程中，SDK 可能会返回错误码和警告码，详见[错误码和警告码](https://docs.agora.io/cn/Interactive%20Broadcast/error_rtc?platform=Cocos%20Creator)。
+在调用 API 过程中，SDK 可能会返回错误码和警告码，详见[错误码和警告码](../../../error_rtc?platform=Cocos%20Creator)。
 
 ### 频道管理
 
@@ -178,14 +178,6 @@
 <tr>
 <td>[setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}</td>
 <td>设置视频编码属性</td>
-</tr>
-<tr>
-<td>[setupLocalVideo]{@link agora.setupLocalVideo}</td>
-<td>初始化本地视图</td>
-</tr>
-<tr>
-<td>[setupRemoteVideo]{@link agora.setupRemoteVideo}</td>
-<td>初始化远端用户视图</td>
 </tr>
 <tr>
 <td>[setLocalRenderMode]{@link agora.setLocalRenderMode}</td>
