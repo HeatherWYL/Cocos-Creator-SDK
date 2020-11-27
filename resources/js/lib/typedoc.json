@@ -1,4 +1,5 @@
 {
   "mode": "file",
-  "out": "docs/api"
+  "out": "docs/api",
+  "name": "Agora Cocos Creator SDK"
 }
