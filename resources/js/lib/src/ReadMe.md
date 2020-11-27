@@ -179,15 +179,6 @@ During API calls, the SDK may returns error codes and warning codes. See [Error 
 <td>[setVideoEncoderConfiguration]{@link agora.setVideoEncoderConfiguration}</td>
 <td>Sets the video encoder configuration.</td>
 </tr>
-
-<tr>
-<td>[setLocalRenderMode]{@link agora.setLocalRenderMode}</td>
-<td>Updates the display mode of the local video view.</td>
-</tr>
-<tr>
-<td>[setRemoteRenderMode]{@link agora.setRemoteRenderMode}</td>
-<td>Updates the display mode of the video view of a remote user.</td>
-</tr>
 <tr>
 <td>[startPreview]{@link agora.startPreview}</td>
 <td>Starts the local video preview before joining the channel.</td>

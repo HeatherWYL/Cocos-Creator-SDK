@@ -4569,7 +4569,7 @@ namespace agora {
     }
 
     /** 
-     * 
+     * @ignore
      * Video display settings of the `VideoCanvas` class.
      */
     export class VideoCanvas {
@@ -9274,7 +9274,7 @@ namespace agora {
     }
 
     /** 
-     * 
+     * @ignore
      * Updates the display mode of the local video view.
      *
      * After initializing the local video view, you can call this method to update its rendering and mirror modes. It
@@ -9310,7 +9310,7 @@ namespace agora {
     }
 
     /** 
-     * 
+     * @ignore
      * Updates the display mode of the video view of a remote user.
      *
      * After initializing the video view of a remote user, you can call this method to update its rendering and mirror
