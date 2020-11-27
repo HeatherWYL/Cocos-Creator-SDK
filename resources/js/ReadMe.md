@@ -180,14 +180,6 @@
 <td>设置视频编码属性</td>
 </tr>
 <tr>
-<td>[setLocalRenderMode]{@link agora.setLocalRenderMode}</td>
-<td>更新本地视图显示模式</td>
-</tr>
-<tr>
-<td>[setRemoteRenderMode]{@link agora.setRemoteRenderMode}</td>
-<td>更新远端视图显示模式</td>
-</tr>
-<tr>
 <td>[startPreview]{@link agora.startPreview}</td>
 <td>开启视频预览</td>
 </tr>

@@ -505,7 +505,7 @@ namespace agora {
 
     
     /** 
-     * 
+     * @ignore
      * 设置视频显示模式。
      */
     export enum RENDER_MODE_TYPE {
@@ -5161,7 +5161,7 @@ namespace agora {
 
     
     /** 
-     * 
+     * @ignore
      * `VideoCanvas` 类的视频显示设置。
      */
     export class VideoCanvas {
@@ -9560,7 +9560,7 @@ namespace agora {
 
     
     /** 
-     * 
+     * @ignore
      * 更新本地视图显示模式。
      * 
      * 初始化本地用户视图后，你可以调用该方法更新本地用户视图的渲染和镜像模式。该方法只影响本地用户看到的视频画面，不影响本地发布视频。
@@ -9590,7 +9590,7 @@ namespace agora {
 
     
     /** 
-     * 
+     * @ignore
      * 更新远端视图显示模式。
      * 初始化远端用户视图后，你可以调用该方法更新远端用户视图在本地显示时的渲染和镜像模式。该方法只影响本地用户看到的视频画面。
      * 
