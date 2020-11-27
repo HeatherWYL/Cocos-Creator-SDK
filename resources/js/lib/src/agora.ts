@@ -5079,7 +5079,7 @@ declare class AgoraRtcEvents {
      * triggers this callback as many times.
      *
      * @note If you have called the [enableDualStreamMode]{@link agora.enableDualStreamMode} method, the
-     * [onLocalVideoStats]{@link agora.onLocalVideoStats} callback reports the statistics of the high-video
+     * [onLocalVideoStats]{@link AgoraRtcEvents.onLocalVideoStats} callback reports the statistics of the high-video
      * stream (high bitrate, and high-resolution video stream).
      */
     onLocalVideoStats:
@@ -5324,7 +5324,7 @@ declare class AgoraRtcEvents {
      * 
      * Occurs when the first remote video frame is received and decoded.
      *
-     * @deprecated This callback is deprecated and replaced by the [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged()}
+     * @deprecated This callback is deprecated and replaced by the [onRemoteVideoStateChanged]{@link AgoraRtcEvents.onRemoteVideoStateChanged}
      * callback with the following parameters:
      * - [REMOTE_VIDEO_STATE_STARTING(1)]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STARTING}
      * - [REMOTE_VIDEO_STATE_DECODING(2)]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_DECODING}
@@ -5393,7 +5393,7 @@ declare class AgoraRtcEvents {
      * 
      * Occurs when a remote user's video stream playback pauses/resumes.
      *
-     * You can also use the [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged()} callback with the following
+     * You can also use the [onRemoteVideoStateChanged]{@link AgoraRtcEvents.onRemoteVideoStateChanged} callback with the following
      * parameters:
      * - [REMOTE_VIDEO_STATE_STOPPED(0)]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STOPPED} and
      * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED}.
@@ -5421,7 +5421,7 @@ declare class AgoraRtcEvents {
      * module.
      *
      * @deprecated This callback is deprecated and replaced by the
-     * [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged} callback with the following parameters:
+     * [onRemoteVideoStateChanged]{@link AgoraRtcEvents.onRemoteVideoStateChanged} callback with the following parameters:
      * - [REMOTE_VIDEO_STATE_STOPPED]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STOPPED} (0) and
      * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED} (5).
      * - [REMOTE_VIDEO_STATE_DECODING]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_DECODING} (2) and
@@ -5696,7 +5696,7 @@ declare class AgoraRtcEvents {
      * capturing function.
      *
      * @deprecated This callback is deprecated and replaced by the
-     * [onRemoteVideoStateChanged]{@link agora.onRemoteVideoStateChanged} callback with the following parameters:
+     * [onRemoteVideoStateChanged]{@link AgoraRtcEvents.onRemoteVideoStateChanged} callback with the following parameters:
      * - [REMOTE_VIDEO_STATE_STOPPED]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_STOPPED} (0) and
      * [REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED]{@link agora.REMOTE_VIDEO_STATE_REASON.REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED} (5).
      * - [REMOTE_VIDEO_STATE_DECODING]{@link agora.REMOTE_VIDEO_STATE.REMOTE_VIDEO_STATE_DECODING} (2) and
@@ -5937,7 +5937,7 @@ declare class AgoraRtcEvents {
      * to the video after the network conditions improve.
      *
      * If you call [setLocalPublishFallbackOption]{@link agora.setLocalPublishFallbackOption} and set `option` as
-     * [STREAM_FALLBACK_OPTION_AUDIO_ONLY,]{@link agora.STREAM_FALLBACK_OPTIONS.STREAM_FALLBACK_OPTION_AUDIO_ONLY,} the SDK triggers
+     * [STREAM_FALLBACK_OPTION_AUDIO_ONLY]{@link agora.STREAM_FALLBACK_OPTIONS.STREAM_FALLBACK_OPTION_AUDIO_ONLY} the SDK triggers
      * this callback when the published stream falls back to audio-only mode due to poor uplink conditions, or when the audio stream
      * switches back to the video after the uplink network condition improves.
      *
@@ -5960,7 +5960,7 @@ declare class AgoraRtcEvents {
      *
      * If you call
      * [setRemoteSubscribeFallbackOption]{@link agora.setRemoteSubscribeFallbackOption} and set
-     * `option` as [STREAM_FALLBACK_OPTION_AUDIO_ONLY,]{@link agora.STREAM_FALLBACK_OPTIONS.STREAM_FALLBACK_OPTION_AUDIO_ONLY,} the SDK triggers this
+     * `option` as [STREAM_FALLBACK_OPTION_AUDIO_ONLY]{@link agora.STREAM_FALLBACK_OPTIONS.STREAM_FALLBACK_OPTION_AUDIO_ONLY} the SDK triggers this
      * callback when the remote media stream falls back to audio-only mode due
      * to poor uplink conditions, or when the remote media stream switches
      * back to the video after the uplink network condition improves.
@@ -6008,7 +6008,7 @@ declare class AgoraRtcEvents {
      * Reports the transport-layer statistics of each remote video stream.
      *
      * @deprecated This callback is deprecated and replaced by the
-     * [onRemoteVideoStats]{@link agora.onRemoteVideoStats} callback.
+     * [onRemoteVideoStats]{@link AgoraRtcEvents.onRemoteVideoStats} callback.
      * This callback reports the transport-layer statistics, such as the
      * packet loss rate and network time delay, once every two seconds after
      * the local user receives a video packet from a remote user.
@@ -6028,7 +6028,7 @@ declare class AgoraRtcEvents {
     /** 
      * Occurs when the microphone is enabled/disabled.
      *
-     * @deprecated The [onMicrophoneEnabled]{@link agora.onMicrophoneEnabled} callback is
+     * @deprecated The [onMicrophoneEnabled]{@link AgoraRtcEvents.onMicrophoneEnabled} callback is
      * deprecated. Use [LOCAL_AUDIO_STREAM_STATE_STOPPED]{@link agora.LOCAL_AUDIO_STREAM_STATE.LOCAL_AUDIO_STREAM_STATE_STOPPED} (0)
      * or [LOCAL_AUDIO_STREAM_STATE_RECORDING]{@link agora.LOCAL_AUDIO_STREAM_STATE.LOCAL_AUDIO_STREAM_STATE_RECORDING} (1) in the
      * [onLocalAudioStateChanged]{@link AgoraRtcEvents.onLocalAudioStateChanged} callback instead.
@@ -7676,10 +7676,7 @@ namespace agora {
      * 
      * Starts the local video preview before joining the channel.
      *
-     * Before calling this method, you must:
-     * - Call the [setupLocalVideo]{@link agora.setupLocalVideo} method to set up the local preview window and
-     * configure the attributes.
-     * - Call the [enableVideo]{@link agora.enableVideo} method to enable video.
+     * Before calling this method, you must call the [enableVideo]{@link agora.enableVideo} method to enable video.
      *
      * @note Once the `startPreview` method is called to start the local video preview, if you leave the channel by
      * calling the [leaveChannel]{@link agora.leaveChannel} method, the local video preview remains until you call
