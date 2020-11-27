@@ -57,9 +57,9 @@ using namespace cocos2d;
 using namespace agora::rtc;
 using namespace agora::common;
 
-class CocosMetadataObserver : public IMetadataObserver {
+class MyMetadataObserver : public IMetadataObserver {
 public:
-  explicit CocosMetadataObserver(EngineEventHandler *EventHandler)
+  explicit MyMetadataObserver(EngineEventHandler *EventHandler)
       : eventHandler(EventHandler) {}
 
   int getMaxMetadataSize() override { return 0; }
@@ -76,7 +76,7 @@ private:
 
 RtcEngineEventHandler *rtcEngineEventHandler;
 EngineEventHandler *eventHandler;
-CocosMetadataObserver *metadataObserver;
+MyMetadataObserver *metadataObserver;
 agora::cocos::VideoFrameObserver *videoFrameObserver;
 
 se::Class *js_cocos2dx_agoraCreator_class = nullptr;
@@ -121,7 +121,7 @@ static bool js_cocos2dx_extension_agoraCreator_constructor(se::State &s) {
   }
 
   if (!metadataObserver) {
-    metadataObserver = new CocosMetadataObserver(eventHandler);
+    metadataObserver = new MyMetadataObserver(eventHandler);
   }
 
   if (!videoFrameObserver) {
