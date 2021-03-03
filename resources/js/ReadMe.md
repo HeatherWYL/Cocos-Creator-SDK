@@ -880,36 +880,6 @@
 </tr>
 </table>
 
-### 直播输入在线媒体流
-
-> 该组方法仅适用于互动直播
-
-<table>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-<tr>
-<td>[addInjectStreamUrl]{@link agora.addInjectStreamUrl}</td>
-<td>输入在线媒体流</td>
-</tr>
-<tr>
-<td>[removeInjectStreamUrl]{@link agora.removeInjectStreamUrl}</td>
-<td>删除输入的在线媒体流</td>
-</tr>
-</table>
-
-<table>
-<tr>
-<th>事件</th>
-<th>描述</th>
-</tr>
-<tr>
-<td>[onStreamInjectedStatus]{@link AgoraRtcEvents.onStreamInjectedStatus}</td>
-<td>输入在线媒体流状态回调</td>
-</tr>
-</table>
-
 ### 摄像头控制
 
 <table>

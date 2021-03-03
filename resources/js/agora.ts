@@ -6476,6 +6476,8 @@ declare class AgoraRtcEvents {
     
     /** 
      * 输入在线媒体流状态回调。
+     * 
+     * @warning 客户端输入在线媒体流功能即将停服。如果你尚未集成该功能，Agora 建议你不要使用。详见《部分服务下架计划》。
      */
     onStreamInjectedStatus:
         
@@ -10592,6 +10594,8 @@ namespace agora {
      * 该音视频流会出现在频道中，频道内所有用户都会收到  [onUserJoined]{@link AgoraRtcEvents.onUserJoined}  回调，其中 `uid` 为 `666`。
      * 该音视频流会出现在频道中。
      * 
+     * @warning 客户端输入在线媒体流功能即将停服。如果你尚未集成该功能，Agora 建议你不要使用。详见《部分服务下架计划》。
+     * 
      * @param url 添加到直播中的视频流 URL 地址。支持 RTMP、HLS、HTTP-FLV 协议传输。
      * - 支持的音频编码格式：AAC；
      * - 支持的视频编码格式：H.264(AVC)。
@@ -10723,6 +10727,9 @@ namespace agora {
     
     /** 
      * 删除导入的外部媒体流。
+     * 
+     * @warning 客户端输入在线媒体流功能即将停服。如果你尚未集成该功能，Agora 建议你不要使用。详见《部分服务下架计划》。
+     * 
      * @note 成功删除外部视频源 URL 地址后会触发  [onUserOffline]{@link AgoraRtcEvents.onUserOffline}  回调，`uid` 为 `666`。
      * @param url 已导入、待删除的外部视频源 URL 地址。
      * @return
